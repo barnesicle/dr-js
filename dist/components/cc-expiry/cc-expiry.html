@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>Component</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="./cc-expiry.js"></script>
+  <!--this is where custom styles will be loaded-->
+  <style id="customStyles"></style>
+</head>
+
+<body>
+  <script>
+    addInputHtmlToDom();
+    window.onload = function() {
+      document.getElementById('ccExpiry').addEventListener('animationstart', handleAutofill, false);
+      document.addEventListener('focus', function() {document.getElementById('ccExpiry').focus()}, false);
+    };
+  </script>
+</body>
+</html>
