@@ -17090,7 +17090,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "config", function() { return config; });
 // Holds any configuration data that changes depending on environment
 var config = {
-  domain: "https://github.digitalriverws.net/pages/lbarnes/drjs-demo/dist/",
+  domain: "https://github.digitalriverws.net/pages/lbarnes/drjs-demo/dist",
   // eslint-disable-line no-undef
   paymentServiceUrl: "https://api.digitalriver.com/payments/sources",
   // eslint-disable-line no-undef
