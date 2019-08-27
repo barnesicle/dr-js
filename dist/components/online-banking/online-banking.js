@@ -17576,11 +17576,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "config", function() { return config; });
 // Holds any configuration data that changes depending on environment
 var config = {
-  domain: "https://github.digitalriverws.net/pages/lbarnes/drjs-demo/dist",
+  domain: "https://github.digitalriverws.net",
   // eslint-disable-line no-undef
   paymentServiceUrl: "https://api.digitalriver.com/payments/sources",
   // eslint-disable-line no-undef
-  basePath: undefined || '',
+  basePath: "/pages/lbarnes/drjs-demo/dist" || false,
   // eslint-disable-line no-undef
   applePayMerchantId: "merchant.com.test.cert.digitalriver",
   // eslint-disable-line no-undef
