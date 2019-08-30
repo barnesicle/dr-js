@@ -18262,10 +18262,23 @@ function handleCreateSourceValidation(errors) {
  */
 
 function handlePaymentServiceThen(response) {
-  return Promise.resolve({
-    error: null,
-    source: response.data
-  });
+  var sourceResponse;
+
+  if (response.data && response.data.hasOwnProperty('state')) {
+    var source = response.data;
+
+    if (source.state === 'failed') {
+      // source has been returned but state is failed, so we should change format of returned data and change source to null
+      sourceResponse = formatFailedSourceError(source);
+    } else {
+      sourceResponse = {
+        error: null,
+        source: response.data
+      };
+    }
+  }
+
+  return Promise.resolve(sourceResponse);
 }
 /**
  * chooseCreateSourceCatchMessage returns appropriate error when create source fails
@@ -18392,6 +18405,26 @@ function addBrowserInfoToSourceRequest(sourceRequest, browserInfo) {
     referrer: browserInfo.href
   };
   return sourceRequest;
+}
+/**
+ * formatFailedSourceError formats source we should return to client when source state is failed
+ * @param source
+ * @returns {{source: null, error: {failedSourceId: *, liveMode: boolean, type: *, errors: {code: string, message: string}[]}}}
+ */
+
+function formatFailedSourceError(source) {
+  return {
+    error: {
+      liveMode: source.liveMode,
+      type: 'bad_request',
+      errors: [{
+        code: 'source_creation_failed',
+        message: 'The source could not be created with the details provided.'
+      }],
+      failedSourceId: source.id
+    },
+    source: null
+  };
 }
 
 /***/ }),
@@ -18557,7 +18590,7 @@ function handleOnlineBankingCreateSource(componentInstance, sourceRequest, apiKe
   });
 }
 /**
- * runCreateSourceAndHandleResponse runs create source and then handles response
+ * runGetBanksAndHandleResponse runs create source and then handles response
  * @param apiKey
  * @param currency
  * @param country
@@ -18589,7 +18622,7 @@ module.exports = __webpack_require__.p + "controller\\controller.html";
 /*!*****************************************************!*\
   !*** ./src/app/components/controller/controller.js ***!
   \*****************************************************/
-/*! exports provided: getComponentTypeFromId, getComponentById, handleCreateSourceEvent, handleRegisterNewComponent, handleUnregisterComponent, handleMountComponent, handleUnmountComponent, handleComponentEvent, handleClientTrigger, handleOptions, validateAppleMerchant, handleInitialData */
+/*! exports provided: getComponentTypeFromId, getComponentById, handleCreateSourceEvent, handleRegisterNewComponent, handleUnregisterComponent, handleMountComponent, handleUnmountComponent, handleComponentEvent, handleClientTrigger, handleOptions, validateAppleMerchant, handleInitialData, getOnlineBankingBanks */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -18606,6 +18639,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleOptions", function() { return handleOptions; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "validateAppleMerchant", function() { return validateAppleMerchant; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleInitialData", function() { return handleInitialData; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getOnlineBankingBanks", function() { return getOnlineBankingBanks; });
 /* harmony import */ var _controller_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./controller.html */ "./src/app/components/controller/controller.html");
 /* harmony import */ var _controller_html__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_controller_html__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../post-robot-wrapper */ "./src/post-robot-wrapper.js");
@@ -19079,6 +19113,17 @@ function handleInitialData(event) {
   components['controller'].browserInfo = browserInfo;
   components['controller'].instanceOptions = instanceOptions;
   return Promise.resolve();
+}
+clientListener.on('getOnlineBankingBanks', getOnlineBankingBanks);
+/**
+ * Returns list of banks for Online Banking
+ * @param event
+ * @returns {Promise<T|never>}
+ */
+
+function getOnlineBankingBanks(event) {
+  var apiKey = components['controller'].apiKey;
+  return Object(_controller_online_banking_create_source__WEBPACK_IMPORTED_MODULE_8__["runGetBanksAndHandleResponse"])(apiKey, event.data.currency, event.data.country);
 }
 
 /***/ }),

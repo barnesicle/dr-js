@@ -11685,10 +11685,23 @@ function handleCreateSourceValidation(errors) {
  */
 
 function handlePaymentServiceThen(response) {
-  return Promise.resolve({
-    error: null,
-    source: response.data
-  });
+  var sourceResponse;
+
+  if (response.data && response.data.hasOwnProperty('state')) {
+    var source = response.data;
+
+    if (source.state === 'failed') {
+      // source has been returned but state is failed, so we should change format of returned data and change source to null
+      sourceResponse = formatFailedSourceError(source);
+    } else {
+      sourceResponse = {
+        error: null,
+        source: response.data
+      };
+    }
+  }
+
+  return Promise.resolve(sourceResponse);
 }
 /**
  * chooseCreateSourceCatchMessage returns appropriate error when create source fails
@@ -11816,6 +11829,26 @@ function addBrowserInfoToSourceRequest(sourceRequest, browserInfo) {
   };
   return sourceRequest;
 }
+/**
+ * formatFailedSourceError formats source we should return to client when source state is failed
+ * @param source
+ * @returns {{source: null, error: {failedSourceId: *, liveMode: boolean, type: *, errors: {code: string, message: string}[]}}}
+ */
+
+function formatFailedSourceError(source) {
+  return {
+    error: {
+      liveMode: source.liveMode,
+      type: 'bad_request',
+      errors: [{
+        code: 'source_creation_failed',
+        message: 'The source could not be created with the details provided.'
+      }],
+      failedSourceId: source.id
+    },
+    source: null
+  };
+}
 
 /***/ }),
 
@@ -11913,7 +11946,7 @@ function handleOnlineBankingCreateSource(componentInstance, sourceRequest, apiKe
   });
 }
 /**
- * runCreateSourceAndHandleResponse runs create source and then handles response
+ * runGetBanksAndHandleResponse runs create source and then handles response
  * @param apiKey
  * @param currency
  * @param country

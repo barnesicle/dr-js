@@ -140,6 +140,19 @@
       margin-top: 80px;
       margin-bottom: 0;
     }
+
+    .complianceLink {
+      width: auto;
+      padding: 2px;
+      text-align: center;
+      margin-right: 15px;
+      line-height: 30px;
+      height: 30px;
+    }
+
+    .complianceCancellationLink {
+      width: 160px;
+    }
   </style>
 <script type="text/javascript" src="DigitalRiver.js"></script></head>
 
@@ -259,6 +272,7 @@
                       <label for="country">Country</label>
                       <select class="custom-select d-block w-100" id="country" onchange="updateFields(this)" required="">
                         <option value="">Choose...</option>
+                        <option value="AU">AU</option>
                         <option value="US">US</option>
                         <option value="FR">FR</option>
                         <option value="DE">DE</option>
@@ -391,6 +405,9 @@
                     <div id="apple-pay" class="col-md-6 mb-3">
                       <!--apple pay loads here-->
                     </div>
+                    <div id="apple-pay2" class="col-md-6 mb-3">
+                      <!--apple pay loads here-->
+                    </div>
                   </div>
 
                   <form id="payment-form">
@@ -477,6 +494,118 @@
                 </div>
               </div>
             </div>
+            <div class="card">
+              <div class="card-header" id="headingThree">
+                <h5 class="mb-0">
+                  <button id="complianceLink" class="btn btn-link collapsed" data-toggle="collapse"
+                          data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    Compliance Information
+                  </button>
+                  <div class="xsmall" id="complianceInfo"></div>
+                </h5>
+              </div>
+              <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-4 mb-3">
+                      <label for="bEntity">Business Entity</label>
+                      <select class="custom-select d-block w-100" id="bEntity" required="">
+                        <option value="">Choose...</option>
+                        <option value="DR_INC-ENTITY">DR_INC-ENTITY</option>
+                        <option value="C5_INC-ENTITY">C5_INC-ENTITY</option>
+                        <option value="DR_WP-ENTITY">DR_WP-ENTITY</option>
+                        <option value="DR_WPAB-ENTITY">DR_WPAB-ENTITY</option>
+                        <option value="DRES_INC-ENTITY">DRES_INC-ENTITY</option>
+                        <option value="DR_BRAZIL-ENTITY">DR_BRAZIL-ENTITY</option>
+                        <option value="DR_CHINA-ENTITY">DR_CHINA-ENTITY</option>
+                        <option value="DR_GMBH-ENTITY">DR_GMBH-ENTITY</option>
+                        <option value="DR_INDIA-ENTITY">DR_INDIA-ENTITY</option>
+                        <option value="DR_IRELAND-ENTITY">DR_IRELAND-ENTITY</option>
+                        <option value="DR_JAPAN-ENTITY">DR_JAPAN-ENTITY</option>
+                        <option value="DR_KOREA-ENTITY">DR_KOREA-ENTITY</option>
+                        <option value="DR_MEXICO-ENTITY">DR_MEXICO-ENTITY</option>
+                        <option value="DR_RUSSIA-ENTITY">DR_RUSSIA-ENTITY</option>
+                        <option value="DR_TAIWAN-ENTITY">DR_TAIWAN-ENTITY</option>
+                        <option value="DR_SARL-ENTITY">DR_SARL-ENTITY</option>
+                      </select>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                      <label for="locale">Locale</label>
+                      <select class="custom-select d-block w-100" id="locale" required="">
+                        <option value="">Choose...</option>
+                        <option value="ar-EG">ar-EG</option>
+                        <option value="cs-CZ">cs-CZ</option>
+                        <option value="da-DK">da-DK</option>
+                        <option value="de-AT">de-AT</option>
+                        <option value="de-CH">de-CH</option>
+                        <option value="de-DE">de-DE</option>
+                        <option value="el-GR">el-GR</option>
+                        <option value="en-AU">en-AU</option>
+                        <option value="en-BE">en-BE</option>
+                        <option value="en-CA">en-CA</option>
+                        <option value="en-CH">en-CH</option>
+                        <option value="en-DK">en-DK</option>
+                        <option value="en-FI">en-FI</option>
+                        <option value="en-GB">en-GB</option>
+                        <option value="en-IE">en-IE</option>
+                        <option value="en-IN">en-IN</option>
+                        <option value="en-MY">en-MY</option>
+                        <option value="en-NL">en-NL</option>
+                        <option value="en-NO">en-NO</option>
+                        <option value="en-NZ">en-NZ</option>
+                        <option value="en-PR">en-PR</option>
+                        <option value="en-SE">en-SE</option>
+                        <option value="en-SG">en-SG</option>
+                        <option value="en-US">en-US</option>
+                        <option value="en-ZA">en-ZA</option>
+                        <option value="en-AR">en-AR</option>
+                        <option value="en-CL">en-CL</option>
+                        <option value="en-CO">en-CO</option>
+                        <option value="en-EC">en-EC</option>
+                        <option value="en-ES">en-ES</option>
+                        <option value="en-MX">en-MX</option>
+                        <option value="en-PE">en-PE</option>
+                        <option value="en-VE">en-VE</option>
+                        <option value="et-EE">et-EE</option>
+                        <option value="fi-FI">fi-FI</option>
+                        <option value="fr-BE">fr-BE</option>
+                        <option value="fr-CA">fr-CA</option>
+                        <option value="fr-CH">fr-CH</option>
+                        <option value="fr-FR">fr-FR</option>
+                        <option value="hu-HU">hu-HU</option>
+                        <option value="it-CH">it-CH</option>
+                        <option value="it-IT">it-IT</option>
+                        <option value="iw-IL">iw-IL</option>
+                        <option value="ja-JP">ja-JP</option>
+                        <option value="ko-KP">ko-KR</option>
+                        <option value="lt-LT">lt-LT</option>
+                        <option value="lv-LV">lv-LV</option>
+                        <option value="nl-BE">nl-BE</option>
+                        <option value="nl-NL">nl-NL</option>
+                        <option value="no-NO">no-NO</option>
+                        <option value="pl-PL">pl-PL</option>
+                        <option value="pt-BR">pt-BR</option>
+                        <option value="pt-PT">pt-PT</option>
+                        <option value="ro-RO">ro-RO</option>
+                        <option value="ru-RU">ru-RU</option>
+                        <option value="sk-SK">sk-SK</option>
+                        <option value="sl-SI">sl-SI</option>
+                        <option value="sr-YU">sr-YU</option>
+                        <option value="sv-SE">sv-SE</option>
+                        <option value="th-TH">th-TH</option>
+                        <option value="tr-TR">tr-TR</option>
+                        <option value="zh-CN">zh-CN</option>
+                        <option value="zh-HK">zh-HK</option>
+                        <option value="zh-TW">zh-TW</option>
+                      </select>
+                    </div>
+                  </div>
+                  <button class="btn btn-primary btn-lg btn-block" onclick="complianceData()" type="submit">Get Compliance Details</button>
+                  <br/>
+                  <div class="row" id="complianceMethod"></div>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="row">
             <div id="source" style="display:none"></div>
@@ -492,6 +621,7 @@
         </div>
       </div>
     </div>
+    <button onclick="getDEBanks()">get banks for DE</button>
     <button onclick="creditCardNumberComponent.clear()">clear ccnum</button>
     <button onclick="creditCardNumberComponent.focus(); setTimeout(function() {creditCardNumberComponent.blur()}, 2000)">focus ccnum, then blur</button>
     <button onclick="ibpBanksComponent.focus(); setTimeout(function() {ibpBanksComponent.blur()}, 2000)">focus ibp, then blur</button>
@@ -523,6 +653,7 @@
 <script type="text/javascript">
   let apiKey = 'pk_hc_8e3f70c75f314c46855e840ba7a8baab';
   let digitalRiverPayments;
+  let digitalRiverPayments2;
   let owner = {};
   let response = document.getElementById('response');
 
@@ -687,6 +818,8 @@
     const options = { 'locale': 'es-CO'};
     digitalRiverPayments = new DigitalRiver(apiKey, options);
 
+    digitalRiverPayments2 = new DigitalRiver(apiKey, options);
+
     let updatedccNumOptions = {
       placeholderText: 'Number',
       style: styles
@@ -809,7 +942,7 @@
 
     googlePayComponent = digitalRiverPayments.createElement('googlepay', googlePayPaymentRequest);
     applePayComponent = digitalRiverPayments.createElement('applepay', applePayPaymentRequest);
-
+    applePayComponent2 = digitalRiverPayments2.createElement('applepay', applePayPaymentRequest);
 
     console.log('Calling mount functions');
 
@@ -1064,6 +1197,152 @@
     });
 
     applePayComponent.on('source', function(event) {
+      responseLog('applepay source was created');
+      responseLog(JSON.stringify(event));
+      event.complete('success');
+    });
+
+    if (applePayComponent2.canMakePayment()) {
+      applePayComponent2.mount("apple-pay2");
+    } else {
+      document.getElementById('apple-pay2').setAttribute('style','display:none');
+    }
+
+    applePayComponent2.on('shippingaddresschange', function(details) {
+      responseLog('applepay shipping address was updated');
+      responseLog(JSON.stringify(details));
+      setTimeout(function () {
+        let updatedDetails = {
+          status: 'success',
+          shippingOptions: [
+            {
+              id: "free-shipping 2 ",
+              label: "Free Shipping 2",
+              amount: 0,
+              detail: "Will arrive in a few days",
+              selected: true
+            },
+            {
+              id: "overnight-shipping 2",
+              label: "Óvêrnight ShiÞþing 2",
+              amount: 10,
+              detail: "Will arrive tomorrow morning"
+            }
+          ],
+          total: updatedAppleInfo.total,
+          style: {
+            buttonType: "buy",
+            buttonColor: "light",
+            buttonLanguage: "fr"
+          }
+        };
+        //failure scenario with error block
+        if(details.shippingAddress.address.city === 'Apple Valley') {
+          updatedDetails.status = 'failure';
+          updatedDetails.error = {
+            message: 'An Error has occurred.  Please try again.',
+            fields: {
+              postalCode: 'Your zip code is crazy bad'
+            }
+          };
+        }
+
+        //failure scenario and error not sent (checking defaults)
+        if(details.shippingAddress.address.city === 'Kaladim') {
+          updatedDetails.status = 'failure';
+        }
+        responseLog('sending info back to DR for Apple');
+        responseLog(JSON.stringify(updatedDetails));
+        fetch('https://jsonplaceholder.typicode.com/todos/1') // Call the fetch function passing the url of the API as a parameter
+                .then(function() {
+                  // Your code for handling the data you get from the API
+                  if(details.hasOwnProperty('updateWith')) {
+                    details.updateWith(updatedDetails)
+                  };
+                })
+      }, 2000);
+    });
+    applePayComponent2.on('shippingoptionchange', function(details) {
+      responseLog('applepay shipping option was updated');
+      responseLog(JSON.stringify(details));
+      setTimeout(function () {
+        let updatedDetails = {
+          status: 'success',
+          total: {
+            label: "Order Total",
+            amount: 3,
+            isPending: false
+          },
+          displayItems: [
+            {
+              label: "subtotal after shipping method change",
+              amount: 3,
+              isPending: false
+            },
+            {
+              label: "shipping",
+              amount: 0,
+              isPending: false
+            }
+          ]
+        };
+        fetch('https://jsonplaceholder.typicode.com/todos/1') // Call the fetch function passing the url of the API as a parameter
+                .then(function(data) {
+                  // Your code for handling the data you get from the API
+                  console.log(data);
+                  if(details.hasOwnProperty('updateWith')) {
+                    console.log('client sending updated shipping option info')
+                    details.updateWith(updatedDetails);
+                  };
+                })
+        responseLog('sending info back to DR for Apple');
+        responseLog(JSON.stringify(updatedDetails));
+      }, 2000);
+
+    });
+
+    applePayComponent2.on('ready', function(event) {
+      responseLog('applepay ready received ' + JSON.stringify(event));
+    });
+
+    applePayComponent2.on('click', function(event) {
+      responseLog('applepay button was clicked');
+      responseLog(JSON.stringify(event));
+      setTimeout(function () {
+        let updatedDetails = {
+          status: 'success',
+          displayItems: [
+            {
+              label: "Subtotal",
+              amount: 1,
+              isPending: false
+            },
+            {
+              label: "Shipping",
+              amount: 1,
+              isPending: false
+            }
+          ],
+        };
+        // Call the fetch function passing the url of the API as a parameter
+        fetch('https://jsonplaceholder.typicode.com/todos/1').then(function(data) {
+          // Your code for handling the data you get from the API
+          console.log(data);
+          if(event.hasOwnProperty('updateWith')) {
+            console.log('client sending updated info');
+            event.updateWith(updatedDetails);
+          };
+        });
+        responseLog(JSON.stringify(updatedDetails));
+      }, 2000);
+    });
+
+    applePayComponent2.on('cancel', function(event) {
+      responseLog('applepay session was canceled');
+      responseLog(JSON.stringify(event));
+    });
+
+    applePayComponent2.on('source', function(event) {
       responseLog('applepay source was created');
       responseLog(JSON.stringify(event));
       event.complete('success');
@@ -1345,7 +1624,7 @@
     document.getElementById("response").innerHTML += "Submitting Credit Card payment...please wait<br/>";
     digitalRiverPayments.createSource(creditCardNumberComponent, payload).then( function(response) {
       if(response.error) {
-        document.getElementById("response").innerHTML += "Credit Card Payment response received error message: " + response.error.code + "" + JSON.stringify(response, null, '\t');
+        document.getElementById("response").innerHTML += "Credit Card Payment response received error: " + JSON.stringify(response, null, '\t');
       } else {
         document.getElementById("response").innerHTML += "Credit Card Payment response: " + "" + JSON.stringify(response.source, null, '\t');
       }
@@ -1372,7 +1651,7 @@
     document.getElementById("response").innerHTML += "Submitting IBP payment...please wait<br/>";
     digitalRiverPayments.createSource(ibpBanksComponent, payload).then( function(response) {
       if(response.error) {
-        document.getElementById("response").innerHTML += "IBP Payment response received error message: " + response.error.code + "" + JSON.stringify(response, null, '\t');
+        document.getElementById("response").innerHTML += "IBP Payment response received error: " + JSON.stringify(response, null, '\t');
       } else {
         document.getElementById("response").innerHTML += "IBP Payment response: " + "" + JSON.stringify(response.source, null, '\t');
       }
@@ -1395,7 +1674,7 @@
 
     digitalRiverPayments.createSource(payload).then( function(response) {
       if(response.error) {
-        document.getElementById("response").innerHTML += "Payment response received error message: " + response.error.code + "" + JSON.stringify(response, null, '\t');
+        document.getElementById("response").innerHTML += "Payment response received error: " + JSON.stringify(response, null, '\t');
       } else {
         document.getElementById("response").innerHTML += "Payment response: " + "" + JSON.stringify(response.source, null, '\t');
         var ddWindow = window.open(response.source.redirect.redirectUrl, 'directDebit');
@@ -1417,7 +1696,7 @@
 
     digitalRiverPayments.createSource(payload).then( function(response) {
       if(response.error) {
-        document.getElementById("response").innerHTML += "Payment response received error message: " + response.error.code + "" + JSON.stringify(response, null, '\t');
+        document.getElementById("response").innerHTML += "Payment response received error: " + JSON.stringify(response, null, '\t');
       } else {
         document.getElementById("response").innerHTML += "Payment response: " + "" + JSON.stringify(response.source, null, '\t');
       }
@@ -1448,7 +1727,7 @@
 
     digitalRiverPayments.createSource(payload).then( function(response) {
       if(response.error) {
-        document.getElementById("response").innerHTML += "Payment response received error message: " + response.error.code + "" + JSON.stringify(response, null, '\t');
+        document.getElementById("response").innerHTML += "Payment response received error: " + JSON.stringify(response, null, '\t');
       } else {
         document.getElementById("response").innerHTML += "Payment response: " + "" + JSON.stringify(response.source, null, '\t');
       }
@@ -1491,6 +1770,26 @@
     }
   }
 
+  function getDEBanks() {
+    digitalRiverPayments.getOnlineBankingBanks('DE', 'EUR').then(function (result) {
+      responseLog(JSON.stringify(result));
+    }).catch(function(error) {
+      responseLog(JSON.stringify(error))
+    });
+  }
+  
+  function complianceData() {
+    $('#complianceMethod').empty();
+    let entity = $('#bEntity').val();
+    let locale = $('#locale').val();
+    let result = digitalRiverPayments.Compliance.getDetails(entity, locale);
+    $('#complianceMethod').append('<div><strong style="color:blue;">'+result.disclosure.businessEntity.name+'</strong> '+result.disclosure.resellerDisclosure.localizedText+'</div>');
+    $('#complianceMethod').append('<a class="complianceLink" target="_blank" type="button" class="btn btn-info" href='+ result.disclosure.legalNotice.url +'>'+ result.disclosure.legalNotice.localizedText +'</a>');
+    $('#complianceMethod').append('<a class="complianceLink" target="_blank" type="button" class="btn btn-info" href='+ result.disclosure.cookiePolicy.url +'>'+ result.disclosure.cookiePolicy.localizedText +'</a>');
+    $('#complianceMethod').append('<a class="complianceLink" target="_blank" type="button" class="btn btn-info" href='+ result.disclosure.privacyPolicy.url +'>'+ result.disclosure.privacyPolicy.localizedText +'</a>');
+    $('#complianceMethod').append('<a class="complianceLink" target="_blank" type="button" class="btn btn-info" href='+ result.disclosure.termsOfSale.url +'>'+ result.disclosure.termsOfSale.localizedText +'</a>');
+    $('#complianceMethod').append('<a class="complianceLink complianceCancellationLink" target="_blank" type="button" class="btn btn-info" href='+ result.disclosure.cancellationRights.url +'>'+ result.disclosure.cancellationRights.localizedText +'</a>');
+  }
 </script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

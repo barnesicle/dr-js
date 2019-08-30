@@ -17128,12 +17128,8 @@ function generateEventData(type, value, eventType, componentData, eventTrigger) 
   if (isError && (value.length > 0 || eventTrigger === 'showError')) {
     // Required errors are ignored.
     var locale = componentData.instanceOptions.locale;
-    var localizedMessage = Object(_localization_localizated_messages__WEBPACK_IMPORTED_MODULE_4__["getLocaleMessage"])(locale, validated.messageCode);
-    console.log('componentData locale', locale); // TODO Get the localizedMessage based off the messageKey
+    var localizedMessage = Object(_localization_localizated_messages__WEBPACK_IMPORTED_MODULE_4__["getLocaleMessage"])(locale, validated.messageCode); // TODO Need to check if locale exists
 
-    console.log('validated.messageCode', validated.messageCode);
-    console.log('validated', validated);
-    console.log('MESSAGE', localizedMessage);
     errorObject = {
       type: 'validation_error',
       code: validated.errorType,
@@ -18257,8 +18253,6 @@ function handleMountWithMessage(controllerEmitter, message, componentData, handl
     componentId: componentData.componentId,
     componentType: componentData.componentType
   }).then(function (response) {
-    console.log('response.data', response.data);
-
     if (response.data) {
       handleMountData(response.data);
     }
@@ -18910,15 +18904,19 @@ function getHRef(window) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _dataStore_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./dataStore.js */ "./src/client/dataStore.js");
 /* harmony import */ var _createSource_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./createSource.js */ "./src/client/createSource.js");
-/* harmony import */ var _createComponent_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./createComponent.js */ "./src/client/createComponent.js");
-/* harmony import */ var _createController_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./createController.js */ "./src/client/createController.js");
-/* harmony import */ var _app_components_config__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../app/components/config */ "./src/app/components/config.js");
-/* harmony import */ var _DigitalRiverPaymentRequest__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./DigitalRiverPaymentRequest */ "./src/client/DigitalRiverPaymentRequest.js");
-/* harmony import */ var _applepay_applepay__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./applepay/applepay */ "./src/client/applepay/applepay.js");
-/* harmony import */ var _beacon_beacon_client_data__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../beacon/beacon-client-data */ "./src/beacon/beacon-client-data.js");
+/* harmony import */ var _complianceData__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./complianceData */ "./src/client/complianceData.js");
+/* harmony import */ var _createComponent_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./createComponent.js */ "./src/client/createComponent.js");
+/* harmony import */ var _createController_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./createController.js */ "./src/client/createController.js");
+/* harmony import */ var _app_components_config__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../app/components/config */ "./src/app/components/config.js");
+/* harmony import */ var _DigitalRiverPaymentRequest__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./DigitalRiverPaymentRequest */ "./src/client/DigitalRiverPaymentRequest.js");
+/* harmony import */ var _applepay_applepay__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./applepay/applepay */ "./src/client/applepay/applepay.js");
+/* harmony import */ var _beacon_beacon_client_data__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../beacon/beacon-client-data */ "./src/beacon/beacon-client-data.js");
+/* harmony import */ var _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../post-robot-wrapper */ "./src/post-robot-wrapper.js");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+
 
 
 
@@ -18954,11 +18952,14 @@ function DigitalRiver(apiKey, providedInstanceOptions) {
     throw new Error('Pass an API key.');
   }
 
-  var instanceOptions = updateInstanceOptionsWithDefaults(providedInstanceOptions); // creating controller component
+  var instanceOptions = updateInstanceOptionsWithDefaults(providedInstanceOptions);
+  this.Compliance = {
+    getDetails: getDetails
+  }; // creating controller component
 
-  var component = Object(_createController_js__WEBPACK_IMPORTED_MODULE_3__["createController"])(document.body, 'controller'); // creating beacon component
+  var component = Object(_createController_js__WEBPACK_IMPORTED_MODULE_4__["createController"])(document.body, 'controller'); // creating beacon component
 
-  var beaconComponent = Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_2__["createOrExtractBeaconController"])();
+  var beaconComponent = Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_3__["createOrExtractBeaconController"])();
   this.key = _dataStore_js__WEBPACK_IMPORTED_MODULE_0__["default"].create({
     apiKey: apiKey,
     controller: component,
@@ -18966,16 +18967,16 @@ function DigitalRiver(apiKey, providedInstanceOptions) {
     customEvents: [],
     instanceOptions: instanceOptions
   });
-  Object(_createController_js__WEBPACK_IMPORTED_MODULE_3__["registerControllerEvents"])(this.key, Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_2__["getComponentWindow"])(component.id), _app_components_config__WEBPACK_IMPORTED_MODULE_4__["config"].domain);
-  Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_2__["sendApiKey"])(component.id, 'sendInitialData', {
+  Object(_createController_js__WEBPACK_IMPORTED_MODULE_4__["registerControllerEvents"])(this.key, Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_3__["getComponentWindow"])(component.id), _app_components_config__WEBPACK_IMPORTED_MODULE_5__["config"].domain);
+  Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_3__["sendApiKey"])(component.id, 'sendInitialData', {
     apiKey: apiKey,
-    browserInfo: Object(_beacon_beacon_client_data__WEBPACK_IMPORTED_MODULE_7__["collectClientData"])(window),
+    browserInfo: Object(_beacon_beacon_client_data__WEBPACK_IMPORTED_MODULE_8__["collectClientData"])(window),
     instanceOptions: instanceOptions
   });
-  Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_2__["sendApiKey"])(beaconComponent.id, 'sendBeaconApiKey', {
+  Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_3__["sendApiKey"])(beaconComponent.id, 'sendBeaconApiKey', {
     apiKey: apiKey
   }).then(function () {
-    return Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_2__["sendBeaconEventDetails"])(beaconComponent.id, 'controller_loaded');
+    return Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_3__["sendBeaconEventDetails"])(beaconComponent.id, 'controller_loaded');
   });
 }
 /**
@@ -18994,7 +18995,7 @@ DigitalRiver.prototype.createSource = function (componentInstanceOrSourceData, s
     throw new Error('Cannot create source without a controller');
   }
 
-  var beaconComponent = Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_2__["createOrExtractBeaconController"])();
+  var beaconComponent = Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_3__["createOrExtractBeaconController"])();
 
   if (typeof sourceRequest === 'undefined') {
     // In this case the componentInstance is actually the source data
@@ -19004,7 +19005,7 @@ DigitalRiver.prototype.createSource = function (componentInstanceOrSourceData, s
 
     return Object(_createSource_js__WEBPACK_IMPORTED_MODULE_1__["createSource"])(controller.id, '', componentInstanceOrSourceData).then(function (response) {
       if (typeof response != 'undefined' && response.source != null && response.source.id != null) {
-        Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_2__["sendBeaconEventDetails"])(beaconComponent.id, 'source', response.source.id);
+        Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_3__["sendBeaconEventDetails"])(beaconComponent.id, 'source', response.source.id);
       }
 
       return response;
@@ -19020,12 +19021,40 @@ DigitalRiver.prototype.createSource = function (componentInstanceOrSourceData, s
 
     return Object(_createSource_js__WEBPACK_IMPORTED_MODULE_1__["createSource"])(controller.id, componentInstanceOrSourceData.type, sourceRequest).then(function (response) {
       if (typeof response != 'undefined' && response.source != null && response.source.id != null) {
-        Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_2__["sendBeaconEventDetails"])(beaconComponent.id, 'source', response.source.id);
+        Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_3__["sendBeaconEventDetails"])(beaconComponent.id, 'source', response.source.id);
       }
 
       return response;
     });
   }
+};
+
+DigitalRiver.prototype.getOnlineBankingBanks = function (country, currency) {
+  var _dataStore$get2 = _dataStore_js__WEBPACK_IMPORTED_MODULE_0__["default"].get(this.key),
+      controller = _dataStore$get2.controller;
+
+  if (!controller) {
+    throw new Error('Cannot get banks without a controller');
+  }
+
+  var controllerWindow = Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_3__["getComponentWindow"])(controller.id);
+
+  if (!controllerWindow) {
+    throw new Error("Unable to locate controller '".concat(controller.id, "'"));
+  } // Send message to Controller Frame to get banks
+
+
+  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_9__["default"].send(controllerWindow, 'getOnlineBankingBanks', {
+    country: country,
+    currency: currency
+  }, {
+    timeout: 10000
+  }).then(function (response) {
+    // This is a Post Robot Response object so you have to get the data out
+    return response.data;
+  }).catch(function () {
+    return [];
+  });
 };
 
 function onlineBankingDoesNotHaveRequiredFields(options) {
@@ -19043,15 +19072,15 @@ DigitalRiver.prototype.createElement = function (type, options) {
     throw new Error("Invalid element type '".concat(type, "'"));
   }
 
-  var _dataStore$get2 = _dataStore_js__WEBPACK_IMPORTED_MODULE_0__["default"].get(this.key),
-      components = _dataStore$get2.components,
-      controller = _dataStore$get2.controller;
+  var _dataStore$get3 = _dataStore_js__WEBPACK_IMPORTED_MODULE_0__["default"].get(this.key),
+      components = _dataStore$get3.components,
+      controller = _dataStore$get3.controller;
 
   if (components[type]) {
     throw new Error("Failed to create element. Only one element of type '".concat(type, "' allowed per instance."));
   }
 
-  if (type === 'googlepay' && !(options instanceof _DigitalRiverPaymentRequest__WEBPACK_IMPORTED_MODULE_5__["default"])) {
+  if (type === 'googlepay' && !(options instanceof _DigitalRiverPaymentRequest__WEBPACK_IMPORTED_MODULE_6__["default"])) {
     throw new Error('Use paymentRequest() to create options for google.');
   }
 
@@ -19061,20 +19090,20 @@ DigitalRiver.prototype.createElement = function (type, options) {
 
   var component;
 
-  if (options instanceof _DigitalRiverPaymentRequest__WEBPACK_IMPORTED_MODULE_5__["default"]) {
+  if (options instanceof _DigitalRiverPaymentRequest__WEBPACK_IMPORTED_MODULE_6__["default"]) {
     options = options.getData();
   }
 
   if (type === 'applepay') {
-    component = Object(_applepay_applepay__WEBPACK_IMPORTED_MODULE_6__["createApplepayComponent"])(controller.id, this.key, options);
+    component = Object(_applepay_applepay__WEBPACK_IMPORTED_MODULE_7__["createApplePay"])().createApplepayComponent(controller.id, this.key, options);
   } else {
-    component = Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_2__["createComponent"])(type, controller.id, this.key, options);
+    component = Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_3__["createComponent"])(type, controller.id, this.key, options);
   } // Add component/element id to component map
 
 
   var data = _dataStore_js__WEBPACK_IMPORTED_MODULE_0__["default"].get(component.key);
   data.components = Object.assign({}, data.components, _defineProperty({}, type, component.id));
-  Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_2__["registerComponentWithController"])(controller.id, component, options);
+  Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_3__["registerComponentWithController"])(controller.id, component, options);
   return component;
 };
 /**
@@ -19084,8 +19113,21 @@ DigitalRiver.prototype.createElement = function (type, options) {
 
 
 DigitalRiver.prototype.paymentRequest = function (data) {
-  return new _DigitalRiverPaymentRequest__WEBPACK_IMPORTED_MODULE_5__["default"](data);
+  return new _DigitalRiverPaymentRequest__WEBPACK_IMPORTED_MODULE_6__["default"](data);
 };
+
+function getDetails(entityValue, userLocale) {
+  if (!entityValue) {
+    throw new Error('Without business entity value we cannot trigger this method.');
+  }
+
+  if (!userLocale) {
+    var windowDetails = Object(_beacon_beacon_client_data__WEBPACK_IMPORTED_MODULE_8__["collectClientData"])(window);
+    userLocale = windowDetails.userLocale;
+  }
+
+  return Object(_complianceData__WEBPACK_IMPORTED_MODULE_2__["complianceGetDetails"])(entityValue, userLocale);
+}
 
 /* harmony default export */ __webpack_exports__["default"] = (DigitalRiver);
 
@@ -19773,28 +19815,20 @@ function sendAppleClickEvent(instanceData) {
 /*!*****************************************!*\
   !*** ./src/client/applepay/applepay.js ***!
   \*****************************************/
-/*! exports provided: getPaymentOptions, getElement, applePaymentCanMakePayment, setOptions, onApplePayButtonClick, handleValidateMerchant, validateMerchant, shippingAddressChange, shippingOptionChange, paymentAuthorization, handleCancel, createApplepayComponent, handleAppleOptions, handleUpdate, mountApplepay, processPayment, processAppleClickEvent */
+/*! exports provided: processPayment, processAppleClickEvent, applePaymentCanMakePayment, validateMerchant, paymentAuthorization, handleValidateMerchant, shippingAddressChange, shippingOptionChange, createApplePay */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getPaymentOptions", function() { return getPaymentOptions; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getElement", function() { return getElement; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "applePaymentCanMakePayment", function() { return applePaymentCanMakePayment; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setOptions", function() { return setOptions; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "onApplePayButtonClick", function() { return onApplePayButtonClick; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleValidateMerchant", function() { return handleValidateMerchant; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "validateMerchant", function() { return validateMerchant; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "shippingAddressChange", function() { return shippingAddressChange; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "shippingOptionChange", function() { return shippingOptionChange; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "paymentAuthorization", function() { return paymentAuthorization; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleCancel", function() { return handleCancel; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createApplepayComponent", function() { return createApplepayComponent; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleAppleOptions", function() { return handleAppleOptions; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleUpdate", function() { return handleUpdate; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mountApplepay", function() { return mountApplepay; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "processPayment", function() { return processPayment; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "processAppleClickEvent", function() { return processAppleClickEvent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "applePaymentCanMakePayment", function() { return applePaymentCanMakePayment; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "validateMerchant", function() { return validateMerchant; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "paymentAuthorization", function() { return paymentAuthorization; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleValidateMerchant", function() { return handleValidateMerchant; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "shippingAddressChange", function() { return shippingAddressChange; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "shippingOptionChange", function() { return shippingOptionChange; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createApplePay", function() { return createApplePay; });
 /* harmony import */ var _app_components_config__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../app/components/config */ "./src/app/components/config.js");
 /* harmony import */ var _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../post-robot-wrapper */ "./src/post-robot-wrapper.js");
 /* harmony import */ var _createComponent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../createComponent */ "./src/client/createComponent.js");
@@ -19819,124 +19853,49 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
-var version = 3;
-var componentData;
-var controllerEmitter;
-var controllerListener;
-var instanceData;
-var supportedInstruments;
+var version = 3; // TODO MOVE THESE TOP FUNCTIONS TO BE IN ANOTHER FILE
+
 /**
- * Returns payment options
+ * Processes payment sent from apple and sends it to the payment service to create a payment source
+ * @param {object} appleResponseData - data received from Apple
+ * @param {function} resolve -
+ * @param {object} instanceData
  */
 
-function getPaymentOptions() {
-  return instanceData.options;
+function processPayment(appleResponseData, resolve, instanceData) {
+  var complete = Object(_applepay_utils__WEBPACK_IMPORTED_MODULE_4__["createAppleCompleteFunction"])(resolve);
+  var paymentServiceRequest = Object(_applepay_utils__WEBPACK_IMPORTED_MODULE_4__["appleResponseToPaymentService"])(appleResponseData, instanceData);
+  Object(_app_components_google_apple_pay_events__WEBPACK_IMPORTED_MODULE_8__["sendCreateSourceRequest"])(instanceData.controllerEmitter, instanceData.componentData, appleResponseData, paymentServiceRequest, _applepay_utils__WEBPACK_IMPORTED_MODULE_4__["paymentSourceToEventData"], complete);
 }
 /**
- * Returns Apple Pay button element
+ * Process the click event for Apple pay
+ * @param {object} instanceData
+ * @param {Function} sendAppleClickEvent
  */
 
-function getElement() {
-  //todo get this by id instead
-  return document.querySelector('.apple-pay-button');
+function processAppleClickEvent(instanceData, sendAppleClickEvent) {
+  sendAppleClickEvent(instanceData);
 }
 /**
  * Returns boolean true if Apple Pay is supported, false if not supported
  */
 
-function applePaymentCanMakePayment() {
+function applePaymentCanMakePayment(config) {
   if (window.ApplePaySession) {
     //eslint-disable-line no-undef
-    var merchantIdentifier = _app_components_config__WEBPACK_IMPORTED_MODULE_0__["config"].applePayMerchantId;
+    var merchantIdentifier = config.applePayMerchantId;
     return ApplePaySession.canMakePayments(merchantIdentifier); //eslint-disable-line no-undef
   }
 
   return false;
 }
 /**
- * Sanitizes options, stores them in variable, changes amount to string
- * @param {object} unsafeOptions
- */
-
-function setOptions(unsafeOptions) {
-  var options = Object(_app_components_options__WEBPACK_IMPORTED_MODULE_3__["sanitizeOptionsForGoogleApplePay"])(unsafeOptions);
-  options.total.amount = options.total.amount.toString();
-  instanceData.options = options;
-  var node = typeof instanceData.parentNode === 'string' ? document.getElementById(instanceData.parentNode) : instanceData.parentNode;
-  Object(_applepay_utils__WEBPACK_IMPORTED_MODULE_4__["createApplePayButton"])(node, instanceData.componentData.componentId, instanceData.options, onApplePayButtonClick);
-}
-/**
- * Handles click on Apple Pay button and inits Payment Request
- */
-
-function onApplePayButtonClick() {
-  return _onApplePayButtonClick.apply(this, arguments);
-}
-/**
- * Calls validateMerchant and completes merchant validation
- * @param {object} event
- * @param {object} instanceData
- */
-
-function _onApplePayButtonClick() {
-  _onApplePayButtonClick = _asyncToGenerator(
-  /*#__PURE__*/
-  regeneratorRuntime.mark(function _callee() {
-    var applepayPaymentRequest, applepaySession;
-    return regeneratorRuntime.wrap(function _callee$(_context) {
-      while (1) {
-        switch (_context.prev = _context.next) {
-          case 0:
-            processAppleClickEvent(instanceData, _applepay_utils__WEBPACK_IMPORTED_MODULE_4__["sendAppleClickEvent"]);
-            applepayPaymentRequest = Object(_applepay_utils__WEBPACK_IMPORTED_MODULE_4__["setApplePayPaymentRequest"])(instanceData.options);
-            applepaySession = Object(_applepay_utils__WEBPACK_IMPORTED_MODULE_4__["getApplePaySession"])(version, applepayPaymentRequest);
-
-            applepaySession.onvalidatemerchant = function (event) {
-              return handleValidateMerchant(event, instanceData);
-            };
-
-            applepaySession.onshippingcontactselected = function (event) {
-              return shippingAddressChange(event, _applepay_utils__WEBPACK_IMPORTED_MODULE_4__["sendShippingAddressChangeEvent"], instanceData);
-            };
-
-            applepaySession.onshippingmethodselected = function (event) {
-              return shippingOptionChange(event, _applepay_utils__WEBPACK_IMPORTED_MODULE_4__["sendShippingMethodChangeEvent"], instanceData);
-            };
-
-            applepaySession.onpaymentauthorized = function (event) {
-              return paymentAuthorization(event, processPayment, instanceData);
-            };
-
-            applepaySession.oncancel = function () {
-              return Object(_app_components_payment_api_events__WEBPACK_IMPORTED_MODULE_5__["emitComponentCancelled"])(instanceData.componentData);
-            };
-
-            applepaySession.begin();
-            instanceData.applepaySession = applepaySession;
-
-          case 10:
-          case "end":
-            return _context.stop();
-        }
-      }
-    }, _callee);
-  }));
-  return _onApplePayButtonClick.apply(this, arguments);
-}
-
-function handleValidateMerchant(event, instanceData) {
-  return validateMerchant(event.validationURL).then(function (response) {
-    instanceData.applepaySession.completeMerchantValidation(response.data.data);
-  }).catch(function (err) {
-    throw new Error(err);
-  });
-}
-/**
  * Validates merchant
  * @param {string} validationUrl
+ * @param {object} controllerEmitter
  */
 
-function validateMerchant(validationUrl) {
+function validateMerchant(controllerEmitter, validationUrl) {
   //getting domain this way so that it is supported by Safari and iOS Safari
   var domain = window.location.origin.split('//')[1];
   var validationData = {
@@ -19945,6 +19904,40 @@ function validateMerchant(validationUrl) {
     displayName: domain
   };
   return controllerEmitter.send('validateAppleMerchant', validationData);
+}
+/**
+ *
+ * @param event - event content from Apple
+ * @param processPayment - function for sending the event to the client
+ * @param instanceData
+ */
+
+function paymentAuthorization(event, processPayment, instanceData) {
+  return new Promise(function (resolve) {
+    return processPayment(event, resolve, instanceData);
+  }).then(function (data) {
+    if (data.status === 0) {
+      instanceData.options = Object(_app_components_options__WEBPACK_IMPORTED_MODULE_3__["mergeOptions"])(instanceData.options, data);
+      delete instanceData.options.errors;
+      instanceData.applepaySession.completePayment(data);
+    } else {
+      instanceData.applepaySession.abort();
+      Object(_app_components_payment_api_events__WEBPACK_IMPORTED_MODULE_5__["emitComponentCancelled"])(instanceData.componentData);
+    }
+  });
+}
+/**
+ * Calls validateMerchant and completes merchant validation
+ * @param {object} event
+ * @param {object} instanceData
+ */
+
+function handleValidateMerchant(event, instanceData) {
+  return validateMerchant(instanceData.controllerEmitter, event.validationURL).then(function (response) {
+    instanceData.applepaySession.completeMerchantValidation(response.data.data);
+  }).catch(function (err) {
+    throw new Error(err);
+  });
 }
 /**
  *
@@ -19975,136 +19968,293 @@ function shippingOptionChange(event, sendShippingMethodChangeEvent, instanceData
   getUpdatedDetails.then(function (data) {
     instanceData.applepaySession.completeShippingMethodSelection(data);
   });
-}
-/**
- *
- * @param event - event content from Apple
- * @param processPayment - function for sending the event to the client
- * @param instanceData
- */
+} // TODO MOVE ABOVE ------------------------------------------------------------------
 
-function paymentAuthorization(event, processPayment, instanceData) {
-  return new Promise(function (resolve) {
-    return processPayment(event, resolve, instanceData);
-  }).then(function (data) {
-    if (data.status === 0) {
-      instanceData.options = Object(_app_components_options__WEBPACK_IMPORTED_MODULE_3__["mergeOptions"])(instanceData.options, data);
-      delete instanceData.options.errors;
-      instanceData.applepaySession.completePayment(data);
-    } else {
-      instanceData.applepaySession.abort();
-      Object(_app_components_payment_api_events__WEBPACK_IMPORTED_MODULE_5__["emitComponentCancelled"])(instanceData.componentData);
+function createApplePay() {
+  var componentData;
+  var controllerEmitter;
+  var controllerListener;
+  var instanceData;
+  var supportedInstruments;
+
+  function handleAppleOptions(data) {
+    setOptions(data.options);
+  }
+  /**
+   * Mounts component
+   * @param node - string or html element where component should be mounted
+   */
+
+
+  function mountApplepay(node) {
+    instanceData.parentNode = node;
+    var applePayMount = _createComponent__WEBPACK_IMPORTED_MODULE_2__["mount"].bind(this);
+    applePayMount(node);
+    return Object(_app_components_payment_events__WEBPACK_IMPORTED_MODULE_6__["mountComponentFromClient"])(instanceData.controllerEmitter, instanceData.componentData, handleAppleOptions, _app_components_payment_api_events__WEBPACK_IMPORTED_MODULE_5__["emitComponentReady"], undefined, instanceData);
+  }
+  /**
+   * Sanitizes options, stores them in variable, changes amount to string
+   * @param {object} unsafeOptions
+   */
+
+
+  function setOptions(unsafeOptions) {
+    var options = Object(_app_components_options__WEBPACK_IMPORTED_MODULE_3__["sanitizeOptionsForGoogleApplePay"])(unsafeOptions);
+    options.total.amount = options.total.amount.toString();
+    instanceData.options = options;
+    var node = typeof instanceData.parentNode === 'string' ? document.getElementById(instanceData.parentNode) : instanceData.parentNode;
+    Object(_applepay_utils__WEBPACK_IMPORTED_MODULE_4__["createApplePayButton"])(node, instanceData.componentData.componentId, instanceData.options, onApplePayButtonClick);
+  }
+  /**
+   * applies updated options sent by the client
+   * @param {object} options
+   */
+
+
+  function handleUpdate(options) {
+    var applePayUpdate = _createComponent__WEBPACK_IMPORTED_MODULE_2__["update"].bind(this);
+    applePayUpdate(options);
+  }
+  /**
+   * Returns payment options
+   */
+
+
+  function getPaymentOptions() {
+    return instanceData.options;
+  }
+  /**
+   * Returns Apple Pay button element
+   */
+
+
+  function getElement() {
+    //todo get this by id instead
+    return document.querySelector('.apple-pay-button');
+  }
+  /**
+   * Handles click on Apple Pay button and inits Payment Request
+   */
+
+
+  function onApplePayButtonClick() {
+    return _onApplePayButtonClick.apply(this, arguments);
+  }
+  /**
+   * Sends cancel event data to controller to be sent on to client
+   */
+
+
+  function _onApplePayButtonClick() {
+    _onApplePayButtonClick = _asyncToGenerator(
+    /*#__PURE__*/
+    regeneratorRuntime.mark(function _callee() {
+      var applepayPaymentRequest, applepaySession;
+      return regeneratorRuntime.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              processAppleClickEvent(instanceData, _applepay_utils__WEBPACK_IMPORTED_MODULE_4__["sendAppleClickEvent"]);
+              applepayPaymentRequest = Object(_applepay_utils__WEBPACK_IMPORTED_MODULE_4__["setApplePayPaymentRequest"])(instanceData.options);
+              applepaySession = Object(_applepay_utils__WEBPACK_IMPORTED_MODULE_4__["getApplePaySession"])(version, applepayPaymentRequest);
+
+              applepaySession.onvalidatemerchant = function (event) {
+                return handleValidateMerchant(event, instanceData);
+              };
+
+              applepaySession.onshippingcontactselected = function (event) {
+                return shippingAddressChange(event, _applepay_utils__WEBPACK_IMPORTED_MODULE_4__["sendShippingAddressChangeEvent"], instanceData);
+              };
+
+              applepaySession.onshippingmethodselected = function (event) {
+                return shippingOptionChange(event, _applepay_utils__WEBPACK_IMPORTED_MODULE_4__["sendShippingMethodChangeEvent"], instanceData);
+              };
+
+              applepaySession.onpaymentauthorized = function (event) {
+                return paymentAuthorization(event, processPayment, instanceData);
+              };
+
+              applepaySession.oncancel = function () {
+                return Object(_app_components_payment_api_events__WEBPACK_IMPORTED_MODULE_5__["emitComponentCancelled"])(instanceData.componentData);
+              };
+
+              applepaySession.begin();
+              instanceData.applepaySession = applepaySession;
+
+            case 10:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }));
+    return _onApplePayButtonClick.apply(this, arguments);
+  }
+
+  function handleCancel() {
+    Object(_app_components_payment_api_events__WEBPACK_IMPORTED_MODULE_5__["emitComponentCancelled"])(componentData);
+  }
+
+  return {
+    /**
+     * Creates applepay component
+     * @param {string} controllerId
+     * @param {string} key
+     * @param {object} options
+     */
+    createApplepayComponent: function createApplepayComponent(controllerId, key, options) {
+      var type = 'applepay';
+      var id = Object(_createComponent__WEBPACK_IMPORTED_MODULE_2__["generateComponentId"])(type);
+      var applepayComponent = {
+        id: id,
+        key: key,
+        type: type,
+        parentNode: null,
+        controllerId: controllerId,
+        canMakePayment: applePaymentCanMakePayment,
+        mount: mountApplepay,
+        destroy: _createComponent__WEBPACK_IMPORTED_MODULE_2__["destroy"],
+        on: _createComponent__WEBPACK_IMPORTED_MODULE_2__["onEventHandler"],
+        options: Object(_app_components_options__WEBPACK_IMPORTED_MODULE_3__["sanitizeOptionsForGoogleApplePay"])(options),
+        show: onApplePayButtonClick,
+        unmount: _createComponent__WEBPACK_IMPORTED_MODULE_2__["unmount"],
+        update: handleUpdate
+      };
+      componentData = Object(_app_components_payment_component_data__WEBPACK_IMPORTED_MODULE_9__["generateComponentData"])(type, id, controllerId);
+      componentData.key = key;
+      controllerListener = _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_1__["default"].listener({
+        window: componentData.controller.window,
+        domain: _app_components_config__WEBPACK_IMPORTED_MODULE_0__["config"].domain
+      });
+      controllerEmitter = _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_1__["default"].client({
+        window: componentData.controller.window,
+        domain: _app_components_config__WEBPACK_IMPORTED_MODULE_0__["config"].domain
+      });
+      supportedInstruments = [{
+        supportedMethods: 'https://apple.com/apple-pay',
+        data: {
+          version: 3,
+          merchantIdentifier: _app_components_config__WEBPACK_IMPORTED_MODULE_0__["config"].applePayMerchantId,
+          merchantCapabilities: ['supports3DS', 'supportsCredit', 'supportsDebit'],
+          supportedNetworks: ['amex', 'masterCard', 'visa', 'JCB', 'chinaUnionPay', 'discover', 'privateLabel'],
+          countryCode: applepayComponent.options && applepayComponent.options.hasOwnProperty('country') ? applepayComponent.options.country : 'US',
+          requiredBillingContactFields: ['postalAddress', 'email', 'name', 'phone'],
+          requiredShippingContactFields: ['postalAddress', 'email', 'name', 'phone']
+        }
+      }];
+      instanceData = Object(_app_components_create_initial_data__WEBPACK_IMPORTED_MODULE_7__["generateInstanceData"])(controllerEmitter, componentData, getPaymentOptions, getElement, setOptions, supportedInstruments);
+      instanceData.waitBeforeShow = true;
+      instanceData.options = applepayComponent.options;
+      Object(_app_components_payment_events__WEBPACK_IMPORTED_MODULE_6__["addHandleOptions"])(controllerListener, handleAppleOptions);
+      return applepayComponent;
     }
-  });
-}
-/**
- * Sends cancel event data to controller to be sent on to client
- */
+    /**
+     * sets options and creates button
+     * @param {object} data
+     */
 
-function handleCancel() {
-  Object(_app_components_payment_api_events__WEBPACK_IMPORTED_MODULE_5__["emitComponentCancelled"])(componentData);
-}
-/**
- * Creates applepay component
- * @param {string} controllerId
- * @param {string} key
- * @param {object} options
- */
+    /*handleAppleOptions: function handleAppleOptions(data) {
+      setOptions(data.options);
+    },*/
 
-function createApplepayComponent(controllerId, key, options) {
-  var type = 'applepay';
-  var id = Object(_createComponent__WEBPACK_IMPORTED_MODULE_2__["generateComponentId"])(type);
-  var applepayComponent = {
-    id: id,
-    key: key,
-    type: type,
-    parentNode: null,
-    controllerId: controllerId,
-    canMakePayment: applePaymentCanMakePayment,
-    mount: mountApplepay,
-    destroy: _createComponent__WEBPACK_IMPORTED_MODULE_2__["destroy"],
-    on: _createComponent__WEBPACK_IMPORTED_MODULE_2__["onEventHandler"],
-    options: Object(_app_components_options__WEBPACK_IMPORTED_MODULE_3__["sanitizeOptionsForGoogleApplePay"])(options),
-    show: onApplePayButtonClick,
-    unmount: _createComponent__WEBPACK_IMPORTED_MODULE_2__["unmount"],
-    update: handleUpdate
   };
-  componentData = Object(_app_components_payment_component_data__WEBPACK_IMPORTED_MODULE_9__["generateComponentData"])(type, id, controllerId);
-  componentData.key = key;
-  controllerListener = _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_1__["default"].listener({
-    window: componentData.controller.window,
-    domain: _app_components_config__WEBPACK_IMPORTED_MODULE_0__["config"].domain
-  });
-  controllerEmitter = _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_1__["default"].client({
-    window: componentData.controller.window,
-    domain: _app_components_config__WEBPACK_IMPORTED_MODULE_0__["config"].domain
-  });
-  supportedInstruments = [{
-    supportedMethods: 'https://apple.com/apple-pay',
-    data: {
-      version: 3,
-      merchantIdentifier: _app_components_config__WEBPACK_IMPORTED_MODULE_0__["config"].applePayMerchantId,
-      merchantCapabilities: ['supports3DS', 'supportsCredit', 'supportsDebit'],
-      supportedNetworks: ['amex', 'masterCard', 'visa', 'JCB', 'chinaUnionPay', 'discover', 'privateLabel'],
-      countryCode: applepayComponent.options && applepayComponent.options.hasOwnProperty('country') ? applepayComponent.options.country : 'US',
-      requiredBillingContactFields: ['postalAddress', 'email', 'name', 'phone'],
-      requiredShippingContactFields: ['postalAddress', 'email', 'name', 'phone']
+}
+
+/***/ }),
+
+/***/ "./src/client/complianceData.js":
+/*!**************************************!*\
+  !*** ./src/client/complianceData.js ***!
+  \**************************************/
+/*! exports provided: complianceGetDetails */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "complianceGetDetails", function() { return complianceGetDetails; });
+/* harmony import */ var _json_compliance_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../json/compliance.json */ "./src/json/compliance.json");
+var _json_compliance_json__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../json/compliance.json */ "./src/json/compliance.json", 1);
+
+var defaultDRStore = 'https://store.digitalriver.com/store/defaults/';
+var eCommerceProvider = '/eCommerceProvider.';
+var slash = '/';
+var supportedLocales = _json_compliance_json__WEBPACK_IMPORTED_MODULE_0__["locale"];
+function complianceGetDetails(businessEntityId, locale) {
+  var updatedLocale = locale.replace('-', '_');
+  var businessEntityName = getBusinessEntityNameFromCode(businessEntityId);
+  var businessEntityNameEncoded = encodeURIComponent(businessEntityName);
+
+  if (!checkLocaleSupports(updatedLocale)) {
+    throw new Error('Locale is not supported');
+  }
+
+  var complianceData = {
+    'disclosure': {
+      'businessEntity': {
+        'name': businessEntityName,
+        'id': businessEntityId
+      },
+      'resellerDisclosure': {
+        'localizedText': localizedText(_json_compliance_json__WEBPACK_IMPORTED_MODULE_0__["keys"].RESELLER_DISCLOSURE, updatedLocale),
+        'url': localizedUrl(updatedLocale, 'DisplayDRAboutDigitalRiverPage', businessEntityNameEncoded)
+      },
+      'termsOfSale': {
+        'localizedText': localizedText(_json_compliance_json__WEBPACK_IMPORTED_MODULE_0__["keys"].TERMS_OF_SALE, updatedLocale),
+        'url': localizedUrl(updatedLocale, 'DisplayDRTermsAndConditionsPage', businessEntityNameEncoded)
+      },
+      'privacyPolicy': {
+        'localizedText': localizedText(_json_compliance_json__WEBPACK_IMPORTED_MODULE_0__["keys"].PRIVACY_POLICY, updatedLocale),
+        'url': localizedUrl(updatedLocale, 'DisplayDRPrivacyPolicyPage', businessEntityNameEncoded)
+      },
+      'cookiePolicy': {
+        'localizedText': localizedText(_json_compliance_json__WEBPACK_IMPORTED_MODULE_0__["keys"].COOKIE_POLICY, updatedLocale),
+        'url': localizedUrl(updatedLocale, 'DisplayDRCookiesPolicyPage', businessEntityNameEncoded)
+      },
+      'cancellationRights': {
+        'localizedText': localizedText(_json_compliance_json__WEBPACK_IMPORTED_MODULE_0__["keys"].CANCELLATION_RIGHTS, updatedLocale),
+        'url': localizedUrl(updatedLocale, 'DisplayDRTermsAndConditionsPage', businessEntityNameEncoded, 'cancellationRights')
+      },
+      'legalNotice': {
+        'localizedText': localizedText(_json_compliance_json__WEBPACK_IMPORTED_MODULE_0__["keys"].LEGAL_NOTICE, updatedLocale),
+        'url': localizedUrl(updatedLocale, 'DisplayDRContactInformationPage', businessEntityNameEncoded)
+      }
     }
-  }];
-  instanceData = Object(_app_components_create_initial_data__WEBPACK_IMPORTED_MODULE_7__["generateInstanceData"])(controllerEmitter, componentData, getPaymentOptions, getElement, setOptions, supportedInstruments);
-  instanceData.waitBeforeShow = true;
-  instanceData.options = applepayComponent.options;
-  Object(_app_components_payment_events__WEBPACK_IMPORTED_MODULE_6__["addHandleOptions"])(controllerListener, handleAppleOptions);
-  return applepayComponent;
+  };
+  return complianceData;
 }
-/**
- * sets options and creates button
- * @param {object} data
- */
 
-function handleAppleOptions(data) {
-  setOptions(data.options);
+function checkLocaleSupports(locale) {
+  return supportedLocales.includes(locale);
 }
-/**
- * applies updated options sent by the client
- * @param {object} options
- */
 
-function handleUpdate(options) {
-  var applePayUpdate = _createComponent__WEBPACK_IMPORTED_MODULE_2__["update"].bind(this);
-  applePayUpdate(options);
+function localizedText(type, locale) {
+  var localizedValue;
+
+  if (locale in _json_compliance_json__WEBPACK_IMPORTED_MODULE_0__["details"] && type in _json_compliance_json__WEBPACK_IMPORTED_MODULE_0__["details"][locale]) {
+    localizedValue = _json_compliance_json__WEBPACK_IMPORTED_MODULE_0__["details"][locale][type];
+  } else {
+    localizedValue = '';
+  }
+
+  return localizedValue;
 }
-/**
- * Mounts component
- * @param node - string or html element where component should be mounted
- */
 
-function mountApplepay(node) {
-  instanceData.parentNode = node;
-  var applePayMount = _createComponent__WEBPACK_IMPORTED_MODULE_2__["mount"].bind(this);
-  applePayMount(node);
-  return Object(_app_components_payment_events__WEBPACK_IMPORTED_MODULE_6__["mountComponentFromClient"])(instanceData.controllerEmitter, instanceData.componentData, handleAppleOptions, _app_components_payment_api_events__WEBPACK_IMPORTED_MODULE_5__["emitComponentReady"], undefined, instanceData);
+function localizedUrl(locale, entityType, entityNameEncoded, urlType) {
+  if (urlType === 'cancellationRights') {
+    return defaultDRStore + locale + slash + entityType + eCommerceProvider + entityNameEncoded + '.#cancellationRight';
+  } else {
+    return defaultDRStore + locale + slash + entityType + eCommerceProvider + entityNameEncoded;
+  }
 }
-/**
- * Processes payment sent from apple and sends it to the payment service to create a payment source
- * @param {object} appleResponseData - data received from Apple
- * @param {function} resolve -
- * @param {object} instanceData
- */
 
-function processPayment(appleResponseData, resolve, instanceData) {
-  var complete = Object(_applepay_utils__WEBPACK_IMPORTED_MODULE_4__["createAppleCompleteFunction"])(resolve);
-  var paymentServiceRequest = Object(_applepay_utils__WEBPACK_IMPORTED_MODULE_4__["appleResponseToPaymentService"])(appleResponseData, instanceData);
-  Object(_app_components_google_apple_pay_events__WEBPACK_IMPORTED_MODULE_8__["sendCreateSourceRequest"])(instanceData.controllerEmitter, instanceData.componentData, appleResponseData, paymentServiceRequest, _applepay_utils__WEBPACK_IMPORTED_MODULE_4__["paymentSourceToEventData"], complete);
-}
-/**
- * Process the click event for Apple pay
- * @param {object} instanceData
- * @param {Function} sendAppleClickEvent
- */
-
-function processAppleClickEvent(instanceData, sendAppleClickEvent) {
-  sendAppleClickEvent(instanceData);
+function getBusinessEntityNameFromCode(entityId) {
+  var entityName;
+  _json_compliance_json__WEBPACK_IMPORTED_MODULE_0__["entityCode"].forEach(function (entity) {
+    if (entityId === entity.code) {
+      entityName = entity.name;
+    }
+  });
+  return entityName;
 }
 
 /***/ }),
@@ -21400,6 +21550,17 @@ function removeEventsForType(key, componentType) {
  * This wraps the ES6 export so that it only exports the default for Webpack to include as the global variable
  */
 module.exports = __webpack_require__(/*! ./DigitalRiver */ "./src/client/DigitalRiver.js").default;
+
+/***/ }),
+
+/***/ "./src/json/compliance.json":
+/*!**********************************!*\
+  !*** ./src/json/compliance.json ***!
+  \**********************************/
+/*! exports provided: details, locale, entityCode, keys, default */
+/***/ (function(module) {
+
+module.exports = {"details":{"ar_EG":{"cancellationRights":"حق الإلغاء","cookiePolicy":"ملفات كوكيز","legalNotice":"ملحوظة قانونية","privacyPolicy":"سياسة الخصوصية","resellerDisclosure":"هو الموزع والتاجر المعتمد للمنتجات والخدمات المقدمة في هذا المتجر.","termsOfSale":"شروط البيع"},"cs_CZ":{"cancellationRights":"Oprávnění ke zrušení","cookiePolicy":"Cookies","legalNotice":"Právní dokument","privacyPolicy":"Zásady zachování soukromí","resellerDisclosure":"je autorizovaným prodejcem a obchodníkem s produkty a službami, které tento obchod nabízí.","termsOfSale":"Prodejní podmínky"},"da_DK":{"cancellationRights":"Fortrydelsesret","cookiePolicy":"Cookies","legalNotice":"Juridisk note","privacyPolicy":"Retningslinjer for personbeskyttelse","resellerDisclosure":"er den autoriserede forhandler af de produkter og tjenesteydelser, der tilbydes i denne forretning.","termsOfSale":"Salgsvilkår"},"de_AT":{"cancellationRights":"Widerrufsrecht","cookiePolicy":"Cookies","legalNotice":"Impressum","privacyPolicy":"Datenschutzrichtlinien","resellerDisclosure":"ist der autorisierte Wiederverkäufer und Händler der Produkte und Dienstleistungen die in diesem Shop angeboten werden.","termsOfSale":"Verkaufsbedingungen"},"de_CH":{"cancellationRights":"Widerrufsrecht","cookiePolicy":"Cookies","legalNotice":"Impressum","privacyPolicy":"Datenschutzrichtlinien","resellerDisclosure":"ist der autorisierte Wiederverkäufer und Händler der Produkte und Dienstleistungen die in diesem Shop angeboten werden.","termsOfSale":"Verkaufsbedingungen"},"de_DE":{"cancellationRights":"Widerrufsrecht","cookiePolicy":"Cookies","legalNotice":"Impressum","privacyPolicy":"Datenschutzrichtlinien","resellerDisclosure":"ist der autorisierte Wiederverkäufer und Händler der Produkte und Dienstleistungen die in diesem Shop angeboten werden.","termsOfSale":"Verkaufsbedingungen"},"el_GR":{"cancellationRights":"Δικαίωμα Ακύρωσης","cookiePolicy":"Cookies","legalNotice":"Νομική Σημείωση","privacyPolicy":"Πολιτική Ιδιωτικού Απορρήτου","resellerDisclosure":" είναι ο εξουσιοδοτημένος μεταπωλητής και έμπορος των προϊόντων και υπηρεσιών, που προσφέρονται σε αυτό το κατάστημα.","termsOfSale":"Όροι Πώλησης"},"en_AU":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"is the authorised reseller and merchant of the products and services offered within this store.","termsOfSale":"Terms of Sale"},"en_BE":{"privacyPolicy":"Privacy Policy","resellerDisclosure":"is the authorised retailer and merchant providing e-commerce services for this shop.","termsOfSale":"Terms and Conditions"},"en_CA":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"is the authorised reseller and merchant of the products and services offered within this store.","termsOfSale":"Terms of Sale"},"en_CH":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"is the authorized reseller and merchant of the products and services offered within this store.","termsOfSale":"Terms of Sale"},"en_DK":{"privacyPolicy":"Privacy Policy","resellerDisclosure":"is the authorised retailer and merchant providing e-commerce services for this shop.","termsOfSale":"Terms and Conditions"},"en_FI":{"privacyPolicy":"Privacy Policy","resellerDisclosure":"is the authorised retailer and merchant providing e-commerce services for this shop.","termsOfSale":"Terms and Conditions"},"en_GB":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"is the authorised reseller and merchant of the products and services offered within this store.","termsOfSale":"Terms of Sale"},"en_IE":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"is the authorised reseller and merchant of the products and services offered within this store.","termsOfSale":"Terms of Sale"},"en_IN":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"is the authorised reseller and merchant of the products and services offered within this store.","termsOfSale":"Terms of Sale"},"en_MY":{"privacyPolicy":"Privacy Policy","termsOfSale":"Terms and Conditions"},"en_NL":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"is the authorised reseller and merchant of the products and services offered within this store.","termsOfSale":"Terms of Sale"},"en_NO":{"privacyPolicy":"Privacy Policy","resellerDisclosure":"is the authorised retailer and merchant providing e-commerce services for this shop.","termsOfSale":"Terms and Conditions"},"en_NZ":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"is the authorised reseller and merchant of the products and services offered within this store.","termsOfSale":"Terms of Sale"},"en_PR":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"is the authorised reseller and merchant of the products and services offered within this store.","termsOfSale":"Terms of Sale"},"en_SE":{"privacyPolicy":"Privacy Policy","resellerDisclosure":"is the authorised retailer and merchant providing e-commerce services for this shop.","termsOfSale":"Terms and Conditions"},"en_SG":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"is the authorised reseller and merchant of the products and services offered within this store.","termsOfSale":"Terms of Sale"},"en_US":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"is the authorized reseller and merchant of the products and services offered within this store.","termsOfSale":"Terms of Sale"},"en_ZA":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"is the authorised reseller and merchant of the products and services offered within this store.","termsOfSale":"Terms of Sale"},"es_AR":{"cancellationRights":"Derechos de cancelación","cookiePolicy":"Cookies","legalNotice":"Aviso legal","privacyPolicy":"Política de privacidad","resellerDisclosure":"es el revendedor y comercializador autorizado de los productos ofrecidos en esta tienda.","termsOfSale":"Términos de la venta"},"es_CL":{"cancellationRights":"Derechos de cancelación","cookiePolicy":"Cookies","legalNotice":"Aviso legal","privacyPolicy":"Política de privacidad","resellerDisclosure":"es el revendedor y comercializador autorizado de los productos ofrecidos en esta tienda.","termsOfSale":"Términos de la venta"},"es_CO":{"cancellationRights":"Derechos de cancelación","cookiePolicy":"Cookies","legalNotice":"Aviso legal","privacyPolicy":"Política de privacidad","resellerDisclosure":"es el revendedor y comercializador autorizado de los productos ofrecidos en esta tienda.","termsOfSale":"Términos de la venta"},"es_EC":{"cancellationRights":"Derechos de cancelación","cookiePolicy":"Cookies","legalNotice":"Aviso legal","privacyPolicy":"Política de privacidad","resellerDisclosure":"es el revendedor y comercializador autorizado de los productos ofrecidos en esta tienda.","termsOfSale":"Términos de la venta"},"es_ES":{"cancellationRights":"Derechos de cancelación","cookiePolicy":"Cookies","legalNotice":"Aviso legal","privacyPolicy":"Política de confidencialidad","resellerDisclosure":"es el distribuidor y el vendedor autorizado de los productos y servicios ofrecidos en esta tienda virtual.","termsOfSale":"Condiciones de venta"},"es_MX":{"cancellationRights":"Derechos de cancelación","cookiePolicy":"Cookies","legalNotice":"Aviso legal","privacyPolicy":"Política de privacidad","resellerDisclosure":"es el revendedor y comercializador autorizado de los productos ofrecidos en esta tienda.","termsOfSale":"Términos de la venta"},"es_PE":{"cancellationRights":"Derechos de cancelación","cookiePolicy":"Cookies","legalNotice":"Aviso legal","privacyPolicy":"Política de privacidad","resellerDisclosure":"es el revendedor y comercializador autorizado de los productos ofrecidos en esta tienda.","termsOfSale":"Términos de la venta"},"es_VE":{"cancellationRights":"Derechos de cancelación","cookiePolicy":"Cookies","legalNotice":"Aviso legal","privacyPolicy":"Política de privacidad","resellerDisclosure":"es el revendedor y comercializador autorizado de los productos ofrecidos en esta tienda.","termsOfSale":"Términos de la venta"},"et_EE":{"privacyPolicy":"Privaatsuspoliitika","resellerDisclosure":"on sellele kauplusele e-kaubanduse teenuseid osutav volitatud edasimüüja.","termsOfSale":"Tingimused"},"fi_FI":{"cancellationRights":"Peruutusoikeus","cookiePolicy":"Evästeet","legalNotice":"Lainmukainen tiedotus","privacyPolicy":"Yksityisyyden suoja","resellerDisclosure":"on valtuutettu jälleenmyyjä, joka myy tässä kaupassa tarjolla olevia tuotteita ja palveluja.","termsOfSale":"Myyntiehdot"},"fr_BE":{"cancellationRights":"Droits d'annulation","cookiePolicy":"Témoins de connexion","legalNotice":"Mentions legales","privacyPolicy":"Politique de confidentialité","resellerDisclosure":"est le revendeur et marchand agréé pour les produits et services proposés au sein de ce magasin.","termsOfSale":"Conditions de vente"},"fr_CA":{"cancellationRights":"Droits d'annulation","cookiePolicy":"Témoins","legalNotice":"Mentions legales","privacyPolicy":"Politique sur la confidentialité","resellerDisclosure":"est le revendeur et commerçant autorisé fournissant les services de commerce électronique pour ce magasin.","termsOfSale":"Conditions de vente"},"fr_CH":{"cancellationRights":"Droits d'annulation","cookiePolicy":"Témoins de connexion","legalNotice":"Mentions legales","privacyPolicy":"Politique de confidentialité","resellerDisclosure":"est le revendeur et marchand agréé pour les produits et services proposés au sein de ce magasin.","termsOfSale":"Conditions de vente"},"fr_FR":{"cancellationRights":"Droits d'annulation","cookiePolicy":"Témoins de connexion","legalNotice":"Mentions legales","privacyPolicy":"Politique de confidentialité","resellerDisclosure":"est le revendeur et marchand agréé pour les produits et services proposés au sein de ce magasin.","termsOfSale":"Conditions de vente"},"hu_HU":{"cancellationRights":"Rendelés törlésének lehetõsége","cookiePolicy":"Cookie-k","legalNotice":"Jogi nyilatkozat","privacyPolicy":"Adatvédelmi politika","resellerDisclosure":"az áruházban megvásárolható termékek és szolgáltatások hivatalos értékesítő partnere és forgalmazója.","termsOfSale":"Értékesítési feltételek"},"it_CH":{"cancellationRights":"Diritto di recesso","cookiePolicy":"Cookie","legalNotice":"Avviso legale","privacyPolicy":"Tutela della privacy","resellerDisclosure":"è il rivenditore autorizzato e fornitore dei prodotti e dei servizi offerti all&#39;interno di questo negozio.","termsOfSale":"Condizioni di vendita"},"it_IT":{"cancellationRights":"Diritto di recesso","cookiePolicy":"Cookie","legalNotice":"Avviso legale","privacyPolicy":"Tutela della privacy","resellerDisclosure":"è il rivenditore autorizzato dei prodotti di {2} venduti in questo negozio online.","termsOfSale":"Condizioni di vendita","warrantyInformation":"Informazioni sulla Garanzia"},"iw_IL":{"cancellationRights":"זכות ביטול הזמנה","cookiePolicy":"קובצי cookie","legalNotice":"הודעה משפטית","privacyPolicy":"מדיניות שמירה על פרטיות","resellerDisclosure":"הוא המפיץ והסוחר המורשה עבור חנוות מקוונת זו.","termsOfSale":"תנאי מכירה"},"ja_JP":{"cancellationRights":"キャンセル権","cookiePolicy":"クッキー","legalNotice":"本サイトのご利用について","privacyPolicy":"プライバシーポリシー","resellerDisclosure":"は、このストアで提供される製品とサービスの認定再販業者および代理店です。","termsOfSale":"販売条件"},"ko_KR":{"cancellationRights":"취소 권한","cookiePolicy":"쿠키","legalNotice":"법적 고지","privacyPolicy":"개인정보 보호 정책","resellerDisclosure":"은(는) 이 스토어에서 제품과 서비스를 제공하도록 인가된 리셀러 및 판매자입니다.","termsOfSale":"판매 조건"},"lt_LT":{"privacyPolicy":"Privatumo strategija","resellerDisclosure":"įgaliotasis mažmenininkas ir šios parduotuvės el. prekybos paslaugų didmenininkas.","termsOfSale":"Nuostatos ir sąlygos"},"lv_LV":{"privacyPolicy":"Konfidencialitātes politika","resellerDisclosure":"ir pilnvarots tālākpārdevējs un tirgotājs, kas šim veikalam nodrošina e-komecijas pakalpojumus.","termsOfSale":"Noteikumi un nosacījumi"},"nl_BE":{"cancellationRights":"Recht op annulering","cookiePolicy":"Cookies","legalNotice":"Juridische kennisgeving","privacyPolicy":"Privacybeleid","resellerDisclosure":"is de erkende reseller die de producten en services voor deze store levert.","termsOfSale":"Algemene verkoopvoorwaarden"},"nl_NL":{"cancellationRights":"Recht op annulering","cookiePolicy":"Cookies","legalNotice":"Juridische kennisgeving","privacyPolicy":"Privacybeleid","resellerDisclosure":"is de erkende reseller die de producten en services voor deze store levert.","termsOfSale":"Algemene verkoopvoorwaarden"},"no_NO":{"cancellationRights":"Rett til avbestilling","cookiePolicy":"Informasjonskapsler","legalNotice":"Juridiske bestemmelser","privacyPolicy":"Personvern","resellerDisclosure":"er den autoriserte selgeren og forhandleren av varene og tjenestene som tilbys i denne butikken.","termsOfSale":"Salgsbetingelser"},"pl_PL":{"cancellationRights":"Prawo do anulowania zamówienia","cookiePolicy":"Pliki cookie","legalNotice":"Nota prawna","privacyPolicy":"Polityka ochrony danych","resellerDisclosure":"to autoryzowany dystrybutor oraz sprzedawca produktów i usług dostępnych w naszym sklepie.","termsOfSale":"Warunki sprzedaży"},"pt_BR":{"cancellationRights":"Regras de cancelamento","cookiePolicy":"Cookies","legalNotice":"Aviso legal","privacyPolicy":"Política de privacidade","resellerDisclosure":"é o revendedor e o distribuidor autorizado dos produtos e serviços oferecidos nesta loja.","termsOfSale":"Termos de vendas"},"pt_PT":{"cancellationRights":"Direito de Cancelamento","cookiePolicy":"Cookies","legalNotice":"Aviso Legal","privacyPolicy":"Política de privacidade","resellerDisclosure":"é o revendedor autorizado e o comerciante dos produtos e serviços disponibilizados nesta loja.","termsOfSale":"Termos de Venda"},"ro_RO":{"privacyPolicy":"Politică de confidenţialitate","resellerDisclosure":"este un vânzător şi comerciant cu amănuntul autorizat ce furnizează servicii de comerţ electronic pentru acest magazin.","termsOfSale":"Termeni şi condiţii"},"ru_RU":{"cancellationRights":"Право отмены","cookiePolicy":"Cookie","legalNotice":"Юридическое уведомление","privacyPolicy":"Политика конфиденциальности","resellerDisclosure":"является авторизованным реселлером и продавцом продукции и услуг, предлагаемых в настоящем магазине.","termsOfSale":"Условия продажи"},"sk_SK":{"cancellationRights":"Oprávnenie na zrušenie","cookiePolicy":"Cookies","legalNotice":"Právny dokument","privacyPolicy":"Politika ochrany osobných údajov","resellerDisclosure":"je predajca alebo veľkoobchod s produktmi a službami poskytovanými v tomto obchode.","termsOfSale":"Predajné podmienky"},"sl_SI":{"privacyPolicy":"Pravilnik o zasebnosti","resellerDisclosure":"je pooblaščen trgovec na debelo in drobno, ki ponuja storitve spletne prodaje za to trgovino.","termsOfSale":"Pogoji in določila"},"sr_YU":{"privacyPolicy":"Pravilnik o poverljivosti","resellerDisclosure":" je ovlašćen za maloprodaju i trgovinu i pruža usluge e-trgovine za ovu prodavnicu.","termsOfSale":"Uslovi"},"sv_SE":{"cancellationRights":"Ångerrätt","cookiePolicy":"Cookies","legalNotice":"Juridisk information","privacyPolicy":"Sekretesspolicy","resellerDisclosure":"är den auktoriserade återförsäljaren av de produkter och tjänster som erbjuds i den här butiken.","termsOfSale":"Försäljningsvillkor"},"th_TH":{"cancellationRights":"สิทธิ์ในการยกเลิก","cookiePolicy":"คุกกี้","legalNotice":"ข้อความสงวนสิทธิ์ทางกฎหมาย","privacyPolicy":"นโยบายการเก็บรักษาข้อมูลส่วนบุคคล","resellerDisclosure":"เป็นผู้ค้าและผู้จำหน่ายที่ได้รับอนุญาตสำหรับผลิตภัณฑ์และบริการที่นำเสนอภายในร้านค้าแห่งนี้","termsOfSale":"เงื่อนไขการขาย"},"tr_TR":{"cancellationRights":"İptal Hakkı","cookiePolicy":"Tanımlama Bilgileri","legalNotice":"Yasal Uyarı","privacyPolicy":"Gizlilik Politikası","resellerDisclosure":"bu mağazada ürünlerin ve servislerin önerilen yetkili satıcısı ve tüccarıdır.","termsOfSale":"Satış Şartları"},"zh_CN":{"cancellationRights":"取消订单权","cookiePolicy":"Cookie","legalNotice":"法律声明","privacyPolicy":"隐私政策","resellerDisclosure":"是本商店提供的产品和服务的授权经销商和商家。","termsOfSale":"销售条款"},"zh_HK":{"cancellationRights":"取消權利","cookiePolicy":"Cookies","legalNotice":"法律聲明","privacyPolicy":"隱私權政策","resellerDisclosure":"是本商店內所提供產品及服務的授權轉售商和販售者。","termsOfSale":"銷售條款"},"zh_TW":{"cancellationRights":"取消權利","cookiePolicy":"Cookie","legalNotice":"法律聲明","privacyPolicy":"隱私權政策","resellerDisclosure":"本商店所提供商品及服務的授權經銷商及批發商。","termsOfSale":"銷售條款"}},"locale":["ar_EG","cs_CZ","da_DK","de_AT","de_CH","de_DE","el_GR","en_AU","en_BE","en_CA","en_CH","en_DK","en_FI","en_GB","en_IE","en_IN","en_MY","en_NL","en_NO","en_NZ","en_PR","en_SE","en_SG","en_US","en_ZA","es_AR","es_CL","es_CO","es_EC","es_ES","es_MX","es_PE","es_VE","et_EE","fi_FI","fr_BE","fr_CA","fr_CH","fr_FR","hu_HU","it_CH","it_IT","iw_IL","ja_JP","ko_KR","lt_LT","lv_LV","nl_BE","nl_NL","no_NO","pl_PL","pt_BR","pt_PT","ro_RO","ru_RU","sk_SK","sl_SI","sr_YU","sv_SE","th_TH","tr_TR","zh_CN","zh_HK","zh_TW"],"entityCode":[{"code":"DRES_INC-ENTITY","name":"DR Education Services"},{"code":"DR_WP-ENTITY","name":"DR World Payments"},{"code":"DR_WPAB-ENTITY","name":"DR World Payments AB"},{"code":"C5_INC-ENTITY","name":"DR globalTech Inc."},{"code":"DR_BRAZIL-ENTITY","name":"Digital River Brazil"},{"code":"DR_CHINA-ENTITY","name":"Digital River China"},{"code":"DR_GMBH-ENTITY","name":"Digital River GmbH"},{"code":"DR_INC-ENTITY","name":"Digital River Inc."},{"code":"DR_INDIA-ENTITY","name":"Digital River India Pvt"},{"code":"DR_IRELAND-ENTITY","name":"Digital River Ireland Ltd."},{"code":"DR_JAPAN-ENTITY","name":"Digital River Japan"},{"code":"DR_KOREA-ENTITY","name":"Digital River Korea YH"},{"code":"DR_MEXICO-ENTITY","name":"Digital River Mexico"},{"code":"DR_RUSSIA-ENTITY","name":"Digital River Russia"},{"code":"DR_TAIWAN-ENTITY","name":"Digital River Taiwan"},{"code":"DR_SARL-ENTITY","name":"Digital River, International SARL"}],"keys":{"RESELLER_DISCLOSURE":"resellerDisclosure","TERMS_OF_SALE":"termsOfSale","PRIVACY_POLICY":"privacyPolicy","COOKIE_POLICY":"cookiePolicy","CANCELLATION_RIGHTS":"cancellationRights","LEGAL_NOTICE":"legalNotice"}};
 
 /***/ }),
 

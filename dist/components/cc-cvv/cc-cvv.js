@@ -17485,12 +17485,8 @@ function generateEventData(type, value, eventType, componentData, eventTrigger) 
   if (isError && (value.length > 0 || eventTrigger === 'showError')) {
     // Required errors are ignored.
     var locale = componentData.instanceOptions.locale;
-    var localizedMessage = Object(_localization_localizated_messages__WEBPACK_IMPORTED_MODULE_4__["getLocaleMessage"])(locale, validated.messageCode);
-    console.log('componentData locale', locale); // TODO Get the localizedMessage based off the messageKey
+    var localizedMessage = Object(_localization_localizated_messages__WEBPACK_IMPORTED_MODULE_4__["getLocaleMessage"])(locale, validated.messageCode); // TODO Need to check if locale exists
 
-    console.log('validated.messageCode', validated.messageCode);
-    console.log('validated', validated);
-    console.log('MESSAGE', localizedMessage);
     errorObject = {
       type: 'validation_error',
       code: validated.errorType,
@@ -17962,8 +17958,6 @@ function handleMountWithMessage(controllerEmitter, message, componentData, handl
     componentId: componentData.componentId,
     componentType: componentData.componentType
   }).then(function (response) {
-    console.log('response.data', response.data);
-
     if (response.data) {
       handleMountData(response.data);
     }

@@ -17971,12 +17971,8 @@ function generateEventData(type, value, eventType, componentData, eventTrigger) 
   if (isError && (value.length > 0 || eventTrigger === 'showError')) {
     // Required errors are ignored.
     var locale = componentData.instanceOptions.locale;
-    var localizedMessage = Object(_localization_localizated_messages__WEBPACK_IMPORTED_MODULE_4__["getLocaleMessage"])(locale, validated.messageCode);
-    console.log('componentData locale', locale); // TODO Get the localizedMessage based off the messageKey
+    var localizedMessage = Object(_localization_localizated_messages__WEBPACK_IMPORTED_MODULE_4__["getLocaleMessage"])(locale, validated.messageCode); // TODO Need to check if locale exists
 
-    console.log('validated.messageCode', validated.messageCode);
-    console.log('validated', validated);
-    console.log('MESSAGE', localizedMessage);
     errorObject = {
       type: 'validation_error',
       code: validated.errorType,
@@ -18362,9 +18358,9 @@ function customizeSelect(element, styleOptions) {
   bankSelect.container.addEventListener('custom-select:close', function () {
     resizeIframe(collapsedHeight);
   });
-  bankSelect.select.addEventListener('change', function () {
+  bankSelect.select.addEventListener('change', function (event) {
     // once user has selected a bank, remove placeholder option if it has not already been removed
-    if (bankSelect.select.options[0].value === '') {
+    if (event.trigger !== 'showError' && bankSelect.select.options[0].value === '') {
       bankSelect.remove(bankSelect.select.options[0]);
     } //removing classes in 3 lines instead of one because IE11 won't support all in one line
 
@@ -18429,8 +18425,7 @@ function handleFocus(event) {
   Object(_input_events__WEBPACK_IMPORTED_MODULE_3__["handleEvent"])(componentData, 'focus', event);
 }
 /**
- * handleChange accepts a change event, strips letters from the field value,
- * and if appropriate handles event, sets max length and applies space formatting
+ * handleChange accepts a change event
  * @param {event} event
  */
 
@@ -18714,8 +18709,6 @@ function handleMountWithMessage(controllerEmitter, message, componentData, handl
     componentId: componentData.componentId,
     componentType: componentData.componentType
   }).then(function (response) {
-    console.log('response.data', response.data);
-
     if (response.data) {
       handleMountData(response.data);
     }
