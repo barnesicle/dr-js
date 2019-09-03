@@ -19880,10 +19880,10 @@ function processAppleClickEvent(instanceData, sendAppleClickEvent) {
  * Returns boolean true if Apple Pay is supported, false if not supported
  */
 
-function applePaymentCanMakePayment(config) {
+function applePaymentCanMakePayment() {
   if (window.ApplePaySession) {
     //eslint-disable-line no-undef
-    var merchantIdentifier = config.applePayMerchantId;
+    var merchantIdentifier = _app_components_config__WEBPACK_IMPORTED_MODULE_0__["config"].applePayMerchantId;
     return ApplePaySession.canMakePayments(merchantIdentifier); //eslint-disable-line no-undef
   }
 
@@ -20111,7 +20111,9 @@ function createApplePay() {
         type: type,
         parentNode: null,
         controllerId: controllerId,
-        canMakePayment: applePaymentCanMakePayment,
+        canMakePayment: function canMakePayment() {
+          return applePaymentCanMakePayment();
+        },
         mount: mountApplepay,
         destroy: _createComponent__WEBPACK_IMPORTED_MODULE_2__["destroy"],
         on: _createComponent__WEBPACK_IMPORTED_MODULE_2__["onEventHandler"],
