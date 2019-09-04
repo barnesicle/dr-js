@@ -1240,7 +1240,7 @@
     }
 
     applePayComponent2.on('shippingaddresschange', function(details) {
-      responseLog('applepay shipping address was updated');
+      responseLog('applepay2 shipping address was updated');
       responseLog(JSON.stringify(details));
       setTimeout(function () {
         let updatedDetails = {
@@ -1294,7 +1294,7 @@
       }, 2000);
     });
     applePayComponent2.on('shippingoptionchange', function(details) {
-      responseLog('applepay shipping option was updated');
+      responseLog('applepay2 shipping option was updated');
       responseLog(JSON.stringify(details));
       setTimeout(function () {
         let updatedDetails = {
@@ -1333,11 +1333,11 @@
     });
 
     applePayComponent2.on('ready', function(event) {
-      responseLog('applepay ready received ' + JSON.stringify(event));
+      responseLog('applepay2 ready received ' + JSON.stringify(event));
     });
 
     applePayComponent2.on('click', function(event) {
-      responseLog('applepay button was clicked');
+      responseLog('applepay2 button was clicked');
       responseLog(JSON.stringify(event));
       setTimeout(function () {
         let updatedDetails = {
@@ -1369,7 +1369,7 @@
     });
 
     applePayComponent2.on('cancel', function(event) {
-      responseLog('applepay session was canceled');
+      responseLog('applepay2 session was canceled');
       responseLog(JSON.stringify(event));
     });
 
