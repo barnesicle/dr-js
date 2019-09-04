@@ -19983,8 +19983,8 @@ function createApplePay() {
 
 
   function mountApplepay(node) {
-    console.log('component data', componentData);
-    console.log('instance data', instanceData);
+    console.log('component data', Object.assign({}, componentData));
+    console.log('instance data', Object.assign({}, instanceData));
     instanceData.parentNode = node;
     var applePayMount = _createComponent__WEBPACK_IMPORTED_MODULE_2__["mount"].bind(this);
     applePayMount(node);
