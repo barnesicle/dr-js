@@ -18527,19 +18527,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "config", function() { return config; });
 // Holds any configuration data that changes depending on environment
 var config = {
-  domain: "http://localhost:8080",
+  domain: "https://github.digitalriverws.net",
   // eslint-disable-line no-undef
   paymentServiceUrl: "https://api.digitalriver.com/payments/sources",
   // eslint-disable-line no-undef
-  basePath: undefined || '',
+  basePath: "/pages/lbarnes/drjs-demo/dist" || false,
   // eslint-disable-line no-undef
   applePayMerchantId: "merchant.com.test.cert.digitalriver",
   // eslint-disable-line no-undef
-  beaconStorageUrlNonProd: Object({"PAYMENT_API_URL":"https://api.digitalriver.com/payments/sources","DOMAIN":"http://localhost:8080","BASE_PATH":undefined,"APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).BEACON_STORAGE_URL_NON_PROD,
+  beaconStorageUrlNonProd: Object({"PAYMENT_API_URL":"https://api.digitalriver.com/payments/sources","DOMAIN":"https://github.digitalriverws.net","BASE_PATH":"/pages/lbarnes/drjs-demo/dist","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).BEACON_STORAGE_URL_NON_PROD,
   // eslint-disable-line no-undef
-  beaconStorageUrlProd: Object({"PAYMENT_API_URL":"https://api.digitalriver.com/payments/sources","DOMAIN":"http://localhost:8080","BASE_PATH":undefined,"APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).BEACON_STORAGE_URL_PROD,
+  beaconStorageUrlProd: Object({"PAYMENT_API_URL":"https://api.digitalriver.com/payments/sources","DOMAIN":"https://github.digitalriverws.net","BASE_PATH":"/pages/lbarnes/drjs-demo/dist","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).BEACON_STORAGE_URL_PROD,
   // eslint-disable-line no-undef
-  adyenProdUrl: Object({"PAYMENT_API_URL":"https://api.digitalriver.com/payments/sources","DOMAIN":"http://localhost:8080","BASE_PATH":undefined,"APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).ADYEN_PROD_URL // eslint-disable-line no-undef
+  adyenProdUrl: Object({"PAYMENT_API_URL":"https://api.digitalriver.com/payments/sources","DOMAIN":"https://github.digitalriverws.net","BASE_PATH":"/pages/lbarnes/drjs-demo/dist","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).ADYEN_PROD_URL // eslint-disable-line no-undef
 
 };
 
