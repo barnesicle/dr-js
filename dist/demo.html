@@ -662,6 +662,7 @@
   let creditCardCvvComponent;
   let googlePayComponent;
   let applePayComponent;
+  let applePayComponent2;
   let ibpBanksComponent;
 
   let googlePayPaymentRequest;
@@ -900,6 +901,36 @@
       waitOnClick: true
     });
 
+    const applePayPaymentRequest2 = digitalRiverPayments.paymentRequest({
+      country: "us",
+      currency: "USD",
+      total: {
+        label: "Your Order Total2",
+        amount: 1,
+        isPending: false
+      },
+      displayItems: [
+        {
+          label: "Subtotal2",
+          amount: 1,
+          isPending: false
+        },
+        {
+          label: "Shipping",
+          amount: 0,
+          isPending: false
+        }
+      ],
+      //shippingOptions: shippingOptions,
+      requestShipping: false,
+      style: {
+        buttonType: "plain",
+        buttonColor: "dark",
+        buttonLanguage: "en"
+      },
+      waitOnClick: true
+    });
+
     updatedAppleInfo = {
       total: {
         label: "Order Total after update",
@@ -942,7 +973,7 @@
 
     googlePayComponent = digitalRiverPayments.createElement('googlepay', googlePayPaymentRequest);
     applePayComponent = digitalRiverPayments.createElement('applepay', applePayPaymentRequest);
-    applePayComponent2 = digitalRiverPayments2.createElement('applepay', applePayPaymentRequest);
+    applePayComponent2 = digitalRiverPayments2.createElement('applepay', applePayPaymentRequest2);
 
     console.log('Calling mount functions');
 
@@ -1229,11 +1260,11 @@
               detail: "Will arrive tomorrow morning"
             }
           ],
-          total: updatedAppleInfo.total,
+          //total: updatedAppleInfo.total,
           style: {
             buttonType: "buy",
             buttonColor: "light",
-            buttonLanguage: "fr"
+            buttonLanguage: "en"
           }
         };
         //failure scenario with error block

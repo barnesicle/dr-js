@@ -19839,10 +19839,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _app_components_create_initial_data__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../app/components/create-initial-data */ "./src/app/components/create-initial-data.js");
 /* harmony import */ var _app_components_google_apple_pay_events__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../app/components/google-apple-pay-events */ "./src/app/components/google-apple-pay-events.js");
 /* harmony import */ var _app_components_payment_component_data__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../app/components/payment-component-data */ "./src/app/components/payment-component-data.js");
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
 
 
 
@@ -20038,58 +20034,37 @@ function createApplePay() {
 
 
   function onApplePayButtonClick() {
-    return _onApplePayButtonClick.apply(this, arguments);
+    processAppleClickEvent(instanceData, _applepay_utils__WEBPACK_IMPORTED_MODULE_4__["sendAppleClickEvent"]);
+    var applepayPaymentRequest = Object(_applepay_utils__WEBPACK_IMPORTED_MODULE_4__["setApplePayPaymentRequest"])(instanceData.options);
+    var applepaySession = Object(_applepay_utils__WEBPACK_IMPORTED_MODULE_4__["getApplePaySession"])(version, applepayPaymentRequest);
+
+    applepaySession.onvalidatemerchant = function (event) {
+      return handleValidateMerchant(event, instanceData);
+    };
+
+    applepaySession.onshippingcontactselected = function (event) {
+      return shippingAddressChange(event, _applepay_utils__WEBPACK_IMPORTED_MODULE_4__["sendShippingAddressChangeEvent"], instanceData);
+    };
+
+    applepaySession.onshippingmethodselected = function (event) {
+      return shippingOptionChange(event, _applepay_utils__WEBPACK_IMPORTED_MODULE_4__["sendShippingMethodChangeEvent"], instanceData);
+    };
+
+    applepaySession.onpaymentauthorized = function (event) {
+      return paymentAuthorization(event, processPayment, instanceData);
+    };
+
+    applepaySession.oncancel = function () {
+      return Object(_app_components_payment_api_events__WEBPACK_IMPORTED_MODULE_5__["emitComponentCancelled"])(instanceData.componentData);
+    };
+
+    applepaySession.begin();
+    instanceData.applepaySession = applepaySession;
   }
   /**
    * Sends cancel event data to controller to be sent on to client
    */
 
-
-  function _onApplePayButtonClick() {
-    _onApplePayButtonClick = _asyncToGenerator(
-    /*#__PURE__*/
-    regeneratorRuntime.mark(function _callee() {
-      var applepayPaymentRequest, applepaySession;
-      return regeneratorRuntime.wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              processAppleClickEvent(instanceData, _applepay_utils__WEBPACK_IMPORTED_MODULE_4__["sendAppleClickEvent"]);
-              applepayPaymentRequest = Object(_applepay_utils__WEBPACK_IMPORTED_MODULE_4__["setApplePayPaymentRequest"])(instanceData.options);
-              applepaySession = Object(_applepay_utils__WEBPACK_IMPORTED_MODULE_4__["getApplePaySession"])(version, applepayPaymentRequest);
-
-              applepaySession.onvalidatemerchant = function (event) {
-                return handleValidateMerchant(event, instanceData);
-              };
-
-              applepaySession.onshippingcontactselected = function (event) {
-                return shippingAddressChange(event, _applepay_utils__WEBPACK_IMPORTED_MODULE_4__["sendShippingAddressChangeEvent"], instanceData);
-              };
-
-              applepaySession.onshippingmethodselected = function (event) {
-                return shippingOptionChange(event, _applepay_utils__WEBPACK_IMPORTED_MODULE_4__["sendShippingMethodChangeEvent"], instanceData);
-              };
-
-              applepaySession.onpaymentauthorized = function (event) {
-                return paymentAuthorization(event, processPayment, instanceData);
-              };
-
-              applepaySession.oncancel = function () {
-                return Object(_app_components_payment_api_events__WEBPACK_IMPORTED_MODULE_5__["emitComponentCancelled"])(instanceData.componentData);
-              };
-
-              applepaySession.begin();
-              instanceData.applepaySession = applepaySession;
-
-            case 10:
-            case "end":
-              return _context.stop();
-          }
-        }
-      }, _callee);
-    }));
-    return _onApplePayButtonClick.apply(this, arguments);
-  }
 
   function handleCancel() {
     Object(_app_components_payment_api_events__WEBPACK_IMPORTED_MODULE_5__["emitComponentCancelled"])(componentData);
