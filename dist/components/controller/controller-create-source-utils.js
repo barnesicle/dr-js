@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 6);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -11595,17 +11595,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "config", function() { return config; });
 // Holds any configuration data that changes depending on environment
 var config = {
-  domain: "https://github.digitalriverws.net",
+  domain: "http://localhost:8080",
   // eslint-disable-line no-undef
   paymentServiceUrl: "https://api.digitalriver.com/payments/sources",
   // eslint-disable-line no-undef
-  basePath: "/pages/lbarnes/drjs-demo/dist" || false,
+  basePath: undefined || '',
   // eslint-disable-line no-undef
   applePayMerchantId: "merchant.com.test.cert.digitalriver",
   // eslint-disable-line no-undef
   beaconStorageUrlNonProd: "https://beacon-test.driv-analytics.com/capture",
   // eslint-disable-line no-undef
-  beaconStorageUrlProd: "https://beacon.driv-analytics.com/capture" // eslint-disable-line no-undef
+  beaconStorageUrlProd: "https://beacon.driv-analytics.com/capture",
+  // eslint-disable-line no-undef
+  adyenProdUrl: "https://checkoutshopper-live.adyen.com/checkoutshopper/sdk/3.0.0/adyen.js" // eslint-disable-line no-undef
 
 };
 
@@ -11615,16 +11617,18 @@ var config = {
 /*!*************************************************************************!*\
   !*** ./src/app/components/controller/controller-create-source-utils.js ***!
   \*************************************************************************/
-/*! exports provided: runCreateSourceAndHandleResponse, formatComponentTriggerErrors, handleCreateSourceValidation, handlePaymentServiceThen, chooseCreateSourceCatchMessage, addBrowserInfoToSourceRequest */
+/*! exports provided: runCreateSourceAndHandleResponse, runCreateSourceAndHandleResponseForAdyen, formatComponentTriggerErrors, handleCreateSourceValidation, handlePaymentServiceThen, chooseCreateSourceCatchMessage, handleAdyenError, addBrowserInfoToSourceRequest */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "runCreateSourceAndHandleResponse", function() { return runCreateSourceAndHandleResponse; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "runCreateSourceAndHandleResponseForAdyen", function() { return runCreateSourceAndHandleResponseForAdyen; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "formatComponentTriggerErrors", function() { return formatComponentTriggerErrors; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleCreateSourceValidation", function() { return handleCreateSourceValidation; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handlePaymentServiceThen", function() { return handlePaymentServiceThen; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "chooseCreateSourceCatchMessage", function() { return chooseCreateSourceCatchMessage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleAdyenError", function() { return handleAdyenError; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addBrowserInfoToSourceRequest", function() { return addBrowserInfoToSourceRequest; });
 /* harmony import */ var _payment_service_request__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../payment-service-request */ "./src/app/payment-service-request.js");
 /* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../config */ "./src/app/components/config.js");
@@ -11639,6 +11643,22 @@ __webpack_require__.r(__webpack_exports__);
 
 function runCreateSourceAndHandleResponse(sourceRequest, apiKey) {
   return Object(_payment_service_request__WEBPACK_IMPORTED_MODULE_0__["paymentServiceRequest"])(sourceRequest, apiKey, _config__WEBPACK_IMPORTED_MODULE_1__["config"].paymentServiceUrl).then(function (response) {
+    return handlePaymentServiceThen(response);
+  }).catch(function (error) {
+    return chooseCreateSourceCatchMessage(error);
+  });
+}
+/**
+ * runCreateSourceAndHandleResponseForAdyen runs create source and then handles response
+ * @param sourceRequest
+ * @param clientSecretData
+ * @param apiKey
+ * @returns {Promise<T | never>}
+ */
+
+function runCreateSourceAndHandleResponseForAdyen(sourceRequest, clientSecretData, apiKey) {
+  var paymentServiceUrl = _config__WEBPACK_IMPORTED_MODULE_1__["config"].paymentServiceUrl + '/' + clientSecretData.clientSecret[0] + '/?secret=' + clientSecretData.clientSecret[1];
+  return Object(_payment_service_request__WEBPACK_IMPORTED_MODULE_0__["paymentServiceRequest"])(sourceRequest, apiKey, paymentServiceUrl).then(function (response) {
     return handlePaymentServiceThen(response);
   }).catch(function (error) {
     return chooseCreateSourceCatchMessage(error);
@@ -11776,10 +11796,27 @@ function handleNetworkTimeoutError() {
   });
 }
 /**
+ * Resolves a promise with a 3ds error
+ * @returns {Promise<{source: null, error: {type: 3ds2_error, errors: {message: string}[]}}>}
+ */
+
+
+function handleAdyenError() {
+  return Promise.resolve({
+    error: {
+      type: '3ds2_error',
+      errors: [{
+        code: '3ds_sdk_error',
+        message: 'There was a problem with your authentication, please try again.'
+      }]
+    },
+    source: null
+  });
+}
+/**
  * Resolves a promise with a no network error
  * @returns {Promise<{source: null, error: {type: string, errors: {message: string}[]}}>}
  */
-
 
 function handleNoNetworkError() {
   return Promise.resolve({
@@ -11910,7 +11947,7 @@ var generateAuthHeader = function generateAuthHeader(apiKey) {
 
 /***/ }),
 
-/***/ 4:
+/***/ 6:
 /*!***********************************************************************************************!*\
   !*** multi @babel/polyfill ./src/app/components/controller/controller-create-source-utils.js ***!
   \***********************************************************************************************/

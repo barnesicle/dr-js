@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -16917,17 +16917,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "config", function() { return config; });
 // Holds any configuration data that changes depending on environment
 var config = {
-  domain: "https://github.digitalriverws.net",
+  domain: "http://localhost:8080",
   // eslint-disable-line no-undef
   paymentServiceUrl: "https://api.digitalriver.com/payments/sources",
   // eslint-disable-line no-undef
-  basePath: "/pages/lbarnes/drjs-demo/dist" || false,
+  basePath: undefined || '',
   // eslint-disable-line no-undef
   applePayMerchantId: "merchant.com.test.cert.digitalriver",
   // eslint-disable-line no-undef
   beaconStorageUrlNonProd: "https://beacon-test.driv-analytics.com/capture",
   // eslint-disable-line no-undef
-  beaconStorageUrlProd: "https://beacon.driv-analytics.com/capture" // eslint-disable-line no-undef
+  beaconStorageUrlProd: "https://beacon.driv-analytics.com/capture",
+  // eslint-disable-line no-undef
+  adyenProdUrl: "https://checkoutshopper-live.adyen.com/checkoutshopper/sdk/3.0.0/adyen.js" // eslint-disable-line no-undef
 
 };
 
@@ -17205,7 +17207,7 @@ function _on(name, data, callback) {
 
 /***/ }),
 
-/***/ 0:
+/***/ 1:
 /*!*******************************************************************!*\
   !*** multi @babel/polyfill ./src/app/components/beacon/beacon.js ***!
   \*******************************************************************/

@@ -1,5 +1,4 @@
-var DigitalRiver =
-/******/ (function(modules) { // webpackBootstrap
+(function(e, a) { for(var i in a) e[i] = a[i]; }(window, /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
 /******/
@@ -15427,360 +15426,6 @@ module.exports = Array.isArray || function (arr) {
 
 /***/ }),
 
-/***/ "./node_modules/parse-full-name/index.js":
-/*!***********************************************!*\
-  !*** ./node_modules/parse-full-name/index.js ***!
-  \***********************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-exports.parseFullName = function parseFullName(
-    nameToParse, partToReturn, fixCase, stopOnError, useLongLists
-) {
-  "use strict";
-
-  var i, j, k, l, m, n, part, comma, titleList, suffixList, prefixList, regex,
-    partToCheck, partFound, partsFoundCount, firstComma, remainingCommas,
-    nameParts = [], nameCommas = [null], partsFound = [],
-    conjunctionList = ['&','and','et','e','of','the','und','y'],
-    parsedName = {
-      title: '', first: '', middle: '', last: '', nick: '', suffix: '', error: []
-    };
-
-  // Validate inputs, or set to defaults
-  partToReturn = partToReturn && ['title','first','middle','last','nick',
-    'suffix','error'].indexOf(partToReturn.toLowerCase()) > -1 ?
-    partToReturn.toLowerCase() : 'all';
-    // 'all' = return object with all parts, others return single part
-  if ( fixCase === false ) fixCase = 0;
-  if ( fixCase === true ) fixCase = 1;
-  fixCase = fixCase !== 'undefined' && ( fixCase === 0 || fixCase === 1 ) ?
-    fixCase : -1; // -1 = fix case only if input is all upper or lowercase
-  if ( stopOnError === true ) stopOnError = 1;
-  stopOnError = stopOnError && stopOnError === 1 ? 1 : 0;
-    // false = output warnings on parse error, but don't stop
-  if ( useLongLists === true ) useLongLists = 1;
-  useLongLists = useLongLists && useLongLists === 1 ? 1 : 0; // 0 = short lists
-
-  // If stopOnError = 1, throw error, otherwise return error messages in array
-  function handleError( errorMessage ) {
-    if ( stopOnError ) {
-      throw 'Error: ' + errorMessage;
-    } else {
-      parsedName.error.push('Error: ' + errorMessage);
-    }
-  }
-
-  // If fixCase = 1, fix case of parsedName parts before returning
-  function fixParsedNameCase ( fixedCaseName, fixCaseNow ) {
-    var forceCaseList = ['e','y','av','af','da','dal','de','del','der','di',
-      'la','le','van','der','den','vel','von','II','III','IV','J.D.','LL.M.',
-      'M.D.','D.O.','D.C.','Ph.D.'];
-    var forceCaseListIndex;
-    var namePartLabels = [];
-    var namePartWords;
-    if (fixCaseNow) {
-      namePartLabels = Object.keys(parsedName)
-        .filter( function(v) { return v !== 'error'; } );
-      for ( i = 0, l = namePartLabels.length; i < l; i++ ) {
-        if ( fixedCaseName[namePartLabels[i]] ) {
-          namePartWords = ( fixedCaseName[namePartLabels[i]] + '' ).split(' ');
-          for ( j = 0, m = namePartWords.length; j < m; j++ ) {
-            forceCaseListIndex = forceCaseList
-              .map( function(v) { return v.toLowerCase(); } )
-              .indexOf(namePartWords[j].toLowerCase());
-            if ( forceCaseListIndex > -1 ) { // Set case of words in forceCaseList
-              namePartWords[j] = forceCaseList[forceCaseListIndex];
-            } else if ( namePartWords[j].length === 1 ) { // Uppercase initials
-              namePartWords[j] = namePartWords[j].toUpperCase();
-            } else if (
-                namePartWords[j].length > 2 &&
-                namePartWords[j].slice(0,1)  ===
-                  namePartWords[j].slice(0,1).toUpperCase() &&
-                namePartWords[j].slice(1,2) ===
-                  namePartWords[j].slice(1,2).toLowerCase() &&
-                namePartWords[j].slice(2) ===
-                  namePartWords[j].slice(2).toUpperCase()
-              ) { // Detect McCASE and convert to McCase
-              namePartWords[j] = namePartWords[j].slice(0,3) +
-                namePartWords[j].slice(3).toLowerCase();
-            } else if (
-                namePartLabels[j] === 'suffix' &&
-                nameParts[j].slice(-1) !== '.' &&
-                !suffixList.indexOf(nameParts[j].toLowerCase())
-              ) { // Convert suffix abbreviations to UPPER CASE
-              if ( namePartWords[j] === namePartWords[j].toLowerCase() ) {
-                namePartWords[j] = namePartWords[j].toUpperCase();
-              }
-            } else { // Convert to Title Case
-              namePartWords[j] = namePartWords[j].slice(0,1).toUpperCase() +
-                namePartWords[j].slice(1).toLowerCase();
-            }
-          }
-          fixedCaseName[namePartLabels[i]] = namePartWords.join(' ');
-        }
-      }
-    }
-    return fixedCaseName;
-  }
-
-  // If no input name, or input name is not a string, abort
-  if ( !nameToParse || typeof nameToParse !== 'string' ) {
-    handleError('No input');
-    parsedName = fixParsedNameCase(parsedName, fixCase);
-    return partToReturn === 'all' ? parsedName : parsedName[partToReturn];
-  }
-
-  // Auto-detect fixCase: fix if nameToParse is all upper or all lowercase
-  if ( fixCase === -1 ) {
-    fixCase = (
-      nameToParse === nameToParse.toUpperCase() ||
-      nameToParse === nameToParse.toLowerCase() ? 1 : 0
-    );
-  }
-
-  // Initilize lists of prefixs, suffixs, and titles to detect
-  // Note: These list entries must be all lowercase
-  if ( useLongLists ) {
-    suffixList = ['esq','esquire','jr','jnr','sr','snr','2','ii','iii','iv',
-      'v','clu','chfc','cfp','md','phd','j.d.','ll.m.','m.d.','d.o.','d.c.',
-      'p.c.','ph.d.'];
-    prefixList = ['a','ab','antune','ap','abu','al','alm','alt','bab','bäck',
-      'bar','bath','bat','beau','beck','ben','berg','bet','bin','bint','birch',
-      'björk','björn','bjur','da','dahl','dal','de','degli','dele','del',
-      'della','der','di','dos','du','e','ek','el','escob','esch','fleisch',
-      'fitz','fors','gott','griff','haj','haug','holm','ibn','kauf','kil',
-      'koop','kvarn','la','le','lind','lönn','lund','mac','mhic','mic','mir',
-      'na','naka','neder','nic','ni','nin','nord','norr','ny','o','ua','ui\'',
-      'öfver','ost','över','öz','papa','pour','quarn','skog','skoog','sten',
-      'stor','ström','söder','ter','ter','tre','türk','van','väst','väster',
-      'vest','von'];
-    titleList = ['mr','mrs','ms','miss','dr','herr','monsieur','hr','frau',
-      'a v m','admiraal','admiral','air cdre','air commodore','air marshal',
-      'air vice marshal','alderman','alhaji','ambassador','baron','barones',
-      'brig','brig gen','brig general','brigadier','brigadier general',
-      'brother','canon','capt','captain','cardinal','cdr','chief','cik','cmdr',
-      'coach','col','col dr','colonel','commandant','commander','commissioner',
-      'commodore','comte','comtessa','congressman','conseiller','consul',
-      'conte','contessa','corporal','councillor','count','countess',
-      'crown prince','crown princess','dame','datin','dato','datuk',
-      'datuk seri','deacon','deaconess','dean','dhr','dipl ing','doctor',
-      'dott','dott sa','dr','dr ing','dra','drs','embajador','embajadora','en',
-      'encik','eng','eur ing','exma sra','exmo sr','f o','father',
-      'first lieutient','first officer','flt lieut','flying officer','fr',
-      'frau','fraulein','fru','gen','generaal','general','governor','graaf',
-      'gravin','group captain','grp capt','h e dr','h h','h m','h r h','hajah',
-      'haji','hajim','her highness','her majesty','herr','high chief',
-      'his highness','his holiness','his majesty','hon','hr','hra','ing','ir',
-      'jonkheer','judge','justice','khun ying','kolonel','lady','lcda','lic',
-      'lieut','lieut cdr','lieut col','lieut gen','lord','m','m l','m r',
-      'madame','mademoiselle','maj gen','major','master','mevrouw','miss',
-      'mlle','mme','monsieur','monsignor','mr','mrs','ms','mstr','nti','pastor',
-      'president','prince','princess','princesse','prinses','prof','prof dr',
-      'prof sir','professor','puan','puan sri','rabbi','rear admiral','rev',
-      'rev canon','rev dr','rev mother','reverend','rva','senator','sergeant',
-      'sheikh','sheikha','sig','sig na','sig ra','sir','sister','sqn ldr','sr',
-      'sr d','sra','srta','sultan','tan sri','tan sri dato','tengku','teuku',
-      'than puying','the hon dr','the hon justice','the hon miss','the hon mr',
-      'the hon mrs','the hon ms','the hon sir','the very rev','toh puan','tun',
-      'vice admiral','viscount','viscountess','wg cdr'];
-  } else {
-    suffixList = ['esq','esquire','jr','jnr','sr','snr','2','ii','iii','iv',
-      'md','phd','j.d.','ll.m.','m.d.','d.o.','d.c.','p.c.','ph.d.'];
-    prefixList = ['ab','bar','bin','da','dal','de','de la','del','della','der',
-      'di','du','ibn','l\'','la','le','san','st','st.','ste','ter','van',
-      'van de','van der','van den','vel','ver','vere','von'];
-    titleList = ['dr','miss','mr','mrs','ms','prof','sir','frau','herr','hr',
-      'monsieur','captain','doctor','judge','officer','professor'];
-  }
-
-  // Nickname: remove and store parts with surrounding punctuation as nicknames
-  regex = /\s(?:[‘’']([^‘’']+)[‘’']|[“”"]([^“”"]+)[“”"]|\[([^\]]+)\]|\(([^\)]+)\)),?\s/g;
-  partFound = (' '+nameToParse+' ').match(regex);
-  if ( partFound ) partsFound = partsFound.concat(partFound);
-  partsFoundCount = partsFound.length;
-  if ( partsFoundCount === 1 ) {
-    parsedName.nick = partsFound[0].slice(2).slice(0,-2);
-    if ( parsedName.nick.slice(-1) === ',' ) {
-      parsedName.nick = parsedName.nick.slice(0,-1);
-    }
-    nameToParse = (' '+nameToParse+' ').replace(partsFound[0], ' ').trim();
-    partsFound = [];
-  } else if ( partsFoundCount > 1 ) {
-    handleError( partsFoundCount + ' nicknames found' );
-    for ( i = 0; i < partsFoundCount; i++ ) {
-      nameToParse = ( ' ' + nameToParse + ' ' )
-        .replace(partsFound[i], ' ').trim();
-      partsFound[i] = partsFound[i].slice(2).slice(0,-2);
-      if ( partsFound[i].slice(-1) === ',' ) {
-        partsFound[i] = partsFound[i].slice(0,-1);
-      }
-    }
-    parsedName.nick = partsFound.join(', ');
-    partsFound = [];
-  }
-  if ( !nameToParse.trim().length ) {
-    parsedName = fixParsedNameCase(parsedName, fixCase);
-    return partToReturn === 'all' ? parsedName : parsedName[partToReturn];
-  }
-
-  // Split remaining nameToParse into parts, remove and store preceding commas
-  for ( i = 0, n = nameToParse.split(' '), l = n.length; i < l; i++ ) {
-    part = n[i];
-    comma = null;
-    if ( part.slice(-1) === ',' ) {
-      comma = ',';
-      part = part.slice(0,-1);
-    }
-    nameParts.push(part);
-    nameCommas.push(comma);
-  }
-
-  // Suffix: remove and store matching parts as suffixes
-  for ( l = nameParts.length, i = l-1; i > 0; i-- ) {
-    partToCheck = (nameParts[i].slice(-1) === '.' ?
-      nameParts[i].slice(0,-1).toLowerCase() : nameParts[i].toLowerCase());
-    if (
-        suffixList.indexOf(partToCheck) > -1 ||
-        suffixList.indexOf(partToCheck+'.') > -1
-      ) {
-      partsFound = nameParts.splice(i,1).concat(partsFound);
-      if ( nameCommas[i] === ',' ) { // Keep comma, either before or after
-        nameCommas.splice(i+1,1);
-      } else {
-        nameCommas.splice(i,1);
-      }
-    }
-  }
-  partsFoundCount = partsFound.length;
-  if ( partsFoundCount === 1 ) {
-    parsedName.suffix = partsFound[0];
-    partsFound = [];
-  } else if ( partsFoundCount > 1 ) {
-    handleError(partsFoundCount + ' suffixes found');
-    parsedName.suffix = partsFound.join(', ');
-    partsFound = [];
-  }
-  if ( !nameParts.length ) {
-    parsedName = fixParsedNameCase(parsedName, fixCase);
-    return partToReturn === 'all' ? parsedName : parsedName[partToReturn];
-  }
-
-  // Title: remove and store matching parts as titles
-  for( l = nameParts.length, i = l-1; i >= 0; i--) {
-    partToCheck = (nameParts[i].slice(-1) === '.' ?
-      nameParts[i].slice(0,-1).toLowerCase() : nameParts[i].toLowerCase());
-    if (
-        titleList.indexOf(partToCheck) > -1 ||
-        titleList.indexOf(partToCheck+'.') > -1
-      ) {
-      partsFound = nameParts.splice(i,1).concat(partsFound);
-      if ( nameCommas[i] === ',' ) { // Keep comma, either before or after
-        nameCommas.splice(i+1,1);
-      } else {
-        nameCommas.splice(i,1);
-      }
-    }
-  }
-  partsFoundCount = partsFound.length;
-  if ( partsFoundCount === 1 ) {
-    parsedName.title = partsFound[0];
-    partsFound = [];
-  } else if ( partsFoundCount > 1 ) {
-    handleError(partsFoundCount + ' titles found');
-    parsedName.title = partsFound.join(', ');
-    partsFound = [];
-  }
-  if ( !nameParts.length ) {
-    parsedName = fixParsedNameCase(parsedName, fixCase);
-    return partToReturn === 'all' ? parsedName : parsedName[partToReturn];
-  }
-
-  // Join name prefixes to following names
-  if ( nameParts.length > 1 ) {
-    for ( i = nameParts.length-2; i >= 0; i-- ) {
-      if ( prefixList.indexOf(nameParts[i].toLowerCase()) > -1 ) {
-        nameParts[i] = nameParts[i] + ' ' + nameParts[i+1];
-        nameParts.splice(i+1,1);
-        nameCommas.splice(i+1,1);
-      }
-    }
-  }
-
-  // Join conjunctions to surrounding names
-  if ( nameParts.length > 2 ) {
-    for ( i = nameParts.length-3; i >= 0; i-- ) {
-      if ( conjunctionList.indexOf(nameParts[i+1].toLowerCase()) > -1 ) {
-        nameParts[i] = nameParts[i] + ' ' + nameParts[i+1] + ' ' + nameParts[i+2];
-        nameParts.splice(i+1,2);
-        nameCommas.splice(i+1,2);
-        i--;
-      }
-    }
-  }
-
-  // Suffix: remove and store items after extra commas as suffixes
-  nameCommas.pop();
-  firstComma = nameCommas.indexOf(',');
-  remainingCommas = nameCommas.filter(function(v) { return v !== null; }).length;
-  if ( firstComma > 1 || remainingCommas > 1 ) {
-    for ( i = nameParts.length-1; i >= 2; i-- ) {
-      if ( nameCommas[i] === ',' ) {
-        partsFound = nameParts.splice(i,1).concat(partsFound);
-        nameCommas.splice(i,1);
-        remainingCommas--;
-      } else {
-        break;
-      }
-    }
-  }
-  if ( partsFound.length ) {
-    if ( parsedName.suffix ) {
-      partsFound = [parsedName.suffix].concat(partsFound);
-    }
-    parsedName.suffix = partsFound.join(', ');
-    partsFound = [];
-  }
-
-  // Last name: remove and store last name
-  if ( remainingCommas > 0 ) {
-    if ( remainingCommas > 1 ) {
-      handleError( (remainingCommas-1) + ' extra commas found' );
-    }
-    // Remove and store all parts before first comma as last name
-    if ( nameCommas.indexOf(',') ) {
-      parsedName.last = nameParts.splice(0,nameCommas.indexOf(',')).join(' ');
-      nameCommas.splice(0,nameCommas.indexOf(','));
-    }
-  } else {
-    // Remove and store last part as last name
-    parsedName.last = nameParts.pop();
-  }
-  if ( !nameParts.length ) {
-    parsedName = fixParsedNameCase(parsedName, fixCase);
-    return partToReturn === 'all' ? parsedName : parsedName[partToReturn];
-  }
-
-  // First name: remove and store first part as first name
-  parsedName.first = nameParts.shift();
-  if ( !nameParts.length ) {
-    parsedName = fixParsedNameCase(parsedName, fixCase);
-    return partToReturn === 'all' ? parsedName : parsedName[partToReturn];
-  }
-
-  // Middle name: store all remaining parts as middle name
-  if ( nameParts.length > 2 ) {
-    handleError(nameParts.length + ' middle names');
-  }
-  parsedName.middle = nameParts.join(' ');
-
-  parsedName = fixParsedNameCase(parsedName, fixCase);
-  return partToReturn === 'all' ? parsedName : parsedName[partToReturn];
-};
-
-
-/***/ }),
-
 /***/ "./node_modules/post-robot/dist/post-robot.js":
 /*!****************************************************!*\
   !*** ./node_modules/post-robot/dist/post-robot.js ***!
@@ -18515,6 +18160,255 @@ module.exports = g;
 
 /***/ }),
 
+/***/ "./src/app/components/3dsecure/dr3dsecure.html":
+/*!*****************************************************!*\
+  !*** ./src/app/components/3dsecure/dr3dsecure.html ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "3dsecure\\dr3dsecure.html";
+
+/***/ }),
+
+/***/ "./src/app/components/3dsecure/dr3dsecure.js":
+/*!***************************************************!*\
+  !*** ./src/app/components/3dsecure/dr3dsecure.js ***!
+  \***************************************************/
+/*! exports provided: getInstanceData, clearComponentData, setAdyenCheckout, handleInitalizeData, setInstanceData, getConfiguration, handleConfigData, handleConfigResponse, createAdyenSession, extractFingerPrintDetails, extractChallengeShopper, handleFingerPrintDevice, handleSuccessChallengeShopper, handleError, openPopup, initializeAdyenJS */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getInstanceData", function() { return getInstanceData; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "clearComponentData", function() { return clearComponentData; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setAdyenCheckout", function() { return setAdyenCheckout; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleInitalizeData", function() { return handleInitalizeData; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setInstanceData", function() { return setInstanceData; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getConfiguration", function() { return getConfiguration; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleConfigData", function() { return handleConfigData; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleConfigResponse", function() { return handleConfigResponse; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createAdyenSession", function() { return createAdyenSession; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "extractFingerPrintDetails", function() { return extractFingerPrintDetails; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "extractChallengeShopper", function() { return extractChallengeShopper; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleFingerPrintDevice", function() { return handleFingerPrintDevice; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleSuccessChallengeShopper", function() { return handleSuccessChallengeShopper; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleError", function() { return handleError; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "openPopup", function() { return openPopup; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initializeAdyenJS", function() { return initializeAdyenJS; });
+/* harmony import */ var _dr3dsecure_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./dr3dsecure.html */ "./src/app/components/3dsecure/dr3dsecure.html");
+/* harmony import */ var _dr3dsecure_html__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_dr3dsecure_html__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _controller_controller_adyen_create_source__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../controller/controller-adyen-create-source */ "./src/app/components/controller/controller-adyen-create-source.js");
+/* harmony import */ var _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../post-robot-wrapper */ "./src/post-robot-wrapper.js");
+/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../config */ "./src/app/components/config.js");
+/* harmony import */ var _controller_controller_create_source_utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../controller/controller-create-source-utils */ "./src/app/components/controller/controller-create-source-utils.js");
+
+
+
+
+ // The component listener receives initialization events from the domain but any window
+
+var componentListener = _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_2__["default"].listener({
+  domain: _config__WEBPACK_IMPORTED_MODULE_3__["config"].domain
+});
+/**
+ * Sends the beacon data to the beacon service
+ */
+
+componentListener.on('sendConfiguration', handleConfigData);
+componentListener.on('sendChallengeShopper', handleConfigData);
+componentListener.on('sendInitalize3dSecure', handleInitalizeData);
+var components = {
+  payment3dsecure: {}
+};
+function getInstanceData() {
+  return components['payment3dsecure'];
+}
+/**
+ * Just used for testing.
+ */
+
+function clearComponentData() {
+  components = {
+    payment3dsecure: {}
+  };
+}
+function setAdyenCheckout(adyenCheckout) {
+  components['payment3dsecure'].adyenCheckout = adyenCheckout;
+}
+/**
+ * load the adyen script url
+ * @param event
+ */
+
+function handleInitalizeData(event) {
+  var secureId = event.data.secureId;
+  components['payment3dsecure'].componentId = secureId;
+  initializeAdyenJS(_config__WEBPACK_IMPORTED_MODULE_3__["config"].adyenProdUrl);
+}
+function setInstanceData(secureId, action, controllerId, paymentData, resolve) {
+  components['payment3dsecure'].componentId = secureId;
+  components['payment3dsecure'].action = action;
+  components['payment3dsecure'].controllerId = controllerId;
+  components['payment3dsecure'].paymentData = paymentData;
+  components['payment3dsecure'].resolve = resolve;
+}
+function getConfiguration(clientData, requiresAction) {
+  return {
+    // todo : environment variable can be updated based on API KEY.
+    environment: 'live',
+    locale: clientData.userLocale,
+    originKey: requiresAction.nextAction.data.originKey,
+    onChange: function onChange(configResponse) {
+      handleConfigResponse(configResponse, getInstanceData());
+    }
+  };
+}
+/**
+ * create a configuration object & initalize adyen session
+ * @param {Event} event
+ */
+
+function handleConfigData(event) {
+  var _event$data = event.data,
+      requiresAction = _event$data.requiresAction,
+      secureId = _event$data.secureId,
+      controllerId = _event$data.controllerId,
+      resolve = _event$data.resolve,
+      nextStep = _event$data.nextStep,
+      action = _event$data.action,
+      clientData = _event$data.clientData;
+  var configuration = getConfiguration(clientData, requiresAction);
+  setInstanceData(secureId, action, controllerId, requiresAction, resolve);
+
+  if ((action === 'fingerprint_device' || action === 'challenge_shopper') && nextStep === 'instance') {
+    setAdyenCheckout(createAdyenSession(configuration));
+  } else if (action === 'challenge_shopper') {
+    extractChallengeShopper(getInstanceData());
+  }
+}
+/**
+ * this method is to trigger fingerprint & challenge shopper.
+ * @param response
+ * @param adyenComponent
+ */
+
+function handleConfigResponse(response, adyenComponent) {
+  if (response.isValid === true) {
+    if (adyenComponent.action === 'challenge_shopper') {
+      extractChallengeShopper(adyenComponent);
+    } else if (adyenComponent.action === 'fingerprint_device') {
+      extractFingerPrintDetails(adyenComponent);
+    }
+  }
+}
+/**
+ * Get a Adyen Session
+ * @param config
+ * @returns {AdyenCheckout}
+ */
+
+function createAdyenSession(config) {
+  return new AdyenCheckout(config); //eslint-disable-line no-undef
+}
+/**
+ * Trigger fingerprint device from adyen checkout and mount to container
+ * @param componentData
+ */
+
+function extractFingerPrintDetails(componentData) {
+  var adyenCheckout = componentData.adyenCheckout;
+  var response = componentData.paymentData.nextAction;
+  adyenCheckout.create('threeDS2DeviceFingerprint', {
+    fingerprintToken: response.data.fingerprintToken,
+    onComplete: function onComplete(response) {
+      handleFingerPrintDevice(response, componentData);
+    },
+    onError: handleError
+  }).mount('#DR3dsecure');
+}
+/**
+ * Trigger challenge shopper from adyen checkout and mount to container
+ * @param componentData
+ */
+
+function extractChallengeShopper(componentData) {
+  var adyenCheckout = componentData.adyenCheckout;
+  var response = componentData.paymentData.nextAction;
+  openPopup('show');
+  adyenCheckout.create('threeDS2Challenge', {
+    challengeToken: response.data.challengeToken,
+    onComplete: function onComplete(challengeShopper) {
+      handleSuccessChallengeShopper(challengeShopper, componentData);
+    },
+    onError: handleError,
+    size: '04'
+  }).mount('#DR3dsecure');
+}
+/**
+ * handle the response from finger print device and send to create source.
+ * @param fingerprintData
+ * @param component
+ */
+
+function handleFingerPrintDevice(fingerprintData, component) {
+  Object(_controller_controller_adyen_create_source__WEBPACK_IMPORTED_MODULE_1__["handleFingerPrintResponseData"])(fingerprintData.data.details['threeds2.fingerprint'], component);
+}
+/**
+ * handle the response from challenge shopper and send to create source.
+ * @param challengeshopperData
+ * @param component
+ */
+
+function handleSuccessChallengeShopper(challengeshopperData, component) {
+  openPopup('hide');
+  Object(_controller_controller_adyen_create_source__WEBPACK_IMPORTED_MODULE_1__["handleChallengeResultResponseData"])(challengeshopperData.data.details['threeds2.challengeResult'], component);
+}
+/**
+ * Handling error scenarios for Adyen session
+ * @param err
+ * @return {Promise<{source: null, error: {type: 3ds2_error, errors: {message: string}[]}}>}
+ */
+
+function handleError(err) {
+  if (err.errorCode === 'timeout') {
+    // TODO Return a promise here
+    console.warn(err); //eslint-disable-line
+  } else {
+    return Object(_controller_controller_create_source_utils__WEBPACK_IMPORTED_MODULE_4__["handleAdyenError"])(err);
+  }
+}
+/**
+ * This method to hide or show the popup window.
+ * @param prop
+ * @return {HTMLElement}
+ */
+
+function openPopup(prop) {
+  var popup = document.getElementById('secureOverlay');
+
+  if (prop === 'show') {
+    popup.style.display = 'block';
+  } else {
+    popup.style.display = 'none';
+  }
+
+  return popup;
+}
+/**
+ * Create a script tag with url and initalize the adyen session
+ * @param url
+ * @param config
+ */
+
+function initializeAdyenJS(url) {
+  var scriptTag = document.createElement('script');
+  scriptTag.src = url;
+  document.body.appendChild(scriptTag);
+}
+
+/***/ }),
+
 /***/ "./src/app/components/config.js":
 /*!**************************************!*\
   !*** ./src/app/components/config.js ***!
@@ -18535,13 +18429,105 @@ var config = {
   // eslint-disable-line no-undef
   applePayMerchantId: "merchant.com.test.cert.digitalriver",
   // eslint-disable-line no-undef
-  beaconStorageUrlNonProd: Object({"PAYMENT_API_URL":"https://api.digitalriver.com/payments/sources","DOMAIN":"http://localhost:8080","BASE_PATH":undefined,"APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).BEACON_STORAGE_URL_NON_PROD,
+  beaconStorageUrlNonProd: "https://beacon-test.driv-analytics.com/capture",
   // eslint-disable-line no-undef
-  beaconStorageUrlProd: Object({"PAYMENT_API_URL":"https://api.digitalriver.com/payments/sources","DOMAIN":"http://localhost:8080","BASE_PATH":undefined,"APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).BEACON_STORAGE_URL_PROD,
+  beaconStorageUrlProd: "https://beacon.driv-analytics.com/capture",
   // eslint-disable-line no-undef
-  adyenProdUrl: Object({"PAYMENT_API_URL":"https://api.digitalriver.com/payments/sources","DOMAIN":"http://localhost:8080","BASE_PATH":undefined,"APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).ADYEN_PROD_URL // eslint-disable-line no-undef
+  adyenProdUrl: "https://checkoutshopper-live.adyen.com/checkoutshopper/sdk/3.0.0/adyen.js" // eslint-disable-line no-undef
 
 };
+
+/***/ }),
+
+/***/ "./src/app/components/controller/controller-adyen-create-source.js":
+/*!*************************************************************************!*\
+  !*** ./src/app/components/controller/controller-adyen-create-source.js ***!
+  \*************************************************************************/
+/*! exports provided: handleFingerPrintResponseData, handleChallengeResultResponseData */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleFingerPrintResponseData", function() { return handleFingerPrintResponseData; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleChallengeResultResponseData", function() { return handleChallengeResultResponseData; });
+/* harmony import */ var _client_createSource__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../client/createSource */ "./src/client/createSource.js");
+/* harmony import */ var _client_createComponent__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../client/createComponent */ "./src/client/createComponent.js");
+
+
+/**
+ * Method to handle the finger print response and prepare the payload for createSource adyen.
+ * @param adyenResponse
+ * @param sourceData
+ * @return {Promise<never>|*|Promise<T | never>|undefined}
+ */
+
+function handleFingerPrintResponseData(adyenResponse, sourceData) {
+  var clientSecret = sourceData.paymentData.clientSecret;
+
+  if (!clientSecret) {
+    return Promise.reject('Cannot send data to paymentservice because required data is missing.');
+  }
+
+  var sourceRequest = {
+    type: sourceData.paymentData.type,
+    creditCard: {
+      fingerprint: adyenResponse
+    }
+  };
+  var clientSecretId = {
+    clientSecret: clientSecret.split('_')
+  };
+  return Object(_client_createSource__WEBPACK_IMPORTED_MODULE_0__["createSourceWithAdyen"])(sourceData.controllerId, sourceRequest, clientSecretId).then(function (response) {
+    if (typeof response !== 'undefined' && response.source !== null && response.source.state === 'requires_action' && response.source.nextAction !== null) {
+      if (response.source.nextAction.action === 'challenge_shopper') {
+        Object(_client_createComponent__WEBPACK_IMPORTED_MODULE_1__["sendAdyenChallengeShopper"])(sourceData.componentId, sourceData.controllerId, response.source, sourceData.resolve);
+      }
+
+      return response;
+    } else {
+      if (typeof response !== 'undefined' && response.source !== null && response.source.id !== null) {
+        var beaconComponent = Object(_client_createComponent__WEBPACK_IMPORTED_MODULE_1__["createOrExtractBeaconController"])();
+        Object(_client_createComponent__WEBPACK_IMPORTED_MODULE_1__["sendBeaconEventDetails"])(beaconComponent.id, 'source', response.source.id);
+      }
+
+      sourceData.resolve(response);
+      return response;
+    }
+  });
+}
+/**
+ * Method to handle the challenge shopper response and prepare the payload for createSource adyen.
+ * @param adyenResponse
+ * @param sourceData
+ * @return {Promise<never>|*|Promise<T | never>|undefined}
+ */
+
+function handleChallengeResultResponseData(adyenResponse, sourceData) {
+  var clientSecret = sourceData.paymentData.clientSecret;
+
+  if (!clientSecret) {
+    return Promise.reject('Cannot send data to paymentservice because required data is missing.');
+  }
+
+  var sourceRequest = {
+    type: sourceData.paymentData.type,
+    creditCard: {
+      challengeResult: adyenResponse
+    }
+  };
+  var clientSecretId = {
+    clientSecret: clientSecret.split('_')
+  };
+  return Object(_client_createSource__WEBPACK_IMPORTED_MODULE_0__["createSourceWithAdyen"])(sourceData.controllerId, sourceRequest, clientSecretId).then(function (response) {
+    if (typeof response !== 'undefined' && response.source !== null && response.source.id !== null) {
+      var beaconComponent = Object(_client_createComponent__WEBPACK_IMPORTED_MODULE_1__["createOrExtractBeaconController"])();
+      Object(_client_createComponent__WEBPACK_IMPORTED_MODULE_1__["sendBeaconEventDetails"])(beaconComponent.id, 'source', response.source.id);
+    }
+
+    sourceData.resolve(response);
+    return response;
+  });
+}
 
 /***/ }),
 
@@ -18821,712 +18807,6 @@ function formatFailedSourceError(source) {
 
 /***/ }),
 
-/***/ "./src/app/components/create-initial-data.js":
-/*!***************************************************!*\
-  !*** ./src/app/components/create-initial-data.js ***!
-  \***************************************************/
-/*! exports provided: generateInstanceData */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "generateInstanceData", function() { return generateInstanceData; });
-/**
- * generateInstanceData assembles arguments into an object which it returns
- * @param controllerEmitter
- * @param {object} componentData
- * @param {Function} getPaymentOptions
- * @param {Function} getElement
- * @param {Function} setOptions
- * @param {Array<object>} supportedInstruments
- * @returns {{getElement: Function, supportedInstruments: Array<object>, componentData: object, setOptions: Function, getPaymentOptions: Function, controllerEmitter: *}}
- */
-function generateInstanceData(controllerEmitter, componentData, getPaymentOptions, getElement, setOptions, supportedInstruments) {
-  return {
-    controllerEmitter: controllerEmitter,
-    componentData: componentData,
-    getPaymentOptions: getPaymentOptions,
-    getElement: getElement,
-    setOptions: setOptions,
-    supportedInstruments: supportedInstruments
-  };
-}
-
-/***/ }),
-
-/***/ "./src/app/components/credit-card-type.js":
-/*!************************************************!*\
-  !*** ./src/app/components/credit-card-type.js ***!
-  \************************************************/
-/*! exports provided: detectType, formatLength, creditCardSpacesByBrand, validateCreditCardLength, creditCardLengthByBrand, default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "detectType", function() { return detectType; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "formatLength", function() { return formatLength; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "creditCardSpacesByBrand", function() { return creditCardSpacesByBrand; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "validateCreditCardLength", function() { return validateCreditCardLength; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "creditCardLengthByBrand", function() { return creditCardLengthByBrand; });
-/* Notes:
-- The code is what is returned. Be careful when modifying the code value as it could be returned
-- to the client
-- When the prefixes has a length of one, then it is just a single value prefix, when it has two
-- It is a range (inclusive). For example: Visa just has a prefix of 4, so any value starting with 4 is VISA type
-- Mastercard has prefix of [50, 55]. If a value starts with 50, 51, 52, 53, 54 or 55 it will be a mastercard.
-
-Example:
-  discover: {
-    code: 'DISCOVER', // This is what gets returned
-    prefixes: [
-      [6011], // Checks to see if the number starts with 6011
-      [622126, 622925], // Checks to see if the numbers is between (inclusive) 622126 and 622925
-      [644, 649],
-      [65]
-    ]
-  },
-
-*/
-var UNKNOWN_TYPE = 'unknown';
-var defaultSpacing = [4, 4, 4, 4];
-var cardTypes = {
-  visa: {
-    code: 'visa',
-    prefixes: [[4]],
-    spacing: defaultSpacing
-  },
-  mastercard: {
-    code: 'mastercard',
-    prefixes: [[50, 55]],
-    spacing: defaultSpacing
-  },
-  discover: {
-    code: 'discover',
-    prefixes: [[6011], [622126, 622925], [644, 649], [65]],
-    spacing: defaultSpacing
-  },
-  american_express: {
-    code: 'amex',
-    prefixes: [[34], [37]],
-    spacing: [4, 6, 5]
-  },
-  diners_club: {
-    code: 'dinersclub',
-    prefixes: [[300000, 305999], [309500, 309599], [360000, 369999], [380000, 399999]],
-    spacing: defaultSpacing
-  },
-  jcb: {
-    code: 'jcb',
-    prefixes: [[3528, 3589]],
-    spacing: defaultSpacing
-  },
-  union_pay: {
-    code: 'unionpay',
-    prefixes: [[62]],
-    spacing: defaultSpacing
-  },
-  dankort: {
-    code: 'dankort',
-    prefixes: [[5019]],
-    spacing: defaultSpacing
-  },
-  maestro: {
-    code: 'maestro',
-    prefixes: [[5018], [5020], [5038], [5893], [6304], [6759], [6761], [6762], [6763]],
-    spacing: defaultSpacing
-  },
-  forbrugsforeningen: {
-    code: 'forbrugsforeningen',
-    prefixes: [[600722]],
-    spacing: defaultSpacing
-  }
-};
-/**
- * returns true if length of array is 1
- * @param {Array} array
- * @returns {boolean}
- */
-
-function isPrefix(array) {
-  return array.length === 1;
-}
-/**
- * detects credit card type and returns type code
- * @param {string} creditCardNumber
- * @returns {string}
- */
-
-
-function detectType(creditCardNumber) {
-  if (!(typeof creditCardNumber === 'string' || creditCardNumber instanceof String)) {
-    throw new Error('Invalid number type');
-  }
-
-  var typeFound = UNKNOWN_TYPE;
-  Object.keys(cardTypes).forEach(function (typeKey) {
-    var cardType = cardTypes[typeKey];
-    var prefixes = cardType.prefixes;
-    var typeCode = cardType.code;
-    prefixes.forEach(function (array) {
-      // When the length is 1, then it is just a prefix
-      if (isPrefix(array)) {
-        var prefix = array[0].toString();
-
-        if (prefix === getPrefix(creditCardNumber, prefix)) {
-          typeFound = typeCode;
-        }
-      } else {
-        // When the length is 2, then it is just a range prefix
-        var min = array[0];
-        var max = array[1];
-        var creditCardPrefix = getPrefix(creditCardNumber, min.toString());
-        var creditCardPrefixNumber = parseInt(creditCardPrefix);
-
-        if (creditCardPrefixNumber >= min && creditCardPrefixNumber <= max) {
-          typeFound = typeCode;
-        }
-      }
-    });
-  });
-  return typeFound;
-}
-/**
- * returns card type given a card typeCode
- * @param {string} typeCode
- * @returns {string}
- */
-
-function findCreditCard(typeCode) {
-  var foundCardType = null;
-  Object.keys(cardTypes).forEach(function (typeKey) {
-    var cardType = cardTypes[typeKey];
-
-    if (cardType.code === typeCode) {
-      foundCardType = cardType;
-    }
-  });
-  return foundCardType;
-}
-/**
- * adds a space in the number string at the position indicated
- * @param {string} number - credit card number
- * @param {number} position
- * @returns {string}
- */
-
-
-function addSpace(number, position) {
-  return number.slice(0, position) + ' ' + number.slice(position);
-}
-/**
- * removes spaces from the given number string
- * @param {string} number - credit card number
- * @returns {string}
- */
-
-
-function removeWhiteSpace(number) {
-  return number.replace(/\s/g, '');
-}
-/**
- * adds spaces to the card number string appropriately for the card type
- * @param {string} number - credit card number
- * @param {string} typeCode
- * @returns {string}
- */
-
-
-function formatLength(number, typeCode) {
-  number = removeWhiteSpace(number);
-  var foundCardType = findCreditCard(typeCode);
-
-  if (foundCardType === null) {
-    return number;
-  }
-
-  var position = 0;
-  foundCardType.spacing.forEach(function (spacing) {
-    position = position + spacing;
-
-    if (number.length > position) {
-      number = addSpace(number, position);
-      position++;
-    }
-  });
-  return number;
-}
-/**
- * returns the appropriate number of spaces for visual formatting of credit card brand
- * @param {string} brand
- * @returns {number}
- */
-
-function creditCardSpacesByBrand(brand) {
-  var foundCardType = findCreditCard(brand);
-
-  if (foundCardType === null) {
-    return 0; // Default of 0 spaces - for unknown brands
-  }
-
-  return foundCardType.spacing.length - 1;
-}
-/**
- * returns true if credit card number value is the same length as the length appropriate for the card brand
- * @param {string} value - credit card number
- * @param {string} brand
- * @returns {boolean}
- */
-
-function validateCreditCardLength(value, brand) {
-  return creditCardLengthByBrand(brand) === value.length;
-}
-/**
- * returns the length that a credit card number should be for a given brand
- * @param {string} brand
- * @returns {number}
- */
-
-function creditCardLengthByBrand(brand) {
-  if (brand === 'amex') {
-    return 15;
-  } else {
-    return 16;
-  }
-}
-/**
- * Gets the prefix from the value based on the length of the actual prefix
- * @param {string} value
- * @param {string} prefix
- * @returns {string}
- */
-
-function getPrefix(value, prefix) {
-  return value.substring(0, prefix.length);
-}
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  detectType: detectType,
-  formatLength: formatLength
-});
-
-/***/ }),
-
-/***/ "./src/app/components/google-apple-pay-events.js":
-/*!*******************************************************!*\
-  !*** ./src/app/components/google-apple-pay-events.js ***!
-  \*******************************************************/
-/*! exports provided: sendCreateSourceRequest */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sendCreateSourceRequest", function() { return sendCreateSourceRequest; });
-/* harmony import */ var _input_events__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./input-events */ "./src/app/components/input-events.js");
-/* harmony import */ var _client_createComponent__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../client/createComponent */ "./src/client/createComponent.js");
-
-
-/**
- * Returns true when error is a network error
- * @param {object} response
- * @returns {boolean}
- */
-
-function isNetworkError(response) {
-  return response.data.error && response.data.error.message === 'Network Error';
-}
-/**
- * Sends a create source request and returns response
- * @param controllerEmitter
- * @param {object} componentData
- * @param {object} responseData
- * @param {object} paymentServiceSourceData
- * @param {function} toClientSourceEventData - function that will convert data to data contract for client
- * @param {function} complete - function that will complete the transaction acceptance
- */
-
-
-function sendCreateSourceRequest(controllerEmitter, componentData, responseData, paymentServiceSourceData, toClientSourceEventData, complete) {
-  controllerEmitter.send('createSourceFromRequest', {
-    componentId: componentData.componentId,
-    componentType: componentData.componentType,
-    sourceRequest: paymentServiceSourceData,
-    type: componentData.componentType
-  }).then(function (response) {
-    var result = toClientSourceEventData(responseData, response.data, complete);
-    Object(_input_events__WEBPACK_IMPORTED_MODULE_0__["sendEventData"])(componentData.controller, componentData.componentId, componentData.componentType, 'source', result);
-
-    if (isNetworkError(response)) {
-      complete('failure');
-    }
-
-    if (typeof response != 'undefined' && response.data != null && response.data.source != null && response.data.source.id != null) {
-      Object(_client_createComponent__WEBPACK_IMPORTED_MODULE_1__["sendBeaconEventDetails"])('drBeacon', 'source', response.data.source.id);
-    }
-  }).catch(function (errorResponse) {
-    var error = {
-      data: {
-        error: {
-          message: errorResponse.message
-        },
-        source: null
-      }
-    };
-    var result = toClientSourceEventData(responseData, error.data, complete);
-    Object(_input_events__WEBPACK_IMPORTED_MODULE_0__["sendEventData"])(componentData.controller, componentData.componentId, componentData.componentType, 'source', result);
-    complete('failure');
-  });
-}
-
-/***/ }),
-
-/***/ "./src/app/components/input-events.js":
-/*!********************************************!*\
-  !*** ./src/app/components/input-events.js ***!
-  \********************************************/
-/*! exports provided: sendEventData, handleEvent, runEventOnElement */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sendEventData", function() { return sendEventData; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleEvent", function() { return handleEvent; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "runEventOnElement", function() { return runEventOnElement; });
-/* harmony import */ var _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../post-robot-wrapper */ "./src/post-robot-wrapper.js");
-/* harmony import */ var _credit_card_type__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./credit-card-type */ "./src/app/components/credit-card-type.js");
-/* harmony import */ var _validator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./validator */ "./src/app/components/validator.js");
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./utils */ "./src/app/components/utils.js");
-/* harmony import */ var _localization_localizated_messages__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./localization/localizated-messages */ "./src/app/components/localization/localizated-messages.js");
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-
-
-
-
-
-/**
- * Sends event data to controller
- * @param {object} controllerDetails
- * @param {string} componentId
- * @param {string} componentType
- * @param {string} event - name of event type
- * @param {object} data - data to send on event
- */
-
-function sendEventData(controllerDetails, componentId, componentType, event) {
-  var data = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : {};
-  // send component type for all events
-  var dataToSend = Object.assign({}, data);
-  dataToSend.elementType = componentType;
-  var message = dataToSend.elementType !== 'applepay' ? 'componentEventToController' : 'clientComponentEventToController';
-  _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_0__["default"].send(controllerDetails.window, message, {
-    controllerId: controllerDetails.id,
-    componentId: componentId,
-    componentType: componentType,
-    eventType: event,
-    eventData: dataToSend
-  });
-}
-/**
- * Returns validation function for the given type
- * @param {string} type
- * @returns {function}
- */
-
-function chooseValidation(type) {
-  switch (type) {
-    case 'cardnumber':
-      {
-        return _validator__WEBPACK_IMPORTED_MODULE_2__["default"].validateCreditCard;
-      }
-
-    case 'cardexpiration':
-      {
-        return _validator__WEBPACK_IMPORTED_MODULE_2__["default"].validateExpiry;
-      }
-
-    case 'cardcvv':
-      {
-        return _validator__WEBPACK_IMPORTED_MODULE_2__["default"].validateCsv;
-      }
-
-    case 'onlinebanking':
-      {
-        return _validator__WEBPACK_IMPORTED_MODULE_2__["default"].validateOnlineBanking;
-      }
-
-    default:
-      throw new Error('Invalid component type, try a valid component type such as cardnumber, cardcvv, cardexpiration and onlinebanking.');
-  }
-}
-/**
- * Generates event data for input elements
- * @param {string} type - component type
- * @param {string} value - field value
- * @param {string} eventType - type of event
- * @param {object} componentData
- * @param {string} eventTrigger - name of event trigger
- * @returns {{complete: boolean, error: *, empty: boolean}}
- */
-
-
-function generateEventData(type, value, eventType, componentData, eventTrigger) {
-  var previousState = componentData.prevState;
-  var validationMethod = chooseValidation(type); // if Credit card number, then add type
-
-  var brand = null;
-
-  if (type === 'cardnumber') {
-    brand = _credit_card_type__WEBPACK_IMPORTED_MODULE_1__["default"].detectType(value);
-  }
-
-  if (type === 'cardcvv' && componentData.creditCardData) {
-    brand = componentData.creditCardData.brand;
-  }
-
-  var validated;
-
-  if (brand !== null) {
-    validated = validationMethod(value, brand);
-  } else {
-    validated = validationMethod(value);
-  }
-
-  var isChangeEventForcedErrorToFalse = eventType === 'change' && eventTrigger !== 'showError' && (validated.errorType.startsWith('incomplete_') || validated.errorType === 'ELEMENT_DATA_REQUIRED');
-  var isError = isChangeEventForcedErrorToFalse ? false : validated.error;
-  var isComplete = isChangeEventForcedErrorToFalse ? false : isError === false; // On Change event - If a value has not been set (no change event has been fired) then return empty as false
-
-  var isEmpty = eventType === 'change' && eventTrigger !== 'showError' && typeof previousState.empty === 'undefined' ? false : value.length === 0;
-  var errorObject = null;
-
-  if (isError && (value.length > 0 || eventTrigger === 'showError')) {
-    // Required errors are ignored.
-    var locale = componentData.instanceOptions.locale;
-    var localizedMessage = Object(_localization_localizated_messages__WEBPACK_IMPORTED_MODULE_4__["getLocaleMessage"])(locale, validated.messageCode); // TODO Need to check if locale exists
-
-    errorObject = {
-      type: 'validation_error',
-      code: validated.errorType,
-      message: localizedMessage
-    };
-  }
-
-  var eventData = {
-    'empty': isEmpty,
-    'complete': isComplete,
-    'error': errorObject
-  };
-
-  if (type === 'cardnumber') {
-    eventData.brand = brand;
-  }
-
-  if (componentData.componentType === 'onlinebanking') {
-    eventData.value = value === '' ? null : value;
-  }
-
-  return eventData;
-}
-/**
- * Applies appropriate styles to input based on event data
- * @param {object} eventData
- * @param {Event} event
- */
-
-
-function applyInputStylesToEvent(eventData, event) {
-  var element = event.srcElement; //removing classes in 3 lines instead of one because IE11 won't support all in one line
-
-  if (element) {
-    element.classList.remove('complete');
-    element.classList.remove('invalid');
-    element.classList.remove('empty');
-
-    if (eventData.empty) {
-      element.classList.add('empty');
-    }
-
-    if (eventData.complete) {
-      element.classList.add('complete');
-    }
-
-    if (eventData.error) {
-      element.classList.add('invalid');
-    }
-  }
-}
-/**
- * Returns true if previous state of an input element was not empty
- * @param prevState
- * @returns {boolean}
- */
-
-
-function hasPreviousState(prevState) {
-  return typeof prevState.empty !== 'undefined';
-}
-/**
- * To be used on input components.
- * Applies appropriate styles, removes whitespaces, sets prevState and sends event data to controller
- * @param {object} componentData
- * @param {string} eventType
- * @param {event} event
- * @returns {boolean}
- */
-
-
-function handleEvent(componentData, eventType, event) {
-  var eventData = {};
-  var privateData = null;
-
-  if (eventType === 'change' || eventType === 'blur') {
-    // when event data has changed since last change event
-    var removedWhiteSpaces = event.target.value.replace(/\s/g, '');
-    eventData = generateEventData(componentData.componentType, removedWhiteSpaces, eventType, componentData, event.trigger);
-    applyInputStylesToEvent(eventData, event);
-  } // For event type "change" Fire only if the event data has changed from the previous event
-
-
-  if (eventType === 'change' && Object(_utils__WEBPACK_IMPORTED_MODULE_3__["isShallowEquivalent"])(componentData.prevState, eventData)) {
-    return false;
-  } // If the user blurs, but something has changed, send a change event
-
-
-  if (eventType === 'blur' && hasPreviousState(componentData.prevState) && !Object(_utils__WEBPACK_IMPORTED_MODULE_3__["isShallowEquivalent"])(componentData.prevState, eventData)) {
-    sendEventData(componentData.controller, componentData.componentId, componentData.componentType, 'change', eventData, privateData);
-  }
-
-  if (eventType === 'change' || eventType === 'blur') {
-    componentData.prevState = Object.assign({}, eventData);
-  }
-
-  if (eventType === 'blur') {
-    sendEventData(componentData.controller, componentData.componentId, componentData.componentType, eventType, {}, privateData);
-    return false;
-  }
-
-  if (event && event.detail) {
-    Object.assign(eventData, event.detail);
-  }
-
-  sendEventData(componentData.controller, componentData.componentId, componentData.componentType, eventType, eventData, privateData);
-  return true;
-}
-/**
- * Runs a client triggered event on an element
- * @param {Event} event
- * @param {object} triggerData
- * @returns {*}
- */
-
-function runEventOnElement(event, triggerData) {
-  var element = triggerData.getElement();
-
-  switch (event) {
-    case 'blur':
-      {
-        var blurEl = element;
-
-        if (triggerData.hasOwnProperty('getFocusElement')) {
-          blurEl = triggerData.getFocusElement();
-        }
-
-        blurEl.blur();
-        return;
-      }
-
-    case 'clear':
-      {
-        element.value = '';
-        var onChangeEvent = new Event('input'); // Required to force the input event to fire
-
-        element.dispatchEvent(onChangeEvent);
-        return;
-      }
-
-    case 'focus':
-      {
-        var focusEl = element;
-
-        if (triggerData.hasOwnProperty('getFocusElement')) {
-          focusEl = triggerData.getFocusElement();
-        }
-
-        focusEl.focus();
-        return;
-      }
-
-    case 'createSource':
-      {
-        var _onChangeEvent = new Event('input'); // Required to force the input event to fire
-
-
-        _onChangeEvent.trigger = 'showError';
-        element.dispatchEvent(_onChangeEvent);
-        var componentError;
-
-        if (_typeof(triggerData.componentData) === 'object' && triggerData.componentData.hasOwnProperty('prevState')) {
-          componentError = triggerData.componentData.prevState.error;
-        }
-
-        return componentError;
-      }
-
-    case 'onOnlineBankingCreateSource':
-      {
-        var _onChangeEvent2 = new Event('change'); // Required to force the input event to fire
-
-
-        _onChangeEvent2.trigger = 'showError';
-        element.dispatchEvent(_onChangeEvent2);
-
-        var _componentError;
-
-        if (_typeof(triggerData.componentData) === 'object' && triggerData.componentData.hasOwnProperty('prevState')) {
-          _componentError = triggerData.componentData.prevState.error;
-        }
-
-        return _componentError;
-      }
-  }
-}
-
-/***/ }),
-
-/***/ "./src/app/components/localization/localizated-messages.js":
-/*!*****************************************************************!*\
-  !*** ./src/app/components/localization/localizated-messages.js ***!
-  \*****************************************************************/
-/*! exports provided: getLocaleMessage */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getLocaleMessage", function() { return getLocaleMessage; });
-/* harmony import */ var _messages_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./messages.json */ "./src/app/components/localization/messages.json");
-var _messages_json__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/__webpack_require__.t(/*! ./messages.json */ "./src/app/components/localization/messages.json", 1);
-
-
-function getLocaleMessages(locale) {
-  return _messages_json__WEBPACK_IMPORTED_MODULE_0__[locale];
-}
-
-function getLocaleMessage(locale, messageCode) {
-  return getLocaleMessages(locale)[messageCode];
-}
-
-/***/ }),
-
-/***/ "./src/app/components/localization/messages.json":
-/*!*******************************************************!*\
-  !*** ./src/app/components/localization/messages.json ***!
-  \*******************************************************/
-/*! exports provided: ar-EG, cs-CZ, da-DK, de-AT, de-CH, de-DE, el-GR, en-AU, en-CA, en-CH, en-GB, en-IE, en-IN, en-MY, en-NL, en-NZ, en-PR, en-SG, en-US, en-ZA, es-AR, es-CL, es-CO, es-EC, es-ES, es-MX, es-PE, es-VE, fi-FI, fr-BE, fr-CA, fr-CH, fr-FR, hu-HU, it-CH, it-IT, iw-IL, ja-JP, ko-KR, nl-BE, nl-NL, no-NO, pl-PL, pt-BR, pt-PT, ru-RU, sk-SK, sv-SE, th-TH, tr-TR, zh-CN, zh-HK, zh-TW, default */
-/***/ (function(module) {
-
-module.exports = {"ar-EG":{"cardInvalid":"البطاقة غير صحيحة، يرجى مراعاة تفاصيل البطاقة","cardSecurityCode":"كود أمان البطاقة","cardExpired":"صلاحية البطاقة انتهت بالفعل","cardNumber":"* رقم البطاقة الائتمانية","cardSecurityCodeInvalid":"كود غير صحيح","cardNumberInvalid":"من فضلك أدخل رقم بطاقة ائتمانية صحيح.","cardExpirationMonthInvalid":"أدخل شهر انتهاء صلاحية صحيح","cardExpirationYearInvalid":"أدخل سنة انتهاء صلاحية صحيحة","month":"الشهر","noBankSelected":"يرجى اختيار أحد البنوك أو الشبكات البنكية","selectBank":"من فضلك اختر البنك الخاص بك.","year":"السنة"},"cs-CZ":{"cardInvalid":"Karta je neplatná. Zkontrolujte prosím údaje o kartě.","cardSecurityCode":"Bezpečnostní kód karty","cardExpired":"Karta už není platná","cardNumber":"Číslo kreditní karty","cardSecurityCodeInvalid":"Neplatný kód","cardNumberInvalid":"Zadejte platné číslo kreditní karty.","cardExpirationMonthInvalid":"Zadejte měsíc konce platnosti","cardExpirationYearInvalid":"Zadejte rok konce platnosti","month":"Měsíc","noBankSelected":"Zvolte banku nebo bankovní síť","selectBank":"Zvolte banku","year":"Rok"},"da-DK":{"cardInvalid":"Kortet er ugyldigt. Kontrollér kortoplysningerne","cardSecurityCode":"Kortsikkerhedskode","cardExpired":"Kortet er udløbet","cardNumber":"Kreditkortnummer","cardSecurityCodeInvalid":"Forkert kode","cardNumberInvalid":"Indtast et gyldigt kreditkortnummer.","cardExpirationMonthInvalid":"Indtast en gyldig udløbsmåned","cardExpirationYearInvalid":"Indtast et gyldigt udløbsår","month":"Måned","noBankSelected":"Vælg en bank eller et banknetværk","selectBank":"Vælg din bank","year":"År"},"de-AT":{"cardInvalid":"Karte ist ungültig, bitte überprüfen Sie die Kartendetails.","cardSecurityCode":"Kreditkarten-Sicherheitscode","cardExpired":"Karte ist bereits abgelaufen","cardNumber":"Kreditkartennummer","cardSecurityCodeInvalid":"Ungültiger Code","cardNumberInvalid":"Geben Sie bitte eine gültige Kreditkartennummer ein.","cardExpirationMonthInvalid":"Geben Sie einen gültigen Ablaufmonat ein.","cardExpirationYearInvalid":"Geben Sie ein gültiges Ablaufjahr ein.","month":"Monat","noBankSelected":"Bitte wählen Sie eine Bank oder ein Bankennetzwerk aus","selectBank":"Bitte wählen Sie Ihre Bank aus","year":"Jahr"},"de-CH":{"cardInvalid":"Karte ist ungültig, bitte überprüfen Sie die Kartendetails.","cardSecurityCode":"Kreditkarten-Sicherheitscode","cardExpired":"Karte ist bereits abgelaufen","cardNumber":"Kreditkartennummer","cardSecurityCodeInvalid":"Ungültiger Code","cardNumberInvalid":"Geben Sie bitte eine gültige Kreditkartennummer ein.","cardExpirationMonthInvalid":"Geben Sie einen gültigen Ablaufmonat ein.","cardExpirationYearInvalid":"Geben Sie ein gültiges Ablaufjahr ein.","month":"Monat","noBankSelected":"Bitte wählen Sie eine Bank oder ein Bankennetzwerk aus","selectBank":"Bitte wählen Sie Ihre Bank aus","year":"Jahr"},"de-DE":{"cardInvalid":"Karte ist ungültig, bitte überprüfen Sie die Kartendetails.","cardSecurityCode":"Kreditkarten-Sicherheitscode","cardExpired":"Karte ist bereits abgelaufen","cardNumber":"Kreditkartennummer","cardSecurityCodeInvalid":"Ungültiger Code","cardNumberInvalid":"Geben Sie bitte eine gültige Kreditkartennummer ein.","cardExpirationMonthInvalid":"Geben Sie einen gültigen Ablaufmonat ein.","cardExpirationYearInvalid":"Geben Sie ein gültiges Ablaufjahr ein.","month":"Monat","noBankSelected":"Bitte wählen Sie eine Bank oder ein Bankennetzwerk aus","selectBank":"Bitte wählen Sie Ihre Bank aus","year":"Jahr"},"el-GR":{"cardInvalid":"Η κάρτα δεν είναι έγκυρη, ελέγξτε ξανά τα στοιχεία της κάρτας","cardSecurityCode":"Κωδικός Ασφαλείας Κάρτας","cardExpired":"Η κάρτα έχει λήξει","cardNumber":"Αριθμός Πιστωτικής Κάρτας","cardSecurityCodeInvalid":"Μη Έγκυρος Κωδικός","cardNumberInvalid":"Εισαγάγετε έγκυρο αριθμό πιστωτικής κάρτας.","cardExpirationMonthInvalid":"Εισαγωγή έγκυρου μήνα λήξης","cardExpirationYearInvalid":"Εισαγωγή έγκυρου έτους λήξης","month":"Μήνας","noBankSelected":"Επιλέξτε τράπεζα ή τραπεζικό δίκτυο","selectBank":"Επιλέξτε την τράπεζά σας","year":"Έτος"},"en-AU":{"cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","month":"Month","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year"},"en-CA":{"cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","month":"Month","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year"},"en-CH":{"cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","month":"Month","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year"},"en-GB":{"cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","month":"Month","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year"},"en-IE":{"cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","month":"Month","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year"},"en-IN":{"cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","month":"Month","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year"},"en-MY":{"cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","month":"Month","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year"},"en-NL":{"cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","month":"Month","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year"},"en-NZ":{"cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","month":"Month","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year"},"en-PR":{"cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","month":"Month","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year"},"en-SG":{"cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","month":"Month","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year"},"en-US":{"cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","month":"Month","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year"},"en-ZA":{"cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","month":"Month","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year"},"es-AR":{"cardInvalid":"La tarjeta no es válida, por favor revise los datos de la tarjeta","cardSecurityCode":"Código de la tarjeta de seguridad","cardExpired":"La tarjeta ya expiró.","cardNumber":"Número de la tarjeta de crédito","cardSecurityCodeInvalid":"Código inválido","cardNumberInvalid":"Introduzca un número de tarjeta de crédito válido.","cardExpirationMonthInvalid":"Introduzca un mes de vencimiento válido","cardExpirationYearInvalid":"Introduzca un año de vencimiento válido","month":"Mes","noBankSelected":"Seleccione un banco o una red bancaria","selectBank":"Seleccione su banco","year":"Año"},"es-CL":{"cardInvalid":"La tarjeta no es válida, por favor revise los datos de la tarjeta","cardSecurityCode":"Código de la tarjeta de seguridad","cardExpired":"La tarjeta ya expiró.","cardNumber":"Número de la tarjeta de crédito","cardSecurityCodeInvalid":"Código inválido","cardNumberInvalid":"Introduzca un número de tarjeta de crédito válido.","cardExpirationMonthInvalid":"Introduzca un mes de vencimiento válido","cardExpirationYearInvalid":"Introduzca un año de vencimiento válido","month":"Mes","noBankSelected":"Seleccione un banco o una red bancaria","selectBank":"Seleccione su banco","year":"Año"},"es-CO":{"cardInvalid":"La tarjeta no es válida, por favor revise los datos de la tarjeta","cardSecurityCode":"Código de la tarjeta de seguridad","cardExpired":"La tarjeta ya expiró.","cardNumber":"Número de la tarjeta de crédito","cardSecurityCodeInvalid":"Código inválido","cardNumberInvalid":"Introduzca un número de tarjeta de crédito válido.","cardExpirationMonthInvalid":"Introduzca un mes de vencimiento válido","cardExpirationYearInvalid":"Introduzca un año de vencimiento válido","month":"Mes","noBankSelected":"Seleccione un banco o una red bancaria","selectBank":"Seleccione su banco","year":"Año"},"es-EC":{"cardInvalid":"La tarjeta no es válida, por favor revise los datos de la tarjeta","cardSecurityCode":"Código de la tarjeta de seguridad","cardExpired":"La tarjeta ya expiró.","cardNumber":"Número de la tarjeta de crédito","cardSecurityCodeInvalid":"Código inválido","cardNumberInvalid":"Introduzca un número de tarjeta de crédito válido.","cardExpirationMonthInvalid":"Introduzca un mes de vencimiento válido","cardExpirationYearInvalid":"Introduzca un año de vencimiento válido","month":"Mes","noBankSelected":"Seleccione un banco o una red bancaria","selectBank":"Seleccione su banco","year":"Año"},"es-ES":{"cardInvalid":"La tarjeta no es válida, compruebe los datos de la tarjeta de débito","cardSecurityCode":"Código de seguridad de la tarjeta","cardExpired":"Tarjeta ya caducada","cardNumber":"Número de tarjeta de crédito","cardSecurityCodeInvalid":"Código no válido","cardNumberInvalid":"Introduzca un número de tarjeta de crédito válido.","cardExpirationMonthInvalid":"Indique un mes de vencimiento válido","cardExpirationYearInvalid":"Indique un año de vencimiento válido","month":"Mes","noBankSelected":"Escoja una entidad o red bancaria","selectBank":"Seleccione su entidad bancaria","year":"Año"},"es-MX":{"cardInvalid":"La tarjeta no es válida, por favor revise los datos de la tarjeta","cardSecurityCode":"Código de la tarjeta de seguridad","cardExpired":"La tarjeta ya expiró.","cardNumber":"Número de la tarjeta de crédito","cardSecurityCodeInvalid":"Código inválido","cardNumberInvalid":"Introduzca un número de tarjeta de crédito válido.","cardExpirationMonthInvalid":"Introduzca un mes de vencimiento válido","cardExpirationYearInvalid":"Introduzca un año de vencimiento válido","month":"Mes","noBankSelected":"Seleccione un banco o una red bancaria","selectBank":"Seleccione su banco","year":"Año"},"es-PE":{"cardInvalid":"La tarjeta no es válida, por favor revise los datos de la tarjeta","cardSecurityCode":"Código de la tarjeta de seguridad","cardExpired":"La tarjeta ya expiró.","cardNumber":"Número de la tarjeta de crédito","cardSecurityCodeInvalid":"Código inválido","cardNumberInvalid":"Introduzca un número de tarjeta de crédito válido.","cardExpirationMonthInvalid":"Introduzca un mes de vencimiento válido","cardExpirationYearInvalid":"Introduzca un año de vencimiento válido","month":"Mes","noBankSelected":"Seleccione un banco o una red bancaria","selectBank":"Seleccione su banco","year":"Año"},"es-VE":{"cardInvalid":"La tarjeta no es válida, por favor revise los datos de la tarjeta","cardSecurityCode":"Código de la tarjeta de seguridad","cardExpired":"La tarjeta ya expiró.","cardNumber":"Número de la tarjeta de crédito","cardSecurityCodeInvalid":"Código inválido","cardNumberInvalid":"Introduzca un número de tarjeta de crédito válido.","cardExpirationMonthInvalid":"Introduzca un mes de vencimiento válido","cardExpirationYearInvalid":"Introduzca un año de vencimiento válido","month":"Mes","noBankSelected":"Seleccione un banco o una red bancaria","selectBank":"Seleccione su banco","year":"Año"},"fi-FI":{"cardInvalid":"Kortti ei ole voimassa, tarkasta kortin tiedot","cardSecurityCode":"Kortin tarkistusnumero","cardExpired":"Kortti on jo vanhentunut","cardNumber":"Luottokortin numero","cardSecurityCodeInvalid":"Väärä koodi","cardNumberInvalid":"Syötä voimassa olevan luottokortin numero.","cardExpirationMonthInvalid":"Syötä kelvollinen viimeinen voimassaolokuukausi","cardExpirationYearInvalid":"Syötä kelvollinen viimeinen voimassaolovuosi","month":"Kuukausi","noBankSelected":"Valitse pankki tai pankkiverkko","selectBank":"Valitse pankkisi","year":"Vuosi"},"fr-BE":{"cardInvalid":"La carte n&amp;#39;est pas valide, veuillez en vérifier les détails","cardSecurityCode":"Code de sécurité carte","cardExpired":"Carte déjà expirée","cardNumber":"Numéro de carte de crédit","cardSecurityCodeInvalid":"Code invalide","cardNumberInvalid":"Veuillez saisir un numéro de carte de crédit valide.","cardExpirationMonthInvalid":"Indiquer un mois d&#39;expiration valide","cardExpirationYearInvalid":"Indiquer une année d&#39;expiration valide","month":"Mois ","noBankSelected":"Veuillez sélectionner une banque ou un réseau bancaire","selectBank":"Veuillez sélectionner votre banque","year":"Année "},"fr-CA":{"cardInvalid":"La carte n&amp;#39;est pas valide, veuillez vérifier les renseignements de la carte.","cardSecurityCode":"Code de sécurité carte","cardExpired":"Carte déjà expirée","cardNumber":"Numéro de carte de crédit","cardSecurityCodeInvalid":"Code invalide","cardNumberInvalid":"Veuillez saisir un numéro de carte de crédit valide.","cardExpirationMonthInvalid":"Entrez un mois d&#39;expiration valide","cardExpirationYearInvalid":"Entrez une année d&#39;expiration valide","month":"Mois ","noBankSelected":"Veuillez choisir une banque ou un réseau de banques","selectBank":"Veuillez sélectionner votre banque","year":"Année "},"fr-CH":{"cardInvalid":"La carte n&amp;#39;est pas valide, veuillez en vérifier les détails","cardSecurityCode":"Code de sécurité carte","cardExpired":"Carte déjà expirée","cardNumber":"Numéro de carte de crédit","cardSecurityCodeInvalid":"Code invalide","cardNumberInvalid":"Veuillez saisir un numéro de carte de crédit valide.","cardExpirationMonthInvalid":"Indiquer un mois d&#39;expiration valide","cardExpirationYearInvalid":"Indiquer une année d&#39;expiration valide","month":"Mois ","noBankSelected":"Veuillez sélectionner une banque ou un réseau bancaire","selectBank":"Veuillez sélectionner votre banque","year":"Année "},"fr-FR":{"cardInvalid":"La carte n&amp;#39;est pas valide, veuillez en vérifier les détails","cardSecurityCode":"Code de sécurité carte","cardExpired":"Carte déjà expirée","cardNumber":"Numéro de carte de crédit","cardSecurityCodeInvalid":"Code invalide","cardNumberInvalid":"Veuillez saisir un numéro de carte de crédit valide.","cardExpirationMonthInvalid":"Indiquer un mois d&#39;expiration valide","cardExpirationYearInvalid":"Indiquer une année d&#39;expiration valide","month":"Mois ","noBankSelected":"Veuillez sélectionner une banque ou un réseau bancaire","selectBank":"Veuillez sélectionner votre banque","year":"Année "},"hu-HU":{"cardInvalid":"Érvénytelen kártya, ellenőrizze a kártya adatait","cardSecurityCode":"Kártya biztonsági kódja","cardExpired":"A kártya lejárt","cardNumber":"Bankkártyaszám","cardSecurityCodeInvalid":"Érvénytelen kód","cardNumberInvalid":"Kérjük, adjon meg egy érvényes hitelkártyaszámot.","cardExpirationMonthInvalid":"Adja meg az érvényes lejárati hónapot","cardExpirationYearInvalid":"Adja meg az érvényes lejárati évet","month":"Hónap","noBankSelected":"Kérjük, válasszon bankot vagy bankhálózatot","selectBank":"Kérjük, válassza ki bankját.","year":"Év"},"it-CH":{"cardInvalid":"La carta non è valida, controlla i dati","cardSecurityCode":"Codice di sicurezza carta","cardExpired":"Carta già scaduta","cardNumber":"Numero di carta di credito","cardSecurityCodeInvalid":"Codice non valido","cardNumberInvalid":"Inserire un numero di carta di credito valido.","cardExpirationMonthInvalid":"Inserisci un mese di scadenza valido","cardExpirationYearInvalid":"Inserisci un anno di scadenza valido","month":"Mese","noBankSelected":"Scegli una banca o una rete bancaria","selectBank":"Seleziona la tua banca","year":"Anno"},"it-IT":{"cardInvalid":"La carta non è valida, controlla i dati","cardSecurityCode":"Codice di sicurezza carta","cardExpired":"Carta già scaduta","cardNumber":"Numero di carta di credito","cardSecurityCodeInvalid":"Codice non valido","cardNumberInvalid":"Inserire un numero di carta di credito valido.","cardExpirationMonthInvalid":"Inserisci un mese di scadenza valido","cardExpirationYearInvalid":"Inserisci un anno di scadenza valido","month":"Mese","noBankSelected":"Scegli una banca o una rete bancaria","selectBank":"Seleziona la tua banca","year":"Anno"},"iw-IL":{"cardInvalid":"הכרטיס לא חוקי. אנא בדוק את פרטי הכרטיס","cardSecurityCode":"קוד ביטחון של כרטיס האשראי","cardExpired":"הכרטיס לא בתוקף","cardNumber":"* מס' כרטיס אשראי","cardSecurityCodeInvalid":"קוד לא חוקי","cardNumberInvalid":"נא הזן מספר כרטיס אשראי חוקי.","cardExpirationMonthInvalid":"הזן חודש תפוגה תקף","cardExpirationYearInvalid":"הזן שנת תפוגה תקפה","month":"חודש","noBankSelected":"בחר בנק או רשת בנקים","selectBank":"בחר את הבנק שלך","year":"שנה"},"ja-JP":{"cardInvalid":"クレジットカードは無効です。カードを確認してください。","cardSecurityCode":"カードセキュリティコード","cardExpired":"カードの期限が切れています","cardNumber":"クレジットカード番号<br />（半角）","cardSecurityCodeInvalid":"無効なコード","cardNumberInvalid":"有効なクレジットカード番号を入力してください。","cardExpirationMonthInvalid":"有効期限（月）を入力","cardExpirationYearInvalid":"有効期限（年）を入力","month":"","noBankSelected":"銀行または銀行ネットワークを選択してください。","selectBank":"銀行を選択してください。","year":""},"ko-KR":{"cardInvalid":"카드가 유효하지 않습니다. 카드 세부 정보를 확인하십시오.","cardSecurityCode":"카드 보안 코드","cardExpired":"카드 유효기간이 이미 만료되었습니다","cardNumber":"신용카드 번호","cardSecurityCodeInvalid":"유효하지 않은 코드","cardNumberInvalid":"올바른 신용카드 번호를 입력하십시오.","cardExpirationMonthInvalid":"유효한 만료 월 입력","cardExpirationYearInvalid":"유효한 만료 연도 입력","month":"월","noBankSelected":"은행 또는 은행 네트워크를 선택하십시오.","selectBank":"은행을 선택하십시오.","year":"연도"},"nl-BE":{"cardInvalid":"Kaart is ongeldig, controleer de kaartgegevens","cardSecurityCode":"Beveiligingscode creditcard","cardExpired":"Creditcard is verlopen","cardNumber":"Creditcardnummer","cardSecurityCodeInvalid":"Ongeldige code","cardNumberInvalid":"Voer een geldig creditcardnummer in.","cardExpirationMonthInvalid":"Voer een geldige vervalmaand in","cardExpirationYearInvalid":"Voer een geldig vervaljaar in","month":"Maand","noBankSelected":"Selecteer een bank of bankennetwerk","selectBank":"Selecteer uw bank","year":"Jaar"},"nl-NL":{"cardInvalid":"Kaart is ongeldig, controleer de kaartgegevens","cardSecurityCode":"Beveiligingscode creditcard","cardExpired":"Creditcard is verlopen","cardNumber":"Creditcardnummer","cardSecurityCodeInvalid":"Ongeldige code","cardNumberInvalid":"Voer een geldig creditcardnummer in.","cardExpirationMonthInvalid":"Voer een geldige vervalmaand in","cardExpirationYearInvalid":"Voer een geldig vervaljaar in","month":"Maand","noBankSelected":"Selecteer een bank of bankennetwerk","selectBank":"Selecteer uw bank","year":"Jaar"},"no-NO":{"cardInvalid":"Ugyldig kort, vennligst sjekk opplysningene på kortet","cardSecurityCode":"Kortets sikkerhetskode","cardExpired":"Kortet er allerede utløpt","cardNumber":"Kredittkortnummer","cardSecurityCodeInvalid":"Ugyldig kode","cardNumberInvalid":"Du må oppgi et gyldig kredittkortnummer.","cardExpirationMonthInvalid":"Oppgi gyldig utløpsmåned","cardExpirationYearInvalid":"Oppgi gyldig utløpsår","month":"Måned","noBankSelected":"Velg en bank eller et banknettverk","selectBank":"Velg din bank","year":"År"},"pl-PL":{"cardInvalid":"Karta jest nieprawidłowa, sprawdź dane karty","cardSecurityCode":"Kod bezpieczeństwa karty","cardExpired":"Ważność karty już wygasła","cardNumber":"Numer karty kredytowej","cardSecurityCodeInvalid":"Nieprawidłowy kod","cardNumberInvalid":"Podaj prawidłowy numer karty kredytowej.","cardExpirationMonthInvalid":"Wpisz prawidłowy miesiąc ważności","cardExpirationYearInvalid":"Wpisz prawidłowy rok ważności","month":"Miesiąc","noBankSelected":"Wybierz bank lub sieć banków","selectBank":"Wybierz swój bank","year":"Rok"},"pt-BR":{"cardInvalid":"O cartão é inválido, verifique os detalhes sobre o cartão","cardSecurityCode":"Código de segurança do cartão","cardExpired":"O cartão expirou","cardNumber":"Número do cartão de crédito","cardSecurityCodeInvalid":"Código inválido","cardNumberInvalid":"Digite um número de cartão de crédito válido.","cardExpirationMonthInvalid":"Inserir o mês de validade","cardExpirationYearInvalid":"Inserir o ano de validade","month":"Mês","noBankSelected":"Escolha um banco ou rede bancária","selectBank":"Selecione seu banco","year":"Ano"},"pt-PT":{"cardInvalid":"Cartão inválido, verifique os detalhes do cartão","cardSecurityCode":"Código de Segurança do Cartão","cardExpired":"O cartão já expirou","cardNumber":"Número do cartão de crédito","cardSecurityCodeInvalid":"Código Inválido","cardNumberInvalid":"Introduza um número de cartão de crédito válido.","cardExpirationMonthInvalid":"Introduza um mês de expiração válido","cardExpirationYearInvalid":"Introduza um ano de expiração válido","month":"Mês","noBankSelected":"Escolha um banco ou rede bancária","selectBank":"Selecione o seu banco","year":"Ano"},"ru-RU":{"cardInvalid":"Карта недействительна, проверьте реквизиты платежной карты","cardSecurityCode":"Код безопасности карты","cardExpired":"Срок действия карты истек","cardNumber":"Номер кредитной карты","cardSecurityCodeInvalid":"Неверный индекс","cardNumberInvalid":"Пожалуйста, введите действительный номер кредитной карты.","cardExpirationMonthInvalid":"Введите верный месяц истечения срока действия","cardExpirationYearInvalid":"Введите верный год истечения срока действия","month":"Месяц","noBankSelected":"Пожалуйста, выберите банк или банковскую сеть","selectBank":"Пожалуйста, выберите свой банк","year":"Год"},"sk-SK":{"cardInvalid":"Karta je neplatná, skontrolujte údaje karty","cardSecurityCode":"Bezpečnostný kód na karte","cardExpired":"Platnosť karty skončila","cardNumber":"Číslo kreditnej karty","cardSecurityCodeInvalid":"Neplatný kód","cardNumberInvalid":"Uveďte platné číslo kreditnej karty.","cardExpirationMonthInvalid":"Vložte platný dátum exspirácie","cardExpirationYearInvalid":"Vložte platný rok exspirácie","month":"Mesiac","noBankSelected":"Zvoľte banku alebo sieť bánk","selectBank":"Vyberte banku","year":"Rok"},"sv-SE":{"cardInvalid":"Kortet är ogiltigt, kontrollera kortdetaljerna","cardSecurityCode":"Kortets säkerhetskod","cardExpired":"Giltighetstiden för ditt kort har löpt ut","cardNumber":"Kreditkortsnummer","cardSecurityCodeInvalid":"Ogiltig kod","cardNumberInvalid":"Ange ett giltigt kreditkortsnummer.","cardExpirationMonthInvalid":"Ange giltig utgångsmånad","cardExpirationYearInvalid":"Ange giltigt utgångsår","month":"Månad","noBankSelected":"Välj en bank eller ett banknätverk","selectBank":"Välj din bank","year":"År"},"th-TH":{"cardInvalid":"บัตรไม่ถูกต้อง โปรดตรวจสอบรายละเอียดของบัตร","cardSecurityCode":"รหัสความปลอดภัยบนบัตร (Card Security Code) ","cardExpired":"บัตรหมดอายุแล้ว","cardNumber":"หมายเลขบัตรเครดิต","cardSecurityCodeInvalid":"รหัสไม่ถูกต้อง","cardNumberInvalid":"กรุณาใส่หมายเลขบัตรเครดิตที่ถูกต้อง","cardExpirationMonthInvalid":"ใส่เดือนหมดอายุที่ถูกต้อง","cardExpirationYearInvalid":"ใส่ปีหมดอายุที่ถูกต้อง","month":"เดือน ","noBankSelected":"กรุณาเลือกธนาคารหรือเครือข่ายธนาคาร","selectBank":"กรุณาเลือกธนาคารของคุณ","year":"ปี "},"tr-TR":{"cardInvalid":"Kart geçersiz, lütfen kart detaylarını kontrol edin","cardSecurityCode":"Kart Güvenlik Kodu","cardExpired":"Kart süresi dolmuş","cardNumber":"Kredi Kartı Numarası","cardSecurityCodeInvalid":"Geçersiz Kod","cardNumberInvalid":"Lütfen geçerli bir kredi kartı numarası girin.","cardExpirationMonthInvalid":"Geçerli sona erme ayını girin","cardExpirationYearInvalid":"Geçerli sona erme yılını girin","month":"Ay","noBankSelected":"Lütfen bir banka veya banka ağı seçin","selectBank":"Lütfen bankanızı seçin","year":"Yıl"},"zh-CN":{"cardInvalid":"卡片无效，请检查卡片详情","cardSecurityCode":"信用卡安全代码","cardExpired":"信用卡已过期","cardNumber":"信用卡号*","cardSecurityCodeInvalid":"无效代码","cardNumberInvalid":"请输入一个有效的信用卡号。","cardExpirationMonthInvalid":"请输入有效的到期月份","cardExpirationYearInvalid":"请输入有效的到期年份","month":"月份","noBankSelected":"请选择一家银行或银行网络","selectBank":"请选择您的银行","year":"年份"},"zh-HK":{"cardInvalid":"信用咭無效，請檢查信用咭資料","cardSecurityCode":"信用卡安全碼：","cardExpired":"信用卡已過期","cardNumber":"信用卡號碼","cardSecurityCodeInvalid":"無效代碼","cardNumberInvalid":"請輸入有效的信用卡號碼。","cardExpirationMonthInvalid":"輸入有效的到期月份","cardExpirationYearInvalid":"輸入有效的到期年份","month":"月份","noBankSelected":"請選擇銀行或銀行網路","selectBank":"請選擇您的銀行","year":"年"},"zh-TW":{"cardInvalid":"信用卡無效，請確認卡片詳細資料","cardSecurityCode":"信用卡安全碼：","cardExpired":"信用卡已過期","cardNumber":"信用卡號碼","cardSecurityCodeInvalid":"無效代碼","cardNumberInvalid":"請輸入有效的信用卡號碼。","cardExpirationMonthInvalid":"輸入有效的到期月份","cardExpirationYearInvalid":"輸入有效的到期年份","month":"月份","noBankSelected":"請選擇銀行或銀行網路","selectBank":"請選擇您的銀行","year":"年度"}};
-
-/***/ }),
-
 /***/ "./src/app/components/options.js":
 /*!***************************************!*\
   !*** ./src/app/components/options.js ***!
@@ -19673,860 +18953,6 @@ function mergeOptions(options, newOptions) {
 
 /***/ }),
 
-/***/ "./src/app/components/payment-api-events.js":
-/*!**************************************************!*\
-  !*** ./src/app/components/payment-api-events.js ***!
-  \**************************************************/
-/*! exports provided: paymentApiTriggerEvent, emitComponentReady, emitComponentCancelled, createCompleteFunction, processPayment, sendShippingAddressChangeEvent, sendShippingOptionChangeEvent, styleAndCreatePaymentRequest, sendClickEvent, waitForClientUpdateWithFunction, onPayButtonClick */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "paymentApiTriggerEvent", function() { return paymentApiTriggerEvent; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "emitComponentReady", function() { return emitComponentReady; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "emitComponentCancelled", function() { return emitComponentCancelled; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createCompleteFunction", function() { return createCompleteFunction; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "processPayment", function() { return processPayment; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sendShippingAddressChangeEvent", function() { return sendShippingAddressChangeEvent; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sendShippingOptionChangeEvent", function() { return sendShippingOptionChangeEvent; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "styleAndCreatePaymentRequest", function() { return styleAndCreatePaymentRequest; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sendClickEvent", function() { return sendClickEvent; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "waitForClientUpdateWithFunction", function() { return waitForClientUpdateWithFunction; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "onPayButtonClick", function() { return onPayButtonClick; });
-/* harmony import */ var _input_events__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./input-events */ "./src/app/components/input-events.js");
-/* harmony import */ var _payment_api__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./payment-api */ "./src/app/components/payment-api.js");
-/* harmony import */ var _options__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./options */ "./src/app/components/options.js");
-/* harmony import */ var _google_apple_pay_events__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./google-apple-pay-events */ "./src/app/components/google-apple-pay-events.js");
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-
-
-
-
-/**
- * Runs appropriate handler for event type
- * @param {string} type - event type
- * @param {object} instanceData
- */
-
-function paymentApiTriggerEvent(type, instanceData) {
-  switch (type) {
-    case 'show':
-      {
-        onPayButtonClick(instanceData); // componentData, paymentOptions, getElement, setOptions
-
-        return;
-      }
-  }
-}
-/**
- * Emits component ready event
- * @param {object} componentData
- */
-
-function emitComponentReady(componentData) {
-  Object(_input_events__WEBPACK_IMPORTED_MODULE_0__["handleEvent"])(componentData, 'ready');
-}
-/**
- * Emits component cancelled event
- * @param {object} componentData
- */
-
-function emitComponentCancelled(componentData) {
-  Object(_input_events__WEBPACK_IMPORTED_MODULE_0__["handleEvent"])(componentData, 'cancel');
-}
-/**
- * Returns complete function for payment source request
- * @param {Function} resolve
- * @param {object} paymentRequestResponseData
- * @returns {Function}
- */
-
-function createCompleteFunction(resolve, paymentRequestResponseData) {
-  var complete = function complete(status) {
-    resolve({
-      instrumentResponse: paymentRequestResponseData,
-      status: status
-    });
-    return status;
-  };
-
-  return complete;
-}
-/**
- * Takes PaymentRequest API payment response and sends it to DR Payment Service
- * @param {object} paymentRequestData
- * @param {Function} resolve
- * @param {object} instanceData
- */
-
-function processPayment(paymentRequestData, resolve, instanceData) {
-  var complete = createCompleteFunction(resolve, paymentRequestData);
-  var paymentServiceRequest = Object(_payment_api__WEBPACK_IMPORTED_MODULE_1__["paymentRequestApiResponseToPaymentServiceRequest"])(paymentRequestData, instanceData.getPaymentOptions()); // Send payment / credit card data to controller to call payment service
-
-  Object(_google_apple_pay_events__WEBPACK_IMPORTED_MODULE_3__["sendCreateSourceRequest"])(instanceData.controllerEmitter, instanceData.componentData, paymentRequestData, paymentServiceRequest, _payment_api__WEBPACK_IMPORTED_MODULE_1__["toSourceEventData"], complete);
-}
-/**
- * Sends shipping address change event to client
- * @param {object} googleShippingAddress
- * @param {string} selectedShippingOption
- * @param {Function} resolve
- * @param {object} instanceData
- * @returns {{updateWith: (function(*=): {requestShipping: boolean, total: {amount: {currency: *, value: *}, label: *}, shippingAddressErrors: (*|changedData.shippingAddressErrors|{country, city}|expected.shippingAddressErrors|{}), error: *, shippingOptions: Array, displayItems: Array}), shippingAddress: {firstName: string, lastName: string, address: {country: string, city: string, postalCode: string, state: string, line2: *, line1: string}, phone: string, name: string, email: string}}}
- */
-
-function sendShippingAddressChangeEvent(googleShippingAddress, selectedShippingOption, resolve, instanceData) {
-  var shippingAddress = Object(_payment_api__WEBPACK_IMPORTED_MODULE_1__["convertPaymentRequestApiShippingAddressForEvent"])(googleShippingAddress);
-  var paymentOptions = instanceData.getPaymentOptions(); // set the previously selected one as selected in the data
-
-  paymentOptions.shippingOptions.forEach(function (shippingOption) {
-    shippingOption.selected = shippingOption.id === selectedShippingOption;
-  });
-
-  var updateWith = function updateWith(clientPassedInData) {
-    var errorData = {};
-
-    if (clientPassedInData.status === 'failure') {
-      errorData = Object(_payment_api__WEBPACK_IMPORTED_MODULE_1__["convertClientShippingAddressErrorsForPaymentRequestUpdateEvent"])(clientPassedInData.error);
-      errorData.shippingOptions = [];
-      delete clientPassedInData[clientPassedInData.error];
-    }
-
-    var mergedDataWithoutErrors = Object(_options__WEBPACK_IMPORTED_MODULE_2__["mergeOptions"])(paymentOptions, clientPassedInData);
-    instanceData.setOptions(mergedDataWithoutErrors);
-    var mergedData = Object.assign({}, mergedDataWithoutErrors, errorData);
-    var shippingOptions = Object(_payment_api__WEBPACK_IMPORTED_MODULE_1__["updateShippingOptionsSelectedAttribute"])(mergedData);
-    var detailsData = Object(_payment_api__WEBPACK_IMPORTED_MODULE_1__["getDetailsFromOptions"])(shippingOptions);
-    resolve(detailsData);
-    return detailsData;
-  };
-
-  var eventData = {
-    shippingAddress: shippingAddress,
-    updateWith: updateWith
-  };
-  Object(_input_events__WEBPACK_IMPORTED_MODULE_0__["sendEventData"])(instanceData.componentData.controller, instanceData.componentData.componentId, instanceData.componentData.componentType, 'shippingaddresschange', eventData);
-  return eventData;
-}
-/**
- * sends shipping option change event to client
- * @param {string} selectedShippingOption
- * @param {Function} resolve
- * @param {object} instanceData
- * @returns {{updateWith: (function(*=): Object), shippingOption: *}}
- */
-
-function sendShippingOptionChangeEvent(selectedShippingOption, resolve, instanceData) {
-  var updateWith = function updateWith(clientPassedInData) {
-    var paymentOptions = instanceData.getPaymentOptions(); // set the selected one as selected in the data
-
-    paymentOptions.shippingOptions.forEach(function (shippingOption) {
-      shippingOption.selected = shippingOption.id === selectedShippingOption;
-    });
-    var data = Object(_options__WEBPACK_IMPORTED_MODULE_2__["mergeOptions"])(paymentOptions, clientPassedInData);
-    instanceData.setOptions(data);
-    var updatedDetails = Object(_payment_api__WEBPACK_IMPORTED_MODULE_1__["updateShippingOptionsSelectedAttribute"])(data);
-    var detailsData = Object(_payment_api__WEBPACK_IMPORTED_MODULE_1__["getDetailsFromOptions"])(updatedDetails);
-    resolve(detailsData);
-    return detailsData;
-  };
-
-  var paymentOptions = instanceData.getPaymentOptions(); // If there are shippingOptions, find the selected shipping option
-
-  var foundShippingOption = paymentOptions.shippingOptions && paymentOptions.shippingOptions.find(function (shippingOption) {
-    return shippingOption.id === selectedShippingOption;
-  });
-  var eventData = {
-    shippingOption: foundShippingOption,
-    updateWith: updateWith
-  };
-  Object(_input_events__WEBPACK_IMPORTED_MODULE_0__["sendEventData"])(instanceData.componentData.controller, instanceData.componentData.componentId, instanceData.componentData.componentType, 'shippingoptionchange', eventData);
-  return eventData;
-}
-/**
- * Styles payment button and adds click event listener
- * @param {object} instanceData
- */
-
-function styleAndCreatePaymentRequest(instanceData) {
-  if (window.PaymentRequest) {
-    Object(_payment_api__WEBPACK_IMPORTED_MODULE_1__["initPaymentRequest"])(instanceData);
-    var payButton = instanceData.getElement();
-    payButton.setAttribute('style', 'display: inline; width: calc(100% - 2px); cursor: pointer'); //calc to make sure shadow does not get cut off
-
-    payButton.addEventListener('click', function () {
-      return onPayButtonClick(instanceData);
-    });
-  } else {
-    // eslint-disable-next-line no-console
-    console.error('This browser does not support web payments');
-    return null;
-  }
-}
-/**
- * Sends click event to client
- * @param {object} instanceData
- * @param {Function} resolve
- * @returns {{updateWith: (function(*=): Object)}}
- */
-
-function sendClickEvent(instanceData, resolve) {
-  if (waitForClientUpdateWithFunction(instanceData.getPaymentOptions())) {
-    var updateWith = function updateWith(clientPassedInData) {
-      var data = Object(_options__WEBPACK_IMPORTED_MODULE_2__["mergeOptions"])(instanceData.getPaymentOptions(), clientPassedInData);
-      instanceData.setOptions(data);
-      resolve(Object(_payment_api__WEBPACK_IMPORTED_MODULE_1__["getDetailsFromOptions"])(instanceData.getPaymentOptions()));
-      return data;
-    };
-
-    var result = {
-      updateWith: updateWith
-    };
-    Object(_input_events__WEBPACK_IMPORTED_MODULE_0__["sendEventData"])(instanceData.componentData.controller, instanceData.componentData.componentId, instanceData.componentData.componentType, 'click', result);
-    return result;
-  } else {
-    resolve(Object(_payment_api__WEBPACK_IMPORTED_MODULE_1__["getDetailsFromOptions"])(instanceData.getPaymentOptions()));
-    var _result = {};
-    Object(_input_events__WEBPACK_IMPORTED_MODULE_0__["sendEventData"])(instanceData.componentData.controller, instanceData.componentData.componentId, instanceData.componentData.componentType, 'click', _result);
-    return _result;
-  }
-}
-/**
- * Returns true if client has waitOnClick set to true
- * @param {object} paymentOptions
- * @returns {boolean}
- */
-
-function waitForClientUpdateWithFunction(paymentOptions) {
-  return typeof paymentOptions.waitOnClick !== 'undefined' && paymentOptions.waitOnClick === true;
-}
-/**
- * Handles pay button click
- * @param {object} instanceData
- * @returns {Promise<any|never>}
- */
-
-function onPayButtonClick(_x) {
-  return _onPayButtonClick.apply(this, arguments);
-}
-
-function _onPayButtonClick() {
-  _onPayButtonClick = _asyncToGenerator(
-  /*#__PURE__*/
-  regeneratorRuntime.mark(function _callee(instanceData) {
-    var request;
-    return regeneratorRuntime.wrap(function _callee$(_context) {
-      while (1) {
-        switch (_context.prev = _context.next) {
-          case 0:
-            if (!instanceData.waitBeforeShow) {
-              _context.next = 3;
-              break;
-            }
-
-            _context.next = 3;
-            return Object(_payment_api__WEBPACK_IMPORTED_MODULE_1__["processClickEvent"])(instanceData, sendClickEvent);
-
-          case 3:
-            request = Object(_payment_api__WEBPACK_IMPORTED_MODULE_1__["initPaymentRequest"])(instanceData);
-            return _context.abrupt("return", Object(_payment_api__WEBPACK_IMPORTED_MODULE_1__["onBuyClicked"])(request, processPayment, emitComponentCancelled, sendClickEvent, instanceData));
-
-          case 5:
-          case "end":
-            return _context.stop();
-        }
-      }
-    }, _callee);
-  }));
-  return _onPayButtonClick.apply(this, arguments);
-}
-
-/***/ }),
-
-/***/ "./src/app/components/payment-api.js":
-/*!*******************************************!*\
-  !*** ./src/app/components/payment-api.js ***!
-  \*******************************************/
-/*! exports provided: createRequest, onBuyClicked, completePaymentWithSuccess, completePaymentWithFailure, processClickEvent, splitName, paymentRequestApiResponseToPaymentServiceRequest, convertPaymentRequestApiShippingAddressForEvent, toSourceEventData, convertShippingOptions, convertDisplayOptions, getDetailsFromOptions, initPaymentRequest, shippingAddressChange, shippingOptionChange, convertClientShippingAddressErrorsForPaymentRequestUpdateEvent, updateShippingOptionsSelectedAttribute */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createRequest", function() { return createRequest; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "onBuyClicked", function() { return onBuyClicked; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "completePaymentWithSuccess", function() { return completePaymentWithSuccess; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "completePaymentWithFailure", function() { return completePaymentWithFailure; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "processClickEvent", function() { return processClickEvent; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "splitName", function() { return splitName; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "paymentRequestApiResponseToPaymentServiceRequest", function() { return paymentRequestApiResponseToPaymentServiceRequest; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "convertPaymentRequestApiShippingAddressForEvent", function() { return convertPaymentRequestApiShippingAddressForEvent; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toSourceEventData", function() { return toSourceEventData; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "convertShippingOptions", function() { return convertShippingOptions; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "convertDisplayOptions", function() { return convertDisplayOptions; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getDetailsFromOptions", function() { return getDetailsFromOptions; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initPaymentRequest", function() { return initPaymentRequest; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "shippingAddressChange", function() { return shippingAddressChange; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "shippingOptionChange", function() { return shippingOptionChange; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "convertClientShippingAddressErrorsForPaymentRequestUpdateEvent", function() { return convertClientShippingAddressErrorsForPaymentRequestUpdateEvent; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateShippingOptionsSelectedAttribute", function() { return updateShippingOptionsSelectedAttribute; });
-/* harmony import */ var parse_full_name__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! parse-full-name */ "./node_modules/parse-full-name/index.js");
-/* harmony import */ var parse_full_name__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(parse_full_name__WEBPACK_IMPORTED_MODULE_0__);
-
-/**
- * Returns a new payment request
- * @param {object} supportedInstruments
- * @param {object} details
- * @param {object} options
- * @returns {PaymentRequest}
- */
-
-function createRequest(supportedInstruments, details, options) {
-  return new PaymentRequest(supportedInstruments, details, options);
-}
-/**
- * Processes and completes payment source request
- * @param {object} request
- * @param {Function} processPayment
- * @param {Function} sendOnCancelEvent
- * @param {Function} sendClickEvent
- * @param {object} instanceData
- * @returns {Promise<any | never>}
- */
-
-function onBuyClicked(request, processPayment, sendOnCancelEvent, sendClickEvent, instanceData) {
-  // Note: This prevents the case where the payment added support for this and waitBeforeShow was true, it would run twice.
-  var show = instanceData.waitBeforeShow ? request.show() : request.show(processClickEvent(instanceData, sendClickEvent));
-  return show.then(function (instrumentResponse) {
-    return new Promise(function (resolve) {
-      processPayment(instrumentResponse, resolve, instanceData);
-    });
-  }).then(function (data) {
-    if (data.status === 'success') {
-      completePaymentWithSuccess(data.instrumentResponse);
-    } else {
-      completePaymentWithFailure(data.instrumentResponse);
-    }
-  }).catch(function (err) {
-    if (err.message === 'Request cancelled' || err.message === 'The operation was aborted.') {
-      sendOnCancelEvent(instanceData.componentData);
-    }
-  });
-}
-/**
- * Completes payment authorization with success
- * @param {object} instrumentResponse
- */
-
-function completePaymentWithSuccess(instrumentResponse) {
-  instrumentResponse.complete('success');
-}
-/**
- * Completes payment authorization with failure
- * @param instrumentResponse
- */
-
-function completePaymentWithFailure(instrumentResponse) {
-  instrumentResponse.complete('fail');
-}
-/**
- * Sends click event
- * @param {object} instanceData
- * @param {Function} sendClickEvent
- * @returns {Promise<any>}
- */
-
-function processClickEvent(instanceData, sendClickEvent) {
-  return new Promise(function (resolve) {
-    sendClickEvent(instanceData, resolve);
-  });
-}
-/**
- * Splits name into first and last names
- * @param {string} name
- * @returns {{firstName: (CodePathSegment|string|*|E.first|first|ie.selectors.pseudos.first), lastName: (string|*|CodePathSegment|E.last|last|ie.selectors.pseudos.last)}}
- */
-
-function splitName(name) {
-  var pastedName = Object(parse_full_name__WEBPACK_IMPORTED_MODULE_0__["parseFullName"])(name);
-  return {
-    firstName: pastedName.first,
-    lastName: pastedName.last
-  };
-}
-/**
- * Transforms peyment request API data to format required by Payment Service
- * @param {object} googleResponseData
- * @param {object} paymentOptions
- * @returns {{owner: {firstName: (CodePathSegment|string|*|E.first|first|ie.selectors.pseudos.first), lastName: (string|*|CodePathSegment|E.last|last|ie.selectors.pseudos.last), address: {country: (string), city: (string), postalCode: (string), state: (string), line2: *, line1: *}, email: (string|string)}, amount: number, currency: *, type: string, googlePay: {expirationYear: number, number: string, cvv: string, expirationMonth: number}}}
- */
-
-function paymentRequestApiResponseToPaymentServiceRequest(googleResponseData, paymentOptions) {
-  var name = splitName(googleResponseData.details.billingAddress.recipient);
-  return {
-    'type': 'googlePay',
-    'owner': {
-      'firstName': name.firstName,
-      'lastName': name.lastName,
-      'email': googleResponseData.payerEmail,
-      'phoneNumber': googleResponseData.details.billingAddress.phone,
-      'address': {
-        'line1': googleResponseData.details.billingAddress.addressLine.length >= 1 ? googleResponseData.details.billingAddress.addressLine[0] : '',
-        'line2': googleResponseData.details.billingAddress.addressLine.length >= 2 ? googleResponseData.details.billingAddress.addressLine[1] : '',
-        'city': googleResponseData.details.billingAddress.city,
-        'state': googleResponseData.details.billingAddress.region,
-        'country': googleResponseData.details.billingAddress.country,
-        'postalCode': googleResponseData.details.billingAddress.postalCode
-      }
-    },
-    'googlePay': {
-      'number': googleResponseData.details.cardNumber,
-      'expirationMonth': parseInt(googleResponseData.details.expiryMonth, 10),
-      'expirationYear': parseInt(googleResponseData.details.expiryYear, 10),
-      'cvv': googleResponseData.details.cardSecurityCode
-    },
-    'amount': parseFloat(paymentOptions.total.amount),
-    'currency': paymentOptions.currency
-  };
-}
-/**
- * Transforms payment request API shipping address event data to DigitalRiverPaymentRequest data
- * @param {object} shippingAddress
- * @param {string} payerEmail
- * @returns {{firstName: string, lastName: string, address: {country: string, city: string, postalCode: string, state: string, line2: *, line1: string}, phone: string, name: string, email: string}}
- */
-
-function convertPaymentRequestApiShippingAddressForEvent(shippingAddress, payerEmail) {
-  var name = splitName(shippingAddress.recipient);
-  return {
-    name: shippingAddress.recipient,
-    firstName: name.firstName,
-    lastName: name.lastName,
-    phone: shippingAddress.phone,
-    email: payerEmail,
-    address: {
-      line1: shippingAddress.addressLine.length >= 1 ? shippingAddress.addressLine[0] : '',
-      line2: shippingAddress.addressLine.length >= 2 ? shippingAddress.addressLine[1] : '',
-      city: shippingAddress.city,
-      state: shippingAddress.region,
-      country: shippingAddress.country,
-      postalCode: shippingAddress.postalCode
-    }
-  };
-}
-/**
- * Transforms payment request API billing data to DigitalRiverPaymentRequest format
- * @param {object} paymentRequestBillingData
- * @param {object} paymentSource
- * @param {Function} complete
- * @returns {{contactInformation: {phone: (string|string), name: (string|string), email: (string|string)}, shippingAddress: *, source: *, billingAddress: {firstName: string, lastName: string, address: {country: string, city: (string), postalCode: (string), state: (string), line2: string, line1: string}, phone: (string), name: *, email: null}, error: *, complete: *}}
- */
-
-function toSourceEventData(paymentRequestBillingData, paymentSource, complete) {
-  var googleBillingAddress = paymentRequestBillingData.details.billingAddress;
-  var billingAddress = {
-    address: {
-      line1: googleBillingAddress.addressLine && googleBillingAddress.addressLine.length > 0 ? googleBillingAddress.addressLine[0] : '',
-      line2: googleBillingAddress.addressLine && googleBillingAddress.addressLine.length >= 2 ? googleBillingAddress.addressLine[1] : '',
-      city: googleBillingAddress.city || '',
-      postalCode: googleBillingAddress.postalCode || '',
-      state: googleBillingAddress.region || '',
-      country: googleBillingAddress.country ? googleBillingAddress.country.toUpperCase() : ''
-    },
-    name: paymentRequestBillingData.shippingAddress ? paymentRequestBillingData.shippingAddress.recipient : '',
-    firstName: paymentSource.source && paymentSource.source.owner ? paymentSource.source.owner.firstName : '',
-    lastName: paymentSource.source && paymentSource.source.owner ? paymentSource.source.owner.lastName : '',
-    phone: paymentRequestBillingData.details.billingAddress.phone,
-    email: null
-  };
-  var shippingAddress = paymentRequestBillingData.shippingAddress ? convertPaymentRequestApiShippingAddressForEvent(paymentRequestBillingData.shippingAddress, paymentRequestBillingData.payerEmail) : null;
-  var contactInformation = {
-    name: paymentRequestBillingData.payerName,
-    phone: paymentRequestBillingData.payerPhone,
-    email: paymentRequestBillingData.payerEmail
-  };
-  return {
-    error: paymentSource.error,
-    source: paymentSource.source,
-    billingAddress: billingAddress,
-    shippingAddress: shippingAddress,
-    contactInformation: contactInformation,
-    complete: complete
-  };
-}
-/**
- * transforms shipping options
- * @param {object} originalShippingOptions
- * @param {string} currency
- * @returns {Array}
- */
-//TODO find out if this function is still being used and remove if not
-
-function convertShippingOptions(originalShippingOptions, currency) {
-  var shippingOptions = [];
-
-  if (originalShippingOptions && Array.isArray(originalShippingOptions)) {
-    originalShippingOptions.forEach(function (shippingOption, index) {
-      shippingOptions[index] = {
-        id: shippingOption.id,
-        label: shippingOption.label,
-        amount: {
-          value: shippingOption.amount,
-          currency: currency
-        },
-        selected: shippingOption.selected && typeof shippingOption.selected === 'boolean' ? shippingOption.selected : false
-      };
-    });
-  }
-
-  return shippingOptions;
-}
-/**
- * Transforms display items to format needed for Payment Request API and returns them
- * @param originalDisplayItems
- * @param currency
- * @returns {Array}
- */
-
-function convertDisplayOptions(originalDisplayItems, currency) {
-  var displayItems = [];
-
-  if (originalDisplayItems && Array.isArray(originalDisplayItems)) {
-    originalDisplayItems.forEach(function (displayItem, index) {
-      displayItems[index] = {
-        label: displayItem.label,
-        amount: {
-          value: displayItem.amount,
-          currency: currency
-        }
-      };
-
-      if (typeof displayItem.isPending !== 'undefined') {
-        displayItems[index].pending = displayItem.isPending;
-      }
-    });
-  }
-
-  return displayItems;
-}
-/**
- * Transforms data to format needed for Payment Request API
- * @param {object} paymentOptions
- * @returns {{requestShipping: boolean, total: {amount: {currency: *, value: *}, label: *}, shippingAddressErrors: (*|changedData.shippingAddressErrors|{country, city}|expected.shippingAddressErrors|expected.shippingAddressErrors|{}), error: *, shippingOptions: Array, displayItems: Array}}
- */
-
-function getDetailsFromOptions(paymentOptions) {
-  var displayItems = convertDisplayOptions(paymentOptions.displayItems, paymentOptions.currency);
-  var shippingOptions = convertShippingOptions(paymentOptions.shippingOptions, paymentOptions.currency);
-  var options = {
-    error: paymentOptions.error,
-    shippingAddressErrors: paymentOptions.shippingAddressErrors,
-    total: {
-      label: paymentOptions.total.label,
-      amount: {
-        currency: paymentOptions.currency,
-        value: paymentOptions.total.amount
-      }
-    },
-    displayItems: displayItems,
-    shippingOptions: shippingOptions,
-    requestShipping: paymentOptions.requestShipping
-  };
-
-  if (typeof paymentOptions.total.isPending !== 'undefined') {
-    options.total.pending = paymentOptions.total.isPending;
-  }
-
-  return options;
-}
-/**
- * Returns Payment Request object
- * @param {object} instanceData
- * @returns {PaymentRequest}
- */
-
-function initPaymentRequest(instanceData) {
-  // Convert the format of display items
-  var details = getDetailsFromOptions(instanceData.getPaymentOptions()); //if no shipping option has been designated as selected, set first option as selected
-
-  var updatedDetails = updateShippingOptionsSelectedAttribute(details);
-  var options = {
-    requestShipping: updatedDetails.requestShipping,
-    requestPayerEmail: true,
-    requestPayerName: true,
-    requestPayerPhone: true
-  };
-  var request = createRequest(instanceData.supportedInstruments, updatedDetails, options);
-  instanceData.events.forEach(function (event) {
-    request.addEventListener(event.eventName, event.eventFunction);
-  });
-  return request;
-}
-/**
- * Event function for shipping address change event
- * @param {Function} sendShippingAddressChangeEvent
- * @param {object} instanceData
- * @returns {Function}
- */
-
-function shippingAddressChange(sendShippingAddressChangeEvent, instanceData) {
-  return function (event) {
-    event.updateWith(new Promise(function (resolve, reject) {
-      // eslint-disable-line no-unused-vars
-      sendShippingAddressChangeEvent(event.target.shippingAddress, event.target.shippingOption, resolve, instanceData);
-    }));
-  };
-}
-/**
- * Function for shipping option change events
- * @param {Function} sendShippingOptionChangeEvent
- * @param {object} instanceData
- * @returns {Function}
- */
-
-function shippingOptionChange(sendShippingOptionChangeEvent, instanceData) {
-  return function (event) {
-    event.updateWith(new Promise(function (resolve, reject) {
-      // eslint-disable-line no-unused-vars
-      sendShippingOptionChangeEvent(event.target.shippingOption, resolve, instanceData);
-    }));
-  };
-}
-/**
- * Converts the client error to a format for the PaymentRequestUpdateEvent
- * @param error
- */
-
-function convertClientShippingAddressErrorsForPaymentRequestUpdateEvent(error) {
-  var convertedData = {};
-  convertedData.error = error && error.hasOwnProperty('message') ? error.message : 'An Error has occurred.  Please try again.';
-  convertedData.shippingAddressErrors = error && error.hasOwnProperty('fields') ? error.fields : {};
-  return convertedData;
-}
-/**
- * Updating the shipping options to add selected attribute if not exist
- * @param {object} paymentOptions
- * return {object} paymentOptions
- */
-
-function updateShippingOptionsSelectedAttribute(paymentOptions) {
-  //if no shipping option has been designated as selected, set first option as selected
-  if (paymentOptions.shippingOptions.length > 0) {
-    var selectedShippingOptionIndex = 0;
-    paymentOptions.shippingOptions.forEach(function (shippingOption, index) {
-      selectedShippingOptionIndex = typeof shippingOption.selected === 'boolean' && shippingOption.selected ? index : selectedShippingOptionIndex;
-    });
-    paymentOptions.shippingOptions[selectedShippingOptionIndex].selected = true;
-  }
-
-  return paymentOptions;
-}
-
-/***/ }),
-
-/***/ "./src/app/components/payment-component-data.js":
-/*!******************************************************!*\
-  !*** ./src/app/components/payment-component-data.js ***!
-  \******************************************************/
-/*! exports provided: generateComponentData */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "generateComponentData", function() { return generateComponentData; });
-/* harmony import */ var _client_createComponent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../client/createComponent */ "./src/client/createComponent.js");
-
-/**
- * Returns component data
- * @param {string} type
- * @param {string} id
- * @param {string} controllerId
- */
-
-function generateComponentData(type, id, controllerId) {
-  var componentData = {
-    componentType: type,
-    componentId: id,
-    controller: {
-      id: controllerId
-    }
-  };
-
-  if (componentData.componentType === null) {
-    // Stops execution
-    throw new Error('Component does not have an Type.');
-  }
-
-  if (type !== 'applepay') {
-    componentData['prevState'] = {};
-  }
-
-  if (type === 'cardcvv') {
-    componentData['creditCardData'] = {};
-  }
-
-  if (componentData.componentId === null) {
-    // Stops execution
-    throw new Error('Component does not have an Id.');
-  }
-
-  if (componentData.controller.id === null) {
-    // Stops execution
-    throw new Error('Component requires a controller.');
-  }
-
-  componentData.controller.window = Object(_client_createComponent__WEBPACK_IMPORTED_MODULE_0__["getComponentWindow"])(componentData.controller.id);
-
-  if (componentData.controller.window === null) {
-    // Stops execution
-    throw new Error('Component cannot locate the controller window.');
-  }
-
-  return componentData;
-}
-
-/***/ }),
-
-/***/ "./src/app/components/payment-events.js":
-/*!**********************************************!*\
-  !*** ./src/app/components/payment-events.js ***!
-  \**********************************************/
-/*! exports provided: mountComponent, mountComponentFromClient, addTriggerEvent, addGetComponentData, addHandleOptions, saveCreditCardNumberData */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mountComponent", function() { return mountComponent; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mountComponentFromClient", function() { return mountComponentFromClient; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addTriggerEvent", function() { return addTriggerEvent; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addGetComponentData", function() { return addGetComponentData; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addHandleOptions", function() { return addHandleOptions; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "saveCreditCardNumberData", function() { return saveCreditCardNumberData; });
-var MAX_MOUNT_RETRY = 8;
-/**
- * Generic way of mounting component with specific post robot message name
- * @param controllerEmitter
- * @param {object} componentData
- * @param {string} message
- * @param {Function} handleMountData
- * @param {Function} emitComponentReady
- * @param {Function} handleMount
- * @param {object} instanceData
- * @param {number} retryPosition
- * @returns {Promise<T | never>}
- */
-
-function handleMountWithMessage(controllerEmitter, message, componentData, handleMountData, handleMount, instanceData, emitComponentReady, retryPosition) {
-  if (retryPosition >= MAX_MOUNT_RETRY) {
-    return Promise.resolve();
-  }
-
-  return controllerEmitter.send(message, {
-    componentId: componentData.componentId,
-    componentType: componentData.componentType
-  }).then(function (response) {
-    if (response.data) {
-      handleMountData(response.data);
-    }
-
-    if (handleMount) {
-      handleMount(instanceData);
-    }
-
-    emitComponentReady(componentData);
-  }).catch(function (error) {
-    if (error.message && error.message.includes('No ack for postMessage')) {
-      return handleMountWithMessage(controllerEmitter, message, componentData, handleMountData, handleMount, instanceData, emitComponentReady, ++retryPosition);
-    }
-  });
-}
-/**
- * Mounts component
- * @param controllerEmitter
- * @param {object} componentData
- * @param {Function} handleOptions
- * @param {Function} emitComponentReady
- * @param {Function} handleMount
- * @param {object} instanceData
- * @returns {Promise<T | never>}
- */
-
-
-function mountComponent(controllerEmitter, componentData, handleOptions, emitComponentReady, handleMount, instanceData) {
-  return handleMountWithMessage(controllerEmitter, 'mountComponent', componentData, handleOptions, handleMount, instanceData, emitComponentReady, 0);
-}
-/**
- * Mounts component from the client
- * @param controllerEmitter
- * @param {object} componentData
- * @param {Function} handleOptions
- * @param {Function} emitComponentReady
- * @param {Function} handleMount
- * @param {object} instanceData
- * @returns {Promise<T | never>}
- */
-
-function mountComponentFromClient(controllerEmitter, componentData, handleOptions, emitComponentReady, handleMount, instanceData) {
-  return handleMountWithMessage(controllerEmitter, 'mountClientComponent', componentData, handleOptions, handleMount, instanceData, emitComponentReady, 0);
-}
-/**
- * Adds trigger event to component
- * @param controllerListener
- * @param {Function} runEventOnElement
- * @param {object} triggerData
- */
-
-function addTriggerEvent(controllerListener, runEventOnElement, triggerData) {
-  controllerListener.on('componentTriggerEvent', function (event) {
-    var type = event.data.type;
-    var resolveData = runEventOnElement(type, triggerData);
-    return new Promise(function (resolve) {
-      return resolve(resolveData);
-    });
-  });
-}
-/**
- * Adds getComponentData to component
- * @param controllerListener
- * @param {Function} getElement
- * @returns {*}
- */
-
-function addGetComponentData(controllerListener, getElement) {
-  return controllerListener.on('getComponentData', function () {
-    var el = getElement();
-    return new Promise(function (resolve) {
-      return resolve(el.value);
-    });
-  });
-}
-/**
- * Adds handleOptions to component
- * @param controllerListener
- * @param {Function} handleOptions
- */
-
-function addHandleOptions(controllerListener, handleOptions) {
-  controllerListener.on('options', function (event) {
-    var componentData = event.data.componentData;
-    handleOptions(componentData);
-  });
-}
-/**
- * Adds saveCreditCardNumberData function to component
- * @param controllerListener
- * @param {Function} saveData
- */
-
-function saveCreditCardNumberData(controllerListener, saveData) {
-  controllerListener.on('saveCreditCardNumberData', function (event) {
-    saveData(event.data);
-  });
-}
-
-/***/ }),
-
 /***/ "./src/app/components/sanitize.js":
 /*!****************************************!*\
   !*** ./src/app/components/sanitize.js ***!
@@ -20577,372 +19003,6 @@ function sanitizeInputForPaymentApi(input) {
 
   return input;
 }
-
-/***/ }),
-
-/***/ "./src/app/components/utils.js":
-/*!*************************************!*\
-  !*** ./src/app/components/utils.js ***!
-  \*************************************/
-/*! exports provided: isShallowEquivalent, stripLetters, stripLettersAndAddForwardSlash, getParentDomain, checkToSendEvent, spacesAdded, removeExtraCharacters */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isShallowEquivalent", function() { return isShallowEquivalent; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "stripLetters", function() { return stripLetters; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "stripLettersAndAddForwardSlash", function() { return stripLettersAndAddForwardSlash; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getParentDomain", function() { return getParentDomain; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "checkToSendEvent", function() { return checkToSendEvent; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "spacesAdded", function() { return spacesAdded; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeExtraCharacters", function() { return removeExtraCharacters; });
-/* harmony import */ var cross_domain_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! cross-domain-utils */ "./node_modules/cross-domain-utils/dist/module/index.js");
-
-/**
- * Returns true if object a and object b are shallow equivalents
- * @param a
- * @param b
- * @returns {boolean}
- */
-
-function isShallowEquivalent(a, b) {
-  return JSON.stringify(a) === JSON.stringify(b);
-}
-/**
- * Strips letters from shopper input in field
- * @param {string} input
- * @returns {*}
- */
-
-function stripLetters(input) {
-  var str = '';
-  var hasLetters = new RegExp(/[^0-9\s]/);
-
-  if (hasLetters.test(input) === true) {
-    var length = input.length;
-
-    for (var i = 0; i < length; i++) {
-      if (hasLetters.test(input[i]) === true) {
-        continue;
-      } else {
-        str += input[i];
-      }
-    }
-  } else {
-    return input;
-  }
-
-  return str;
-}
-/**
- * Adds a slash to conform to the date pattern MM/YY.
- * @param input
- * @returns {string}
- */
-
-function stripLettersAndAddForwardSlash(input) {
-  var value;
-  var strippedValue = stripLetters(input);
-  var index = strippedValue.indexOf('/');
-
-  if (index === -1 && strippedValue.length > 2) {
-    value = strippedValue.substring(0, 2) + '/' + strippedValue.substring(2, 4);
-  } else {
-    value = strippedValue;
-  }
-
-  return value;
-}
-/**
- * Returns the domain of the parent of current iFrame
- */
-
-function getParentDomain() {
-  var parentUrl = null;
-
-  if (Object(cross_domain_utils__WEBPACK_IMPORTED_MODULE_0__["isIframe"])(window)) {
-    parentUrl = document.referrer;
-  }
-
-  return parentUrl === null ? null : Object(cross_domain_utils__WEBPACK_IMPORTED_MODULE_0__["getDomainFromUrl"])(parentUrl);
-}
-/**
- * Returns true if trigger is createSource
- * Returns true if the new value of input is same as old value
- * @param {string} oldValue
- * @param {Event} event
- * @returns {boolean}
- */
-
-function checkToSendEvent(oldValue, event) {
-  if (event.trigger === 'createSource') {
-    return true;
-  } else {
-    return oldValue === event.target.value;
-  }
-}
-function spacesAdded(oldNumber, newNumber) {
-  var originalSpaces = oldNumber.split(' ').length - 1;
-  var newSpaces = newNumber.split(' ').length - 1;
-  return newSpaces - originalSpaces;
-}
-function removeExtraCharacters(value, maxLength) {
-  if (value.length > maxLength) {
-    return value = value.substr(0, maxLength);
-  }
-
-  return value;
-}
-
-/***/ }),
-
-/***/ "./src/app/components/validator.js":
-/*!*****************************************!*\
-  !*** ./src/app/components/validator.js ***!
-  \*****************************************/
-/*! exports provided: csvLength, default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "csvLength", function() { return csvLength; });
-/* harmony import */ var _credit_card_type__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./credit-card-type */ "./src/app/components/credit-card-type.js");
-
-var CSV_REGEX = new RegExp('^[0-9]+$');
-var CREDIT_CARD_REGEX = new RegExp('^[0-9]+$');
-var EXPIRY_REGEX = new RegExp('^[0-9]{2}/[0-9]{2}$'); // Codes
-
-var DATE_IN_PAST = 'invalid_expiration_date';
-var INVALID_MONTH = 'invalid_expiration_month';
-var SECURITY_CODE_INCOMPLETE_CODE = 'cardSecurityCodeInvalid';
-var SECURITY_CODE_INVALID = 'cardSecurityCodeInvalid';
-var CARD_NUMBER_INCOMPLETE = 'cardNumberInvalid';
-var CARD_NUMBER_INVALID = 'cardNumberInvalid';
-var CARD_EXPIRATION_INCOMPLETE = 'cardExpirationYearInvalid';
-var CARD_EXPIRATION_INVALID = 'cardExpirationYearInvalid';
-var CARD_EXPIRATION_INVALID_MONTH = 'cardExpirationMonthInvalid';
-var ONLINE_BANKING_INCOMPLETE = 'noBankSelected';
-/**
- * Validates card security code value
- * @param {string} csv
- * @param {string} brand
- * @returns {object}
- */
-
-function validateCsv(csv, brand) {
-  if (csv === undefined || csv === '') {
-    return {
-      error: true,
-      errorType: 'incomplete_security_code',
-      messageCode: SECURITY_CODE_INCOMPLETE_CODE
-    };
-  } else if (!CSV_REGEX.test(csv)) {
-    return {
-      error: true,
-      errorType: 'invalid_security_code',
-      messageCode: SECURITY_CODE_INVALID
-    };
-  } else if (csv.length < 3 || csv.length > 4) {
-    return {
-      error: true,
-      errorType: 'incomplete_security_code',
-      messageCode: SECURITY_CODE_INCOMPLETE_CODE
-    };
-  }
-
-  if (!validateCsvLength(csv, brand)) {
-    return {
-      error: true,
-      errorType: 'incomplete_security_code',
-      messageCode: SECURITY_CODE_INCOMPLETE_CODE
-    };
-  }
-
-  return {
-    error: false,
-    errorType: '',
-    messageCode: ''
-  };
-}
-/**
- * Validates card security code length
- * @param {string} cvv
- * @param {string} brand
- * @returns {boolean}
- */
-
-
-function validateCsvLength(cvv, brand) {
-  return csvLength(brand) === cvv.length;
-}
-/**
- * Returns appropriate card security code length for brand
- * @param {string} brand
- * @returns {number}
- */
-
-
-function csvLength(brand) {
-  if (brand === 'amex') {
-    return 4;
-  } else {
-    return 3;
-  }
-}
-/**
- * Validates credit card number format
- * @param {string} number
- * @param {string} brand
- * @returns {object}
- */
-
-function validateCreditCard(number, brand) {
-  if (number === undefined || number === '') {
-    return {
-      error: true,
-      errorType: 'incomplete_card_number',
-      messageCode: CARD_NUMBER_INCOMPLETE
-    };
-  } else {
-    if (!CREDIT_CARD_REGEX.test(number)) {
-      return {
-        error: true,
-        errorType: 'invalid_card_number',
-        messageCode: CARD_NUMBER_INVALID
-      };
-    } else if (!Object(_credit_card_type__WEBPACK_IMPORTED_MODULE_0__["validateCreditCardLength"])(number, brand)) {
-      return {
-        error: true,
-        errorType: 'incomplete_card_number',
-        messageCode: CARD_NUMBER_INCOMPLETE
-      };
-    } else if (!validateCreditCardNumberMod10(number)) {
-      return {
-        error: true,
-        errorType: 'invalid_card_number',
-        messageCode: CARD_NUMBER_INVALID
-      };
-    }
-  }
-
-  return {
-    error: false,
-    errorType: '',
-    messageCode: ''
-  };
-}
-/**
- * Validates expiration date
- * @param {string} expiry
- * @returns {*}
- */
-
-
-function validateExpiry(expiry) {
-  if (expiry === undefined || expiry === '') {
-    return {
-      error: true,
-      errorType: 'incomplete_expiration_date',
-      messageCode: CARD_EXPIRATION_INCOMPLETE
-    };
-  } else if (!EXPIRY_REGEX.test(expiry)) {
-    if (expiry.length !== 5) {
-      // mm/yy (5 includes the slash)
-      return {
-        error: true,
-        errorType: 'incomplete_expiration_date',
-        messageCode: CARD_EXPIRATION_INCOMPLETE
-      };
-    }
-
-    return {
-      error: true,
-      errorType: 'invalid_expiration_date',
-      messageCode: CARD_EXPIRATION_INVALID
-    };
-  }
-
-  var month = expiry.replace('/', '').substr(0, 2);
-  var year = expiry.replace('/', '').substr(2, 2);
-  var currentDate = new Date();
-  var currentYearFirstTwoDigits = new Date().getFullYear().toString().substr(0, 2);
-  var inputDate = new Date(currentYearFirstTwoDigits + year, month, 0, 0, 0, 0); // 20 appended to year
-
-  if (inputDate < currentDate) {
-    return {
-      error: true,
-      errorType: DATE_IN_PAST,
-      messageCode: CARD_EXPIRATION_INVALID
-    };
-  } else {
-    if (parseInt(month, 10) > 12 || parseInt(month, 10) === 0) {
-      return {
-        error: true,
-        errorType: INVALID_MONTH,
-        messageCode: CARD_EXPIRATION_INVALID_MONTH
-      };
-    }
-  }
-
-  return {
-    error: false,
-    errorType: '',
-    messageCode: ''
-  };
-}
-/**
- * Checks to see if the number passed meets matches against The Luhn Mod-10 Method
- * @param {string} number
- * @returns {boolean}
- */
-
-
-function validateCreditCardNumberMod10(number) {
-  var ca,
-      sum = 0,
-      mul = 1;
-  var len = number.length;
-
-  while (len--) {
-    ca = parseInt(number.charAt(len), 10) * mul;
-    sum += ca - (ca > 9) * 9; // sum += ca - (-(ca>9))|9
-    // 1 <--> 2 toggle.
-
-    mul ^= 3; // (mul = 3 - mul);
-  }
-
-  return sum % 10 === 0 && sum > 0;
-}
-/**
- * Validates Online Banking Value
- * @param {string} code
- * @returns {object}
- */
-
-
-function validateOnlineBanking(code) {
-  if (code === undefined || code === '') {
-    return {
-      error: true,
-      errorType: 'incomplete_online_banking',
-      messageCode: ONLINE_BANKING_INCOMPLETE
-    };
-  }
-
-  return {
-    error: false,
-    errorType: '',
-    messageCode: ''
-  };
-}
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  validateCsv: validateCsv,
-  validateCreditCard: validateCreditCard,
-  validateExpiry: validateExpiry,
-  validateCreditCardNumberMod10: validateCreditCardNumberMod10,
-  validateOnlineBanking: validateOnlineBanking
-});
 
 /***/ }),
 
@@ -21120,1418 +19180,6 @@ function getJavaEnabled(window) {
 }
 function getHRef(window) {
   return window.location.href;
-}
-
-/***/ }),
-
-/***/ "./src/client/DigitalRiver.js":
-/*!************************************!*\
-  !*** ./src/client/DigitalRiver.js ***!
-  \************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _dataStore_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./dataStore.js */ "./src/client/dataStore.js");
-/* harmony import */ var _createSource_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./createSource.js */ "./src/client/createSource.js");
-/* harmony import */ var _complianceData__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./complianceData */ "./src/client/complianceData.js");
-/* harmony import */ var _createComponent_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./createComponent.js */ "./src/client/createComponent.js");
-/* harmony import */ var _createController_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./createController.js */ "./src/client/createController.js");
-/* harmony import */ var _app_components_config__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../app/components/config */ "./src/app/components/config.js");
-/* harmony import */ var _DigitalRiverPaymentRequest__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./DigitalRiverPaymentRequest */ "./src/client/DigitalRiverPaymentRequest.js");
-/* harmony import */ var _applepay_applepay__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./applepay/applepay */ "./src/client/applepay/applepay.js");
-/* harmony import */ var _beacon_beacon_client_data__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../beacon/beacon-client-data */ "./src/beacon/beacon-client-data.js");
-/* harmony import */ var _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../post-robot-wrapper */ "./src/post-robot-wrapper.js");
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-
-
-
-
-
-
-
-
-
-
-var ComponentTypes = ['cardnumber', 'cardexpiration', 'cardcvv', 'googlepay', 'applepay', 'onlinebanking'];
-
-function updateInstanceOptionsWithDefaults(instanceOptions) {
-  if (typeof instanceOptions === 'undefined') {
-    instanceOptions = {};
-  }
-
-  if (typeof instanceOptions.locale === 'undefined') {
-    instanceOptions.locale = 'en-US';
-  }
-
-  return instanceOptions;
-}
-/**
- * Digital River Payments class
- * @constructor
- * @param {string} apiKey A Payment Service API key
- * @param {object} providedInstanceOptions
- */
-
-
-function DigitalRiver(apiKey, providedInstanceOptions) {
-  if (typeof apiKey !== 'string') {
-    throw new Error('Pass an API key.');
-  }
-
-  var instanceOptions = updateInstanceOptionsWithDefaults(providedInstanceOptions);
-  this.Compliance = {
-    getDetails: getDetails
-  }; // creating controller component
-
-  var component = Object(_createController_js__WEBPACK_IMPORTED_MODULE_4__["createController"])(document.body, 'controller'); // creating beacon component
-
-  var beaconComponent = Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_3__["createOrExtractBeaconController"])(); // creating 3dsecure component
-
-  var dr3dsecure = Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_3__["createOrExtractAdyenController"])();
-  this.key = _dataStore_js__WEBPACK_IMPORTED_MODULE_0__["default"].create({
-    apiKey: apiKey,
-    controller: component,
-    components: {},
-    customEvents: [],
-    instanceOptions: instanceOptions
-  });
-  Object(_createController_js__WEBPACK_IMPORTED_MODULE_4__["registerControllerEvents"])(this.key, Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_3__["getComponentWindow"])(component.id), _app_components_config__WEBPACK_IMPORTED_MODULE_5__["config"].domain);
-  Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_3__["sendApiKey"])(component.id, 'sendInitialData', {
-    apiKey: apiKey,
-    browserInfo: Object(_beacon_beacon_client_data__WEBPACK_IMPORTED_MODULE_8__["collectClientData"])(window),
-    instanceOptions: instanceOptions
-  });
-  Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_3__["sendApiKey"])(beaconComponent.id, 'sendBeaconApiKey', {
-    apiKey: apiKey
-  }).then(function () {
-    return Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_3__["sendBeaconEventDetails"])(beaconComponent.id, 'controller_loaded');
-  });
-  Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_3__["sendInitalize3dSecure"])(dr3dsecure.id);
-  Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_3__["update3dSecureOverlay"])('0px', '');
-}
-
-function createSourceForAllPaymentMethods(sourceRequest, componentInstanceOrSourceData) {
-  var _dataStore$get = _dataStore_js__WEBPACK_IMPORTED_MODULE_0__["default"].get(this.key),
-      controller = _dataStore$get.controller;
-
-  if (!controller) {
-    throw new Error('Cannot create source without a controller');
-  }
-
-  var beaconComponent = Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_3__["createOrExtractBeaconController"])();
-
-  if (typeof sourceRequest === 'undefined') {
-    // In this case the componentInstance is actually the source data
-    if (_typeof(componentInstanceOrSourceData) !== 'object') {
-      throw new Error('Please provide Source creation details to the createSource method.');
-    }
-
-    return Object(_createSource_js__WEBPACK_IMPORTED_MODULE_1__["createSource"])(controller.id, '', componentInstanceOrSourceData).then(function (response) {
-      if (typeof response !== 'undefined' && response.source !== null && response.source.id !== undefined) {
-        Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_3__["sendBeaconEventDetails"])(beaconComponent.id, 'source', response.source.id);
-      }
-
-      return response;
-    });
-  } else {
-    if (_typeof(componentInstanceOrSourceData) !== 'object') {
-      throw new Error('Please provide a valid component to the createSource method');
-    }
-
-    if (_typeof(sourceRequest) !== 'object') {
-      throw new Error('Please provide Source creation details to the createSource method');
-    }
-
-    return Object(_createSource_js__WEBPACK_IMPORTED_MODULE_1__["createSource"])(controller.id, componentInstanceOrSourceData.type, sourceRequest).then(function (response) {
-      if (typeof response !== 'undefined' && response.source !== null && response.source.state === 'requires_action' && response.source.nextAction !== null) {
-        // creating Adyen component
-        var adyenComponent = Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_3__["createOrExtractAdyenController"])();
-        Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_3__["update3dSecureOverlay"])('100%', 'rgba(0,0,0,0.3)');
-
-        if (response.source.nextAction.action === 'fingerprint_device' || response.source.nextAction.action === 'challenge_shopper') {
-          return new Promise(function (resolve) {
-            return Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_3__["sendAdyen3dDetails"])(adyenComponent.id, controller.id, response.source, resolve);
-          }).then(function (responseData) {
-            Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_3__["update3dSecureOverlay"])('0px', '');
-            return responseData;
-          });
-        } else {
-          // nothing can be done for now
-          if (response.source.id !== undefined) {
-            Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_3__["sendBeaconEventDetails"])(beaconComponent.id, 'source', response.source.id);
-          }
-
-          return response;
-        }
-      } else {
-        if (typeof response !== 'undefined' && response.source !== null && response.source.id !== undefined) {
-          Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_3__["sendBeaconEventDetails"])(beaconComponent.id, 'source', response.source.id);
-        }
-
-        return response;
-      }
-    });
-  }
-}
-/**
- * Submits a payment source transaction to the payment service
- * @param componentInstanceOrSourceData - Instance of a component that is being submitted
- * @param {object|JSON} sourceRequest JSON as an object containing the source request
- * @returns {Promise} A Promise that contains the successful response or throws on error or timeout
- */
-
-
-DigitalRiver.prototype.createSource = function (componentInstanceOrSourceData, sourceRequest) {
-  return createSourceForAllPaymentMethods.call(this, sourceRequest, componentInstanceOrSourceData);
-};
-/**
- * Creates a source for the credit card element that uses a session client secret to initiate 3DS
- * @param sessionClientSecret
- * @param element
- * @param sourceRequest
- */
-
-
-DigitalRiver.prototype.createCreditCardSource = function (sessionClientSecret, element, sourceRequest) {
-  if (!sessionClientSecret) {
-    throw new Error('You must provide a sessionClientSecret');
-  } // Copy source request so it does not modify the clients request
-
-
-  var updatedSourceRequest = Object.assign({}, sourceRequest);
-  updatedSourceRequest.sessionId = sessionClientSecret;
-
-  if (typeof updatedSourceRequest.creditCard === 'undefined') {
-    updatedSourceRequest.creditCard = {};
-  }
-
-  if (typeof updatedSourceRequest.creditCard.returnUrl === 'undefined') {
-    updatedSourceRequest.creditCard.returnUrl = window.location.href;
-  }
-
-  return createSourceForAllPaymentMethods.call(this, updatedSourceRequest, element, sessionClientSecret);
-};
-
-DigitalRiver.prototype.getOnlineBankingBanks = function (country, currency) {
-  var _dataStore$get2 = _dataStore_js__WEBPACK_IMPORTED_MODULE_0__["default"].get(this.key),
-      controller = _dataStore$get2.controller;
-
-  if (!controller) {
-    throw new Error('Cannot get banks without a controller');
-  }
-
-  var controllerWindow = Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_3__["getComponentWindow"])(controller.id);
-
-  if (!controllerWindow) {
-    throw new Error("Unable to locate controller '".concat(controller.id, "'"));
-  } // Send message to Controller Frame to get banks
-
-
-  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_9__["default"].send(controllerWindow, 'getOnlineBankingBanks', {
-    country: country,
-    currency: currency
-  }, {
-    timeout: 10000
-  }).then(function (response) {
-    // This is a Post Robot Response object so you have to get the data out
-    return response.data;
-  }).catch(function () {
-    return [];
-  });
-};
-
-function onlineBankingDoesNotHaveRequiredFields(options) {
-  return typeof options === 'undefined' || typeof options.onlineBanking === 'undefined' || typeof options.onlineBanking.currency === 'undefined' || typeof options.onlineBanking.country === 'undefined';
-}
-/**
- * Creates a payment element
- * @param {string} type Element type
- * @param {object} options Element options
- */
-
-
-DigitalRiver.prototype.createElement = function (type, options) {
-  if (ComponentTypes.indexOf(type) === -1) {
-    throw new Error("Invalid element type '".concat(type, "'"));
-  }
-
-  var _dataStore$get3 = _dataStore_js__WEBPACK_IMPORTED_MODULE_0__["default"].get(this.key),
-      components = _dataStore$get3.components,
-      controller = _dataStore$get3.controller;
-
-  if (components[type]) {
-    throw new Error("Failed to create element. Only one element of type '".concat(type, "' allowed per instance."));
-  }
-
-  if (type === 'googlepay' && !(options instanceof _DigitalRiverPaymentRequest__WEBPACK_IMPORTED_MODULE_6__["default"])) {
-    throw new Error('Use paymentRequest() to create options for google.');
-  }
-
-  if (type === 'onlinebanking' && onlineBankingDoesNotHaveRequiredFields(options)) {
-    throw new Error('Element Creation Error: For onlineBanking, currency and country are required.');
-  }
-
-  var component;
-
-  if (options instanceof _DigitalRiverPaymentRequest__WEBPACK_IMPORTED_MODULE_6__["default"]) {
-    options = options.getData();
-  }
-
-  if (type === 'applepay') {
-    component = Object(_applepay_applepay__WEBPACK_IMPORTED_MODULE_7__["createApplepayComponent"])(controller.id, this.key, options);
-  } else {
-    component = Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_3__["createComponent"])(type, controller.id, this.key, options);
-  } // Add component/element id to component map
-
-
-  var data = _dataStore_js__WEBPACK_IMPORTED_MODULE_0__["default"].get(component.key);
-  data.components = Object.assign({}, data.components, _defineProperty({}, type, component.id));
-  Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_3__["registerComponentWithController"])(controller.id, component, options);
-  return component;
-};
-/**
- * Creates a payment request
- * @param {object} data of the request
- */
-
-
-DigitalRiver.prototype.paymentRequest = function (data) {
-  return new _DigitalRiverPaymentRequest__WEBPACK_IMPORTED_MODULE_6__["default"](data);
-};
-
-function getDetails(entityValue, userLocale) {
-  if (!entityValue) {
-    throw new Error('Without business entity value we cannot trigger this method.');
-  }
-
-  if (!userLocale) {
-    var windowDetails = Object(_beacon_beacon_client_data__WEBPACK_IMPORTED_MODULE_8__["collectClientData"])(window);
-    userLocale = windowDetails.userLocale;
-  }
-
-  return Object(_complianceData__WEBPACK_IMPORTED_MODULE_2__["complianceGetDetails"])(entityValue, userLocale);
-}
-
-/* harmony default export */ __webpack_exports__["default"] = (DigitalRiver);
-
-/***/ }),
-
-/***/ "./src/client/DigitalRiverPaymentRequest.js":
-/*!**************************************************!*\
-  !*** ./src/client/DigitalRiverPaymentRequest.js ***!
-  \**************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-/**
- * Constructs a DigitalRiverPaymentRequest
- * @param {object} data
- * @constructor
- */
-function DigitalRiverPaymentRequest(data) {
-  if (typeof data === 'undefined' || _typeof(data) !== 'object') {
-    throw new Error('Invalid Data');
-  }
-
-  if (typeof data.country === 'undefined' || typeof data.country !== 'string') {
-    throw new Error(generateErrorMessage('country', 'string'));
-  }
-
-  if (typeof data.currency === 'undefined' || typeof data.currency !== 'string') {
-    throw new Error(generateErrorMessage('currency', 'string'));
-  }
-
-  if (typeof data.total === 'undefined' || _typeof(data.total) !== 'object' || Array.isArray(data.total)) {
-    throw new Error(generateErrorMessage('total', 'object'));
-  }
-
-  if (typeof data.total.label === 'undefined' || typeof data.total.label !== 'string') {
-    throw new Error(generateErrorMessage('total.label', 'string'));
-  }
-
-  if (typeof data.total.amount === 'undefined' || typeof data.total.amount !== 'number') {
-    throw new Error(generateErrorMessage('total.amount', 'number'));
-  }
-
-  if (typeof data.requestShipping === 'undefined' || typeof data.requestShipping !== 'boolean') {
-    throw new Error(generateErrorMessage('requestShipping', 'boolean'));
-  }
-
-  if (typeof data.displayItems === 'undefined' || !Array.isArray(data.displayItems)) {
-    throw new Error(generateErrorMessage('displayItems', 'array'));
-  }
-
-  data.displayItems.forEach(function (displayItem) {
-    if (!displayItem.label || typeof displayItem.label !== 'string') {
-      throw new Error(generateErrorMessage('displayItem.label', 'string'));
-    }
-
-    if (typeof displayItem.amount === 'undefined' || typeof displayItem.amount !== 'number') {
-      throw new Error(generateErrorMessage('displayItem.amount', 'number'));
-    }
-  });
-  this.data = data;
-}
-/**
- * Generates error message for invalid or missing attribute
- * @param {string} attribute
- * @param {string} type
- * @returns {string}
- */
-
-
-function generateErrorMessage(attribute, type) {
-  return "Missing ".concat(attribute, " attribute or must be ").concat(type);
-}
-/**
- * Returns data from DigitalRiverPaymentRequest
- * @returns {Object}
- */
-
-
-DigitalRiverPaymentRequest.prototype.getData = function () {
-  return this.data;
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (DigitalRiverPaymentRequest);
-
-/***/ }),
-
-/***/ "./src/client/applepay/applepay-utils.js":
-/*!***********************************************!*\
-  !*** ./src/client/applepay/applepay-utils.js ***!
-  \***********************************************/
-/*! exports provided: modifyShippingOptions, updateShippingOptions, convertShippingOptions, convertDisplayItemsToLineItems, convertTotalToAppleFormat, createApplePayButton, getApplePaySession, setApplePayPaymentRequest, sendShippingAddressChangeEvent, sendShippingMethodChangeEvent, shippingAddressSourceToEventData, appleResponseToPaymentService, paymentSourceToEventData, convertClientErrorToAppleFormat, convertFieldNameToAppleFormat, createAppleCompleteFunction, sendAppleClickEvent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "modifyShippingOptions", function() { return modifyShippingOptions; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateShippingOptions", function() { return updateShippingOptions; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "convertShippingOptions", function() { return convertShippingOptions; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "convertDisplayItemsToLineItems", function() { return convertDisplayItemsToLineItems; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "convertTotalToAppleFormat", function() { return convertTotalToAppleFormat; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createApplePayButton", function() { return createApplePayButton; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getApplePaySession", function() { return getApplePaySession; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setApplePayPaymentRequest", function() { return setApplePayPaymentRequest; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sendShippingAddressChangeEvent", function() { return sendShippingAddressChangeEvent; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sendShippingMethodChangeEvent", function() { return sendShippingMethodChangeEvent; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "shippingAddressSourceToEventData", function() { return shippingAddressSourceToEventData; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appleResponseToPaymentService", function() { return appleResponseToPaymentService; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "paymentSourceToEventData", function() { return paymentSourceToEventData; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "convertClientErrorToAppleFormat", function() { return convertClientErrorToAppleFormat; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "convertFieldNameToAppleFormat", function() { return convertFieldNameToAppleFormat; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createAppleCompleteFunction", function() { return createAppleCompleteFunction; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sendAppleClickEvent", function() { return sendAppleClickEvent; });
-/* harmony import */ var _app_components_options__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../app/components/options */ "./src/app/components/options.js");
-/* harmony import */ var _app_components_input_events__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../app/components/input-events */ "./src/app/components/input-events.js");
-/* harmony import */ var _app_components_config__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../app/components/config */ "./src/app/components/config.js");
-/* harmony import */ var _app_components_payment_api_events__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../app/components/payment-api-events */ "./src/app/components/payment-api-events.js");
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-
-
-
-
-/**
- * This re-organize client shippingOptions data to the format we should send to Apple
- * @param {object} originalShippingOptions - data sent from client
- * @returns {Array} of shipping options
- */
-
-function modifyShippingOptions(originalShippingOptions) {
-  var modifiedShippingOptions = [];
-  var index = originalShippingOptions.findIndex(function (key) {
-    return key.selected == true;
-  });
-
-  if (index === -1) {
-    modifiedShippingOptions = originalShippingOptions;
-  } else {
-    modifiedShippingOptions.push(originalShippingOptions[index]);
-    originalShippingOptions.forEach(function (shippingOption, pos) {
-      if (pos != index) {
-        modifiedShippingOptions.push(shippingOption);
-      }
-    });
-  }
-
-  return modifiedShippingOptions;
-}
-/**
- * This method will remove the selected attribute and add selected attribute based on identifier
- * @param shippingOptions
- * @param identifier
- * @returns {Array} of shipping options
- */
-
-function updateShippingOptions(shippingOptions, identifier) {
-  shippingOptions = shippingOptions ? shippingOptions : [];
-  shippingOptions.forEach(function (shippingOption) {
-    if (shippingOption.id === identifier) {
-      shippingOption['selected'] = true;
-    } else {
-      delete shippingOption.selected;
-    }
-  });
-  return shippingOptions;
-}
-/**
- * This converts client shippingOptions data to the format we should send to Apple
- * @param {object} originalShippingOptions - data sent from client
- * @returns {Array} of shipping options
- */
-
-function convertShippingOptions(originalShippingOptions) {
-  originalShippingOptions = originalShippingOptions ? originalShippingOptions : [];
-  var shippingOptions = [];
-  originalShippingOptions = modifyShippingOptions(originalShippingOptions);
-  originalShippingOptions.forEach(function (shippingOption, index) {
-    shippingOptions[index] = {
-      identifier: shippingOption.id,
-      label: shippingOption.label,
-      amount: shippingOption.amount,
-      detail: shippingOption.detail
-    };
-  });
-  return shippingOptions;
-}
-/**
- * This converts client updateWith data to the format we should send to Apple
- * @param {object} displayItems - data sent from client
- * @returns {Array} of lineItems
- */
-
-function convertDisplayItemsToLineItems(displayItems) {
-  var lineItems = [];
-
-  if (displayItems) {
-    displayItems.forEach(function (item) {
-      var lineItem = convertTotalToAppleFormat(item);
-      lineItems.push(lineItem);
-    });
-  } //TODO: find out what Product expects when client does not pass displayItems.  Currently setting lineItems to empty list.
-
-
-  return lineItems;
-}
-/**
- * This converts client total data to the format we should send to Apple
- * @param {object} total - data sent from client
- * @returns {{amount: *, label: string, type: string}}
- */
-
-function convertTotalToAppleFormat(total) {
-  return {
-    label: total.label,
-    amount: total.amount,
-    type: total.isPending ? 'pending' : 'final'
-  };
-}
-/**
- * Creates apple pay button
- * @param {HTMLElement} parent
- * @param {string} id
- * @param {object} options
- * @param {Function} clickHandler
- */
-
-function createApplePayButton(parent, id, options, clickHandler) {
-  //append stylesheet
-  var stylesheet = document.createElement('link');
-  stylesheet.setAttribute('rel', 'stylesheet');
-  stylesheet.setAttribute('href', "".concat(_app_components_config__WEBPACK_IMPORTED_MODULE_2__["config"].domain).concat(_app_components_config__WEBPACK_IMPORTED_MODULE_2__["config"].basePath, "/css/applepay.css"));
-  document.head.appendChild(stylesheet);
-  var el = parent;
-  var button;
-
-  if (el.querySelector('button')) {
-    button = el.querySelector('button');
-  } else {
-    button = document.createElement('button');
-    el.appendChild(button);
-  }
-
-  button.setAttribute('id', id);
-  button.setAttribute('type', 'button');
-  button.addEventListener('click', clickHandler);
-  var defaultOptions = {
-    buttonType: 'plain',
-    buttonColor: 'dark',
-    buttonLanguage: 'en'
-  }; //todo refactor so only style gets passed into this function
-
-  var style = defaultOptions;
-
-  if (options && options.hasOwnProperty('style')) {
-    style = options.style;
-  } else if (options && options.hasOwnProperty('data') && options.data.hasOwnProperty('style')) {
-    style = options.data.style;
-  }
-
-  style.buttonType = style.buttonType ? style.buttonType : defaultOptions.buttonType;
-  style.buttonColor = style.buttonColor ? style.buttonColor : defaultOptions.buttonColor;
-  style.buttonLanguage = style.buttonLanguage ? style.buttonLanguage : defaultOptions.buttonLanguage; // set button type
-
-  if (style.buttonType === 'buy') {
-    button.setAttribute('style', 'width:100%; -webkit-appearance: -apple-pay-button; -apple-pay-button-type: buy; cursor: pointer;'); // set button color
-
-    if (style.buttonColor === 'light') {
-      button.className = 'apple-pay-button apple-pay-button-white-with-text';
-    } else if (style.buttonColor === 'light-outline') {
-      button.className = 'apple-pay-button apple-pay-button-white-with-line-with-text';
-    } else {
-      button.className = 'apple-pay-button apple-pay-button-black-with-text';
-    }
-  } else {
-    button.setAttribute('style', 'width:100%; -webkit-appearance: -apple-pay-button; -apple-pay-button-type: plain; cursor: pointer;'); // set button color
-
-    if (style.buttonColor === 'light') {
-      button.className = 'apple-pay-button apple-pay-button-white';
-    } else if (style.buttonColor === 'light-outline') {
-      button.className = 'apple-pay-button apple-pay-button-white-with-line';
-    } else {
-      button.className = 'apple-pay-button apple-pay-button-black';
-    }
-  } //set language
-
-
-  if (style.buttonLanguage !== 'en') {
-    button.setAttribute('lang', style.buttonLanguage);
-  } else {
-    button.setAttribute('lang', 'en');
-  }
-}
-/**
- * Gets an ApplePaySession
- * @param {number} version
- * @param {object} paymentOptions
- * @returns {ApplePaySession}
- */
-
-function getApplePaySession(version, paymentOptions) {
-  return new ApplePaySession(version, paymentOptions); //eslint-disable-line no-undef
-}
-/**
- * Creates an Apple Payment Request
- * @param {object} options
- * @returns {{requiredShippingContactFields: string[], supportedNetworks: string[], merchantCapabilities: string[], requiredBillingContactFields: string[]}}
- */
-
-function setApplePayPaymentRequest(options) {
-  var applePaymentRequest = {
-    merchantCapabilities: ['supports3DS'],
-    supportedNetworks: ['amex', 'masterCard', 'visa', 'JCB', 'chinaUnionPay', 'discover', 'privateLabel'],
-    requiredBillingContactFields: ['postalAddress', 'email', 'name', 'phone'],
-    requiredShippingContactFields: ['postalAddress', 'email', 'name', 'phone']
-  };
-
-  if (options.hasOwnProperty('currency')) {
-    applePaymentRequest.currencyCode = options.currency;
-  }
-
-  if (options.hasOwnProperty('country')) {
-    applePaymentRequest.countryCode = options.country.toUpperCase();
-  }
-
-  if (options.hasOwnProperty('shippingOptions')) {
-    applePaymentRequest.shippingMethods = convertShippingOptions(Object.values(options.shippingOptions));
-  }
-
-  if (options.hasOwnProperty('displayItems')) {
-    applePaymentRequest.lineItems = convertDisplayItemsToLineItems(Object.values(options.displayItems));
-  }
-
-  if (options.hasOwnProperty('total')) {
-    applePaymentRequest.total = convertTotalToAppleFormat(options.total);
-  }
-
-  return applePaymentRequest;
-}
-/**
- * Sends shipping address change event to client
- * @param {object} appleShippingAddress
- * @param {Function} resolve
- * @param {object} instanceData
- * @returns {{updateWith: updateWith, shippingAddress: {firstName: (string), lastName: (string), address: {country: string, city: (string), postalCode: *, state: string, line2: string, line1: string}, phone: *, name: string, email: *}}}
- */
-
-function sendShippingAddressChangeEvent(appleShippingAddress, resolve, instanceData) {
-  var updateWith = function updateWith(clientPassedInData) {
-    var data = Object(_app_components_options__WEBPACK_IMPORTED_MODULE_0__["sanitizeOptionsForGoogleApplePay"])(clientPassedInData);
-    instanceData.options = Object(_app_components_options__WEBPACK_IMPORTED_MODULE_0__["mergeOptions"])(instanceData.options, data);
-    var errors = [];
-
-    if (instanceData.options.status !== 'success') {
-      var defaultError = new ApplePayError('unknown'); //eslint-disable-line no-undef
-
-      if (instanceData.options.error) {
-        errors = convertClientErrorToAppleFormat('shippingContactInvalid', instanceData.options.error);
-        delete instanceData.options.error;
-      } else {
-        errors = [defaultError];
-      }
-    }
-
-    var updatedAppleData = {
-      errors: errors
-    };
-
-    if (instanceData.options.shippingOptions) {
-      updatedAppleData.newShippingMethods = convertShippingOptions(instanceData.options.shippingOptions);
-    }
-
-    if (instanceData.options.total) {
-      updatedAppleData.newTotal = convertTotalToAppleFormat(instanceData.options.total);
-    }
-
-    if (instanceData.options.displayItems) {
-      updatedAppleData.newLineItems = convertDisplayItemsToLineItems(instanceData.options.displayItems);
-    }
-
-    resolve(updatedAppleData);
-  };
-
-  var eventData = {
-    shippingAddress: shippingAddressSourceToEventData(appleShippingAddress),
-    updateWith: updateWith
-  };
-  Object(_app_components_input_events__WEBPACK_IMPORTED_MODULE_1__["sendEventData"])(instanceData.componentData.controller, instanceData.componentData.componentId, instanceData.componentData.componentType, 'shippingaddresschange', eventData);
-  return eventData;
-}
-/**
- * Sends Apple shipping method change event to client
- * @param {object} appleShippingMethod
- * @param {Function} resolve
- * @param {object} instanceData
- * @returns {{updateWith: updateWith, shippingOption: {amount: *, id: *, label: *, detail: *}}}
- */
-
-function sendShippingMethodChangeEvent(appleShippingMethod, resolve, instanceData) {
-  instanceData.options.shippingOptions = updateShippingOptions(instanceData.options.shippingOptions, appleShippingMethod.identifier);
-
-  var updateWith = function updateWith(clientPassedInData) {
-    var data = Object(_app_components_options__WEBPACK_IMPORTED_MODULE_0__["sanitizeOptionsForGoogleApplePay"])(clientPassedInData);
-    instanceData.options = Object(_app_components_options__WEBPACK_IMPORTED_MODULE_0__["mergeOptions"])(instanceData.options, data);
-    var errors = [];
-
-    if (instanceData.options.status !== 'success') {
-      var defaultError = new ApplePayError('unknown'); //eslint-disable-line no-undef
-
-      if (instanceData.options.error) {
-        errors = convertClientErrorToAppleFormat('shippingContactInvalid', instanceData.options.error);
-        delete instanceData.options.error;
-      } else {
-        errors = [defaultError];
-      }
-    }
-
-    var updatedAppleData = {
-      errors: errors
-    };
-
-    if (instanceData.options.total) {
-      updatedAppleData.newTotal = convertTotalToAppleFormat(instanceData.options.total);
-    }
-
-    if (instanceData.options.displayItems) {
-      updatedAppleData.newLineItems = convertDisplayItemsToLineItems(instanceData.options.displayItems);
-    }
-
-    resolve(updatedAppleData);
-  };
-
-  var eventData = {
-    shippingOption: {
-      id: appleShippingMethod.identifier,
-      label: appleShippingMethod.label,
-      amount: appleShippingMethod.amount,
-      detail: appleShippingMethod.detail
-    },
-    updateWith: updateWith
-  };
-  Object(_app_components_input_events__WEBPACK_IMPORTED_MODULE_1__["sendEventData"])(instanceData.componentData.controller, instanceData.componentData.componentId, instanceData.componentData.componentType, 'shippingoptionchange', eventData);
-  return eventData;
-}
-/**
- * This converts apple shipping address data to the format we should send to client
- * @param {object} appleData - Apple Pay event data
- * @returns {object}
- */
-
-function shippingAddressSourceToEventData(shippingAddressFromApple) {
-  var firstName = shippingAddressFromApple.givenName || '';
-  var lastName = shippingAddressFromApple.familyName || '';
-  var addressLine1 = '';
-  var addressLine2 = '';
-
-  if (shippingAddressFromApple.hasOwnProperty('addressLines')) {
-    addressLine1 = shippingAddressFromApple.addressLines[0];
-    addressLine2 = shippingAddressFromApple.addressLines[1] || '';
-  }
-
-  var shippingAddress = {
-    name: firstName && lastName ? "".concat(firstName, " ").concat(lastName) : '',
-    firstName: firstName,
-    lastName: lastName,
-    //todo figure out what to do here since this is redacted by apple until payment is authed
-    phone: shippingAddressFromApple.phoneNumber ? shippingAddressFromApple.phoneNumber : '',
-    //todo figure out what to do here since this is redacted by apple until payment is authed
-    email: shippingAddressFromApple.emailAddress ? shippingAddressFromApple.emailAddress : '',
-    address: {
-      //todo figure out what to do here since this is redacted by apple until payment is authed
-      line1: addressLine1,
-      line2: addressLine2,
-      city: shippingAddressFromApple.locality,
-      postalCode: shippingAddressFromApple.postalCode,
-      state: shippingAddressFromApple.administrativeArea,
-      country: shippingAddressFromApple.countryCode.toUpperCase()
-    }
-  };
-  return shippingAddress;
-}
-/**
- * This converts apple pay paymentAuthorized event data to data the payment service can consume
- * @param {object} appleResponseData - Apple Pay paymentAuthorized event data
- * @param {object} instanceData
- * @returns {object}
- */
-
-function appleResponseToPaymentService(appleResponseData, instanceData) {
-  return {
-    'type': 'applePay',
-    'owner': {
-      'firstName': appleResponseData.payment.billingContact.givenName,
-      'lastName': appleResponseData.payment.billingContact.familyName,
-      'email': appleResponseData.payment.shippingContact.emailAddress,
-      'phoneNumber': appleResponseData.payment.shippingContact.phoneNumber,
-      'address': {
-        'line1': appleResponseData.payment.billingContact.addressLines[0],
-        'line2': appleResponseData.payment.billingContact.addressLines.length >= 2 ? appleResponseData.payment.billingContact.addressLines[1] : '',
-        'city': appleResponseData.payment.billingContact.locality,
-        'state': appleResponseData.payment.billingContact.administrativeArea,
-        'country': appleResponseData.payment.billingContact.countryCode.toUpperCase(),
-        'postalCode': appleResponseData.payment.billingContact.postalCode
-      }
-    },
-    'applePay': appleResponseData.payment.token.paymentData,
-    'amount': instanceData.options.total.amount,
-    'currency': instanceData.options.currency
-  };
-}
-/**
- * This converts payment source data to the format we should send in the source event
- * @param {object} applePaymentData - Apple Pay paymentAuthorized event data
- * @param {object} paymentSource
- * @param {function} complete function
- * @returns {object}
- */
-
-function paymentSourceToEventData(applePaymentData, paymentSource, complete) {
-  var shippingContact = applePaymentData.payment.shippingContact;
-  var billingContact = applePaymentData.payment.billingContact;
-  var shippingFullName = shippingContact.givenName && shippingContact.familyName ? "".concat(shippingContact.givenName, " ").concat(shippingContact.familyName) : '';
-  var billingFullName = billingContact.givenName && billingContact.familyName ? "".concat(billingContact.givenName, " ").concat(billingContact.familyName) : '';
-  var billingAddress = {
-    name: billingFullName,
-    firstName: billingContact.givenName || '',
-    lastName: billingContact.familyName || '',
-    phone: shippingContact.phoneNumber || '',
-    //apple does not pass billing phone, so we use shipping here
-    email: shippingContact.emailAddress || '',
-    //apple does not pass billing email, so we use shipping here
-    address: {
-      line1: billingContact.addressLines ? billingContact.addressLines[0] : '',
-      line2: billingContact.addressLines && billingContact.addressLines.length >= 2 ? billingContact.addressLines[1] : '',
-      city: billingContact.locality || '',
-      postalCode: billingContact.postalCode || '',
-      state: billingContact.administrativeArea || '',
-      country: billingContact.countryCode ? billingContact.countryCode.toUpperCase() : ''
-    }
-  };
-  var shippingAddress = {
-    name: shippingFullName,
-    firstName: shippingContact.givenName || '',
-    lastName: shippingContact.familyName || '',
-    phone: shippingContact.phoneNumber || '',
-    email: shippingContact.emailAddress || '',
-    address: {
-      line1: shippingContact.addressLines ? shippingContact.addressLines[0] : '',
-      line2: shippingContact.addressLines && shippingContact.addressLines.length >= 2 ? shippingContact.addressLines[1] : '',
-      city: shippingContact.locality || '',
-      postalCode: shippingContact.postalCode || '',
-      state: shippingContact.administrativeArea || '',
-      country: shippingContact.countryCode ? shippingContact.countryCode.toUpperCase() : ''
-    }
-  };
-  var contactInformation = {
-    name: billingFullName || '',
-    phone: shippingContact.phoneNumber || '',
-    email: shippingContact.emailAddress || ''
-  };
-  var formattedEventData = {
-    error: paymentSource.error !== null,
-    source: paymentSource.source,
-    billingAddress: billingAddress,
-    shippingAddress: shippingAddress,
-    contactInformation: contactInformation,
-    complete: complete
-  };
-  return formattedEventData;
-}
-/**
- * This converts client error messages into Apple Pay format
- * @param {string} errorSource - event the client was responding to with the error
- * @param {object} clientError - error client sends back
- * @returns {object} apple errors
- */
-
-function convertClientErrorToAppleFormat(errorSource, clientError) {
-  var error;
-  var appleErrors = [];
-
-  if (_typeof(clientError) === 'object' && clientError.hasOwnProperty('fields')) {
-    Object.keys(clientError.fields).forEach(function (key) {
-      error = new ApplePayError(errorSource, convertFieldNameToAppleFormat(key), clientError.fields[key]); //eslint-disable-line no-undef
-
-      appleErrors.push(error);
-    });
-  } else {
-    var message = clientError.message !== undefined ? clientError.message : '';
-
-    if (errorSource === 'shippingContactInvalid') {
-      error = new ApplePayError('unknown', 'postalAddress', message); //eslint-disable-line no-undef
-    } else {
-      error = new ApplePayError('unknown', null, message); //eslint-disable-line no-undef
-    }
-
-    appleErrors.push(error);
-  }
-
-  return appleErrors;
-}
-/**
- * This converts DigitalRiverPayments fields into Apple Pay format
- * @param {string} fieldname - fieldname used by DigitalRiverPayments
- * @returns {string}
- */
-
-function convertFieldNameToAppleFormat(fieldName) {
-  var translate = {
-    phone: 'phoneNumber',
-    email: 'emailAddress',
-    recipient: 'name',
-    phoneticName: 'phoneticName',
-    address: 'postalAddress',
-    addressLine: 'addressLines',
-    city: 'locality',
-    region: 'administrativeArea',
-    postalCode: 'postalCode',
-    country: 'country'
-  };
-
-  if (translate.hasOwnProperty(fieldName)) {
-    return translate[fieldName];
-  } else {
-    throw new Error("".concat(fieldName, " is not a supported field for errors"));
-  }
-}
-/**
- * Returns complete function for Apple
- * @param {Function} resolve
- * @returns {Function} complete
- */
-
-function createAppleCompleteFunction(resolve) {
-  var complete = function complete(status) {
-    var transformedStatus = status === 'success' ? ApplePaySession.STATUS_SUCCESS : ApplePaySession.STATUS_FAILURE; //eslint-disable-line no-undef
-
-    var completeData = {
-      status: transformedStatus
-    };
-
-    if (status !== 'success') {
-      var error = new ApplePayError('unknown'); //eslint-disable-line no-undef
-
-      completeData.error = [error];
-    }
-
-    resolve(completeData);
-  };
-
-  return complete;
-}
-/**
- * Sends the click event to controller
- * @param {object} instanceData
- * @returns {object} updateWith/undefined
- */
-
-function sendAppleClickEvent(instanceData) {
-  if (Object(_app_components_payment_api_events__WEBPACK_IMPORTED_MODULE_3__["waitForClientUpdateWithFunction"])(instanceData.getPaymentOptions())) {
-    var updateWith = function updateWith(clientPassedInData) {
-      var sanitizeData = Object(_app_components_options__WEBPACK_IMPORTED_MODULE_0__["sanitizeOptionsForGoogleApplePay"])(clientPassedInData);
-      var data = Object(_app_components_options__WEBPACK_IMPORTED_MODULE_0__["mergeOptions"])(instanceData.getPaymentOptions(), sanitizeData);
-      instanceData.setOptions(data);
-      return data;
-    };
-
-    var result = {
-      updateWith: updateWith
-    };
-    Object(_app_components_input_events__WEBPACK_IMPORTED_MODULE_1__["sendEventData"])(instanceData.componentData.controller, instanceData.componentData.componentId, instanceData.componentData.componentType, 'click', result);
-    return result;
-  } else {
-    var _result = {};
-    Object(_app_components_input_events__WEBPACK_IMPORTED_MODULE_1__["sendEventData"])(instanceData.componentData.controller, instanceData.componentData.componentId, instanceData.componentData.componentType, 'click', _result);
-    return _result;
-  }
-}
-
-/***/ }),
-
-/***/ "./src/client/applepay/applepay.js":
-/*!*****************************************!*\
-  !*** ./src/client/applepay/applepay.js ***!
-  \*****************************************/
-/*! exports provided: getPaymentOptions, getElement, applePaymentCanMakePayment, setOptions, onApplePayButtonClick, handleValidateMerchant, validateMerchant, shippingAddressChange, shippingOptionChange, paymentAuthorization, handleCancel, createApplepayComponent, handleAppleOptions, handleUpdate, mountApplepay, processPayment, processAppleClickEvent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getPaymentOptions", function() { return getPaymentOptions; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getElement", function() { return getElement; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "applePaymentCanMakePayment", function() { return applePaymentCanMakePayment; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setOptions", function() { return setOptions; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "onApplePayButtonClick", function() { return onApplePayButtonClick; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleValidateMerchant", function() { return handleValidateMerchant; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "validateMerchant", function() { return validateMerchant; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "shippingAddressChange", function() { return shippingAddressChange; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "shippingOptionChange", function() { return shippingOptionChange; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "paymentAuthorization", function() { return paymentAuthorization; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleCancel", function() { return handleCancel; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createApplepayComponent", function() { return createApplepayComponent; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleAppleOptions", function() { return handleAppleOptions; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleUpdate", function() { return handleUpdate; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mountApplepay", function() { return mountApplepay; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "processPayment", function() { return processPayment; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "processAppleClickEvent", function() { return processAppleClickEvent; });
-/* harmony import */ var _app_components_config__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../app/components/config */ "./src/app/components/config.js");
-/* harmony import */ var _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../post-robot-wrapper */ "./src/post-robot-wrapper.js");
-/* harmony import */ var _createComponent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../createComponent */ "./src/client/createComponent.js");
-/* harmony import */ var _app_components_options__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../app/components/options */ "./src/app/components/options.js");
-/* harmony import */ var _applepay_utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./applepay-utils */ "./src/client/applepay/applepay-utils.js");
-/* harmony import */ var _app_components_payment_api_events__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../app/components/payment-api-events */ "./src/app/components/payment-api-events.js");
-/* harmony import */ var _app_components_payment_events__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../app/components/payment-events */ "./src/app/components/payment-events.js");
-/* harmony import */ var _app_components_create_initial_data__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../app/components/create-initial-data */ "./src/app/components/create-initial-data.js");
-/* harmony import */ var _app_components_google_apple_pay_events__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../app/components/google-apple-pay-events */ "./src/app/components/google-apple-pay-events.js");
-/* harmony import */ var _app_components_payment_component_data__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../app/components/payment-component-data */ "./src/app/components/payment-component-data.js");
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-
-
-
-
-
-
-
-
-
-
-var version = 3;
-var componentData;
-var controllerEmitter;
-var controllerListener;
-var instanceData;
-var supportedInstruments;
-/**
- * Returns payment options
- */
-
-function getPaymentOptions() {
-  return instanceData.options;
-}
-/**
- * Returns Apple Pay button element
- */
-
-function getElement() {
-  //todo get this by id instead
-  return document.querySelector('.apple-pay-button');
-}
-/**
- * Returns boolean true if Apple Pay is supported, false if not supported
- */
-
-function applePaymentCanMakePayment() {
-  if (window.ApplePaySession) {
-    //eslint-disable-line no-undef
-    var merchantIdentifier = _app_components_config__WEBPACK_IMPORTED_MODULE_0__["config"].applePayMerchantId;
-    return ApplePaySession.canMakePayments(merchantIdentifier); //eslint-disable-line no-undef
-  }
-
-  return false;
-}
-/**
- * Sanitizes options, stores them in variable, changes amount to string
- * @param {object} unsafeOptions
- */
-
-function setOptions(unsafeOptions) {
-  var options = Object(_app_components_options__WEBPACK_IMPORTED_MODULE_3__["sanitizeOptionsForGoogleApplePay"])(unsafeOptions);
-  options.total.amount = options.total.amount.toString();
-  instanceData.options = options;
-  var node = typeof instanceData.parentNode === 'string' ? document.getElementById(instanceData.parentNode) : instanceData.parentNode;
-  Object(_applepay_utils__WEBPACK_IMPORTED_MODULE_4__["createApplePayButton"])(node, instanceData.componentData.componentId, instanceData.options, onApplePayButtonClick);
-}
-/**
- * Handles click on Apple Pay button and inits Payment Request
- */
-
-function onApplePayButtonClick() {
-  return _onApplePayButtonClick.apply(this, arguments);
-}
-/**
- * Calls validateMerchant and completes merchant validation
- * @param {object} event
- * @param {object} instanceData
- */
-
-function _onApplePayButtonClick() {
-  _onApplePayButtonClick = _asyncToGenerator(
-  /*#__PURE__*/
-  regeneratorRuntime.mark(function _callee() {
-    var applepayPaymentRequest, applepaySession;
-    return regeneratorRuntime.wrap(function _callee$(_context) {
-      while (1) {
-        switch (_context.prev = _context.next) {
-          case 0:
-            processAppleClickEvent(instanceData, _applepay_utils__WEBPACK_IMPORTED_MODULE_4__["sendAppleClickEvent"]);
-            applepayPaymentRequest = Object(_applepay_utils__WEBPACK_IMPORTED_MODULE_4__["setApplePayPaymentRequest"])(instanceData.options);
-            applepaySession = Object(_applepay_utils__WEBPACK_IMPORTED_MODULE_4__["getApplePaySession"])(version, applepayPaymentRequest);
-
-            applepaySession.onvalidatemerchant = function (event) {
-              return handleValidateMerchant(event, instanceData);
-            };
-
-            applepaySession.onshippingcontactselected = function (event) {
-              return shippingAddressChange(event, _applepay_utils__WEBPACK_IMPORTED_MODULE_4__["sendShippingAddressChangeEvent"], instanceData);
-            };
-
-            applepaySession.onshippingmethodselected = function (event) {
-              return shippingOptionChange(event, _applepay_utils__WEBPACK_IMPORTED_MODULE_4__["sendShippingMethodChangeEvent"], instanceData);
-            };
-
-            applepaySession.onpaymentauthorized = function (event) {
-              return paymentAuthorization(event, processPayment, instanceData);
-            };
-
-            applepaySession.oncancel = function () {
-              return Object(_app_components_payment_api_events__WEBPACK_IMPORTED_MODULE_5__["emitComponentCancelled"])(instanceData.componentData);
-            };
-
-            applepaySession.begin();
-            instanceData.applepaySession = applepaySession;
-
-          case 10:
-          case "end":
-            return _context.stop();
-        }
-      }
-    }, _callee);
-  }));
-  return _onApplePayButtonClick.apply(this, arguments);
-}
-
-function handleValidateMerchant(event, instanceData) {
-  return validateMerchant(event.validationURL).then(function (response) {
-    instanceData.applepaySession.completeMerchantValidation(response.data.data);
-  }).catch(function (err) {
-    throw new Error(err);
-  });
-}
-/**
- * Validates merchant
- * @param {string} validationUrl
- */
-
-function validateMerchant(validationUrl) {
-  //getting domain this way so that it is supported by Safari and iOS Safari
-  var domain = window.location.origin.split('//')[1];
-  var validationData = {
-    validationUrl: validationUrl,
-    domain: domain,
-    displayName: domain
-  };
-  return controllerEmitter.send('validateAppleMerchant', validationData);
-}
-/**
- *
- * @param event - event content from Apple
- * @param sendShippingAddressChangeEvent - function for sending the event to the client
- * @param instanceData
- */
-
-function shippingAddressChange(event, sendShippingAddressChangeEvent, instanceData) {
-  var getUpdatedDetails = new Promise(function (resolve) {
-    sendShippingAddressChangeEvent(event.shippingContact, resolve, instanceData);
-  });
-  getUpdatedDetails.then(function (data) {
-    instanceData.applepaySession.completeShippingContactSelection(data);
-  });
-}
-/**
- *
- * @param event - event content from Apple
- * @param sendShippingMethodChangeEvent - function for sending the event to the client
- * @param instanceData
- */
-
-function shippingOptionChange(event, sendShippingMethodChangeEvent, instanceData) {
-  var getUpdatedDetails = new Promise(function (resolve) {
-    sendShippingMethodChangeEvent(event.shippingMethod, resolve, instanceData);
-  });
-  getUpdatedDetails.then(function (data) {
-    instanceData.applepaySession.completeShippingMethodSelection(data);
-  });
-}
-/**
- *
- * @param event - event content from Apple
- * @param processPayment - function for sending the event to the client
- * @param instanceData
- */
-
-function paymentAuthorization(event, processPayment, instanceData) {
-  return new Promise(function (resolve) {
-    return processPayment(event, resolve, instanceData);
-  }).then(function (data) {
-    if (data.status === 0) {
-      instanceData.options = Object(_app_components_options__WEBPACK_IMPORTED_MODULE_3__["mergeOptions"])(instanceData.options, data);
-      delete instanceData.options.errors;
-      instanceData.applepaySession.completePayment(data);
-    } else {
-      instanceData.applepaySession.abort();
-      Object(_app_components_payment_api_events__WEBPACK_IMPORTED_MODULE_5__["emitComponentCancelled"])(instanceData.componentData);
-    }
-  });
-}
-/**
- * Sends cancel event data to controller to be sent on to client
- */
-
-function handleCancel() {
-  Object(_app_components_payment_api_events__WEBPACK_IMPORTED_MODULE_5__["emitComponentCancelled"])(componentData);
-}
-/**
- * Creates applepay component
- * @param {string} controllerId
- * @param {string} key
- * @param {object} options
- */
-
-function createApplepayComponent(controllerId, key, options) {
-  var type = 'applepay';
-  var id = Object(_createComponent__WEBPACK_IMPORTED_MODULE_2__["generateComponentId"])(type);
-  var applepayComponent = {
-    id: id,
-    key: key,
-    type: type,
-    parentNode: null,
-    controllerId: controllerId,
-    canMakePayment: applePaymentCanMakePayment,
-    mount: mountApplepay,
-    destroy: _createComponent__WEBPACK_IMPORTED_MODULE_2__["destroy"],
-    on: _createComponent__WEBPACK_IMPORTED_MODULE_2__["onEventHandler"],
-    options: Object(_app_components_options__WEBPACK_IMPORTED_MODULE_3__["sanitizeOptionsForGoogleApplePay"])(options),
-    show: onApplePayButtonClick,
-    unmount: _createComponent__WEBPACK_IMPORTED_MODULE_2__["unmount"],
-    update: handleUpdate
-  };
-  componentData = Object(_app_components_payment_component_data__WEBPACK_IMPORTED_MODULE_9__["generateComponentData"])(type, id, controllerId);
-  componentData.key = key;
-  controllerListener = _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_1__["default"].listener({
-    window: componentData.controller.window,
-    domain: _app_components_config__WEBPACK_IMPORTED_MODULE_0__["config"].domain
-  });
-  controllerEmitter = _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_1__["default"].client({
-    window: componentData.controller.window,
-    domain: _app_components_config__WEBPACK_IMPORTED_MODULE_0__["config"].domain
-  });
-  supportedInstruments = [{
-    supportedMethods: 'https://apple.com/apple-pay',
-    data: {
-      version: 3,
-      merchantIdentifier: _app_components_config__WEBPACK_IMPORTED_MODULE_0__["config"].applePayMerchantId,
-      merchantCapabilities: ['supports3DS', 'supportsCredit', 'supportsDebit'],
-      supportedNetworks: ['amex', 'masterCard', 'visa', 'JCB', 'chinaUnionPay', 'discover', 'privateLabel'],
-      countryCode: applepayComponent.options && applepayComponent.options.hasOwnProperty('country') ? applepayComponent.options.country : 'US',
-      requiredBillingContactFields: ['postalAddress', 'email', 'name', 'phone'],
-      requiredShippingContactFields: ['postalAddress', 'email', 'name', 'phone']
-    }
-  }];
-  instanceData = Object(_app_components_create_initial_data__WEBPACK_IMPORTED_MODULE_7__["generateInstanceData"])(controllerEmitter, componentData, getPaymentOptions, getElement, setOptions, supportedInstruments);
-  instanceData.waitBeforeShow = true;
-  instanceData.options = applepayComponent.options;
-  Object(_app_components_payment_events__WEBPACK_IMPORTED_MODULE_6__["addHandleOptions"])(controllerListener, handleAppleOptions);
-  return applepayComponent;
-}
-/**
- * sets options and creates button
- * @param {object} data
- */
-
-function handleAppleOptions(data) {
-  setOptions(data.options);
-}
-/**
- * applies updated options sent by the client
- * @param {object} options
- */
-
-function handleUpdate(options) {
-  var applePayUpdate = _createComponent__WEBPACK_IMPORTED_MODULE_2__["update"].bind(this);
-  applePayUpdate(options);
-}
-/**
- * Mounts component
- * @param node - string or html element where component should be mounted
- */
-
-function mountApplepay(node) {
-  instanceData.parentNode = node;
-  var applePayMount = _createComponent__WEBPACK_IMPORTED_MODULE_2__["mount"].bind(this);
-  applePayMount(node);
-  return Object(_app_components_payment_events__WEBPACK_IMPORTED_MODULE_6__["mountComponentFromClient"])(instanceData.controllerEmitter, instanceData.componentData, handleAppleOptions, _app_components_payment_api_events__WEBPACK_IMPORTED_MODULE_5__["emitComponentReady"], undefined, instanceData);
-}
-/**
- * Processes payment sent from apple and sends it to the payment service to create a payment source
- * @param {object} appleResponseData - data received from Apple
- * @param {function} resolve -
- * @param {object} instanceData
- */
-
-function processPayment(appleResponseData, resolve, instanceData) {
-  var complete = Object(_applepay_utils__WEBPACK_IMPORTED_MODULE_4__["createAppleCompleteFunction"])(resolve);
-  var paymentServiceRequest = Object(_applepay_utils__WEBPACK_IMPORTED_MODULE_4__["appleResponseToPaymentService"])(appleResponseData, instanceData);
-  Object(_app_components_google_apple_pay_events__WEBPACK_IMPORTED_MODULE_8__["sendCreateSourceRequest"])(instanceData.controllerEmitter, instanceData.componentData, appleResponseData, paymentServiceRequest, _applepay_utils__WEBPACK_IMPORTED_MODULE_4__["paymentSourceToEventData"], complete);
-}
-/**
- * Process the click event for Apple pay
- * @param {object} instanceData
- * @param {Function} sendAppleClickEvent
- */
-
-function processAppleClickEvent(instanceData, sendAppleClickEvent) {
-  sendAppleClickEvent(instanceData);
-}
-
-/***/ }),
-
-/***/ "./src/client/complianceData.js":
-/*!**************************************!*\
-  !*** ./src/client/complianceData.js ***!
-  \**************************************/
-/*! exports provided: complianceGetDetails */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "complianceGetDetails", function() { return complianceGetDetails; });
-/* harmony import */ var _json_compliance_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../json/compliance.json */ "./src/json/compliance.json");
-var _json_compliance_json__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../json/compliance.json */ "./src/json/compliance.json", 1);
-
-var defaultDRStore = 'https://store.digitalriver.com/store/defaults/';
-var eCommerceProvider = '/eCommerceProvider.';
-var slash = '/';
-var supportedLocales = _json_compliance_json__WEBPACK_IMPORTED_MODULE_0__["locale"];
-function complianceGetDetails(businessEntityId, locale) {
-  var updatedLocale = locale.replace('-', '_');
-  var businessEntityName = getBusinessEntityNameFromCode(businessEntityId);
-  var businessEntityNameEncoded = encodeURIComponent(businessEntityName);
-
-  if (!checkLocaleSupports(updatedLocale)) {
-    throw new Error('Locale is not supported');
-  }
-
-  var complianceData = {
-    'disclosure': {
-      'businessEntity': {
-        'name': businessEntityName,
-        'id': businessEntityId
-      },
-      'resellerDisclosure': {
-        'localizedText': localizedText(_json_compliance_json__WEBPACK_IMPORTED_MODULE_0__["keys"].RESELLER_DISCLOSURE, updatedLocale),
-        'url': localizedUrl(updatedLocale, 'DisplayDRAboutDigitalRiverPage', businessEntityNameEncoded)
-      },
-      'termsOfSale': {
-        'localizedText': localizedText(_json_compliance_json__WEBPACK_IMPORTED_MODULE_0__["keys"].TERMS_OF_SALE, updatedLocale),
-        'url': localizedUrl(updatedLocale, 'DisplayDRTermsAndConditionsPage', businessEntityNameEncoded)
-      },
-      'privacyPolicy': {
-        'localizedText': localizedText(_json_compliance_json__WEBPACK_IMPORTED_MODULE_0__["keys"].PRIVACY_POLICY, updatedLocale),
-        'url': localizedUrl(updatedLocale, 'DisplayDRPrivacyPolicyPage', businessEntityNameEncoded)
-      },
-      'cookiePolicy': {
-        'localizedText': localizedText(_json_compliance_json__WEBPACK_IMPORTED_MODULE_0__["keys"].COOKIE_POLICY, updatedLocale),
-        'url': localizedUrl(updatedLocale, 'DisplayDRCookiesPolicyPage', businessEntityNameEncoded)
-      },
-      'cancellationRights': {
-        'localizedText': localizedText(_json_compliance_json__WEBPACK_IMPORTED_MODULE_0__["keys"].CANCELLATION_RIGHTS, updatedLocale),
-        'url': localizedUrl(updatedLocale, 'DisplayDRTermsAndConditionsPage', businessEntityNameEncoded, 'cancellationRights')
-      },
-      'legalNotice': {
-        'localizedText': localizedText(_json_compliance_json__WEBPACK_IMPORTED_MODULE_0__["keys"].LEGAL_NOTICE, updatedLocale),
-        'url': localizedUrl(updatedLocale, 'DisplayDRContactInformationPage', businessEntityNameEncoded)
-      }
-    }
-  };
-  return complianceData;
-}
-
-function checkLocaleSupports(locale) {
-  return supportedLocales.includes(locale);
-}
-
-function localizedText(type, locale) {
-  var localizedValue;
-
-  if (locale in _json_compliance_json__WEBPACK_IMPORTED_MODULE_0__["details"] && type in _json_compliance_json__WEBPACK_IMPORTED_MODULE_0__["details"][locale]) {
-    localizedValue = _json_compliance_json__WEBPACK_IMPORTED_MODULE_0__["details"][locale][type];
-  } else {
-    localizedValue = '';
-  }
-
-  return localizedValue;
-}
-
-function localizedUrl(locale, entityType, entityNameEncoded, urlType) {
-  if (urlType === 'cancellationRights') {
-    return defaultDRStore + locale + slash + entityType + eCommerceProvider + entityNameEncoded + '.#cancellationRight';
-  } else {
-    return defaultDRStore + locale + slash + entityType + eCommerceProvider + entityNameEncoded;
-  }
-}
-
-function getBusinessEntityNameFromCode(entityId) {
-  var entityName;
-  _json_compliance_json__WEBPACK_IMPORTED_MODULE_0__["entityCode"].forEach(function (entity) {
-    if (entityId === entity.code) {
-      entityName = entity.name;
-    }
-  });
-  return entityName;
 }
 
 /***/ }),
@@ -23979,31 +20627,6 @@ function removeEventsForType(key, componentType) {
 
 /***/ }),
 
-/***/ "./src/client/index.js":
-/*!*****************************!*\
-  !*** ./src/client/index.js ***!
-  \*****************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-/**
- * This wraps the ES6 export so that it only exports the default for Webpack to include as the global variable
- */
-module.exports = __webpack_require__(/*! ./DigitalRiver */ "./src/client/DigitalRiver.js").default;
-
-/***/ }),
-
-/***/ "./src/json/compliance.json":
-/*!**********************************!*\
-  !*** ./src/json/compliance.json ***!
-  \**********************************/
-/*! exports provided: details, locale, entityCode, keys, default */
-/***/ (function(module) {
-
-module.exports = {"details":{"ar_EG":{"cancellationRights":"حق الإلغاء","cookiePolicy":"ملفات كوكيز","legalNotice":"ملحوظة قانونية","privacyPolicy":"سياسة الخصوصية","resellerDisclosure":"هو الموزع والتاجر المعتمد للمنتجات والخدمات المقدمة في هذا المتجر.","termsOfSale":"شروط البيع"},"cs_CZ":{"cancellationRights":"Oprávnění ke zrušení","cookiePolicy":"Cookies","legalNotice":"Právní dokument","privacyPolicy":"Zásady zachování soukromí","resellerDisclosure":"je autorizovaným prodejcem a obchodníkem s produkty a službami, které tento obchod nabízí.","termsOfSale":"Prodejní podmínky"},"da_DK":{"cancellationRights":"Fortrydelsesret","cookiePolicy":"Cookies","legalNotice":"Juridisk note","privacyPolicy":"Retningslinjer for personbeskyttelse","resellerDisclosure":"er den autoriserede forhandler af de produkter og tjenesteydelser, der tilbydes i denne forretning.","termsOfSale":"Salgsvilkår"},"de_AT":{"cancellationRights":"Widerrufsrecht","cookiePolicy":"Cookies","legalNotice":"Impressum","privacyPolicy":"Datenschutzrichtlinien","resellerDisclosure":"ist der autorisierte Wiederverkäufer und Händler der Produkte und Dienstleistungen die in diesem Shop angeboten werden.","termsOfSale":"Verkaufsbedingungen"},"de_CH":{"cancellationRights":"Widerrufsrecht","cookiePolicy":"Cookies","legalNotice":"Impressum","privacyPolicy":"Datenschutzrichtlinien","resellerDisclosure":"ist der autorisierte Wiederverkäufer und Händler der Produkte und Dienstleistungen die in diesem Shop angeboten werden.","termsOfSale":"Verkaufsbedingungen"},"de_DE":{"cancellationRights":"Widerrufsrecht","cookiePolicy":"Cookies","legalNotice":"Impressum","privacyPolicy":"Datenschutzrichtlinien","resellerDisclosure":"ist der autorisierte Wiederverkäufer und Händler der Produkte und Dienstleistungen die in diesem Shop angeboten werden.","termsOfSale":"Verkaufsbedingungen"},"el_GR":{"cancellationRights":"Δικαίωμα Ακύρωσης","cookiePolicy":"Cookies","legalNotice":"Νομική Σημείωση","privacyPolicy":"Πολιτική Ιδιωτικού Απορρήτου","resellerDisclosure":" είναι ο εξουσιοδοτημένος μεταπωλητής και έμπορος των προϊόντων και υπηρεσιών, που προσφέρονται σε αυτό το κατάστημα.","termsOfSale":"Όροι Πώλησης"},"en_AU":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"is the authorised reseller and merchant of the products and services offered within this store.","termsOfSale":"Terms of Sale"},"en_BE":{"privacyPolicy":"Privacy Policy","resellerDisclosure":"is the authorised retailer and merchant providing e-commerce services for this shop.","termsOfSale":"Terms and Conditions"},"en_CA":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"is the authorised reseller and merchant of the products and services offered within this store.","termsOfSale":"Terms of Sale"},"en_CH":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"is the authorized reseller and merchant of the products and services offered within this store.","termsOfSale":"Terms of Sale"},"en_DK":{"privacyPolicy":"Privacy Policy","resellerDisclosure":"is the authorised retailer and merchant providing e-commerce services for this shop.","termsOfSale":"Terms and Conditions"},"en_FI":{"privacyPolicy":"Privacy Policy","resellerDisclosure":"is the authorised retailer and merchant providing e-commerce services for this shop.","termsOfSale":"Terms and Conditions"},"en_GB":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"is the authorised reseller and merchant of the products and services offered within this store.","termsOfSale":"Terms of Sale"},"en_IE":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"is the authorised reseller and merchant of the products and services offered within this store.","termsOfSale":"Terms of Sale"},"en_IN":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"is the authorised reseller and merchant of the products and services offered within this store.","termsOfSale":"Terms of Sale"},"en_MY":{"privacyPolicy":"Privacy Policy","termsOfSale":"Terms and Conditions"},"en_NL":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"is the authorised reseller and merchant of the products and services offered within this store.","termsOfSale":"Terms of Sale"},"en_NO":{"privacyPolicy":"Privacy Policy","resellerDisclosure":"is the authorised retailer and merchant providing e-commerce services for this shop.","termsOfSale":"Terms and Conditions"},"en_NZ":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"is the authorised reseller and merchant of the products and services offered within this store.","termsOfSale":"Terms of Sale"},"en_PR":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"is the authorised reseller and merchant of the products and services offered within this store.","termsOfSale":"Terms of Sale"},"en_SE":{"privacyPolicy":"Privacy Policy","resellerDisclosure":"is the authorised retailer and merchant providing e-commerce services for this shop.","termsOfSale":"Terms and Conditions"},"en_SG":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"is the authorised reseller and merchant of the products and services offered within this store.","termsOfSale":"Terms of Sale"},"en_US":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"is the authorized reseller and merchant of the products and services offered within this store.","termsOfSale":"Terms of Sale"},"en_ZA":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"is the authorised reseller and merchant of the products and services offered within this store.","termsOfSale":"Terms of Sale"},"es_AR":{"cancellationRights":"Derechos de cancelación","cookiePolicy":"Cookies","legalNotice":"Aviso legal","privacyPolicy":"Política de privacidad","resellerDisclosure":"es el revendedor y comercializador autorizado de los productos ofrecidos en esta tienda.","termsOfSale":"Términos de la venta"},"es_CL":{"cancellationRights":"Derechos de cancelación","cookiePolicy":"Cookies","legalNotice":"Aviso legal","privacyPolicy":"Política de privacidad","resellerDisclosure":"es el revendedor y comercializador autorizado de los productos ofrecidos en esta tienda.","termsOfSale":"Términos de la venta"},"es_CO":{"cancellationRights":"Derechos de cancelación","cookiePolicy":"Cookies","legalNotice":"Aviso legal","privacyPolicy":"Política de privacidad","resellerDisclosure":"es el revendedor y comercializador autorizado de los productos ofrecidos en esta tienda.","termsOfSale":"Términos de la venta"},"es_EC":{"cancellationRights":"Derechos de cancelación","cookiePolicy":"Cookies","legalNotice":"Aviso legal","privacyPolicy":"Política de privacidad","resellerDisclosure":"es el revendedor y comercializador autorizado de los productos ofrecidos en esta tienda.","termsOfSale":"Términos de la venta"},"es_ES":{"cancellationRights":"Derechos de cancelación","cookiePolicy":"Cookies","legalNotice":"Aviso legal","privacyPolicy":"Política de confidencialidad","resellerDisclosure":"es el distribuidor y el vendedor autorizado de los productos y servicios ofrecidos en esta tienda virtual.","termsOfSale":"Condiciones de venta"},"es_MX":{"cancellationRights":"Derechos de cancelación","cookiePolicy":"Cookies","legalNotice":"Aviso legal","privacyPolicy":"Política de privacidad","resellerDisclosure":"es el revendedor y comercializador autorizado de los productos ofrecidos en esta tienda.","termsOfSale":"Términos de la venta"},"es_PE":{"cancellationRights":"Derechos de cancelación","cookiePolicy":"Cookies","legalNotice":"Aviso legal","privacyPolicy":"Política de privacidad","resellerDisclosure":"es el revendedor y comercializador autorizado de los productos ofrecidos en esta tienda.","termsOfSale":"Términos de la venta"},"es_VE":{"cancellationRights":"Derechos de cancelación","cookiePolicy":"Cookies","legalNotice":"Aviso legal","privacyPolicy":"Política de privacidad","resellerDisclosure":"es el revendedor y comercializador autorizado de los productos ofrecidos en esta tienda.","termsOfSale":"Términos de la venta"},"et_EE":{"privacyPolicy":"Privaatsuspoliitika","resellerDisclosure":"on sellele kauplusele e-kaubanduse teenuseid osutav volitatud edasimüüja.","termsOfSale":"Tingimused"},"fi_FI":{"cancellationRights":"Peruutusoikeus","cookiePolicy":"Evästeet","legalNotice":"Lainmukainen tiedotus","privacyPolicy":"Yksityisyyden suoja","resellerDisclosure":"on valtuutettu jälleenmyyjä, joka myy tässä kaupassa tarjolla olevia tuotteita ja palveluja.","termsOfSale":"Myyntiehdot"},"fr_BE":{"cancellationRights":"Droits d'annulation","cookiePolicy":"Témoins de connexion","legalNotice":"Mentions legales","privacyPolicy":"Politique de confidentialité","resellerDisclosure":"est le revendeur et marchand agréé pour les produits et services proposés au sein de ce magasin.","termsOfSale":"Conditions de vente"},"fr_CA":{"cancellationRights":"Droits d'annulation","cookiePolicy":"Témoins","legalNotice":"Mentions legales","privacyPolicy":"Politique sur la confidentialité","resellerDisclosure":"est le revendeur et commerçant autorisé fournissant les services de commerce électronique pour ce magasin.","termsOfSale":"Conditions de vente"},"fr_CH":{"cancellationRights":"Droits d'annulation","cookiePolicy":"Témoins de connexion","legalNotice":"Mentions legales","privacyPolicy":"Politique de confidentialité","resellerDisclosure":"est le revendeur et marchand agréé pour les produits et services proposés au sein de ce magasin.","termsOfSale":"Conditions de vente"},"fr_FR":{"cancellationRights":"Droits d'annulation","cookiePolicy":"Témoins de connexion","legalNotice":"Mentions legales","privacyPolicy":"Politique de confidentialité","resellerDisclosure":"est le revendeur et marchand agréé pour les produits et services proposés au sein de ce magasin.","termsOfSale":"Conditions de vente"},"hu_HU":{"cancellationRights":"Rendelés törlésének lehetõsége","cookiePolicy":"Cookie-k","legalNotice":"Jogi nyilatkozat","privacyPolicy":"Adatvédelmi politika","resellerDisclosure":"az áruházban megvásárolható termékek és szolgáltatások hivatalos értékesítő partnere és forgalmazója.","termsOfSale":"Értékesítési feltételek"},"it_CH":{"cancellationRights":"Diritto di recesso","cookiePolicy":"Cookie","legalNotice":"Avviso legale","privacyPolicy":"Tutela della privacy","resellerDisclosure":"è il rivenditore autorizzato e fornitore dei prodotti e dei servizi offerti all&#39;interno di questo negozio.","termsOfSale":"Condizioni di vendita"},"it_IT":{"cancellationRights":"Diritto di recesso","cookiePolicy":"Cookie","legalNotice":"Avviso legale","privacyPolicy":"Tutela della privacy","resellerDisclosure":"è il rivenditore autorizzato dei prodotti di {2} venduti in questo negozio online.","termsOfSale":"Condizioni di vendita","warrantyInformation":"Informazioni sulla Garanzia"},"iw_IL":{"cancellationRights":"זכות ביטול הזמנה","cookiePolicy":"קובצי cookie","legalNotice":"הודעה משפטית","privacyPolicy":"מדיניות שמירה על פרטיות","resellerDisclosure":"הוא המפיץ והסוחר המורשה עבור חנוות מקוונת זו.","termsOfSale":"תנאי מכירה"},"ja_JP":{"cancellationRights":"キャンセル権","cookiePolicy":"クッキー","legalNotice":"本サイトのご利用について","privacyPolicy":"プライバシーポリシー","resellerDisclosure":"は、このストアで提供される製品とサービスの認定再販業者および代理店です。","termsOfSale":"販売条件"},"ko_KR":{"cancellationRights":"취소 권한","cookiePolicy":"쿠키","legalNotice":"법적 고지","privacyPolicy":"개인정보 보호 정책","resellerDisclosure":"은(는) 이 스토어에서 제품과 서비스를 제공하도록 인가된 리셀러 및 판매자입니다.","termsOfSale":"판매 조건"},"lt_LT":{"privacyPolicy":"Privatumo strategija","resellerDisclosure":"įgaliotasis mažmenininkas ir šios parduotuvės el. prekybos paslaugų didmenininkas.","termsOfSale":"Nuostatos ir sąlygos"},"lv_LV":{"privacyPolicy":"Konfidencialitātes politika","resellerDisclosure":"ir pilnvarots tālākpārdevējs un tirgotājs, kas šim veikalam nodrošina e-komecijas pakalpojumus.","termsOfSale":"Noteikumi un nosacījumi"},"nl_BE":{"cancellationRights":"Recht op annulering","cookiePolicy":"Cookies","legalNotice":"Juridische kennisgeving","privacyPolicy":"Privacybeleid","resellerDisclosure":"is de erkende reseller die de producten en services voor deze store levert.","termsOfSale":"Algemene verkoopvoorwaarden"},"nl_NL":{"cancellationRights":"Recht op annulering","cookiePolicy":"Cookies","legalNotice":"Juridische kennisgeving","privacyPolicy":"Privacybeleid","resellerDisclosure":"is de erkende reseller die de producten en services voor deze store levert.","termsOfSale":"Algemene verkoopvoorwaarden"},"no_NO":{"cancellationRights":"Rett til avbestilling","cookiePolicy":"Informasjonskapsler","legalNotice":"Juridiske bestemmelser","privacyPolicy":"Personvern","resellerDisclosure":"er den autoriserte selgeren og forhandleren av varene og tjenestene som tilbys i denne butikken.","termsOfSale":"Salgsbetingelser"},"pl_PL":{"cancellationRights":"Prawo do anulowania zamówienia","cookiePolicy":"Pliki cookie","legalNotice":"Nota prawna","privacyPolicy":"Polityka ochrony danych","resellerDisclosure":"to autoryzowany dystrybutor oraz sprzedawca produktów i usług dostępnych w naszym sklepie.","termsOfSale":"Warunki sprzedaży"},"pt_BR":{"cancellationRights":"Regras de cancelamento","cookiePolicy":"Cookies","legalNotice":"Aviso legal","privacyPolicy":"Política de privacidade","resellerDisclosure":"é o revendedor e o distribuidor autorizado dos produtos e serviços oferecidos nesta loja.","termsOfSale":"Termos de vendas"},"pt_PT":{"cancellationRights":"Direito de Cancelamento","cookiePolicy":"Cookies","legalNotice":"Aviso Legal","privacyPolicy":"Política de privacidade","resellerDisclosure":"é o revendedor autorizado e o comerciante dos produtos e serviços disponibilizados nesta loja.","termsOfSale":"Termos de Venda"},"ro_RO":{"privacyPolicy":"Politică de confidenţialitate","resellerDisclosure":"este un vânzător şi comerciant cu amănuntul autorizat ce furnizează servicii de comerţ electronic pentru acest magazin.","termsOfSale":"Termeni şi condiţii"},"ru_RU":{"cancellationRights":"Право отмены","cookiePolicy":"Cookie","legalNotice":"Юридическое уведомление","privacyPolicy":"Политика конфиденциальности","resellerDisclosure":"является авторизованным реселлером и продавцом продукции и услуг, предлагаемых в настоящем магазине.","termsOfSale":"Условия продажи"},"sk_SK":{"cancellationRights":"Oprávnenie na zrušenie","cookiePolicy":"Cookies","legalNotice":"Právny dokument","privacyPolicy":"Politika ochrany osobných údajov","resellerDisclosure":"je predajca alebo veľkoobchod s produktmi a službami poskytovanými v tomto obchode.","termsOfSale":"Predajné podmienky"},"sl_SI":{"privacyPolicy":"Pravilnik o zasebnosti","resellerDisclosure":"je pooblaščen trgovec na debelo in drobno, ki ponuja storitve spletne prodaje za to trgovino.","termsOfSale":"Pogoji in določila"},"sr_YU":{"privacyPolicy":"Pravilnik o poverljivosti","resellerDisclosure":" je ovlašćen za maloprodaju i trgovinu i pruža usluge e-trgovine za ovu prodavnicu.","termsOfSale":"Uslovi"},"sv_SE":{"cancellationRights":"Ångerrätt","cookiePolicy":"Cookies","legalNotice":"Juridisk information","privacyPolicy":"Sekretesspolicy","resellerDisclosure":"är den auktoriserade återförsäljaren av de produkter och tjänster som erbjuds i den här butiken.","termsOfSale":"Försäljningsvillkor"},"th_TH":{"cancellationRights":"สิทธิ์ในการยกเลิก","cookiePolicy":"คุกกี้","legalNotice":"ข้อความสงวนสิทธิ์ทางกฎหมาย","privacyPolicy":"นโยบายการเก็บรักษาข้อมูลส่วนบุคคล","resellerDisclosure":"เป็นผู้ค้าและผู้จำหน่ายที่ได้รับอนุญาตสำหรับผลิตภัณฑ์และบริการที่นำเสนอภายในร้านค้าแห่งนี้","termsOfSale":"เงื่อนไขการขาย"},"tr_TR":{"cancellationRights":"İptal Hakkı","cookiePolicy":"Tanımlama Bilgileri","legalNotice":"Yasal Uyarı","privacyPolicy":"Gizlilik Politikası","resellerDisclosure":"bu mağazada ürünlerin ve servislerin önerilen yetkili satıcısı ve tüccarıdır.","termsOfSale":"Satış Şartları"},"zh_CN":{"cancellationRights":"取消订单权","cookiePolicy":"Cookie","legalNotice":"法律声明","privacyPolicy":"隐私政策","resellerDisclosure":"是本商店提供的产品和服务的授权经销商和商家。","termsOfSale":"销售条款"},"zh_HK":{"cancellationRights":"取消權利","cookiePolicy":"Cookies","legalNotice":"法律聲明","privacyPolicy":"隱私權政策","resellerDisclosure":"是本商店內所提供產品及服務的授權轉售商和販售者。","termsOfSale":"銷售條款"},"zh_TW":{"cancellationRights":"取消權利","cookiePolicy":"Cookie","legalNotice":"法律聲明","privacyPolicy":"隱私權政策","resellerDisclosure":"本商店所提供商品及服務的授權經銷商及批發商。","termsOfSale":"銷售條款"}},"locale":["ar_EG","cs_CZ","da_DK","de_AT","de_CH","de_DE","el_GR","en_AU","en_BE","en_CA","en_CH","en_DK","en_FI","en_GB","en_IE","en_IN","en_MY","en_NL","en_NO","en_NZ","en_PR","en_SE","en_SG","en_US","en_ZA","es_AR","es_CL","es_CO","es_EC","es_ES","es_MX","es_PE","es_VE","et_EE","fi_FI","fr_BE","fr_CA","fr_CH","fr_FR","hu_HU","it_CH","it_IT","iw_IL","ja_JP","ko_KR","lt_LT","lv_LV","nl_BE","nl_NL","no_NO","pl_PL","pt_BR","pt_PT","ro_RO","ru_RU","sk_SK","sl_SI","sr_YU","sv_SE","th_TH","tr_TR","zh_CN","zh_HK","zh_TW"],"entityCode":[{"code":"DRES_INC-ENTITY","name":"DR Education Services"},{"code":"DR_WP-ENTITY","name":"DR World Payments"},{"code":"DR_WPAB-ENTITY","name":"DR World Payments AB"},{"code":"C5_INC-ENTITY","name":"DR globalTech Inc."},{"code":"DR_BRAZIL-ENTITY","name":"Digital River Brazil"},{"code":"DR_CHINA-ENTITY","name":"Digital River China"},{"code":"DR_GMBH-ENTITY","name":"Digital River GmbH"},{"code":"DR_INC-ENTITY","name":"Digital River Inc."},{"code":"DR_INDIA-ENTITY","name":"Digital River India Pvt"},{"code":"DR_IRELAND-ENTITY","name":"Digital River Ireland Ltd."},{"code":"DR_JAPAN-ENTITY","name":"Digital River Japan"},{"code":"DR_KOREA-ENTITY","name":"Digital River Korea YH"},{"code":"DR_MEXICO-ENTITY","name":"Digital River Mexico"},{"code":"DR_RUSSIA-ENTITY","name":"Digital River Russia"},{"code":"DR_TAIWAN-ENTITY","name":"Digital River Taiwan"},{"code":"DR_SARL-ENTITY","name":"Digital River, International SARL"}],"keys":{"RESELLER_DISCLOSURE":"resellerDisclosure","TERMS_OF_SALE":"termsOfSale","PRIVACY_POLICY":"privacyPolicy","COOKIE_POLICY":"cookiePolicy","CANCELLATION_RIGHTS":"cancellationRights","LEGAL_NOTICE":"legalNotice"}};
-
-/***/ }),
-
 /***/ "./src/post-robot-wrapper.js":
 /*!***********************************!*\
   !*** ./src/post-robot-wrapper.js ***!
@@ -24061,17 +20684,17 @@ function _on(name, data, callback) {
 /***/ }),
 
 /***/ 0:
-/*!***************************************************!*\
-  !*** multi @babel/polyfill ./src/client/index.js ***!
-  \***************************************************/
+/*!*************************************************************************!*\
+  !*** multi @babel/polyfill ./src/app/components/3dsecure/dr3dsecure.js ***!
+  \*************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! @babel/polyfill */"./node_modules/@babel/polyfill/lib/index.js");
-module.exports = __webpack_require__(/*! C:\dev\ui-architecture\digitalriverpayments\src\client\index.js */"./src/client/index.js");
+module.exports = __webpack_require__(/*! C:\dev\ui-architecture\digitalriverpayments\src\app\components\3dsecure\dr3dsecure.js */"./src/app/components/3dsecure/dr3dsecure.js");
 
 
 /***/ })
 
-/******/ });
-//# sourceMappingURL=DigitalRiver.js.map
+/******/ })));
+//# sourceMappingURL=dr3dsecure.js.map
