@@ -1114,12 +1114,16 @@
               detail: "Will arrive tomorrow morning"
             }
           ],
-          total: updatedAppleInfo.total,
-          style: {
+          total: {
+            label: "Order Total after update 1",
+            amount: 2,
+            isPending: false
+          },
+         /* style: {
             buttonType: "buy",
             buttonColor: "light",
             buttonLanguage: "fr"
-          }
+          }*/
         };
         //failure scenario with error block
         if(details.shippingAddress.address.city === 'Apple Valley') {
@@ -1260,12 +1264,16 @@
               detail: "Will arrive tomorrow morning"
             }
           ],
-          //total: updatedAppleInfo.total,
-          style: {
+          total: {
+            label: "Order Total after update 2",
+            amount: 10,
+            isPending: false
+          },
+          /*style: {
             buttonType: "buy",
             buttonColor: "light",
             buttonLanguage: "en"
-          }
+          }*/
         };
         //failure scenario with error block
         if(details.shippingAddress.address.city === 'Apple Valley') {

@@ -19986,7 +19986,7 @@ function createApplePay() {
     console.log('component data', Object.assign({}, componentData));
     console.log('instance data', Object.assign({}, instanceData));
     instanceData.parentNode = node;
-    var applePayMount = _createComponent__WEBPACK_IMPORTED_MODULE_2__["mount"].bind(this); // FIXME Is there a problem with this?
+    var applePayMount = _createComponent__WEBPACK_IMPORTED_MODULE_2__["mount"].bind(this); // FIXME Is there a problem with using this?
 
     applePayMount(node);
     return Object(_app_components_payment_events__WEBPACK_IMPORTED_MODULE_6__["mountComponentFromClient"])(instanceData.controllerEmitter, instanceData.componentData, handleAppleOptions, _app_components_payment_api_events__WEBPACK_IMPORTED_MODULE_5__["emitComponentReady"], undefined, instanceData);
