@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 9);
+/******/ 	return __webpack_require__(__webpack_require__.s = 7);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -18182,9 +18182,7 @@ var config = {
   // eslint-disable-line no-undef
   beaconStorageUrlNonProd: "https://beacon-test.driv-analytics.com/capture",
   // eslint-disable-line no-undef
-  beaconStorageUrlProd: "https://beacon.driv-analytics.com/capture",
-  // eslint-disable-line no-undef
-  adyenProdUrl: "https://checkoutshopper-live.adyen.com/checkoutshopper/sdk/3.0.0/adyen.js" // eslint-disable-line no-undef
+  beaconStorageUrlProd: "https://beacon.driv-analytics.com/capture" // eslint-disable-line no-undef
 
 };
 
@@ -18194,18 +18192,16 @@ var config = {
 /*!*************************************************************************!*\
   !*** ./src/app/components/controller/controller-create-source-utils.js ***!
   \*************************************************************************/
-/*! exports provided: runCreateSourceAndHandleResponse, runCreateSourceAndHandleResponseForAdyen, formatComponentTriggerErrors, handleCreateSourceValidation, handlePaymentServiceThen, chooseCreateSourceCatchMessage, handleAdyenError, addBrowserInfoToSourceRequest */
+/*! exports provided: runCreateSourceAndHandleResponse, formatComponentTriggerErrors, handleCreateSourceValidation, handlePaymentServiceThen, chooseCreateSourceCatchMessage, addBrowserInfoToSourceRequest */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "runCreateSourceAndHandleResponse", function() { return runCreateSourceAndHandleResponse; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "runCreateSourceAndHandleResponseForAdyen", function() { return runCreateSourceAndHandleResponseForAdyen; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "formatComponentTriggerErrors", function() { return formatComponentTriggerErrors; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleCreateSourceValidation", function() { return handleCreateSourceValidation; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handlePaymentServiceThen", function() { return handlePaymentServiceThen; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "chooseCreateSourceCatchMessage", function() { return chooseCreateSourceCatchMessage; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleAdyenError", function() { return handleAdyenError; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addBrowserInfoToSourceRequest", function() { return addBrowserInfoToSourceRequest; });
 /* harmony import */ var _payment_service_request__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../payment-service-request */ "./src/app/payment-service-request.js");
 /* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../config */ "./src/app/components/config.js");
@@ -18220,22 +18216,6 @@ __webpack_require__.r(__webpack_exports__);
 
 function runCreateSourceAndHandleResponse(sourceRequest, apiKey) {
   return Object(_payment_service_request__WEBPACK_IMPORTED_MODULE_0__["paymentServiceRequest"])(sourceRequest, apiKey, _config__WEBPACK_IMPORTED_MODULE_1__["config"].paymentServiceUrl).then(function (response) {
-    return handlePaymentServiceThen(response);
-  }).catch(function (error) {
-    return chooseCreateSourceCatchMessage(error);
-  });
-}
-/**
- * runCreateSourceAndHandleResponseForAdyen runs create source and then handles response
- * @param sourceRequest
- * @param clientSecretData
- * @param apiKey
- * @returns {Promise<T | never>}
- */
-
-function runCreateSourceAndHandleResponseForAdyen(sourceRequest, clientSecretData, apiKey) {
-  var paymentServiceUrl = _config__WEBPACK_IMPORTED_MODULE_1__["config"].paymentServiceUrl + '/' + clientSecretData.clientSecret[0] + '/?secret=' + clientSecretData.clientSecret[1];
-  return Object(_payment_service_request__WEBPACK_IMPORTED_MODULE_0__["paymentServiceRequest"])(sourceRequest, apiKey, paymentServiceUrl).then(function (response) {
     return handlePaymentServiceThen(response);
   }).catch(function (error) {
     return chooseCreateSourceCatchMessage(error);
@@ -18373,27 +18353,10 @@ function handleNetworkTimeoutError() {
   });
 }
 /**
- * Resolves a promise with a 3ds error
- * @returns {Promise<{source: null, error: {type: 3ds2_error, errors: {message: string}[]}}>}
- */
-
-
-function handleAdyenError() {
-  return Promise.resolve({
-    error: {
-      type: '3ds2_error',
-      errors: [{
-        code: '3ds_sdk_error',
-        message: 'There was a problem with your authentication, please try again.'
-      }]
-    },
-    source: null
-  });
-}
-/**
  * Resolves a promise with a no network error
  * @returns {Promise<{source: null, error: {type: string, errors: {message: string}[]}}>}
  */
+
 
 function handleNoNetworkError() {
   return Promise.resolve({
@@ -18659,7 +18622,7 @@ module.exports = __webpack_require__.p + "controller\\controller.html";
 /*!*****************************************************!*\
   !*** ./src/app/components/controller/controller.js ***!
   \*****************************************************/
-/*! exports provided: getComponentTypeFromId, getComponentById, handleCreateSourceEvent, handleRegisterNewComponent, handleUnregisterComponent, handleMountComponent, handleUnmountComponent, handleComponentEvent, handleClientTrigger, handleOptions, validateAppleMerchant, handleInitialData, getOnlineBankingBanks, handleCreateSourceWithAdyenDetails */
+/*! exports provided: getComponentTypeFromId, getComponentById, handleCreateSourceEvent, handleRegisterNewComponent, handleUnregisterComponent, handleMountComponent, handleUnmountComponent, handleComponentEvent, handleClientTrigger, handleOptions, validateAppleMerchant, handleInitialData, getOnlineBankingBanks */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -18677,7 +18640,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "validateAppleMerchant", function() { return validateAppleMerchant; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleInitialData", function() { return handleInitialData; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getOnlineBankingBanks", function() { return getOnlineBankingBanks; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleCreateSourceWithAdyenDetails", function() { return handleCreateSourceWithAdyenDetails; });
 /* harmony import */ var _controller_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./controller.html */ "./src/app/components/controller/controller.html");
 /* harmony import */ var _controller_html__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_controller_html__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../post-robot-wrapper */ "./src/post-robot-wrapper.js");
@@ -19162,34 +19124,6 @@ clientListener.on('getOnlineBankingBanks', getOnlineBankingBanks);
 function getOnlineBankingBanks(event) {
   var apiKey = components['controller'].apiKey;
   return Object(_controller_online_banking_create_source__WEBPACK_IMPORTED_MODULE_8__["runGetBanksAndHandleResponse"])(apiKey, event.data.currency, event.data.country);
-}
-componentListener.on('createSourceFromAdyenRequest', handleCreateSourceWithAdyenDetails);
-/**
- * handleCreateSourceWithAdyenDetails handles getting the and returning payment source
- * or errors when a user calls the paymentServiceRequest method
- * @param {Event} event
- * @returns {object} payment source or errors
- */
-
-function handleCreateSourceWithAdyenDetails(event) {
-  var _event$data10 = event.data,
-      sourceRequest = _event$data10.sourceRequest,
-      clientSecretData = _event$data10.clientSecretData;
-  var apiKey = components['controller'].apiKey;
-
-  if (!sourceRequest) {
-    return Promise.reject('Controller received a bad createSource call');
-  }
-
-  if (!clientSecretData) {
-    return Promise.reject('Controller received a bad clientSecret call');
-  }
-
-  if (!apiKey) {
-    return Promise.reject('Controller did not receive an api key');
-  }
-
-  return Object(_controller_create_source_utils__WEBPACK_IMPORTED_MODULE_9__["runCreateSourceAndHandleResponseForAdyen"])(sourceRequest, clientSecretData, apiKey);
 }
 
 /***/ }),
@@ -19732,7 +19666,7 @@ function getHRef(window) {
 /*!***************************************!*\
   !*** ./src/client/createComponent.js ***!
   \***************************************/
-/*! exports provided: onEventHandler, unmount, mount, destroy, createComponent, googlePayCanMakePayment, getComponentURL, generateComponentId, getComponentWindow, findWindow, registerComponentWithController, sendOptions, sendApiKey, getComponentIFrame, createOrExtractBeaconController, createAdyenDiv, createOrExtractAdyenController, sendBeaconEventDetails, sendBeaconEventToController, update, sendInitalize3dSecure, sendAdyen3dDetails, sendAdyenChallengeShopper, update3dSecureOverlay */
+/*! exports provided: onEventHandler, unmount, mount, destroy, createComponent, googlePayCanMakePayment, getComponentURL, generateComponentId, getComponentWindow, findWindow, registerComponentWithController, sendOptions, sendApiKey, getBeaconIFrame, createOrExtractBeaconController, sendBeaconEventDetails, sendBeaconEventToController, update */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -19750,17 +19684,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "registerComponentWithController", function() { return registerComponentWithController; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sendOptions", function() { return sendOptions; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sendApiKey", function() { return sendApiKey; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getComponentIFrame", function() { return getComponentIFrame; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getBeaconIFrame", function() { return getBeaconIFrame; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createOrExtractBeaconController", function() { return createOrExtractBeaconController; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createAdyenDiv", function() { return createAdyenDiv; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createOrExtractAdyenController", function() { return createOrExtractAdyenController; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sendBeaconEventDetails", function() { return sendBeaconEventDetails; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sendBeaconEventToController", function() { return sendBeaconEventToController; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "update", function() { return update; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sendInitalize3dSecure", function() { return sendInitalize3dSecure; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sendAdyen3dDetails", function() { return sendAdyen3dDetails; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sendAdyenChallengeShopper", function() { return sendAdyenChallengeShopper; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "update3dSecureOverlay", function() { return update3dSecureOverlay; });
 /* harmony import */ var uuid_v4__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uuid/v4 */ "./node_modules/uuid/v4.js");
 /* harmony import */ var uuid_v4__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(uuid_v4__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _createFrame__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./createFrame */ "./src/client/createFrame.js");
@@ -19773,10 +19701,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _app_components_config__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../app/components/config */ "./src/app/components/config.js");
 /* harmony import */ var _app_components_options__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../app/components/options */ "./src/app/components/options.js");
 /* harmony import */ var _beacon_beacon_client_data__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../beacon/beacon-client-data */ "./src/beacon/beacon-client-data.js");
-/* harmony import */ var _app_components_controller_controller_create_source_utils__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../app/components/controller/controller-create-source-utils */ "./src/app/components/controller/controller-create-source-utils.js");
-/* harmony import */ var fingerprintjs2__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! fingerprintjs2 */ "./node_modules/fingerprintjs2/fingerprint2.js");
-/* harmony import */ var fingerprintjs2__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(fingerprintjs2__WEBPACK_IMPORTED_MODULE_12__);
-
+/* harmony import */ var fingerprintjs2__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! fingerprintjs2 */ "./node_modules/fingerprintjs2/fingerprint2.js");
+/* harmony import */ var fingerprintjs2__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(fingerprintjs2__WEBPACK_IMPORTED_MODULE_11__);
 
 
 
@@ -19798,9 +19724,8 @@ var fingerprintOptions = {
   }
 };
 var manifest = {
-  'dr3dsecure': '/3dsecure/dr3dsecure.html',
-  'controller': '/controller/controller.html',
-  'drBeacon': '/beacon/beacon.html',
+  controller: '/controller/controller.html',
+  drBeacon: '/beacon/beacon.html',
   'cardnumber': '/cc-number/cc-number.html',
   'cardexpiration': '/cc-expiry/cc-expiry.html',
   'cardcvv': '/cc-cvv/cc-cvv.html',
@@ -20094,7 +20019,7 @@ function getComponentURL(type, id, controllerId) {
  */
 
 function generateComponentId(type) {
-  if (type === 'drBeacon' || type === 'dr3dsecure') {
+  if (type === 'drBeacon') {
     return type;
   } else {
     return type + '-' + uuid_v4__WEBPACK_IMPORTED_MODULE_0___default()();
@@ -20207,16 +20132,15 @@ function sendApiKey(controllerId, eventName, data) {
   });
 }
 /**
- * Extract iframe from dom and return.
- * @param {string} type
+ * Extract beacon iframe from dom and return.
  * @returns {Element}
  */
 
-function getComponentIFrame(type) {
+function getBeaconIFrame() {
   var iFrameWindow = document.getElementsByTagName('iframe');
 
   for (var win = 0; win < iFrameWindow.length; win++) {
-    if (iFrameWindow[win].id.startsWith(type)) {
+    if (iFrameWindow[win].id.startsWith('drBeacon')) {
       return iFrameWindow[win];
     }
   }
@@ -20227,44 +20151,13 @@ function getComponentIFrame(type) {
  */
 
 function createOrExtractBeaconController() {
-  var type = 'drBeacon';
-  var beaconComponent = getComponentIFrame(type);
+  var beaconComponent = getBeaconIFrame();
 
   if (!beaconComponent) {
-    beaconComponent = Object(_createController__WEBPACK_IMPORTED_MODULE_5__["createController"])(document.body, type);
+    beaconComponent = Object(_createController__WEBPACK_IMPORTED_MODULE_5__["createController"])(document.body, 'drBeacon');
   }
 
   return beaconComponent;
-}
-/**
- * This method is used to create a div with adyen style and id.
- * @returns {Element}
- */
-
-function createAdyenDiv() {
-  var overlay;
-  var overlayStyle = 'position: fixed;top: 0;width:100%;z-index: 10000;';
-  overlay = document.createElement('div');
-  overlay.setAttribute('id', 'DRPayment3ds');
-  overlay.setAttribute('style', overlayStyle);
-  document.body.appendChild(overlay);
-  return overlay;
-}
-/**
- * This method is used to create/extract the adyen component.
- * @returns {Element}
- */
-
-function createOrExtractAdyenController() {
-  var type = 'dr3dsecure';
-  var adyenComponent = getComponentIFrame(type);
-
-  if (!adyenComponent) {
-    var adyenDiv = createAdyenDiv();
-    adyenComponent = Object(_createController__WEBPACK_IMPORTED_MODULE_5__["createController"])(adyenDiv, type);
-  }
-
-  return adyenComponent;
 }
 /**
  * Extract details from Fingerprintjs and send to sendBeaconEventToController
@@ -20282,9 +20175,9 @@ function sendBeaconEventDetails(beaconId, eventName) {
   } // Send component Id to the controller, we return a promise but you don't really need to wait?
 
 
-  fingerprintjs2__WEBPACK_IMPORTED_MODULE_12___default.a.get(fingerprintOptions, function (components) {
+  fingerprintjs2__WEBPACK_IMPORTED_MODULE_11___default.a.get(fingerprintOptions, function (components) {
     var fingerPrintDetails = Object.assign({});
-    fingerPrintDetails['deviceFingerprint'] = fingerprintjs2__WEBPACK_IMPORTED_MODULE_12___default.a.x64hash128(components.map(function (pair) {
+    fingerPrintDetails['deviceFingerprint'] = fingerprintjs2__WEBPACK_IMPORTED_MODULE_11___default.a.x64hash128(components.map(function (pair) {
       return pair.value;
     }).join(), 31);
     components.forEach(function (item) {
@@ -20347,92 +20240,6 @@ function update(options) {
   _dataStore__WEBPACK_IMPORTED_MODULE_4__["default"].set(key, data);
   this.options = data.components[this.type].options;
   Object(_css_class_utils__WEBPACK_IMPORTED_MODULE_7__["applyActiveClasses"])(activeClasses, this.options.classes, el);
-}
-/**
- * Initalize 3d secure div on instantiation
- * @param {string} adyenId
- */
-
-function sendInitalize3dSecure(adyenId) {
-  var adyenWindow = getComponentWindow(adyenId);
-
-  if (!adyenWindow) {
-    throw new Error("Unable to locate 3ds '".concat(adyenId, "'"));
-  }
-
-  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_2__["default"].send(adyenWindow, 'sendInitalize3dSecure', {
-    secureId: adyenId
-  }).catch(function () {
-    return Object(_app_components_controller_controller_create_source_utils__WEBPACK_IMPORTED_MODULE_11__["chooseCreateSourceCatchMessage"])('Unable to configure Adyen.');
-  });
-}
-/**
- * Sends adyen configuration details to adyen controller
- * @param {string} adyenId
- * @param {string} controllerId
- * @param {object} response
- * @param {function} resolve
- */
-
-function sendAdyen3dDetails(adyenId, controllerId, response, resolve) {
-  var adyenWindow = getComponentWindow(adyenId);
-
-  if (!adyenWindow) {
-    throw new Error("Unable to locate 3ds '".concat(adyenId, "'"));
-  }
-
-  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_2__["default"].send(adyenWindow, 'sendConfiguration', {
-    controllerId: controllerId,
-    secureId: adyenId,
-    resolve: resolve,
-    requiresAction: response,
-    nextStep: 'instance',
-    clientData: Object(_beacon_beacon_client_data__WEBPACK_IMPORTED_MODULE_10__["collectClientData"])(window),
-    action: response.nextAction.action
-  }).catch(function () {
-    return Object(_app_components_controller_controller_create_source_utils__WEBPACK_IMPORTED_MODULE_11__["chooseCreateSourceCatchMessage"])('Unable to configure Adyen.');
-  });
-}
-/**
- * Sends adyen challenge shopper details to adyen controller
- * @param {string} adyenId
- * @param {string} controllerId
- * @param {object} response
- * @param {function} resolve
- */
-
-function sendAdyenChallengeShopper(adyenId, controllerId, response, resolve) {
-  var adyenWindow = getComponentWindow(adyenId);
-
-  if (!adyenWindow) {
-    throw new Error("Unable to locate 3ds '".concat(adyenId, "'"));
-  }
-
-  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_2__["default"].send(adyenWindow, 'sendChallengeShopper', {
-    controllerId: controllerId,
-    secureId: adyenId,
-    resolve: resolve,
-    requiresAction: response,
-    clientData: Object(_beacon_beacon_client_data__WEBPACK_IMPORTED_MODULE_10__["collectClientData"])(window),
-    action: response.nextAction.action
-  }).catch(function () {
-    return Object(_app_components_controller_controller_create_source_utils__WEBPACK_IMPORTED_MODULE_11__["chooseCreateSourceCatchMessage"])('Unable to intialize adyen challenge.');
-  });
-}
-/**
- * Update the height & background-color of overlay div
- * @return {HTMLElement}
- */
-
-function update3dSecureOverlay(height, bgColor) {
-  var overLayDiv = document.getElementById('DRPayment3ds');
-
-  if (overLayDiv !== null && overLayDiv.style !== undefined) {
-    overLayDiv.style.height = height;
-    overLayDiv.style.backgroundColor = bgColor;
-  }
-
-  return overLayDiv;
 }
 
 /***/ }),
@@ -20542,7 +20349,6 @@ function createFrame(type, node, src, attributes, elementHeight) {
   }
 
   var iframeStyle = "height: ".concat(elementHeight, "; width: 100%; margin: 0px; padding: 0px; border: none;");
-  var adyenIframeStyle = 'height: 400px; width: 70%; position: absolute; left: 15%;border:none';
 
   if (type === 'controller' || type === 'drBeacon') {
     attributes = Object.assign(attributes, {
@@ -20550,10 +20356,6 @@ function createFrame(type, node, src, attributes, elementHeight) {
       height: '0',
       frameBorder: '0',
       style: 'display: block'
-    });
-  } else if (type === 'dr3dsecure') {
-    attributes = Object.assign(attributes, {
-      style: adyenIframeStyle
     });
   } else {
     attributes = Object.assign(attributes, {
@@ -21148,7 +20950,7 @@ function _on(name, data, callback) {
 
 /***/ }),
 
-/***/ 9:
+/***/ 7:
 /*!***************************************************************************!*\
   !*** multi @babel/polyfill ./src/app/components/controller/controller.js ***!
   \***************************************************************************/
