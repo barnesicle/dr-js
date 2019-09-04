@@ -19985,9 +19985,9 @@ function createApplePay() {
   function mountApplepay(node) {
     console.log('component data', Object.assign({}, componentData));
     console.log('instance data', Object.assign({}, instanceData));
-    instanceData.parentNode = node;
-    var applePayMount = _createComponent__WEBPACK_IMPORTED_MODULE_2__["mount"].bind(this);
-    applePayMount(node);
+    instanceData.parentNode = node; //let applePayMount = mount.bind(this);
+
+    Object(_createComponent__WEBPACK_IMPORTED_MODULE_2__["mount"])(node);
     return Object(_app_components_payment_events__WEBPACK_IMPORTED_MODULE_6__["mountComponentFromClient"])(instanceData.controllerEmitter, instanceData.componentData, handleAppleOptions, _app_components_payment_api_events__WEBPACK_IMPORTED_MODULE_5__["emitComponentReady"], undefined, instanceData);
   }
   /**
@@ -19997,6 +19997,8 @@ function createApplePay() {
 
 
   function setOptions(unsafeOptions) {
+    console.log('setOptions component data', Object.assign({}, componentData));
+    console.log('setOptions instance data', Object.assign({}, instanceData));
     var options = Object(_app_components_options__WEBPACK_IMPORTED_MODULE_3__["sanitizeOptionsForGoogleApplePay"])(unsafeOptions);
     options.total.amount = options.total.amount.toString();
     instanceData.options = options;
@@ -20010,8 +20012,8 @@ function createApplePay() {
 
 
   function handleUpdate(options) {
-    var applePayUpdate = _createComponent__WEBPACK_IMPORTED_MODULE_2__["update"].bind(this);
-    applePayUpdate(options);
+    //let applePayUpdate = update.bind(this);
+    Object(_createComponent__WEBPACK_IMPORTED_MODULE_2__["update"])(options);
   }
   /**
    * Returns payment options
