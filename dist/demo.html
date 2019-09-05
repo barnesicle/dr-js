@@ -7,6 +7,7 @@
   <meta charset="utf-8"/>
   <title>Client Page</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
@@ -612,6 +613,7 @@
             <div class="col-md-12">
               <br/>
               <button id="submitPaymentButton" class="btn btn-primary btn-lg btn-block" onclick="submitCreditCardPayment()">Submit CC Payment</button>
+              <button id="submitPaymentButtonWith3DS" class="btn btn-secondary btn-lg btn-block" onclick="submitCreditCardPaymentWith3DS()">Submit CC Payment with 3DS</button>
               <button id="submitIBPPaymentButton" class="btn btn-primary btn-lg btn-block" onclick="submitIbpPayment()">Submit IBP Payment</button>
             </div>
           </div>
@@ -649,6 +651,7 @@
 <script src="https://www.paypalobjects.com/api/checkout.js"></script>
 <script type="text/javascript">
   let apiKey = 'pk_hc_8e3f70c75f314c46855e840ba7a8baab';
+  //let apiKey = 'cc203ec2d74e4002a7e341abd6df6eb5'; // DoDJS15
   let digitalRiverPayments;
   let owner = {};
   let response = document.getElementById('response');
@@ -730,6 +733,8 @@
     }
   };
 
+  let sessionClientSecret = ''; // Gets set from API and passed into create source for 3DS
+
   function mockFetch() {
     return new Promise(function(resolve) {
       setTimeout(function() {
@@ -796,7 +801,7 @@
 
   function onLoad() {
     var isIE = !!window.MSInputMethodContext && !!document.documentMode;
-    console.log(isIE);
+    //console.log(isIE);
     if(navigator.userAgent.indexOf('MSIE')!==-1
             || navigator.appVersion.indexOf('Trident/') > -1){
       isIE = true;
@@ -1481,10 +1486,31 @@
     });
   }
 
+  function submitCreditCardPaymentWith3DS() {
+    // Call CreateSource
+    const payload = {
+      "type": "creditCard",
+      "usage": "single",
+      "owner": owner,
+      "amount": 100,
+      "currency": "EUR"
+    };
+    document.getElementById("response").innerHTML += "Submitting Credit Card payment with 3DS...please wait<br/>";
+    digitalRiverPayments.createCreditCardSource('dec0f861-7411-44e3-a011-67dd6de0e6ef', creditCardNumberComponent, payload).then( function(response) {
+      if(response.error) {
+        document.getElementById("response").innerHTML += "Credit Card Payment response received error message: " + response.error.code + "" + JSON.stringify(response, null, '\t');
+      } else {
+        document.getElementById("response").innerHTML += "Credit Card Payment response: " + "" + JSON.stringify(response.source, null, '\t');
+      }
+    }).catch(function (err)  {
+      console.error('createSource failed:', err);
+    });
+  }
+
   function submitIbpPayment() {
     // Call CreateSource
     const payload = {
-      "type": "onlineBanking", // TODO
+      "type": "onlineBanking",
       "usage": "single",
       "owner": owner,
       "amount": 100,
@@ -1638,6 +1664,97 @@
     $('#complianceMethod').append('<a class="complianceLink" target="_blank" type="button" class="btn btn-info" href='+ result.disclosure.termsOfSale.url +'>'+ result.disclosure.termsOfSale.localizedText +'</a>');
     $('#complianceMethod').append('<a class="complianceLink complianceCancellationLink" target="_blank" type="button" class="btn btn-info" href='+ result.disclosure.cancellationRights.url +'>'+ result.disclosure.cancellationRights.localizedText +'</a>');
   }
+
+  // TO Get session
+  let shopperToken;
+  const apiDomain = 'https://api.digitalriver.com';
+  const testApiDomain = 'https://dispatch-test.digitalriver.com';
+  const apiBasePath = apiDomain + '/v1/shoppers/me';
+  const testApiBasePath = testApiDomain + '/v1/shoppers/me';
+  const authString = 'Basic YWNjMjg2NDkzZDU1NDYyNWFkYTA1NWYzYWExN2YzYjQ6YmM0N2Y5YmNmYzBhNGViZmI4M2Q3Njg0YTdkYzRkNWY=';
+
+  /**
+   * Returns value stored in cookie
+   * @param name {string}
+   * @returns {string}
+   */
+  function getCookieValue(name) {
+    var value = "; " + document.cookie;
+    var parts = value.split("; " + name + "=");
+    if (parts.length === 2) {
+      return parts.pop().split(";").shift();
+    } else {
+      return "0";
+    }
+  }
+
+  function getShopperAPIToken() {
+    console.log('Getting shopper API Token');
+    try {
+      const cookieExists = document.cookie.split(';').filter(function(item) {
+        return item.trim().indexOf('shopperToken=') === 0
+      }).length;
+      if (cookieExists) {
+        shopperToken = getCookieValue('shopperToken');
+        return Promise.resolve(shopperToken);
+      } else {
+        var options = {
+          maxRedirects: 0,
+          responseType: 'json',
+          timeout: 10000,
+          headers: {
+            'Authorization': authString
+          }
+        };
+        var url = testApiDomain + '/oauth20/token.json?';
+        var data = 'grant_type=client_credentials';
+        return axios.post(url, data, options).then(function (token) {
+          console.log('Received shopper API Token', token);
+          var date = new Date();
+          date.setTime(date.getTime()+(24*60*60*1000));
+          var expires = "; expires="+date.toGMTString();
+          console.log({token});
+          var cookie = 'shopperToken=' + token.data.access_token + expires;
+          document.cookie = cookie;
+          return token.data.access_token;
+        });
+      }
+    } catch (e) {
+      console.error('error!',e);
+    }
+  }
+
+  function addToCart(productId) {
+    return getShopperAPIToken().then(function (token) {
+      console.log('token', token);
+      var options = {
+        maxRedirects: 0,
+        responseType: 'json',
+        timeout: 10000,
+        headers: {
+          'Authorization': 'bearer ' + token
+        }
+      };
+      var url = testApiBasePath + '/carts/active?productId=' + productId;
+      var data = 'grant_type=client_credentials';
+      return axios.post(url, data, options)
+              .then(function(response) {
+                console.log('response.data.paymentSession',response.data.cart)
+                sessionClientSecret = response.data.cart.paymentSession.id;
+                return sessionClientSecret;
+              })
+              .catch(function(e) {
+                console.log(e);
+              });
+    });
+  }
+
+  addToCart('5104504200').then(function (sessionId) {
+    console.log('session id retrieved.', sessionId)
+  }).catch(function (error) {
+    console.error('error getting session', error)
+  });
+
 </script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

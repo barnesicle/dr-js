@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -16927,7 +16927,9 @@ var config = {
   // eslint-disable-line no-undef
   beaconStorageUrlNonProd: "https://beacon-test.driv-analytics.com/capture",
   // eslint-disable-line no-undef
-  beaconStorageUrlProd: "https://beacon.driv-analytics.com/capture" // eslint-disable-line no-undef
+  beaconStorageUrlProd: "https://beacon.driv-analytics.com/capture",
+  // eslint-disable-line no-undef
+  adyenProdUrl: "https://checkoutshopper-live.adyen.com/checkoutshopper/sdk/3.0.0/adyen.js" // eslint-disable-line no-undef
 
 };
 
@@ -17205,7 +17207,7 @@ function _on(name, data, callback) {
 
 /***/ }),
 
-/***/ 0:
+/***/ 1:
 /*!*******************************************************************!*\
   !*** multi @babel/polyfill ./src/app/components/beacon/beacon.js ***!
   \*******************************************************************/

@@ -21190,7 +21190,9 @@ function DigitalRiver(apiKey, providedInstanceOptions) {
 
   var component = Object(_createController_js__WEBPACK_IMPORTED_MODULE_4__["createController"])(document.body, 'controller'); // creating beacon component
 
-  var beaconComponent = Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_3__["createOrExtractBeaconController"])();
+  var beaconComponent = Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_3__["createOrExtractBeaconController"])(); // creating 3dsecure component
+
+  var dr3dsecure = Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_3__["createOrExtractAdyenController"])();
   this.key = _dataStore_js__WEBPACK_IMPORTED_MODULE_0__["default"].create({
     apiKey: apiKey,
     controller: component,
@@ -21209,16 +21211,11 @@ function DigitalRiver(apiKey, providedInstanceOptions) {
   }).then(function () {
     return Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_3__["sendBeaconEventDetails"])(beaconComponent.id, 'controller_loaded');
   });
+  Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_3__["sendInitalize3dSecure"])(dr3dsecure.id);
+  Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_3__["update3dSecureOverlay"])('0px', '');
 }
-/**
- * Submits a payment source transaction to the payment service
- * @param componentInstanceOrSourceData - Instance of a component that is being submitted
- * @param {object|JSON} sourceRequest JSON as an object containing the source request
- * @returns {Promise} A Promise that contains the successful response or throws on error or timeout
- */
 
-
-DigitalRiver.prototype.createSource = function (componentInstanceOrSourceData, sourceRequest) {
+function createSourceForAllPaymentMethods(sourceRequest, componentInstanceOrSourceData) {
   var _dataStore$get = _dataStore_js__WEBPACK_IMPORTED_MODULE_0__["default"].get(this.key),
       controller = _dataStore$get.controller;
 
@@ -21235,7 +21232,7 @@ DigitalRiver.prototype.createSource = function (componentInstanceOrSourceData, s
     }
 
     return Object(_createSource_js__WEBPACK_IMPORTED_MODULE_1__["createSource"])(controller.id, '', componentInstanceOrSourceData).then(function (response) {
-      if (typeof response != 'undefined' && response.source != null && response.source.id != null) {
+      if (typeof response !== 'undefined' && response.source !== null && response.source.id !== undefined) {
         Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_3__["sendBeaconEventDetails"])(beaconComponent.id, 'source', response.source.id);
       }
 
@@ -21251,13 +21248,73 @@ DigitalRiver.prototype.createSource = function (componentInstanceOrSourceData, s
     }
 
     return Object(_createSource_js__WEBPACK_IMPORTED_MODULE_1__["createSource"])(controller.id, componentInstanceOrSourceData.type, sourceRequest).then(function (response) {
-      if (typeof response != 'undefined' && response.source != null && response.source.id != null) {
-        Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_3__["sendBeaconEventDetails"])(beaconComponent.id, 'source', response.source.id);
-      }
+      if (typeof response !== 'undefined' && response.source !== null && response.source.state === 'requires_action' && response.source.nextAction !== null) {
+        // creating Adyen component
+        var adyenComponent = Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_3__["createOrExtractAdyenController"])();
+        Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_3__["update3dSecureOverlay"])('100%', 'rgba(0,0,0,0.3)');
 
-      return response;
+        if (response.source.nextAction.action === 'fingerprint_device' || response.source.nextAction.action === 'challenge_shopper') {
+          return new Promise(function (resolve) {
+            return Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_3__["sendAdyen3dDetails"])(adyenComponent.id, controller.id, response.source, resolve);
+          }).then(function (responseData) {
+            Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_3__["update3dSecureOverlay"])('0px', '');
+            return responseData;
+          });
+        } else {
+          // nothing can be done for now
+          if (response.source.id !== undefined) {
+            Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_3__["sendBeaconEventDetails"])(beaconComponent.id, 'source', response.source.id);
+          }
+
+          return response;
+        }
+      } else {
+        if (typeof response !== 'undefined' && response.source !== null && response.source.id !== undefined) {
+          Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_3__["sendBeaconEventDetails"])(beaconComponent.id, 'source', response.source.id);
+        }
+
+        return response;
+      }
     });
   }
+}
+/**
+ * Submits a payment source transaction to the payment service
+ * @param componentInstanceOrSourceData - Instance of a component that is being submitted
+ * @param {object|JSON} sourceRequest JSON as an object containing the source request
+ * @returns {Promise} A Promise that contains the successful response or throws on error or timeout
+ */
+
+
+DigitalRiver.prototype.createSource = function (componentInstanceOrSourceData, sourceRequest) {
+  return createSourceForAllPaymentMethods.call(this, sourceRequest, componentInstanceOrSourceData);
+};
+/**
+ * Creates a source for the credit card element that uses a session client secret to initiate 3DS
+ * @param sessionClientSecret
+ * @param element
+ * @param sourceRequest
+ */
+
+
+DigitalRiver.prototype.createCreditCardSource = function (sessionClientSecret, element, sourceRequest) {
+  if (!sessionClientSecret) {
+    throw new Error('You must provide a sessionClientSecret');
+  } // Copy source request so it does not modify the clients request
+
+
+  var updatedSourceRequest = Object.assign({}, sourceRequest);
+  updatedSourceRequest.sessionId = sessionClientSecret;
+
+  if (typeof updatedSourceRequest.creditCard === 'undefined') {
+    updatedSourceRequest.creditCard = {};
+  }
+
+  if (typeof updatedSourceRequest.creditCard.returnUrl === 'undefined') {
+    updatedSourceRequest.creditCard.returnUrl = window.location.href;
+  }
+
+  return createSourceForAllPaymentMethods.call(this, updatedSourceRequest, element, sessionClientSecret);
 };
 
 DigitalRiver.prototype.getOnlineBankingBanks = function (country, currency) {
@@ -22258,8 +22315,7 @@ function createApplePay() {
 
 
   function getElement() {
-    //todo get this by id instead
-    return document.querySelector('.apple-pay-button');
+    return document.getElementById(instanceData.componentData.componentId);
   }
   /**
    * Handles click on Apple Pay button and inits Payment Request
