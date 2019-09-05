@@ -19849,8 +19849,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var version = 3; // TODO MOVE THESE TOP FUNCTIONS TO BE IN ANOTHER FILE
-
+var version = 3;
 /**
  * Processes payment sent from apple and sends it to the payment service to create a payment source
  * @param {object} appleResponseData - data received from Apple
@@ -19964,8 +19963,7 @@ function shippingOptionChange(event, sendShippingMethodChangeEvent, instanceData
   getUpdatedDetails.then(function (data) {
     instanceData.applepaySession.completeShippingMethodSelection(data);
   });
-} // TODO MOVE ABOVE ------------------------------------------------------------------
-
+}
 function createApplePay() {
   var componentData;
   var controllerEmitter;
@@ -19987,8 +19985,6 @@ function createApplePay() {
 
 
   function mountApplepay(node) {
-    console.log('component data', Object.assign({}, componentData));
-    console.log('instance data', Object.assign({}, instanceData));
     instanceData.parentNode = node;
     var applePayMount = _createComponent__WEBPACK_IMPORTED_MODULE_2__["mount"].bind(this);
     applePayMount(node);
@@ -20001,8 +19997,6 @@ function createApplePay() {
 
 
   function setOptions(unsafeOptions) {
-    console.log('setOptions component data', Object.assign({}, componentData));
-    console.log('setOptions instance data', Object.assign({}, instanceData));
     var options = Object(_app_components_options__WEBPACK_IMPORTED_MODULE_3__["sanitizeOptionsForGoogleApplePay"])(unsafeOptions);
     options.total.amount = options.total.amount.toString();
     instanceData.options = options;
@@ -20133,16 +20127,6 @@ function createApplePay() {
      * @param {object} options
      */
     createApplepayComponent: createApplepayComponent,
-
-    /**
-     * sets options and creates button
-     * @param {object} data
-     */
-
-    /*handleAppleOptions: function handleAppleOptions(data) {
-      setOptions(data.options);
-    },*/
-    // TODO Return getInstanceData function
     setOptions: setOptions,
     getElement: getElement,
     getPaymentOptions: getPaymentOptions,
