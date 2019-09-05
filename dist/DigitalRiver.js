@@ -19973,6 +19973,10 @@ function createApplePay() {
   var instanceData;
   var supportedInstruments;
 
+  function getInstanceData() {
+    return instanceData;
+  }
+
   function handleAppleOptions(data) {
     setOptions(data.options);
   }
@@ -19986,8 +19990,7 @@ function createApplePay() {
     console.log('component data', Object.assign({}, componentData));
     console.log('instance data', Object.assign({}, instanceData));
     instanceData.parentNode = node;
-    var applePayMount = _createComponent__WEBPACK_IMPORTED_MODULE_2__["mount"].bind(this); // FIXME Is there a problem with using this?
-
+    var applePayMount = _createComponent__WEBPACK_IMPORTED_MODULE_2__["mount"].bind(this);
     applePayMount(node);
     return Object(_app_components_payment_events__WEBPACK_IMPORTED_MODULE_6__["mountComponentFromClient"])(instanceData.controllerEmitter, instanceData.componentData, handleAppleOptions, _app_components_payment_api_events__WEBPACK_IMPORTED_MODULE_5__["emitComponentReady"], undefined, instanceData);
   }
@@ -20060,7 +20063,7 @@ function createApplePay() {
     };
 
     applepaySession.oncancel = function () {
-      return Object(_app_components_payment_api_events__WEBPACK_IMPORTED_MODULE_5__["emitComponentCancelled"])(instanceData.componentData);
+      return handleCancel(componentData);
     };
 
     applepaySession.begin();
@@ -20071,8 +20074,55 @@ function createApplePay() {
    */
 
 
-  function handleCancel() {
+  function handleCancel(componentData) {
     Object(_app_components_payment_api_events__WEBPACK_IMPORTED_MODULE_5__["emitComponentCancelled"])(componentData);
+  }
+
+  function createApplepayComponent(controllerId, key, options) {
+    var type = 'applepay';
+    var id = Object(_createComponent__WEBPACK_IMPORTED_MODULE_2__["generateComponentId"])(type);
+    var applepayComponent = {
+      id: id,
+      key: key,
+      type: type,
+      parentNode: null,
+      controllerId: controllerId,
+      canMakePayment: applePaymentCanMakePayment,
+      mount: mountApplepay,
+      destroy: _createComponent__WEBPACK_IMPORTED_MODULE_2__["destroy"],
+      on: _createComponent__WEBPACK_IMPORTED_MODULE_2__["onEventHandler"],
+      options: Object(_app_components_options__WEBPACK_IMPORTED_MODULE_3__["sanitizeOptionsForGoogleApplePay"])(options),
+      show: onApplePayButtonClick,
+      unmount: _createComponent__WEBPACK_IMPORTED_MODULE_2__["unmount"],
+      update: handleUpdate
+    };
+    componentData = Object(_app_components_payment_component_data__WEBPACK_IMPORTED_MODULE_9__["generateComponentData"])(type, id, controllerId);
+    componentData.key = key;
+    controllerListener = _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_1__["default"].listener({
+      window: componentData.controller.window,
+      domain: _app_components_config__WEBPACK_IMPORTED_MODULE_0__["config"].domain
+    });
+    controllerEmitter = _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_1__["default"].client({
+      window: componentData.controller.window,
+      domain: _app_components_config__WEBPACK_IMPORTED_MODULE_0__["config"].domain
+    });
+    supportedInstruments = [{
+      supportedMethods: 'https://apple.com/apple-pay',
+      data: {
+        version: 3,
+        merchantIdentifier: _app_components_config__WEBPACK_IMPORTED_MODULE_0__["config"].applePayMerchantId,
+        merchantCapabilities: ['supports3DS', 'supportsCredit', 'supportsDebit'],
+        supportedNetworks: ['amex', 'masterCard', 'visa', 'JCB', 'chinaUnionPay', 'discover', 'privateLabel'],
+        countryCode: applepayComponent.options && applepayComponent.options.hasOwnProperty('country') ? applepayComponent.options.country : 'US',
+        requiredBillingContactFields: ['postalAddress', 'email', 'name', 'phone'],
+        requiredShippingContactFields: ['postalAddress', 'email', 'name', 'phone']
+      }
+    }];
+    instanceData = Object(_app_components_create_initial_data__WEBPACK_IMPORTED_MODULE_7__["generateInstanceData"])(controllerEmitter, componentData, getPaymentOptions, getElement, setOptions, supportedInstruments);
+    instanceData.waitBeforeShow = true;
+    instanceData.options = applepayComponent.options;
+    Object(_app_components_payment_events__WEBPACK_IMPORTED_MODULE_6__["addHandleOptions"])(controllerListener, handleAppleOptions);
+    return applepayComponent;
   }
 
   return {
@@ -20082,54 +20132,8 @@ function createApplePay() {
      * @param {string} key
      * @param {object} options
      */
-    createApplepayComponent: function createApplepayComponent(controllerId, key, options) {
-      var type = 'applepay';
-      var id = Object(_createComponent__WEBPACK_IMPORTED_MODULE_2__["generateComponentId"])(type);
-      var applepayComponent = {
-        id: id,
-        key: key,
-        type: type,
-        parentNode: null,
-        controllerId: controllerId,
-        canMakePayment: function canMakePayment() {
-          return applePaymentCanMakePayment();
-        },
-        mount: mountApplepay,
-        destroy: _createComponent__WEBPACK_IMPORTED_MODULE_2__["destroy"],
-        on: _createComponent__WEBPACK_IMPORTED_MODULE_2__["onEventHandler"],
-        options: Object(_app_components_options__WEBPACK_IMPORTED_MODULE_3__["sanitizeOptionsForGoogleApplePay"])(options),
-        show: onApplePayButtonClick,
-        unmount: _createComponent__WEBPACK_IMPORTED_MODULE_2__["unmount"],
-        update: handleUpdate
-      };
-      componentData = Object(_app_components_payment_component_data__WEBPACK_IMPORTED_MODULE_9__["generateComponentData"])(type, id, controllerId);
-      componentData.key = key;
-      controllerListener = _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_1__["default"].listener({
-        window: componentData.controller.window,
-        domain: _app_components_config__WEBPACK_IMPORTED_MODULE_0__["config"].domain
-      });
-      controllerEmitter = _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_1__["default"].client({
-        window: componentData.controller.window,
-        domain: _app_components_config__WEBPACK_IMPORTED_MODULE_0__["config"].domain
-      });
-      supportedInstruments = [{
-        supportedMethods: 'https://apple.com/apple-pay',
-        data: {
-          version: 3,
-          merchantIdentifier: _app_components_config__WEBPACK_IMPORTED_MODULE_0__["config"].applePayMerchantId,
-          merchantCapabilities: ['supports3DS', 'supportsCredit', 'supportsDebit'],
-          supportedNetworks: ['amex', 'masterCard', 'visa', 'JCB', 'chinaUnionPay', 'discover', 'privateLabel'],
-          countryCode: applepayComponent.options && applepayComponent.options.hasOwnProperty('country') ? applepayComponent.options.country : 'US',
-          requiredBillingContactFields: ['postalAddress', 'email', 'name', 'phone'],
-          requiredShippingContactFields: ['postalAddress', 'email', 'name', 'phone']
-        }
-      }];
-      instanceData = Object(_app_components_create_initial_data__WEBPACK_IMPORTED_MODULE_7__["generateInstanceData"])(controllerEmitter, componentData, getPaymentOptions, getElement, setOptions, supportedInstruments);
-      instanceData.waitBeforeShow = true;
-      instanceData.options = applepayComponent.options;
-      Object(_app_components_payment_events__WEBPACK_IMPORTED_MODULE_6__["addHandleOptions"])(controllerListener, handleAppleOptions);
-      return applepayComponent;
-    }
+    createApplepayComponent: createApplepayComponent,
+
     /**
      * sets options and creates button
      * @param {object} data
@@ -20138,7 +20142,17 @@ function createApplePay() {
     /*handleAppleOptions: function handleAppleOptions(data) {
       setOptions(data.options);
     },*/
-
+    // TODO Return getInstanceData function
+    setOptions: setOptions,
+    getElement: getElement,
+    getPaymentOptions: getPaymentOptions,
+    handleUpdate: handleUpdate,
+    handleCancel: handleCancel,
+    handleAppleOptions: handleAppleOptions,
+    handleValidateMerchant: handleValidateMerchant,
+    mountApplepay: mountApplepay,
+    onApplePayButtonClick: onApplePayButtonClick,
+    getInstanceData: getInstanceData
   };
 }
 
