@@ -405,9 +405,6 @@
                     <div id="apple-pay" class="col-md-6 mb-3">
                       <!--apple pay loads here-->
                     </div>
-                    <div id="apple-pay2" class="col-md-6 mb-3">
-                      <!--apple pay loads here-->
-                    </div>
                   </div>
 
                   <form id="payment-form">
@@ -653,7 +650,6 @@
 <script type="text/javascript">
   let apiKey = 'pk_hc_8e3f70c75f314c46855e840ba7a8baab';
   let digitalRiverPayments;
-  let digitalRiverPayments2;
   let owner = {};
   let response = document.getElementById('response');
 
@@ -662,7 +658,6 @@
   let creditCardCvvComponent;
   let googlePayComponent;
   let applePayComponent;
-  let applePayComponent2;
   let ibpBanksComponent;
 
   let googlePayPaymentRequest;
@@ -819,8 +814,6 @@
     const options = { 'locale': 'es-CO'};
     digitalRiverPayments = new DigitalRiver(apiKey, options);
 
-    digitalRiverPayments2 = new DigitalRiver(apiKey, options);
-
     let updatedccNumOptions = {
       placeholderText: 'Number',
       style: styles
@@ -901,36 +894,6 @@
       waitOnClick: true
     });
 
-    const applePayPaymentRequest2 = digitalRiverPayments.paymentRequest({
-      country: "us",
-      currency: "USD",
-      total: {
-        label: "Your Order Total2",
-        amount: 1,
-        isPending: false
-      },
-      displayItems: [
-        {
-          label: "Subtotal2",
-          amount: 1,
-          isPending: false
-        },
-        {
-          label: "Shipping",
-          amount: 0,
-          isPending: false
-        }
-      ],
-      //shippingOptions: shippingOptions,
-      requestShipping: false,
-      style: {
-        buttonType: "plain",
-        buttonColor: "dark",
-        buttonLanguage: "en"
-      },
-      waitOnClick: true
-    });
-
     updatedAppleInfo = {
       total: {
         label: "Order Total after update",
@@ -973,7 +936,7 @@
 
     googlePayComponent = digitalRiverPayments.createElement('googlepay', googlePayPaymentRequest);
     applePayComponent = digitalRiverPayments.createElement('applepay', applePayPaymentRequest);
-    applePayComponent2 = digitalRiverPayments2.createElement('applepay', applePayPaymentRequest2);
+
 
     console.log('Calling mount functions');
 
@@ -1101,36 +1064,25 @@
           status: 'success',
           shippingOptions: [
             {
-              id: "free-shipping 1 ",
-              label: "Free Shipping 1",
+              id: "free-shipping 2 ",
+              label: "Free Shipping 2",
               amount: 0,
               detail: "Will arrive in a few days",
               selected: true
             },
             {
-              id: "slow-shipping 1",
-              label: "Slow Shipping 1",
-              amount: 0,
-              detail: "Will arrive at some point",
-              selected: true
-            },
-            {
-              id: "overnight-shipping 1",
-              label: "Óvêrnight ShiÞþing 1",
+              id: "overnight-shipping 2",
+              label: "Óvêrnight ShiÞþing 2",
               amount: 10,
               detail: "Will arrive tomorrow morning"
             }
           ],
-          total: {
-            label: "Order Total after update 1",
-            amount: 2,
-            isPending: false
-          },
-         /* style: {
+          total: updatedAppleInfo.total,
+          style: {
             buttonType: "buy",
             buttonColor: "light",
             buttonLanguage: "fr"
-          }*/
+          }
         };
         //failure scenario with error block
         if(details.shippingAddress.address.city === 'Apple Valley') {
@@ -1165,18 +1117,18 @@
         let updatedDetails = {
           status: 'success',
           total: {
-            label: "Order Total 1",
+            label: "Order Total",
             amount: 3,
             isPending: false
           },
           displayItems: [
             {
-              label: "subtotal after shipping method change 1",
+              label: "subtotal after shipping method change",
               amount: 3,
               isPending: false
             },
             {
-              label: "shipping 1",
+              label: "shipping",
               amount: 0,
               isPending: false
             }
@@ -1209,12 +1161,12 @@
           status: 'success',
           displayItems: [
             {
-              label: "Subtotal 1",
+              label: "Subtotal",
               amount: 1,
               isPending: false
             },
             {
-              label: "Shipping 1",
+              label: "Shipping",
               amount: 1,
               isPending: false
             }
@@ -1239,156 +1191,6 @@
     });
 
     applePayComponent.on('source', function(event) {
-      responseLog('applepay source was created');
-      responseLog(JSON.stringify(event));
-      event.complete('success');
-    });
-
-    if (applePayComponent2.canMakePayment()) {
-      applePayComponent2.mount("apple-pay2");
-    } else {
-      document.getElementById('apple-pay2').setAttribute('style','display:none');
-    }
-
-    applePayComponent2.on('shippingaddresschange', function(details) {
-      responseLog('applepay2 shipping address was updated');
-      responseLog(JSON.stringify(details));
-      setTimeout(function () {
-        let updatedDetails = {
-          status: 'success',
-          shippingOptions: [
-            {
-              id: "free-shipping 2 ",
-              label: "Free Shipping 2",
-              amount: 0,
-              detail: "Will arrive in a few days",
-              selected: true
-            },
-            {
-              id: "overnight-shipping 2",
-              label: "Óvêrnight ShiÞþing 2",
-              amount: 10,
-              detail: "Will arrive tomorrow morning"
-            }
-          ],
-          total: {
-            label: "Order Total after update 2",
-            amount: 10,
-            isPending: false
-          },
-          /*style: {
-            buttonType: "buy",
-            buttonColor: "light",
-            buttonLanguage: "en"
-          }*/
-        };
-        //failure scenario with error block
-        if(details.shippingAddress.address.city === 'Apple Valley') {
-          updatedDetails.status = 'failure';
-          updatedDetails.error = {
-            message: 'An Error has occurred.  Please try again.',
-            fields: {
-              postalCode: 'Your zip code is crazy bad'
-            }
-          };
-        }
-
-        //failure scenario and error not sent (checking defaults)
-        if(details.shippingAddress.address.city === 'Kaladim') {
-          updatedDetails.status = 'failure';
-        }
-        responseLog('sending info back to DR for Apple');
-        responseLog(JSON.stringify(updatedDetails));
-        fetch('https://jsonplaceholder.typicode.com/todos/1') // Call the fetch function passing the url of the API as a parameter
-                .then(function() {
-                  // Your code for handling the data you get from the API
-                  if(details.hasOwnProperty('updateWith')) {
-                    details.updateWith(updatedDetails)
-                  };
-                })
-      }, 2000);
-    });
-    applePayComponent2.on('shippingoptionchange', function(details) {
-      responseLog('applepay2 shipping option was updated');
-      responseLog(JSON.stringify(details));
-      setTimeout(function () {
-        let updatedDetails = {
-          status: 'success',
-          total: {
-            label: "Order Total 2",
-            amount: 3,
-            isPending: false
-          },
-          displayItems: [
-            {
-              label: "subtotal after shipping method change 2",
-              amount: 3,
-              isPending: false
-            },
-            {
-              label: "shipping 2",
-              amount: 0,
-              isPending: false
-            }
-          ]
-        };
-        fetch('https://jsonplaceholder.typicode.com/todos/1') // Call the fetch function passing the url of the API as a parameter
-                .then(function(data) {
-                  // Your code for handling the data you get from the API
-                  console.log(data);
-                  if(details.hasOwnProperty('updateWith')) {
-                    console.log('client sending updated shipping option info')
-                    details.updateWith(updatedDetails);
-                  };
-                })
-        responseLog('sending info back to DR for Apple');
-        responseLog(JSON.stringify(updatedDetails));
-      }, 2000);
-
-    });
-
-    applePayComponent2.on('ready', function(event) {
-      responseLog('applepay2 ready received ' + JSON.stringify(event));
-    });
-
-    applePayComponent2.on('click', function(event) {
-      responseLog('applepay2 button was clicked');
-      responseLog(JSON.stringify(event));
-      setTimeout(function () {
-        let updatedDetails = {
-          status: 'success',
-          displayItems: [
-            {
-              label: "Subtotal 2",
-              amount: 1,
-              isPending: false
-            },
-            {
-              label: "Shipping 2",
-              amount: 1,
-              isPending: false
-            }
-          ],
-        };
-        // Call the fetch function passing the url of the API as a parameter
-        fetch('https://jsonplaceholder.typicode.com/todos/1').then(function(data) {
-          // Your code for handling the data you get from the API
-          console.log(data);
-          if(event.hasOwnProperty('updateWith')) {
-            console.log('client sending updated info');
-            event.updateWith(updatedDetails);
-          };
-        });
-        responseLog(JSON.stringify(updatedDetails));
-      }, 2000);
-    });
-
-    applePayComponent2.on('cancel', function(event) {
-      responseLog('applepay2 session was canceled');
-      responseLog(JSON.stringify(event));
-    });
-
-    applePayComponent2.on('source', function(event) {
       responseLog('applepay source was created');
       responseLog(JSON.stringify(event));
       event.complete('success');
@@ -1823,7 +1625,7 @@
       responseLog(JSON.stringify(error))
     });
   }
-  
+
   function complianceData() {
     $('#complianceMethod').empty();
     let entity = $('#bEntity').val();
