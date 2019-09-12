@@ -18180,11 +18180,17 @@ var config = {
   // eslint-disable-line no-undef
   applePayMerchantId: "merchant.com.test.cert.digitalriver",
   // eslint-disable-line no-undef
+  applePayMerchantValidationUrl: "https://api.digitalriver.com/payments/apple-pay/session",
+  //eslint-disable-line no-undef
   beaconStorageUrlNonProd: "https://beacon-test.driv-analytics.com/capture",
   // eslint-disable-line no-undef
   beaconStorageUrlProd: "https://beacon.driv-analytics.com/capture",
   // eslint-disable-line no-undef
-  adyenProdUrl: "https://checkoutshopper-live.adyen.com/checkoutshopper/sdk/3.0.0/adyen.js" // eslint-disable-line no-undef
+  adyenProdUrl: "https://checkoutshopper-live.adyen.com/checkoutshopper/sdk/3.0.0/adyen.js",
+  // eslint-disable-line no-undef
+  onlineBankingBanksUrl: "https://api.digitalriver.com/payments/online-banking/banks",
+  // eslint-disable-line no-undef
+  originKey: "pub.v2.8115061157590058.aHR0cDovL2xvY2FsaG9zdDo4MDgw.FF9fc99f70OC7jS9Ngmqj8z1H_cmKZMXQo_r0cnPAOg" // eslint-disable-line no-undef
 
 };
 
@@ -18194,26 +18200,35 @@ var config = {
 /*!*************************************************************************!*\
   !*** ./src/app/components/controller/controller-adyen-create-source.js ***!
   \*************************************************************************/
-/*! exports provided: handleFingerPrintResponseData, handleChallengeResultResponseData */
+/*! exports provided: handleFingerPrintCreateSource, handleChallengeResultCreateSource */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleFingerPrintResponseData", function() { return handleFingerPrintResponseData; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleChallengeResultResponseData", function() { return handleChallengeResultResponseData; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleFingerPrintCreateSource", function() { return handleFingerPrintCreateSource; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleChallengeResultCreateSource", function() { return handleChallengeResultCreateSource; });
 /* harmony import */ var _client_createSource__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../client/createSource */ "./src/client/createSource.js");
 /* harmony import */ var _client_createComponent__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../client/createComponent */ "./src/client/createComponent.js");
 
 
+
+function checkAndSendBeaconDetails(response) {
+  if (typeof response !== 'undefined' && response.source !== null && response.source.id !== null) {
+    var beaconComponent = Object(_client_createComponent__WEBPACK_IMPORTED_MODULE_1__["createOrExtractBeaconController"])();
+    Object(_client_createComponent__WEBPACK_IMPORTED_MODULE_1__["sendBeaconEventDetails"])(beaconComponent.id, 'source', response.source.id);
+  }
+}
 /**
  * Method to handle the finger print response and prepare the payload for createSource adyen.
- * @param adyenResponse
+ * @param adyenResponseFingerprint
  * @param sourceData
  * @return {Promise<never>|*|Promise<T | never>|undefined}
  */
 
-function handleFingerPrintResponseData(adyenResponse, sourceData) {
+
+function handleFingerPrintCreateSource(adyenResponseFingerprint, sourceData) {
   var clientSecret = sourceData.paymentData.clientSecret;
+  console.log('handleFingerPrintCreateSource', sourceData);
 
   if (!clientSecret) {
     return Promise.reject('Cannot send data to paymentservice because required data is missing.');
@@ -18222,13 +18237,16 @@ function handleFingerPrintResponseData(adyenResponse, sourceData) {
   var sourceRequest = {
     type: sourceData.paymentData.type,
     creditCard: {
-      fingerprint: adyenResponse
+      fingerprint: adyenResponseFingerprint
     }
   };
   var clientSecretId = {
     clientSecret: clientSecret.split('_')
   };
+  console.log('createSourceWithAdyen', sourceRequest);
   return Object(_client_createSource__WEBPACK_IMPORTED_MODULE_0__["createSourceWithAdyen"])(sourceData.controllerId, sourceRequest, clientSecretId).then(function (response) {
+    console.log('response from payment service', response);
+
     if (typeof response !== 'undefined' && response.source !== null && response.source.state === 'requires_action' && response.source.nextAction !== null) {
       if (response.source.nextAction.action === 'challenge_shopper') {
         Object(_client_createComponent__WEBPACK_IMPORTED_MODULE_1__["sendAdyenChallengeShopper"])(sourceData.componentId, sourceData.controllerId, response.source, sourceData.resolve);
@@ -18236,11 +18254,7 @@ function handleFingerPrintResponseData(adyenResponse, sourceData) {
 
       return response;
     } else {
-      if (typeof response !== 'undefined' && response.source !== null && response.source.id !== null) {
-        var beaconComponent = Object(_client_createComponent__WEBPACK_IMPORTED_MODULE_1__["createOrExtractBeaconController"])();
-        Object(_client_createComponent__WEBPACK_IMPORTED_MODULE_1__["sendBeaconEventDetails"])(beaconComponent.id, 'source', response.source.id);
-      }
-
+      checkAndSendBeaconDetails(response);
       sourceData.resolve(response);
       return response;
     }
@@ -18253,7 +18267,7 @@ function handleFingerPrintResponseData(adyenResponse, sourceData) {
  * @return {Promise<never>|*|Promise<T | never>|undefined}
  */
 
-function handleChallengeResultResponseData(adyenResponse, sourceData) {
+function handleChallengeResultCreateSource(adyenResponse, sourceData) {
   var clientSecret = sourceData.paymentData.clientSecret;
 
   if (!clientSecret) {
@@ -18270,11 +18284,7 @@ function handleChallengeResultResponseData(adyenResponse, sourceData) {
     clientSecret: clientSecret.split('_')
   };
   return Object(_client_createSource__WEBPACK_IMPORTED_MODULE_0__["createSourceWithAdyen"])(sourceData.controllerId, sourceRequest, clientSecretId).then(function (response) {
-    if (typeof response !== 'undefined' && response.source !== null && response.source.id !== null) {
-      var beaconComponent = Object(_client_createComponent__WEBPACK_IMPORTED_MODULE_1__["createOrExtractBeaconController"])();
-      Object(_client_createComponent__WEBPACK_IMPORTED_MODULE_1__["sendBeaconEventDetails"])(beaconComponent.id, 'source', response.source.id);
-    }
-
+    checkAndSendBeaconDetails(response);
     sourceData.resolve(response);
     return response;
   });
@@ -18286,13 +18296,14 @@ function handleChallengeResultResponseData(adyenResponse, sourceData) {
 /*!*************************************************************************!*\
   !*** ./src/app/components/controller/controller-create-source-utils.js ***!
   \*************************************************************************/
-/*! exports provided: runCreateSourceAndHandleResponse, runCreateSourceAndHandleResponseForAdyen, formatComponentTriggerErrors, handleCreateSourceValidation, handlePaymentServiceThen, chooseCreateSourceCatchMessage, handleAdyenError, addBrowserInfoToSourceRequest */
+/*! exports provided: runCreateSourceAndHandleResponse, runCreateSourceAndHandleResponseForAdyen, retrieveSourceAndHandleResponse, formatComponentTriggerErrors, handleCreateSourceValidation, handlePaymentServiceThen, chooseCreateSourceCatchMessage, handleAdyenError, addBrowserInfoToSourceRequest */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "runCreateSourceAndHandleResponse", function() { return runCreateSourceAndHandleResponse; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "runCreateSourceAndHandleResponseForAdyen", function() { return runCreateSourceAndHandleResponseForAdyen; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "retrieveSourceAndHandleResponse", function() { return retrieveSourceAndHandleResponse; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "formatComponentTriggerErrors", function() { return formatComponentTriggerErrors; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleCreateSourceValidation", function() { return handleCreateSourceValidation; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handlePaymentServiceThen", function() { return handlePaymentServiceThen; });
@@ -18328,6 +18339,22 @@ function runCreateSourceAndHandleResponse(sourceRequest, apiKey) {
 function runCreateSourceAndHandleResponseForAdyen(sourceRequest, clientSecretData, apiKey) {
   var paymentServiceUrl = _config__WEBPACK_IMPORTED_MODULE_1__["config"].paymentServiceUrl + '/' + clientSecretData.clientSecret[0] + '/?secret=' + clientSecretData.clientSecret[1];
   return Object(_payment_service_request__WEBPACK_IMPORTED_MODULE_0__["paymentServiceRequest"])(sourceRequest, apiKey, paymentServiceUrl).then(function (response) {
+    return handlePaymentServiceThen(response);
+  }).catch(function (error) {
+    return chooseCreateSourceCatchMessage(error);
+  });
+}
+/**
+ * requests a payment source by id and handles response
+ * @param sourceId
+ * @param clientSecret
+ * @param apiKey
+ * @returns {Promise<T | never>}
+ */
+
+function retrieveSourceAndHandleResponse(sourceId, clientSecret, apiKey) {
+  var paymentServiceUrl = _config__WEBPACK_IMPORTED_MODULE_1__["config"].paymentServiceUrl + '/' + sourceId + '?secret=' + clientSecret;
+  return Object(_payment_service_request__WEBPACK_IMPORTED_MODULE_0__["paymentServiceRequest"])({}, apiKey, paymentServiceUrl).then(function (response) {
     return handlePaymentServiceThen(response);
   }).catch(function (error) {
     return chooseCreateSourceCatchMessage(error);
@@ -18531,7 +18558,7 @@ function addBrowserInfoToSourceRequest(sourceRequest, browserInfo) {
     screenWidth: browserInfo.screenWidth,
     timeZoneOffset: browserInfo.timeZoneOffset,
     javaEnabled: browserInfo.javaEnabled,
-    referrer: browserInfo.href
+    referrer: window.location.href
   };
   return sourceRequest;
 }
@@ -19553,14 +19580,20 @@ function update(options) {
   data.components[this.type].options = Object(_app_components_options__WEBPACK_IMPORTED_MODULE_9__["sanitizeOptionsForType"])(mergedOptions, this.type);
   _dataStore__WEBPACK_IMPORTED_MODULE_4__["default"].set(key, data);
   this.options = data.components[this.type].options;
-  Object(_css_class_utils__WEBPACK_IMPORTED_MODULE_7__["applyActiveClasses"])(activeClasses, this.options.classes, el);
+
+  if (this.type !== 'onlinebanking') {
+    //online banking update means changing select options, so we have to set classes back to empty
+    Object(_css_class_utils__WEBPACK_IMPORTED_MODULE_7__["applyActiveClasses"])(activeClasses, this.options.classes, el);
+  } else {
+    Object(_css_class_utils__WEBPACK_IMPORTED_MODULE_7__["applyActiveClasses"])(['base', 'empty'], this.options.classes, el);
+  }
 }
 /**
  * Initalize 3d secure div on instantiation
  * @param {string} adyenId
  */
 
-function sendInitalize3dSecure(adyenId) {
+function sendInitalize3dSecure(adyenId, apiKey) {
   var adyenWindow = getComponentWindow(adyenId);
 
   if (!adyenWindow) {
@@ -19568,7 +19601,9 @@ function sendInitalize3dSecure(adyenId) {
   }
 
   return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_2__["default"].send(adyenWindow, 'sendInitalize3dSecure', {
-    secureId: adyenId
+    secureId: adyenId,
+    apiKey: apiKey,
+    userLocale: Object(_beacon_beacon_client_data__WEBPACK_IMPORTED_MODULE_10__["getUserLocale"])(window)
   }).catch(function () {
     return Object(_app_components_controller_controller_create_source_utils__WEBPACK_IMPORTED_MODULE_11__["chooseCreateSourceCatchMessage"])('Unable to configure Adyen.');
   });
@@ -19588,12 +19623,11 @@ function sendAdyen3dDetails(adyenId, controllerId, response, resolve) {
     throw new Error("Unable to locate 3ds '".concat(adyenId, "'"));
   }
 
-  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_2__["default"].send(adyenWindow, 'sendConfiguration', {
+  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_2__["default"].send(adyenWindow, 'sendActions', {
     controllerId: controllerId,
     secureId: adyenId,
     resolve: resolve,
     requiresAction: response,
-    nextStep: 'instance',
     clientData: Object(_beacon_beacon_client_data__WEBPACK_IMPORTED_MODULE_10__["collectClientData"])(window),
     action: response.nextAction.action
   }).catch(function () {

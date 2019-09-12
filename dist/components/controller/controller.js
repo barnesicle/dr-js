@@ -18180,11 +18180,17 @@ var config = {
   // eslint-disable-line no-undef
   applePayMerchantId: "merchant.com.test.cert.digitalriver",
   // eslint-disable-line no-undef
+  applePayMerchantValidationUrl: "https://api.digitalriver.com/payments/apple-pay/session",
+  //eslint-disable-line no-undef
   beaconStorageUrlNonProd: "https://beacon-test.driv-analytics.com/capture",
   // eslint-disable-line no-undef
   beaconStorageUrlProd: "https://beacon.driv-analytics.com/capture",
   // eslint-disable-line no-undef
-  adyenProdUrl: "https://checkoutshopper-live.adyen.com/checkoutshopper/sdk/3.0.0/adyen.js" // eslint-disable-line no-undef
+  adyenProdUrl: "https://checkoutshopper-live.adyen.com/checkoutshopper/sdk/3.0.0/adyen.js",
+  // eslint-disable-line no-undef
+  onlineBankingBanksUrl: "https://api.digitalriver.com/payments/online-banking/banks",
+  // eslint-disable-line no-undef
+  originKey: "pub.v2.8115061157590058.aHR0cDovL2xvY2FsaG9zdDo4MDgw.FF9fc99f70OC7jS9Ngmqj8z1H_cmKZMXQo_r0cnPAOg" // eslint-disable-line no-undef
 
 };
 
@@ -18194,13 +18200,14 @@ var config = {
 /*!*************************************************************************!*\
   !*** ./src/app/components/controller/controller-create-source-utils.js ***!
   \*************************************************************************/
-/*! exports provided: runCreateSourceAndHandleResponse, runCreateSourceAndHandleResponseForAdyen, formatComponentTriggerErrors, handleCreateSourceValidation, handlePaymentServiceThen, chooseCreateSourceCatchMessage, handleAdyenError, addBrowserInfoToSourceRequest */
+/*! exports provided: runCreateSourceAndHandleResponse, runCreateSourceAndHandleResponseForAdyen, retrieveSourceAndHandleResponse, formatComponentTriggerErrors, handleCreateSourceValidation, handlePaymentServiceThen, chooseCreateSourceCatchMessage, handleAdyenError, addBrowserInfoToSourceRequest */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "runCreateSourceAndHandleResponse", function() { return runCreateSourceAndHandleResponse; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "runCreateSourceAndHandleResponseForAdyen", function() { return runCreateSourceAndHandleResponseForAdyen; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "retrieveSourceAndHandleResponse", function() { return retrieveSourceAndHandleResponse; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "formatComponentTriggerErrors", function() { return formatComponentTriggerErrors; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleCreateSourceValidation", function() { return handleCreateSourceValidation; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handlePaymentServiceThen", function() { return handlePaymentServiceThen; });
@@ -18236,6 +18243,22 @@ function runCreateSourceAndHandleResponse(sourceRequest, apiKey) {
 function runCreateSourceAndHandleResponseForAdyen(sourceRequest, clientSecretData, apiKey) {
   var paymentServiceUrl = _config__WEBPACK_IMPORTED_MODULE_1__["config"].paymentServiceUrl + '/' + clientSecretData.clientSecret[0] + '/?secret=' + clientSecretData.clientSecret[1];
   return Object(_payment_service_request__WEBPACK_IMPORTED_MODULE_0__["paymentServiceRequest"])(sourceRequest, apiKey, paymentServiceUrl).then(function (response) {
+    return handlePaymentServiceThen(response);
+  }).catch(function (error) {
+    return chooseCreateSourceCatchMessage(error);
+  });
+}
+/**
+ * requests a payment source by id and handles response
+ * @param sourceId
+ * @param clientSecret
+ * @param apiKey
+ * @returns {Promise<T | never>}
+ */
+
+function retrieveSourceAndHandleResponse(sourceId, clientSecret, apiKey) {
+  var paymentServiceUrl = _config__WEBPACK_IMPORTED_MODULE_1__["config"].paymentServiceUrl + '/' + sourceId + '?secret=' + clientSecret;
+  return Object(_payment_service_request__WEBPACK_IMPORTED_MODULE_0__["paymentServiceRequest"])({}, apiKey, paymentServiceUrl).then(function (response) {
     return handlePaymentServiceThen(response);
   }).catch(function (error) {
     return chooseCreateSourceCatchMessage(error);
@@ -18439,7 +18462,7 @@ function addBrowserInfoToSourceRequest(sourceRequest, browserInfo) {
     screenWidth: browserInfo.screenWidth,
     timeZoneOffset: browserInfo.timeZoneOffset,
     javaEnabled: browserInfo.javaEnabled,
-    referrer: browserInfo.href
+    referrer: window.location.href
   };
   return sourceRequest;
 }
@@ -18478,6 +18501,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleCreditCardCreateSource", function() { return handleCreditCardCreateSource; });
 /* harmony import */ var _controller_create_source_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./controller-create-source-utils */ "./src/app/components/controller/controller-create-source-utils.js");
 
+
+function createCreditCardData(sourceRequest, creditCardNumber, expirySplit, creditCardCVV) {
+  return Object.assign({}, sourceRequest.creditCard, {
+    number: creditCardNumber,
+    expirationMonth: parseInt(expirySplit[0]),
+    expirationYear: parseInt(20 + expirySplit[1]),
+    // Appends 20 to the yy format
+    cvv: creditCardCVV
+  });
+}
+
 function handleCreditCardCreateSource(creditCardNumberComponent, creditCardCVVComponent, creditCardExpiryComponent, sourceRequest, apiKey) {
   if (!creditCardNumberComponent || !creditCardCVVComponent || !creditCardExpiryComponent) {
     return Promise.reject('Cannot create source because all the required components have not been created for a credit card submission');
@@ -18515,13 +18549,7 @@ function handleCreditCardCreateSource(creditCardNumberComponent, creditCardCVVCo
 
       var expirySplit = creditCardExpiry.split('/'); // Assumes the expiry is in MM/yy format
 
-      sourceRequest.creditCard = {
-        number: creditCardNumber,
-        expirationMonth: parseInt(expirySplit[0]),
-        expirationYear: parseInt(20 + expirySplit[1]),
-        // Appends 20 to the yy format
-        cvv: creditCardCVV
-      };
+      sourceRequest.creditCard = createCreditCardData(sourceRequest, creditCardNumber, expirySplit, creditCardCVV);
       return Object(_controller_create_source_utils__WEBPACK_IMPORTED_MODULE_0__["runCreateSourceAndHandleResponse"])(sourceRequest, apiKey);
     }).catch(function (error) {
       return Object(_controller_create_source_utils__WEBPACK_IMPORTED_MODULE_0__["chooseCreateSourceCatchMessage"])(error);
@@ -18546,6 +18574,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "runGetBanksAndHandleResponse", function() { return runGetBanksAndHandleResponse; });
 /* harmony import */ var _controller_create_source_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./controller-create-source-utils */ "./src/app/components/controller/controller-create-source-utils.js");
 /* harmony import */ var _payment_service_request__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../payment-service-request */ "./src/app/payment-service-request.js");
+/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../config */ "./src/app/components/config.js");
+
 
 
 
@@ -18635,7 +18665,7 @@ function handleOnlineBankingCreateSource(componentInstance, sourceRequest, apiKe
  */
 
 function runGetBanksAndHandleResponse(apiKey, currency, country) {
-  return Object(_payment_service_request__WEBPACK_IMPORTED_MODULE_1__["paymentServiceGetRequest"])(apiKey, "https://api.digitalriver.com/payments/online-banking/banks?currency=".concat(currency, "&country=").concat(country)).then(function (response) {
+  return Object(_payment_service_request__WEBPACK_IMPORTED_MODULE_1__["paymentServiceGetRequest"])(apiKey, "".concat(_config__WEBPACK_IMPORTED_MODULE_2__["config"].onlineBankingBanksUrl, "?currency=").concat(currency, "&country=").concat(country)).then(function (response) {
     return response.data;
   }).catch(function () {
     return [];
@@ -18659,7 +18689,7 @@ module.exports = __webpack_require__.p + "controller\\controller.html";
 /*!*****************************************************!*\
   !*** ./src/app/components/controller/controller.js ***!
   \*****************************************************/
-/*! exports provided: getComponentTypeFromId, getComponentById, handleCreateSourceEvent, handleRegisterNewComponent, handleUnregisterComponent, handleMountComponent, handleUnmountComponent, handleComponentEvent, handleClientTrigger, handleOptions, validateAppleMerchant, handleInitialData, getOnlineBankingBanks, handleCreateSourceWithAdyenDetails */
+/*! exports provided: getComponentTypeFromId, getComponentById, handleCreateSourceEvent, handleRegisterNewComponent, handleUnregisterComponent, handleMountComponent, handleUnmountComponent, handleComponentEvent, handleClientTrigger, handleOptions, validateAppleMerchant, handleInitialData, getOnlineBankingBanks, handleCreateSourceWithAdyenDetails, handleRetrieveSource */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -18678,6 +18708,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleInitialData", function() { return handleInitialData; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getOnlineBankingBanks", function() { return getOnlineBankingBanks; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleCreateSourceWithAdyenDetails", function() { return handleCreateSourceWithAdyenDetails; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleRetrieveSource", function() { return handleRetrieveSource; });
 /* harmony import */ var _controller_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./controller.html */ "./src/app/components/controller/controller.html");
 /* harmony import */ var _controller_html__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_controller_html__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../post-robot-wrapper */ "./src/post-robot-wrapper.js");
@@ -18690,6 +18721,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _controller_online_banking_create_source__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./controller-online-banking-create-source */ "./src/app/components/controller/controller-online-banking-create-source.js");
 /* harmony import */ var _controller_create_source_utils__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./controller-create-source-utils */ "./src/app/components/controller/controller-create-source-utils.js");
 /* harmony import */ var _controller_credit_card_create_source__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./controller-credit-card-create-source */ "./src/app/components/controller/controller-credit-card-create-source.js");
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 
 
 
@@ -19071,39 +19106,77 @@ clientListener.on('sendOptions', handleOptions);
  * @returns {*}
  */
 
-function handleOptions(event, currentRetryTime) {
-  var _event$data8 = event.data,
-      componentType = _event$data8.componentType,
-      componentId = _event$data8.componentId,
-      unsafeOptions = _event$data8.unsafeOptions;
-
-  if (!components[componentType]) {
-    return Object(_retry__WEBPACK_IMPORTED_MODULE_7__["retry"])(handleOptions, event, currentRetryTime, DEFAULT_MAX_RETRIES, "Controller does not have component of type '".concat(componentType, "' registered."));
-  }
-
-  var options = Object(_options__WEBPACK_IMPORTED_MODULE_2__["sanitizeOptionsForType"])(unsafeOptions); // Store the options
-
-  components[componentType].options = options;
-
-  if (isMounted(componentType)) {
-    return components[componentType].send('options', {
-      componentData: {
-        options: options,
-        instanceOptions: components['controller'].instanceOptions // TODO Online banking should add banks here if the currency or country have changed.
-
-      },
-      componentId: componentId
-    }).then(function () {
-      return Promise.resolve();
-    });
-  } else {
-    // If the component is not mounted we'll send them on mount, allows updating of options without a component being mounted
-    return Promise.resolve();
-  }
+function handleOptions(_x, _x2) {
+  return _handleOptions.apply(this, arguments);
 }
 /**
  * When Apple Pay button is clicked, Apple expects us to do merchant validation
  */
+
+function _handleOptions() {
+  _handleOptions = _asyncToGenerator(
+  /*#__PURE__*/
+  regeneratorRuntime.mark(function _callee(event, currentRetryTime) {
+    var _event$data11, componentType, componentId, unsafeOptions, options, dataToSend;
+
+    return regeneratorRuntime.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            _event$data11 = event.data, componentType = _event$data11.componentType, componentId = _event$data11.componentId, unsafeOptions = _event$data11.unsafeOptions;
+
+            if (components[componentType]) {
+              _context.next = 3;
+              break;
+            }
+
+            return _context.abrupt("return", Object(_retry__WEBPACK_IMPORTED_MODULE_7__["retry"])(handleOptions, event, currentRetryTime, DEFAULT_MAX_RETRIES, "Controller does not have component of type '".concat(componentType, "' registered.")));
+
+          case 3:
+            options = Object(_options__WEBPACK_IMPORTED_MODULE_2__["sanitizeOptionsForType"])(unsafeOptions); // Store the options
+
+            components[componentType].options = options;
+            dataToSend = {
+              componentData: {
+                options: options,
+                instanceOptions: components['controller'].instanceOptions
+              },
+              componentId: componentId
+            };
+
+            if (!(componentType === 'onlinebanking')) {
+              _context.next = 10;
+              break;
+            }
+
+            _context.next = 9;
+            return Object(_controller_online_banking_create_source__WEBPACK_IMPORTED_MODULE_8__["runGetBanksAndHandleResponse"])(components['controller'].apiKey, options.onlineBanking.currency, options.onlineBanking.country);
+
+          case 9:
+            dataToSend.componentData.banks = _context.sent;
+
+          case 10:
+            if (!isMounted(componentType)) {
+              _context.next = 14;
+              break;
+            }
+
+            return _context.abrupt("return", components[componentType].send('options', dataToSend).then(function () {
+              return Promise.resolve();
+            }));
+
+          case 14:
+            return _context.abrupt("return", Promise.resolve());
+
+          case 15:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee);
+  }));
+  return _handleOptions.apply(this, arguments);
+}
 
 clientListener.on('validateAppleMerchant', validateAppleMerchant);
 /**
@@ -19124,7 +19197,7 @@ function validateAppleMerchant(validationData) {
     displayName: data.displayName,
     domain: data.domain
   };
-  return Promise.resolve(Object(_payment_service_request__WEBPACK_IMPORTED_MODULE_3__["paymentServiceRequest"])(sourceRequest, apiKey, 'https://api.digitalriver.com/payments/apple-pay/session')); // TODO This URL should not be hard coded.
+  return Promise.resolve(Object(_payment_service_request__WEBPACK_IMPORTED_MODULE_3__["paymentServiceRequest"])(sourceRequest, apiKey, _config__WEBPACK_IMPORTED_MODULE_5__["config"].applePayMerchantValidationUrl)); // TODO This URL should not be hard coded.
 }
 /**
  * Saves the api Key to the controller
@@ -19138,10 +19211,10 @@ clientListener.on('sendInitialData', handleInitialData);
  */
 
 function handleInitialData(event) {
-  var _event$data9 = event.data,
-      apiKey = _event$data9.apiKey,
-      browserInfo = _event$data9.browserInfo,
-      instanceOptions = _event$data9.instanceOptions;
+  var _event$data8 = event.data,
+      apiKey = _event$data8.apiKey,
+      browserInfo = _event$data8.browserInfo,
+      instanceOptions = _event$data8.instanceOptions;
 
   if (!apiKey) {
     return Promise.reject('Controller must receive an API Key.');
@@ -19172,9 +19245,9 @@ componentListener.on('createSourceFromAdyenRequest', handleCreateSourceWithAdyen
  */
 
 function handleCreateSourceWithAdyenDetails(event) {
-  var _event$data10 = event.data,
-      sourceRequest = _event$data10.sourceRequest,
-      clientSecretData = _event$data10.clientSecretData;
+  var _event$data9 = event.data,
+      sourceRequest = _event$data9.sourceRequest,
+      clientSecretData = _event$data9.clientSecretData;
   var apiKey = components['controller'].apiKey;
 
   if (!sourceRequest) {
@@ -19190,6 +19263,25 @@ function handleCreateSourceWithAdyenDetails(event) {
   }
 
   return Object(_controller_create_source_utils__WEBPACK_IMPORTED_MODULE_9__["runCreateSourceAndHandleResponseForAdyen"])(sourceRequest, clientSecretData, apiKey);
+}
+clientListener.on('retrieveSource', handleRetrieveSource);
+/**
+ * handleRetrieveSource handles retrieving a payment source
+ * @param event
+ * @returns {object} payment source or errors
+ */
+
+function handleRetrieveSource(event) {
+  var _event$data10 = event.data,
+      sourceId = _event$data10.sourceId,
+      sourceClientSecret = _event$data10.sourceClientSecret;
+  var apiKey = components['controller'].apiKey;
+
+  if (!apiKey) {
+    return Promise.reject('Controller did not receive an api key');
+  }
+
+  return Object(_controller_create_source_utils__WEBPACK_IMPORTED_MODULE_9__["retrieveSourceAndHandleResponse"])(sourceId, sourceClientSecret, apiKey);
 }
 
 /***/ }),
@@ -20346,14 +20438,20 @@ function update(options) {
   data.components[this.type].options = Object(_app_components_options__WEBPACK_IMPORTED_MODULE_9__["sanitizeOptionsForType"])(mergedOptions, this.type);
   _dataStore__WEBPACK_IMPORTED_MODULE_4__["default"].set(key, data);
   this.options = data.components[this.type].options;
-  Object(_css_class_utils__WEBPACK_IMPORTED_MODULE_7__["applyActiveClasses"])(activeClasses, this.options.classes, el);
+
+  if (this.type !== 'onlinebanking') {
+    //online banking update means changing select options, so we have to set classes back to empty
+    Object(_css_class_utils__WEBPACK_IMPORTED_MODULE_7__["applyActiveClasses"])(activeClasses, this.options.classes, el);
+  } else {
+    Object(_css_class_utils__WEBPACK_IMPORTED_MODULE_7__["applyActiveClasses"])(['base', 'empty'], this.options.classes, el);
+  }
 }
 /**
  * Initalize 3d secure div on instantiation
  * @param {string} adyenId
  */
 
-function sendInitalize3dSecure(adyenId) {
+function sendInitalize3dSecure(adyenId, apiKey) {
   var adyenWindow = getComponentWindow(adyenId);
 
   if (!adyenWindow) {
@@ -20361,7 +20459,9 @@ function sendInitalize3dSecure(adyenId) {
   }
 
   return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_2__["default"].send(adyenWindow, 'sendInitalize3dSecure', {
-    secureId: adyenId
+    secureId: adyenId,
+    apiKey: apiKey,
+    userLocale: Object(_beacon_beacon_client_data__WEBPACK_IMPORTED_MODULE_10__["getUserLocale"])(window)
   }).catch(function () {
     return Object(_app_components_controller_controller_create_source_utils__WEBPACK_IMPORTED_MODULE_11__["chooseCreateSourceCatchMessage"])('Unable to configure Adyen.');
   });
@@ -20381,12 +20481,11 @@ function sendAdyen3dDetails(adyenId, controllerId, response, resolve) {
     throw new Error("Unable to locate 3ds '".concat(adyenId, "'"));
   }
 
-  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_2__["default"].send(adyenWindow, 'sendConfiguration', {
+  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_2__["default"].send(adyenWindow, 'sendActions', {
     controllerId: controllerId,
     secureId: adyenId,
     resolve: resolve,
     requiresAction: response,
-    nextStep: 'instance',
     clientData: Object(_beacon_beacon_client_data__WEBPACK_IMPORTED_MODULE_10__["collectClientData"])(window),
     action: response.nextAction.action
   }).catch(function () {

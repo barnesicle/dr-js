@@ -155,7 +155,7 @@
       width: 160px;
     }
   </style>
-<script type="text/javascript" src="DigitalRiver.js"></script></head>
+<script type="text/javascript" src="http://localhost:9090/DigitalRiver.js"></script></head>
 
 <body class="bg-light" style="padding-top:50px;">
 <div class="row">
@@ -649,10 +649,6 @@
       <button onclick="destroyField()">Remove Card Number field</button>
       <button onclick="recreateField()">Re-create Card Number field</button>
     </div>
-    <div>
-      <button onclick="retrieveSourceDemo()">Retrieve valid source </button>
-      <button onclick="retrieveBadSourceDemo()">Retrieve invalid source </button>
-    </div>
   </div>
 
   <div class="col-md-4 console">
@@ -830,7 +826,7 @@
 
     }
 
-    const options = { 'locale': 'de-DE'};
+    const options = { 'locale': 'es-co'};
     digitalRiverPayments = new DigitalRiver(apiKey, options);
 
     let updatedccNumOptions = {
@@ -949,7 +945,8 @@
 
     ibpBanksComponent = digitalRiverPayments.createElement('onlinebanking', {
       style: styles,
-      onlineBanking: { currency: 'EUR', country: 'DE' }
+      onlineBanking: { currency: 'EUR', country: 'DE' },
+      placeholderText: 'Select a bank'
     });
 
     googlePayComponent = digitalRiverPayments.createElement('googlepay', googlePayPaymentRequest);
@@ -1664,7 +1661,7 @@
       responseLog(JSON.stringify(error))
     });
   }
-
+  
   function complianceData() {
     $('#complianceMethod').empty();
     let entity = $('#bEntity').val();
@@ -1768,20 +1765,6 @@
     console.error('error getting session', error)
   });
 
-  const retrieveSourceDemo = function() {
-    digitalRiverPayments.retrieveSource('430d4cdc-0d1e-4c48-9a0a-e1885bd5dda9','430d4cdc-0d1e-4c48-9a0a-e1885bd5dda9_b60db5db-0994-473c-bb02-e3e7c45c6913')
-      .then(function(response) {
-        responseLog(JSON.stringify(response));
-      })
-
-  }
-  const retrieveBadSourceDemo = function() {
-    digitalRiverPayments.retrieveSource('33','430d4cdc-0d1e-4c48-9a0a-e1885bd5dda9_b60db5db-0994-473c-bb02-e3e7c45c6913')
-            .then(function(response) {
-              responseLog(JSON.stringify(response));
-            })
-
-  }
 </script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
