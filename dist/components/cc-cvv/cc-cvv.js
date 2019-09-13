@@ -18985,11 +18985,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "config", function() { return config; });
 // Holds any configuration data that changes depending on environment
 var config = {
-  domain: "https://github.digitalriverws.net",
+  domain: "http://localhost:8080",
   // eslint-disable-line no-undef
   paymentServiceUrl: "https://api.digitalriver.com/payments/sources",
   // eslint-disable-line no-undef
-  basePath: "/pages/lbarnes/drjs-demo/dist" || false,
+  basePath: undefined || '',
   // eslint-disable-line no-undef
   applePayMerchantId: "merchant.com.test.cert.digitalriver",
   // eslint-disable-line no-undef
@@ -20958,7 +20958,7 @@ function getHRef(window) {
 /*!***************************************!*\
   !*** ./src/client/createComponent.js ***!
   \***************************************/
-/*! exports provided: onEventHandler, unmount, mount, destroy, createComponent, googlePayCanMakePayment, getComponentURL, generateComponentId, getComponentWindow, findWindow, registerComponentWithController, sendOptions, sendApiKey, getComponentIFrame, createOrExtractBeaconController, createAdyenDiv, createOrExtractAdyenController, sendBeaconEventDetails, sendBeaconEventToController, update, sendInitalize3dSecure, sendAdyen3dDetails, sendAdyenChallengeShopper, update3dSecureOverlay */
+/*! exports provided: onEventHandler, unmount, mount, destroy, createComponent, googlePayCanMakePayment, getComponentURL, generateComponentId, getComponentWindow, findWindow, registerComponentWithController, sendOptions, sendApiKey, getComponentIFrame, createOrExtractBeaconController, createAdyenDiv, createOrExtractAdyenController, sendBeaconEventDetails, sendBeaconEventToController, update, sendInitalize3dSecure, sendAdyen3dDetails, sendAdyenAction, update3dSecureOverlay */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -20985,7 +20985,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "update", function() { return update; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sendInitalize3dSecure", function() { return sendInitalize3dSecure; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sendAdyen3dDetails", function() { return sendAdyen3dDetails; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sendAdyenChallengeShopper", function() { return sendAdyenChallengeShopper; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sendAdyenAction", function() { return sendAdyenAction; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "update3dSecureOverlay", function() { return update3dSecureOverlay; });
 /* harmony import */ var uuid_v4__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uuid/v4 */ "./node_modules/uuid/v4.js");
 /* harmony import */ var uuid_v4__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(uuid_v4__WEBPACK_IMPORTED_MODULE_0__);
@@ -21634,14 +21634,14 @@ function sendAdyen3dDetails(adyenId, controllerId, response, resolve) {
  * @param {function} resolve
  */
 
-function sendAdyenChallengeShopper(adyenId, controllerId, response, resolve) {
+function sendAdyenAction(adyenId, controllerId, response, resolve) {
   var adyenWindow = getComponentWindow(adyenId);
 
   if (!adyenWindow) {
     throw new Error("Unable to locate 3ds '".concat(adyenId, "'"));
   }
 
-  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_2__["default"].send(adyenWindow, 'sendChallengeShopper', {
+  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_2__["default"].send(adyenWindow, 'sendActions', {
     controllerId: controllerId,
     secureId: adyenId,
     resolve: resolve,

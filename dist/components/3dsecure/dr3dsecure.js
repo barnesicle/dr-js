@@ -18175,7 +18175,7 @@ module.exports = __webpack_require__.p + "3dsecure\\dr3dsecure.html";
 /*!***************************************************!*\
   !*** ./src/app/components/3dsecure/dr3dsecure.js ***!
   \***************************************************/
-/*! exports provided: getInstanceData, clearComponentData, setAdyenCheckout, handleChallengeShopper, handleInitalizeData, setInstanceData, getConfiguration, handleActions, handleConfigResponse, createAdyenSession, extractFingerPrintDetails, extractChallengeShopper, handleFingerPrintDevice, handleSuccessChallengeShopper, handleError, openPopup, initializeAdyenJS */
+/*! exports provided: getInstanceData, clearComponentData, setAdyenCheckout, handleInitalizeData, setInstanceData, getConfiguration, handleAction, handleConfigResponse, createAdyenSession, extractFingerPrintDetails, extractChallengeShopper, handleFingerPrintDevice, handleSuccessChallengeShopper, handleError, openPopup, initializeAdyenJS */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -18183,11 +18183,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getInstanceData", function() { return getInstanceData; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "clearComponentData", function() { return clearComponentData; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setAdyenCheckout", function() { return setAdyenCheckout; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleChallengeShopper", function() { return handleChallengeShopper; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleInitalizeData", function() { return handleInitalizeData; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setInstanceData", function() { return setInstanceData; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getConfiguration", function() { return getConfiguration; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleActions", function() { return handleActions; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleAction", function() { return handleAction; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleConfigResponse", function() { return handleConfigResponse; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createAdyenSession", function() { return createAdyenSession; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "extractFingerPrintDetails", function() { return extractFingerPrintDetails; });
@@ -18216,13 +18215,13 @@ var clientListener = _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_2__["default"]
   window: window.parent,
   domain: clientDomain
 });
-clientListener.on('sendActions', handleActions);
+clientListener.on('sendActions', handleAction);
 clientListener.on('sendInitalize3dSecure', handleInitalizeData);
 var controllerListener = _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_2__["default"].listener({
   domain: _config__WEBPACK_IMPORTED_MODULE_3__["config"].domain
-}); //controllerListener.on('sendActions', handleActions);
+}); //controllerListener.on('sendActions', handleAction);
 
-controllerListener.on('sendChallengeShopper', handleChallengeShopper);
+controllerListener.on('sendActions', handleAction);
 var components = {
   payment3dsecure: {}
 };
@@ -18245,26 +18244,16 @@ function setAdyenCheckout(adyenCheckout) {
 function getEnvironment() {
   return 'test'; // todo : environment variable can be updated based on API KEY.
 }
-
-function handleChallengeShopper(event) {
-  var _event$data = event.data,
-      requiresAction = _event$data.requiresAction,
-      secureId = _event$data.secureId,
-      controllerId = _event$data.controllerId,
-      resolve = _event$data.resolve,
-      action = _event$data.action;
-  setInstanceData(secureId, action, controllerId, requiresAction, resolve);
-  extractChallengeShopper(getInstanceData());
-}
 /**
  * load the adyen script url
  * @param event
  */
 
+
 function handleInitalizeData(event) {
-  var _event$data2 = event.data,
-      secureId = _event$data2.secureId,
-      userLocale = _event$data2.userLocale;
+  var _event$data = event.data,
+      secureId = _event$data.secureId,
+      userLocale = _event$data.userLocale;
   components['payment3dsecure'].componentId = secureId;
   var configuration = getConfiguration(getEnvironment(), userLocale, _config__WEBPACK_IMPORTED_MODULE_3__["config"].originKey);
   initializeAdyenJS(_config__WEBPACK_IMPORTED_MODULE_3__["config"].adyenProdUrl, configuration);
@@ -18288,20 +18277,18 @@ function getConfiguration(environment, userLocale, originKey) {
  * @param {Event} event
  */
 
-function handleActions(event) {
-  var _event$data3 = event.data,
-      requiresAction = _event$data3.requiresAction,
-      secureId = _event$data3.secureId,
-      controllerId = _event$data3.controllerId,
-      resolve = _event$data3.resolve,
-      action = _event$data3.action;
+function handleAction(event) {
+  var _event$data2 = event.data,
+      requiresAction = _event$data2.requiresAction,
+      secureId = _event$data2.secureId,
+      controllerId = _event$data2.controllerId,
+      resolve = _event$data2.resolve,
+      action = _event$data2.action;
   setInstanceData(secureId, action, controllerId, requiresAction, resolve);
   runAction(getInstanceData());
 }
 
 function runAction(instanceData) {
-  console.log('running action', instanceData);
-
   if (instanceData.action === 'challenge_shopper') {
     extractChallengeShopper(instanceData);
   } else if (instanceData.action === 'fingerprint_device') {
@@ -18327,7 +18314,6 @@ function handleConfigResponse(response, instanceData) {
  */
 
 function createAdyenSession(config) {
-  console.log('creating session with config', config);
   return new AdyenCheckout(config); //eslint-disable-line no-undef
 }
 /**
@@ -18445,11 +18431,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "config", function() { return config; });
 // Holds any configuration data that changes depending on environment
 var config = {
-  domain: "https://github.digitalriverws.net",
+  domain: "http://localhost:8080",
   // eslint-disable-line no-undef
   paymentServiceUrl: "https://api.digitalriver.com/payments/sources",
   // eslint-disable-line no-undef
-  basePath: "/pages/lbarnes/drjs-demo/dist" || false,
+  basePath: undefined || '',
   // eslint-disable-line no-undef
   applePayMerchantId: "merchant.com.test.cert.digitalriver",
   // eslint-disable-line no-undef
@@ -18501,7 +18487,6 @@ function checkAndSendBeaconDetails(response) {
 
 function handleFingerPrintCreateSource(adyenResponseFingerprint, sourceData) {
   var clientSecret = sourceData.paymentData.clientSecret;
-  console.log('handleFingerPrintCreateSource', sourceData);
 
   if (!clientSecret) {
     return Promise.reject('Cannot send data to paymentservice because required data is missing.');
@@ -18516,15 +18501,9 @@ function handleFingerPrintCreateSource(adyenResponseFingerprint, sourceData) {
   var clientSecretId = {
     clientSecret: clientSecret.split('_')
   };
-  console.log('createSourceWithAdyen', sourceRequest);
   return Object(_client_createSource__WEBPACK_IMPORTED_MODULE_0__["createSourceWithAdyen"])(sourceData.controllerId, sourceRequest, clientSecretId).then(function (response) {
-    console.log('response from payment service', response);
-
     if (typeof response !== 'undefined' && response.source !== null && response.source.state === 'requires_action' && response.source.nextAction !== null) {
-      if (response.source.nextAction.action === 'challenge_shopper') {
-        Object(_client_createComponent__WEBPACK_IMPORTED_MODULE_1__["sendAdyenChallengeShopper"])(sourceData.componentId, sourceData.controllerId, response.source, sourceData.resolve);
-      }
-
+      Object(_client_createComponent__WEBPACK_IMPORTED_MODULE_1__["sendAdyenAction"])(sourceData.componentId, sourceData.controllerId, response.source, sourceData.resolve);
       return response;
     } else {
       checkAndSendBeaconDetails(response);
@@ -18557,9 +18536,14 @@ function handleChallengeResultCreateSource(adyenResponse, sourceData) {
     clientSecret: clientSecret.split('_')
   };
   return Object(_client_createSource__WEBPACK_IMPORTED_MODULE_0__["createSourceWithAdyen"])(sourceData.controllerId, sourceRequest, clientSecretId).then(function (response) {
-    checkAndSendBeaconDetails(response);
-    sourceData.resolve(response);
-    return response;
+    if (typeof response !== 'undefined' && response.source !== null && response.source.state === 'requires_action' && response.source.nextAction !== null) {
+      Object(_client_createComponent__WEBPACK_IMPORTED_MODULE_1__["sendAdyenAction"])(sourceData.componentId, sourceData.controllerId, response.source, sourceData.resolve);
+      return response;
+    } else {
+      checkAndSendBeaconDetails(response);
+      sourceData.resolve(response);
+      return response;
+    }
   });
 }
 
@@ -19355,7 +19339,7 @@ function getHRef(window) {
 /*!***************************************!*\
   !*** ./src/client/createComponent.js ***!
   \***************************************/
-/*! exports provided: onEventHandler, unmount, mount, destroy, createComponent, googlePayCanMakePayment, getComponentURL, generateComponentId, getComponentWindow, findWindow, registerComponentWithController, sendOptions, sendApiKey, getComponentIFrame, createOrExtractBeaconController, createAdyenDiv, createOrExtractAdyenController, sendBeaconEventDetails, sendBeaconEventToController, update, sendInitalize3dSecure, sendAdyen3dDetails, sendAdyenChallengeShopper, update3dSecureOverlay */
+/*! exports provided: onEventHandler, unmount, mount, destroy, createComponent, googlePayCanMakePayment, getComponentURL, generateComponentId, getComponentWindow, findWindow, registerComponentWithController, sendOptions, sendApiKey, getComponentIFrame, createOrExtractBeaconController, createAdyenDiv, createOrExtractAdyenController, sendBeaconEventDetails, sendBeaconEventToController, update, sendInitalize3dSecure, sendAdyen3dDetails, sendAdyenAction, update3dSecureOverlay */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -19382,7 +19366,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "update", function() { return update; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sendInitalize3dSecure", function() { return sendInitalize3dSecure; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sendAdyen3dDetails", function() { return sendAdyen3dDetails; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sendAdyenChallengeShopper", function() { return sendAdyenChallengeShopper; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sendAdyenAction", function() { return sendAdyenAction; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "update3dSecureOverlay", function() { return update3dSecureOverlay; });
 /* harmony import */ var uuid_v4__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uuid/v4 */ "./node_modules/uuid/v4.js");
 /* harmony import */ var uuid_v4__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(uuid_v4__WEBPACK_IMPORTED_MODULE_0__);
@@ -20031,14 +20015,14 @@ function sendAdyen3dDetails(adyenId, controllerId, response, resolve) {
  * @param {function} resolve
  */
 
-function sendAdyenChallengeShopper(adyenId, controllerId, response, resolve) {
+function sendAdyenAction(adyenId, controllerId, response, resolve) {
   var adyenWindow = getComponentWindow(adyenId);
 
   if (!adyenWindow) {
     throw new Error("Unable to locate 3ds '".concat(adyenId, "'"));
   }
 
-  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_2__["default"].send(adyenWindow, 'sendChallengeShopper', {
+  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_2__["default"].send(adyenWindow, 'sendActions', {
     controllerId: controllerId,
     secureId: adyenId,
     resolve: resolve,
