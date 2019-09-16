@@ -7,11 +7,13 @@
   <meta charset="utf-8"/>
   <title>Client Page</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="//unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="//cdn.polyfill.io/v3/polyfill.js?ver=5.1.1" type="text/javascript"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
         integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
   <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
   <style>
     .xsmall {
@@ -687,6 +689,9 @@
   let ccExpirationComplete = false;
   let ccCVVComplete = false;
 
+  const options = { 'locale': 'ko-KR'};
+  digitalRiverPayments = new DigitalRiver(apiKey, options);
+
   let styles = {
     base: {
       color: '#495057',
@@ -830,8 +835,8 @@
 
     }
 
-    const options = { 'locale': 'de-DE'};
-    digitalRiverPayments = new DigitalRiver(apiKey, options);
+    /*const options = { 'locale': 'ko-KR'};
+    digitalRiverPayments = new DigitalRiver(apiKey, options);*/
 
     let updatedccNumOptions = {
       placeholderText: 'Number',
@@ -1618,7 +1623,7 @@
       } else {
         document.getElementById("response").innerHTML += "Payment response: " + "" + JSON.stringify(response.source, null, '\t');
       }
-    }).catch((err) => {
+    }).catch(function (err) {
       console.error('createSource failed:', err);
     });
   }
@@ -1726,7 +1731,7 @@
           var date = new Date();
           date.setTime(date.getTime()+(24*60*60*1000));
           var expires = "; expires="+date.toGMTString();
-          console.log({token});
+          console.log({token: token});
           var cookie = 'shopperToken=' + token.data.access_token + expires;
           document.cookie = cookie;
           return token.data.access_token;
