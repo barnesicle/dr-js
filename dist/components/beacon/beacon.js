@@ -16720,6 +16720,22 @@ module.exports = g;
 
 /***/ }),
 
+/***/ "./src/app/components/api-key-utils.js":
+/*!*********************************************!*\
+  !*** ./src/app/components/api-key-utils.js ***!
+  \*********************************************/
+/*! exports provided: isTestApiKey */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isTestApiKey", function() { return isTestApiKey; });
+function isTestApiKey(apiKey) {
+  return apiKey.toLowerCase().startsWith('pk_test_') || apiKey.toLowerCase().startsWith('pk_hc_');
+}
+
+/***/ }),
+
 /***/ "./src/app/components/beacon/beacon.html":
 /*!***********************************************!*\
   !*** ./src/app/components/beacon/beacon.html ***!
@@ -16933,9 +16949,13 @@ var config = {
   // eslint-disable-line no-undef
   adyenProdUrl: "https://checkoutshopper-live.adyen.com/checkoutshopper/sdk/3.0.0/adyen.js",
   // eslint-disable-line no-undef
+  adyenTestUrl: "https://checkoutshopper-test.adyen.com/checkoutshopper/sdk/3.0.0/adyen.js",
+  // eslint-disable-line no-undef
   onlineBankingBanksUrl: "https://api.digitalriver.com/payments/online-banking/banks",
   // eslint-disable-line no-undef
-  originKey: "pub.v2.8115061157590058.aHR0cDovL2xvY2FsaG9zdDo4MDgw.FF9fc99f70OC7jS9Ngmqj8z1H_cmKZMXQo_r0cnPAOg" // eslint-disable-line no-undef
+  originProdKey: "pub.v2.8115061157590058.aHR0cDovL2xvY2FsaG9zdDo4MDgw.FF9fc99f70OC7jS9Ngmqj8z1H_cmKZMXQo_r0cnPAOg",
+  // eslint-disable-line no-undef
+  originTestKey: "pub.v2.8115061157590058.aHR0cDovL2xvY2FsaG9zdDo4MDgw.FF9fc99f70OC7jS9Ngmqj8z1H_cmKZMXQo_r0cnPAOg" // eslint-disable-line no-undef
 
 };
 
@@ -17125,6 +17145,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _app_components_config__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../app/components/config */ "./src/app/components/config.js");
+/* harmony import */ var _app_components_api_key_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../app/components/api-key-utils */ "./src/app/components/api-key-utils.js");
+
 
 
 
@@ -17148,7 +17170,7 @@ function determineBeaconURL(apiKey) {
     return '';
   }
 
-  if (apiKey.toLowerCase().startsWith('pk_test_') || apiKey.toLowerCase().startsWith('pk_hc_')) {
+  if (Object(_app_components_api_key_utils__WEBPACK_IMPORTED_MODULE_2__["isTestApiKey"])(apiKey)) {
     return _app_components_config__WEBPACK_IMPORTED_MODULE_1__["config"].beaconStorageUrlNonProd;
   } else {
     return _app_components_config__WEBPACK_IMPORTED_MODULE_1__["config"].beaconStorageUrlProd;

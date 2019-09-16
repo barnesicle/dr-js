@@ -18175,7 +18175,7 @@ module.exports = __webpack_require__.p + "3dsecure\\dr3dsecure.html";
 /*!***************************************************!*\
   !*** ./src/app/components/3dsecure/dr3dsecure.js ***!
   \***************************************************/
-/*! exports provided: getInstanceData, clearComponentData, setAdyenCheckout, handleInitalizeData, setInstanceData, getConfiguration, handleAction, handleConfigResponse, createAdyenSession, extractFingerPrintDetails, extractChallengeShopper, handleFingerPrintDevice, handleSuccessChallengeShopper, handleError, openPopup, initializeAdyenJS */
+/*! exports provided: getInstanceData, clearComponentData, setAdyenCheckout, getEnvironment, getAdyenURL, getOriginKey, handleInitializeData, setInstanceData, getConfiguration, handleAction, handleConfigResponse, createAdyenSession, extractFingerPrintDetails, extractChallengeShopper, handleFingerPrintDevice, handleSuccessChallengeShopper, handleError, openPopup, initializeAdyenJS */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -18183,7 +18183,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getInstanceData", function() { return getInstanceData; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "clearComponentData", function() { return clearComponentData; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setAdyenCheckout", function() { return setAdyenCheckout; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleInitalizeData", function() { return handleInitalizeData; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getEnvironment", function() { return getEnvironment; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getAdyenURL", function() { return getAdyenURL; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getOriginKey", function() { return getOriginKey; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleInitializeData", function() { return handleInitializeData; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setInstanceData", function() { return setInstanceData; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getConfiguration", function() { return getConfiguration; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleAction", function() { return handleAction; });
@@ -18203,6 +18206,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../config */ "./src/app/components/config.js");
 /* harmony import */ var _controller_controller_create_source_utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../controller/controller-create-source-utils */ "./src/app/components/controller/controller-create-source-utils.js");
 /* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../utils */ "./src/app/components/utils.js");
+/* harmony import */ var _api_key_utils__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../api-key-utils */ "./src/app/components/api-key-utils.js");
+
 
 
 
@@ -18216,11 +18221,10 @@ var clientListener = _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_2__["default"]
   domain: clientDomain
 });
 clientListener.on('sendActions', handleAction);
-clientListener.on('sendInitalize3dSecure', handleInitalizeData);
+clientListener.on('sendInitalize3dSecure', handleInitializeData);
 var controllerListener = _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_2__["default"].listener({
   domain: _config__WEBPACK_IMPORTED_MODULE_3__["config"].domain
-}); //controllerListener.on('sendActions', handleAction);
-
+});
 controllerListener.on('sendActions', handleAction);
 var components = {
   payment3dsecure: {}
@@ -18240,23 +18244,28 @@ function clearComponentData() {
 function setAdyenCheckout(adyenCheckout) {
   components['payment3dsecure'].adyenCheckout = adyenCheckout;
 }
-
-function getEnvironment() {
-  return 'test'; // todo : environment variable can be updated based on API KEY.
+function getEnvironment(apiKey) {
+  return Object(_api_key_utils__WEBPACK_IMPORTED_MODULE_6__["isTestApiKey"])(apiKey) ? 'test' : 'live';
+}
+function getAdyenURL(apiKey) {
+  return Object(_api_key_utils__WEBPACK_IMPORTED_MODULE_6__["isTestApiKey"])(apiKey) ? _config__WEBPACK_IMPORTED_MODULE_3__["config"].adyenTestUrl : _config__WEBPACK_IMPORTED_MODULE_3__["config"].adyenProdUrl;
+}
+function getOriginKey(apiKey) {
+  return Object(_api_key_utils__WEBPACK_IMPORTED_MODULE_6__["isTestApiKey"])(apiKey) ? _config__WEBPACK_IMPORTED_MODULE_3__["config"].originTestKey : _config__WEBPACK_IMPORTED_MODULE_3__["config"].originProdKey;
 }
 /**
  * load the adyen script url
  * @param event
  */
 
-
-function handleInitalizeData(event) {
+function handleInitializeData(event) {
   var _event$data = event.data,
       secureId = _event$data.secureId,
-      userLocale = _event$data.userLocale;
+      userLocale = _event$data.userLocale,
+      apiKey = _event$data.apiKey;
   components['payment3dsecure'].componentId = secureId;
-  var configuration = getConfiguration(getEnvironment(), userLocale, _config__WEBPACK_IMPORTED_MODULE_3__["config"].originKey);
-  initializeAdyenJS(_config__WEBPACK_IMPORTED_MODULE_3__["config"].adyenProdUrl, configuration);
+  var configuration = getConfiguration(getEnvironment(apiKey), userLocale, getOriginKey(apiKey));
+  initializeAdyenJS(getAdyenURL(apiKey), configuration);
 }
 function setInstanceData(secureId, action, controllerId, paymentData, resolve) {
   components['payment3dsecure'].componentId = secureId;
@@ -18419,6 +18428,22 @@ function initializeAdyenJS(url, config) {
 
 /***/ }),
 
+/***/ "./src/app/components/api-key-utils.js":
+/*!*********************************************!*\
+  !*** ./src/app/components/api-key-utils.js ***!
+  \*********************************************/
+/*! exports provided: isTestApiKey */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isTestApiKey", function() { return isTestApiKey; });
+function isTestApiKey(apiKey) {
+  return apiKey.toLowerCase().startsWith('pk_test_') || apiKey.toLowerCase().startsWith('pk_hc_');
+}
+
+/***/ }),
+
 /***/ "./src/app/components/config.js":
 /*!**************************************!*\
   !*** ./src/app/components/config.js ***!
@@ -18447,9 +18472,13 @@ var config = {
   // eslint-disable-line no-undef
   adyenProdUrl: "https://checkoutshopper-live.adyen.com/checkoutshopper/sdk/3.0.0/adyen.js",
   // eslint-disable-line no-undef
+  adyenTestUrl: "https://checkoutshopper-test.adyen.com/checkoutshopper/sdk/3.0.0/adyen.js",
+  // eslint-disable-line no-undef
   onlineBankingBanksUrl: "https://api.digitalriver.com/payments/online-banking/banks",
   // eslint-disable-line no-undef
-  originKey: "pub.v2.8115061157590058.aHR0cDovL2xvY2FsaG9zdDo4MDgw.FF9fc99f70OC7jS9Ngmqj8z1H_cmKZMXQo_r0cnPAOg" // eslint-disable-line no-undef
+  originProdKey: "pub.v2.8115061157590058.aHR0cDovL2xvY2FsaG9zdDo4MDgw.FF9fc99f70OC7jS9Ngmqj8z1H_cmKZMXQo_r0cnPAOg",
+  // eslint-disable-line no-undef
+  originTestKey: "pub.v2.8115061157590058.aHR0cDovL2xvY2FsaG9zdDo4MDgw.FF9fc99f70OC7jS9Ngmqj8z1H_cmKZMXQo_r0cnPAOg" // eslint-disable-line no-undef
 
 };
 
@@ -18473,8 +18502,8 @@ __webpack_require__.r(__webpack_exports__);
 
 function checkAndSendBeaconDetails(response) {
   if (typeof response !== 'undefined' && response.source !== null && response.source.id !== null) {
-    var beaconComponent = Object(_client_createComponent__WEBPACK_IMPORTED_MODULE_1__["createOrExtractBeaconController"])();
-    Object(_client_createComponent__WEBPACK_IMPORTED_MODULE_1__["sendBeaconEventDetails"])(beaconComponent.id, 'source', response.source.id);
+    //const beaconComponent = createOrExtractBeaconController();
+    Object(_client_createComponent__WEBPACK_IMPORTED_MODULE_1__["sendBeaconEventDetails"])('drBeacon', 'source', response.source.id);
   }
 }
 /**

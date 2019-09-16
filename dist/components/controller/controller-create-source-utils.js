@@ -11611,9 +11611,13 @@ var config = {
   // eslint-disable-line no-undef
   adyenProdUrl: "https://checkoutshopper-live.adyen.com/checkoutshopper/sdk/3.0.0/adyen.js",
   // eslint-disable-line no-undef
+  adyenTestUrl: "https://checkoutshopper-test.adyen.com/checkoutshopper/sdk/3.0.0/adyen.js",
+  // eslint-disable-line no-undef
   onlineBankingBanksUrl: "https://api.digitalriver.com/payments/online-banking/banks",
   // eslint-disable-line no-undef
-  originKey: "pub.v2.8115061157590058.aHR0cDovL2xvY2FsaG9zdDo4MDgw.FF9fc99f70OC7jS9Ngmqj8z1H_cmKZMXQo_r0cnPAOg" // eslint-disable-line no-undef
+  originProdKey: "pub.v2.8115061157590058.aHR0cDovL2xvY2FsaG9zdDo4MDgw.FF9fc99f70OC7jS9Ngmqj8z1H_cmKZMXQo_r0cnPAOg",
+  // eslint-disable-line no-undef
+  originTestKey: "pub.v2.8115061157590058.aHR0cDovL2xvY2FsaG9zdDo4MDgw.FF9fc99f70OC7jS9Ngmqj8z1H_cmKZMXQo_r0cnPAOg" // eslint-disable-line no-undef
 
 };
 

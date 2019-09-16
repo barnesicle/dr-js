@@ -18543,9 +18543,13 @@ var config = {
   // eslint-disable-line no-undef
   adyenProdUrl: Object({"PAYMENT_API_URL":"https://api.digitalriver.com/payments/sources","DOMAIN":"https://github.digitalriverws.net","BASE_PATH":"/pages/lbarnes/drjs-demo/dist","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).ADYEN_PROD_URL,
   // eslint-disable-line no-undef
+  adyenTestUrl: Object({"PAYMENT_API_URL":"https://api.digitalriver.com/payments/sources","DOMAIN":"https://github.digitalriverws.net","BASE_PATH":"/pages/lbarnes/drjs-demo/dist","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).ADYEN_TEST_URL,
+  // eslint-disable-line no-undef
   onlineBankingBanksUrl: Object({"PAYMENT_API_URL":"https://api.digitalriver.com/payments/sources","DOMAIN":"https://github.digitalriverws.net","BASE_PATH":"/pages/lbarnes/drjs-demo/dist","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).ONLINE_BANKING_BANKS_URL,
   // eslint-disable-line no-undef
-  originKey: Object({"PAYMENT_API_URL":"https://api.digitalriver.com/payments/sources","DOMAIN":"https://github.digitalriverws.net","BASE_PATH":"/pages/lbarnes/drjs-demo/dist","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).ADYEN_ORIGIN_KEY // eslint-disable-line no-undef
+  originProdKey: Object({"PAYMENT_API_URL":"https://api.digitalriver.com/payments/sources","DOMAIN":"https://github.digitalriverws.net","BASE_PATH":"/pages/lbarnes/drjs-demo/dist","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).ADYEN_PROD_ORIGIN_KEY,
+  // eslint-disable-line no-undef
+  originTestKey: Object({"PAYMENT_API_URL":"https://api.digitalriver.com/payments/sources","DOMAIN":"https://github.digitalriverws.net","BASE_PATH":"/pages/lbarnes/drjs-demo/dist","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).ADYEN_TEST_ORIGIN_KEY // eslint-disable-line no-undef
 
 };
 
