@@ -19569,7 +19569,7 @@ function addInputHtmlToDom() {
   document.body.innerHTML += inputHtml();
 }
 function inputHtml() {
-  return "<input id=\"ccCVV\"\n         autocomplete=\"cc-csc\"\n         class=\"base empty\"\n         type=\"tel\"\n         onfocus=\"handleFocus(event)\"\n         onblur=\"handleBlur(event)\"\n         oninput=\"handleChange(event)\"\n         minLength=\"3\"\n         maxlength=\"4\"\n  />";
+  return "<input id=\"ccCVV\"\n         autocomplete=\"cc-csc\"\n         class=\"base empty\"\n         type=\"tel\"\n         onfocus=\"handleFocus(event)\"\n         onblur=\"handleBlur(event)\"\n         onchange=\"handleChange(event)\"\n         minLength=\"3\"\n         maxlength=\"4\"\n  />";
 }
 
 /***/ }),
@@ -20236,8 +20236,6 @@ function sendEventData(controllerDetails, componentId, componentType, event) {
     componentType: componentType,
     eventType: event,
     eventData: dataToSend
-  }).catch(function (e) {
-    console.log('error!', e);
   });
 }
 /**

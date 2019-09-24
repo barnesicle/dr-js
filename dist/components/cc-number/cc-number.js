@@ -19578,7 +19578,7 @@ function addInputHtmlToDom() {
   document.body.innerHTML += inputHtml();
 }
 function inputHtml() {
-  return "<input id=\"ccNumber\"\n         autocomplete=\"cc-number\"\n         class=\"base empty\"\n         type=\"tel\"\n         onfocus=\"handleFocus(event)\"\n         onblur=\"handleBlur(event)\"\n         oninput=\"handleChange(event)\"\n         minLength=\"14\"\n         maxLength=\"20\"\n  />";
+  return "<input id=\"ccNumber\"\n         autocomplete=\"cc-number\"\n         class=\"base empty\"\n         type=\"tel\"\n         onfocus=\"handleFocus(event)\"\n         onblur=\"handleBlur(event)\"\n         onchange=\"handleChange(event)\"\n         minLength=\"14\"\n         maxLength=\"20\"\n  />";
 }
 
 /***/ }),
@@ -20245,8 +20245,6 @@ function sendEventData(controllerDetails, componentId, componentType, event) {
     componentType: componentType,
     eventType: event,
     eventData: dataToSend
-  }).catch(function (e) {
-    console.log('error!', e);
   });
 }
 /**
