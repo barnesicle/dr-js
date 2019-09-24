@@ -19548,7 +19548,7 @@ function handleChange(event) {
   console.log('cc number on change 1', event.target.value);
   var initialEventValue = event.target.value;
   event.target.value = Object(_utils_js__WEBPACK_IMPORTED_MODULE_6__["stripLetters"])(initialEventValue);
-  console.log('cc number on change 2', event.target.value);
+  console.log('cc number on change 22', event.target.value);
   /*if (checkToSendEvent(initialEventValue, event)) {
      console.log('cc number on change checkToSendEvent', event.target.value)
     handleEvent(componentData, 'change', event);
