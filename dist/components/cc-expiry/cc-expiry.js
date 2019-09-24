@@ -19483,6 +19483,7 @@ function handleBlur(event) {
  */
 
 function handleFocus(event) {
+  componentData.hasFocused = true;
   Object(_input_events__WEBPACK_IMPORTED_MODULE_2__["handleEvent"])(componentData, 'focus', event);
 }
 /**
@@ -19530,6 +19531,10 @@ function updateCursorPosition(initialEventValue, event, initialPosition) {
 
 
 function handleChange(event) {
+  if (Object(_input_events__WEBPACK_IMPORTED_MODULE_2__["canSendFirstChangeEvent"])(componentData)) {
+    return;
+  }
+
   var initialEventValue = event.target.value;
   var initialPosition = event.target.selectionStart;
   event.target.value = Object(_utils__WEBPACK_IMPORTED_MODULE_7__["stripLettersAndAddForwardSlash"])(initialEventValue);
@@ -20180,12 +20185,13 @@ function createEvent(type) {
 /*!********************************************!*\
   !*** ./src/app/components/input-events.js ***!
   \********************************************/
-/*! exports provided: sendEventData, handleEvent, runEventOnElement */
+/*! exports provided: sendEventData, canSendFirstChangeEvent, handleEvent, runEventOnElement */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sendEventData", function() { return sendEventData; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "canSendFirstChangeEvent", function() { return canSendFirstChangeEvent; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleEvent", function() { return handleEvent; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "runEventOnElement", function() { return runEventOnElement; });
 /* harmony import */ var _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../post-robot-wrapper */ "./src/post-robot-wrapper.js");
@@ -20223,6 +20229,8 @@ function sendEventData(controllerDetails, componentId, componentType, event) {
     componentType: componentType,
     eventType: event,
     eventData: dataToSend
+  }).catch(function (e) {
+    console.log('error!', e);
   });
 }
 /**
@@ -20364,6 +20372,16 @@ function hasPreviousState(prevState) {
   return typeof prevState.empty !== 'undefined';
 }
 /**
+ * Checks to see if the element has been focused and has been initialized
+ * @param componentData
+ * @returns {boolean}
+ */
+
+
+function canSendFirstChangeEvent(componentData) {
+  return typeof componentData === 'undefined' || typeof componentData.hasFocused === 'undefined';
+}
+/**
  * To be used on input components.
  * Applies appropriate styles, removes whitespaces, sets prevState and sends event data to controller
  * @param {object} componentData
@@ -20371,7 +20389,6 @@ function hasPreviousState(prevState) {
  * @param {event} event
  * @returns {boolean}
  */
-
 
 function handleEvent(componentData, eventType, event) {
   var eventData = {};
@@ -20767,6 +20784,7 @@ var MAX_MOUNT_RETRY = 8;
 
 function handleMountWithMessage(controllerEmitter, message, componentData, handleMountData, handleMount, instanceData, emitComponentReady, retryPosition) {
   if (retryPosition >= MAX_MOUNT_RETRY) {
+    console.log('Max retries');
     return Promise.resolve();
   }
 
@@ -20784,9 +20802,12 @@ function handleMountWithMessage(controllerEmitter, message, componentData, handl
 
     emitComponentReady(componentData);
   }).catch(function (error) {
-    if (error.message && error.message.includes('No ack for postMessage')) {
+    console.log('error mounting!', error);
+    /*if (error.message && error.message.includes('No ack for postMessage')) {
       return handleMountWithMessage(controllerEmitter, message, componentData, handleMountData, handleMount, instanceData, emitComponentReady, ++retryPosition);
-    }
+    }*/
+
+    return Promise.reject();
   });
 }
 /**
