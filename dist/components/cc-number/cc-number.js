@@ -19545,7 +19545,7 @@ function getComponentData() {
  */
 
 function handleChange(event) {
-  if (typeof getComponentData() === 'undefined' || typeof componentData.hasFocused === 'undefined') {
+  if (typeof componentData === 'undefined' || typeof componentData.hasFocused === 'undefined') {
     console.error('component data not provided!', componentData.hasFocused);
     return;
   } // FIXME Works differently if I add a value and tab out.
