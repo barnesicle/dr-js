@@ -19532,6 +19532,7 @@ function updateCursorPosition(initialEventValue, event, initialPosition) {
 
 function handleChange(event) {
   if (Object(_input_events__WEBPACK_IMPORTED_MODULE_2__["canSendFirstChangeEvent"])(componentData)) {
+    console.error('not sending event');
     return;
   }
 

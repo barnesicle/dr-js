@@ -19521,6 +19521,7 @@ function limitFieldLength() {
 
 function handleChange(event) {
   if (Object(_input_events__WEBPACK_IMPORTED_MODULE_3__["canSendFirstChangeEvent"])(componentData)) {
+    console.error('not sending event');
     return;
   }
 
