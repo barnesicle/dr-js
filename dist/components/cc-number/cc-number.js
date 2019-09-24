@@ -19544,6 +19544,7 @@ function getComponentData() {
  */
 
 function handleChange(event) {
+  console.log('cc number on change', event);
   var initialEventValue = event.target.value;
   event.target.value = Object(_utils_js__WEBPACK_IMPORTED_MODULE_6__["stripLetters"])(initialEventValue);
 
@@ -20230,8 +20231,8 @@ function sendEventData(controllerDetails, componentId, componentType, event) {
   // send component type for all events
   var dataToSend = Object.assign({}, data);
   dataToSend.elementType = componentType;
-  var message = dataToSend.elementType !== 'applepay' ? 'componentEventToController' : 'clientComponentEventToController';
-  console.log('sending event to controller', event);
+  var message = dataToSend.elementType !== 'applepay' ? 'componentEventToController' : 'clientComponentEventToController'; //console.log('sending event to controller', event)
+
   _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_0__["default"].send(controllerDetails.window, message, {
     controllerId: controllerDetails.id,
     componentId: componentId,
