@@ -19571,9 +19571,6 @@ function emitComponentReady() {
 }
 function addInputHtmlToDom() {
   document.body.innerHTML += inputHtml();
-  getElement().addEventListener('input', handleChange);
-  getElement().addEventListener('focus', handleFocus);
-  getElement().addEventListener('blur', handleBlur);
 }
 function inputHtml() {
   return "<input id=\"ccNumber\"\n         autocomplete=\"cc-number\"\n         class=\"base empty\"\n         type=\"tel\"\n         minLength=\"14\"\n         maxLength=\"20\"\n  />";
