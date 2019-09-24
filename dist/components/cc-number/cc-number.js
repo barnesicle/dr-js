@@ -19544,7 +19544,7 @@ function getComponentData() {
  */
 
 function handleChange(event) {
-  //console.log('cc number on change', event)
+  console.log('cc number on change', event);
   var initialEventValue = event.target.value;
   event.target.value = Object(_utils_js__WEBPACK_IMPORTED_MODULE_6__["stripLetters"])(initialEventValue);
 
@@ -19573,7 +19573,7 @@ function addInputHtmlToDom() {
   document.body.innerHTML += inputHtml();
 }
 function inputHtml() {
-  return "<input id=\"ccNumber\"\n         autocomplete=\"cc-number\"\n         class=\"base empty\"\n         type=\"tel\"\n         onfocus=\"handleFocus(event)\"\n         onblur=\"handleBlur(event)\"\n         oninput=\"handleChange(event)\"\n         minLength=\"14\"\n         maxLength=\"20\"\n  />";
+  return "<input id=\"ccNumber\"\n         autocomplete=\"cc-number\"\n         class=\"base empty\"\n         type=\"tel\"\n         minLength=\"14\"\n         maxLength=\"20\"\n  />";
 }
 
 /***/ }),
@@ -20231,8 +20231,7 @@ function sendEventData(controllerDetails, componentId, componentType, event) {
   // send component type for all events
   var dataToSend = Object.assign({}, data);
   dataToSend.elementType = componentType;
-  var message = dataToSend.elementType !== 'applepay' ? 'componentEventToController' : 'clientComponentEventToController'; //console.log('sending event to controller', event)
-
+  var message = dataToSend.elementType !== 'applepay' ? 'componentEventToController' : 'clientComponentEventToController';
   _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_0__["default"].send(controllerDetails.window, message, {
     controllerId: controllerDetails.id,
     componentId: componentId,
@@ -20436,7 +20435,6 @@ function handleEvent(componentData, eventType, event) {
  */
 
 function runEventOnElement(event, triggerData) {
-  console.log('runEventOnElement', event);
   var element = triggerData.getElement();
 
   switch (event) {
