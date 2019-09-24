@@ -11,6 +11,16 @@
 </head>
 
 <body>
+  <input id="ccNumber"
+       autocomplete="cc-number"
+       class="base empty"
+       type="tel"
+       onfocus="handleFocus()"
+       onblur="handleBlur()"
+       oninput="handleChange()"
+       minLength="14"
+       maxLength="20"
+  />
   <script>
     addInputHtmlToDom();
     window.onload = function() {
