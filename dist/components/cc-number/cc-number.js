@@ -19544,7 +19544,7 @@ function getComponentData() {
  */
 
 function handleChange(event) {
-  console.log('cc number on change', event);
+  //console.log('cc number on change', event)
   var initialEventValue = event.target.value;
   event.target.value = Object(_utils_js__WEBPACK_IMPORTED_MODULE_6__["stripLetters"])(initialEventValue);
 
@@ -20436,6 +20436,7 @@ function handleEvent(componentData, eventType, event) {
  */
 
 function runEventOnElement(event, triggerData) {
+  console.log('runEventOnElement', event);
   var element = triggerData.getElement();
 
   switch (event) {

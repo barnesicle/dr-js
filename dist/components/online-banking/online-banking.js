@@ -20907,6 +20907,7 @@ function handleEvent(componentData, eventType, event) {
  */
 
 function runEventOnElement(event, triggerData) {
+  console.log('runEventOnElement', event);
   var element = triggerData.getElement();
 
   switch (event) {
