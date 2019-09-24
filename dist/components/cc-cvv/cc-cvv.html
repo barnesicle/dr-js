@@ -11,21 +11,11 @@
 </head>
 
 <body>
-  <input id="ccCVV"
-         autocomplete="cc-csc"
-         class="base empty"
-         type="tel"
-         onfocus="handleFocus(event)"
-         onblur="handleBlur(event)"
-         oninput="handleChange(event)"
-         minLength="3"
-         maxlength="4"
-  />
   <script>
     addInputHtmlToDom();
     window.onload = function() {
-      document.getElementById('ccCVV').addEventListener('animationstart', handleAutofill, false);
-      document.addEventListener('focus', function() {document.getElementById('ccCVV').focus()}, false);
+      //document.getElementById('ccCVV').addEventListener('animationstart', handleAutofill, false);
+      //document.addEventListener('focus', function() {document.getElementById('ccCVV').focus()}, false);
     };
   </script>
 </body>

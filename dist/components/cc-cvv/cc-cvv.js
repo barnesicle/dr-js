@@ -19559,7 +19559,8 @@ function handleAutofill(event) {
 function emitComponentReady() {
   Object(_input_events__WEBPACK_IMPORTED_MODULE_3__["handleEvent"])(componentData, 'ready');
 }
-function addInputHtmlToDom() {//document.body.innerHTML += inputHtml();
+function addInputHtmlToDom() {
+  document.body.innerHTML += inputHtml();
 }
 function inputHtml() {
   return "<input id=\"ccCVV\"\n         autocomplete=\"cc-csc\"\n         class=\"base empty\"\n         type=\"tel\"\n         onfocus=\"handleFocus(event)\"\n         onblur=\"handleBlur(event)\"\n         oninput=\"handleChange(event)\"\n         minLength=\"3\"\n         maxlength=\"4\"\n  />";

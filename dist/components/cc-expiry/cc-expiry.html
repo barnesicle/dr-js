@@ -11,21 +11,11 @@
 </head>
 
 <body>
-  <input id="ccExpiry"
-         autocomplete="cc-exp"
-         class="base empty"
-         type="tel"
-         onfocus="handleFocus(event)"
-         onblur="handleBlur(event)"
-         oninput="handleChange(event)"
-         minLength="5"
-         maxLength="5"
-  />
   <script>
     addInputHtmlToDom();
     window.onload = function() {
-      document.getElementById('ccExpiry').addEventListener('animationstart', handleAutofill, false);
-      document.addEventListener('focus', function() {document.getElementById('ccExpiry').focus()}, false);
+      //document.getElementById('ccExpiry').addEventListener('animationstart', handleAutofill, false);
+      //document.addEventListener('focus', function() {document.getElementById('ccExpiry').focus()}, false);
     };
   </script>
 </body>
