@@ -16,6 +16,7 @@
     window.onload = function() {
       document.getElementById('ccExpiry').addEventListener('animationstart', handleAutofill, false);
       document.addEventListener('focus', function() {document.getElementById('ccExpiry').focus()}, false);
+      document.getElementById('ccExpiry').addEventListener('input', handleChange);
     };
   </script>
 </body>
