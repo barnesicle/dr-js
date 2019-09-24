@@ -19573,7 +19573,7 @@ function addInputHtmlToDom() {
   document.body.innerHTML += inputHtml();
 }
 function inputHtml() {
-  return "<input id=\"ccNumber\"\n         autocomplete=\"cc-number\"\n         class=\"base empty\"\n         type=\"tel\"\n         onfocus=\"handleFocus\"\n         onblur=\"handleBlur\"\n         oninput=\"handleChange\"\n         minLength=\"14\"\n         maxLength=\"20\"\n  />";
+  return "<input id=\"ccNumber\"\n         autocomplete=\"cc-number\"\n         class=\"base empty\"\n         type=\"tel\"\n         onfocus=\"handleFocus()\"\n         onblur=\"handleBlur()\"\n         oninput=\"handleChange()\"\n         minLength=\"14\"\n         maxLength=\"20\"\n  />";
 }
 
 /***/ }),
