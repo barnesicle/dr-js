@@ -20675,6 +20675,7 @@ function sendEventData(controllerDetails, componentId, componentType, event) {
   var dataToSend = Object.assign({}, data);
   dataToSend.elementType = componentType;
   var message = dataToSend.elementType !== 'applepay' ? 'componentEventToController' : 'clientComponentEventToController';
+  console.log('sending event to controller', controllerDetails.id);
   _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_0__["default"].send(controllerDetails.window, message, {
     controllerId: controllerDetails.id,
     componentId: componentId,
