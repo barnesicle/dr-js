@@ -19545,12 +19545,13 @@ function getComponentData() {
  */
 
 function handleChange(event) {
-  /*if (typeof getComponentData() === 'undefined' || typeof componentData.hasFocused === 'undefined') {
-    console.error('component data not provided!', componentData.hasFocused)
+  if (typeof getComponentData() === 'undefined' || typeof componentData.hasFocused === 'undefined') {
+    console.error('component data not provided!', componentData.hasFocused);
     return;
-  }*/
-  // FIXME Works differently if I add a value and tab out.
+  } // FIXME Works differently if I add a value and tab out.
   // TODO Could add a state variable that ignore if no focus has been recieved yet...
+
+
   console.log('13', event);
   var initialEventValue = event.target.value; //event.target.value = stripLetters(initialEventValue);
 
