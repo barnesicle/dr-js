@@ -20710,6 +20710,8 @@ function sendEventData(controllerDetails, componentId, componentType, event) {
     componentType: componentType,
     eventType: event,
     eventData: dataToSend
+  }).catch(function (e) {
+    console.log('error!', e);
   });
 }
 /**
