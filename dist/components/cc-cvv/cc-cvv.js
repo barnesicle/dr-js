@@ -19520,6 +19520,11 @@ function limitFieldLength() {
  */
 
 function handleChange(event) {
+  if (typeof getComponentData() === 'undefined' || typeof componentData.hasFocused === 'undefined') {
+    console.error('component data not provided!', componentData.hasFocused);
+    return;
+  }
+
   var initialEventValue = event.target.value;
   event.target.value = Object(_utils_js__WEBPACK_IMPORTED_MODULE_6__["stripLetters"])(initialEventValue);
 
@@ -19542,6 +19547,7 @@ function handleBlur(event) {
  */
 
 function handleFocus(event) {
+  componentData.hasFocused = true;
   Object(_input_events__WEBPACK_IMPORTED_MODULE_3__["handleEvent"])(componentData, 'focus', event);
 }
 /**

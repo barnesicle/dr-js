@@ -21187,7 +21187,6 @@ function paymentApiTriggerEvent(type, instanceData) {
  */
 
 function emitComponentReady(componentData) {
-  console.log('component is ready and sending event', componentData);
   Object(_input_events__WEBPACK_IMPORTED_MODULE_0__["handleEvent"])(componentData, 'ready');
 }
 /**

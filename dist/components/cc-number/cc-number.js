@@ -19552,13 +19552,15 @@ function handleChange(event) {
   // TODO Could add a state variable that ignore if no focus has been recieved yet...
 
 
-  console.log('13', event);
-  var initialEventValue = event.target.value; //event.target.value = stripLetters(initialEventValue);
+  console.log('14', event);
+  var initialEventValue = event.target.value;
+  event.target.value = Object(_utils_js__WEBPACK_IMPORTED_MODULE_6__["stripLetters"])(initialEventValue);
 
   if (Object(_utils_js__WEBPACK_IMPORTED_MODULE_6__["checkToSendEvent"])(initialEventValue, event)) {
     //console.log('cc number on change checkToSendEvent', event.target.value)
-    Object(_input_events__WEBPACK_IMPORTED_MODULE_3__["handleEvent"])(componentData, 'change', event); //formatNumber(event);
-    //setMaxLengthFromCurrentValueLength();
+    Object(_input_events__WEBPACK_IMPORTED_MODULE_3__["handleEvent"])(componentData, 'change', event);
+    formatNumber(event);
+    setMaxLengthFromCurrentValueLength();
   }
 }
 /**

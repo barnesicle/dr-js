@@ -19408,6 +19408,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _payment_component_data__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../payment-component-data */ "./src/app/components/payment-component-data.js");
 /* harmony import */ var _payment_events__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../payment-events */ "./src/app/components/payment-events.js");
 /* harmony import */ var _localization_localizated_messages__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../localization/localizated-messages */ "./src/app/components/localization/localizated-messages.js");
+/* harmony import */ var _cc_number_cc_number__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../cc-number/cc-number */ "./src/app/components/cc-number/cc-number.js");
+
 
 
 
@@ -19483,6 +19485,7 @@ function handleBlur(event) {
  */
 
 function handleFocus(event) {
+  componentData.hasFocused = true;
   Object(_input_events__WEBPACK_IMPORTED_MODULE_2__["handleEvent"])(componentData, 'focus', event);
 }
 /**
@@ -19530,6 +19533,11 @@ function updateCursorPosition(initialEventValue, event, initialPosition) {
 
 
 function handleChange(event) {
+  if (typeof Object(_cc_number_cc_number__WEBPACK_IMPORTED_MODULE_11__["getComponentData"])() === 'undefined' || typeof componentData.hasFocused === 'undefined') {
+    console.error('component data not provided!', componentData.hasFocused);
+    return;
+  }
+
   var initialEventValue = event.target.value;
   var initialPosition = event.target.selectionStart;
   event.target.value = Object(_utils__WEBPACK_IMPORTED_MODULE_7__["stripLettersAndAddForwardSlash"])(initialEventValue);
@@ -19559,6 +19567,228 @@ function addInputHtmlToDom() {
 }
 function inputHtml() {
   return "<input id=\"ccExpiry\"\n         autocomplete=\"cc-exp\"\n         class=\"base empty\"\n         type=\"tel\"\n         onfocus=\"handleFocus(event)\"\n         onblur=\"handleBlur(event)\"\n         oninput=\"handleChange(event)\"\n         minLength=\"5\"\n         maxLength=\"5\"\n  />";
+}
+
+/***/ }),
+
+/***/ "./src/app/components/cc-number/cc-number.html":
+/*!*****************************************************!*\
+  !*** ./src/app/components/cc-number/cc-number.html ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "cc-number\\cc-number.html";
+
+/***/ }),
+
+/***/ "./src/app/components/cc-number/cc-number.js":
+/*!***************************************************!*\
+  !*** ./src/app/components/cc-number/cc-number.js ***!
+  \***************************************************/
+/*! exports provided: getElement, handleOptions, addInstanceOptions, handleBlur, handleFocus, getComponentData, handleChange, handleAutofill, emitComponentReady, addInputHtmlToDom, inputHtml */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getElement", function() { return getElement; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleOptions", function() { return handleOptions; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addInstanceOptions", function() { return addInstanceOptions; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleBlur", function() { return handleBlur; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleFocus", function() { return handleFocus; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getComponentData", function() { return getComponentData; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleChange", function() { return handleChange; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleAutofill", function() { return handleAutofill; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "emitComponentReady", function() { return emitComponentReady; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addInputHtmlToDom", function() { return addInputHtmlToDom; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "inputHtml", function() { return inputHtml; });
+/* harmony import */ var _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../post-robot-wrapper */ "./src/post-robot-wrapper.js");
+/* harmony import */ var _cc_number_html__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./cc-number.html */ "./src/app/components/cc-number/cc-number.html");
+/* harmony import */ var _cc_number_html__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_cc_number_html__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _styles_defaults_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../styles/defaults.css */ "./src/app/components/styles/defaults.css");
+/* harmony import */ var _styles_defaults_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_styles_defaults_css__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _input_events__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../input-events */ "./src/app/components/input-events.js");
+/* harmony import */ var _options__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../options */ "./src/app/components/options.js");
+/* harmony import */ var _querystring__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../querystring */ "./src/app/components/querystring.js");
+/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../utils.js */ "./src/app/components/utils.js");
+/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../config */ "./src/app/components/config.js");
+/* harmony import */ var _payment_events__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../payment-events */ "./src/app/components/payment-events.js");
+/* harmony import */ var _credit_card_type__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../credit-card-type */ "./src/app/components/credit-card-type.js");
+/* harmony import */ var _payment_component_data__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../payment-component-data */ "./src/app/components/payment-component-data.js");
+/* harmony import */ var _localization_localizated_messages__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../localization/localizated-messages */ "./src/app/components/localization/localizated-messages.js");
+
+
+
+
+
+
+
+
+
+
+
+
+
+var COMPONENT_TYPE = 'cardnumber';
+var componentData = Object(_payment_component_data__WEBPACK_IMPORTED_MODULE_10__["generateComponentData"])(COMPONENT_TYPE, Object(_querystring__WEBPACK_IMPORTED_MODULE_5__["getComponentIdFromQueryString"])(COMPONENT_TYPE), Object(_querystring__WEBPACK_IMPORTED_MODULE_5__["getControllerIdFromQueryString"])());
+var defaultOptions = {
+  placeholderText: Object(_localization_localizated_messages__WEBPACK_IMPORTED_MODULE_11__["getLocaleMessage"])('en-US', 'cardNumber')
+};
+var controllerListener = _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_0__["default"].listener({
+  window: componentData.controller.window,
+  domain: _config__WEBPACK_IMPORTED_MODULE_7__["config"].domain
+});
+var controllerEmitter = _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_0__["default"].client({
+  window: componentData.controller.window,
+  domain: _config__WEBPACK_IMPORTED_MODULE_7__["config"].domain
+});
+var triggerData = {
+  componentData: componentData,
+  getElement: getElement
+};
+Object(_payment_events__WEBPACK_IMPORTED_MODULE_8__["mountComponent"])(controllerEmitter, componentData, handleOptions, emitComponentReady);
+Object(_payment_events__WEBPACK_IMPORTED_MODULE_8__["addHandleOptions"])(controllerListener, handleOptions);
+Object(_payment_events__WEBPACK_IMPORTED_MODULE_8__["addGetComponentData"])(controllerListener, getElement);
+Object(_payment_events__WEBPACK_IMPORTED_MODULE_8__["addTriggerEvent"])(controllerListener, _input_events__WEBPACK_IMPORTED_MODULE_3__["runEventOnElement"], triggerData);
+/**
+ * getElement returns the ccNumber dom element
+ * @returns {HTMLElement}
+ */
+
+function getElement() {
+  return document.getElementById('ccNumber');
+}
+/**
+ * handleOptions applies options to the ccNumber dom element
+ * @param {object} data
+ */
+
+function handleOptions(data) {
+  var el = getElement();
+  defaultOptions.placeholderText = Object(_localization_localizated_messages__WEBPACK_IMPORTED_MODULE_11__["getLocaleMessage"])(data.instanceOptions.locale, 'cardNumber');
+  Object(_options__WEBPACK_IMPORTED_MODULE_4__["applyOptions"])(el, data.options, defaultOptions);
+  addInstanceOptions(data.instanceOptions);
+}
+/**
+ * Stores the instance options in the component state
+ * @param instanceOptions
+ */
+
+function addInstanceOptions(instanceOptions) {
+  componentData.instanceOptions = instanceOptions;
+}
+/**
+ * handleBlur accepts a blur event and sends it on to handleEvent
+ * @param {Event} event
+ */
+
+function handleBlur(event) {
+  Object(_input_events__WEBPACK_IMPORTED_MODULE_3__["handleEvent"])(componentData, 'blur', event);
+}
+/**
+ * handleFocus accepts a focus event and sends it on to handleEvent
+ * @param {Event} event
+ */
+
+function handleFocus(event) {
+  componentData.hasFocused = true;
+  Object(_input_events__WEBPACK_IMPORTED_MODULE_3__["handleEvent"])(componentData, 'focus', event);
+}
+/**
+ * setMaxLengthFromCurrentValueLength sets the maxLength for the ccNumber
+ * field and removes characters beyond that length if the card brand is known
+ */
+
+function setMaxLengthFromCurrentValueLength() {
+  if (componentData.prevState.brand !== 'UNKNOWN') {
+    var el = getElement();
+    var maxLength = Object(_credit_card_type__WEBPACK_IMPORTED_MODULE_9__["creditCardLengthByBrand"])(componentData.prevState.brand) + Object(_credit_card_type__WEBPACK_IMPORTED_MODULE_9__["creditCardSpacesByBrand"])(componentData.prevState.brand);
+    el.maxLength = maxLength;
+    el.value = Object(_utils_js__WEBPACK_IMPORTED_MODULE_6__["removeExtraCharacters"])(el.value, maxLength);
+  }
+}
+/**
+ * keepSelectedPosition keeps the cursor in the intended position in the field
+ * when spaces are added for formatting the card number
+ * @param {number} initialPosition
+ * @param {Event} event
+ */
+
+
+function keepSelectedPosition(initialPosition, event) {
+  event.target.selectionStart = initialPosition;
+  event.target.selectionEnd = initialPosition;
+}
+/**
+ * formatNumber adds in spaces to format the text in the field appropriately
+ * for the card brand when it is known
+ * @param {Event} event
+ */
+
+
+function formatNumber(event) {
+  if (componentData.prevState.brand && componentData.prevState.brand !== 'UNKNOWN') {
+    var initialPosition = event.target.selectionStart;
+    var number = Object(_credit_card_type__WEBPACK_IMPORTED_MODULE_9__["formatLength"])(event.target.value, componentData.prevState.brand);
+    var spacesAddedAmount = Object(_utils_js__WEBPACK_IMPORTED_MODULE_6__["spacesAdded"])(event.target.value, number);
+    event.target.value = number;
+    keepSelectedPosition(initialPosition + spacesAddedAmount, event);
+  }
+}
+/**
+ * getComponentData returns componentData
+ * @returns {{componentType: string, prevState: {}, controller: {id: (string|*)}, componentId: (string|*)}}
+ */
+
+
+function getComponentData() {
+  return componentData;
+}
+/**
+ * handleChange accepts a change event, strips letters from the field value,
+ * and if appropriate handles event, sets max length and applies space formatting
+ * @param {Event} event
+ */
+
+function handleChange(event) {
+  if (typeof getComponentData() === 'undefined' || typeof componentData.hasFocused === 'undefined') {
+    console.error('component data not provided!', componentData.hasFocused);
+    return;
+  } // FIXME Works differently if I add a value and tab out.
+  // TODO Could add a state variable that ignore if no focus has been recieved yet...
+
+
+  console.log('14', event);
+  var initialEventValue = event.target.value;
+  event.target.value = Object(_utils_js__WEBPACK_IMPORTED_MODULE_6__["stripLetters"])(initialEventValue);
+
+  if (Object(_utils_js__WEBPACK_IMPORTED_MODULE_6__["checkToSendEvent"])(initialEventValue, event)) {
+    //console.log('cc number on change checkToSendEvent', event.target.value)
+    Object(_input_events__WEBPACK_IMPORTED_MODULE_3__["handleEvent"])(componentData, 'change', event);
+    formatNumber(event);
+    setMaxLengthFromCurrentValueLength();
+  }
+}
+/**
+ * handleAutofill accepts an autofill event and sends it on to handleEvent
+ * @param {Event} event
+ */
+
+function handleAutofill(event) {
+  Object(_input_events__WEBPACK_IMPORTED_MODULE_3__["handleEvent"])(componentData, 'autofill', event);
+}
+/**
+ * emitComponentReady calls handleEvent with 'ready'
+ */
+
+function emitComponentReady() {
+  Object(_input_events__WEBPACK_IMPORTED_MODULE_3__["handleEvent"])(componentData, 'ready');
+}
+function addInputHtmlToDom() {
+  document.body.innerHTML += inputHtml();
+}
+function inputHtml() {
+  return "<input id=\"ccNumber\"\n         autocomplete=\"cc-number\"\n         class=\"base empty\"\n         type=\"tel\"\n         onfocus=\"handleFocus(event)\"\n         onblur=\"handleBlur(event)\"\n         oninput=\"handleChange(event)\"\n         minLength=\"14\"\n         maxLength=\"20\"\n  />";
 }
 
 /***/ }),
