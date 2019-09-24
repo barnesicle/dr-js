@@ -76,9 +76,9 @@
   let cardExpiration;
 
   window.onload = function () {
-    //digitalriver = new DigitalRiver("pk_hc_e03ee62c0d964bb3ac75595b1203d13c");
+    digitalriver = new DigitalRiver("pk_hc_e03ee62c0d964bb3ac75595b1203d13c");
 
-    /*cardCVV = digitalriver.createElement("cardcvv", options);
+    cardCVV = digitalriver.createElement("cardcvv", options);
     cardNumber = digitalriver.createElement("cardnumber", options);
     cardExpiration = digitalriver.createElement("cardexpiration", options);
 
@@ -127,7 +127,7 @@
 
     cardExpiration.on('change', function (event) {
       console.log('card expiration change', event);
-    });*/
+    });
 
   };
 
@@ -135,9 +135,9 @@
 
   function mount() {
 
-    /*cardCVV.mount('card-cvv');
+    cardCVV.mount('card-cvv');
     cardNumber.mount('card-number');
-    cardExpiration.mount('card-expiration');*/
+    cardExpiration.mount('card-expiration');
 
   }
 
