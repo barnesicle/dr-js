@@ -19553,7 +19553,7 @@ function handleChange(event) {
   // TODO Could add a state variable that ignore if no focus has been recieved yet...
 
 
-  console.log('5', event);
+  console.log('6', event);
   console.log('cc number on change 1 .', event.target.value);
   var initialEventValue = event.target.value;
   event.target.value = Object(_utils_js__WEBPACK_IMPORTED_MODULE_6__["stripLetters"])(initialEventValue);
@@ -19585,7 +19585,7 @@ function addInputHtmlToDom() {
   document.body.innerHTML += inputHtml();
 }
 function inputHtml() {
-  return "<input id=\"ccNumber\"\n         autocomplete=\"cc-number\"\n         class=\"base empty\"\n         minLength=\"14\"\n         maxLength=\"20\"\n  />";
+  return "<input id=\"ccNumber\"\n         autocomplete=\"cc-number\"\n         class=\"base empty\"\n         type=\"tel\"\n         onfocus=\"handleFocus(event)\"\n         onblur=\"handleBlur(event)\"\n         oninput=\"handleChange(event)\"\n         minLength=\"14\"\n         maxLength=\"20\"\n  />";
 }
 
 /***/ }),
