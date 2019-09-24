@@ -19544,8 +19544,9 @@ function getComponentData() {
  */
 
 function handleChange(event) {
-  // FIXME Works differently if I add a value and tab out.
+  console.log('component data', getComponentData()); // FIXME Works differently if I add a value and tab out.
   // TODO Could add a state variable that ignore if no focus has been recieved yet...
+
   console.log('2', event);
   console.log('cc number on change 1 .', event.target.value);
   var initialEventValue = event.target.value;
