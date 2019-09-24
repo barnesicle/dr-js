@@ -19544,14 +19544,16 @@ function getComponentData() {
  */
 
 function handleChange(event) {
-  console.log('cc number on change', event);
+  // FIXME Works differently if I add a value and tab out.
+  console.log('cc number on change 1', event.target.value);
   var initialEventValue = event.target.value;
   event.target.value = Object(_utils_js__WEBPACK_IMPORTED_MODULE_6__["stripLetters"])(initialEventValue);
+  console.log('cc number on change 2', event.target.value);
 
   if (Object(_utils_js__WEBPACK_IMPORTED_MODULE_6__["checkToSendEvent"])(initialEventValue, event)) {
+    console.log('cc number on change checkToSendEvent', event.target.value);
     Object(_input_events__WEBPACK_IMPORTED_MODULE_3__["handleEvent"])(componentData, 'change', event);
-    formatNumber(event);
-    setMaxLengthFromCurrentValueLength();
+    formatNumber(event); //setMaxLengthFromCurrentValueLength();
   }
 }
 /**
