@@ -19552,8 +19552,8 @@ function handleChange(event) {
 
   if (Object(_utils_js__WEBPACK_IMPORTED_MODULE_6__["checkToSendEvent"])(initialEventValue, event)) {
     console.log('cc number on change checkToSendEvent', event.target.value);
-    Object(_input_events__WEBPACK_IMPORTED_MODULE_3__["handleEvent"])(componentData, 'change', event);
-    formatNumber(event); //setMaxLengthFromCurrentValueLength();
+    Object(_input_events__WEBPACK_IMPORTED_MODULE_3__["handleEvent"])(componentData, 'change', event); //formatNumber(event);
+    //setMaxLengthFromCurrentValueLength();
   }
 }
 /**
