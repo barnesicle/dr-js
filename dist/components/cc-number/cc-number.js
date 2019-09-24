@@ -19485,6 +19485,7 @@ function handleBlur(event) {
  */
 
 function handleFocus(event) {
+  componentData.hasFocused = true;
   Object(_input_events__WEBPACK_IMPORTED_MODULE_3__["handleEvent"])(componentData, 'focus', event);
 }
 /**
@@ -19544,14 +19545,14 @@ function getComponentData() {
  */
 
 function handleChange(event) {
-  if (typeof getComponentData() === 'undefined') {
-    console.error('component data not provided!');
+  if (typeof getComponentData() === 'undefined' || typeof componentData.hasFocused === 'undefined') {
+    console.error('component data not provided!', componentData.hasFocused);
     return;
   } // FIXME Works differently if I add a value and tab out.
   // TODO Could add a state variable that ignore if no focus has been recieved yet...
 
 
-  console.log('7', event);
+  console.log('8', event);
   console.log('cc number on change 1', event.target.value);
   var initialEventValue = event.target.value;
   event.target.value = Object(_utils_js__WEBPACK_IMPORTED_MODULE_6__["stripLetters"])(initialEventValue);
