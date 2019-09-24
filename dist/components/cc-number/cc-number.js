@@ -19545,8 +19545,8 @@ function getComponentData() {
 
 function handleChange(event) {
   // FIXME Works differently if I add a value and tab out.
-  console.log('cc number on change 1', event.target.value); //const initialEventValue = event.target.value;
-  //event.target.value = stripLetters(initialEventValue);
+  console.log('cc number on change 1', event.target.value);
+  var initialEventValue = event.target.value; //event.target.value = stripLetters(initialEventValue);
 
   console.log('cc number on change 2', event.target.value);
   /*if (checkToSendEvent(initialEventValue, event)) {
