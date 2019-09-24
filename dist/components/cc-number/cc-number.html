@@ -16,9 +16,9 @@
     window.onload = function() {
       document.getElementById('ccNumber').addEventListener('animationstart', handleAutofill, false);
       document.addEventListener('focus', function() {document.getElementById('ccNumber').focus()}, false);
-      //document.getElementById('ccNumber').addEventListener('input', handleChange);
-      //document.getElementById('ccNumber').addEventListener('focus', handleFocus);
-      //document.getElementById('ccNumber').addEventListener('blur', handleBlur);
+      document.getElementById('ccNumber').addEventListener('input', handleChange);
+      document.getElementById('ccNumber').addEventListener('focus', handleFocus);
+      document.getElementById('ccNumber').addEventListener('blur', handleBlur);
     };
   </script>
 </body>
