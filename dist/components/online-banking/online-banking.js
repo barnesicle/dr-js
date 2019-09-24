@@ -20709,8 +20709,6 @@ function sendEventData(controllerDetails, componentId, componentType, event) {
     componentType: componentType,
     eventType: event,
     eventData: dataToSend
-  }).catch(function (e) {
-    console.log('error!', e);
   });
 }
 /**
@@ -21551,7 +21549,6 @@ var MAX_MOUNT_RETRY = 8;
 
 function handleMountWithMessage(controllerEmitter, message, componentData, handleMountData, handleMount, instanceData, emitComponentReady, retryPosition) {
   if (retryPosition >= MAX_MOUNT_RETRY) {
-    console.log('Max retries');
     return Promise.resolve();
   }
 
@@ -21569,12 +21566,9 @@ function handleMountWithMessage(controllerEmitter, message, componentData, handl
 
     emitComponentReady(componentData);
   }).catch(function (error) {
-    console.log('error mounting!', error);
-    /*if (error.message && error.message.includes('No ack for postMessage')) {
+    if (error.message && error.message.includes('No ack for postMessage')) {
       return handleMountWithMessage(controllerEmitter, message, componentData, handleMountData, handleMount, instanceData, emitComponentReady, ++retryPosition);
-    }*/
-
-    return Promise.reject();
+    }
   });
 }
 /**

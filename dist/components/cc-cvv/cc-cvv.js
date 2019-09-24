@@ -19520,11 +19520,6 @@ function limitFieldLength() {
  */
 
 function handleChange(event) {
-  if (typeof componentData === 'undefined' || typeof componentData.hasFocused === 'undefined') {
-    console.error('component data not provided!', componentData.hasFocused);
-    return;
-  }
-
   var initialEventValue = event.target.value;
   event.target.value = Object(_utils_js__WEBPACK_IMPORTED_MODULE_6__["stripLetters"])(initialEventValue);
 
@@ -19547,7 +19542,6 @@ function handleBlur(event) {
  */
 
 function handleFocus(event) {
-  componentData.hasFocused = true;
   Object(_input_events__WEBPACK_IMPORTED_MODULE_3__["handleEvent"])(componentData, 'focus', event);
 }
 /**
@@ -20234,8 +20228,6 @@ function sendEventData(controllerDetails, componentId, componentType, event) {
     componentType: componentType,
     eventType: event,
     eventData: dataToSend
-  }).catch(function (e) {
-    console.log('error!', e);
   });
 }
 /**
@@ -20780,7 +20772,6 @@ var MAX_MOUNT_RETRY = 8;
 
 function handleMountWithMessage(controllerEmitter, message, componentData, handleMountData, handleMount, instanceData, emitComponentReady, retryPosition) {
   if (retryPosition >= MAX_MOUNT_RETRY) {
-    console.log('Max retries');
     return Promise.resolve();
   }
 
@@ -20798,12 +20789,9 @@ function handleMountWithMessage(controllerEmitter, message, componentData, handl
 
     emitComponentReady(componentData);
   }).catch(function (error) {
-    console.log('error mounting!', error);
-    /*if (error.message && error.message.includes('No ack for postMessage')) {
+    if (error.message && error.message.includes('No ack for postMessage')) {
       return handleMountWithMessage(controllerEmitter, message, componentData, handleMountData, handleMount, instanceData, emitComponentReady, ++retryPosition);
-    }*/
-
-    return Promise.reject();
+    }
   });
 }
 /**
