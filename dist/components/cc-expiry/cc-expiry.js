@@ -19558,7 +19558,7 @@ function addInputHtmlToDom() {
   document.body.innerHTML += inputHtml();
 }
 function inputHtml() {
-  return "<input id=\"ccExpiry\"\n         autocomplete=\"cc-exp\"\n         class=\"base empty\"\n         type=\"tel\"\n         onfocus=\"handleFocus(event)\"\n         onblur=\"handleBlur(event)\"\n         oninput=\"handleChange(event)\"\n         minLength=\"5\"\n         maxLength=\"5\"\n  />";
+  return "<input id=\"ccExpiry\"\n         autocomplete=\"cc-exp\"\n         class=\"base empty\"\n         type=\"tel\"\n         onfocus=\"handleFocus\"\n         onblur=\"handleBlur\"\n         oninput=\"handleChange\"\n         minLength=\"5\"\n         maxLength=\"5\"\n  />";
 }
 
 /***/ }),
