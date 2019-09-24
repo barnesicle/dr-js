@@ -689,9 +689,6 @@
   let ccExpirationComplete = false;
   let ccCVVComplete = false;
 
-  const options = { 'locale': 'ko-KR'};
-  digitalRiverPayments = new DigitalRiver(apiKey, options);
-
   let styles = {
     base: {
       color: '#495057',
@@ -835,8 +832,8 @@
 
     }
 
-    /*const options = { 'locale': 'ko-KR'};
-    digitalRiverPayments = new DigitalRiver(apiKey, options);*/
+    const options = { 'locale': 'ko-KR'};
+    digitalRiverPayments = new DigitalRiver(apiKey, options);
 
     let updatedccNumOptions = {
       placeholderText: 'Number',
