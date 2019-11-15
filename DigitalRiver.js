@@ -21902,11 +21902,15 @@ function DigitalRiver(apiKey, providedInstanceOptions) {
     apiKey: apiKey,
     browserInfo: Object(_beacon_beacon_client_data__WEBPACK_IMPORTED_MODULE_8__["collectClientData"])(window),
     instanceOptions: instanceOptions
+  }).catch(function (error) {
+    console.error('Failed to send to controller', error);
   });
   Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_3__["sendApiKey"])(beaconComponent.id, 'sendBeaconApiKey', {
     apiKey: apiKey
   }).then(function () {
     return Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_3__["sendBeaconEventDetails"])(beaconComponent.id, 'controller_loaded');
+  }).catch(function (error) {
+    console.error('Failed to send to td', error);
   });
   Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_3__["sendInitalize3dSecure"])(dr3dsecure.id, apiKey);
   Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_3__["updateOverlay"])('DRPayment3ds', '0px', '');
