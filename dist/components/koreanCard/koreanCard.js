@@ -21282,7 +21282,6 @@ function mount(node) {
       }
     }
   } catch (err) {
-    console.log('error', err);
     throw new Error("Failed to mount component '".concat(this.type, "'.")); //eslint-disable-line no-console
   }
 }

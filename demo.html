@@ -157,13 +157,6 @@
     .complianceCancellationLink {
       width: 160px;
     }
-
-    /* DROP IN CSS */
-    .dr-component {
-      margin: 10px;
-      border: 1px solid #3c4043;
-      width: 100%;
-    }
   </style>
 <script type="text/javascript" src="DigitalRiver.js"></script></head>
 
@@ -495,7 +488,6 @@
                       </div>
                     </div>
 
-
                     <hr class="mb-4">
                     <button id="addPaymentButton" class="btn btn-primary btn-lg btn-block" type="submit" onclick="addPayment()">Add Payment
                     </button>
@@ -615,27 +607,6 @@
                 </div>
               </div>
             </div>
-              <!--<div class="card">
-                  <div class="card-header" id="headingFour">
-                      <h5 class="mb-0">
-                          <button id="dropinLink" class="btn btn-link collapsed" data-toggle="collapse"
-                                  data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                              Dropin
-                          </button>
-
-                      </h5>
-                  </div>
-                  <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
-                      <div class="card-body">
-                          <div class="row">
-                            <div id="dropin"></div>
-                          </div>
-                      </div>
-                  </div>
-              </div>-->
-
-            <br />Drop in example:<br />
-            <div id="dropin"></div>
           </div>
           <div class="row">
             <div id="source" style="display:none"></div>
@@ -699,7 +670,6 @@
   let apiKey = 'pk_hc_8e3f70c75f314c46855e840ba7a8baab';
   //let apiKey = 'cc203ec2d74e4002a7e341abd6df6eb5'; // DoDJS15
   let digitalRiverPayments;
-  let digitalRiverPayments2;
   let owner = {};
   let response = document.getElementById('response');
 
@@ -865,7 +835,6 @@
 
     const options = { 'locale': 'en-US'};
     digitalRiverPayments = new DigitalRiver(apiKey, options);
-    digitalRiverPayments2 = new DigitalRiver(apiKey, options);
 
     let updatedccNumOptions = {
       placeholderText: 'Number',
@@ -1394,7 +1363,7 @@
 
   function creditCardEvents() {
     creditCardNumberComponent = digitalRiverPayments.createElement('cardnumber', ccNumOptions);
-    //creditCardNumberComponent.mount("cardnumber");
+    creditCardNumberComponent.mount("cardnumber");
 
     creditCardNumberComponent.on('ready', function (event) {
       responseLog('ccnum ready received ' + JSON.stringify(event) + ' for ' + event.elementType);
@@ -1418,89 +1387,6 @@
       ccNumComplete = event.complete;
       checkFormComplete();
     });
-
-    const sourceData = {
-      //"type": "creditCard",
-      "usage": "single",
-      "owner": owner,
-      "amount": 100,
-      "currency": "USD"
-    };
-
-    const dropinGoogleSettings = getDefaultGooglePayData();
-    dropinGoogleSettings.waitOnClick = false;
-
-    const options = {
-      sessionId: '',
-      defaultStyles: styles, // ?
-      cardNumber: {
-        style: styles,
-        events: {
-          ready: function (event) {
-            console.log('ready event for ', event);
-          },
-          change: function (event) {
-            console.log('change event for ', event);
-          }
-        }
-      },
-      /*cardExpiration: {
-        style: styles,
-        events: {
-          ready: function (event) {
-            console.log('ready event for ', event);
-          },
-          change: function (event) {
-            console.log('change event for ', event);
-          }
-        }
-      },*/
-      cardCvv: {
-        style: styles,
-        events: {
-          ready: function (event) {
-            console.log('ready event for ', event);
-          },
-          change: function (event) {
-            console.log('change event for ', event);
-          }
-        }
-      },
-      onlineBanking: {
-        style: styles,
-        onlineBanking: { // Could come from payment service session?
-          currency: 'EUR',
-          country: 'DE'
-        },
-        events: {
-          ready: function (event) {
-            console.log('ready event for ', event);
-          },
-          change: function (event) {
-            console.log('change event for ', event);
-          }
-        }
-      },
-      offlineRefund: {
-        style: styles,
-        refundToken: 'test'
-      },
-      googlePay: {
-        data: dropinGoogleSettings,
-        events: {
-          ready: function (event) {
-            console.log('ready event for ', event);
-          },
-        }
-      },
-      onSubmit: function (data) {
-        console.log('Returned data to client', data);
-      }
-
-    };
-
-    digitalRiverPayments2.createDropin(options, sourceData).mount('dropin');
-
   }
 
   function responseLog(msg) {
@@ -1648,9 +1534,6 @@
       "onlineBanking" : {
         "returnUrl" : window.location.href,
         "cancelUrl" : window.location.href,
-
-      },
-      "creditCard" : {
 
       }
     };

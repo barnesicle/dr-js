@@ -21817,11 +21817,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../post-robot-wrapper */ "./src/post-robot-wrapper.js");
 /* harmony import */ var _app_components_localization_messages__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../app/components/localization/messages */ "./src/app/components/localization/messages.json");
 var _app_components_localization_messages__WEBPACK_IMPORTED_MODULE_10___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../app/components/localization/messages */ "./src/app/components/localization/messages.json", 1);
-/* harmony import */ var _create_dropin__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./create-dropin */ "./src/client/create-dropin.js");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
 
 
 
@@ -22334,16 +22332,6 @@ function getDetails(entityValue, userLocale) {
 
   return Object(_complianceData__WEBPACK_IMPORTED_MODULE_2__["complianceGetDetails"])(entityValue, userLocale);
 }
-
-DigitalRiver.prototype.createDropin = function (options, clientSourceData) {
-  // TODO Validate session ID exists?
-  var key = this.key;
-  var createElement = this.createElement.bind(this);
-  var createSource = this.createSource.bind(this);
-  return {
-    mount: Object(_create_dropin__WEBPACK_IMPORTED_MODULE_11__["mountDropin"])(key, options, clientSourceData, createSource, createElement)
-  };
-};
 
 /* harmony default export */ __webpack_exports__["default"] = (DigitalRiver);
 
@@ -23454,257 +23442,6 @@ function getBusinessEntityNameFromCode(entityId) {
 
 /***/ }),
 
-/***/ "./src/client/create-dropin.js":
-/*!*************************************!*\
-  !*** ./src/client/create-dropin.js ***!
-  \*************************************/
-/*! exports provided: mountDropin */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mountDropin", function() { return mountDropin; });
-/* harmony import */ var _dataStore__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./dataStore */ "./src/client/dataStore.js");
-/* harmony import */ var _DigitalRiverPaymentRequest__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./DigitalRiverPaymentRequest */ "./src/client/DigitalRiverPaymentRequest.js");
-
-
-
-function getPaymentMethods() {
-  return {
-    'paymentMethods': [{
-      'type': 'creditCard',
-      'flow': 'standard',
-      'supportsRecurring': true
-    }, {
-      'type': 'applePay',
-      'flow': 'standard',
-      'supportsRecurring': false
-    }, {
-      'type': 'googlePay',
-      'flow': 'standard',
-      'supportsRecurring': true
-    }, {
-      'type': 'payPal',
-      'flow': 'redirect',
-      'supportsRecurring': false
-    }, {
-      'type': 'payPalBilling',
-      'flow': 'redirect',
-      'supportsRecurring': true
-    }, {
-      'type': 'payPalCredit',
-      'flow': 'redirect',
-      'supportsRecurring': false
-    }, {
-      'type': 'directDebit',
-      'flow': 'redirect',
-      'supportsRecurring': true
-    }, {
-      'type': 'wireTransfer',
-      'flow': 'receiver',
-      'supportsRecurring': false
-    }, {
-      'type': 'codJapan',
-      'flow': 'standard',
-      'supportsRecurring': false
-    }, {
-      'type': 'payco',
-      'flow': 'redirect',
-      'supportsRecurring': false
-    }, {
-      'type': 'bankTransfer',
-      'flow': 'redirect',
-      'supportsRecurring': false
-    }, {
-      'type': 'onlineBanking',
-      'flow': 'redirect',
-      'supportsRecurring': false
-    }, {
-      'type': 'bPay',
-      'flow': 'receiver',
-      'supportsRecurring': false
-    }, {
-      'type': 'klarna',
-      'flow': 'redirect',
-      'supportsRecurring': false
-    }, {
-      'type': 'klarnaRecurring',
-      'flow': 'redirect',
-      'supportsRecurring': true
-    }]
-  };
-}
-
-var supportedPaymentMethods = [{
-  name: 'Online Banking',
-  code: 'onlinebanking',
-  type: 'onlineBanking',
-  needsPayButton: true
-}, {
-  name: 'Offline Refund',
-  code: 'offlinerefund',
-  type: 'offlineRefund',
-  needsPayButton: true
-}, {
-  name: 'Credit Card',
-  code: 'cardnumber',
-  type: 'creditCard',
-  needsPayButton: true
-}, {
-  name: 'Google Pay',
-  code: 'googlepay',
-  type: 'googlePay'
-}, {
-  name: 'Apple Pay',
-  code: 'applepay',
-  type: 'applePay'
-}];
-function mountDropin(key, options, clientSourceData, createSource, createElement) {
-  return function (node) {
-    if (typeof node === 'string') {
-      node = document.getElementById(node);
-    }
-
-    if (node instanceof HTMLElement === false) {
-      throw new Error('mount() requires a valid HTMLElement or id attribute.');
-    }
-
-    var componentsMounted = {// TODO Find a better way
-    };
-    var availablePaymentMethods = getPaymentMethods().paymentMethods;
-    var parent = document.createElement('div');
-    parent.className = 'card';
-    node.appendChild(parent);
-
-    var _dataStore$get = _dataStore__WEBPACK_IMPORTED_MODULE_0__["default"].get(key),
-        controller = _dataStore$get.controller;
-
-    availablePaymentMethods.forEach(function (availablePaymentMethod) {
-      var paymentMethod = supportedPaymentMethods.find(function (paymentMethod) {
-        return paymentMethod.type === availablePaymentMethod.type;
-      });
-
-      if (!paymentMethod) {
-        return;
-      }
-
-      var bodyId = 'collapse-' + paymentMethod.code + '-' + controller.id;
-      var headerId = 'heading-' + paymentMethod.code + '-' + controller.id;
-      var componentId = paymentMethod.code + '-' + controller.id;
-
-      var _createComponentConta = createComponentContainer(paymentMethod, parent, bodyId, headerId, componentId),
-          bodyParent = _createComponentConta.bodyParent,
-          componentHolder = _createComponentConta.componentHolder;
-
-      parent.appendChild(bodyParent);
-
-      if (paymentMethod.needsPayButton) {
-        bodyParent.appendChild(createSubmitButton(options, clientSourceData, createSource, componentsMounted, paymentMethod));
-      }
-
-      var componentOptionsKey = findOptionsKey(options, paymentMethod);
-      var componentOptions = typeof componentOptionsKey !== 'undefined' ? options[componentOptionsKey] : {};
-
-      try {
-        var componentOptionsOrPaymentRequest = paymentMethod.code === 'googlepay' ? new _DigitalRiverPaymentRequest__WEBPACK_IMPORTED_MODULE_1__["default"](componentOptions.data) : componentOptions;
-        var component = createElement(paymentMethod.code, componentOptionsOrPaymentRequest);
-
-        if (typeof component.canMakePayment !== 'undefined' && !component.canMakePayment()) {
-          clearComponentFromDOM(headerId, bodyId);
-          return;
-        }
-
-        component.mount(componentHolder.id);
-        componentsMounted[paymentMethod.code] = component;
-        addEventsToComponent(componentOptions, component);
-      } catch (e) {
-        console.error('mounting error', e); // TODO What to do here?
-      }
-    });
-  };
-}
-
-function createHeaderDiv(paymentMethod, headerId, bodyId) {
-  var headerDiv = document.createElement('div');
-  headerDiv.className = 'card-header';
-  headerDiv.id = headerId;
-  var header = document.createElement('h5');
-  header.className = 'mb-0';
-  var headerButton = document.createElement('button');
-  headerButton.className = 'btn btn-link collapsed';
-  headerButton.innerText = paymentMethod.name;
-  headerButton.setAttribute('data-toggle', 'collapse');
-  headerButton.setAttribute('data-target', '#' + bodyId);
-  headerButton.setAttribute('aria-expanded', 'aria-expanded');
-  header.appendChild(headerButton);
-  headerDiv.appendChild(header);
-  return headerDiv;
-}
-
-function createComponentContainer(paymentMethod, parent, bodyId, headerId, componentId) {
-  var headerDiv = createHeaderDiv(paymentMethod, headerId, bodyId);
-  parent.appendChild(headerDiv);
-  var bodyParent = document.createElement('div');
-  bodyParent.className = 'collapse';
-  bodyParent.id = bodyId;
-  bodyParent.setAttribute('aria-labelledby', bodyId);
-  bodyParent.setAttribute('data-parent', '#accordion');
-  var cardBody = document.createElement('div');
-  cardBody.className = 'card-body';
-  var row = document.createElement('div');
-  row.className = 'row';
-  var componentHolder = document.createElement('div');
-  componentHolder.id = componentId;
-  row.appendChild(componentHolder);
-  cardBody.appendChild(row);
-  bodyParent.appendChild(cardBody);
-  return {
-    bodyParent: bodyParent,
-    componentHolder: componentHolder
-  };
-}
-
-function createSubmitButton(options, clientSourceData, createSource, componentsMounted, paymentMethod) {
-  var submitButton = document.createElement('button');
-  submitButton.className = 'btn btn-primary btn-lg btn-block';
-  submitButton.type = 'submit';
-  submitButton.innerText = 'Pay'; // TODO Localize. Configurable?
-
-  submitButton.addEventListener('click', options.onSubmit); // TODO Wrap this function and call after create source
-
-  submitButton.onclick = function () {
-    console.log('create source');
-    clientSourceData.type = paymentMethod.type;
-    createSource(componentsMounted[paymentMethod.code], clientSourceData).then(function (source) {
-      console.log('source data returned', source);
-      options.onSubmit(source); // TODO Check if not provided and is function.
-    });
-  };
-
-  return submitButton;
-}
-
-function findOptionsKey(options, paymentMethod) {
-  return Object.keys(options).find(function (option) {
-    return option.toLowerCase() === paymentMethod.code;
-  });
-}
-
-function addEventsToComponent(componentOptions, component) {
-  if (typeof componentOptions.events !== 'undefined' && Object.keys(componentOptions.events).length > 0) {
-    Object.keys(componentOptions.events).forEach(function (event) {
-      component.on(event, componentOptions.events[event]);
-    });
-  }
-}
-
-function clearComponentFromDOM(headerId, bodyId) {
-  document.getElementById(headerId).remove();
-  document.getElementById(bodyId).remove();
-}
-
-/***/ }),
-
 /***/ "./src/client/createComponent.js":
 /*!***************************************!*\
   !*** ./src/client/createComponent.js ***!
@@ -23945,7 +23682,6 @@ function mount(node) {
       }
     }
   } catch (err) {
-    console.log('error', err);
     throw new Error("Failed to mount component '".concat(this.type, "'.")); //eslint-disable-line no-console
   }
 }
