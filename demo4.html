@@ -966,7 +966,7 @@
       onlineBanking: { currency: 'EUR', country: 'DE' }
     });
 
-    offlineRefundComponent = digitalRiverPayments.createElement('offlinerefund', offlineOptions);
+    //offlineRefundComponent = digitalRiverPayments.createElement('offlinerefund', offlineOptions);
 
     googlePayComponent = digitalRiverPayments.createElement('googlepay', googlePayPaymentRequest);
     applePayComponent = digitalRiverPayments.createElement('applepay', applePayPaymentRequest);
@@ -977,7 +977,7 @@
     creditCardExpiryComponent.mount("cardexpiration");
     creditCardCvvComponent.mount("cardcvv");
     ibpBanksComponent.mount('ibpbanks');
-    offlineRefundComponent.mount('offlinerefund');
+    //offlineRefundComponent.mount('offlinerefund');
 
     if (googlePayComponent.canMakePayment()) {
       googlePayComponent.mount("google-pay");
@@ -1297,13 +1297,13 @@
       responseLog(event.elementType + ' change received ' + JSON.stringify(event) + ' for ' + event.elementType);
     });
 
-    offlineRefundComponent.on('ready', function (event) {
+   /* offlineRefundComponent.on('ready', function (event) {
       responseLog( event.elementType + ' ready received ' + JSON.stringify(event) + ' for ' + event.elementType);
     });
 
     offlineRefundComponent.on('change', function (event) {
       responseLog(event.elementType + ' change received ' + JSON.stringify(event) + ' for ' + event.elementType);
-    });
+    });*/
 
     // PayPal Button
     payPalBtn(digitalRiverPayments);
