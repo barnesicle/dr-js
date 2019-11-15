@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 12);
+/******/ 	return __webpack_require__(__webpack_require__.s = 15);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -10247,54 +10247,7596 @@ try {
 
 /***/ }),
 
-/***/ "./src/app/components/localization/localizated-messages.js":
-/*!*****************************************************************!*\
-  !*** ./src/app/components/localization/localizated-messages.js ***!
-  \*****************************************************************/
-/*! exports provided: getLocaleMessage */
+/***/ "./node_modules/axios/index.js":
+/*!*************************************!*\
+  !*** ./node_modules/axios/index.js ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! ./lib/axios */ "./node_modules/axios/lib/axios.js");
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/adapters/xhr.js":
+/*!************************************************!*\
+  !*** ./node_modules/axios/lib/adapters/xhr.js ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var utils = __webpack_require__(/*! ./../utils */ "./node_modules/axios/lib/utils.js");
+var settle = __webpack_require__(/*! ./../core/settle */ "./node_modules/axios/lib/core/settle.js");
+var buildURL = __webpack_require__(/*! ./../helpers/buildURL */ "./node_modules/axios/lib/helpers/buildURL.js");
+var parseHeaders = __webpack_require__(/*! ./../helpers/parseHeaders */ "./node_modules/axios/lib/helpers/parseHeaders.js");
+var isURLSameOrigin = __webpack_require__(/*! ./../helpers/isURLSameOrigin */ "./node_modules/axios/lib/helpers/isURLSameOrigin.js");
+var createError = __webpack_require__(/*! ../core/createError */ "./node_modules/axios/lib/core/createError.js");
+var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(/*! ./../helpers/btoa */ "./node_modules/axios/lib/helpers/btoa.js");
+
+module.exports = function xhrAdapter(config) {
+  return new Promise(function dispatchXhrRequest(resolve, reject) {
+    var requestData = config.data;
+    var requestHeaders = config.headers;
+
+    if (utils.isFormData(requestData)) {
+      delete requestHeaders['Content-Type']; // Let the browser set it
+    }
+
+    var request = new XMLHttpRequest();
+    var loadEvent = 'onreadystatechange';
+    var xDomain = false;
+
+    // For IE 8/9 CORS support
+    // Only supports POST and GET calls and doesn't returns the response headers.
+    // DON'T do this for testing b/c XMLHttpRequest is mocked, not XDomainRequest.
+    if ( true &&
+        typeof window !== 'undefined' &&
+        window.XDomainRequest && !('withCredentials' in request) &&
+        !isURLSameOrigin(config.url)) {
+      request = new window.XDomainRequest();
+      loadEvent = 'onload';
+      xDomain = true;
+      request.onprogress = function handleProgress() {};
+      request.ontimeout = function handleTimeout() {};
+    }
+
+    // HTTP basic authentication
+    if (config.auth) {
+      var username = config.auth.username || '';
+      var password = config.auth.password || '';
+      requestHeaders.Authorization = 'Basic ' + btoa(username + ':' + password);
+    }
+
+    request.open(config.method.toUpperCase(), buildURL(config.url, config.params, config.paramsSerializer), true);
+
+    // Set the request timeout in MS
+    request.timeout = config.timeout;
+
+    // Listen for ready state
+    request[loadEvent] = function handleLoad() {
+      if (!request || (request.readyState !== 4 && !xDomain)) {
+        return;
+      }
+
+      // The request errored out and we didn't get a response, this will be
+      // handled by onerror instead
+      // With one exception: request that using file: protocol, most browsers
+      // will return status as 0 even though it's a successful request
+      if (request.status === 0 && !(request.responseURL && request.responseURL.indexOf('file:') === 0)) {
+        return;
+      }
+
+      // Prepare the response
+      var responseHeaders = 'getAllResponseHeaders' in request ? parseHeaders(request.getAllResponseHeaders()) : null;
+      var responseData = !config.responseType || config.responseType === 'text' ? request.responseText : request.response;
+      var response = {
+        data: responseData,
+        // IE sends 1223 instead of 204 (https://github.com/axios/axios/issues/201)
+        status: request.status === 1223 ? 204 : request.status,
+        statusText: request.status === 1223 ? 'No Content' : request.statusText,
+        headers: responseHeaders,
+        config: config,
+        request: request
+      };
+
+      settle(resolve, reject, response);
+
+      // Clean up request
+      request = null;
+    };
+
+    // Handle low level network errors
+    request.onerror = function handleError() {
+      // Real errors are hidden from us by the browser
+      // onerror should only fire if it's a network error
+      reject(createError('Network Error', config, null, request));
+
+      // Clean up request
+      request = null;
+    };
+
+    // Handle timeout
+    request.ontimeout = function handleTimeout() {
+      reject(createError('timeout of ' + config.timeout + 'ms exceeded', config, 'ECONNABORTED',
+        request));
+
+      // Clean up request
+      request = null;
+    };
+
+    // Add xsrf header
+    // This is only done if running in a standard browser environment.
+    // Specifically not if we're in a web worker, or react-native.
+    if (utils.isStandardBrowserEnv()) {
+      var cookies = __webpack_require__(/*! ./../helpers/cookies */ "./node_modules/axios/lib/helpers/cookies.js");
+
+      // Add xsrf header
+      var xsrfValue = (config.withCredentials || isURLSameOrigin(config.url)) && config.xsrfCookieName ?
+          cookies.read(config.xsrfCookieName) :
+          undefined;
+
+      if (xsrfValue) {
+        requestHeaders[config.xsrfHeaderName] = xsrfValue;
+      }
+    }
+
+    // Add headers to the request
+    if ('setRequestHeader' in request) {
+      utils.forEach(requestHeaders, function setRequestHeader(val, key) {
+        if (typeof requestData === 'undefined' && key.toLowerCase() === 'content-type') {
+          // Remove Content-Type if data is undefined
+          delete requestHeaders[key];
+        } else {
+          // Otherwise add header to the request
+          request.setRequestHeader(key, val);
+        }
+      });
+    }
+
+    // Add withCredentials to request if needed
+    if (config.withCredentials) {
+      request.withCredentials = true;
+    }
+
+    // Add responseType to request if needed
+    if (config.responseType) {
+      try {
+        request.responseType = config.responseType;
+      } catch (e) {
+        // Expected DOMException thrown by browsers not compatible XMLHttpRequest Level 2.
+        // But, this can be suppressed for 'json' type as it can be parsed by default 'transformResponse' function.
+        if (config.responseType !== 'json') {
+          throw e;
+        }
+      }
+    }
+
+    // Handle progress if needed
+    if (typeof config.onDownloadProgress === 'function') {
+      request.addEventListener('progress', config.onDownloadProgress);
+    }
+
+    // Not all browsers support upload events
+    if (typeof config.onUploadProgress === 'function' && request.upload) {
+      request.upload.addEventListener('progress', config.onUploadProgress);
+    }
+
+    if (config.cancelToken) {
+      // Handle cancellation
+      config.cancelToken.promise.then(function onCanceled(cancel) {
+        if (!request) {
+          return;
+        }
+
+        request.abort();
+        reject(cancel);
+        // Clean up request
+        request = null;
+      });
+    }
+
+    if (requestData === undefined) {
+      requestData = null;
+    }
+
+    // Send the request
+    request.send(requestData);
+  });
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/axios.js":
+/*!*****************************************!*\
+  !*** ./node_modules/axios/lib/axios.js ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var utils = __webpack_require__(/*! ./utils */ "./node_modules/axios/lib/utils.js");
+var bind = __webpack_require__(/*! ./helpers/bind */ "./node_modules/axios/lib/helpers/bind.js");
+var Axios = __webpack_require__(/*! ./core/Axios */ "./node_modules/axios/lib/core/Axios.js");
+var defaults = __webpack_require__(/*! ./defaults */ "./node_modules/axios/lib/defaults.js");
+
+/**
+ * Create an instance of Axios
+ *
+ * @param {Object} defaultConfig The default config for the instance
+ * @return {Axios} A new instance of Axios
+ */
+function createInstance(defaultConfig) {
+  var context = new Axios(defaultConfig);
+  var instance = bind(Axios.prototype.request, context);
+
+  // Copy axios.prototype to instance
+  utils.extend(instance, Axios.prototype, context);
+
+  // Copy context to instance
+  utils.extend(instance, context);
+
+  return instance;
+}
+
+// Create the default instance to be exported
+var axios = createInstance(defaults);
+
+// Expose Axios class to allow class inheritance
+axios.Axios = Axios;
+
+// Factory for creating new instances
+axios.create = function create(instanceConfig) {
+  return createInstance(utils.merge(defaults, instanceConfig));
+};
+
+// Expose Cancel & CancelToken
+axios.Cancel = __webpack_require__(/*! ./cancel/Cancel */ "./node_modules/axios/lib/cancel/Cancel.js");
+axios.CancelToken = __webpack_require__(/*! ./cancel/CancelToken */ "./node_modules/axios/lib/cancel/CancelToken.js");
+axios.isCancel = __webpack_require__(/*! ./cancel/isCancel */ "./node_modules/axios/lib/cancel/isCancel.js");
+
+// Expose all/spread
+axios.all = function all(promises) {
+  return Promise.all(promises);
+};
+axios.spread = __webpack_require__(/*! ./helpers/spread */ "./node_modules/axios/lib/helpers/spread.js");
+
+module.exports = axios;
+
+// Allow use of default import syntax in TypeScript
+module.exports.default = axios;
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/cancel/Cancel.js":
+/*!*************************************************!*\
+  !*** ./node_modules/axios/lib/cancel/Cancel.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/**
+ * A `Cancel` is an object that is thrown when an operation is canceled.
+ *
+ * @class
+ * @param {string=} message The message.
+ */
+function Cancel(message) {
+  this.message = message;
+}
+
+Cancel.prototype.toString = function toString() {
+  return 'Cancel' + (this.message ? ': ' + this.message : '');
+};
+
+Cancel.prototype.__CANCEL__ = true;
+
+module.exports = Cancel;
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/cancel/CancelToken.js":
+/*!******************************************************!*\
+  !*** ./node_modules/axios/lib/cancel/CancelToken.js ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var Cancel = __webpack_require__(/*! ./Cancel */ "./node_modules/axios/lib/cancel/Cancel.js");
+
+/**
+ * A `CancelToken` is an object that can be used to request cancellation of an operation.
+ *
+ * @class
+ * @param {Function} executor The executor function.
+ */
+function CancelToken(executor) {
+  if (typeof executor !== 'function') {
+    throw new TypeError('executor must be a function.');
+  }
+
+  var resolvePromise;
+  this.promise = new Promise(function promiseExecutor(resolve) {
+    resolvePromise = resolve;
+  });
+
+  var token = this;
+  executor(function cancel(message) {
+    if (token.reason) {
+      // Cancellation has already been requested
+      return;
+    }
+
+    token.reason = new Cancel(message);
+    resolvePromise(token.reason);
+  });
+}
+
+/**
+ * Throws a `Cancel` if cancellation has been requested.
+ */
+CancelToken.prototype.throwIfRequested = function throwIfRequested() {
+  if (this.reason) {
+    throw this.reason;
+  }
+};
+
+/**
+ * Returns an object that contains a new `CancelToken` and a function that, when called,
+ * cancels the `CancelToken`.
+ */
+CancelToken.source = function source() {
+  var cancel;
+  var token = new CancelToken(function executor(c) {
+    cancel = c;
+  });
+  return {
+    token: token,
+    cancel: cancel
+  };
+};
+
+module.exports = CancelToken;
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/cancel/isCancel.js":
+/*!***************************************************!*\
+  !*** ./node_modules/axios/lib/cancel/isCancel.js ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = function isCancel(value) {
+  return !!(value && value.__CANCEL__);
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/core/Axios.js":
+/*!**********************************************!*\
+  !*** ./node_modules/axios/lib/core/Axios.js ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var defaults = __webpack_require__(/*! ./../defaults */ "./node_modules/axios/lib/defaults.js");
+var utils = __webpack_require__(/*! ./../utils */ "./node_modules/axios/lib/utils.js");
+var InterceptorManager = __webpack_require__(/*! ./InterceptorManager */ "./node_modules/axios/lib/core/InterceptorManager.js");
+var dispatchRequest = __webpack_require__(/*! ./dispatchRequest */ "./node_modules/axios/lib/core/dispatchRequest.js");
+
+/**
+ * Create a new instance of Axios
+ *
+ * @param {Object} instanceConfig The default config for the instance
+ */
+function Axios(instanceConfig) {
+  this.defaults = instanceConfig;
+  this.interceptors = {
+    request: new InterceptorManager(),
+    response: new InterceptorManager()
+  };
+}
+
+/**
+ * Dispatch a request
+ *
+ * @param {Object} config The config specific for this request (merged with this.defaults)
+ */
+Axios.prototype.request = function request(config) {
+  /*eslint no-param-reassign:0*/
+  // Allow for axios('example/url'[, config]) a la fetch API
+  if (typeof config === 'string') {
+    config = utils.merge({
+      url: arguments[0]
+    }, arguments[1]);
+  }
+
+  config = utils.merge(defaults, {method: 'get'}, this.defaults, config);
+  config.method = config.method.toLowerCase();
+
+  // Hook up interceptors middleware
+  var chain = [dispatchRequest, undefined];
+  var promise = Promise.resolve(config);
+
+  this.interceptors.request.forEach(function unshiftRequestInterceptors(interceptor) {
+    chain.unshift(interceptor.fulfilled, interceptor.rejected);
+  });
+
+  this.interceptors.response.forEach(function pushResponseInterceptors(interceptor) {
+    chain.push(interceptor.fulfilled, interceptor.rejected);
+  });
+
+  while (chain.length) {
+    promise = promise.then(chain.shift(), chain.shift());
+  }
+
+  return promise;
+};
+
+// Provide aliases for supported request methods
+utils.forEach(['delete', 'get', 'head', 'options'], function forEachMethodNoData(method) {
+  /*eslint func-names:0*/
+  Axios.prototype[method] = function(url, config) {
+    return this.request(utils.merge(config || {}, {
+      method: method,
+      url: url
+    }));
+  };
+});
+
+utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
+  /*eslint func-names:0*/
+  Axios.prototype[method] = function(url, data, config) {
+    return this.request(utils.merge(config || {}, {
+      method: method,
+      url: url,
+      data: data
+    }));
+  };
+});
+
+module.exports = Axios;
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/core/InterceptorManager.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/axios/lib/core/InterceptorManager.js ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var utils = __webpack_require__(/*! ./../utils */ "./node_modules/axios/lib/utils.js");
+
+function InterceptorManager() {
+  this.handlers = [];
+}
+
+/**
+ * Add a new interceptor to the stack
+ *
+ * @param {Function} fulfilled The function to handle `then` for a `Promise`
+ * @param {Function} rejected The function to handle `reject` for a `Promise`
+ *
+ * @return {Number} An ID used to remove interceptor later
+ */
+InterceptorManager.prototype.use = function use(fulfilled, rejected) {
+  this.handlers.push({
+    fulfilled: fulfilled,
+    rejected: rejected
+  });
+  return this.handlers.length - 1;
+};
+
+/**
+ * Remove an interceptor from the stack
+ *
+ * @param {Number} id The ID that was returned by `use`
+ */
+InterceptorManager.prototype.eject = function eject(id) {
+  if (this.handlers[id]) {
+    this.handlers[id] = null;
+  }
+};
+
+/**
+ * Iterate over all the registered interceptors
+ *
+ * This method is particularly useful for skipping over any
+ * interceptors that may have become `null` calling `eject`.
+ *
+ * @param {Function} fn The function to call for each interceptor
+ */
+InterceptorManager.prototype.forEach = function forEach(fn) {
+  utils.forEach(this.handlers, function forEachHandler(h) {
+    if (h !== null) {
+      fn(h);
+    }
+  });
+};
+
+module.exports = InterceptorManager;
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/core/createError.js":
+/*!****************************************************!*\
+  !*** ./node_modules/axios/lib/core/createError.js ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var enhanceError = __webpack_require__(/*! ./enhanceError */ "./node_modules/axios/lib/core/enhanceError.js");
+
+/**
+ * Create an Error with the specified message, config, error code, request and response.
+ *
+ * @param {string} message The error message.
+ * @param {Object} config The config.
+ * @param {string} [code] The error code (for example, 'ECONNABORTED').
+ * @param {Object} [request] The request.
+ * @param {Object} [response] The response.
+ * @returns {Error} The created error.
+ */
+module.exports = function createError(message, config, code, request, response) {
+  var error = new Error(message);
+  return enhanceError(error, config, code, request, response);
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/core/dispatchRequest.js":
+/*!********************************************************!*\
+  !*** ./node_modules/axios/lib/core/dispatchRequest.js ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var utils = __webpack_require__(/*! ./../utils */ "./node_modules/axios/lib/utils.js");
+var transformData = __webpack_require__(/*! ./transformData */ "./node_modules/axios/lib/core/transformData.js");
+var isCancel = __webpack_require__(/*! ../cancel/isCancel */ "./node_modules/axios/lib/cancel/isCancel.js");
+var defaults = __webpack_require__(/*! ../defaults */ "./node_modules/axios/lib/defaults.js");
+var isAbsoluteURL = __webpack_require__(/*! ./../helpers/isAbsoluteURL */ "./node_modules/axios/lib/helpers/isAbsoluteURL.js");
+var combineURLs = __webpack_require__(/*! ./../helpers/combineURLs */ "./node_modules/axios/lib/helpers/combineURLs.js");
+
+/**
+ * Throws a `Cancel` if cancellation has been requested.
+ */
+function throwIfCancellationRequested(config) {
+  if (config.cancelToken) {
+    config.cancelToken.throwIfRequested();
+  }
+}
+
+/**
+ * Dispatch a request to the server using the configured adapter.
+ *
+ * @param {object} config The config that is to be used for the request
+ * @returns {Promise} The Promise to be fulfilled
+ */
+module.exports = function dispatchRequest(config) {
+  throwIfCancellationRequested(config);
+
+  // Support baseURL config
+  if (config.baseURL && !isAbsoluteURL(config.url)) {
+    config.url = combineURLs(config.baseURL, config.url);
+  }
+
+  // Ensure headers exist
+  config.headers = config.headers || {};
+
+  // Transform request data
+  config.data = transformData(
+    config.data,
+    config.headers,
+    config.transformRequest
+  );
+
+  // Flatten headers
+  config.headers = utils.merge(
+    config.headers.common || {},
+    config.headers[config.method] || {},
+    config.headers || {}
+  );
+
+  utils.forEach(
+    ['delete', 'get', 'head', 'post', 'put', 'patch', 'common'],
+    function cleanHeaderConfig(method) {
+      delete config.headers[method];
+    }
+  );
+
+  var adapter = config.adapter || defaults.adapter;
+
+  return adapter(config).then(function onAdapterResolution(response) {
+    throwIfCancellationRequested(config);
+
+    // Transform response data
+    response.data = transformData(
+      response.data,
+      response.headers,
+      config.transformResponse
+    );
+
+    return response;
+  }, function onAdapterRejection(reason) {
+    if (!isCancel(reason)) {
+      throwIfCancellationRequested(config);
+
+      // Transform response data
+      if (reason && reason.response) {
+        reason.response.data = transformData(
+          reason.response.data,
+          reason.response.headers,
+          config.transformResponse
+        );
+      }
+    }
+
+    return Promise.reject(reason);
+  });
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/core/enhanceError.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/axios/lib/core/enhanceError.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/**
+ * Update an Error with the specified config, error code, and response.
+ *
+ * @param {Error} error The error to update.
+ * @param {Object} config The config.
+ * @param {string} [code] The error code (for example, 'ECONNABORTED').
+ * @param {Object} [request] The request.
+ * @param {Object} [response] The response.
+ * @returns {Error} The error.
+ */
+module.exports = function enhanceError(error, config, code, request, response) {
+  error.config = config;
+  if (code) {
+    error.code = code;
+  }
+  error.request = request;
+  error.response = response;
+  return error;
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/core/settle.js":
+/*!***********************************************!*\
+  !*** ./node_modules/axios/lib/core/settle.js ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var createError = __webpack_require__(/*! ./createError */ "./node_modules/axios/lib/core/createError.js");
+
+/**
+ * Resolve or reject a Promise based on response status.
+ *
+ * @param {Function} resolve A function that resolves the promise.
+ * @param {Function} reject A function that rejects the promise.
+ * @param {object} response The response.
+ */
+module.exports = function settle(resolve, reject, response) {
+  var validateStatus = response.config.validateStatus;
+  // Note: status is not exposed by XDomainRequest
+  if (!response.status || !validateStatus || validateStatus(response.status)) {
+    resolve(response);
+  } else {
+    reject(createError(
+      'Request failed with status code ' + response.status,
+      response.config,
+      null,
+      response.request,
+      response
+    ));
+  }
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/core/transformData.js":
+/*!******************************************************!*\
+  !*** ./node_modules/axios/lib/core/transformData.js ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var utils = __webpack_require__(/*! ./../utils */ "./node_modules/axios/lib/utils.js");
+
+/**
+ * Transform the data for a request or a response
+ *
+ * @param {Object|String} data The data to be transformed
+ * @param {Array} headers The headers for the request or response
+ * @param {Array|Function} fns A single function or Array of functions
+ * @returns {*} The resulting transformed data
+ */
+module.exports = function transformData(data, headers, fns) {
+  /*eslint no-param-reassign:0*/
+  utils.forEach(fns, function transform(fn) {
+    data = fn(data, headers);
+  });
+
+  return data;
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/defaults.js":
+/*!********************************************!*\
+  !*** ./node_modules/axios/lib/defaults.js ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {
+
+var utils = __webpack_require__(/*! ./utils */ "./node_modules/axios/lib/utils.js");
+var normalizeHeaderName = __webpack_require__(/*! ./helpers/normalizeHeaderName */ "./node_modules/axios/lib/helpers/normalizeHeaderName.js");
+
+var DEFAULT_CONTENT_TYPE = {
+  'Content-Type': 'application/x-www-form-urlencoded'
+};
+
+function setContentTypeIfUnset(headers, value) {
+  if (!utils.isUndefined(headers) && utils.isUndefined(headers['Content-Type'])) {
+    headers['Content-Type'] = value;
+  }
+}
+
+function getDefaultAdapter() {
+  var adapter;
+  if (typeof XMLHttpRequest !== 'undefined') {
+    // For browsers use XHR adapter
+    adapter = __webpack_require__(/*! ./adapters/xhr */ "./node_modules/axios/lib/adapters/xhr.js");
+  } else if (typeof process !== 'undefined') {
+    // For node use HTTP adapter
+    adapter = __webpack_require__(/*! ./adapters/http */ "./node_modules/axios/lib/adapters/xhr.js");
+  }
+  return adapter;
+}
+
+var defaults = {
+  adapter: getDefaultAdapter(),
+
+  transformRequest: [function transformRequest(data, headers) {
+    normalizeHeaderName(headers, 'Content-Type');
+    if (utils.isFormData(data) ||
+      utils.isArrayBuffer(data) ||
+      utils.isBuffer(data) ||
+      utils.isStream(data) ||
+      utils.isFile(data) ||
+      utils.isBlob(data)
+    ) {
+      return data;
+    }
+    if (utils.isArrayBufferView(data)) {
+      return data.buffer;
+    }
+    if (utils.isURLSearchParams(data)) {
+      setContentTypeIfUnset(headers, 'application/x-www-form-urlencoded;charset=utf-8');
+      return data.toString();
+    }
+    if (utils.isObject(data)) {
+      setContentTypeIfUnset(headers, 'application/json;charset=utf-8');
+      return JSON.stringify(data);
+    }
+    return data;
+  }],
+
+  transformResponse: [function transformResponse(data) {
+    /*eslint no-param-reassign:0*/
+    if (typeof data === 'string') {
+      try {
+        data = JSON.parse(data);
+      } catch (e) { /* Ignore */ }
+    }
+    return data;
+  }],
+
+  /**
+   * A timeout in milliseconds to abort a request. If set to 0 (default) a
+   * timeout is not created.
+   */
+  timeout: 0,
+
+  xsrfCookieName: 'XSRF-TOKEN',
+  xsrfHeaderName: 'X-XSRF-TOKEN',
+
+  maxContentLength: -1,
+
+  validateStatus: function validateStatus(status) {
+    return status >= 200 && status < 300;
+  }
+};
+
+defaults.headers = {
+  common: {
+    'Accept': 'application/json, text/plain, */*'
+  }
+};
+
+utils.forEach(['delete', 'get', 'head'], function forEachMethodNoData(method) {
+  defaults.headers[method] = {};
+});
+
+utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
+  defaults.headers[method] = utils.merge(DEFAULT_CONTENT_TYPE);
+});
+
+module.exports = defaults;
+
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../process/browser.js */ "./node_modules/process/browser.js")))
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/helpers/bind.js":
+/*!************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/bind.js ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = function bind(fn, thisArg) {
+  return function wrap() {
+    var args = new Array(arguments.length);
+    for (var i = 0; i < args.length; i++) {
+      args[i] = arguments[i];
+    }
+    return fn.apply(thisArg, args);
+  };
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/helpers/btoa.js":
+/*!************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/btoa.js ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+// btoa polyfill for IE<10 courtesy https://github.com/davidchambers/Base64.js
+
+var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
+
+function E() {
+  this.message = 'String contains an invalid character';
+}
+E.prototype = new Error;
+E.prototype.code = 5;
+E.prototype.name = 'InvalidCharacterError';
+
+function btoa(input) {
+  var str = String(input);
+  var output = '';
+  for (
+    // initialize result and counter
+    var block, charCode, idx = 0, map = chars;
+    // if the next str index does not exist:
+    //   change the mapping table to "="
+    //   check if d has no fractional digits
+    str.charAt(idx | 0) || (map = '=', idx % 1);
+    // "8 - idx % 1 * 8" generates the sequence 2, 4, 6, 8
+    output += map.charAt(63 & block >> 8 - idx % 1 * 8)
+  ) {
+    charCode = str.charCodeAt(idx += 3 / 4);
+    if (charCode > 0xFF) {
+      throw new E();
+    }
+    block = block << 8 | charCode;
+  }
+  return output;
+}
+
+module.exports = btoa;
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/helpers/buildURL.js":
+/*!****************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/buildURL.js ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var utils = __webpack_require__(/*! ./../utils */ "./node_modules/axios/lib/utils.js");
+
+function encode(val) {
+  return encodeURIComponent(val).
+    replace(/%40/gi, '@').
+    replace(/%3A/gi, ':').
+    replace(/%24/g, '$').
+    replace(/%2C/gi, ',').
+    replace(/%20/g, '+').
+    replace(/%5B/gi, '[').
+    replace(/%5D/gi, ']');
+}
+
+/**
+ * Build a URL by appending params to the end
+ *
+ * @param {string} url The base of the url (e.g., http://www.google.com)
+ * @param {object} [params] The params to be appended
+ * @returns {string} The formatted url
+ */
+module.exports = function buildURL(url, params, paramsSerializer) {
+  /*eslint no-param-reassign:0*/
+  if (!params) {
+    return url;
+  }
+
+  var serializedParams;
+  if (paramsSerializer) {
+    serializedParams = paramsSerializer(params);
+  } else if (utils.isURLSearchParams(params)) {
+    serializedParams = params.toString();
+  } else {
+    var parts = [];
+
+    utils.forEach(params, function serialize(val, key) {
+      if (val === null || typeof val === 'undefined') {
+        return;
+      }
+
+      if (utils.isArray(val)) {
+        key = key + '[]';
+      } else {
+        val = [val];
+      }
+
+      utils.forEach(val, function parseValue(v) {
+        if (utils.isDate(v)) {
+          v = v.toISOString();
+        } else if (utils.isObject(v)) {
+          v = JSON.stringify(v);
+        }
+        parts.push(encode(key) + '=' + encode(v));
+      });
+    });
+
+    serializedParams = parts.join('&');
+  }
+
+  if (serializedParams) {
+    url += (url.indexOf('?') === -1 ? '?' : '&') + serializedParams;
+  }
+
+  return url;
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/helpers/combineURLs.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/combineURLs.js ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/**
+ * Creates a new URL by combining the specified URLs
+ *
+ * @param {string} baseURL The base URL
+ * @param {string} relativeURL The relative URL
+ * @returns {string} The combined URL
+ */
+module.exports = function combineURLs(baseURL, relativeURL) {
+  return relativeURL
+    ? baseURL.replace(/\/+$/, '') + '/' + relativeURL.replace(/^\/+/, '')
+    : baseURL;
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/helpers/cookies.js":
+/*!***************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/cookies.js ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var utils = __webpack_require__(/*! ./../utils */ "./node_modules/axios/lib/utils.js");
+
+module.exports = (
+  utils.isStandardBrowserEnv() ?
+
+  // Standard browser envs support document.cookie
+  (function standardBrowserEnv() {
+    return {
+      write: function write(name, value, expires, path, domain, secure) {
+        var cookie = [];
+        cookie.push(name + '=' + encodeURIComponent(value));
+
+        if (utils.isNumber(expires)) {
+          cookie.push('expires=' + new Date(expires).toGMTString());
+        }
+
+        if (utils.isString(path)) {
+          cookie.push('path=' + path);
+        }
+
+        if (utils.isString(domain)) {
+          cookie.push('domain=' + domain);
+        }
+
+        if (secure === true) {
+          cookie.push('secure');
+        }
+
+        document.cookie = cookie.join('; ');
+      },
+
+      read: function read(name) {
+        var match = document.cookie.match(new RegExp('(^|;\\s*)(' + name + ')=([^;]*)'));
+        return (match ? decodeURIComponent(match[3]) : null);
+      },
+
+      remove: function remove(name) {
+        this.write(name, '', Date.now() - 86400000);
+      }
+    };
+  })() :
+
+  // Non standard browser env (web workers, react-native) lack needed support.
+  (function nonStandardBrowserEnv() {
+    return {
+      write: function write() {},
+      read: function read() { return null; },
+      remove: function remove() {}
+    };
+  })()
+);
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/helpers/isAbsoluteURL.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/isAbsoluteURL.js ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/**
+ * Determines whether the specified URL is absolute
+ *
+ * @param {string} url The URL to test
+ * @returns {boolean} True if the specified URL is absolute, otherwise false
+ */
+module.exports = function isAbsoluteURL(url) {
+  // A URL is considered absolute if it begins with "<scheme>://" or "//" (protocol-relative URL).
+  // RFC 3986 defines scheme name as a sequence of characters beginning with a letter and followed
+  // by any combination of letters, digits, plus, period, or hyphen.
+  return /^([a-z][a-z\d\+\-\.]*:)?\/\//i.test(url);
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/helpers/isURLSameOrigin.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/isURLSameOrigin.js ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var utils = __webpack_require__(/*! ./../utils */ "./node_modules/axios/lib/utils.js");
+
+module.exports = (
+  utils.isStandardBrowserEnv() ?
+
+  // Standard browser envs have full support of the APIs needed to test
+  // whether the request URL is of the same origin as current location.
+  (function standardBrowserEnv() {
+    var msie = /(msie|trident)/i.test(navigator.userAgent);
+    var urlParsingNode = document.createElement('a');
+    var originURL;
+
+    /**
+    * Parse a URL to discover it's components
+    *
+    * @param {String} url The URL to be parsed
+    * @returns {Object}
+    */
+    function resolveURL(url) {
+      var href = url;
+
+      if (msie) {
+        // IE needs attribute set twice to normalize properties
+        urlParsingNode.setAttribute('href', href);
+        href = urlParsingNode.href;
+      }
+
+      urlParsingNode.setAttribute('href', href);
+
+      // urlParsingNode provides the UrlUtils interface - http://url.spec.whatwg.org/#urlutils
+      return {
+        href: urlParsingNode.href,
+        protocol: urlParsingNode.protocol ? urlParsingNode.protocol.replace(/:$/, '') : '',
+        host: urlParsingNode.host,
+        search: urlParsingNode.search ? urlParsingNode.search.replace(/^\?/, '') : '',
+        hash: urlParsingNode.hash ? urlParsingNode.hash.replace(/^#/, '') : '',
+        hostname: urlParsingNode.hostname,
+        port: urlParsingNode.port,
+        pathname: (urlParsingNode.pathname.charAt(0) === '/') ?
+                  urlParsingNode.pathname :
+                  '/' + urlParsingNode.pathname
+      };
+    }
+
+    originURL = resolveURL(window.location.href);
+
+    /**
+    * Determine if a URL shares the same origin as the current location
+    *
+    * @param {String} requestURL The URL to test
+    * @returns {boolean} True if URL shares the same origin, otherwise false
+    */
+    return function isURLSameOrigin(requestURL) {
+      var parsed = (utils.isString(requestURL)) ? resolveURL(requestURL) : requestURL;
+      return (parsed.protocol === originURL.protocol &&
+            parsed.host === originURL.host);
+    };
+  })() :
+
+  // Non standard browser envs (web workers, react-native) lack needed support.
+  (function nonStandardBrowserEnv() {
+    return function isURLSameOrigin() {
+      return true;
+    };
+  })()
+);
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/helpers/normalizeHeaderName.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/normalizeHeaderName.js ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var utils = __webpack_require__(/*! ../utils */ "./node_modules/axios/lib/utils.js");
+
+module.exports = function normalizeHeaderName(headers, normalizedName) {
+  utils.forEach(headers, function processHeader(value, name) {
+    if (name !== normalizedName && name.toUpperCase() === normalizedName.toUpperCase()) {
+      headers[normalizedName] = value;
+      delete headers[name];
+    }
+  });
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/helpers/parseHeaders.js":
+/*!********************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/parseHeaders.js ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var utils = __webpack_require__(/*! ./../utils */ "./node_modules/axios/lib/utils.js");
+
+// Headers whose duplicates are ignored by node
+// c.f. https://nodejs.org/api/http.html#http_message_headers
+var ignoreDuplicateOf = [
+  'age', 'authorization', 'content-length', 'content-type', 'etag',
+  'expires', 'from', 'host', 'if-modified-since', 'if-unmodified-since',
+  'last-modified', 'location', 'max-forwards', 'proxy-authorization',
+  'referer', 'retry-after', 'user-agent'
+];
+
+/**
+ * Parse headers into an object
+ *
+ * ```
+ * Date: Wed, 27 Aug 2014 08:58:49 GMT
+ * Content-Type: application/json
+ * Connection: keep-alive
+ * Transfer-Encoding: chunked
+ * ```
+ *
+ * @param {String} headers Headers needing to be parsed
+ * @returns {Object} Headers parsed into an object
+ */
+module.exports = function parseHeaders(headers) {
+  var parsed = {};
+  var key;
+  var val;
+  var i;
+
+  if (!headers) { return parsed; }
+
+  utils.forEach(headers.split('\n'), function parser(line) {
+    i = line.indexOf(':');
+    key = utils.trim(line.substr(0, i)).toLowerCase();
+    val = utils.trim(line.substr(i + 1));
+
+    if (key) {
+      if (parsed[key] && ignoreDuplicateOf.indexOf(key) >= 0) {
+        return;
+      }
+      if (key === 'set-cookie') {
+        parsed[key] = (parsed[key] ? parsed[key] : []).concat([val]);
+      } else {
+        parsed[key] = parsed[key] ? parsed[key] + ', ' + val : val;
+      }
+    }
+  });
+
+  return parsed;
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/helpers/spread.js":
+/*!**************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/spread.js ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/**
+ * Syntactic sugar for invoking a function and expanding an array for arguments.
+ *
+ * Common use case would be to use `Function.prototype.apply`.
+ *
+ *  ```js
+ *  function f(x, y, z) {}
+ *  var args = [1, 2, 3];
+ *  f.apply(null, args);
+ *  ```
+ *
+ * With `spread` this example can be re-written.
+ *
+ *  ```js
+ *  spread(function(x, y, z) {})([1, 2, 3]);
+ *  ```
+ *
+ * @param {Function} callback
+ * @returns {Function}
+ */
+module.exports = function spread(callback) {
+  return function wrap(arr) {
+    return callback.apply(null, arr);
+  };
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/utils.js":
+/*!*****************************************!*\
+  !*** ./node_modules/axios/lib/utils.js ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var bind = __webpack_require__(/*! ./helpers/bind */ "./node_modules/axios/lib/helpers/bind.js");
+var isBuffer = __webpack_require__(/*! is-buffer */ "./node_modules/is-buffer/index.js");
+
+/*global toString:true*/
+
+// utils is a library of generic helper functions non-specific to axios
+
+var toString = Object.prototype.toString;
+
+/**
+ * Determine if a value is an Array
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is an Array, otherwise false
+ */
+function isArray(val) {
+  return toString.call(val) === '[object Array]';
+}
+
+/**
+ * Determine if a value is an ArrayBuffer
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is an ArrayBuffer, otherwise false
+ */
+function isArrayBuffer(val) {
+  return toString.call(val) === '[object ArrayBuffer]';
+}
+
+/**
+ * Determine if a value is a FormData
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is an FormData, otherwise false
+ */
+function isFormData(val) {
+  return (typeof FormData !== 'undefined') && (val instanceof FormData);
+}
+
+/**
+ * Determine if a value is a view on an ArrayBuffer
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a view on an ArrayBuffer, otherwise false
+ */
+function isArrayBufferView(val) {
+  var result;
+  if ((typeof ArrayBuffer !== 'undefined') && (ArrayBuffer.isView)) {
+    result = ArrayBuffer.isView(val);
+  } else {
+    result = (val) && (val.buffer) && (val.buffer instanceof ArrayBuffer);
+  }
+  return result;
+}
+
+/**
+ * Determine if a value is a String
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a String, otherwise false
+ */
+function isString(val) {
+  return typeof val === 'string';
+}
+
+/**
+ * Determine if a value is a Number
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a Number, otherwise false
+ */
+function isNumber(val) {
+  return typeof val === 'number';
+}
+
+/**
+ * Determine if a value is undefined
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if the value is undefined, otherwise false
+ */
+function isUndefined(val) {
+  return typeof val === 'undefined';
+}
+
+/**
+ * Determine if a value is an Object
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is an Object, otherwise false
+ */
+function isObject(val) {
+  return val !== null && typeof val === 'object';
+}
+
+/**
+ * Determine if a value is a Date
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a Date, otherwise false
+ */
+function isDate(val) {
+  return toString.call(val) === '[object Date]';
+}
+
+/**
+ * Determine if a value is a File
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a File, otherwise false
+ */
+function isFile(val) {
+  return toString.call(val) === '[object File]';
+}
+
+/**
+ * Determine if a value is a Blob
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a Blob, otherwise false
+ */
+function isBlob(val) {
+  return toString.call(val) === '[object Blob]';
+}
+
+/**
+ * Determine if a value is a Function
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a Function, otherwise false
+ */
+function isFunction(val) {
+  return toString.call(val) === '[object Function]';
+}
+
+/**
+ * Determine if a value is a Stream
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a Stream, otherwise false
+ */
+function isStream(val) {
+  return isObject(val) && isFunction(val.pipe);
+}
+
+/**
+ * Determine if a value is a URLSearchParams object
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a URLSearchParams object, otherwise false
+ */
+function isURLSearchParams(val) {
+  return typeof URLSearchParams !== 'undefined' && val instanceof URLSearchParams;
+}
+
+/**
+ * Trim excess whitespace off the beginning and end of a string
+ *
+ * @param {String} str The String to trim
+ * @returns {String} The String freed of excess whitespace
+ */
+function trim(str) {
+  return str.replace(/^\s*/, '').replace(/\s*$/, '');
+}
+
+/**
+ * Determine if we're running in a standard browser environment
+ *
+ * This allows axios to run in a web worker, and react-native.
+ * Both environments support XMLHttpRequest, but not fully standard globals.
+ *
+ * web workers:
+ *  typeof window -> undefined
+ *  typeof document -> undefined
+ *
+ * react-native:
+ *  navigator.product -> 'ReactNative'
+ */
+function isStandardBrowserEnv() {
+  if (typeof navigator !== 'undefined' && navigator.product === 'ReactNative') {
+    return false;
+  }
+  return (
+    typeof window !== 'undefined' &&
+    typeof document !== 'undefined'
+  );
+}
+
+/**
+ * Iterate over an Array or an Object invoking a function for each item.
+ *
+ * If `obj` is an Array callback will be called passing
+ * the value, index, and complete array for each item.
+ *
+ * If 'obj' is an Object callback will be called passing
+ * the value, key, and complete object for each property.
+ *
+ * @param {Object|Array} obj The object to iterate
+ * @param {Function} fn The callback to invoke for each item
+ */
+function forEach(obj, fn) {
+  // Don't bother if no value provided
+  if (obj === null || typeof obj === 'undefined') {
+    return;
+  }
+
+  // Force an array if not already something iterable
+  if (typeof obj !== 'object') {
+    /*eslint no-param-reassign:0*/
+    obj = [obj];
+  }
+
+  if (isArray(obj)) {
+    // Iterate over array values
+    for (var i = 0, l = obj.length; i < l; i++) {
+      fn.call(null, obj[i], i, obj);
+    }
+  } else {
+    // Iterate over object keys
+    for (var key in obj) {
+      if (Object.prototype.hasOwnProperty.call(obj, key)) {
+        fn.call(null, obj[key], key, obj);
+      }
+    }
+  }
+}
+
+/**
+ * Accepts varargs expecting each argument to be an object, then
+ * immutably merges the properties of each object and returns result.
+ *
+ * When multiple objects contain the same key the later object in
+ * the arguments list will take precedence.
+ *
+ * Example:
+ *
+ * ```js
+ * var result = merge({foo: 123}, {foo: 456});
+ * console.log(result.foo); // outputs 456
+ * ```
+ *
+ * @param {Object} obj1 Object to merge
+ * @returns {Object} Result of all merge properties
+ */
+function merge(/* obj1, obj2, obj3, ... */) {
+  var result = {};
+  function assignValue(val, key) {
+    if (typeof result[key] === 'object' && typeof val === 'object') {
+      result[key] = merge(result[key], val);
+    } else {
+      result[key] = val;
+    }
+  }
+
+  for (var i = 0, l = arguments.length; i < l; i++) {
+    forEach(arguments[i], assignValue);
+  }
+  return result;
+}
+
+/**
+ * Extends object a by mutably adding to it the properties of object b.
+ *
+ * @param {Object} a The object to be extended
+ * @param {Object} b The object to copy properties from
+ * @param {Object} thisArg The object to bind function to
+ * @return {Object} The resulting value of object a
+ */
+function extend(a, b, thisArg) {
+  forEach(b, function assignValue(val, key) {
+    if (thisArg && typeof val === 'function') {
+      a[key] = bind(val, thisArg);
+    } else {
+      a[key] = val;
+    }
+  });
+  return a;
+}
+
+module.exports = {
+  isArray: isArray,
+  isArrayBuffer: isArrayBuffer,
+  isBuffer: isBuffer,
+  isFormData: isFormData,
+  isArrayBufferView: isArrayBufferView,
+  isString: isString,
+  isNumber: isNumber,
+  isObject: isObject,
+  isUndefined: isUndefined,
+  isDate: isDate,
+  isFile: isFile,
+  isBlob: isBlob,
+  isFunction: isFunction,
+  isStream: isStream,
+  isURLSearchParams: isURLSearchParams,
+  isStandardBrowserEnv: isStandardBrowserEnv,
+  forEach: forEach,
+  merge: merge,
+  extend: extend,
+  trim: trim
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/base64-js/index.js":
+/*!*****************************************!*\
+  !*** ./node_modules/base64-js/index.js ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.byteLength = byteLength
+exports.toByteArray = toByteArray
+exports.fromByteArray = fromByteArray
+
+var lookup = []
+var revLookup = []
+var Arr = typeof Uint8Array !== 'undefined' ? Uint8Array : Array
+
+var code = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
+for (var i = 0, len = code.length; i < len; ++i) {
+  lookup[i] = code[i]
+  revLookup[code.charCodeAt(i)] = i
+}
+
+// Support decoding URL-safe base64 strings, as Node.js does.
+// See: https://en.wikipedia.org/wiki/Base64#URL_applications
+revLookup['-'.charCodeAt(0)] = 62
+revLookup['_'.charCodeAt(0)] = 63
+
+function getLens (b64) {
+  var len = b64.length
+
+  if (len % 4 > 0) {
+    throw new Error('Invalid string. Length must be a multiple of 4')
+  }
+
+  // Trim off extra bytes after placeholder bytes are found
+  // See: https://github.com/beatgammit/base64-js/issues/42
+  var validLen = b64.indexOf('=')
+  if (validLen === -1) validLen = len
+
+  var placeHoldersLen = validLen === len
+    ? 0
+    : 4 - (validLen % 4)
+
+  return [validLen, placeHoldersLen]
+}
+
+// base64 is 4/3 + up to two characters of the original data
+function byteLength (b64) {
+  var lens = getLens(b64)
+  var validLen = lens[0]
+  var placeHoldersLen = lens[1]
+  return ((validLen + placeHoldersLen) * 3 / 4) - placeHoldersLen
+}
+
+function _byteLength (b64, validLen, placeHoldersLen) {
+  return ((validLen + placeHoldersLen) * 3 / 4) - placeHoldersLen
+}
+
+function toByteArray (b64) {
+  var tmp
+  var lens = getLens(b64)
+  var validLen = lens[0]
+  var placeHoldersLen = lens[1]
+
+  var arr = new Arr(_byteLength(b64, validLen, placeHoldersLen))
+
+  var curByte = 0
+
+  // if there are placeholders, only get up to the last complete 4 chars
+  var len = placeHoldersLen > 0
+    ? validLen - 4
+    : validLen
+
+  for (var i = 0; i < len; i += 4) {
+    tmp =
+      (revLookup[b64.charCodeAt(i)] << 18) |
+      (revLookup[b64.charCodeAt(i + 1)] << 12) |
+      (revLookup[b64.charCodeAt(i + 2)] << 6) |
+      revLookup[b64.charCodeAt(i + 3)]
+    arr[curByte++] = (tmp >> 16) & 0xFF
+    arr[curByte++] = (tmp >> 8) & 0xFF
+    arr[curByte++] = tmp & 0xFF
+  }
+
+  if (placeHoldersLen === 2) {
+    tmp =
+      (revLookup[b64.charCodeAt(i)] << 2) |
+      (revLookup[b64.charCodeAt(i + 1)] >> 4)
+    arr[curByte++] = tmp & 0xFF
+  }
+
+  if (placeHoldersLen === 1) {
+    tmp =
+      (revLookup[b64.charCodeAt(i)] << 10) |
+      (revLookup[b64.charCodeAt(i + 1)] << 4) |
+      (revLookup[b64.charCodeAt(i + 2)] >> 2)
+    arr[curByte++] = (tmp >> 8) & 0xFF
+    arr[curByte++] = tmp & 0xFF
+  }
+
+  return arr
+}
+
+function tripletToBase64 (num) {
+  return lookup[num >> 18 & 0x3F] +
+    lookup[num >> 12 & 0x3F] +
+    lookup[num >> 6 & 0x3F] +
+    lookup[num & 0x3F]
+}
+
+function encodeChunk (uint8, start, end) {
+  var tmp
+  var output = []
+  for (var i = start; i < end; i += 3) {
+    tmp =
+      ((uint8[i] << 16) & 0xFF0000) +
+      ((uint8[i + 1] << 8) & 0xFF00) +
+      (uint8[i + 2] & 0xFF)
+    output.push(tripletToBase64(tmp))
+  }
+  return output.join('')
+}
+
+function fromByteArray (uint8) {
+  var tmp
+  var len = uint8.length
+  var extraBytes = len % 3 // if we have 1 byte left, pad 2 bytes
+  var parts = []
+  var maxChunkLength = 16383 // must be multiple of 3
+
+  // go through the array every three bytes, we'll deal with trailing stuff later
+  for (var i = 0, len2 = len - extraBytes; i < len2; i += maxChunkLength) {
+    parts.push(encodeChunk(
+      uint8, i, (i + maxChunkLength) > len2 ? len2 : (i + maxChunkLength)
+    ))
+  }
+
+  // pad the end with zeros, but make sure to not forget the extra bytes
+  if (extraBytes === 1) {
+    tmp = uint8[len - 1]
+    parts.push(
+      lookup[tmp >> 2] +
+      lookup[(tmp << 4) & 0x3F] +
+      '=='
+    )
+  } else if (extraBytes === 2) {
+    tmp = (uint8[len - 2] << 8) + uint8[len - 1]
+    parts.push(
+      lookup[tmp >> 10] +
+      lookup[(tmp >> 4) & 0x3F] +
+      lookup[(tmp << 2) & 0x3F] +
+      '='
+    )
+  }
+
+  return parts.join('')
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/buffer/index.js":
+/*!**************************************!*\
+  !*** ./node_modules/buffer/index.js ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(global) {/*!
+ * The buffer module from node.js, for the browser.
+ *
+ * @author   Feross Aboukhadijeh <feross@feross.org> <http://feross.org>
+ * @license  MIT
+ */
+/* eslint-disable no-proto */
+
+
+
+var base64 = __webpack_require__(/*! base64-js */ "./node_modules/base64-js/index.js")
+var ieee754 = __webpack_require__(/*! ieee754 */ "./node_modules/ieee754/index.js")
+var isArray = __webpack_require__(/*! isarray */ "./node_modules/isarray/index.js")
+
+exports.Buffer = Buffer
+exports.SlowBuffer = SlowBuffer
+exports.INSPECT_MAX_BYTES = 50
+
+/**
+ * If `Buffer.TYPED_ARRAY_SUPPORT`:
+ *   === true    Use Uint8Array implementation (fastest)
+ *   === false   Use Object implementation (most compatible, even IE6)
+ *
+ * Browsers that support typed arrays are IE 10+, Firefox 4+, Chrome 7+, Safari 5.1+,
+ * Opera 11.6+, iOS 4.2+.
+ *
+ * Due to various browser bugs, sometimes the Object implementation will be used even
+ * when the browser supports typed arrays.
+ *
+ * Note:
+ *
+ *   - Firefox 4-29 lacks support for adding new properties to `Uint8Array` instances,
+ *     See: https://bugzilla.mozilla.org/show_bug.cgi?id=695438.
+ *
+ *   - Chrome 9-10 is missing the `TypedArray.prototype.subarray` function.
+ *
+ *   - IE10 has a broken `TypedArray.prototype.subarray` function which returns arrays of
+ *     incorrect length in some situations.
+
+ * We detect these buggy browsers and set `Buffer.TYPED_ARRAY_SUPPORT` to `false` so they
+ * get the Object implementation, which is slower but behaves correctly.
+ */
+Buffer.TYPED_ARRAY_SUPPORT = global.TYPED_ARRAY_SUPPORT !== undefined
+  ? global.TYPED_ARRAY_SUPPORT
+  : typedArraySupport()
+
+/*
+ * Export kMaxLength after typed array support is determined.
+ */
+exports.kMaxLength = kMaxLength()
+
+function typedArraySupport () {
+  try {
+    var arr = new Uint8Array(1)
+    arr.__proto__ = {__proto__: Uint8Array.prototype, foo: function () { return 42 }}
+    return arr.foo() === 42 && // typed array instances can be augmented
+        typeof arr.subarray === 'function' && // chrome 9-10 lack `subarray`
+        arr.subarray(1, 1).byteLength === 0 // ie10 has broken `subarray`
+  } catch (e) {
+    return false
+  }
+}
+
+function kMaxLength () {
+  return Buffer.TYPED_ARRAY_SUPPORT
+    ? 0x7fffffff
+    : 0x3fffffff
+}
+
+function createBuffer (that, length) {
+  if (kMaxLength() < length) {
+    throw new RangeError('Invalid typed array length')
+  }
+  if (Buffer.TYPED_ARRAY_SUPPORT) {
+    // Return an augmented `Uint8Array` instance, for best performance
+    that = new Uint8Array(length)
+    that.__proto__ = Buffer.prototype
+  } else {
+    // Fallback: Return an object instance of the Buffer class
+    if (that === null) {
+      that = new Buffer(length)
+    }
+    that.length = length
+  }
+
+  return that
+}
+
+/**
+ * The Buffer constructor returns instances of `Uint8Array` that have their
+ * prototype changed to `Buffer.prototype`. Furthermore, `Buffer` is a subclass of
+ * `Uint8Array`, so the returned instances will have all the node `Buffer` methods
+ * and the `Uint8Array` methods. Square bracket notation works as expected -- it
+ * returns a single octet.
+ *
+ * The `Uint8Array` prototype remains unmodified.
+ */
+
+function Buffer (arg, encodingOrOffset, length) {
+  if (!Buffer.TYPED_ARRAY_SUPPORT && !(this instanceof Buffer)) {
+    return new Buffer(arg, encodingOrOffset, length)
+  }
+
+  // Common case.
+  if (typeof arg === 'number') {
+    if (typeof encodingOrOffset === 'string') {
+      throw new Error(
+        'If encoding is specified then the first argument must be a string'
+      )
+    }
+    return allocUnsafe(this, arg)
+  }
+  return from(this, arg, encodingOrOffset, length)
+}
+
+Buffer.poolSize = 8192 // not used by this implementation
+
+// TODO: Legacy, not needed anymore. Remove in next major version.
+Buffer._augment = function (arr) {
+  arr.__proto__ = Buffer.prototype
+  return arr
+}
+
+function from (that, value, encodingOrOffset, length) {
+  if (typeof value === 'number') {
+    throw new TypeError('"value" argument must not be a number')
+  }
+
+  if (typeof ArrayBuffer !== 'undefined' && value instanceof ArrayBuffer) {
+    return fromArrayBuffer(that, value, encodingOrOffset, length)
+  }
+
+  if (typeof value === 'string') {
+    return fromString(that, value, encodingOrOffset)
+  }
+
+  return fromObject(that, value)
+}
+
+/**
+ * Functionally equivalent to Buffer(arg, encoding) but throws a TypeError
+ * if value is a number.
+ * Buffer.from(str[, encoding])
+ * Buffer.from(array)
+ * Buffer.from(buffer)
+ * Buffer.from(arrayBuffer[, byteOffset[, length]])
+ **/
+Buffer.from = function (value, encodingOrOffset, length) {
+  return from(null, value, encodingOrOffset, length)
+}
+
+if (Buffer.TYPED_ARRAY_SUPPORT) {
+  Buffer.prototype.__proto__ = Uint8Array.prototype
+  Buffer.__proto__ = Uint8Array
+  if (typeof Symbol !== 'undefined' && Symbol.species &&
+      Buffer[Symbol.species] === Buffer) {
+    // Fix subarray() in ES2016. See: https://github.com/feross/buffer/pull/97
+    Object.defineProperty(Buffer, Symbol.species, {
+      value: null,
+      configurable: true
+    })
+  }
+}
+
+function assertSize (size) {
+  if (typeof size !== 'number') {
+    throw new TypeError('"size" argument must be a number')
+  } else if (size < 0) {
+    throw new RangeError('"size" argument must not be negative')
+  }
+}
+
+function alloc (that, size, fill, encoding) {
+  assertSize(size)
+  if (size <= 0) {
+    return createBuffer(that, size)
+  }
+  if (fill !== undefined) {
+    // Only pay attention to encoding if it's a string. This
+    // prevents accidentally sending in a number that would
+    // be interpretted as a start offset.
+    return typeof encoding === 'string'
+      ? createBuffer(that, size).fill(fill, encoding)
+      : createBuffer(that, size).fill(fill)
+  }
+  return createBuffer(that, size)
+}
+
+/**
+ * Creates a new filled Buffer instance.
+ * alloc(size[, fill[, encoding]])
+ **/
+Buffer.alloc = function (size, fill, encoding) {
+  return alloc(null, size, fill, encoding)
+}
+
+function allocUnsafe (that, size) {
+  assertSize(size)
+  that = createBuffer(that, size < 0 ? 0 : checked(size) | 0)
+  if (!Buffer.TYPED_ARRAY_SUPPORT) {
+    for (var i = 0; i < size; ++i) {
+      that[i] = 0
+    }
+  }
+  return that
+}
+
+/**
+ * Equivalent to Buffer(num), by default creates a non-zero-filled Buffer instance.
+ * */
+Buffer.allocUnsafe = function (size) {
+  return allocUnsafe(null, size)
+}
+/**
+ * Equivalent to SlowBuffer(num), by default creates a non-zero-filled Buffer instance.
+ */
+Buffer.allocUnsafeSlow = function (size) {
+  return allocUnsafe(null, size)
+}
+
+function fromString (that, string, encoding) {
+  if (typeof encoding !== 'string' || encoding === '') {
+    encoding = 'utf8'
+  }
+
+  if (!Buffer.isEncoding(encoding)) {
+    throw new TypeError('"encoding" must be a valid string encoding')
+  }
+
+  var length = byteLength(string, encoding) | 0
+  that = createBuffer(that, length)
+
+  var actual = that.write(string, encoding)
+
+  if (actual !== length) {
+    // Writing a hex string, for example, that contains invalid characters will
+    // cause everything after the first invalid character to be ignored. (e.g.
+    // 'abxxcd' will be treated as 'ab')
+    that = that.slice(0, actual)
+  }
+
+  return that
+}
+
+function fromArrayLike (that, array) {
+  var length = array.length < 0 ? 0 : checked(array.length) | 0
+  that = createBuffer(that, length)
+  for (var i = 0; i < length; i += 1) {
+    that[i] = array[i] & 255
+  }
+  return that
+}
+
+function fromArrayBuffer (that, array, byteOffset, length) {
+  array.byteLength // this throws if `array` is not a valid ArrayBuffer
+
+  if (byteOffset < 0 || array.byteLength < byteOffset) {
+    throw new RangeError('\'offset\' is out of bounds')
+  }
+
+  if (array.byteLength < byteOffset + (length || 0)) {
+    throw new RangeError('\'length\' is out of bounds')
+  }
+
+  if (byteOffset === undefined && length === undefined) {
+    array = new Uint8Array(array)
+  } else if (length === undefined) {
+    array = new Uint8Array(array, byteOffset)
+  } else {
+    array = new Uint8Array(array, byteOffset, length)
+  }
+
+  if (Buffer.TYPED_ARRAY_SUPPORT) {
+    // Return an augmented `Uint8Array` instance, for best performance
+    that = array
+    that.__proto__ = Buffer.prototype
+  } else {
+    // Fallback: Return an object instance of the Buffer class
+    that = fromArrayLike(that, array)
+  }
+  return that
+}
+
+function fromObject (that, obj) {
+  if (Buffer.isBuffer(obj)) {
+    var len = checked(obj.length) | 0
+    that = createBuffer(that, len)
+
+    if (that.length === 0) {
+      return that
+    }
+
+    obj.copy(that, 0, 0, len)
+    return that
+  }
+
+  if (obj) {
+    if ((typeof ArrayBuffer !== 'undefined' &&
+        obj.buffer instanceof ArrayBuffer) || 'length' in obj) {
+      if (typeof obj.length !== 'number' || isnan(obj.length)) {
+        return createBuffer(that, 0)
+      }
+      return fromArrayLike(that, obj)
+    }
+
+    if (obj.type === 'Buffer' && isArray(obj.data)) {
+      return fromArrayLike(that, obj.data)
+    }
+  }
+
+  throw new TypeError('First argument must be a string, Buffer, ArrayBuffer, Array, or array-like object.')
+}
+
+function checked (length) {
+  // Note: cannot use `length < kMaxLength()` here because that fails when
+  // length is NaN (which is otherwise coerced to zero.)
+  if (length >= kMaxLength()) {
+    throw new RangeError('Attempt to allocate Buffer larger than maximum ' +
+                         'size: 0x' + kMaxLength().toString(16) + ' bytes')
+  }
+  return length | 0
+}
+
+function SlowBuffer (length) {
+  if (+length != length) { // eslint-disable-line eqeqeq
+    length = 0
+  }
+  return Buffer.alloc(+length)
+}
+
+Buffer.isBuffer = function isBuffer (b) {
+  return !!(b != null && b._isBuffer)
+}
+
+Buffer.compare = function compare (a, b) {
+  if (!Buffer.isBuffer(a) || !Buffer.isBuffer(b)) {
+    throw new TypeError('Arguments must be Buffers')
+  }
+
+  if (a === b) return 0
+
+  var x = a.length
+  var y = b.length
+
+  for (var i = 0, len = Math.min(x, y); i < len; ++i) {
+    if (a[i] !== b[i]) {
+      x = a[i]
+      y = b[i]
+      break
+    }
+  }
+
+  if (x < y) return -1
+  if (y < x) return 1
+  return 0
+}
+
+Buffer.isEncoding = function isEncoding (encoding) {
+  switch (String(encoding).toLowerCase()) {
+    case 'hex':
+    case 'utf8':
+    case 'utf-8':
+    case 'ascii':
+    case 'latin1':
+    case 'binary':
+    case 'base64':
+    case 'ucs2':
+    case 'ucs-2':
+    case 'utf16le':
+    case 'utf-16le':
+      return true
+    default:
+      return false
+  }
+}
+
+Buffer.concat = function concat (list, length) {
+  if (!isArray(list)) {
+    throw new TypeError('"list" argument must be an Array of Buffers')
+  }
+
+  if (list.length === 0) {
+    return Buffer.alloc(0)
+  }
+
+  var i
+  if (length === undefined) {
+    length = 0
+    for (i = 0; i < list.length; ++i) {
+      length += list[i].length
+    }
+  }
+
+  var buffer = Buffer.allocUnsafe(length)
+  var pos = 0
+  for (i = 0; i < list.length; ++i) {
+    var buf = list[i]
+    if (!Buffer.isBuffer(buf)) {
+      throw new TypeError('"list" argument must be an Array of Buffers')
+    }
+    buf.copy(buffer, pos)
+    pos += buf.length
+  }
+  return buffer
+}
+
+function byteLength (string, encoding) {
+  if (Buffer.isBuffer(string)) {
+    return string.length
+  }
+  if (typeof ArrayBuffer !== 'undefined' && typeof ArrayBuffer.isView === 'function' &&
+      (ArrayBuffer.isView(string) || string instanceof ArrayBuffer)) {
+    return string.byteLength
+  }
+  if (typeof string !== 'string') {
+    string = '' + string
+  }
+
+  var len = string.length
+  if (len === 0) return 0
+
+  // Use a for loop to avoid recursion
+  var loweredCase = false
+  for (;;) {
+    switch (encoding) {
+      case 'ascii':
+      case 'latin1':
+      case 'binary':
+        return len
+      case 'utf8':
+      case 'utf-8':
+      case undefined:
+        return utf8ToBytes(string).length
+      case 'ucs2':
+      case 'ucs-2':
+      case 'utf16le':
+      case 'utf-16le':
+        return len * 2
+      case 'hex':
+        return len >>> 1
+      case 'base64':
+        return base64ToBytes(string).length
+      default:
+        if (loweredCase) return utf8ToBytes(string).length // assume utf8
+        encoding = ('' + encoding).toLowerCase()
+        loweredCase = true
+    }
+  }
+}
+Buffer.byteLength = byteLength
+
+function slowToString (encoding, start, end) {
+  var loweredCase = false
+
+  // No need to verify that "this.length <= MAX_UINT32" since it's a read-only
+  // property of a typed array.
+
+  // This behaves neither like String nor Uint8Array in that we set start/end
+  // to their upper/lower bounds if the value passed is out of range.
+  // undefined is handled specially as per ECMA-262 6th Edition,
+  // Section 13.3.3.7 Runtime Semantics: KeyedBindingInitialization.
+  if (start === undefined || start < 0) {
+    start = 0
+  }
+  // Return early if start > this.length. Done here to prevent potential uint32
+  // coercion fail below.
+  if (start > this.length) {
+    return ''
+  }
+
+  if (end === undefined || end > this.length) {
+    end = this.length
+  }
+
+  if (end <= 0) {
+    return ''
+  }
+
+  // Force coersion to uint32. This will also coerce falsey/NaN values to 0.
+  end >>>= 0
+  start >>>= 0
+
+  if (end <= start) {
+    return ''
+  }
+
+  if (!encoding) encoding = 'utf8'
+
+  while (true) {
+    switch (encoding) {
+      case 'hex':
+        return hexSlice(this, start, end)
+
+      case 'utf8':
+      case 'utf-8':
+        return utf8Slice(this, start, end)
+
+      case 'ascii':
+        return asciiSlice(this, start, end)
+
+      case 'latin1':
+      case 'binary':
+        return latin1Slice(this, start, end)
+
+      case 'base64':
+        return base64Slice(this, start, end)
+
+      case 'ucs2':
+      case 'ucs-2':
+      case 'utf16le':
+      case 'utf-16le':
+        return utf16leSlice(this, start, end)
+
+      default:
+        if (loweredCase) throw new TypeError('Unknown encoding: ' + encoding)
+        encoding = (encoding + '').toLowerCase()
+        loweredCase = true
+    }
+  }
+}
+
+// The property is used by `Buffer.isBuffer` and `is-buffer` (in Safari 5-7) to detect
+// Buffer instances.
+Buffer.prototype._isBuffer = true
+
+function swap (b, n, m) {
+  var i = b[n]
+  b[n] = b[m]
+  b[m] = i
+}
+
+Buffer.prototype.swap16 = function swap16 () {
+  var len = this.length
+  if (len % 2 !== 0) {
+    throw new RangeError('Buffer size must be a multiple of 16-bits')
+  }
+  for (var i = 0; i < len; i += 2) {
+    swap(this, i, i + 1)
+  }
+  return this
+}
+
+Buffer.prototype.swap32 = function swap32 () {
+  var len = this.length
+  if (len % 4 !== 0) {
+    throw new RangeError('Buffer size must be a multiple of 32-bits')
+  }
+  for (var i = 0; i < len; i += 4) {
+    swap(this, i, i + 3)
+    swap(this, i + 1, i + 2)
+  }
+  return this
+}
+
+Buffer.prototype.swap64 = function swap64 () {
+  var len = this.length
+  if (len % 8 !== 0) {
+    throw new RangeError('Buffer size must be a multiple of 64-bits')
+  }
+  for (var i = 0; i < len; i += 8) {
+    swap(this, i, i + 7)
+    swap(this, i + 1, i + 6)
+    swap(this, i + 2, i + 5)
+    swap(this, i + 3, i + 4)
+  }
+  return this
+}
+
+Buffer.prototype.toString = function toString () {
+  var length = this.length | 0
+  if (length === 0) return ''
+  if (arguments.length === 0) return utf8Slice(this, 0, length)
+  return slowToString.apply(this, arguments)
+}
+
+Buffer.prototype.equals = function equals (b) {
+  if (!Buffer.isBuffer(b)) throw new TypeError('Argument must be a Buffer')
+  if (this === b) return true
+  return Buffer.compare(this, b) === 0
+}
+
+Buffer.prototype.inspect = function inspect () {
+  var str = ''
+  var max = exports.INSPECT_MAX_BYTES
+  if (this.length > 0) {
+    str = this.toString('hex', 0, max).match(/.{2}/g).join(' ')
+    if (this.length > max) str += ' ... '
+  }
+  return '<Buffer ' + str + '>'
+}
+
+Buffer.prototype.compare = function compare (target, start, end, thisStart, thisEnd) {
+  if (!Buffer.isBuffer(target)) {
+    throw new TypeError('Argument must be a Buffer')
+  }
+
+  if (start === undefined) {
+    start = 0
+  }
+  if (end === undefined) {
+    end = target ? target.length : 0
+  }
+  if (thisStart === undefined) {
+    thisStart = 0
+  }
+  if (thisEnd === undefined) {
+    thisEnd = this.length
+  }
+
+  if (start < 0 || end > target.length || thisStart < 0 || thisEnd > this.length) {
+    throw new RangeError('out of range index')
+  }
+
+  if (thisStart >= thisEnd && start >= end) {
+    return 0
+  }
+  if (thisStart >= thisEnd) {
+    return -1
+  }
+  if (start >= end) {
+    return 1
+  }
+
+  start >>>= 0
+  end >>>= 0
+  thisStart >>>= 0
+  thisEnd >>>= 0
+
+  if (this === target) return 0
+
+  var x = thisEnd - thisStart
+  var y = end - start
+  var len = Math.min(x, y)
+
+  var thisCopy = this.slice(thisStart, thisEnd)
+  var targetCopy = target.slice(start, end)
+
+  for (var i = 0; i < len; ++i) {
+    if (thisCopy[i] !== targetCopy[i]) {
+      x = thisCopy[i]
+      y = targetCopy[i]
+      break
+    }
+  }
+
+  if (x < y) return -1
+  if (y < x) return 1
+  return 0
+}
+
+// Finds either the first index of `val` in `buffer` at offset >= `byteOffset`,
+// OR the last index of `val` in `buffer` at offset <= `byteOffset`.
+//
+// Arguments:
+// - buffer - a Buffer to search
+// - val - a string, Buffer, or number
+// - byteOffset - an index into `buffer`; will be clamped to an int32
+// - encoding - an optional encoding, relevant is val is a string
+// - dir - true for indexOf, false for lastIndexOf
+function bidirectionalIndexOf (buffer, val, byteOffset, encoding, dir) {
+  // Empty buffer means no match
+  if (buffer.length === 0) return -1
+
+  // Normalize byteOffset
+  if (typeof byteOffset === 'string') {
+    encoding = byteOffset
+    byteOffset = 0
+  } else if (byteOffset > 0x7fffffff) {
+    byteOffset = 0x7fffffff
+  } else if (byteOffset < -0x80000000) {
+    byteOffset = -0x80000000
+  }
+  byteOffset = +byteOffset  // Coerce to Number.
+  if (isNaN(byteOffset)) {
+    // byteOffset: it it's undefined, null, NaN, "foo", etc, search whole buffer
+    byteOffset = dir ? 0 : (buffer.length - 1)
+  }
+
+  // Normalize byteOffset: negative offsets start from the end of the buffer
+  if (byteOffset < 0) byteOffset = buffer.length + byteOffset
+  if (byteOffset >= buffer.length) {
+    if (dir) return -1
+    else byteOffset = buffer.length - 1
+  } else if (byteOffset < 0) {
+    if (dir) byteOffset = 0
+    else return -1
+  }
+
+  // Normalize val
+  if (typeof val === 'string') {
+    val = Buffer.from(val, encoding)
+  }
+
+  // Finally, search either indexOf (if dir is true) or lastIndexOf
+  if (Buffer.isBuffer(val)) {
+    // Special case: looking for empty string/buffer always fails
+    if (val.length === 0) {
+      return -1
+    }
+    return arrayIndexOf(buffer, val, byteOffset, encoding, dir)
+  } else if (typeof val === 'number') {
+    val = val & 0xFF // Search for a byte value [0-255]
+    if (Buffer.TYPED_ARRAY_SUPPORT &&
+        typeof Uint8Array.prototype.indexOf === 'function') {
+      if (dir) {
+        return Uint8Array.prototype.indexOf.call(buffer, val, byteOffset)
+      } else {
+        return Uint8Array.prototype.lastIndexOf.call(buffer, val, byteOffset)
+      }
+    }
+    return arrayIndexOf(buffer, [ val ], byteOffset, encoding, dir)
+  }
+
+  throw new TypeError('val must be string, number or Buffer')
+}
+
+function arrayIndexOf (arr, val, byteOffset, encoding, dir) {
+  var indexSize = 1
+  var arrLength = arr.length
+  var valLength = val.length
+
+  if (encoding !== undefined) {
+    encoding = String(encoding).toLowerCase()
+    if (encoding === 'ucs2' || encoding === 'ucs-2' ||
+        encoding === 'utf16le' || encoding === 'utf-16le') {
+      if (arr.length < 2 || val.length < 2) {
+        return -1
+      }
+      indexSize = 2
+      arrLength /= 2
+      valLength /= 2
+      byteOffset /= 2
+    }
+  }
+
+  function read (buf, i) {
+    if (indexSize === 1) {
+      return buf[i]
+    } else {
+      return buf.readUInt16BE(i * indexSize)
+    }
+  }
+
+  var i
+  if (dir) {
+    var foundIndex = -1
+    for (i = byteOffset; i < arrLength; i++) {
+      if (read(arr, i) === read(val, foundIndex === -1 ? 0 : i - foundIndex)) {
+        if (foundIndex === -1) foundIndex = i
+        if (i - foundIndex + 1 === valLength) return foundIndex * indexSize
+      } else {
+        if (foundIndex !== -1) i -= i - foundIndex
+        foundIndex = -1
+      }
+    }
+  } else {
+    if (byteOffset + valLength > arrLength) byteOffset = arrLength - valLength
+    for (i = byteOffset; i >= 0; i--) {
+      var found = true
+      for (var j = 0; j < valLength; j++) {
+        if (read(arr, i + j) !== read(val, j)) {
+          found = false
+          break
+        }
+      }
+      if (found) return i
+    }
+  }
+
+  return -1
+}
+
+Buffer.prototype.includes = function includes (val, byteOffset, encoding) {
+  return this.indexOf(val, byteOffset, encoding) !== -1
+}
+
+Buffer.prototype.indexOf = function indexOf (val, byteOffset, encoding) {
+  return bidirectionalIndexOf(this, val, byteOffset, encoding, true)
+}
+
+Buffer.prototype.lastIndexOf = function lastIndexOf (val, byteOffset, encoding) {
+  return bidirectionalIndexOf(this, val, byteOffset, encoding, false)
+}
+
+function hexWrite (buf, string, offset, length) {
+  offset = Number(offset) || 0
+  var remaining = buf.length - offset
+  if (!length) {
+    length = remaining
+  } else {
+    length = Number(length)
+    if (length > remaining) {
+      length = remaining
+    }
+  }
+
+  // must be an even number of digits
+  var strLen = string.length
+  if (strLen % 2 !== 0) throw new TypeError('Invalid hex string')
+
+  if (length > strLen / 2) {
+    length = strLen / 2
+  }
+  for (var i = 0; i < length; ++i) {
+    var parsed = parseInt(string.substr(i * 2, 2), 16)
+    if (isNaN(parsed)) return i
+    buf[offset + i] = parsed
+  }
+  return i
+}
+
+function utf8Write (buf, string, offset, length) {
+  return blitBuffer(utf8ToBytes(string, buf.length - offset), buf, offset, length)
+}
+
+function asciiWrite (buf, string, offset, length) {
+  return blitBuffer(asciiToBytes(string), buf, offset, length)
+}
+
+function latin1Write (buf, string, offset, length) {
+  return asciiWrite(buf, string, offset, length)
+}
+
+function base64Write (buf, string, offset, length) {
+  return blitBuffer(base64ToBytes(string), buf, offset, length)
+}
+
+function ucs2Write (buf, string, offset, length) {
+  return blitBuffer(utf16leToBytes(string, buf.length - offset), buf, offset, length)
+}
+
+Buffer.prototype.write = function write (string, offset, length, encoding) {
+  // Buffer#write(string)
+  if (offset === undefined) {
+    encoding = 'utf8'
+    length = this.length
+    offset = 0
+  // Buffer#write(string, encoding)
+  } else if (length === undefined && typeof offset === 'string') {
+    encoding = offset
+    length = this.length
+    offset = 0
+  // Buffer#write(string, offset[, length][, encoding])
+  } else if (isFinite(offset)) {
+    offset = offset | 0
+    if (isFinite(length)) {
+      length = length | 0
+      if (encoding === undefined) encoding = 'utf8'
+    } else {
+      encoding = length
+      length = undefined
+    }
+  // legacy write(string, encoding, offset, length) - remove in v0.13
+  } else {
+    throw new Error(
+      'Buffer.write(string, encoding, offset[, length]) is no longer supported'
+    )
+  }
+
+  var remaining = this.length - offset
+  if (length === undefined || length > remaining) length = remaining
+
+  if ((string.length > 0 && (length < 0 || offset < 0)) || offset > this.length) {
+    throw new RangeError('Attempt to write outside buffer bounds')
+  }
+
+  if (!encoding) encoding = 'utf8'
+
+  var loweredCase = false
+  for (;;) {
+    switch (encoding) {
+      case 'hex':
+        return hexWrite(this, string, offset, length)
+
+      case 'utf8':
+      case 'utf-8':
+        return utf8Write(this, string, offset, length)
+
+      case 'ascii':
+        return asciiWrite(this, string, offset, length)
+
+      case 'latin1':
+      case 'binary':
+        return latin1Write(this, string, offset, length)
+
+      case 'base64':
+        // Warning: maxLength not taken into account in base64Write
+        return base64Write(this, string, offset, length)
+
+      case 'ucs2':
+      case 'ucs-2':
+      case 'utf16le':
+      case 'utf-16le':
+        return ucs2Write(this, string, offset, length)
+
+      default:
+        if (loweredCase) throw new TypeError('Unknown encoding: ' + encoding)
+        encoding = ('' + encoding).toLowerCase()
+        loweredCase = true
+    }
+  }
+}
+
+Buffer.prototype.toJSON = function toJSON () {
+  return {
+    type: 'Buffer',
+    data: Array.prototype.slice.call(this._arr || this, 0)
+  }
+}
+
+function base64Slice (buf, start, end) {
+  if (start === 0 && end === buf.length) {
+    return base64.fromByteArray(buf)
+  } else {
+    return base64.fromByteArray(buf.slice(start, end))
+  }
+}
+
+function utf8Slice (buf, start, end) {
+  end = Math.min(buf.length, end)
+  var res = []
+
+  var i = start
+  while (i < end) {
+    var firstByte = buf[i]
+    var codePoint = null
+    var bytesPerSequence = (firstByte > 0xEF) ? 4
+      : (firstByte > 0xDF) ? 3
+      : (firstByte > 0xBF) ? 2
+      : 1
+
+    if (i + bytesPerSequence <= end) {
+      var secondByte, thirdByte, fourthByte, tempCodePoint
+
+      switch (bytesPerSequence) {
+        case 1:
+          if (firstByte < 0x80) {
+            codePoint = firstByte
+          }
+          break
+        case 2:
+          secondByte = buf[i + 1]
+          if ((secondByte & 0xC0) === 0x80) {
+            tempCodePoint = (firstByte & 0x1F) << 0x6 | (secondByte & 0x3F)
+            if (tempCodePoint > 0x7F) {
+              codePoint = tempCodePoint
+            }
+          }
+          break
+        case 3:
+          secondByte = buf[i + 1]
+          thirdByte = buf[i + 2]
+          if ((secondByte & 0xC0) === 0x80 && (thirdByte & 0xC0) === 0x80) {
+            tempCodePoint = (firstByte & 0xF) << 0xC | (secondByte & 0x3F) << 0x6 | (thirdByte & 0x3F)
+            if (tempCodePoint > 0x7FF && (tempCodePoint < 0xD800 || tempCodePoint > 0xDFFF)) {
+              codePoint = tempCodePoint
+            }
+          }
+          break
+        case 4:
+          secondByte = buf[i + 1]
+          thirdByte = buf[i + 2]
+          fourthByte = buf[i + 3]
+          if ((secondByte & 0xC0) === 0x80 && (thirdByte & 0xC0) === 0x80 && (fourthByte & 0xC0) === 0x80) {
+            tempCodePoint = (firstByte & 0xF) << 0x12 | (secondByte & 0x3F) << 0xC | (thirdByte & 0x3F) << 0x6 | (fourthByte & 0x3F)
+            if (tempCodePoint > 0xFFFF && tempCodePoint < 0x110000) {
+              codePoint = tempCodePoint
+            }
+          }
+      }
+    }
+
+    if (codePoint === null) {
+      // we did not generate a valid codePoint so insert a
+      // replacement char (U+FFFD) and advance only 1 byte
+      codePoint = 0xFFFD
+      bytesPerSequence = 1
+    } else if (codePoint > 0xFFFF) {
+      // encode to utf16 (surrogate pair dance)
+      codePoint -= 0x10000
+      res.push(codePoint >>> 10 & 0x3FF | 0xD800)
+      codePoint = 0xDC00 | codePoint & 0x3FF
+    }
+
+    res.push(codePoint)
+    i += bytesPerSequence
+  }
+
+  return decodeCodePointsArray(res)
+}
+
+// Based on http://stackoverflow.com/a/22747272/680742, the browser with
+// the lowest limit is Chrome, with 0x10000 args.
+// We go 1 magnitude less, for safety
+var MAX_ARGUMENTS_LENGTH = 0x1000
+
+function decodeCodePointsArray (codePoints) {
+  var len = codePoints.length
+  if (len <= MAX_ARGUMENTS_LENGTH) {
+    return String.fromCharCode.apply(String, codePoints) // avoid extra slice()
+  }
+
+  // Decode in chunks to avoid "call stack size exceeded".
+  var res = ''
+  var i = 0
+  while (i < len) {
+    res += String.fromCharCode.apply(
+      String,
+      codePoints.slice(i, i += MAX_ARGUMENTS_LENGTH)
+    )
+  }
+  return res
+}
+
+function asciiSlice (buf, start, end) {
+  var ret = ''
+  end = Math.min(buf.length, end)
+
+  for (var i = start; i < end; ++i) {
+    ret += String.fromCharCode(buf[i] & 0x7F)
+  }
+  return ret
+}
+
+function latin1Slice (buf, start, end) {
+  var ret = ''
+  end = Math.min(buf.length, end)
+
+  for (var i = start; i < end; ++i) {
+    ret += String.fromCharCode(buf[i])
+  }
+  return ret
+}
+
+function hexSlice (buf, start, end) {
+  var len = buf.length
+
+  if (!start || start < 0) start = 0
+  if (!end || end < 0 || end > len) end = len
+
+  var out = ''
+  for (var i = start; i < end; ++i) {
+    out += toHex(buf[i])
+  }
+  return out
+}
+
+function utf16leSlice (buf, start, end) {
+  var bytes = buf.slice(start, end)
+  var res = ''
+  for (var i = 0; i < bytes.length; i += 2) {
+    res += String.fromCharCode(bytes[i] + bytes[i + 1] * 256)
+  }
+  return res
+}
+
+Buffer.prototype.slice = function slice (start, end) {
+  var len = this.length
+  start = ~~start
+  end = end === undefined ? len : ~~end
+
+  if (start < 0) {
+    start += len
+    if (start < 0) start = 0
+  } else if (start > len) {
+    start = len
+  }
+
+  if (end < 0) {
+    end += len
+    if (end < 0) end = 0
+  } else if (end > len) {
+    end = len
+  }
+
+  if (end < start) end = start
+
+  var newBuf
+  if (Buffer.TYPED_ARRAY_SUPPORT) {
+    newBuf = this.subarray(start, end)
+    newBuf.__proto__ = Buffer.prototype
+  } else {
+    var sliceLen = end - start
+    newBuf = new Buffer(sliceLen, undefined)
+    for (var i = 0; i < sliceLen; ++i) {
+      newBuf[i] = this[i + start]
+    }
+  }
+
+  return newBuf
+}
+
+/*
+ * Need to make sure that buffer isn't trying to write out of bounds.
+ */
+function checkOffset (offset, ext, length) {
+  if ((offset % 1) !== 0 || offset < 0) throw new RangeError('offset is not uint')
+  if (offset + ext > length) throw new RangeError('Trying to access beyond buffer length')
+}
+
+Buffer.prototype.readUIntLE = function readUIntLE (offset, byteLength, noAssert) {
+  offset = offset | 0
+  byteLength = byteLength | 0
+  if (!noAssert) checkOffset(offset, byteLength, this.length)
+
+  var val = this[offset]
+  var mul = 1
+  var i = 0
+  while (++i < byteLength && (mul *= 0x100)) {
+    val += this[offset + i] * mul
+  }
+
+  return val
+}
+
+Buffer.prototype.readUIntBE = function readUIntBE (offset, byteLength, noAssert) {
+  offset = offset | 0
+  byteLength = byteLength | 0
+  if (!noAssert) {
+    checkOffset(offset, byteLength, this.length)
+  }
+
+  var val = this[offset + --byteLength]
+  var mul = 1
+  while (byteLength > 0 && (mul *= 0x100)) {
+    val += this[offset + --byteLength] * mul
+  }
+
+  return val
+}
+
+Buffer.prototype.readUInt8 = function readUInt8 (offset, noAssert) {
+  if (!noAssert) checkOffset(offset, 1, this.length)
+  return this[offset]
+}
+
+Buffer.prototype.readUInt16LE = function readUInt16LE (offset, noAssert) {
+  if (!noAssert) checkOffset(offset, 2, this.length)
+  return this[offset] | (this[offset + 1] << 8)
+}
+
+Buffer.prototype.readUInt16BE = function readUInt16BE (offset, noAssert) {
+  if (!noAssert) checkOffset(offset, 2, this.length)
+  return (this[offset] << 8) | this[offset + 1]
+}
+
+Buffer.prototype.readUInt32LE = function readUInt32LE (offset, noAssert) {
+  if (!noAssert) checkOffset(offset, 4, this.length)
+
+  return ((this[offset]) |
+      (this[offset + 1] << 8) |
+      (this[offset + 2] << 16)) +
+      (this[offset + 3] * 0x1000000)
+}
+
+Buffer.prototype.readUInt32BE = function readUInt32BE (offset, noAssert) {
+  if (!noAssert) checkOffset(offset, 4, this.length)
+
+  return (this[offset] * 0x1000000) +
+    ((this[offset + 1] << 16) |
+    (this[offset + 2] << 8) |
+    this[offset + 3])
+}
+
+Buffer.prototype.readIntLE = function readIntLE (offset, byteLength, noAssert) {
+  offset = offset | 0
+  byteLength = byteLength | 0
+  if (!noAssert) checkOffset(offset, byteLength, this.length)
+
+  var val = this[offset]
+  var mul = 1
+  var i = 0
+  while (++i < byteLength && (mul *= 0x100)) {
+    val += this[offset + i] * mul
+  }
+  mul *= 0x80
+
+  if (val >= mul) val -= Math.pow(2, 8 * byteLength)
+
+  return val
+}
+
+Buffer.prototype.readIntBE = function readIntBE (offset, byteLength, noAssert) {
+  offset = offset | 0
+  byteLength = byteLength | 0
+  if (!noAssert) checkOffset(offset, byteLength, this.length)
+
+  var i = byteLength
+  var mul = 1
+  var val = this[offset + --i]
+  while (i > 0 && (mul *= 0x100)) {
+    val += this[offset + --i] * mul
+  }
+  mul *= 0x80
+
+  if (val >= mul) val -= Math.pow(2, 8 * byteLength)
+
+  return val
+}
+
+Buffer.prototype.readInt8 = function readInt8 (offset, noAssert) {
+  if (!noAssert) checkOffset(offset, 1, this.length)
+  if (!(this[offset] & 0x80)) return (this[offset])
+  return ((0xff - this[offset] + 1) * -1)
+}
+
+Buffer.prototype.readInt16LE = function readInt16LE (offset, noAssert) {
+  if (!noAssert) checkOffset(offset, 2, this.length)
+  var val = this[offset] | (this[offset + 1] << 8)
+  return (val & 0x8000) ? val | 0xFFFF0000 : val
+}
+
+Buffer.prototype.readInt16BE = function readInt16BE (offset, noAssert) {
+  if (!noAssert) checkOffset(offset, 2, this.length)
+  var val = this[offset + 1] | (this[offset] << 8)
+  return (val & 0x8000) ? val | 0xFFFF0000 : val
+}
+
+Buffer.prototype.readInt32LE = function readInt32LE (offset, noAssert) {
+  if (!noAssert) checkOffset(offset, 4, this.length)
+
+  return (this[offset]) |
+    (this[offset + 1] << 8) |
+    (this[offset + 2] << 16) |
+    (this[offset + 3] << 24)
+}
+
+Buffer.prototype.readInt32BE = function readInt32BE (offset, noAssert) {
+  if (!noAssert) checkOffset(offset, 4, this.length)
+
+  return (this[offset] << 24) |
+    (this[offset + 1] << 16) |
+    (this[offset + 2] << 8) |
+    (this[offset + 3])
+}
+
+Buffer.prototype.readFloatLE = function readFloatLE (offset, noAssert) {
+  if (!noAssert) checkOffset(offset, 4, this.length)
+  return ieee754.read(this, offset, true, 23, 4)
+}
+
+Buffer.prototype.readFloatBE = function readFloatBE (offset, noAssert) {
+  if (!noAssert) checkOffset(offset, 4, this.length)
+  return ieee754.read(this, offset, false, 23, 4)
+}
+
+Buffer.prototype.readDoubleLE = function readDoubleLE (offset, noAssert) {
+  if (!noAssert) checkOffset(offset, 8, this.length)
+  return ieee754.read(this, offset, true, 52, 8)
+}
+
+Buffer.prototype.readDoubleBE = function readDoubleBE (offset, noAssert) {
+  if (!noAssert) checkOffset(offset, 8, this.length)
+  return ieee754.read(this, offset, false, 52, 8)
+}
+
+function checkInt (buf, value, offset, ext, max, min) {
+  if (!Buffer.isBuffer(buf)) throw new TypeError('"buffer" argument must be a Buffer instance')
+  if (value > max || value < min) throw new RangeError('"value" argument is out of bounds')
+  if (offset + ext > buf.length) throw new RangeError('Index out of range')
+}
+
+Buffer.prototype.writeUIntLE = function writeUIntLE (value, offset, byteLength, noAssert) {
+  value = +value
+  offset = offset | 0
+  byteLength = byteLength | 0
+  if (!noAssert) {
+    var maxBytes = Math.pow(2, 8 * byteLength) - 1
+    checkInt(this, value, offset, byteLength, maxBytes, 0)
+  }
+
+  var mul = 1
+  var i = 0
+  this[offset] = value & 0xFF
+  while (++i < byteLength && (mul *= 0x100)) {
+    this[offset + i] = (value / mul) & 0xFF
+  }
+
+  return offset + byteLength
+}
+
+Buffer.prototype.writeUIntBE = function writeUIntBE (value, offset, byteLength, noAssert) {
+  value = +value
+  offset = offset | 0
+  byteLength = byteLength | 0
+  if (!noAssert) {
+    var maxBytes = Math.pow(2, 8 * byteLength) - 1
+    checkInt(this, value, offset, byteLength, maxBytes, 0)
+  }
+
+  var i = byteLength - 1
+  var mul = 1
+  this[offset + i] = value & 0xFF
+  while (--i >= 0 && (mul *= 0x100)) {
+    this[offset + i] = (value / mul) & 0xFF
+  }
+
+  return offset + byteLength
+}
+
+Buffer.prototype.writeUInt8 = function writeUInt8 (value, offset, noAssert) {
+  value = +value
+  offset = offset | 0
+  if (!noAssert) checkInt(this, value, offset, 1, 0xff, 0)
+  if (!Buffer.TYPED_ARRAY_SUPPORT) value = Math.floor(value)
+  this[offset] = (value & 0xff)
+  return offset + 1
+}
+
+function objectWriteUInt16 (buf, value, offset, littleEndian) {
+  if (value < 0) value = 0xffff + value + 1
+  for (var i = 0, j = Math.min(buf.length - offset, 2); i < j; ++i) {
+    buf[offset + i] = (value & (0xff << (8 * (littleEndian ? i : 1 - i)))) >>>
+      (littleEndian ? i : 1 - i) * 8
+  }
+}
+
+Buffer.prototype.writeUInt16LE = function writeUInt16LE (value, offset, noAssert) {
+  value = +value
+  offset = offset | 0
+  if (!noAssert) checkInt(this, value, offset, 2, 0xffff, 0)
+  if (Buffer.TYPED_ARRAY_SUPPORT) {
+    this[offset] = (value & 0xff)
+    this[offset + 1] = (value >>> 8)
+  } else {
+    objectWriteUInt16(this, value, offset, true)
+  }
+  return offset + 2
+}
+
+Buffer.prototype.writeUInt16BE = function writeUInt16BE (value, offset, noAssert) {
+  value = +value
+  offset = offset | 0
+  if (!noAssert) checkInt(this, value, offset, 2, 0xffff, 0)
+  if (Buffer.TYPED_ARRAY_SUPPORT) {
+    this[offset] = (value >>> 8)
+    this[offset + 1] = (value & 0xff)
+  } else {
+    objectWriteUInt16(this, value, offset, false)
+  }
+  return offset + 2
+}
+
+function objectWriteUInt32 (buf, value, offset, littleEndian) {
+  if (value < 0) value = 0xffffffff + value + 1
+  for (var i = 0, j = Math.min(buf.length - offset, 4); i < j; ++i) {
+    buf[offset + i] = (value >>> (littleEndian ? i : 3 - i) * 8) & 0xff
+  }
+}
+
+Buffer.prototype.writeUInt32LE = function writeUInt32LE (value, offset, noAssert) {
+  value = +value
+  offset = offset | 0
+  if (!noAssert) checkInt(this, value, offset, 4, 0xffffffff, 0)
+  if (Buffer.TYPED_ARRAY_SUPPORT) {
+    this[offset + 3] = (value >>> 24)
+    this[offset + 2] = (value >>> 16)
+    this[offset + 1] = (value >>> 8)
+    this[offset] = (value & 0xff)
+  } else {
+    objectWriteUInt32(this, value, offset, true)
+  }
+  return offset + 4
+}
+
+Buffer.prototype.writeUInt32BE = function writeUInt32BE (value, offset, noAssert) {
+  value = +value
+  offset = offset | 0
+  if (!noAssert) checkInt(this, value, offset, 4, 0xffffffff, 0)
+  if (Buffer.TYPED_ARRAY_SUPPORT) {
+    this[offset] = (value >>> 24)
+    this[offset + 1] = (value >>> 16)
+    this[offset + 2] = (value >>> 8)
+    this[offset + 3] = (value & 0xff)
+  } else {
+    objectWriteUInt32(this, value, offset, false)
+  }
+  return offset + 4
+}
+
+Buffer.prototype.writeIntLE = function writeIntLE (value, offset, byteLength, noAssert) {
+  value = +value
+  offset = offset | 0
+  if (!noAssert) {
+    var limit = Math.pow(2, 8 * byteLength - 1)
+
+    checkInt(this, value, offset, byteLength, limit - 1, -limit)
+  }
+
+  var i = 0
+  var mul = 1
+  var sub = 0
+  this[offset] = value & 0xFF
+  while (++i < byteLength && (mul *= 0x100)) {
+    if (value < 0 && sub === 0 && this[offset + i - 1] !== 0) {
+      sub = 1
+    }
+    this[offset + i] = ((value / mul) >> 0) - sub & 0xFF
+  }
+
+  return offset + byteLength
+}
+
+Buffer.prototype.writeIntBE = function writeIntBE (value, offset, byteLength, noAssert) {
+  value = +value
+  offset = offset | 0
+  if (!noAssert) {
+    var limit = Math.pow(2, 8 * byteLength - 1)
+
+    checkInt(this, value, offset, byteLength, limit - 1, -limit)
+  }
+
+  var i = byteLength - 1
+  var mul = 1
+  var sub = 0
+  this[offset + i] = value & 0xFF
+  while (--i >= 0 && (mul *= 0x100)) {
+    if (value < 0 && sub === 0 && this[offset + i + 1] !== 0) {
+      sub = 1
+    }
+    this[offset + i] = ((value / mul) >> 0) - sub & 0xFF
+  }
+
+  return offset + byteLength
+}
+
+Buffer.prototype.writeInt8 = function writeInt8 (value, offset, noAssert) {
+  value = +value
+  offset = offset | 0
+  if (!noAssert) checkInt(this, value, offset, 1, 0x7f, -0x80)
+  if (!Buffer.TYPED_ARRAY_SUPPORT) value = Math.floor(value)
+  if (value < 0) value = 0xff + value + 1
+  this[offset] = (value & 0xff)
+  return offset + 1
+}
+
+Buffer.prototype.writeInt16LE = function writeInt16LE (value, offset, noAssert) {
+  value = +value
+  offset = offset | 0
+  if (!noAssert) checkInt(this, value, offset, 2, 0x7fff, -0x8000)
+  if (Buffer.TYPED_ARRAY_SUPPORT) {
+    this[offset] = (value & 0xff)
+    this[offset + 1] = (value >>> 8)
+  } else {
+    objectWriteUInt16(this, value, offset, true)
+  }
+  return offset + 2
+}
+
+Buffer.prototype.writeInt16BE = function writeInt16BE (value, offset, noAssert) {
+  value = +value
+  offset = offset | 0
+  if (!noAssert) checkInt(this, value, offset, 2, 0x7fff, -0x8000)
+  if (Buffer.TYPED_ARRAY_SUPPORT) {
+    this[offset] = (value >>> 8)
+    this[offset + 1] = (value & 0xff)
+  } else {
+    objectWriteUInt16(this, value, offset, false)
+  }
+  return offset + 2
+}
+
+Buffer.prototype.writeInt32LE = function writeInt32LE (value, offset, noAssert) {
+  value = +value
+  offset = offset | 0
+  if (!noAssert) checkInt(this, value, offset, 4, 0x7fffffff, -0x80000000)
+  if (Buffer.TYPED_ARRAY_SUPPORT) {
+    this[offset] = (value & 0xff)
+    this[offset + 1] = (value >>> 8)
+    this[offset + 2] = (value >>> 16)
+    this[offset + 3] = (value >>> 24)
+  } else {
+    objectWriteUInt32(this, value, offset, true)
+  }
+  return offset + 4
+}
+
+Buffer.prototype.writeInt32BE = function writeInt32BE (value, offset, noAssert) {
+  value = +value
+  offset = offset | 0
+  if (!noAssert) checkInt(this, value, offset, 4, 0x7fffffff, -0x80000000)
+  if (value < 0) value = 0xffffffff + value + 1
+  if (Buffer.TYPED_ARRAY_SUPPORT) {
+    this[offset] = (value >>> 24)
+    this[offset + 1] = (value >>> 16)
+    this[offset + 2] = (value >>> 8)
+    this[offset + 3] = (value & 0xff)
+  } else {
+    objectWriteUInt32(this, value, offset, false)
+  }
+  return offset + 4
+}
+
+function checkIEEE754 (buf, value, offset, ext, max, min) {
+  if (offset + ext > buf.length) throw new RangeError('Index out of range')
+  if (offset < 0) throw new RangeError('Index out of range')
+}
+
+function writeFloat (buf, value, offset, littleEndian, noAssert) {
+  if (!noAssert) {
+    checkIEEE754(buf, value, offset, 4, 3.4028234663852886e+38, -3.4028234663852886e+38)
+  }
+  ieee754.write(buf, value, offset, littleEndian, 23, 4)
+  return offset + 4
+}
+
+Buffer.prototype.writeFloatLE = function writeFloatLE (value, offset, noAssert) {
+  return writeFloat(this, value, offset, true, noAssert)
+}
+
+Buffer.prototype.writeFloatBE = function writeFloatBE (value, offset, noAssert) {
+  return writeFloat(this, value, offset, false, noAssert)
+}
+
+function writeDouble (buf, value, offset, littleEndian, noAssert) {
+  if (!noAssert) {
+    checkIEEE754(buf, value, offset, 8, 1.7976931348623157E+308, -1.7976931348623157E+308)
+  }
+  ieee754.write(buf, value, offset, littleEndian, 52, 8)
+  return offset + 8
+}
+
+Buffer.prototype.writeDoubleLE = function writeDoubleLE (value, offset, noAssert) {
+  return writeDouble(this, value, offset, true, noAssert)
+}
+
+Buffer.prototype.writeDoubleBE = function writeDoubleBE (value, offset, noAssert) {
+  return writeDouble(this, value, offset, false, noAssert)
+}
+
+// copy(targetBuffer, targetStart=0, sourceStart=0, sourceEnd=buffer.length)
+Buffer.prototype.copy = function copy (target, targetStart, start, end) {
+  if (!start) start = 0
+  if (!end && end !== 0) end = this.length
+  if (targetStart >= target.length) targetStart = target.length
+  if (!targetStart) targetStart = 0
+  if (end > 0 && end < start) end = start
+
+  // Copy 0 bytes; we're done
+  if (end === start) return 0
+  if (target.length === 0 || this.length === 0) return 0
+
+  // Fatal error conditions
+  if (targetStart < 0) {
+    throw new RangeError('targetStart out of bounds')
+  }
+  if (start < 0 || start >= this.length) throw new RangeError('sourceStart out of bounds')
+  if (end < 0) throw new RangeError('sourceEnd out of bounds')
+
+  // Are we oob?
+  if (end > this.length) end = this.length
+  if (target.length - targetStart < end - start) {
+    end = target.length - targetStart + start
+  }
+
+  var len = end - start
+  var i
+
+  if (this === target && start < targetStart && targetStart < end) {
+    // descending copy from end
+    for (i = len - 1; i >= 0; --i) {
+      target[i + targetStart] = this[i + start]
+    }
+  } else if (len < 1000 || !Buffer.TYPED_ARRAY_SUPPORT) {
+    // ascending copy from start
+    for (i = 0; i < len; ++i) {
+      target[i + targetStart] = this[i + start]
+    }
+  } else {
+    Uint8Array.prototype.set.call(
+      target,
+      this.subarray(start, start + len),
+      targetStart
+    )
+  }
+
+  return len
+}
+
+// Usage:
+//    buffer.fill(number[, offset[, end]])
+//    buffer.fill(buffer[, offset[, end]])
+//    buffer.fill(string[, offset[, end]][, encoding])
+Buffer.prototype.fill = function fill (val, start, end, encoding) {
+  // Handle string cases:
+  if (typeof val === 'string') {
+    if (typeof start === 'string') {
+      encoding = start
+      start = 0
+      end = this.length
+    } else if (typeof end === 'string') {
+      encoding = end
+      end = this.length
+    }
+    if (val.length === 1) {
+      var code = val.charCodeAt(0)
+      if (code < 256) {
+        val = code
+      }
+    }
+    if (encoding !== undefined && typeof encoding !== 'string') {
+      throw new TypeError('encoding must be a string')
+    }
+    if (typeof encoding === 'string' && !Buffer.isEncoding(encoding)) {
+      throw new TypeError('Unknown encoding: ' + encoding)
+    }
+  } else if (typeof val === 'number') {
+    val = val & 255
+  }
+
+  // Invalid ranges are not set to a default, so can range check early.
+  if (start < 0 || this.length < start || this.length < end) {
+    throw new RangeError('Out of range index')
+  }
+
+  if (end <= start) {
+    return this
+  }
+
+  start = start >>> 0
+  end = end === undefined ? this.length : end >>> 0
+
+  if (!val) val = 0
+
+  var i
+  if (typeof val === 'number') {
+    for (i = start; i < end; ++i) {
+      this[i] = val
+    }
+  } else {
+    var bytes = Buffer.isBuffer(val)
+      ? val
+      : utf8ToBytes(new Buffer(val, encoding).toString())
+    var len = bytes.length
+    for (i = 0; i < end - start; ++i) {
+      this[i + start] = bytes[i % len]
+    }
+  }
+
+  return this
+}
+
+// HELPER FUNCTIONS
+// ================
+
+var INVALID_BASE64_RE = /[^+\/0-9A-Za-z-_]/g
+
+function base64clean (str) {
+  // Node strips out invalid characters like \n and \t from the string, base64-js does not
+  str = stringtrim(str).replace(INVALID_BASE64_RE, '')
+  // Node converts strings with length < 2 to ''
+  if (str.length < 2) return ''
+  // Node allows for non-padded base64 strings (missing trailing ===), base64-js does not
+  while (str.length % 4 !== 0) {
+    str = str + '='
+  }
+  return str
+}
+
+function stringtrim (str) {
+  if (str.trim) return str.trim()
+  return str.replace(/^\s+|\s+$/g, '')
+}
+
+function toHex (n) {
+  if (n < 16) return '0' + n.toString(16)
+  return n.toString(16)
+}
+
+function utf8ToBytes (string, units) {
+  units = units || Infinity
+  var codePoint
+  var length = string.length
+  var leadSurrogate = null
+  var bytes = []
+
+  for (var i = 0; i < length; ++i) {
+    codePoint = string.charCodeAt(i)
+
+    // is surrogate component
+    if (codePoint > 0xD7FF && codePoint < 0xE000) {
+      // last char was a lead
+      if (!leadSurrogate) {
+        // no lead yet
+        if (codePoint > 0xDBFF) {
+          // unexpected trail
+          if ((units -= 3) > -1) bytes.push(0xEF, 0xBF, 0xBD)
+          continue
+        } else if (i + 1 === length) {
+          // unpaired lead
+          if ((units -= 3) > -1) bytes.push(0xEF, 0xBF, 0xBD)
+          continue
+        }
+
+        // valid lead
+        leadSurrogate = codePoint
+
+        continue
+      }
+
+      // 2 leads in a row
+      if (codePoint < 0xDC00) {
+        if ((units -= 3) > -1) bytes.push(0xEF, 0xBF, 0xBD)
+        leadSurrogate = codePoint
+        continue
+      }
+
+      // valid surrogate pair
+      codePoint = (leadSurrogate - 0xD800 << 10 | codePoint - 0xDC00) + 0x10000
+    } else if (leadSurrogate) {
+      // valid bmp char, but last char was a lead
+      if ((units -= 3) > -1) bytes.push(0xEF, 0xBF, 0xBD)
+    }
+
+    leadSurrogate = null
+
+    // encode utf8
+    if (codePoint < 0x80) {
+      if ((units -= 1) < 0) break
+      bytes.push(codePoint)
+    } else if (codePoint < 0x800) {
+      if ((units -= 2) < 0) break
+      bytes.push(
+        codePoint >> 0x6 | 0xC0,
+        codePoint & 0x3F | 0x80
+      )
+    } else if (codePoint < 0x10000) {
+      if ((units -= 3) < 0) break
+      bytes.push(
+        codePoint >> 0xC | 0xE0,
+        codePoint >> 0x6 & 0x3F | 0x80,
+        codePoint & 0x3F | 0x80
+      )
+    } else if (codePoint < 0x110000) {
+      if ((units -= 4) < 0) break
+      bytes.push(
+        codePoint >> 0x12 | 0xF0,
+        codePoint >> 0xC & 0x3F | 0x80,
+        codePoint >> 0x6 & 0x3F | 0x80,
+        codePoint & 0x3F | 0x80
+      )
+    } else {
+      throw new Error('Invalid code point')
+    }
+  }
+
+  return bytes
+}
+
+function asciiToBytes (str) {
+  var byteArray = []
+  for (var i = 0; i < str.length; ++i) {
+    // Node's code seems to be doing this and not & 0x7F..
+    byteArray.push(str.charCodeAt(i) & 0xFF)
+  }
+  return byteArray
+}
+
+function utf16leToBytes (str, units) {
+  var c, hi, lo
+  var byteArray = []
+  for (var i = 0; i < str.length; ++i) {
+    if ((units -= 2) < 0) break
+
+    c = str.charCodeAt(i)
+    hi = c >> 8
+    lo = c % 256
+    byteArray.push(lo)
+    byteArray.push(hi)
+  }
+
+  return byteArray
+}
+
+function base64ToBytes (str) {
+  return base64.toByteArray(base64clean(str))
+}
+
+function blitBuffer (src, dst, offset, length) {
+  for (var i = 0; i < length; ++i) {
+    if ((i + offset >= dst.length) || (i >= src.length)) break
+    dst[i + offset] = src[i]
+  }
+  return i
+}
+
+function isnan (val) {
+  return val !== val // eslint-disable-line no-self-compare
+}
+
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
+
+/***/ }),
+
+/***/ "./node_modules/cross-domain-utils/dist/module/constants.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/cross-domain-utils/dist/module/constants.js ***!
+  \******************************************************************/
+/*! exports provided: PROTOCOL, WILDCARD, WINDOW_TYPE */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getLocaleMessage", function() { return getLocaleMessage; });
-/* harmony import */ var _messages_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./messages.json */ "./src/app/components/localization/messages.json");
-var _messages_json__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/__webpack_require__.t(/*! ./messages.json */ "./src/app/components/localization/messages.json", 1);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PROTOCOL", function() { return PROTOCOL; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "WILDCARD", function() { return WILDCARD; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "WINDOW_TYPE", function() { return WINDOW_TYPE; });
+var PROTOCOL = {
+    MOCK: 'mock:',
+    FILE: 'file:',
+    ABOUT: 'about:'
+};
+
+var WILDCARD = '*';
+
+var WINDOW_TYPE = {
+    IFRAME: 'iframe',
+    POPUP: 'popup'
+};
+
+/***/ }),
+
+/***/ "./node_modules/cross-domain-utils/dist/module/index.js":
+/*!**************************************************************!*\
+  !*** ./node_modules/cross-domain-utils/dist/module/index.js ***!
+  \**************************************************************/
+/*! exports provided: isFileProtocol, isAboutProtocol, getParent, getOpener, canReadFromWindow, getActualDomain, getDomain, isBlankDomain, isActuallySameDomain, isSameDomain, assertSameDomain, getParents, isAncestorParent, getFrames, getAllChildFrames, getTop, getNextOpener, getUltimateTop, getAllFramesInWindow, getAllWindows, isTop, isFrameWindowClosed, isWindowClosed, linkFrameWindow, getUserAgent, getFrameByName, findChildFrameByName, findFrameByName, isParent, isOpener, getAncestor, getAncestors, isAncestor, isPopup, isIframe, isFullpage, getDistanceFromTop, getNthParent, getNthParentFromTop, isSameTopWindow, matchDomain, stringifyDomainPattern, getDomainFromUrl, onCloseWindow, isWindow, isBrowser, isCurrentDomain, isMockDomain, normalizeMockUrl, TYPES, PROTOCOL, WILDCARD, WINDOW_TYPE */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils */ "./node_modules/cross-domain-utils/dist/module/utils.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "isFileProtocol", function() { return _utils__WEBPACK_IMPORTED_MODULE_0__["isFileProtocol"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "isAboutProtocol", function() { return _utils__WEBPACK_IMPORTED_MODULE_0__["isAboutProtocol"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "getParent", function() { return _utils__WEBPACK_IMPORTED_MODULE_0__["getParent"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "getOpener", function() { return _utils__WEBPACK_IMPORTED_MODULE_0__["getOpener"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "canReadFromWindow", function() { return _utils__WEBPACK_IMPORTED_MODULE_0__["canReadFromWindow"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "getActualDomain", function() { return _utils__WEBPACK_IMPORTED_MODULE_0__["getActualDomain"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "getDomain", function() { return _utils__WEBPACK_IMPORTED_MODULE_0__["getDomain"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "isBlankDomain", function() { return _utils__WEBPACK_IMPORTED_MODULE_0__["isBlankDomain"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "isActuallySameDomain", function() { return _utils__WEBPACK_IMPORTED_MODULE_0__["isActuallySameDomain"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "isSameDomain", function() { return _utils__WEBPACK_IMPORTED_MODULE_0__["isSameDomain"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "assertSameDomain", function() { return _utils__WEBPACK_IMPORTED_MODULE_0__["assertSameDomain"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "getParents", function() { return _utils__WEBPACK_IMPORTED_MODULE_0__["getParents"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "isAncestorParent", function() { return _utils__WEBPACK_IMPORTED_MODULE_0__["isAncestorParent"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "getFrames", function() { return _utils__WEBPACK_IMPORTED_MODULE_0__["getFrames"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "getAllChildFrames", function() { return _utils__WEBPACK_IMPORTED_MODULE_0__["getAllChildFrames"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "getTop", function() { return _utils__WEBPACK_IMPORTED_MODULE_0__["getTop"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "getNextOpener", function() { return _utils__WEBPACK_IMPORTED_MODULE_0__["getNextOpener"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "getUltimateTop", function() { return _utils__WEBPACK_IMPORTED_MODULE_0__["getUltimateTop"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "getAllFramesInWindow", function() { return _utils__WEBPACK_IMPORTED_MODULE_0__["getAllFramesInWindow"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "getAllWindows", function() { return _utils__WEBPACK_IMPORTED_MODULE_0__["getAllWindows"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "isTop", function() { return _utils__WEBPACK_IMPORTED_MODULE_0__["isTop"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "isFrameWindowClosed", function() { return _utils__WEBPACK_IMPORTED_MODULE_0__["isFrameWindowClosed"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "isWindowClosed", function() { return _utils__WEBPACK_IMPORTED_MODULE_0__["isWindowClosed"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "linkFrameWindow", function() { return _utils__WEBPACK_IMPORTED_MODULE_0__["linkFrameWindow"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "getUserAgent", function() { return _utils__WEBPACK_IMPORTED_MODULE_0__["getUserAgent"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "getFrameByName", function() { return _utils__WEBPACK_IMPORTED_MODULE_0__["getFrameByName"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "findChildFrameByName", function() { return _utils__WEBPACK_IMPORTED_MODULE_0__["findChildFrameByName"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "findFrameByName", function() { return _utils__WEBPACK_IMPORTED_MODULE_0__["findFrameByName"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "isParent", function() { return _utils__WEBPACK_IMPORTED_MODULE_0__["isParent"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "isOpener", function() { return _utils__WEBPACK_IMPORTED_MODULE_0__["isOpener"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "getAncestor", function() { return _utils__WEBPACK_IMPORTED_MODULE_0__["getAncestor"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "getAncestors", function() { return _utils__WEBPACK_IMPORTED_MODULE_0__["getAncestors"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "isAncestor", function() { return _utils__WEBPACK_IMPORTED_MODULE_0__["isAncestor"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "isPopup", function() { return _utils__WEBPACK_IMPORTED_MODULE_0__["isPopup"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "isIframe", function() { return _utils__WEBPACK_IMPORTED_MODULE_0__["isIframe"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "isFullpage", function() { return _utils__WEBPACK_IMPORTED_MODULE_0__["isFullpage"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "getDistanceFromTop", function() { return _utils__WEBPACK_IMPORTED_MODULE_0__["getDistanceFromTop"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "getNthParent", function() { return _utils__WEBPACK_IMPORTED_MODULE_0__["getNthParent"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "getNthParentFromTop", function() { return _utils__WEBPACK_IMPORTED_MODULE_0__["getNthParentFromTop"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "isSameTopWindow", function() { return _utils__WEBPACK_IMPORTED_MODULE_0__["isSameTopWindow"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "matchDomain", function() { return _utils__WEBPACK_IMPORTED_MODULE_0__["matchDomain"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "stringifyDomainPattern", function() { return _utils__WEBPACK_IMPORTED_MODULE_0__["stringifyDomainPattern"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "getDomainFromUrl", function() { return _utils__WEBPACK_IMPORTED_MODULE_0__["getDomainFromUrl"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "onCloseWindow", function() { return _utils__WEBPACK_IMPORTED_MODULE_0__["onCloseWindow"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "isWindow", function() { return _utils__WEBPACK_IMPORTED_MODULE_0__["isWindow"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "isBrowser", function() { return _utils__WEBPACK_IMPORTED_MODULE_0__["isBrowser"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "isCurrentDomain", function() { return _utils__WEBPACK_IMPORTED_MODULE_0__["isCurrentDomain"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "isMockDomain", function() { return _utils__WEBPACK_IMPORTED_MODULE_0__["isMockDomain"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "normalizeMockUrl", function() { return _utils__WEBPACK_IMPORTED_MODULE_0__["normalizeMockUrl"]; });
+
+/* harmony import */ var _types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./types */ "./node_modules/cross-domain-utils/dist/module/types.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "TYPES", function() { return _types__WEBPACK_IMPORTED_MODULE_1__["TYPES"]; });
+
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./constants */ "./node_modules/cross-domain-utils/dist/module/constants.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "PROTOCOL", function() { return _constants__WEBPACK_IMPORTED_MODULE_2__["PROTOCOL"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "WILDCARD", function() { return _constants__WEBPACK_IMPORTED_MODULE_2__["WILDCARD"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "WINDOW_TYPE", function() { return _constants__WEBPACK_IMPORTED_MODULE_2__["WINDOW_TYPE"]; });
 
 
-function getLocaleMessages(locale) {
-  return _messages_json__WEBPACK_IMPORTED_MODULE_0__.hasOwnProperty(locale) ? _messages_json__WEBPACK_IMPORTED_MODULE_0__[locale] : undefined;
+
+
+
+/***/ }),
+
+/***/ "./node_modules/cross-domain-utils/dist/module/types.js":
+/*!**************************************************************!*\
+  !*** ./node_modules/cross-domain-utils/dist/module/types.js ***!
+  \**************************************************************/
+/*! exports provided: TYPES */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TYPES", function() { return TYPES; });
+
+
+// export something to force webpack to see this as an ES module
+var TYPES = true;
+
+/***/ }),
+
+/***/ "./node_modules/cross-domain-utils/dist/module/util.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/cross-domain-utils/dist/module/util.js ***!
+  \*************************************************************/
+/*! exports provided: isRegex, noop */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isRegex", function() { return isRegex; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "noop", function() { return noop; });
+function isRegex(item) {
+    return Object.prototype.toString.call(item) === '[object RegExp]';
 }
 
-function getLocaleMessage(locale, messageCode) {
-  var localizedMessages = getLocaleMessages(locale);
-  return localizedMessages && localizedMessages.hasOwnProperty(messageCode) ? localizedMessages[messageCode] : undefined;
+// eslint-disable-next-line no-unused-vars
+function noop() {
+    // pass
 }
 
 /***/ }),
 
-/***/ "./src/app/components/localization/messages.json":
-/*!*******************************************************!*\
-  !*** ./src/app/components/localization/messages.json ***!
-  \*******************************************************/
-/*! exports provided: ar-EG, cs-CZ, da-DK, de-AT, de-CH, de-DE, el-GR, en-AU, en-CA, en-CH, en-GB, en-IE, en-IN, en-MY, en-NL, en-NZ, en-PR, en-SG, en-US, en-ZA, es-AR, es-CL, es-CO, es-EC, es-ES, es-MX, es-PE, es-VE, fi-FI, fr-BE, fr-CA, fr-CH, fr-FR, hu-HU, it-CH, it-IT, iw-IL, ja-JP, ko-KR, nl-BE, nl-NL, no-NO, pl-PL, pt-BR, pt-PT, ru-RU, sk-SK, sv-SE, th-TH, tr-TR, zh-CN, zh-HK, zh-TW, default */
-/***/ (function(module) {
+/***/ "./node_modules/cross-domain-utils/dist/module/utils.js":
+/*!**************************************************************!*\
+  !*** ./node_modules/cross-domain-utils/dist/module/utils.js ***!
+  \**************************************************************/
+/*! exports provided: isFileProtocol, isAboutProtocol, getParent, getOpener, canReadFromWindow, getActualDomain, getDomain, isBlankDomain, isActuallySameDomain, isSameDomain, assertSameDomain, getParents, isAncestorParent, getFrames, getAllChildFrames, getTop, getNextOpener, getUltimateTop, getAllFramesInWindow, getAllWindows, isTop, isFrameWindowClosed, isWindowClosed, linkFrameWindow, getUserAgent, getFrameByName, findChildFrameByName, findFrameByName, isParent, isOpener, getAncestor, getAncestors, isAncestor, isPopup, isIframe, isFullpage, getDistanceFromTop, getNthParent, getNthParentFromTop, isSameTopWindow, matchDomain, stringifyDomainPattern, getDomainFromUrl, onCloseWindow, isWindow, isBrowser, isCurrentDomain, isMockDomain, normalizeMockUrl */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = {"ar-EG":{"birthdate":"تاريخ الميلاد","cardInvalid":"البطاقة غير صحيحة، يرجى مراعاة تفاصيل البطاقة","cardSecurityCode":"كود أمان البطاقة","cardExpired":"صلاحية البطاقة انتهت بالفعل","cardNumber":"* رقم البطاقة الائتمانية","cardSecurityCodeInvalid":"كود غير صحيح","cardNumberInvalid":"من فضلك أدخل رقم بطاقة ائتمانية صحيح.","cardExpirationMonthInvalid":"أدخل شهر انتهاء صلاحية صحيح","cardExpirationYearInvalid":"أدخل سنة انتهاء صلاحية صحيحة","month":"الشهر","noBanksAvailable":"يرجى اختيار أحد البنوك أو الشبكات البنكية","noBankSelected":"يرجى اختيار أحد البنوك أو الشبكات البنكية","selectBank":"من فضلك اختر البنك الخاص بك.","year":"السنة"},"cs-CZ":{"birthdate":"Datum narození","cardInvalid":"Karta je neplatná. Zkontrolujte prosím údaje o kartě.","cardSecurityCode":"Bezpečnostní kód karty","cardExpired":"Karta už není platná","cardNumber":"Číslo kreditní karty","cardSecurityCodeInvalid":"Neplatný kód","cardNumberInvalid":"Zadejte platné číslo kreditní karty.","cardExpirationMonthInvalid":"Zadejte měsíc konce platnosti","cardExpirationYearInvalid":"Zadejte rok konce platnosti","month":"Měsíc","noBanksAvailable":"Zvolte banku nebo bankovní síť","noBankSelected":"Zvolte banku nebo bankovní síť","selectBank":"Zvolte banku","year":"Rok"},"da-DK":{"birthdate":"Fødselsdag","cardInvalid":"Kortet er ugyldigt. Kontrollér kortoplysningerne","cardSecurityCode":"Kortsikkerhedskode","cardExpired":"Kortet er udløbet","cardNumber":"Kreditkortnummer","cardSecurityCodeInvalid":"Forkert kode","cardNumberInvalid":"Indtast et gyldigt kreditkortnummer.","cardExpirationMonthInvalid":"Indtast en gyldig udløbsmåned","cardExpirationYearInvalid":"Indtast et gyldigt udløbsår","month":"Måned","noBanksAvailable":"Vælg en bank eller et banknetværk","noBankSelected":"Vælg en bank eller et banknetværk","selectBank":"Vælg din bank","year":"År"},"de-AT":{"birthdate":"Geburtsdatum","cardInvalid":"Karte ist ungültig, bitte überprüfen Sie die Kartendetails.","cardSecurityCode":"Kreditkarten-Sicherheitscode","cardExpired":"Karte ist bereits abgelaufen","cardNumber":"Kreditkartennummer","cardSecurityCodeInvalid":"Ungültiger Code","cardNumberInvalid":"Geben Sie bitte eine gültige Kreditkartennummer ein.","cardExpirationMonthInvalid":"Geben Sie einen gültigen Ablaufmonat ein.","cardExpirationYearInvalid":"Geben Sie ein gültiges Ablaufjahr ein.","month":"Monat","noBanksAvailable":"Bitte wählen Sie eine Bank oder ein Bankennetzwerk aus","noBankSelected":"Bitte wählen Sie eine Bank oder ein Bankennetzwerk aus","selectBank":"Bitte wählen Sie Ihre Bank aus","year":"Jahr"},"de-CH":{"birthdate":"Geburtsdatum","cardInvalid":"Karte ist ungültig, bitte überprüfen Sie die Kartendetails.","cardSecurityCode":"Kreditkarten-Sicherheitscode","cardExpired":"Karte ist bereits abgelaufen","cardNumber":"Kreditkartennummer","cardSecurityCodeInvalid":"Ungültiger Code","cardNumberInvalid":"Geben Sie bitte eine gültige Kreditkartennummer ein.","cardExpirationMonthInvalid":"Geben Sie einen gültigen Ablaufmonat ein.","cardExpirationYearInvalid":"Geben Sie ein gültiges Ablaufjahr ein.","month":"Monat","noBanksAvailable":"Bitte wählen Sie eine Bank oder ein Bankennetzwerk aus","noBankSelected":"Bitte wählen Sie eine Bank oder ein Bankennetzwerk aus","selectBank":"Bitte wählen Sie Ihre Bank aus","year":"Jahr"},"de-DE":{"birthdate":"Geburtsdatum","cardInvalid":"Karte ist ungültig, bitte überprüfen Sie die Kartendetails.","cardSecurityCode":"Kreditkarten-Sicherheitscode","cardExpired":"Karte ist bereits abgelaufen","cardNumber":"Kreditkartennummer","cardSecurityCodeInvalid":"Ungültiger Code","cardNumberInvalid":"Geben Sie bitte eine gültige Kreditkartennummer ein.","cardExpirationMonthInvalid":"Geben Sie einen gültigen Ablaufmonat ein.","cardExpirationYearInvalid":"Geben Sie ein gültiges Ablaufjahr ein.","month":"Monat","noBanksAvailable":"Bitte wählen Sie eine Bank oder ein Bankennetzwerk aus","noBankSelected":"Bitte wählen Sie eine Bank oder ein Bankennetzwerk aus","selectBank":"Bitte wählen Sie Ihre Bank aus","year":"Jahr"},"el-GR":{"birthdate":"Ημερομηνία γέννησης","cardInvalid":"Η κάρτα δεν είναι έγκυρη, ελέγξτε ξανά τα στοιχεία της κάρτας","cardSecurityCode":"Κωδικός Ασφαλείας Κάρτας","cardExpired":"Η κάρτα έχει λήξει","cardNumber":"Αριθμός Πιστωτικής Κάρτας","cardSecurityCodeInvalid":"Μη Έγκυρος Κωδικός","cardNumberInvalid":"Εισαγάγετε έγκυρο αριθμό πιστωτικής κάρτας.","cardExpirationMonthInvalid":"Εισαγωγή έγκυρου μήνα λήξης","cardExpirationYearInvalid":"Εισαγωγή έγκυρου έτους λήξης","month":"Μήνας","noBanksAvailable":"Επιλέξτε τράπεζα ή τραπεζικό δίκτυο","noBankSelected":"Επιλέξτε τράπεζα ή τραπεζικό δίκτυο","selectBank":"Επιλέξτε την τράπεζά σας","year":"Έτος"},"en-AU":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year"},"en-CA":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year"},"en-CH":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year"},"en-GB":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year"},"en-IE":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year"},"en-IN":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year"},"en-MY":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year"},"en-NL":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year"},"en-NZ":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year"},"en-PR":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year"},"en-SG":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year"},"en-US":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year"},"en-ZA":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year"},"es-AR":{"birthdate":"Fecha de nacimiento","cardInvalid":"La tarjeta no es válida, por favor revise los datos de la tarjeta","cardSecurityCode":"Código de la tarjeta de seguridad","cardExpired":"La tarjeta ya expiró.","cardNumber":"Número de la tarjeta de crédito","cardSecurityCodeInvalid":"Código inválido","cardNumberInvalid":"Introduzca un número de tarjeta de crédito válido.","cardExpirationMonthInvalid":"Introduzca un mes de vencimiento válido","cardExpirationYearInvalid":"Introduzca un año de vencimiento válido","month":"Mes","noBanksAvailable":"Seleccione un banco o una red bancaria","noBankSelected":"Seleccione un banco o una red bancaria","selectBank":"Seleccione su banco","year":"Año"},"es-CL":{"birthdate":"Fecha de nacimiento","cardInvalid":"La tarjeta no es válida, por favor revise los datos de la tarjeta","cardSecurityCode":"Código de la tarjeta de seguridad","cardExpired":"La tarjeta ya expiró.","cardNumber":"Número de la tarjeta de crédito","cardSecurityCodeInvalid":"Código inválido","cardNumberInvalid":"Introduzca un número de tarjeta de crédito válido.","cardExpirationMonthInvalid":"Introduzca un mes de vencimiento válido","cardExpirationYearInvalid":"Introduzca un año de vencimiento válido","month":"Mes","noBanksAvailable":"Seleccione un banco o una red bancaria","noBankSelected":"Seleccione un banco o una red bancaria","selectBank":"Seleccione su banco","year":"Año"},"es-CO":{"birthdate":"Fecha de nacimiento","cardInvalid":"La tarjeta no es válida, por favor revise los datos de la tarjeta","cardSecurityCode":"Código de la tarjeta de seguridad","cardExpired":"La tarjeta ya expiró.","cardNumber":"Número de la tarjeta de crédito","cardSecurityCodeInvalid":"Código inválido","cardNumberInvalid":"Introduzca un número de tarjeta de crédito válido.","cardExpirationMonthInvalid":"Introduzca un mes de vencimiento válido","cardExpirationYearInvalid":"Introduzca un año de vencimiento válido","month":"Mes","noBanksAvailable":"Seleccione un banco o una red bancaria","noBankSelected":"Seleccione un banco o una red bancaria","selectBank":"Seleccione su banco","year":"Año"},"es-EC":{"birthdate":"Fecha de nacimiento","cardInvalid":"La tarjeta no es válida, por favor revise los datos de la tarjeta","cardSecurityCode":"Código de la tarjeta de seguridad","cardExpired":"La tarjeta ya expiró.","cardNumber":"Número de la tarjeta de crédito","cardSecurityCodeInvalid":"Código inválido","cardNumberInvalid":"Introduzca un número de tarjeta de crédito válido.","cardExpirationMonthInvalid":"Introduzca un mes de vencimiento válido","cardExpirationYearInvalid":"Introduzca un año de vencimiento válido","month":"Mes","noBanksAvailable":"Seleccione un banco o una red bancaria","noBankSelected":"Seleccione un banco o una red bancaria","selectBank":"Seleccione su banco","year":"Año"},"es-ES":{"birthdate":"Fecha de nacimiento","cardInvalid":"La tarjeta no es válida, compruebe los datos de la tarjeta de débito","cardSecurityCode":"Código de seguridad de la tarjeta","cardExpired":"Tarjeta ya caducada","cardNumber":"Número de tarjeta de crédito","cardSecurityCodeInvalid":"Código no válido","cardNumberInvalid":"Introduzca un número de tarjeta de crédito válido.","cardExpirationMonthInvalid":"Indique un mes de vencimiento válido","cardExpirationYearInvalid":"Indique un año de vencimiento válido","month":"Mes","noBanksAvailable":"Escoja una entidad o red bancaria","noBankSelected":"Escoja una entidad o red bancaria","selectBank":"Seleccione su entidad bancaria","year":"Año"},"es-MX":{"birthdate":"Fecha de nacimiento","cardInvalid":"La tarjeta no es válida, por favor revise los datos de la tarjeta","cardSecurityCode":"Código de la tarjeta de seguridad","cardExpired":"La tarjeta ya expiró.","cardNumber":"Número de la tarjeta de crédito","cardSecurityCodeInvalid":"Código inválido","cardNumberInvalid":"Introduzca un número de tarjeta de crédito válido.","cardExpirationMonthInvalid":"Introduzca un mes de vencimiento válido","cardExpirationYearInvalid":"Introduzca un año de vencimiento válido","month":"Mes","noBanksAvailable":"Seleccione un banco o una red bancaria","noBankSelected":"Seleccione un banco o una red bancaria","selectBank":"Seleccione su banco","year":"Año"},"es-PE":{"birthdate":"Fecha de nacimiento","cardInvalid":"La tarjeta no es válida, por favor revise los datos de la tarjeta","cardSecurityCode":"Código de la tarjeta de seguridad","cardExpired":"La tarjeta ya expiró.","cardNumber":"Número de la tarjeta de crédito","cardSecurityCodeInvalid":"Código inválido","cardNumberInvalid":"Introduzca un número de tarjeta de crédito válido.","cardExpirationMonthInvalid":"Introduzca un mes de vencimiento válido","cardExpirationYearInvalid":"Introduzca un año de vencimiento válido","month":"Mes","noBanksAvailable":"Seleccione un banco o una red bancaria","noBankSelected":"Seleccione un banco o una red bancaria","selectBank":"Seleccione su banco","year":"Año"},"es-VE":{"birthdate":"Fecha de nacimiento","cardInvalid":"La tarjeta no es válida, por favor revise los datos de la tarjeta","cardSecurityCode":"Código de la tarjeta de seguridad","cardExpired":"La tarjeta ya expiró.","cardNumber":"Número de la tarjeta de crédito","cardSecurityCodeInvalid":"Código inválido","cardNumberInvalid":"Introduzca un número de tarjeta de crédito válido.","cardExpirationMonthInvalid":"Introduzca un mes de vencimiento válido","cardExpirationYearInvalid":"Introduzca un año de vencimiento válido","month":"Mes","noBanksAvailable":"Seleccione un banco o una red bancaria","noBankSelected":"Seleccione un banco o una red bancaria","selectBank":"Seleccione su banco","year":"Año"},"fi-FI":{"birthdate":"Syntymäaika","cardInvalid":"Kortti ei ole voimassa, tarkasta kortin tiedot","cardSecurityCode":"Kortin tarkistusnumero","cardExpired":"Kortti on jo vanhentunut","cardNumber":"Luottokortin numero","cardSecurityCodeInvalid":"Väärä koodi","cardNumberInvalid":"Syötä voimassa olevan luottokortin numero.","cardExpirationMonthInvalid":"Syötä kelvollinen viimeinen voimassaolokuukausi","cardExpirationYearInvalid":"Syötä kelvollinen viimeinen voimassaolovuosi","month":"Kuukausi","noBanksAvailable":"Valitse pankki tai pankkiverkko","noBankSelected":"Valitse pankki tai pankkiverkko","selectBank":"Valitse pankkisi","year":"Vuosi"},"fr-BE":{"birthdate":"Date de naissance","cardInvalid":"La carte n&amp;#39;est pas valide, veuillez en vérifier les détails","cardSecurityCode":"Code de sécurité carte","cardExpired":"Carte déjà expirée","cardNumber":"Numéro de carte de crédit","cardSecurityCodeInvalid":"Code invalide","cardNumberInvalid":"Veuillez saisir un numéro de carte de crédit valide.","cardExpirationMonthInvalid":"Indiquer un mois d&#39;expiration valide","cardExpirationYearInvalid":"Indiquer une année d&#39;expiration valide","month":"Mois ","noBanksAvailable":"Veuillez sélectionner une banque ou un réseau bancaire","noBankSelected":"Veuillez sélectionner une banque ou un réseau bancaire","selectBank":"Veuillez sélectionner votre banque","year":"Année "},"fr-CA":{"birthdate":"Date de naissance","cardInvalid":"La carte n&amp;#39;est pas valide, veuillez vérifier les renseignements de la carte.","cardSecurityCode":"Code de sécurité carte","cardExpired":"Carte déjà expirée","cardNumber":"Numéro de carte de crédit","cardSecurityCodeInvalid":"Code invalide","cardNumberInvalid":"Veuillez saisir un numéro de carte de crédit valide.","cardExpirationMonthInvalid":"Entrez un mois d&#39;expiration valide","cardExpirationYearInvalid":"Entrez une année d&#39;expiration valide","month":"Mois ","noBanksAvailable":"Veuillez choisir une banque ou un réseau de banques","noBankSelected":"Veuillez choisir une banque ou un réseau de banques","selectBank":"Veuillez sélectionner votre banque","year":"Année "},"fr-CH":{"birthdate":"Date de naissance","cardInvalid":"La carte n&amp;#39;est pas valide, veuillez en vérifier les détails","cardSecurityCode":"Code de sécurité carte","cardExpired":"Carte déjà expirée","cardNumber":"Numéro de carte de crédit","cardSecurityCodeInvalid":"Code invalide","cardNumberInvalid":"Veuillez saisir un numéro de carte de crédit valide.","cardExpirationMonthInvalid":"Indiquer un mois d&#39;expiration valide","cardExpirationYearInvalid":"Indiquer une année d&#39;expiration valide","month":"Mois ","noBanksAvailable":"Veuillez sélectionner une banque ou un réseau bancaire","noBankSelected":"Veuillez sélectionner une banque ou un réseau bancaire","selectBank":"Veuillez sélectionner votre banque","year":"Année "},"fr-FR":{"birthdate":"Date de naissance","cardInvalid":"La carte n&amp;#39;est pas valide, veuillez en vérifier les détails","cardSecurityCode":"Code de sécurité carte","cardExpired":"Carte déjà expirée","cardNumber":"Numéro de carte de crédit","cardSecurityCodeInvalid":"Code invalide","cardNumberInvalid":"Veuillez saisir un numéro de carte de crédit valide.","cardExpirationMonthInvalid":"Indiquer un mois d&#39;expiration valide","cardExpirationYearInvalid":"Indiquer une année d&#39;expiration valide","month":"Mois ","noBanksAvailable":"Veuillez sélectionner une banque ou un réseau bancaire","noBankSelected":"Veuillez sélectionner une banque ou un réseau bancaire","selectBank":"Veuillez sélectionner votre banque","year":"Année "},"hu-HU":{"birthdate":"Születési idő","cardInvalid":"Érvénytelen kártya, ellenőrizze a kártya adatait","cardSecurityCode":"Kártya biztonsági kódja","cardExpired":"A kártya lejárt","cardNumber":"Bankkártyaszám","cardSecurityCodeInvalid":"Érvénytelen kód","cardNumberInvalid":"Kérjük, adjon meg egy érvényes hitelkártyaszámot.","cardExpirationMonthInvalid":"Adja meg az érvényes lejárati hónapot","cardExpirationYearInvalid":"Adja meg az érvényes lejárati évet","month":"Hónap","noBanksAvailable":"Kérjük, válasszon bankot vagy bankhálózatot","noBankSelected":"Kérjük, válasszon bankot vagy bankhálózatot","selectBank":"Kérjük, válassza ki bankját.","year":"Év"},"it-CH":{"birthdate":"Data di nascita","cardInvalid":"La carta non è valida, controlla i dati","cardSecurityCode":"Codice di sicurezza carta","cardExpired":"Carta già scaduta","cardNumber":"Numero di carta di credito","cardSecurityCodeInvalid":"Codice non valido","cardNumberInvalid":"Inserire un numero di carta di credito valido.","cardExpirationMonthInvalid":"Inserisci un mese di scadenza valido","cardExpirationYearInvalid":"Inserisci un anno di scadenza valido","month":"Mese","noBanksAvailable":"Scegli una banca o una rete bancaria","noBankSelected":"Scegli una banca o una rete bancaria","selectBank":"Seleziona la tua banca","year":"Anno"},"it-IT":{"birthdate":"Data di nascita","cardInvalid":"La carta non è valida, controlla i dati","cardSecurityCode":"Codice di sicurezza carta","cardExpired":"Carta già scaduta","cardNumber":"Numero di carta di credito","cardSecurityCodeInvalid":"Codice non valido","cardNumberInvalid":"Inserire un numero di carta di credito valido.","cardExpirationMonthInvalid":"Inserisci un mese di scadenza valido","cardExpirationYearInvalid":"Inserisci un anno di scadenza valido","month":"Mese","noBanksAvailable":"Scegli una banca o una rete bancaria","noBankSelected":"Scegli una banca o una rete bancaria","selectBank":"Seleziona la tua banca","year":"Anno"},"iw-IL":{"birthdate":"תאריך לידה","cardInvalid":"הכרטיס לא חוקי. אנא בדוק את פרטי הכרטיס","cardSecurityCode":"קוד ביטחון של כרטיס האשראי","cardExpired":"הכרטיס לא בתוקף","cardNumber":"* מס' כרטיס אשראי","cardSecurityCodeInvalid":"קוד לא חוקי","cardNumberInvalid":"נא הזן מספר כרטיס אשראי חוקי.","cardExpirationMonthInvalid":"הזן חודש תפוגה תקף","cardExpirationYearInvalid":"הזן שנת תפוגה תקפה","month":"חודש","noBanksAvailable":"בחר בנק או רשת בנקים","noBankSelected":"בחר בנק או רשת בנקים","selectBank":"בחר את הבנק שלך","year":"שנה"},"ja-JP":{"birthdate":"誕生日","cardInvalid":"クレジットカードは無効です。カードを確認してください。","cardSecurityCode":"カードセキュリティコード","cardExpired":"カードの期限が切れています","cardNumber":"クレジットカード番号","cardSecurityCodeInvalid":"無効なコード","cardNumberInvalid":"有効なクレジットカード番号を入力してください。","cardExpirationMonthInvalid":"有効期限（月）を入力","cardExpirationYearInvalid":"有効期限（年）を入力","month":"月","noBanksAvailable":"銀行または銀行ネットワークを選択してください。","noBankSelected":"銀行または銀行ネットワークを選択してください。","selectBank":"銀行を選択してください。","year":"年"},"ko-KR":{"birthdate":"생년월일","cardInvalid":"카드가 유효하지 않습니다. 카드 세부 정보를 확인하십시오.","cardSecurityCode":"카드 보안 코드","cardExpired":"카드 유효기간이 이미 만료되었습니다","cardNumber":"신용카드 번호","cardSecurityCodeInvalid":"유효하지 않은 코드","cardNumberInvalid":"올바른 신용카드 번호를 입력하십시오.","cardExpirationMonthInvalid":"유효한 만료 월 입력","cardExpirationYearInvalid":"유효한 만료 연도 입력","cardTypeColon":"카드 종류:","closeWindow":"창 닫기","company":"회사","continue":"계속하기","corporateRegistrationNumber":"사업자 등록 번호","day":"일","enterAdditionalInformation":"추가 정보 입력","missing_korean_parameter":"존재하지 않는 정보 또는 부정확한 값을 제출하였습니다. 다시 시도하십시오.","month":"월","noBanksAvailable":"은행 또는 은행 네트워크를 선택하십시오.","noBankSelected":"은행 또는 은행 네트워크를 선택하십시오.","password":"암호","personalNumber":"개인 번호","pleaseCheckYourDateOfBirth":"고객님의 생년월일을 확인하십시오.","pleaseEnterAValidValue":"유효한 값을 입력해 주십시오.","requiredField":"필수 필드","selectBank":"은행을 선택하십시오.","year":"연도"},"nl-BE":{"birthdate":"Geboortedatum","cardInvalid":"Kaart is ongeldig, controleer de kaartgegevens","cardSecurityCode":"Beveiligingscode creditcard","cardExpired":"Creditcard is verlopen","cardNumber":"Creditcardnummer","cardSecurityCodeInvalid":"Ongeldige code","cardNumberInvalid":"Voer een geldig creditcardnummer in.","cardExpirationMonthInvalid":"Voer een geldige vervalmaand in","cardExpirationYearInvalid":"Voer een geldig vervaljaar in","month":"Maand","noBanksAvailable":"Selecteer een bank of bankennetwerk","noBankSelected":"Selecteer een bank of bankennetwerk","selectBank":"Selecteer uw bank","year":"Jaar"},"nl-NL":{"birthdate":"Geboortedatum","cardInvalid":"Kaart is ongeldig, controleer de kaartgegevens","cardSecurityCode":"Beveiligingscode creditcard","cardExpired":"Creditcard is verlopen","cardNumber":"Creditcardnummer","cardSecurityCodeInvalid":"Ongeldige code","cardNumberInvalid":"Voer een geldig creditcardnummer in.","cardExpirationMonthInvalid":"Voer een geldige vervalmaand in","cardExpirationYearInvalid":"Voer een geldig vervaljaar in","month":"Maand","noBanksAvailable":"Selecteer een bank of bankennetwerk","noBankSelected":"Selecteer een bank of bankennetwerk","selectBank":"Selecteer uw bank","year":"Jaar"},"no-NO":{"birthdate":"Fødselsdato","cardInvalid":"Ugyldig kort, vennligst sjekk opplysningene på kortet","cardSecurityCode":"Kortets sikkerhetskode","cardExpired":"Kortet er allerede utløpt","cardNumber":"Kredittkortnummer","cardSecurityCodeInvalid":"Ugyldig kode","cardNumberInvalid":"Du må oppgi et gyldig kredittkortnummer.","cardExpirationMonthInvalid":"Oppgi gyldig utløpsmåned","cardExpirationYearInvalid":"Oppgi gyldig utløpsår","month":"Måned","noBanksAvailable":"Velg en bank eller et banknettverk","noBankSelected":"Velg en bank eller et banknettverk","selectBank":"Velg din bank","year":"År"},"pl-PL":{"birthdate":"Data urodzenia","cardInvalid":"Karta jest nieprawidłowa, sprawdź dane karty","cardSecurityCode":"Kod bezpieczeństwa karty","cardExpired":"Ważność karty już wygasła","cardNumber":"Numer karty kredytowej","cardSecurityCodeInvalid":"Nieprawidłowy kod","cardNumberInvalid":"Podaj prawidłowy numer karty kredytowej.","cardExpirationMonthInvalid":"Wpisz prawidłowy miesiąc ważności","cardExpirationYearInvalid":"Wpisz prawidłowy rok ważności","month":"Miesiąc","noBanksAvailable":"Wybierz bank lub sieć banków","noBankSelected":"Wybierz bank lub sieć banków","selectBank":"Wybierz swój bank","year":"Rok"},"pt-BR":{"birthdate":"Aniversário","cardInvalid":"O cartão é inválido, verifique os detalhes sobre o cartão","cardSecurityCode":"Código de segurança do cartão","cardExpired":"O cartão expirou","cardNumber":"Número do cartão de crédito","cardSecurityCodeInvalid":"Código inválido","cardNumberInvalid":"Digite um número de cartão de crédito válido.","cardExpirationMonthInvalid":"Inserir o mês de validade","cardExpirationYearInvalid":"Inserir o ano de validade","month":"Mês","noBanksAvailable":"Escolha um banco ou rede bancária","noBankSelected":"Escolha um banco ou rede bancária","selectBank":"Selecione seu banco","year":"Ano"},"pt-PT":{"birthdate":"Data de nascimento","cardInvalid":"Cartão inválido, verifique os detalhes do cartão","cardSecurityCode":"Código de Segurança do Cartão","cardExpired":"O cartão já expirou","cardNumber":"Número do cartão de crédito","cardSecurityCodeInvalid":"Código Inválido","cardNumberInvalid":"Introduza um número de cartão de crédito válido.","cardExpirationMonthInvalid":"Introduza um mês de expiração válido","cardExpirationYearInvalid":"Introduza um ano de expiração válido","month":"Mês","noBanksAvailable":"Escolha um banco ou rede bancária","noBankSelected":"Escolha um banco ou rede bancária","selectBank":"Selecione o seu banco","year":"Ano"},"ru-RU":{"birthdate":"Дата рождения","cardInvalid":"Карта недействительна, проверьте реквизиты платежной карты","cardSecurityCode":"Код безопасности карты","cardExpired":"Срок действия карты истек","cardNumber":"Номер кредитной карты","cardSecurityCodeInvalid":"Неверный индекс","cardNumberInvalid":"Пожалуйста, введите действительный номер кредитной карты.","cardExpirationMonthInvalid":"Введите верный месяц истечения срока действия","cardExpirationYearInvalid":"Введите верный год истечения срока действия","month":"Месяц","noBanksAvailable":"Пожалуйста, выберите банк или банковскую сеть","noBankSelected":"Пожалуйста, выберите банк или банковскую сеть","selectBank":"Пожалуйста, выберите свой банк","year":"Год"},"sk-SK":{"birthdate":"Dátum narodenia","cardInvalid":"Karta je neplatná, skontrolujte údaje karty","cardSecurityCode":"Bezpečnostný kód na karte","cardExpired":"Platnosť karty skončila","cardNumber":"Číslo kreditnej karty","cardSecurityCodeInvalid":"Neplatný kód","cardNumberInvalid":"Uveďte platné číslo kreditnej karty.","cardExpirationMonthInvalid":"Vložte platný dátum exspirácie","cardExpirationYearInvalid":"Vložte platný rok exspirácie","month":"Mesiac","noBanksAvailable":"Zvoľte banku alebo sieť bánk","noBankSelected":"Zvoľte banku alebo sieť bánk","selectBank":"Vyberte banku","year":"Rok"},"sv-SE":{"birthdate":"Födelsedatum","cardInvalid":"Kortet är ogiltigt, kontrollera kortdetaljerna","cardSecurityCode":"Kortets säkerhetskod","cardExpired":"Giltighetstiden för ditt kort har löpt ut","cardNumber":"Kreditkortsnummer","cardSecurityCodeInvalid":"Ogiltig kod","cardNumberInvalid":"Ange ett giltigt kreditkortsnummer.","cardExpirationMonthInvalid":"Ange giltig utgångsmånad","cardExpirationYearInvalid":"Ange giltigt utgångsår","month":"Månad","noBanksAvailable":"Välj en bank eller ett banknätverk","noBankSelected":"Välj en bank eller ett banknätverk","selectBank":"Välj din bank","year":"År"},"th-TH":{"birthdate":"วันเกิด","cardInvalid":"บัตรไม่ถูกต้อง โปรดตรวจสอบรายละเอียดของบัตร","cardSecurityCode":"รหัสความปลอดภัยบนบัตร (Card Security Code) ","cardExpired":"บัตรหมดอายุแล้ว","cardNumber":"หมายเลขบัตรเครดิต","cardSecurityCodeInvalid":"รหัสไม่ถูกต้อง","cardNumberInvalid":"กรุณาใส่หมายเลขบัตรเครดิตที่ถูกต้อง","cardExpirationMonthInvalid":"ใส่เดือนหมดอายุที่ถูกต้อง","cardExpirationYearInvalid":"ใส่ปีหมดอายุที่ถูกต้อง","month":"เดือน ","noBanksAvailable":"กรุณาเลือกธนาคารหรือเครือข่ายธนาคาร","noBankSelected":"กรุณาเลือกธนาคารหรือเครือข่ายธนาคาร","selectBank":"กรุณาเลือกธนาคารของคุณ","year":"ปี "},"tr-TR":{"birthdate":"Doğum Tarihi","cardInvalid":"Kart geçersiz, lütfen kart detaylarını kontrol edin","cardSecurityCode":"Kart Güvenlik Kodu","cardExpired":"Kart süresi dolmuş","cardNumber":"Kredi Kartı Numarası","cardSecurityCodeInvalid":"Geçersiz Kod","cardNumberInvalid":"Lütfen geçerli bir kredi kartı numarası girin.","cardExpirationMonthInvalid":"Geçerli sona erme ayını girin","cardExpirationYearInvalid":"Geçerli sona erme yılını girin","month":"Ay","noBanksAvailable":"Lütfen bir banka veya banka ağı seçin","noBankSelected":"Lütfen bir banka veya banka ağı seçin","selectBank":"Lütfen bankanızı seçin","year":"Yıl"},"zh-CN":{"birthdate":"出生日期","cardInvalid":"卡片无效，请检查卡片详情","cardSecurityCode":"信用卡安全代码","cardExpired":"信用卡已过期","cardNumber":"信用卡号*","cardSecurityCodeInvalid":"无效代码","cardNumberInvalid":"请输入一个有效的信用卡号。","cardExpirationMonthInvalid":"请输入有效的到期月份","cardExpirationYearInvalid":"请输入有效的到期年份","month":"月份","noBanksAvailable":"请选择一家银行或银行网络","noBankSelected":"请选择一家银行或银行网络","selectBank":"请选择您的银行","year":"年份"},"zh-HK":{"birthdate":"出生日期","cardInvalid":"信用咭無效，請檢查信用咭資料","cardSecurityCode":"信用卡安全碼：","cardExpired":"信用卡已過期","cardNumber":"信用卡號碼","cardSecurityCodeInvalid":"無效代碼","cardNumberInvalid":"請輸入有效的信用卡號碼。","cardExpirationMonthInvalid":"輸入有效的到期月份","cardExpirationYearInvalid":"輸入有效的到期年份","month":"月份","noBanksAvailable":"請選擇銀行或銀行網路","noBankSelected":"請選擇銀行或銀行網路","selectBank":"請選擇您的銀行","year":"年"},"zh-TW":{"birthdate":"生日","cardInvalid":"信用卡無效，請確認卡片詳細資料","cardSecurityCode":"信用卡安全碼：","cardExpired":"信用卡已過期","cardNumber":"信用卡號碼","cardSecurityCodeInvalid":"無效代碼","cardNumberInvalid":"請輸入有效的信用卡號碼。","cardExpirationMonthInvalid":"輸入有效的到期月份","cardExpirationYearInvalid":"輸入有效的到期年份","month":"月份","noBanksAvailable":"請選擇銀行或銀行網路","noBankSelected":"請選擇銀行或銀行網路","selectBank":"請選擇您的銀行","year":"年度"}};
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isFileProtocol", function() { return isFileProtocol; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isAboutProtocol", function() { return isAboutProtocol; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getParent", function() { return getParent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getOpener", function() { return getOpener; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "canReadFromWindow", function() { return canReadFromWindow; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getActualDomain", function() { return getActualDomain; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getDomain", function() { return getDomain; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isBlankDomain", function() { return isBlankDomain; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isActuallySameDomain", function() { return isActuallySameDomain; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isSameDomain", function() { return isSameDomain; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "assertSameDomain", function() { return assertSameDomain; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getParents", function() { return getParents; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isAncestorParent", function() { return isAncestorParent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getFrames", function() { return getFrames; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getAllChildFrames", function() { return getAllChildFrames; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getTop", function() { return getTop; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getNextOpener", function() { return getNextOpener; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getUltimateTop", function() { return getUltimateTop; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getAllFramesInWindow", function() { return getAllFramesInWindow; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getAllWindows", function() { return getAllWindows; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isTop", function() { return isTop; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isFrameWindowClosed", function() { return isFrameWindowClosed; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isWindowClosed", function() { return isWindowClosed; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "linkFrameWindow", function() { return linkFrameWindow; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getUserAgent", function() { return getUserAgent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getFrameByName", function() { return getFrameByName; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "findChildFrameByName", function() { return findChildFrameByName; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "findFrameByName", function() { return findFrameByName; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isParent", function() { return isParent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isOpener", function() { return isOpener; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getAncestor", function() { return getAncestor; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getAncestors", function() { return getAncestors; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isAncestor", function() { return isAncestor; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isPopup", function() { return isPopup; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isIframe", function() { return isIframe; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isFullpage", function() { return isFullpage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getDistanceFromTop", function() { return getDistanceFromTop; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getNthParent", function() { return getNthParent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getNthParentFromTop", function() { return getNthParentFromTop; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isSameTopWindow", function() { return isSameTopWindow; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "matchDomain", function() { return matchDomain; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "stringifyDomainPattern", function() { return stringifyDomainPattern; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getDomainFromUrl", function() { return getDomainFromUrl; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "onCloseWindow", function() { return onCloseWindow; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isWindow", function() { return isWindow; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isBrowser", function() { return isBrowser; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isCurrentDomain", function() { return isCurrentDomain; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isMockDomain", function() { return isMockDomain; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "normalizeMockUrl", function() { return normalizeMockUrl; });
+/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./util */ "./node_modules/cross-domain-utils/dist/module/util.js");
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./constants */ "./node_modules/cross-domain-utils/dist/module/constants.js");
+
+/* eslint max-lines: 0 */
+
+
+
+
+
+var IE_WIN_ACCESS_ERROR = 'Call was rejected by callee.\r\n';
+
+function isFileProtocol() {
+    var win = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : window;
+
+    return win.location.protocol === _constants__WEBPACK_IMPORTED_MODULE_1__["PROTOCOL"].FILE;
+}
+
+function isAboutProtocol() {
+    var win = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : window;
+
+    return win.location.protocol === _constants__WEBPACK_IMPORTED_MODULE_1__["PROTOCOL"].ABOUT;
+}
+
+function getParent(win) {
+
+    if (!win) {
+        return;
+    }
+
+    try {
+        if (win.parent && win.parent !== win) {
+            return win.parent;
+        }
+    } catch (err) {
+        // pass
+    }
+}
+
+function getOpener(win) {
+
+    if (!win) {
+        return;
+    }
+
+    // Make sure we're not actually an iframe which has had window.open() called on us
+    if (getParent(win)) {
+        return;
+    }
+
+    try {
+        return win.opener;
+    } catch (err) {
+        // pass
+    }
+}
+
+function canReadFromWindow(win) {
+    try {
+        // $FlowFixMe
+        Object(_util__WEBPACK_IMPORTED_MODULE_0__["noop"])(win && win.location && win.location.href);
+        return true;
+    } catch (err) {
+        // pass
+    }
+
+    return false;
+}
+
+function getActualDomain(win) {
+
+    win = win || window;
+
+    var location = win.location;
+
+    if (!location) {
+        throw new Error('Can not read window location');
+    }
+
+    var protocol = location.protocol;
+
+    if (!protocol) {
+        throw new Error('Can not read window protocol');
+    }
+
+    if (protocol === _constants__WEBPACK_IMPORTED_MODULE_1__["PROTOCOL"].FILE) {
+        return _constants__WEBPACK_IMPORTED_MODULE_1__["PROTOCOL"].FILE + '//';
+    }
+
+    if (protocol === _constants__WEBPACK_IMPORTED_MODULE_1__["PROTOCOL"].ABOUT) {
+
+        var parent = getParent(win);
+        if (parent && canReadFromWindow(parent)) {
+            // $FlowFixMe
+            return getActualDomain(parent);
+        }
+
+        return _constants__WEBPACK_IMPORTED_MODULE_1__["PROTOCOL"].ABOUT + '//';
+    }
+
+    var host = location.host;
+
+    if (!host) {
+        throw new Error('Can not read window host');
+    }
+
+    return protocol + '//' + host;
+}
+
+function getDomain(win) {
+
+    win = win || window;
+
+    var domain = getActualDomain(win);
+
+    if (domain && win.mockDomain && win.mockDomain.indexOf(_constants__WEBPACK_IMPORTED_MODULE_1__["PROTOCOL"].MOCK) === 0) {
+        return win.mockDomain;
+    }
+
+    return domain;
+}
+
+function isBlankDomain(win) {
+    try {
+        // $FlowFixMe
+        if (!win.location.href) {
+            return true;
+        }
+
+        if (win.location.href === 'about:blank') {
+            return true;
+        }
+    } catch (err) {
+        // pass
+    }
+
+    return false;
+}
+
+function isActuallySameDomain(win) {
+
+    try {
+        if (win === window) {
+            return true;
+        }
+    } catch (err) {
+        // pass
+    }
+
+    try {
+        var desc = Object.getOwnPropertyDescriptor(win, 'location');
+
+        if (desc && desc.enumerable === false) {
+            return false;
+        }
+    } catch (err) {
+        // pass
+    }
+
+    try {
+        // $FlowFixMe
+        if (isAboutProtocol(win) && canReadFromWindow(win)) {
+            return true;
+        }
+    } catch (err) {
+        // pass
+    }
+
+    try {
+        // $FlowFixMe
+        if (getActualDomain(win) === getActualDomain(window)) {
+            return true;
+        }
+    } catch (err) {
+        // pass
+    }
+
+    return false;
+}
+
+function isSameDomain(win) {
+
+    if (!isActuallySameDomain(win)) {
+        return false;
+    }
+
+    try {
+
+        if (win === window) {
+            return true;
+        }
+
+        // $FlowFixMe
+        if (isAboutProtocol(win) && canReadFromWindow(win)) {
+            return true;
+        }
+
+        // $FlowFixMe
+        if (getDomain(window) === getDomain(win)) {
+            return true;
+        }
+    } catch (err) {
+        // pass
+    }
+
+    return false;
+}
+
+function assertSameDomain(win) {
+    if (!isSameDomain(win)) {
+        throw new Error('Expected window to be same domain');
+    }
+
+    // $FlowFixMe
+    return win;
+}
+
+function getParents(win) {
+
+    var result = [];
+
+    try {
+
+        while (win.parent !== win) {
+            result.push(win.parent);
+            win = win.parent;
+        }
+    } catch (err) {
+        // pass
+    }
+
+    return result;
+}
+
+function isAncestorParent(parent, child) {
+
+    if (!parent || !child) {
+        return false;
+    }
+
+    var childParent = getParent(child);
+
+    if (childParent) {
+        return childParent === parent;
+    }
+
+    if (getParents(child).indexOf(parent) !== -1) {
+        return true;
+    }
+
+    return false;
+}
+
+function getFrames(win) {
+
+    var result = [];
+
+    var frames = void 0;
+
+    try {
+        frames = win.frames;
+    } catch (err) {
+        frames = win;
+    }
+
+    var len = void 0;
+
+    try {
+        len = frames.length;
+    } catch (err) {
+        // pass
+    }
+
+    if (len === 0) {
+        return result;
+    }
+
+    if (len) {
+        for (var i = 0; i < len; i++) {
+
+            var frame = void 0;
+
+            try {
+                frame = frames[i];
+            } catch (err) {
+                continue;
+            }
+
+            result.push(frame);
+        }
+
+        return result;
+    }
+
+    for (var _i = 0; _i < 100; _i++) {
+        var _frame = void 0;
+
+        try {
+            _frame = frames[_i];
+        } catch (err) {
+            return result;
+        }
+
+        if (!_frame) {
+            return result;
+        }
+
+        result.push(_frame);
+    }
+
+    return result;
+}
+
+function getAllChildFrames(win) {
+
+    var result = [];
+
+    for (var _i3 = 0, _getFrames2 = getFrames(win), _length2 = _getFrames2 == null ? 0 : _getFrames2.length; _i3 < _length2; _i3++) {
+        var frame = _getFrames2[_i3];
+        result.push(frame);
+
+        for (var _i5 = 0, _getAllChildFrames2 = getAllChildFrames(frame), _length4 = _getAllChildFrames2 == null ? 0 : _getAllChildFrames2.length; _i5 < _length4; _i5++) {
+            var childFrame = _getAllChildFrames2[_i5];
+            result.push(childFrame);
+        }
+    }
+
+    return result;
+}
+
+function getTop(win) {
+
+    if (!win) {
+        return;
+    }
+
+    try {
+        if (win.top) {
+            return win.top;
+        }
+    } catch (err) {
+        // pass
+    }
+
+    if (getParent(win) === win) {
+        return win;
+    }
+
+    try {
+        if (isAncestorParent(window, win) && window.top) {
+            return window.top;
+        }
+    } catch (err) {
+        // pass
+    }
+
+    try {
+        if (isAncestorParent(win, window) && window.top) {
+            return window.top;
+        }
+    } catch (err) {
+        // pass
+    }
+
+    for (var _i7 = 0, _getAllChildFrames4 = getAllChildFrames(win), _length6 = _getAllChildFrames4 == null ? 0 : _getAllChildFrames4.length; _i7 < _length6; _i7++) {
+        var frame = _getAllChildFrames4[_i7];
+        try {
+            if (frame.top) {
+                return frame.top;
+            }
+        } catch (err) {
+            // pass
+        }
+
+        if (getParent(frame) === frame) {
+            return frame;
+        }
+    }
+}
+
+function getNextOpener() {
+    var win = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : window;
+
+    return getOpener(getTop(win) || win);
+}
+
+function getUltimateTop() {
+    var win = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : window;
+
+    var opener = getNextOpener(win);
+
+    if (opener) {
+        return getUltimateTop(opener);
+    }
+
+    return top;
+}
+
+function getAllFramesInWindow(win) {
+    var top = getTop(win);
+
+    if (!top) {
+        throw new Error('Can not determine top window');
+    }
+
+    return [].concat(getAllChildFrames(top), [top]);
+}
+
+function getAllWindows() {
+    var win = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : window;
+
+    var frames = getAllFramesInWindow(win);
+    var opener = getNextOpener(win);
+
+    if (opener) {
+        return [].concat(getAllWindows(opener), frames);
+    } else {
+        return frames;
+    }
+}
+
+function isTop(win) {
+    return win === getTop(win);
+}
+
+function isFrameWindowClosed(frame) {
+
+    if (!frame.contentWindow) {
+        return true;
+    }
+
+    if (!frame.parentNode) {
+        return true;
+    }
+
+    var doc = frame.ownerDocument;
+
+    if (doc && doc.documentElement && !doc.documentElement.contains(frame)) {
+        return true;
+    }
+
+    return false;
+}
+
+function safeIndexOf(collection, item) {
+    for (var i = 0; i < collection.length; i++) {
+
+        try {
+            if (collection[i] === item) {
+                return i;
+            }
+        } catch (err) {
+            // pass
+        }
+    }
+
+    return -1;
+}
+
+var iframeWindows = [];
+var iframeFrames = [];
+
+function isWindowClosed(win) {
+    var allowMock = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+
+
+    try {
+        if (win === window) {
+            return false;
+        }
+    } catch (err) {
+        return true;
+    }
+
+    try {
+        if (!win) {
+            return true;
+        }
+    } catch (err) {
+        return true;
+    }
+
+    try {
+        if (win.closed) {
+            return true;
+        }
+    } catch (err) {
+
+        // I love you so much IE
+
+        if (err && err.message === IE_WIN_ACCESS_ERROR) {
+            return false;
+        }
+
+        return true;
+    }
+
+    if (allowMock && isSameDomain(win)) {
+        try {
+            // $FlowFixMe
+            if (win.mockclosed) {
+                return true;
+            }
+        } catch (err) {
+            // pass
+        }
+    }
+
+    // Mobile safari
+
+    try {
+        if (!win.parent || !win.top) {
+            return true;
+        }
+    } catch (err) {}
+    // pass
+
+
+    // Yes, this actually happens in IE. win === win errors out when the window
+    // is from an iframe, and the iframe was removed from the page.
+
+    try {
+        Object(_util__WEBPACK_IMPORTED_MODULE_0__["noop"])(win === win); // eslint-disable-line no-self-compare
+    } catch (err) {
+        return true;
+    }
+
+    // IE orphaned frame
+
+    var iframeIndex = safeIndexOf(iframeWindows, win);
+
+    if (iframeIndex !== -1) {
+        var frame = iframeFrames[iframeIndex];
+
+        if (frame && isFrameWindowClosed(frame)) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+function cleanIframes() {
+    for (var i = 0; i < iframeWindows.length; i++) {
+        var closed = false;
+
+        try {
+            closed = iframeWindows[i].closed;
+        } catch (err) {
+            // pass
+        }
+
+        if (closed) {
+            iframeFrames.splice(i, 1);
+            iframeWindows.splice(i, 1);
+        }
+    }
+}
+
+function linkFrameWindow(frame) {
+
+    cleanIframes();
+
+    if (frame && frame.contentWindow) {
+        try {
+            iframeWindows.push(frame.contentWindow);
+            iframeFrames.push(frame);
+        } catch (err) {
+            // pass
+        }
+    }
+}
+
+function getUserAgent(win) {
+    win = win || window;
+    return win.navigator.mockUserAgent || win.navigator.userAgent;
+}
+
+function getFrameByName(win, name) {
+
+    var winFrames = getFrames(win);
+
+    for (var _i9 = 0, _length8 = winFrames == null ? 0 : winFrames.length; _i9 < _length8; _i9++) {
+        var childFrame = winFrames[_i9];
+        try {
+            // $FlowFixMe
+            if (isSameDomain(childFrame) && childFrame.name === name && winFrames.indexOf(childFrame) !== -1) {
+                return childFrame;
+            }
+        } catch (err) {
+            // pass
+        }
+    }
+
+    try {
+        // $FlowFixMe
+        if (winFrames.indexOf(win.frames[name]) !== -1) {
+            // $FlowFixMe
+            return win.frames[name];
+        }
+    } catch (err) {
+        // pass
+    }
+
+    try {
+        if (winFrames.indexOf(win[name]) !== -1) {
+            return win[name];
+        }
+    } catch (err) {
+        // pass
+    }
+}
+
+function findChildFrameByName(win, name) {
+
+    var frame = getFrameByName(win, name);
+
+    if (frame) {
+        return frame;
+    }
+
+    for (var _i11 = 0, _getFrames4 = getFrames(win), _length10 = _getFrames4 == null ? 0 : _getFrames4.length; _i11 < _length10; _i11++) {
+        var childFrame = _getFrames4[_i11];
+        var namedFrame = findChildFrameByName(childFrame, name);
+
+        if (namedFrame) {
+            return namedFrame;
+        }
+    }
+}
+
+function findFrameByName(win, name) {
+
+    var frame = void 0;
+
+    frame = getFrameByName(win, name);
+
+    if (frame) {
+        return frame;
+    }
+
+    var top = getTop(win) || win;
+
+    return findChildFrameByName(top, name);
+}
+
+function isParent(win, frame) {
+
+    var frameParent = getParent(frame);
+
+    if (frameParent) {
+        return frameParent === win;
+    }
+
+    for (var _i13 = 0, _getFrames6 = getFrames(win), _length12 = _getFrames6 == null ? 0 : _getFrames6.length; _i13 < _length12; _i13++) {
+        var childFrame = _getFrames6[_i13];
+        if (childFrame === frame) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+function isOpener(parent, child) {
+
+    return parent === getOpener(child);
+}
+
+function getAncestor(win) {
+    win = win || window;
+
+    var opener = getOpener(win);
+
+    if (opener) {
+        return opener;
+    }
+
+    var parent = getParent(win);
+
+    if (parent) {
+        return parent;
+    }
+}
+
+function getAncestors(win) {
+
+    var results = [];
+
+    var ancestor = win;
+
+    while (ancestor) {
+        ancestor = getAncestor(ancestor);
+        if (ancestor) {
+            results.push(ancestor);
+        }
+    }
+
+    return results;
+}
+
+function isAncestor(parent, child) {
+
+    var actualParent = getAncestor(child);
+
+    if (actualParent) {
+        if (actualParent === parent) {
+            return true;
+        }
+
+        return false;
+    }
+
+    if (child === parent) {
+        return false;
+    }
+
+    if (getTop(child) === child) {
+        return false;
+    }
+
+    for (var _i15 = 0, _getFrames8 = getFrames(parent), _length14 = _getFrames8 == null ? 0 : _getFrames8.length; _i15 < _length14; _i15++) {
+        var frame = _getFrames8[_i15];
+        if (frame === child) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+function isPopup() {
+    return Boolean(getOpener(window));
+}
+
+function isIframe() {
+    return Boolean(getParent(window));
+}
+
+function isFullpage() {
+    return Boolean(!isIframe() && !isPopup());
+}
+
+function anyMatch(collection1, collection2) {
+    for (var _i17 = 0, _length16 = collection1 == null ? 0 : collection1.length; _i17 < _length16; _i17++) {
+        var item1 = collection1[_i17];
+        for (var _i19 = 0, _length18 = collection2 == null ? 0 : collection2.length; _i19 < _length18; _i19++) {
+            var item2 = collection2[_i19];
+            if (item1 === item2) {
+                return true;
+            }
+        }
+    }
+
+    return false;
+}
+
+function getDistanceFromTop() {
+    var win = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : window;
+
+    var distance = 0;
+    var parent = win;
+
+    while (parent) {
+        parent = getParent(parent);
+        if (parent) {
+            distance += 1;
+        }
+    }
+
+    return distance;
+}
+
+function getNthParent(win) {
+    var n = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
+
+    var parent = win;
+
+    for (var i = 0; i < n; i++) {
+        if (!parent) {
+            return;
+        }
+
+        parent = getParent(parent);
+    }
+
+    return parent;
+}
+
+function getNthParentFromTop(win) {
+    var n = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
+
+    return getNthParent(win, getDistanceFromTop(win) - n);
+}
+
+function isSameTopWindow(win1, win2) {
+
+    var top1 = getTop(win1) || win1;
+    var top2 = getTop(win2) || win2;
+
+    try {
+        if (top1 && top2) {
+            if (top1 === top2) {
+                return true;
+            }
+
+            return false;
+        }
+    } catch (err) {
+        // pass
+    }
+
+    var allFrames1 = getAllFramesInWindow(win1);
+    var allFrames2 = getAllFramesInWindow(win2);
+
+    if (anyMatch(allFrames1, allFrames2)) {
+        return true;
+    }
+
+    var opener1 = getOpener(top1);
+    var opener2 = getOpener(top2);
+
+    if (opener1 && anyMatch(getAllFramesInWindow(opener1), allFrames2)) {
+        return false;
+    }
+
+    if (opener2 && anyMatch(getAllFramesInWindow(opener2), allFrames1)) {
+        return false;
+    }
+
+    return false;
+}
+
+function matchDomain(pattern, origin) {
+
+    if (typeof pattern === 'string') {
+
+        if (typeof origin === 'string') {
+            return pattern === _constants__WEBPACK_IMPORTED_MODULE_1__["WILDCARD"] || origin === pattern;
+        }
+
+        if (Object(_util__WEBPACK_IMPORTED_MODULE_0__["isRegex"])(origin)) {
+            return false;
+        }
+
+        if (Array.isArray(origin)) {
+            return false;
+        }
+    }
+
+    if (Object(_util__WEBPACK_IMPORTED_MODULE_0__["isRegex"])(pattern)) {
+
+        if (Object(_util__WEBPACK_IMPORTED_MODULE_0__["isRegex"])(origin)) {
+            return pattern.toString() === origin.toString();
+        }
+
+        if (Array.isArray(origin)) {
+            return false;
+        }
+
+        // $FlowFixMe
+        return Boolean(origin.match(pattern));
+    }
+
+    if (Array.isArray(pattern)) {
+
+        if (Array.isArray(origin)) {
+            return JSON.stringify(pattern) === JSON.stringify(origin);
+        }
+
+        if (Object(_util__WEBPACK_IMPORTED_MODULE_0__["isRegex"])(origin)) {
+            return false;
+        }
+
+        return pattern.some(function (subpattern) {
+            return matchDomain(subpattern, origin);
+        });
+    }
+
+    return false;
+}
+
+function stringifyDomainPattern(pattern) {
+    if (Array.isArray(pattern)) {
+        return '(' + pattern.join(' | ') + ')';
+    } else if (Object(_util__WEBPACK_IMPORTED_MODULE_0__["isRegex"])(pattern)) {
+        return 'RegExp(' + pattern.toString();
+    } else {
+        return pattern.toString();
+    }
+}
+
+function getDomainFromUrl(url) {
+
+    var domain = void 0;
+
+    if (url.match(/^(https?|mock|file):\/\//)) {
+        domain = url;
+    } else {
+        return getDomain();
+    }
+
+    domain = domain.split('/').slice(0, 3).join('/');
+
+    return domain;
+}
+
+function onCloseWindow(win, callback) {
+    var delay = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1000;
+    var maxtime = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : Infinity;
+
+
+    var timeout = void 0;
+
+    var check = function check() {
+
+        if (isWindowClosed(win)) {
+
+            if (timeout) {
+                clearTimeout(timeout);
+            }
+
+            return callback();
+        }
+
+        if (maxtime <= 0) {
+            clearTimeout(timeout);
+        } else {
+            maxtime -= delay;
+            timeout = setTimeout(check, delay);
+        }
+    };
+
+    check();
+
+    return {
+        cancel: function cancel() {
+            if (timeout) {
+                clearTimeout(timeout);
+            }
+        }
+    };
+}
+
+// eslint-disable-next-line complexity
+function isWindow(obj) {
+
+    try {
+        if (obj === window) {
+            return true;
+        }
+    } catch (err) {
+        if (err && err.message === IE_WIN_ACCESS_ERROR) {
+            return true;
+        }
+    }
+
+    try {
+        if (Object.prototype.toString.call(obj) === '[object Window]') {
+            return true;
+        }
+    } catch (err) {
+        if (err && err.message === IE_WIN_ACCESS_ERROR) {
+            return true;
+        }
+    }
+
+    try {
+        if (window.Window && obj instanceof window.Window) {
+            return true;
+        }
+    } catch (err) {
+        if (err && err.message === IE_WIN_ACCESS_ERROR) {
+            return true;
+        }
+    }
+
+    try {
+        if (obj && obj.self === obj) {
+            return true;
+        }
+    } catch (err) {
+        if (err && err.message === IE_WIN_ACCESS_ERROR) {
+            return true;
+        }
+    }
+
+    try {
+        if (obj && obj.parent === obj) {
+            return true;
+        }
+    } catch (err) {
+        if (err && err.message === IE_WIN_ACCESS_ERROR) {
+            return true;
+        }
+    }
+
+    try {
+        if (obj && obj.top === obj) {
+            return true;
+        }
+    } catch (err) {
+        if (err && err.message === IE_WIN_ACCESS_ERROR) {
+            return true;
+        }
+    }
+
+    try {
+        Object(_util__WEBPACK_IMPORTED_MODULE_0__["noop"])(obj === obj); // eslint-disable-line no-self-compare
+    } catch (err) {
+        return true;
+    }
+
+    try {
+        Object(_util__WEBPACK_IMPORTED_MODULE_0__["noop"])(obj && obj.__cross_domain_utils_window_check__);
+    } catch (err) {
+        return true;
+    }
+
+    return false;
+}
+
+function isBrowser() {
+    return typeof window !== 'undefined' && typeof window.location !== 'undefined';
+}
+
+function isCurrentDomain(domain) {
+    if (!isBrowser()) {
+        return false;
+    }
+
+    return getDomain() === domain;
+}
+
+function isMockDomain(domain) {
+    return domain.indexOf(_constants__WEBPACK_IMPORTED_MODULE_1__["PROTOCOL"].MOCK) === 0;
+}
+
+function normalizeMockUrl(url) {
+    if (!isMockDomain(getDomainFromUrl(url))) {
+        return url;
+    }
+
+    if (!__TEST__) {
+        throw new Error('Mock urls not supported out of test mode');
+    }
+
+    return url.replace(/^mock:\/\/[^/]+/, getActualDomain(window));
+}
 
 /***/ }),
 
-/***/ 12:
-/*!***************************************************************************************!*\
-  !*** multi @babel/polyfill ./src/app/components/localization/localizated-messages.js ***!
-  \***************************************************************************************/
+/***/ "./node_modules/ieee754/index.js":
+/*!***************************************!*\
+  !*** ./node_modules/ieee754/index.js ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+exports.read = function (buffer, offset, isLE, mLen, nBytes) {
+  var e, m
+  var eLen = (nBytes * 8) - mLen - 1
+  var eMax = (1 << eLen) - 1
+  var eBias = eMax >> 1
+  var nBits = -7
+  var i = isLE ? (nBytes - 1) : 0
+  var d = isLE ? -1 : 1
+  var s = buffer[offset + i]
+
+  i += d
+
+  e = s & ((1 << (-nBits)) - 1)
+  s >>= (-nBits)
+  nBits += eLen
+  for (; nBits > 0; e = (e * 256) + buffer[offset + i], i += d, nBits -= 8) {}
+
+  m = e & ((1 << (-nBits)) - 1)
+  e >>= (-nBits)
+  nBits += mLen
+  for (; nBits > 0; m = (m * 256) + buffer[offset + i], i += d, nBits -= 8) {}
+
+  if (e === 0) {
+    e = 1 - eBias
+  } else if (e === eMax) {
+    return m ? NaN : ((s ? -1 : 1) * Infinity)
+  } else {
+    m = m + Math.pow(2, mLen)
+    e = e - eBias
+  }
+  return (s ? -1 : 1) * m * Math.pow(2, e - mLen)
+}
+
+exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
+  var e, m, c
+  var eLen = (nBytes * 8) - mLen - 1
+  var eMax = (1 << eLen) - 1
+  var eBias = eMax >> 1
+  var rt = (mLen === 23 ? Math.pow(2, -24) - Math.pow(2, -77) : 0)
+  var i = isLE ? 0 : (nBytes - 1)
+  var d = isLE ? 1 : -1
+  var s = value < 0 || (value === 0 && 1 / value < 0) ? 1 : 0
+
+  value = Math.abs(value)
+
+  if (isNaN(value) || value === Infinity) {
+    m = isNaN(value) ? 1 : 0
+    e = eMax
+  } else {
+    e = Math.floor(Math.log(value) / Math.LN2)
+    if (value * (c = Math.pow(2, -e)) < 1) {
+      e--
+      c *= 2
+    }
+    if (e + eBias >= 1) {
+      value += rt / c
+    } else {
+      value += rt * Math.pow(2, 1 - eBias)
+    }
+    if (value * c >= 2) {
+      e++
+      c /= 2
+    }
+
+    if (e + eBias >= eMax) {
+      m = 0
+      e = eMax
+    } else if (e + eBias >= 1) {
+      m = ((value * c) - 1) * Math.pow(2, mLen)
+      e = e + eBias
+    } else {
+      m = value * Math.pow(2, eBias - 1) * Math.pow(2, mLen)
+      e = 0
+    }
+  }
+
+  for (; mLen >= 8; buffer[offset + i] = m & 0xff, i += d, m /= 256, mLen -= 8) {}
+
+  e = (e << mLen) | m
+  eLen += mLen
+  for (; eLen > 0; buffer[offset + i] = e & 0xff, i += d, e /= 256, eLen -= 8) {}
+
+  buffer[offset + i - d] |= s * 128
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/is-buffer/index.js":
+/*!*****************************************!*\
+  !*** ./node_modules/is-buffer/index.js ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/*!
+ * Determine if an object is a Buffer
+ *
+ * @author   Feross Aboukhadijeh <https://feross.org>
+ * @license  MIT
+ */
+
+// The _isBuffer check is for Safari 5-7 support, because it's missing
+// Object.prototype.constructor. Remove this eventually
+module.exports = function (obj) {
+  return obj != null && (isBuffer(obj) || isSlowBuffer(obj) || !!obj._isBuffer)
+}
+
+function isBuffer (obj) {
+  return !!obj.constructor && typeof obj.constructor.isBuffer === 'function' && obj.constructor.isBuffer(obj)
+}
+
+// For Node v0.10 support. Remove this eventually.
+function isSlowBuffer (obj) {
+  return typeof obj.readFloatLE === 'function' && typeof obj.slice === 'function' && isBuffer(obj.slice(0, 0))
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/isarray/index.js":
+/*!***************************************!*\
+  !*** ./node_modules/isarray/index.js ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var toString = {}.toString;
+
+module.exports = Array.isArray || function (arr) {
+  return toString.call(arr) == '[object Array]';
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/post-robot/dist/post-robot.js":
+/*!****************************************************!*\
+  !*** ./node_modules/post-robot/dist/post-robot.js ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(Buffer) {!function(root, factory) {
+     true ? module.exports = factory() : undefined;
+}("undefined" != typeof self ? self : this, function() {
+    return function(modules) {
+        var installedModules = {};
+        function __webpack_require__(moduleId) {
+            if (installedModules[moduleId]) return installedModules[moduleId].exports;
+            var module = installedModules[moduleId] = {
+                i: moduleId,
+                l: !1,
+                exports: {}
+            };
+            return modules[moduleId].call(module.exports, module, module.exports, __webpack_require__), 
+            module.l = !0, module.exports;
+        }
+        return __webpack_require__.m = modules, __webpack_require__.c = installedModules, 
+        __webpack_require__.d = function(exports, name, getter) {
+            __webpack_require__.o(exports, name) || Object.defineProperty(exports, name, {
+                enumerable: !0,
+                get: getter
+            });
+        }, __webpack_require__.r = function(exports) {
+            "undefined" != typeof Symbol && Symbol.toStringTag && Object.defineProperty(exports, Symbol.toStringTag, {
+                value: "Module"
+            }), Object.defineProperty(exports, "__esModule", {
+                value: !0
+            });
+        }, __webpack_require__.t = function(value, mode) {
+            if (1 & mode && (value = __webpack_require__(value)), 8 & mode) return value;
+            if (4 & mode && "object" == typeof value && value && value.__esModule) return value;
+            var ns = Object.create(null);
+            if (__webpack_require__.r(ns), Object.defineProperty(ns, "default", {
+                enumerable: !0,
+                value: value
+            }), 2 & mode && "string" != typeof value) for (var key in value) __webpack_require__.d(ns, key, function(key) {
+                return value[key];
+            }.bind(null, key));
+            return ns;
+        }, __webpack_require__.n = function(module) {
+            var getter = module && module.__esModule ? function() {
+                return module.default;
+            } : function() {
+                return module;
+            };
+            return __webpack_require__.d(getter, "a", getter), getter;
+        }, __webpack_require__.o = function(object, property) {
+            return {}.hasOwnProperty.call(object, property);
+        }, __webpack_require__.p = "", __webpack_require__(__webpack_require__.s = 0);
+    }([ function(module, __webpack_exports__, __webpack_require__) {
+        "use strict";
+        __webpack_require__.r(__webpack_exports__);
+        var interface_namespaceObject = {};
+        function isRegex(item) {
+            return "[object RegExp]" === {}.toString.call(item);
+        }
+        __webpack_require__.r(interface_namespaceObject), __webpack_require__.d(interface_namespaceObject, "WeakMap", function() {
+            return weakmap_CrossDomainSafeWeakMap;
+        });
+        var PROTOCOL = {
+            MOCK: "mock:",
+            FILE: "file:",
+            ABOUT: "about:"
+        }, WILDCARD = "*", IE_WIN_ACCESS_ERROR = "Call was rejected by callee.\r\n";
+        function isAboutProtocol(win) {
+            return void 0 === win && (win = window), win.location.protocol === PROTOCOL.ABOUT;
+        }
+        function getParent(win) {
+            if (win) try {
+                if (win.parent && win.parent !== win) return win.parent;
+            } catch (err) {}
+        }
+        function getOpener(win) {
+            if (win && !getParent(win)) try {
+                return win.opener;
+            } catch (err) {}
+        }
+        function canReadFromWindow(win) {
+            try {
+                return !0;
+            } catch (err) {}
+            return !1;
+        }
+        function getActualDomain(win) {
+            var location = (win = win || window).location;
+            if (!location) throw new Error("Can not read window location");
+            var protocol = location.protocol;
+            if (!protocol) throw new Error("Can not read window protocol");
+            if (protocol === PROTOCOL.FILE) return PROTOCOL.FILE + "//";
+            if (protocol === PROTOCOL.ABOUT) {
+                var parent = getParent(win);
+                return parent && canReadFromWindow() ? getActualDomain(parent) : PROTOCOL.ABOUT + "//";
+            }
+            var host = location.host;
+            if (!host) throw new Error("Can not read window host");
+            return protocol + "//" + host;
+        }
+        function getDomain(win) {
+            var domain = getActualDomain(win = win || window);
+            return domain && win.mockDomain && 0 === win.mockDomain.indexOf(PROTOCOL.MOCK) ? win.mockDomain : domain;
+        }
+        function isSameDomain(win) {
+            if (!function(win) {
+                try {
+                    if (win === window) return !0;
+                } catch (err) {}
+                try {
+                    var desc = Object.getOwnPropertyDescriptor(win, "location");
+                    if (desc && !1 === desc.enumerable) return !1;
+                } catch (err) {}
+                try {
+                    if (isAboutProtocol(win) && canReadFromWindow()) return !0;
+                } catch (err) {}
+                try {
+                    if (getActualDomain(win) === getActualDomain(window)) return !0;
+                } catch (err) {}
+                return !1;
+            }(win)) return !1;
+            try {
+                if (win === window) return !0;
+                if (isAboutProtocol(win) && canReadFromWindow()) return !0;
+                if (getDomain(window) === getDomain(win)) return !0;
+            } catch (err) {}
+            return !1;
+        }
+        function isAncestorParent(parent, child) {
+            if (!parent || !child) return !1;
+            var childParent = getParent(child);
+            return childParent ? childParent === parent : -1 !== function(win) {
+                var result = [];
+                try {
+                    for (;win.parent !== win; ) result.push(win.parent), win = win.parent;
+                } catch (err) {}
+                return result;
+            }(child).indexOf(parent);
+        }
+        function getFrames(win) {
+            var frames, len, result = [];
+            try {
+                frames = win.frames;
+            } catch (err) {
+                frames = win;
+            }
+            try {
+                len = frames.length;
+            } catch (err) {}
+            if (0 === len) return result;
+            if (len) {
+                for (var i = 0; i < len; i++) {
+                    var frame = void 0;
+                    try {
+                        frame = frames[i];
+                    } catch (err) {
+                        continue;
+                    }
+                    result.push(frame);
+                }
+                return result;
+            }
+            for (var _i = 0; _i < 100; _i++) {
+                var _frame = void 0;
+                try {
+                    _frame = frames[_i];
+                } catch (err) {
+                    return result;
+                }
+                if (!_frame) return result;
+                result.push(_frame);
+            }
+            return result;
+        }
+        var iframeWindows = [], iframeFrames = [];
+        function isWindowClosed(win, allowMock) {
+            void 0 === allowMock && (allowMock = !0);
+            try {
+                if (win === window) return !1;
+            } catch (err) {
+                return !0;
+            }
+            try {
+                if (!win) return !0;
+            } catch (err) {
+                return !0;
+            }
+            try {
+                if (win.closed) return !0;
+            } catch (err) {
+                return !err || err.message !== IE_WIN_ACCESS_ERROR;
+            }
+            if (allowMock && isSameDomain(win)) try {
+                if (win.mockclosed) return !0;
+            } catch (err) {}
+            try {
+                if (!win.parent || !win.top) return !0;
+            } catch (err) {}
+            var iframeIndex = function(collection, item) {
+                for (var i = 0; i < collection.length; i++) try {
+                    if (collection[i] === item) return i;
+                } catch (err) {}
+                return -1;
+            }(iframeWindows, win);
+            if (-1 !== iframeIndex) {
+                var frame = iframeFrames[iframeIndex];
+                if (frame && function(frame) {
+                    if (!frame.contentWindow) return !0;
+                    if (!frame.parentNode) return !0;
+                    var doc = frame.ownerDocument;
+                    return !(!doc || !doc.documentElement || doc.documentElement.contains(frame));
+                }(frame)) return !0;
+            }
+            return !1;
+        }
+        function getAncestor(win) {
+            return getOpener(win = win || window) || getParent(win) || void 0;
+        }
+        function matchDomain(pattern, origin) {
+            if ("string" == typeof pattern) {
+                if ("string" == typeof origin) return pattern === WILDCARD || origin === pattern;
+                if (isRegex(origin)) return !1;
+                if (Array.isArray(origin)) return !1;
+            }
+            return isRegex(pattern) ? isRegex(origin) ? pattern.toString() === origin.toString() : !Array.isArray(origin) && Boolean(origin.match(pattern)) : !!Array.isArray(pattern) && (Array.isArray(origin) ? JSON.stringify(pattern) === JSON.stringify(origin) : !isRegex(origin) && pattern.some(function(subpattern) {
+                return matchDomain(subpattern, origin);
+            }));
+        }
+        function isWindow(obj) {
+            try {
+                if (obj === window) return !0;
+            } catch (err) {
+                if (err && err.message === IE_WIN_ACCESS_ERROR) return !0;
+            }
+            try {
+                if ("[object Window]" === {}.toString.call(obj)) return !0;
+            } catch (err) {
+                if (err && err.message === IE_WIN_ACCESS_ERROR) return !0;
+            }
+            try {
+                if (window.Window && obj instanceof window.Window) return !0;
+            } catch (err) {
+                if (err && err.message === IE_WIN_ACCESS_ERROR) return !0;
+            }
+            try {
+                if (obj && obj.self === obj) return !0;
+            } catch (err) {
+                if (err && err.message === IE_WIN_ACCESS_ERROR) return !0;
+            }
+            try {
+                if (obj && obj.parent === obj) return !0;
+            } catch (err) {
+                if (err && err.message === IE_WIN_ACCESS_ERROR) return !0;
+            }
+            try {
+                if (obj && obj.top === obj) return !0;
+            } catch (err) {
+                if (err && err.message === IE_WIN_ACCESS_ERROR) return !0;
+            }
+            return !1;
+        }
+        function utils_isPromise(item) {
+            try {
+                if (!item) return !1;
+                if ("undefined" != typeof Promise && item instanceof Promise) return !0;
+                if ("undefined" != typeof window && window.Window && item instanceof window.Window) return !1;
+                if ("undefined" != typeof window && window.constructor && item instanceof window.constructor) return !1;
+                var _toString = {}.toString;
+                if (_toString) {
+                    var name = _toString.call(item);
+                    if ("[object Window]" === name || "[object global]" === name || "[object DOMWindow]" === name) return !1;
+                }
+                if ("function" == typeof item.then) return !0;
+            } catch (err) {
+                return !1;
+            }
+            return !1;
+        }
+        var flushPromise, dispatchedErrors = [], possiblyUnhandledPromiseHandlers = [], activeCount = 0;
+        function flushActive() {
+            if (!activeCount && flushPromise) {
+                var promise = flushPromise;
+                flushPromise = null, promise.resolve();
+            }
+        }
+        function startActive() {
+            activeCount += 1;
+        }
+        function endActive() {
+            activeCount -= 1, flushActive();
+        }
+        var promise_ZalgoPromise = function() {
+            function ZalgoPromise(handler) {
+                var _this = this;
+                if (this.resolved = void 0, this.rejected = void 0, this.errorHandled = void 0, 
+                this.value = void 0, this.error = void 0, this.handlers = void 0, this.dispatching = void 0, 
+                this.stack = void 0, this.resolved = !1, this.rejected = !1, this.errorHandled = !1, 
+                this.handlers = [], handler) {
+                    var _result, _error, resolved = !1, rejected = !1, isAsync = !1;
+                    startActive();
+                    try {
+                        handler(function(res) {
+                            isAsync ? _this.resolve(res) : (resolved = !0, _result = res);
+                        }, function(err) {
+                            isAsync ? _this.reject(err) : (rejected = !0, _error = err);
+                        });
+                    } catch (err) {
+                        return endActive(), void this.reject(err);
+                    }
+                    endActive(), isAsync = !0, resolved ? this.resolve(_result) : rejected && this.reject(_error);
+                }
+            }
+            var _proto = ZalgoPromise.prototype;
+            return _proto.resolve = function(result) {
+                if (this.resolved || this.rejected) return this;
+                if (utils_isPromise(result)) throw new Error("Can not resolve promise with another promise");
+                return this.resolved = !0, this.value = result, this.dispatch(), this;
+            }, _proto.reject = function(error) {
+                var _this2 = this;
+                if (this.resolved || this.rejected) return this;
+                if (utils_isPromise(error)) throw new Error("Can not reject promise with another promise");
+                if (!error) {
+                    var _err = error && "function" == typeof error.toString ? error.toString() : {}.toString.call(error);
+                    error = new Error("Expected reject to be called with Error, got " + _err);
+                }
+                return this.rejected = !0, this.error = error, this.errorHandled || setTimeout(function() {
+                    _this2.errorHandled || function(err, promise) {
+                        if (-1 === dispatchedErrors.indexOf(err)) {
+                            dispatchedErrors.push(err), setTimeout(function() {
+                                throw err;
+                            }, 1);
+                            for (var j = 0; j < possiblyUnhandledPromiseHandlers.length; j++) possiblyUnhandledPromiseHandlers[j](err, promise);
+                        }
+                    }(error, _this2);
+                }, 1), this.dispatch(), this;
+            }, _proto.asyncReject = function(error) {
+                return this.errorHandled = !0, this.reject(error), this;
+            }, _proto.dispatch = function() {
+                var _this3 = this, resolved = this.resolved, rejected = this.rejected, handlers = this.handlers;
+                if (!this.dispatching && (resolved || rejected)) {
+                    this.dispatching = !0, startActive();
+                    for (var _loop = function(i) {
+                        var _handlers$i = handlers[i], onSuccess = _handlers$i.onSuccess, onError = _handlers$i.onError, promise = _handlers$i.promise, result = void 0;
+                        if (resolved) try {
+                            result = onSuccess ? onSuccess(_this3.value) : _this3.value;
+                        } catch (err) {
+                            return promise.reject(err), "continue";
+                        } else if (rejected) {
+                            if (!onError) return promise.reject(_this3.error), "continue";
+                            try {
+                                result = onError(_this3.error);
+                            } catch (err) {
+                                return promise.reject(err), "continue";
+                            }
+                        }
+                        result instanceof ZalgoPromise && (result.resolved || result.rejected) ? (result.resolved ? promise.resolve(result.value) : promise.reject(result.error), 
+                        result.errorHandled = !0) : utils_isPromise(result) ? result instanceof ZalgoPromise && (result.resolved || result.rejected) ? result.resolved ? promise.resolve(result.value) : promise.reject(result.error) : result.then(function(res) {
+                            promise.resolve(res);
+                        }, function(err) {
+                            promise.reject(err);
+                        }) : promise.resolve(result);
+                    }, i = 0; i < handlers.length; i++) _loop(i);
+                    handlers.length = 0, this.dispatching = !1, endActive();
+                }
+            }, _proto.then = function(onSuccess, onError) {
+                if (onSuccess && "function" != typeof onSuccess && !onSuccess.call) throw new Error("Promise.then expected a function for success handler");
+                if (onError && "function" != typeof onError && !onError.call) throw new Error("Promise.then expected a function for error handler");
+                var promise = new ZalgoPromise();
+                return this.handlers.push({
+                    promise: promise,
+                    onSuccess: onSuccess,
+                    onError: onError
+                }), this.errorHandled = !0, this.dispatch(), promise;
+            }, _proto.catch = function(onError) {
+                return this.then(void 0, onError);
+            }, _proto.finally = function(onFinally) {
+                if (onFinally && "function" != typeof onFinally && !onFinally.call) throw new Error("Promise.finally expected a function");
+                return this.then(function(result) {
+                    return ZalgoPromise.try(onFinally).then(function() {
+                        return result;
+                    });
+                }, function(err) {
+                    return ZalgoPromise.try(onFinally).then(function() {
+                        throw err;
+                    });
+                });
+            }, _proto.timeout = function(time, err) {
+                var _this4 = this;
+                if (this.resolved || this.rejected) return this;
+                var timeout = setTimeout(function() {
+                    _this4.resolved || _this4.rejected || _this4.reject(err || new Error("Promise timed out after " + time + "ms"));
+                }, time);
+                return this.then(function(result) {
+                    return clearTimeout(timeout), result;
+                });
+            }, _proto.toPromise = function() {
+                if ("undefined" == typeof Promise) throw new TypeError("Could not find Promise");
+                return Promise.resolve(this);
+            }, ZalgoPromise.resolve = function(value) {
+                return value instanceof ZalgoPromise ? value : utils_isPromise(value) ? new ZalgoPromise(function(resolve, reject) {
+                    return value.then(resolve, reject);
+                }) : new ZalgoPromise().resolve(value);
+            }, ZalgoPromise.reject = function(error) {
+                return new ZalgoPromise().reject(error);
+            }, ZalgoPromise.asyncReject = function(error) {
+                return new ZalgoPromise().asyncReject(error);
+            }, ZalgoPromise.all = function(promises) {
+                var promise = new ZalgoPromise(), count = promises.length, results = [];
+                if (!count) return promise.resolve(results), promise;
+                for (var _loop2 = function(i) {
+                    var prom = promises[i];
+                    if (prom instanceof ZalgoPromise) {
+                        if (prom.resolved) return results[i] = prom.value, count -= 1, "continue";
+                    } else if (!utils_isPromise(prom)) return results[i] = prom, count -= 1, "continue";
+                    ZalgoPromise.resolve(prom).then(function(result) {
+                        results[i] = result, 0 == (count -= 1) && promise.resolve(results);
+                    }, function(err) {
+                        promise.reject(err);
+                    });
+                }, i = 0; i < promises.length; i++) _loop2(i);
+                return 0 === count && promise.resolve(results), promise;
+            }, ZalgoPromise.hash = function(promises) {
+                var result = {};
+                return ZalgoPromise.all(Object.keys(promises).map(function(key) {
+                    return ZalgoPromise.resolve(promises[key]).then(function(value) {
+                        result[key] = value;
+                    });
+                })).then(function() {
+                    return result;
+                });
+            }, ZalgoPromise.map = function(items, method) {
+                return ZalgoPromise.all(items.map(method));
+            }, ZalgoPromise.onPossiblyUnhandledException = function(handler) {
+                return function(handler) {
+                    return possiblyUnhandledPromiseHandlers.push(handler), {
+                        cancel: function() {
+                            possiblyUnhandledPromiseHandlers.splice(possiblyUnhandledPromiseHandlers.indexOf(handler), 1);
+                        }
+                    };
+                }(handler);
+            }, ZalgoPromise.try = function(method, context, args) {
+                if (method && "function" != typeof method && !method.call) throw new Error("Promise.try expected a function");
+                var result;
+                startActive();
+                try {
+                    result = method.apply(context, args || []);
+                } catch (err) {
+                    return endActive(), ZalgoPromise.reject(err);
+                }
+                return endActive(), ZalgoPromise.resolve(result);
+            }, ZalgoPromise.delay = function(_delay) {
+                return new ZalgoPromise(function(resolve) {
+                    setTimeout(resolve, _delay);
+                });
+            }, ZalgoPromise.isPromise = function(value) {
+                return !!(value && value instanceof ZalgoPromise) || utils_isPromise(value);
+            }, ZalgoPromise.flush = function() {
+                return promise = flushPromise = flushPromise || new ZalgoPromise(), flushActive(), 
+                promise;
+                var promise;
+            }, ZalgoPromise;
+        }();
+        function _extends() {
+            return (_extends = Object.assign || function(target) {
+                for (var i = 1; i < arguments.length; i++) {
+                    var source = arguments[i];
+                    for (var key in source) ({}).hasOwnProperty.call(source, key) && (target[key] = source[key]);
+                }
+                return target;
+            }).apply(this, arguments);
+        }
+        function util_safeIndexOf(collection, item) {
+            for (var i = 0; i < collection.length; i++) try {
+                if (collection[i] === item) return i;
+            } catch (err) {}
+            return -1;
+        }
+        var objectIDs, defineProperty = Object.defineProperty, counter = Date.now() % 1e9, weakmap_CrossDomainSafeWeakMap = function() {
+            function CrossDomainSafeWeakMap() {
+                if (this.name = void 0, this.weakmap = void 0, this.keys = void 0, this.values = void 0, 
+                counter += 1, this.name = "__weakmap_" + (1e9 * Math.random() >>> 0) + "__" + counter, 
+                function() {
+                    if ("undefined" == typeof WeakMap) return !1;
+                    if (void 0 === Object.freeze) return !1;
+                    try {
+                        var testWeakMap = new WeakMap(), testKey = {};
+                        return Object.freeze(testKey), testWeakMap.set(testKey, "__testvalue__"), "__testvalue__" === testWeakMap.get(testKey);
+                    } catch (err) {
+                        return !1;
+                    }
+                }()) try {
+                    this.weakmap = new WeakMap();
+                } catch (err) {}
+                this.keys = [], this.values = [];
+            }
+            var _proto = CrossDomainSafeWeakMap.prototype;
+            return _proto._cleanupClosedWindows = function() {
+                for (var weakmap = this.weakmap, keys = this.keys, i = 0; i < keys.length; i++) {
+                    var value = keys[i];
+                    if (isWindow(value) && isWindowClosed(value)) {
+                        if (weakmap) try {
+                            weakmap.delete(value);
+                        } catch (err) {}
+                        keys.splice(i, 1), this.values.splice(i, 1), i -= 1;
+                    }
+                }
+            }, _proto.isSafeToReadWrite = function(key) {
+                return !isWindow(key);
+            }, _proto.set = function(key, value) {
+                if (!key) throw new Error("WeakMap expected key");
+                var weakmap = this.weakmap;
+                if (weakmap) try {
+                    weakmap.set(key, value);
+                } catch (err) {
+                    delete this.weakmap;
+                }
+                if (this.isSafeToReadWrite(key)) {
+                    var name = this.name, entry = key[name];
+                    entry && entry[0] === key ? entry[1] = value : defineProperty(key, name, {
+                        value: [ key, value ],
+                        writable: !0
+                    });
+                } else {
+                    this._cleanupClosedWindows();
+                    var keys = this.keys, values = this.values, index = util_safeIndexOf(keys, key);
+                    -1 === index ? (keys.push(key), values.push(value)) : values[index] = value;
+                }
+            }, _proto.get = function(key) {
+                if (!key) throw new Error("WeakMap expected key");
+                var weakmap = this.weakmap;
+                if (weakmap) try {
+                    if (weakmap.has(key)) return weakmap.get(key);
+                } catch (err) {
+                    delete this.weakmap;
+                }
+                if (!this.isSafeToReadWrite(key)) {
+                    this._cleanupClosedWindows();
+                    var index = util_safeIndexOf(this.keys, key);
+                    if (-1 === index) return;
+                    return this.values[index];
+                }
+                var entry = key[this.name];
+                if (entry && entry[0] === key) return entry[1];
+            }, _proto.delete = function(key) {
+                if (!key) throw new Error("WeakMap expected key");
+                var weakmap = this.weakmap;
+                if (weakmap) try {
+                    weakmap.delete(key);
+                } catch (err) {
+                    delete this.weakmap;
+                }
+                if (this.isSafeToReadWrite(key)) {
+                    var entry = key[this.name];
+                    entry && entry[0] === key && (entry[0] = entry[1] = void 0);
+                } else {
+                    this._cleanupClosedWindows();
+                    var keys = this.keys, index = util_safeIndexOf(keys, key);
+                    -1 !== index && (keys.splice(index, 1), this.values.splice(index, 1));
+                }
+            }, _proto.has = function(key) {
+                if (!key) throw new Error("WeakMap expected key");
+                var weakmap = this.weakmap;
+                if (weakmap) try {
+                    if (weakmap.has(key)) return !0;
+                } catch (err) {
+                    delete this.weakmap;
+                }
+                if (this.isSafeToReadWrite(key)) {
+                    var entry = key[this.name];
+                    return !(!entry || entry[0] !== key);
+                }
+                return this._cleanupClosedWindows(), -1 !== util_safeIndexOf(this.keys, key);
+            }, _proto.getOrSet = function(key, getter) {
+                if (this.has(key)) return this.get(key);
+                var value = getter();
+                return this.set(key, value), value;
+            }, CrossDomainSafeWeakMap;
+        }();
+        function uniqueID() {
+            var chars = "0123456789abcdef";
+            return "xxxxxxxxxx".replace(/./g, function() {
+                return chars.charAt(Math.floor(Math.random() * chars.length));
+            }) + "_" + function(str) {
+                if ("function" == typeof btoa) return btoa(str);
+                if ("undefined" != typeof Buffer) return Buffer.from(str, "utf8").toString("base64");
+                throw new Error("Can not find window.btoa or Buffer");
+            }(new Date().toISOString().slice(11, 19).replace("T", ".")).replace(/[^a-zA-Z0-9]/g, "").toLowerCase();
+        }
+        function src_util_noop() {}
+        function stringifyError(err, level) {
+            if (void 0 === level && (level = 1), level >= 3) return "stringifyError stack overflow";
+            try {
+                if (!err) return "<unknown error: " + {}.toString.call(err) + ">";
+                if ("string" == typeof err) return err;
+                if (err instanceof Error) {
+                    var stack = err && err.stack, message = err && err.message;
+                    if (stack && message) return -1 !== stack.indexOf(message) ? stack : message + "\n" + stack;
+                    if (stack) return stack;
+                    if (message) return message;
+                }
+                return "function" == typeof err.toString ? err.toString() : {}.toString.call(err);
+            } catch (newErr) {
+                return "Error while stringifying error: " + stringifyError(newErr, level + 1);
+            }
+        }
+        function stringify(item) {
+            return "string" == typeof item ? item : item && "function" == typeof item.toString ? item.toString() : {}.toString.call(item);
+        }
+        function util_isRegex(item) {
+            return "[object RegExp]" === {}.toString.call(item);
+        }
+        function util_getOrSet(obj, key, getter) {
+            if (obj.hasOwnProperty(key)) return obj[key];
+            var val = getter();
+            return obj[key] = val, val;
+        }
+        Object.create(Error.prototype);
+        var MESSAGE_NAME = {
+            METHOD: "postrobot_method",
+            HELLO: "postrobot_hello",
+            OPEN_TUNNEL: "postrobot_open_tunnel"
+        }, constants_WILDCARD = "*", SERIALIZATION_TYPE = {
+            CROSS_DOMAIN_ZALGO_PROMISE: "cross_domain_zalgo_promise",
+            CROSS_DOMAIN_FUNCTION: "cross_domain_function",
+            CROSS_DOMAIN_WINDOW: "cross_domain_window"
+        };
+        function global_getGlobal(win) {
+            return void 0 === win && (win = window), win !== window ? win.__post_robot_10_0_10__ : win.__post_robot_10_0_10__ = win.__post_robot_10_0_10__ || {};
+        }
+        var getObj = function() {
+            return {};
+        };
+        function globalStore(key, defStore) {
+            return void 0 === key && (key = "store"), void 0 === defStore && (defStore = getObj), 
+            util_getOrSet(global_getGlobal(), key, function() {
+                var store = defStore();
+                return {
+                    has: function(storeKey) {
+                        return store.hasOwnProperty(storeKey);
+                    },
+                    get: function(storeKey, defVal) {
+                        return store.hasOwnProperty(storeKey) ? store[storeKey] : defVal;
+                    },
+                    set: function(storeKey, val) {
+                        return store[storeKey] = val, val;
+                    },
+                    del: function(storeKey) {
+                        delete store[storeKey];
+                    },
+                    getOrSet: function(storeKey, getter) {
+                        return util_getOrSet(store, storeKey, getter);
+                    },
+                    reset: function() {
+                        store = defStore();
+                    },
+                    keys: function() {
+                        return Object.keys(store);
+                    }
+                };
+            });
+        }
+        var WildCard = function() {};
+        function getWildcard() {
+            var global = global_getGlobal();
+            return global.WINDOW_WILDCARD = global.WINDOW_WILDCARD || new WildCard(), global.WINDOW_WILDCARD;
+        }
+        function windowStore(key, defStore) {
+            return void 0 === key && (key = "store"), void 0 === defStore && (defStore = getObj), 
+            globalStore("windowStore").getOrSet(key, function() {
+                var winStore = new weakmap_CrossDomainSafeWeakMap(), getStore = function(win) {
+                    return winStore.getOrSet(win, defStore);
+                };
+                return {
+                    has: function(win) {
+                        return getStore(win).hasOwnProperty(key);
+                    },
+                    get: function(win, defVal) {
+                        var store = getStore(win);
+                        return store.hasOwnProperty(key) ? store[key] : defVal;
+                    },
+                    set: function(win, val) {
+                        return getStore(win)[key] = val, val;
+                    },
+                    del: function(win) {
+                        delete getStore(win)[key];
+                    },
+                    getOrSet: function(win, getter) {
+                        return util_getOrSet(getStore(win), key, getter);
+                    }
+                };
+            });
+        }
+        function hello_getInstanceID() {
+            return globalStore("instance").getOrSet("instanceID", uniqueID);
+        }
+        function getHelloPromise(win) {
+            return windowStore("helloPromises").getOrSet(win, function() {
+                return new promise_ZalgoPromise();
+            });
+        }
+        function sayHello(win, _ref3) {
+            return (0, _ref3.send)(win, MESSAGE_NAME.HELLO, {
+                instanceID: hello_getInstanceID()
+            }, {
+                domain: constants_WILDCARD,
+                timeout: -1
+            }).then(function(_ref4) {
+                var origin = _ref4.origin, instanceID = _ref4.data.instanceID;
+                return getHelloPromise(win).resolve({
+                    win: win,
+                    domain: origin
+                }), {
+                    win: win,
+                    domain: origin,
+                    instanceID: instanceID
+                };
+            });
+        }
+        function getWindowInstanceID(win, _ref5) {
+            var send = _ref5.send;
+            return windowStore("windowInstanceIDPromises").getOrSet(win, function() {
+                return sayHello(win, {
+                    send: send
+                }).then(function(_ref6) {
+                    return _ref6.instanceID;
+                });
+            });
+        }
+        function markWindowKnown(win) {
+            windowStore("knownWindows").set(win, !0);
+        }
+        var _SERIALIZER, TYPE = {
+            FUNCTION: "function",
+            ERROR: "error",
+            PROMISE: "promise",
+            REGEX: "regex",
+            DATE: "date",
+            ARRAY: "array",
+            OBJECT: "object",
+            STRING: "string",
+            NUMBER: "number",
+            BOOLEAN: "boolean",
+            NULL: "null",
+            UNDEFINED: "undefined"
+        };
+        function isSerializedType(item) {
+            return "object" == typeof item && null !== item && "string" == typeof item.__type__;
+        }
+        function determineType(val) {
+            return void 0 === val ? TYPE.UNDEFINED : null === val ? TYPE.NULL : Array.isArray(val) ? TYPE.ARRAY : "function" == typeof val ? TYPE.FUNCTION : "object" == typeof val ? val instanceof Error ? TYPE.ERROR : "function" == typeof val.then ? TYPE.PROMISE : "[object RegExp]" === {}.toString.call(val) ? TYPE.REGEX : "[object Date]" === {}.toString.call(val) ? TYPE.DATE : TYPE.OBJECT : "string" == typeof val ? TYPE.STRING : "number" == typeof val ? TYPE.NUMBER : "boolean" == typeof val ? TYPE.BOOLEAN : void 0;
+        }
+        function serializeType(type, val) {
+            return {
+                __type__: type,
+                __val__: val
+            };
+        }
+        var _DESERIALIZER, SERIALIZER = ((_SERIALIZER = {})[TYPE.FUNCTION] = function() {}, 
+        _SERIALIZER[TYPE.ERROR] = function(_ref) {
+            return serializeType(TYPE.ERROR, {
+                message: _ref.message,
+                stack: _ref.stack,
+                code: _ref.code
+            });
+        }, _SERIALIZER[TYPE.PROMISE] = function() {}, _SERIALIZER[TYPE.REGEX] = function(val) {
+            return serializeType(TYPE.REGEX, val.source);
+        }, _SERIALIZER[TYPE.DATE] = function(val) {
+            return serializeType(TYPE.DATE, val.toJSON());
+        }, _SERIALIZER[TYPE.ARRAY] = function(val) {
+            return val;
+        }, _SERIALIZER[TYPE.OBJECT] = function(val) {
+            return val;
+        }, _SERIALIZER[TYPE.STRING] = function(val) {
+            return val;
+        }, _SERIALIZER[TYPE.NUMBER] = function(val) {
+            return val;
+        }, _SERIALIZER[TYPE.BOOLEAN] = function(val) {
+            return val;
+        }, _SERIALIZER[TYPE.NULL] = function(val) {
+            return val;
+        }, _SERIALIZER), defaultSerializers = {}, DESERIALIZER = ((_DESERIALIZER = {})[TYPE.FUNCTION] = function() {
+            throw new Error("Function serialization is not implemented; nothing to deserialize");
+        }, _DESERIALIZER[TYPE.ERROR] = function(_ref2) {
+            var stack = _ref2.stack, code = _ref2.code, error = new Error(_ref2.message);
+            return error.code = code, error.stack = stack + "\n\n" + error.stack, error;
+        }, _DESERIALIZER[TYPE.PROMISE] = function() {
+            throw new Error("Promise serialization is not implemented; nothing to deserialize");
+        }, _DESERIALIZER[TYPE.REGEX] = function(val) {
+            return new RegExp(val);
+        }, _DESERIALIZER[TYPE.DATE] = function(val) {
+            return new Date(val);
+        }, _DESERIALIZER[TYPE.ARRAY] = function(val) {
+            return val;
+        }, _DESERIALIZER[TYPE.OBJECT] = function(val) {
+            return val;
+        }, _DESERIALIZER[TYPE.STRING] = function(val) {
+            return val;
+        }, _DESERIALIZER[TYPE.NUMBER] = function(val) {
+            return val;
+        }, _DESERIALIZER[TYPE.BOOLEAN] = function(val) {
+            return val;
+        }, _DESERIALIZER[TYPE.NULL] = function(val) {
+            return val;
+        }, _DESERIALIZER), defaultDeserializers = {};
+        function cleanupProxyWindows() {
+            for (var idToProxyWindow = globalStore("idToProxyWindow"), _i2 = 0, _idToProxyWindow$keys2 = idToProxyWindow.keys(); _i2 < _idToProxyWindow$keys2.length; _i2++) {
+                var id = _idToProxyWindow$keys2[_i2];
+                idToProxyWindow.get(id).shouldClean() && idToProxyWindow.del(id);
+            }
+        }
+        new promise_ZalgoPromise(function(resolve) {
+            if (window.document && window.document.body) return resolve(window.document.body);
+            var interval = setInterval(function() {
+                if (window.document && window.document.body) return clearInterval(interval), resolve(window.document.body);
+            }, 10);
+        });
+        var window_ProxyWindow = function() {
+            function ProxyWindow(serializedWindow, actualWindow, _ref) {
+                var send = _ref.send;
+                this.isProxyWindow = !0, this.serializedWindow = void 0, this.actualWindow = void 0, 
+                this.actualWindowPromise = void 0, this.send = void 0, this.serializedWindow = serializedWindow, 
+                this.actualWindowPromise = new promise_ZalgoPromise(), actualWindow && this.setWindow(actualWindow), 
+                this.serializedWindow.getInstanceID = function(method) {
+                    var cache = {};
+                    function memoizedPromiseFunction() {
+                        for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) args[_key2] = arguments[_key2];
+                        var key = function(args) {
+                            try {
+                                return JSON.stringify([].slice.call(args), function(subkey, val) {
+                                    return "function" == typeof val ? "memoize[" + function(obj) {
+                                        if (objectIDs = objectIDs || new weakmap_CrossDomainSafeWeakMap(), null == obj || "object" != typeof obj && "function" != typeof obj) throw new Error("Invalid object");
+                                        var uid = objectIDs.get(obj);
+                                        return uid || (uid = typeof obj + ":" + uniqueID(), objectIDs.set(obj, uid)), uid;
+                                    }(val) + "]" : val;
+                                });
+                            } catch (err) {
+                                throw new Error("Arguments not serializable -- can not be used to memoize");
+                            }
+                        }(args);
+                        return cache.hasOwnProperty(key) ? cache[key] : (cache[key] = method.apply(this, arguments).finally(function() {
+                            delete cache[key];
+                        }), cache[key]);
+                    }
+                    return memoizedPromiseFunction.reset = function() {
+                        cache = {};
+                    }, memoizedPromiseFunction;
+                }(this.serializedWindow.getInstanceID), this.send = send;
+            }
+            var _proto = ProxyWindow.prototype;
+            return _proto.getType = function() {
+                return this.serializedWindow.type;
+            }, _proto.isPopup = function() {
+                return "popup" === this.getType();
+            }, _proto.isIframe = function() {
+                return "iframe" === this.getType();
+            }, _proto.setLocation = function(href) {
+                var _this = this;
+                return promise_ZalgoPromise.try(function() {
+                    if (!_this.actualWindow) return _this.serializedWindow.setLocation(href);
+                    _this.actualWindow.location = href;
+                }).then(function() {
+                    return _this;
+                });
+            }, _proto.setName = function(name) {
+                var _this2 = this;
+                return promise_ZalgoPromise.try(function() {
+                    if (!_this2.actualWindow) return _this2.serializedWindow.setName(name);
+                    if (!isSameDomain(_this2.actualWindow)) throw new Error("Can not set name for window on different domain");
+                    _this2.actualWindow.name = name, _this2.actualWindow.frameElement && _this2.actualWindow.frameElement.setAttribute("name", name);
+                }).then(function() {
+                    return _this2;
+                });
+            }, _proto.close = function() {
+                var _this3 = this;
+                return promise_ZalgoPromise.try(function() {
+                    if (!_this3.actualWindow) return _this3.serializedWindow.close();
+                    _this3.actualWindow.close();
+                }).then(function() {
+                    return _this3;
+                });
+            }, _proto.focus = function() {
+                var _this4 = this;
+                return promise_ZalgoPromise.try(function() {
+                    return _this4.actualWindow && _this4.actualWindow.focus(), _this4.serializedWindow.focus();
+                }).then(function() {
+                    return _this4;
+                });
+            }, _proto.isClosed = function() {
+                var _this5 = this;
+                return promise_ZalgoPromise.try(function() {
+                    return _this5.actualWindow ? isWindowClosed(_this5.actualWindow) : _this5.serializedWindow.isClosed();
+                });
+            }, _proto.getWindow = function() {
+                return this.actualWindow;
+            }, _proto.setWindow = function(win) {
+                this.actualWindow = win, this.actualWindowPromise.resolve(win);
+            }, _proto.awaitWindow = function() {
+                return this.actualWindowPromise;
+            }, _proto.matchWindow = function(win) {
+                var _this6 = this;
+                return promise_ZalgoPromise.try(function() {
+                    return _this6.actualWindow ? win === _this6.actualWindow : promise_ZalgoPromise.all([ _this6.getInstanceID(), getWindowInstanceID(win, {
+                        send: _this6.send
+                    }) ]).then(function(_ref2) {
+                        var match = _ref2[0] === _ref2[1];
+                        return match && _this6.setWindow(win), match;
+                    });
+                });
+            }, _proto.unwrap = function() {
+                return this.actualWindow || this;
+            }, _proto.getInstanceID = function() {
+                return this.actualWindow ? getWindowInstanceID(this.actualWindow, {
+                    send: this.send
+                }) : this.serializedWindow.getInstanceID();
+            }, _proto.serialize = function() {
+                return this.serializedWindow;
+            }, _proto.shouldClean = function() {
+                return this.actualWindow && isWindowClosed(this.actualWindow);
+            }, ProxyWindow.unwrap = function(win) {
+                return ProxyWindow.isProxyWindow(win) ? win.unwrap() : win;
+            }, ProxyWindow.serialize = function(win, _ref3) {
+                var send = _ref3.send;
+                return cleanupProxyWindows(), ProxyWindow.toProxyWindow(win, {
+                    send: send
+                }).serialize();
+            }, ProxyWindow.deserialize = function(serializedWindow, _ref4) {
+                var on = _ref4.on, send = _ref4.send;
+                return cleanupProxyWindows(), globalStore("idToProxyWindow").getOrSet(serializedWindow.id, function() {
+                    return new ProxyWindow(serializedWindow, null, {
+                        on: on,
+                        send: send
+                    });
+                });
+            }, ProxyWindow.isProxyWindow = function(obj) {
+                return Boolean(obj && !isWindow(obj) && obj.isProxyWindow);
+            }, ProxyWindow.toProxyWindow = function(win, _ref5) {
+                var send = _ref5.send;
+                return cleanupProxyWindows(), ProxyWindow.isProxyWindow(win) ? win : windowStore("winToProxyWindow").getOrSet(win, function() {
+                    var id = uniqueID();
+                    return globalStore("idToProxyWindow").set(id, new ProxyWindow({
+                        id: id,
+                        type: getOpener(win) ? "popup" : "iframe",
+                        getInstanceID: function() {
+                            return getWindowInstanceID(win, {
+                                send: send
+                            });
+                        },
+                        close: function() {
+                            return promise_ZalgoPromise.try(function() {
+                                win.close();
+                            });
+                        },
+                        focus: function() {
+                            return promise_ZalgoPromise.try(function() {
+                                win.focus();
+                            });
+                        },
+                        isClosed: function() {
+                            return promise_ZalgoPromise.try(function() {
+                                return isWindowClosed(win);
+                            });
+                        },
+                        setLocation: function(href) {
+                            return promise_ZalgoPromise.try(function() {
+                                if (isSameDomain(win)) try {
+                                    if (win.location && "function" == typeof win.location.replace) return void win.location.replace(href);
+                                } catch (err) {}
+                                win.location = href;
+                            });
+                        },
+                        setName: function(name) {
+                            return promise_ZalgoPromise.try(function() {
+                                win.name = name;
+                            });
+                        }
+                    }, win, {
+                        send: send
+                    }));
+                });
+            }, ProxyWindow;
+        }();
+        function addMethod(id, val, name, source, domain) {
+            var methodStore = windowStore("methodStore"), proxyWindowMethods = globalStore("proxyWindowMethods");
+            window_ProxyWindow.isProxyWindow(source) ? proxyWindowMethods.set(id, {
+                val: val,
+                name: name,
+                domain: domain,
+                source: source
+            }) : (proxyWindowMethods.del(id), methodStore.getOrSet(source, function() {
+                return {};
+            })[id] = {
+                domain: domain,
+                name: name,
+                val: val,
+                source: source
+            });
+        }
+        function lookupMethod(source, id) {
+            var methodStore = windowStore("methodStore"), proxyWindowMethods = globalStore("proxyWindowMethods");
+            return methodStore.getOrSet(source, function() {
+                return {};
+            })[id] || proxyWindowMethods.get(id);
+        }
+        function function_serializeFunction(destination, domain, val, key, _ref3) {
+            !function(_ref) {
+                var on = _ref3.on;
+                globalStore("builtinListeners").getOrSet("functionCalls", function() {
+                    return on(MESSAGE_NAME.METHOD, {
+                        domain: constants_WILDCARD
+                    }, function(_ref2) {
+                        var source = _ref2.source, origin = _ref2.origin, data = _ref2.data, id = data.id, name = data.name, meth = lookupMethod(source, id);
+                        if (!meth) throw new Error("Could not find method '" + data.name + "' with id: " + data.id + " in " + getDomain(window));
+                        var methodSource = meth.source, domain = meth.domain, val = meth.val;
+                        return promise_ZalgoPromise.try(function() {
+                            if (!matchDomain(domain, origin)) throw new Error("Method '" + data.name + "' domain " + JSON.stringify(util_isRegex(meth.domain) ? meth.domain.source : meth.domain) + " does not match origin " + origin + " in " + getDomain(window));
+                            if (window_ProxyWindow.isProxyWindow(methodSource)) return methodSource.matchWindow(source).then(function(match) {
+                                if (!match) throw new Error("Method call '" + data.name + "' failed - proxy window does not match source in " + getDomain(window));
+                            });
+                        }).then(function() {
+                            return val.apply({
+                                source: source,
+                                origin: origin
+                            }, data.args);
+                        }, function(err) {
+                            return promise_ZalgoPromise.try(function() {
+                                if (val.onError) return val.onError(err);
+                            }).then(function() {
+                                throw err.stack && (err.stack = "Remote call to " + name + "()\n\n" + err.stack), 
+                                err;
+                            });
+                        }).then(function(result) {
+                            return {
+                                result: result,
+                                id: id,
+                                name: name
+                            };
+                        });
+                    });
+                });
+            }();
+            var id = val.__id__ || uniqueID();
+            destination = window_ProxyWindow.unwrap(destination);
+            var name = val.__name__ || val.name || key;
+            return window_ProxyWindow.isProxyWindow(destination) ? (addMethod(id, val, name, destination, domain), 
+            destination.awaitWindow().then(function(win) {
+                addMethod(id, val, name, win, domain);
+            })) : addMethod(id, val, name, destination, domain), serializeType(SERIALIZATION_TYPE.CROSS_DOMAIN_FUNCTION, {
+                id: id,
+                name: name
+            });
+        }
+        function serializeMessage(destination, domain, obj, _ref) {
+            var _serialize, on = _ref.on, send = _ref.send;
+            return function(obj, serializers) {
+                void 0 === serializers && (serializers = defaultSerializers);
+                var result = JSON.stringify(obj, function(key) {
+                    var val = this[key];
+                    if (isSerializedType(this)) return val;
+                    var type = determineType(val);
+                    if (!type) return val;
+                    var serializer = serializers[type] || SERIALIZER[type];
+                    return serializer ? serializer(val, key) : val;
+                });
+                return void 0 === result ? TYPE.UNDEFINED : result;
+            }(obj, ((_serialize = {})[TYPE.PROMISE] = function(val, key) {
+                return function(destination, domain, val, key, _ref) {
+                    return serializeType(SERIALIZATION_TYPE.CROSS_DOMAIN_ZALGO_PROMISE, {
+                        then: function_serializeFunction(destination, domain, function(resolve, reject) {
+                            return val.then(resolve, reject);
+                        }, key, {
+                            on: _ref.on,
+                            send: _ref.send
+                        })
+                    });
+                }(destination, domain, val, key, {
+                    on: on,
+                    send: send
+                });
+            }, _serialize[TYPE.FUNCTION] = function(val, key) {
+                return function_serializeFunction(destination, domain, val, key, {
+                    on: on,
+                    send: send
+                });
+            }, _serialize[TYPE.OBJECT] = function(val) {
+                return isWindow(val) || window_ProxyWindow.isProxyWindow(val) ? serializeType(SERIALIZATION_TYPE.CROSS_DOMAIN_WINDOW, window_ProxyWindow.serialize(val, {
+                    send: send
+                })) : val;
+            }, _serialize));
+        }
+        function deserializeMessage(source, origin, message, _ref2) {
+            var _deserialize, on = _ref2.on, send = _ref2.send;
+            return function(str, deserializers) {
+                if (void 0 === deserializers && (deserializers = defaultDeserializers), str !== TYPE.UNDEFINED) return JSON.parse(str, function(key, val) {
+                    if (isSerializedType(this)) return val;
+                    var type, value;
+                    if (isSerializedType(val) ? (type = val.__type__, value = val.__val__) : (type = determineType(val), 
+                    value = val), !type) return value;
+                    var deserializer = deserializers[type] || DESERIALIZER[type];
+                    return deserializer ? deserializer(value, key) : value;
+                });
+            }(message, ((_deserialize = {})[SERIALIZATION_TYPE.CROSS_DOMAIN_ZALGO_PROMISE] = function(serializedPromise) {
+                return new promise_ZalgoPromise(serializedPromise.then);
+            }, _deserialize[SERIALIZATION_TYPE.CROSS_DOMAIN_FUNCTION] = function(serializedFunction) {
+                return function(source, origin, _ref4, _ref5) {
+                    var id = serializedFunction.id, name = serializedFunction.name, send = _ref5.send, getDeserializedFunction = function(opts) {
+                        function crossDomainFunctionWrapper() {
+                            var _arguments = arguments;
+                            return window_ProxyWindow.toProxyWindow(source, {
+                                send: send
+                            }).awaitWindow().then(function(win) {
+                                var meth = lookupMethod(win, id);
+                                if (meth && meth.val !== crossDomainFunctionWrapper) return meth.val.apply({
+                                    source: window,
+                                    origin: getDomain()
+                                }, _arguments);
+                                var options = {
+                                    domain: origin,
+                                    fireAndForget: opts.fireAndForget
+                                }, _args = [].slice.call(_arguments);
+                                return send(win, MESSAGE_NAME.METHOD, {
+                                    id: id,
+                                    name: name,
+                                    args: _args
+                                }, options).then(function(res) {
+                                    if (!opts.fireAndForget) return res.data.result;
+                                });
+                            }).catch(function(err) {
+                                throw err;
+                            });
+                        }
+                        return void 0 === opts && (opts = {}), crossDomainFunctionWrapper.__name__ = name, 
+                        crossDomainFunctionWrapper.__origin__ = origin, crossDomainFunctionWrapper.__source__ = source, 
+                        crossDomainFunctionWrapper.__id__ = id, crossDomainFunctionWrapper.origin = origin, 
+                        crossDomainFunctionWrapper;
+                    }, crossDomainFunctionWrapper = getDeserializedFunction();
+                    return crossDomainFunctionWrapper.fireAndForget = getDeserializedFunction({
+                        fireAndForget: !0
+                    }), crossDomainFunctionWrapper;
+                }(source, origin, 0, {
+                    on: on,
+                    send: send
+                });
+            }, _deserialize[SERIALIZATION_TYPE.CROSS_DOMAIN_WINDOW] = function(serializedWindow) {
+                return window_ProxyWindow.deserialize(serializedWindow, {
+                    on: (_ref7 = {
+                        on: on,
+                        send: send
+                    }).on,
+                    send: _ref7.send
+                });
+                var _ref7;
+            }, _deserialize));
+        }
+        var SEND_MESSAGE_STRATEGIES = {};
+        function send_sendMessage(win, domain, message, _ref) {
+            var _serializeMessage, on = _ref.on, send = _ref.send;
+            if (isWindowClosed(win)) throw new Error("Window is closed");
+            for (var serializedMessage = serializeMessage(win, domain, ((_serializeMessage = {}).__post_robot_10_0_10__ = _extends({
+                id: uniqueID(),
+                origin: getDomain(window)
+            }, message), _serializeMessage), {
+                on: on,
+                send: send
+            }), strategies = Object.keys(SEND_MESSAGE_STRATEGIES), errors = [], _i2 = 0; _i2 < strategies.length; _i2++) {
+                var strategyName = strategies[_i2];
+                try {
+                    SEND_MESSAGE_STRATEGIES[strategyName](win, serializedMessage, domain);
+                } catch (err) {
+                    errors.push(err);
+                }
+            }
+            if (errors.length === strategies.length) throw new Error("All post-robot messaging strategies failed:\n\n" + errors.map(stringifyError).join("\n\n"));
+        }
+        SEND_MESSAGE_STRATEGIES.postrobot_post_message = function(win, serializedMessage, domain) {
+            (Array.isArray(domain) ? domain : "string" == typeof domain ? [ domain ] : [ constants_WILDCARD ]).map(function(dom) {
+                return 0 === dom.indexOf(PROTOCOL.FILE) ? constants_WILDCARD : dom;
+            }).forEach(function(dom) {
+                win.postMessage(serializedMessage, dom);
+            });
+        };
+        var _RECEIVE_MESSAGE_TYPE, __DOMAIN_REGEX__ = "__domain_regex__";
+        function getResponseListener(hash) {
+            return globalStore("responseListeners").get(hash);
+        }
+        function deleteResponseListener(hash) {
+            globalStore("responseListeners").del(hash);
+        }
+        function isResponseListenerErrored(hash) {
+            return globalStore("erroredResponseListeners").has(hash);
+        }
+        function getRequestListener(_ref) {
+            var name = _ref.name, win = _ref.win, domain = _ref.domain, requestListeners = windowStore("requestListeners");
+            if (win === constants_WILDCARD && (win = null), domain === constants_WILDCARD && (domain = null), 
+            !name) throw new Error("Name required to get request listener");
+            for (var _i2 = 0, _ref3 = [ win, getWildcard() ]; _i2 < _ref3.length; _i2++) {
+                var winQualifier = _ref3[_i2];
+                if (winQualifier) {
+                    var nameListeners = requestListeners.get(winQualifier);
+                    if (nameListeners) {
+                        var domainListeners = nameListeners[name];
+                        if (domainListeners) {
+                            if (domain && "string" == typeof domain) {
+                                if (domainListeners[domain]) return domainListeners[domain];
+                                if (domainListeners[__DOMAIN_REGEX__]) for (var _i4 = 0, _domainListeners$__DO2 = domainListeners[__DOMAIN_REGEX__]; _i4 < _domainListeners$__DO2.length; _i4++) {
+                                    var _domainListeners$__DO3 = _domainListeners$__DO2[_i4], listener = _domainListeners$__DO3.listener;
+                                    if (matchDomain(_domainListeners$__DO3.regex, domain)) return listener;
+                                }
+                            }
+                            if (domainListeners[constants_WILDCARD]) return domainListeners[constants_WILDCARD];
+                        }
+                    }
+                }
+            }
+        }
+        var RECEIVE_MESSAGE_TYPES = ((_RECEIVE_MESSAGE_TYPE = {}).postrobot_message_request = function(source, origin, message, _ref) {
+            var on = _ref.on, send = _ref.send, options = getRequestListener({
+                name: message.name,
+                win: source,
+                domain: origin
+            });
+            function sendResponse(type, ack, response) {
+                void 0 === response && (response = {}), message.fireAndForget || isWindowClosed(source) || send_sendMessage(source, origin, _extends({
+                    type: type,
+                    ack: ack,
+                    hash: message.hash,
+                    name: message.name
+                }, response), {
+                    on: on,
+                    send: send
+                });
+            }
+            return promise_ZalgoPromise.all([ sendResponse("postrobot_message_ack"), promise_ZalgoPromise.try(function() {
+                if (!options) throw new Error("No handler found for post message: " + message.name + " from " + origin + " in " + window.location.protocol + "//" + window.location.host + window.location.pathname);
+                if (!matchDomain(options.domain, origin)) throw new Error("Request origin " + origin + " does not match domain " + options.domain.toString());
+                return options.handler({
+                    source: source,
+                    origin: origin,
+                    data: message.data
+                });
+            }).then(function(data) {
+                return sendResponse("postrobot_message_response", "success", {
+                    data: data
+                });
+            }, function(error) {
+                return sendResponse("postrobot_message_response", "error", {
+                    error: error
+                });
+            }) ]).then(src_util_noop).catch(function(err) {
+                if (options && options.handleError) return options.handleError(err);
+                throw err;
+            });
+        }, _RECEIVE_MESSAGE_TYPE.postrobot_message_ack = function(source, origin, message) {
+            if (!isResponseListenerErrored(message.hash)) {
+                var options = getResponseListener(message.hash);
+                if (!options) throw new Error("No handler found for post message ack for message: " + message.name + " from " + origin + " in " + window.location.protocol + "//" + window.location.host + window.location.pathname);
+                if (!matchDomain(options.domain, origin)) throw new Error("Ack origin " + origin + " does not match domain " + options.domain.toString());
+                if (source !== options.win) throw new Error("Ack source does not match registered window");
+                options.ack = !0;
+            }
+        }, _RECEIVE_MESSAGE_TYPE.postrobot_message_response = function(source, origin, message) {
+            if (!isResponseListenerErrored(message.hash)) {
+                var pattern, options = getResponseListener(message.hash);
+                if (!options) throw new Error("No handler found for post message response for message: " + message.name + " from " + origin + " in " + window.location.protocol + "//" + window.location.host + window.location.pathname);
+                if (!matchDomain(options.domain, origin)) throw new Error("Response origin " + origin + " does not match domain " + (pattern = options.domain, 
+                Array.isArray(pattern) ? "(" + pattern.join(" | ") + ")" : isRegex(pattern) ? "RegExp(" + pattern.toString() : pattern.toString()));
+                if (source !== options.win) throw new Error("Response source does not match registered window");
+                deleteResponseListener(message.hash), "error" === message.ack ? options.promise.reject(message.error) : "success" === message.ack && options.promise.resolve({
+                    source: source,
+                    origin: origin,
+                    data: message.data
+                });
+            }
+        }, _RECEIVE_MESSAGE_TYPE);
+        function receive_receiveMessage(event, _ref2) {
+            var on = _ref2.on, send = _ref2.send, receivedMessages = globalStore("receivedMessages");
+            if (!window || window.closed) throw new Error("Message recieved in closed window");
+            try {
+                if (!event.source) return;
+            } catch (err) {
+                return;
+            }
+            var source = event.source, origin = event.origin, message = function(message, source, origin, _ref) {
+                var parsedMessage, on = _ref.on, send = _ref.send;
+                try {
+                    parsedMessage = deserializeMessage(source, origin, message, {
+                        on: on,
+                        send: send
+                    });
+                } catch (err) {
+                    return;
+                }
+                if (parsedMessage && "object" == typeof parsedMessage && null !== parsedMessage && (parsedMessage = parsedMessage.__post_robot_10_0_10__) && "object" == typeof parsedMessage && null !== parsedMessage && parsedMessage.type && "string" == typeof parsedMessage.type && RECEIVE_MESSAGE_TYPES[parsedMessage.type]) return parsedMessage;
+            }(event.data, source, origin, {
+                on: on,
+                send: send
+            });
+            message && (markWindowKnown(source), receivedMessages.has(message.id) || (receivedMessages.set(message.id, !0), 
+            isWindowClosed(source) && !message.fireAndForget || (0 === message.origin.indexOf(PROTOCOL.FILE) && (origin = message.origin), 
+            RECEIVE_MESSAGE_TYPES[message.type](source, origin, message, {
+                on: on,
+                send: send
+            }))));
+        }
+        function on_on(name, options, handler) {
+            if (!name) throw new Error("Expected name");
+            if ("function" == typeof options && (handler = options, options = {}), !handler) throw new Error("Expected handler");
+            (options = options || {}).name = name, options.handler = handler || options.handler;
+            var win = options.window, domain = options.domain, requestListener = function addRequestListener(_ref4, listener) {
+                var name = _ref4.name, win = _ref4.win, domain = _ref4.domain, requestListeners = windowStore("requestListeners");
+                if (!name || "string" != typeof name) throw new Error("Name required to add request listener");
+                if (Array.isArray(win)) {
+                    for (var listenersCollection = [], _i6 = 0, _win2 = win; _i6 < _win2.length; _i6++) listenersCollection.push(addRequestListener({
+                        name: name,
+                        domain: domain,
+                        win: _win2[_i6]
+                    }, listener));
+                    return {
+                        cancel: function() {
+                            for (var _i8 = 0; _i8 < listenersCollection.length; _i8++) listenersCollection[_i8].cancel();
+                        }
+                    };
+                }
+                if (Array.isArray(domain)) {
+                    for (var _listenersCollection = [], _i10 = 0, _domain2 = domain; _i10 < _domain2.length; _i10++) _listenersCollection.push(addRequestListener({
+                        name: name,
+                        win: win,
+                        domain: _domain2[_i10]
+                    }, listener));
+                    return {
+                        cancel: function() {
+                            for (var _i12 = 0; _i12 < _listenersCollection.length; _i12++) _listenersCollection[_i12].cancel();
+                        }
+                    };
+                }
+                var existingListener = getRequestListener({
+                    name: name,
+                    win: win,
+                    domain: domain
+                });
+                if (win && win !== constants_WILDCARD || (win = getWildcard()), domain = domain || constants_WILDCARD, 
+                existingListener) throw win && domain ? new Error("Request listener already exists for " + name + " on domain " + domain.toString() + " for " + (win === getWildcard() ? "wildcard" : "specified") + " window") : win ? new Error("Request listener already exists for " + name + " for " + (win === getWildcard() ? "wildcard" : "specified") + " window") : domain ? new Error("Request listener already exists for " + name + " on domain " + domain.toString()) : new Error("Request listener already exists for " + name);
+                var regexListeners, regexListener, nameListeners = requestListeners.getOrSet(win, function() {
+                    return {};
+                }), domainListeners = util_getOrSet(nameListeners, name, function() {
+                    return {};
+                }), strDomain = domain.toString();
+                return util_isRegex(domain) ? (regexListeners = util_getOrSet(domainListeners, __DOMAIN_REGEX__, function() {
+                    return [];
+                })).push(regexListener = {
+                    regex: domain,
+                    listener: listener
+                }) : domainListeners[strDomain] = listener, {
+                    cancel: function() {
+                        delete domainListeners[strDomain], regexListener && (regexListeners.splice(regexListeners.indexOf(regexListener, 1)), 
+                        regexListeners.length || delete domainListeners[__DOMAIN_REGEX__]), Object.keys(domainListeners).length || delete nameListeners[name], 
+                        win && !Object.keys(nameListeners).length && requestListeners.del(win);
+                    }
+                };
+            }({
+                name: name,
+                win: win,
+                domain: domain
+            }, {
+                handler: options.handler,
+                handleError: options.errorHandler || function(err) {
+                    throw err;
+                },
+                window: win,
+                domain: domain || constants_WILDCARD,
+                name: name
+            });
+            return {
+                cancel: function() {
+                    requestListener.cancel();
+                }
+            };
+        }
+        function on_once(name, options, handler) {
+            "function" == typeof (options = options || {}) && (handler = options, options = {});
+            var listener, promise = new promise_ZalgoPromise();
+            return options.errorHandler = function(err) {
+                listener.cancel(), promise.reject(err);
+            }, listener = on_on(name, options, function(event) {
+                if (listener.cancel(), promise.resolve(event), handler) return handler(event);
+            }), promise.cancel = listener.cancel, promise;
+        }
+        function normalizeDomain(win, domain, childTimeout, _ref) {
+            var send = _ref.send;
+            return promise_ZalgoPromise.try(function() {
+                return function(parent, child) {
+                    var actualParent = getAncestor(child);
+                    if (actualParent) return actualParent === parent;
+                    if (child === parent) return !1;
+                    if (function(win) {
+                        if (win) {
+                            try {
+                                if (win.top) return win.top;
+                            } catch (err) {}
+                            if (getParent(win) === win) return win;
+                            try {
+                                if (isAncestorParent(window, win) && window.top) return window.top;
+                            } catch (err) {}
+                            try {
+                                if (isAncestorParent(win, window) && window.top) return window.top;
+                            } catch (err) {}
+                            for (var _i7 = 0, _getAllChildFrames4 = function getAllChildFrames(win) {
+                                for (var result = [], _i3 = 0, _getFrames2 = getFrames(win); _i3 < _getFrames2.length; _i3++) {
+                                    var frame = _getFrames2[_i3];
+                                    result.push(frame);
+                                    for (var _i5 = 0, _getAllChildFrames2 = getAllChildFrames(frame); _i5 < _getAllChildFrames2.length; _i5++) result.push(_getAllChildFrames2[_i5]);
+                                }
+                                return result;
+                            }(win); _i7 < _getAllChildFrames4.length; _i7++) {
+                                var frame = _getAllChildFrames4[_i7];
+                                try {
+                                    if (frame.top) return frame.top;
+                                } catch (err) {}
+                                if (getParent(frame) === frame) return frame;
+                            }
+                        }
+                    }(child) === child) return !1;
+                    for (var _i15 = 0, _getFrames8 = getFrames(parent); _i15 < _getFrames8.length; _i15++) if (_getFrames8[_i15] === child) return !0;
+                    return !1;
+                }(window, win) ? function(win, timeout, name) {
+                    void 0 === timeout && (timeout = 5e3), void 0 === name && (name = "Window");
+                    var promise = getHelloPromise(win);
+                    return -1 !== timeout && (promise = promise.timeout(timeout, new Error(name + " did not load after " + timeout + "ms"))), 
+                    promise;
+                }(win, childTimeout) : util_isRegex(domain) ? sayHello(win, {
+                    send: send
+                }) : {
+                    domain: domain
+                };
+            }).then(function(_ref2) {
+                return _ref2.domain;
+            });
+        }
+        var send_send = function send(win, name, data, options) {
+            var domain = (options = options || {}).domain || constants_WILDCARD, responseTimeout = options.timeout || -1, childTimeout = options.timeout || 5e3, fireAndForget = options.fireAndForget || !1;
+            return promise_ZalgoPromise.try(function() {
+                return function(name, win, domain) {
+                    if (!name) throw new Error("Expected name");
+                    if (domain && "string" != typeof domain && !Array.isArray(domain) && !util_isRegex(domain)) throw new TypeError("Expected domain to be a string, array, or regex");
+                    if (isWindowClosed(win)) throw new Error("Target window is closed");
+                }(name, win, domain), normalizeDomain(win, domain, childTimeout, {
+                    send: send
+                });
+            }).then(function(targetDomain) {
+                if (!matchDomain(domain, targetDomain)) throw new Error("Domain " + stringify(domain) + " does not match " + stringify(targetDomain));
+                domain = targetDomain;
+                var method, timeout, logName = name === MESSAGE_NAME.METHOD && data && "string" == typeof data.name ? data.name + "()" : name, promise = new promise_ZalgoPromise(), hash = name + "_" + uniqueID();
+                if (!fireAndForget) {
+                    var responseListener = {
+                        name: name,
+                        win: win,
+                        domain: domain,
+                        promise: promise
+                    };
+                    !function(hash, listener) {
+                        globalStore("responseListeners").set(hash, listener);
+                    }(hash, responseListener);
+                    var reqPromises = windowStore("requestPromises").getOrSet(win, function() {
+                        return [];
+                    });
+                    reqPromises.push(promise), promise.catch(function() {
+                        !function(hash) {
+                            globalStore("erroredResponseListeners").set(hash, !0);
+                        }(hash), deleteResponseListener(hash);
+                    });
+                    var totalAckTimeout = function(win) {
+                        return windowStore("knownWindows").get(win, !1);
+                    }(win) ? 1e4 : 2e3, totalResTimeout = responseTimeout, ackTimeout = totalAckTimeout, resTimeout = totalResTimeout, interval = (method = function() {
+                        return isWindowClosed(win) ? promise.reject(new Error("Window closed for " + name + " before " + (responseListener.ack ? "response" : "ack"))) : (ackTimeout = Math.max(ackTimeout - 500, 0), 
+                        -1 !== resTimeout && (resTimeout = Math.max(resTimeout - 500, 0)), responseListener.ack || 0 !== ackTimeout ? 0 === resTimeout ? promise.reject(new Error("No response for postMessage " + logName + " in " + getDomain() + " in " + totalResTimeout + "ms")) : void 0 : promise.reject(new Error("No ack for postMessage " + logName + " in " + getDomain() + " in " + totalAckTimeout + "ms")));
+                    }, 500, function loop() {
+                        timeout = setTimeout(function() {
+                            method(), loop();
+                        }, 500);
+                    }(), {
+                        cancel: function() {
+                            clearTimeout(timeout);
+                        }
+                    });
+                    promise.finally(function() {
+                        interval.cancel(), reqPromises.splice(reqPromises.indexOf(promise, 1));
+                    }).catch(src_util_noop);
+                }
+                return send_sendMessage(win, domain, {
+                    type: "postrobot_message_request",
+                    hash: hash,
+                    name: name,
+                    data: data,
+                    fireAndForget: fireAndForget
+                }, {
+                    on: on_on,
+                    send: send
+                }), fireAndForget ? promise.resolve() : promise;
+            });
+        };
+        function setup_serializeMessage(destination, domain, obj) {
+            return serializeMessage(destination, domain, obj, {
+                on: on_on,
+                send: send_send
+            });
+        }
+        function setup_deserializeMessage(source, origin, message) {
+            return deserializeMessage(source, origin, message, {
+                on: on_on,
+                send: send_send
+            });
+        }
+        function setup_toProxyWindow(win) {
+            return window_ProxyWindow.toProxyWindow(win, {
+                send: send_send
+            });
+        }
+        function setup() {
+            var _ref3, on, send, global;
+            global_getGlobal().initialized || (global_getGlobal().initialized = !0, on = (_ref3 = {
+                on: on_on,
+                send: send_send
+            }).on, send = _ref3.send, (global = global_getGlobal()).receiveMessage = global.receiveMessage || function(message) {
+                return receive_receiveMessage(message, {
+                    on: on,
+                    send: send
+                });
+            }, function(_ref5) {
+                var on = _ref5.on, send = _ref5.send;
+                globalStore().getOrSet("postMessageListener", function() {
+                    return (obj = window).addEventListener("message", handler = function(event) {
+                        !function(event, _ref4) {
+                            var on = _ref4.on, send = _ref4.send, source = event.source || event.sourceElement, origin = event.origin || event.originalEvent && event.originalEvent.origin, data = event.data;
+                            if ("null" === origin && (origin = PROTOCOL.FILE + "//"), source) {
+                                if (!origin) throw new Error("Post message did not have origin domain");
+                                receive_receiveMessage({
+                                    source: source,
+                                    origin: origin,
+                                    data: data
+                                }, {
+                                    on: on,
+                                    send: send
+                                });
+                            }
+                        }(event, {
+                            on: on,
+                            send: send
+                        });
+                    }), {
+                        cancel: function() {
+                            obj.removeEventListener("message", handler);
+                        }
+                    };
+                    var obj, handler;
+                });
+            }({
+                on: on_on,
+                send: send_send
+            }), function(_ref7) {
+                var on = _ref7.on, send = _ref7.send;
+                globalStore("builtinListeners").getOrSet("helloListener", function() {
+                    var listener = on(MESSAGE_NAME.HELLO, {
+                        domain: constants_WILDCARD
+                    }, function(_ref2) {
+                        var source = _ref2.source, origin = _ref2.origin;
+                        return getHelloPromise(source).resolve({
+                            win: source,
+                            domain: origin
+                        }), {
+                            instanceID: hello_getInstanceID()
+                        };
+                    }), parent = getAncestor();
+                    return parent && sayHello(parent, {
+                        send: send
+                    }).catch(src_util_noop), listener;
+                });
+            }({
+                on: on_on,
+                send: send_send
+            }));
+        }
+        function destroy() {
+            var listener;
+            (listener = globalStore().get("postMessageListener")) && listener.cancel(), delete window.__post_robot_10_0_10__;
+        }
+        function cleanUpWindow(win) {
+            for (var _i2 = 0, _requestPromises$get2 = windowStore("requestPromises").get(win, []); _i2 < _requestPromises$get2.length; _i2++) _requestPromises$get2[_i2].reject(new Error("Window cleaned up before response")).catch(src_util_noop);
+        }
+        __webpack_require__.d(__webpack_exports__, "bridge", function() {}), __webpack_require__.d(__webpack_exports__, "Promise", function() {
+            return promise_ZalgoPromise;
+        }), __webpack_require__.d(__webpack_exports__, "TYPES", function() {
+            return !0;
+        }), __webpack_require__.d(__webpack_exports__, "ProxyWindow", function() {
+            return window_ProxyWindow;
+        }), __webpack_require__.d(__webpack_exports__, "setup", function() {
+            return setup;
+        }), __webpack_require__.d(__webpack_exports__, "destroy", function() {
+            return destroy;
+        }), __webpack_require__.d(__webpack_exports__, "serializeMessage", function() {
+            return setup_serializeMessage;
+        }), __webpack_require__.d(__webpack_exports__, "deserializeMessage", function() {
+            return setup_deserializeMessage;
+        }), __webpack_require__.d(__webpack_exports__, "toProxyWindow", function() {
+            return setup_toProxyWindow;
+        }), __webpack_require__.d(__webpack_exports__, "on", function() {
+            return on_on;
+        }), __webpack_require__.d(__webpack_exports__, "once", function() {
+            return on_once;
+        }), __webpack_require__.d(__webpack_exports__, "send", function() {
+            return send_send;
+        }), __webpack_require__.d(__webpack_exports__, "markWindowKnown", function() {
+            return markWindowKnown;
+        }), __webpack_require__.d(__webpack_exports__, "cleanUpWindow", function() {
+            return cleanUpWindow;
+        }), setup();
+    } ]);
+});
+//# sourceMappingURL=post-robot.js.map
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../buffer/index.js */ "./node_modules/buffer/index.js").Buffer))
+
+/***/ }),
+
+/***/ "./node_modules/post-robot/index.js":
+/*!******************************************!*\
+  !*** ./node_modules/post-robot/index.js ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* @flow */
+
+// eslint-disable-next-line import/no-commonjs
+module.exports = __webpack_require__(/*! ./dist/post-robot */ "./node_modules/post-robot/dist/post-robot.js");
+
+// eslint-disable-next-line import/no-commonjs
+module.exports.default = module.exports;
+
+
+/***/ }),
+
+/***/ "./node_modules/process/browser.js":
+/*!*****************************************!*\
+  !*** ./node_modules/process/browser.js ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// shim for using process in browser
+var process = module.exports = {};
+
+// cached from whatever global is present so that test runners that stub it
+// don't break things.  But we need to wrap it in a try catch in case it is
+// wrapped in strict mode code which doesn't define any globals.  It's inside a
+// function because try/catches deoptimize in certain engines.
+
+var cachedSetTimeout;
+var cachedClearTimeout;
+
+function defaultSetTimout() {
+    throw new Error('setTimeout has not been defined');
+}
+function defaultClearTimeout () {
+    throw new Error('clearTimeout has not been defined');
+}
+(function () {
+    try {
+        if (typeof setTimeout === 'function') {
+            cachedSetTimeout = setTimeout;
+        } else {
+            cachedSetTimeout = defaultSetTimout;
+        }
+    } catch (e) {
+        cachedSetTimeout = defaultSetTimout;
+    }
+    try {
+        if (typeof clearTimeout === 'function') {
+            cachedClearTimeout = clearTimeout;
+        } else {
+            cachedClearTimeout = defaultClearTimeout;
+        }
+    } catch (e) {
+        cachedClearTimeout = defaultClearTimeout;
+    }
+} ())
+function runTimeout(fun) {
+    if (cachedSetTimeout === setTimeout) {
+        //normal enviroments in sane situations
+        return setTimeout(fun, 0);
+    }
+    // if setTimeout wasn't available but was latter defined
+    if ((cachedSetTimeout === defaultSetTimout || !cachedSetTimeout) && setTimeout) {
+        cachedSetTimeout = setTimeout;
+        return setTimeout(fun, 0);
+    }
+    try {
+        // when when somebody has screwed with setTimeout but no I.E. maddness
+        return cachedSetTimeout(fun, 0);
+    } catch(e){
+        try {
+            // When we are in I.E. but the script has been evaled so I.E. doesn't trust the global object when called normally
+            return cachedSetTimeout.call(null, fun, 0);
+        } catch(e){
+            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error
+            return cachedSetTimeout.call(this, fun, 0);
+        }
+    }
+
+
+}
+function runClearTimeout(marker) {
+    if (cachedClearTimeout === clearTimeout) {
+        //normal enviroments in sane situations
+        return clearTimeout(marker);
+    }
+    // if clearTimeout wasn't available but was latter defined
+    if ((cachedClearTimeout === defaultClearTimeout || !cachedClearTimeout) && clearTimeout) {
+        cachedClearTimeout = clearTimeout;
+        return clearTimeout(marker);
+    }
+    try {
+        // when when somebody has screwed with setTimeout but no I.E. maddness
+        return cachedClearTimeout(marker);
+    } catch (e){
+        try {
+            // When we are in I.E. but the script has been evaled so I.E. doesn't  trust the global object when called normally
+            return cachedClearTimeout.call(null, marker);
+        } catch (e){
+            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error.
+            // Some versions of I.E. have different rules for clearTimeout vs setTimeout
+            return cachedClearTimeout.call(this, marker);
+        }
+    }
+
+
+
+}
+var queue = [];
+var draining = false;
+var currentQueue;
+var queueIndex = -1;
+
+function cleanUpNextTick() {
+    if (!draining || !currentQueue) {
+        return;
+    }
+    draining = false;
+    if (currentQueue.length) {
+        queue = currentQueue.concat(queue);
+    } else {
+        queueIndex = -1;
+    }
+    if (queue.length) {
+        drainQueue();
+    }
+}
+
+function drainQueue() {
+    if (draining) {
+        return;
+    }
+    var timeout = runTimeout(cleanUpNextTick);
+    draining = true;
+
+    var len = queue.length;
+    while(len) {
+        currentQueue = queue;
+        queue = [];
+        while (++queueIndex < len) {
+            if (currentQueue) {
+                currentQueue[queueIndex].run();
+            }
+        }
+        queueIndex = -1;
+        len = queue.length;
+    }
+    currentQueue = null;
+    draining = false;
+    runClearTimeout(timeout);
+}
+
+process.nextTick = function (fun) {
+    var args = new Array(arguments.length - 1);
+    if (arguments.length > 1) {
+        for (var i = 1; i < arguments.length; i++) {
+            args[i - 1] = arguments[i];
+        }
+    }
+    queue.push(new Item(fun, args));
+    if (queue.length === 1 && !draining) {
+        runTimeout(drainQueue);
+    }
+};
+
+// v8 likes predictible objects
+function Item(fun, array) {
+    this.fun = fun;
+    this.array = array;
+}
+Item.prototype.run = function () {
+    this.fun.apply(null, this.array);
+};
+process.title = 'browser';
+process.browser = true;
+process.env = {};
+process.argv = [];
+process.version = ''; // empty string to avoid regexp issues
+process.versions = {};
+
+function noop() {}
+
+process.on = noop;
+process.addListener = noop;
+process.once = noop;
+process.off = noop;
+process.removeListener = noop;
+process.removeAllListeners = noop;
+process.emit = noop;
+process.prependListener = noop;
+process.prependOnceListener = noop;
+
+process.listeners = function (name) { return [] }
+
+process.binding = function (name) {
+    throw new Error('process.binding is not supported');
+};
+
+process.cwd = function () { return '/' };
+process.chdir = function (dir) {
+    throw new Error('process.chdir is not supported');
+};
+process.umask = function() { return 0; };
+
+
+/***/ }),
+
+/***/ "./node_modules/uuid/lib/bytesToUuid.js":
+/*!**********************************************!*\
+  !*** ./node_modules/uuid/lib/bytesToUuid.js ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/**
+ * Convert array of 16 byte values to UUID string format of the form:
+ * XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
+ */
+var byteToHex = [];
+for (var i = 0; i < 256; ++i) {
+  byteToHex[i] = (i + 0x100).toString(16).substr(1);
+}
+
+function bytesToUuid(buf, offset) {
+  var i = offset || 0;
+  var bth = byteToHex;
+  // join used to fix memory issue caused by concatenation: https://bugs.chromium.org/p/v8/issues/detail?id=3175#c4
+  return ([bth[buf[i++]], bth[buf[i++]], 
+	bth[buf[i++]], bth[buf[i++]], '-',
+	bth[buf[i++]], bth[buf[i++]], '-',
+	bth[buf[i++]], bth[buf[i++]], '-',
+	bth[buf[i++]], bth[buf[i++]], '-',
+	bth[buf[i++]], bth[buf[i++]],
+	bth[buf[i++]], bth[buf[i++]],
+	bth[buf[i++]], bth[buf[i++]]]).join('');
+}
+
+module.exports = bytesToUuid;
+
+
+/***/ }),
+
+/***/ "./node_modules/uuid/lib/rng-browser.js":
+/*!**********************************************!*\
+  !*** ./node_modules/uuid/lib/rng-browser.js ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// Unique ID creation requires a high quality random # generator.  In the
+// browser this is a little complicated due to unknown quality of Math.random()
+// and inconsistent support for the `crypto` API.  We do the best we can via
+// feature-detection
+
+// getRandomValues needs to be invoked in a context where "this" is a Crypto
+// implementation. Also, find the complete implementation of crypto on IE11.
+var getRandomValues = (typeof(crypto) != 'undefined' && crypto.getRandomValues && crypto.getRandomValues.bind(crypto)) ||
+                      (typeof(msCrypto) != 'undefined' && typeof window.msCrypto.getRandomValues == 'function' && msCrypto.getRandomValues.bind(msCrypto));
+
+if (getRandomValues) {
+  // WHATWG crypto RNG - http://wiki.whatwg.org/wiki/Crypto
+  var rnds8 = new Uint8Array(16); // eslint-disable-line no-undef
+
+  module.exports = function whatwgRNG() {
+    getRandomValues(rnds8);
+    return rnds8;
+  };
+} else {
+  // Math.random()-based (RNG)
+  //
+  // If all else fails, use Math.random().  It's fast, but is of unspecified
+  // quality.
+  var rnds = new Array(16);
+
+  module.exports = function mathRNG() {
+    for (var i = 0, r; i < 16; i++) {
+      if ((i & 0x03) === 0) r = Math.random() * 0x100000000;
+      rnds[i] = r >>> ((i & 0x03) << 3) & 0xff;
+    }
+
+    return rnds;
+  };
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/uuid/v4.js":
+/*!*********************************!*\
+  !*** ./node_modules/uuid/v4.js ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var rng = __webpack_require__(/*! ./lib/rng */ "./node_modules/uuid/lib/rng-browser.js");
+var bytesToUuid = __webpack_require__(/*! ./lib/bytesToUuid */ "./node_modules/uuid/lib/bytesToUuid.js");
+
+function v4(options, buf, offset) {
+  var i = buf && offset || 0;
+
+  if (typeof(options) == 'string') {
+    buf = options === 'binary' ? new Array(16) : null;
+    options = null;
+  }
+  options = options || {};
+
+  var rnds = options.random || (options.rng || rng)();
+
+  // Per 4.4, set bits for version and `clock_seq_hi_and_reserved`
+  rnds[6] = (rnds[6] & 0x0f) | 0x40;
+  rnds[8] = (rnds[8] & 0x3f) | 0x80;
+
+  // Copy bytes to buffer, if provided
+  if (buf) {
+    for (var ii = 0; ii < 16; ++ii) {
+      buf[i + ii] = rnds[ii];
+    }
+  }
+
+  return buf || bytesToUuid(rnds);
+}
+
+module.exports = v4;
+
+
+/***/ }),
+
+/***/ "./node_modules/webpack/buildin/global.js":
+/*!***********************************!*\
+  !*** (webpack)/buildin/global.js ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var g;
+
+// This works in non-strict mode
+g = (function() {
+	return this;
+})();
+
+try {
+	// This works if eval is allowed (see CSP)
+	g = g || new Function("return this")();
+} catch (e) {
+	// This works if the window reference is available
+	if (typeof window === "object") g = window;
+}
+
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+module.exports = g;
+
+
+/***/ }),
+
+/***/ "./src/app/components/api-key-utils.js":
+/*!*********************************************!*\
+  !*** ./src/app/components/api-key-utils.js ***!
+  \*********************************************/
+/*! exports provided: isTestApiKey */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isTestApiKey", function() { return isTestApiKey; });
+function isTestApiKey(apiKey) {
+  return apiKey.toLowerCase().startsWith('pk_test_') || apiKey.toLowerCase().startsWith('pk_hc_');
+}
+
+/***/ }),
+
+/***/ "./src/app/components/config.js":
+/*!**************************************!*\
+  !*** ./src/app/components/config.js ***!
+  \**************************************/
+/*! exports provided: config */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "config", function() { return config; });
+// Holds any configuration data that changes depending on environment
+var config = {
+  domain: "https://github.com",
+  // eslint-disable-line no-undef
+  paymentServiceUrl: "https://api.digitalriver.com/payments/sources",
+  // eslint-disable-line no-undef
+  basePath: "/pages/barnesicle/dr-js" || false,
+  // eslint-disable-line no-undef
+  applePayMerchantId: "merchant.com.test.cert.digitalriver",
+  // eslint-disable-line no-undef
+  applePayMerchantValidationUrl: "https://api.digitalriver.com/payments/apple-pay/session",
+  //eslint-disable-line no-undef
+  beaconStorageUrlNonProd: "https://beacon-test.driv-analytics.com/capture",
+  // eslint-disable-line no-undef
+  beaconStorageUrlProd: "https://beacon.driv-analytics.com/capture",
+  // eslint-disable-line no-undef
+  adyenProdUrl: "https://checkoutshopper-live.adyen.com/checkoutshopper/sdk/3.0.0/adyen.js",
+  // eslint-disable-line no-undef
+  adyenTestUrl: "https://checkoutshopper-test.adyen.com/checkoutshopper/sdk/3.2.0/adyen.js",
+  // eslint-disable-line no-undef
+  onlineBankingBanksUrl: "https://api.digitalriver.com/payments/online-banking/banks",
+  // eslint-disable-line no-undef
+  originProdKey: "pub.v2.8115061157590058.aHR0cDovL2xvY2FsaG9zdDo4MDgw.FF9fc99f70OC7jS9Ngmqj8z1H_cmKZMXQo_r0cnPAOg",
+  // eslint-disable-line no-undef
+  originTestKey: "pub.v2.8115061157590058.aHR0cDovL2xvY2FsaG9zdDo4MDgw.FF9fc99f70OC7jS9Ngmqj8z1H_cmKZMXQo_r0cnPAOg" // eslint-disable-line no-undef
+
+};
+
+/***/ }),
+
+/***/ "./src/app/components/td/td.html":
+/*!***************************************!*\
+  !*** ./src/app/components/td/td.html ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "td\\td.html";
+
+/***/ }),
+
+/***/ "./src/app/components/td/td.js":
+/*!*************************************!*\
+  !*** ./src/app/components/td/td.js ***!
+  \*************************************/
+/*! exports provided: convertArrayToString, extractFirstValueFromArray, verifyPropertyType, updateFingerPrintProperties, handleBeaconData, handleBeaconApiKey */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "convertArrayToString", function() { return convertArrayToString; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "extractFirstValueFromArray", function() { return extractFirstValueFromArray; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "verifyPropertyType", function() { return verifyPropertyType; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateFingerPrintProperties", function() { return updateFingerPrintProperties; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleBeaconData", function() { return handleBeaconData; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleBeaconApiKey", function() { return handleBeaconApiKey; });
+/* harmony import */ var _td_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./td.html */ "./src/app/components/td/td.html");
+/* harmony import */ var _td_html__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_td_html__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../post-robot-wrapper */ "./src/post-robot-wrapper.js");
+/* harmony import */ var _beacon_beacon_id_manager__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../beacon/beacon-id-manager */ "./src/beacon/beacon-id-manager.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../utils */ "./src/app/components/utils.js");
+/* harmony import */ var _beacon_beacon_sender__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../beacon/beacon-sender */ "./src/beacon/beacon-sender.js");
+/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../config */ "./src/app/components/config.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+
+
+
+
+
+ // Create a postRobot listener/emitter tied to the parent window and domain only
+
+var clientDomain = document.referrer === '' ? 'file://' : Object(_utils__WEBPACK_IMPORTED_MODULE_3__["getParentDomain"])(); // The component listener receives initialization events from the domain but any window
+
+var clientListener = _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_1__["default"].listener({
+  window: window.parent,
+  domain: clientDomain
+});
+var componentListener = _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_1__["default"].listener({
+  domain: _config__WEBPACK_IMPORTED_MODULE_5__["config"].domain
+});
+/**
+ * Sends the beacon data to the beacon service
+ */
+
+clientListener.on('sendBeaconData', handleBeaconData);
+componentListener.on('sendBeaconData', handleBeaconData);
+var components = {
+  beacon: {}
+};
+var beaconId = Object(_beacon_beacon_id_manager__WEBPACK_IMPORTED_MODULE_2__["manageBeaconIDCookie"])(window);
+/**
+ * converting array properties to string.
+ * @param value
+ * @returns {string}
+ */
+
+function convertArrayToString(value) {
+  var updatedValue = '';
+
+  if (value) {
+    updatedValue = JSON.stringify(value).replace(/\s|\[|\]/g, '');
+  }
+
+  return updatedValue;
+}
+/**
+ * Extract the first value from nested array
+ * @param value
+ * @returns {Array}
+ */
+
+function extractFirstValueFromArray(value) {
+  var updatedArray = [];
+
+  if (_typeof(value) == 'object' && value) {
+    value.forEach(function (val) {
+      updatedArray.push(val[0]);
+    });
+  }
+
+  return updatedArray;
+}
+/**
+ * Verify the property type and accepts only array/object
+ * @param value
+ * @returns {Array}
+ */
+
+function verifyPropertyType(value) {
+  var updatedArray = [];
+
+  if (_typeof(value) == 'object' && value) {
+    updatedArray = value;
+  }
+
+  return updatedArray;
+}
+/**
+ * Updating the finger print object
+ * @param fingerPrint
+ */
+
+function updateFingerPrintProperties(fingerPrint) {
+  fingerPrint['timeZoneOffset'] = fingerPrint.timezoneOffset;
+  fingerPrint['timeZone'] = fingerPrint.timezone; // converting array to string.
+  // replacing [] to empty
+
+  fingerPrint['availableScreenResolution'] = convertArrayToString(fingerPrint.availableScreenResolution);
+  fingerPrint['fonts'] = convertArrayToString(fingerPrint.fonts);
+  fingerPrint['touchSupport'] = convertArrayToString(fingerPrint.touchSupport); // extracting the first value from nested array
+
+  fingerPrint['plugins'] = extractFirstValueFromArray(fingerPrint.plugins);
+  fingerPrint['enumerateDevices'] = verifyPropertyType(fingerPrint.enumerateDevices); // already available or not required for Beacon team so removing before sending to API
+
+  delete fingerPrint['screenResolution'];
+  delete fingerPrint['timezone'];
+  delete fingerPrint['timezoneOffset'];
+  delete fingerPrint['webgl'];
+  delete fingerPrint['canvas'];
+  return fingerPrint;
+}
+/**
+ * handleBeaconData collects and sends beacon data
+ * @param {Event} event
+ * @returns {Promise<T | void>}
+ */
+
+function handleBeaconData(event) {
+  var _event$data = event.data,
+      clientData = _event$data.clientData,
+      eventName = _event$data.eventName,
+      sourceId = _event$data.sourceId,
+      batteryData = _event$data.batteryData,
+      fingerPrintData = _event$data.fingerPrintData;
+  var beaconDetails = components['beacon'];
+  var beaconData = {
+    beaconID: beaconId,
+    event: eventName,
+    apiKey: beaconDetails.apiKey,
+    paymentSourceID: sourceId
+  };
+  var updatedFingerPrintData = updateFingerPrintProperties(fingerPrintData);
+  var updatedBeaconData = Object.assign({}, beaconData, updatedFingerPrintData);
+  var allData = Object(_beacon_beacon_sender__WEBPACK_IMPORTED_MODULE_4__["collectAllData"])(updatedBeaconData, clientData, batteryData);
+  return Object(_beacon_beacon_sender__WEBPACK_IMPORTED_MODULE_4__["sendBeaconData"])(Object(_beacon_beacon_sender__WEBPACK_IMPORTED_MODULE_4__["determineBeaconURL"])(beaconDetails.apiKey), allData).then(function () {
+    return Promise.resolve();
+  }).catch(function () {
+    return Promise.resolve();
+  });
+}
+/**
+ * Saves the api Key to the beacon component
+ */
+
+clientListener.on('sendBeaconApiKey', handleBeaconApiKey);
+/**
+ * handleBeaconApiKey checks to make sure apiKey is present in event data and stores it in beacon component
+ * @param {Event} event
+ * @returns {Promise}
+ */
+
+function handleBeaconApiKey(event) {
+  var apiKey = event.data.apiKey;
+
+  if (!apiKey) {
+    return Promise.reject('Controller must receive an API Key.');
+  }
+
+  components['beacon'].apiKey = apiKey;
+  return Promise.resolve();
+}
+
+/***/ }),
+
+/***/ "./src/app/components/utils.js":
+/*!*************************************!*\
+  !*** ./src/app/components/utils.js ***!
+  \*************************************/
+/*! exports provided: isShallowEquivalent, stripLetters, stripLettersAndAddForwardSlash, getParentDomain, checkToSendEvent, spacesAdded, removeExtraCharacters */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isShallowEquivalent", function() { return isShallowEquivalent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "stripLetters", function() { return stripLetters; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "stripLettersAndAddForwardSlash", function() { return stripLettersAndAddForwardSlash; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getParentDomain", function() { return getParentDomain; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "checkToSendEvent", function() { return checkToSendEvent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "spacesAdded", function() { return spacesAdded; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeExtraCharacters", function() { return removeExtraCharacters; });
+/* harmony import */ var cross_domain_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! cross-domain-utils */ "./node_modules/cross-domain-utils/dist/module/index.js");
+
+/**
+ * Returns true if object a and object b are shallow equivalents
+ * @param a
+ * @param b
+ * @returns {boolean}
+ */
+
+function isShallowEquivalent(a, b) {
+  return JSON.stringify(a) === JSON.stringify(b);
+}
+/**
+ * Strips letters from shopper input in field
+ * @param {string} input
+ * @returns {*}
+ */
+
+function stripLetters(input) {
+  var str = '';
+  var hasLetters = new RegExp(/[^0-9\s]/);
+
+  if (hasLetters.test(input) === true) {
+    var length = input.length;
+
+    for (var i = 0; i < length; i++) {
+      if (hasLetters.test(input[i]) === true) {
+        continue;
+      } else {
+        str += input[i];
+      }
+    }
+  } else {
+    return input;
+  }
+
+  return str;
+}
+/**
+ * Adds a slash to conform to the date pattern MM/YY.
+ * @param input
+ * @returns {string}
+ */
+
+function stripLettersAndAddForwardSlash(input) {
+  var value;
+  var strippedValue = stripLetters(input);
+  var index = strippedValue.indexOf('/');
+
+  if (index === -1 && strippedValue.length > 2) {
+    value = strippedValue.substring(0, 2) + '/' + strippedValue.substring(2, 4);
+  } else {
+    value = strippedValue;
+  }
+
+  return value;
+}
+/**
+ * Returns the domain of the parent of current iFrame
+ */
+
+function getParentDomain() {
+  var parentUrl = null;
+
+  if (Object(cross_domain_utils__WEBPACK_IMPORTED_MODULE_0__["isIframe"])(window)) {
+    parentUrl = document.referrer;
+  }
+
+  return parentUrl === null ? null : Object(cross_domain_utils__WEBPACK_IMPORTED_MODULE_0__["getDomainFromUrl"])(parentUrl);
+}
+/**
+ * Returns true if trigger is createSource
+ * Returns true if the new value of input is same as old value
+ * @param {string} oldValue
+ * @param {Event} event
+ * @returns {boolean}
+ */
+
+function checkToSendEvent(oldValue, event) {
+  if (event.trigger === 'createSource') {
+    return true;
+  } else {
+    return oldValue === event.target.value;
+  }
+}
+function spacesAdded(oldNumber, newNumber) {
+  var originalSpaces = oldNumber.split(' ').length - 1;
+  var newSpaces = newNumber.split(' ').length - 1;
+  return newSpaces - originalSpaces;
+}
+function removeExtraCharacters(value, maxLength) {
+  if (value.length > maxLength) {
+    return value = value.substr(0, maxLength);
+  }
+
+  return value;
+}
+
+/***/ }),
+
+/***/ "./src/beacon/beacon-id-manager.js":
+/*!*****************************************!*\
+  !*** ./src/beacon/beacon-id-manager.js ***!
+  \*****************************************/
+/*! exports provided: createBeaconIDCookie, manageBeaconIDCookie */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createBeaconIDCookie", function() { return createBeaconIDCookie; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "manageBeaconIDCookie", function() { return manageBeaconIDCookie; });
+/* harmony import */ var uuid_v4__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uuid/v4 */ "./node_modules/uuid/v4.js");
+/* harmony import */ var uuid_v4__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(uuid_v4__WEBPACK_IMPORTED_MODULE_0__);
+
+var BEACON_ID = 'dr_beacon_id';
+
+function createCookie(window, name, value, expires) {
+  window.document.cookie = name + '=' + value + '; expires=' + expires.toUTCString() + ';  path=/';
+}
+
+function createBeaconIDCookie(window) {
+  var currentDate = new Date();
+  var beaconID = generateBeaconID();
+  createCookie(window, BEACON_ID, beaconID, addOneWeekToDate(currentDate));
+  return beaconID;
+}
+function manageBeaconIDCookie(window) {
+  var cookie = getCookie(window, BEACON_ID);
+
+  if (!cookie) {
+    return createBeaconIDCookie(window);
+  }
+
+  return cookie;
+}
+
+function getCookie(window, name) {
+  var value = '; ' + window.document.cookie;
+  var parts = value.split('; ' + name + '=');
+  if (parts.length === 2) return parts.pop().split(';').shift();
+}
+
+function generateBeaconID() {
+  return uuid_v4__WEBPACK_IMPORTED_MODULE_0___default()();
+}
+
+function addOneWeekToDate(date) {
+  date.setDate(date.getDate() + 7);
+  return date;
+}
+
+/***/ }),
+
+/***/ "./src/beacon/beacon-sender.js":
+/*!*************************************!*\
+  !*** ./src/beacon/beacon-sender.js ***!
+  \*************************************/
+/*! exports provided: sendBeaconData, collectAllData, determineBeaconURL */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sendBeaconData", function() { return sendBeaconData; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "collectAllData", function() { return collectAllData; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "determineBeaconURL", function() { return determineBeaconURL; });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _app_components_config__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../app/components/config */ "./src/app/components/config.js");
+/* harmony import */ var _app_components_api_key_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../app/components/api-key-utils */ "./src/app/components/api-key-utils.js");
+
+
+
+
+
+function sendBeaconData(url, data) {
+  var options = {
+    responseType: 'json',
+    timeout: 5000,
+    headers: {
+      'content-type': 'application/json',
+      'Accept': 'application/json'
+    }
+  };
+  return url !== '' ? axios__WEBPACK_IMPORTED_MODULE_0___default.a.post(url, data, options) : Promise.resolve();
+}
+function collectAllData(beaconData, clientData, batteryData) {
+  return Object.assign(beaconData, clientData, batteryData);
+}
+function determineBeaconURL(apiKey) {
+  if (apiKey === undefined || apiKey === '' || apiKey === null) {
+    return '';
+  }
+
+  if (Object(_app_components_api_key_utils__WEBPACK_IMPORTED_MODULE_2__["isTestApiKey"])(apiKey)) {
+    return _app_components_config__WEBPACK_IMPORTED_MODULE_1__["config"].beaconStorageUrlNonProd;
+  } else {
+    return _app_components_config__WEBPACK_IMPORTED_MODULE_1__["config"].beaconStorageUrlProd;
+  }
+}
+
+/***/ }),
+
+/***/ "./src/post-robot-wrapper.js":
+/*!***********************************!*\
+  !*** ./src/post-robot-wrapper.js ***!
+  \***********************************/
+/*! exports provided: listener, client, send, on, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "listener", function() { return listener; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "client", function() { return client; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "send", function() { return _send; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "on", function() { return _on; });
+/* harmony import */ var post_robot__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! post-robot */ "./node_modules/post-robot/index.js");
+/* harmony import */ var post_robot__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(post_robot__WEBPACK_IMPORTED_MODULE_0__);
+
+var timeout = 20000;
+function listener(object) {
+  return {
+    on: function on(name, callback) {
+      return _on(name, object, callback);
+    }
+  };
+}
+function client(object) {
+  return {
+    send: function send(name, data, callback) {
+      return _send(object.window, name, data, {
+        domain: object.domain
+      }, callback);
+    }
+  };
+}
+
+function _send(window, name, data) {
+  return post_robot__WEBPACK_IMPORTED_MODULE_0___default.a.send(window, name, data, {
+    timeout: timeout
+  });
+}
+
+
+
+function _on(name, data, callback) {
+  return post_robot__WEBPACK_IMPORTED_MODULE_0___default.a.on(name, data, callback);
+}
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  listener: listener,
+  client: client,
+  on: _on,
+  send: _send
+});
+
+/***/ }),
+
+/***/ 15:
+/*!***********************************************************!*\
+  !*** multi @babel/polyfill ./src/app/components/td/td.js ***!
+  \***********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! @babel/polyfill */"./node_modules/@babel/polyfill/lib/index.js");
-module.exports = __webpack_require__(/*! C:\dev\ui-architecture\digitalriverpayments\src\app\components\localization\localizated-messages.js */"./src/app/components/localization/localizated-messages.js");
+module.exports = __webpack_require__(/*! C:\dev\ui-architecture\digitalriverpayments\src\app\components\td\td.js */"./src/app/components/td/td.js");
 
 
 /***/ })
 
 /******/ })));
-//# sourceMappingURL=localizated-messages.js.map
+//# sourceMappingURL=td.js.map

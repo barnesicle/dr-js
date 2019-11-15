@@ -5,20 +5,18 @@
   <meta charset="utf-8" />
   <title>CC-Number</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script src="./cc-number.js"></script>
+  <script id="cc-number-js" src="cc-number.js"></script>
   <!--this is where custom styles will be loaded-->
   <style id="customStyles"></style>
 </head>
 
 <body>
   <script>
-    addInputHtmlToDom();
+    document.getElementById('cc-number-js').addEventListener('load', addInputHtmlToDom());
+
     window.onload = function() {
       document.getElementById('ccNumber').addEventListener('animationstart', handleAutofill, false);
-      //document.addEventListener('focus', function() {document.getElementById('ccNumber').focus()}, false);
-      //document.getElementById('ccNumber').addEventListener('input', handleChange);
-      //document.getElementById('ccNumber').addEventListener('focus', handleFocus);
-      //document.getElementById('ccNumber').addEventListener('blur', handleBlur);
+      document.addEventListener('focus', function() {document.getElementById('ccNumber').focus()}, false);
     };
   </script>
 </body>

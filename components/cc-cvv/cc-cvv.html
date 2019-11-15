@@ -5,18 +5,18 @@
   <meta charset="utf-8" />
   <title>Component</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script src="./cc-cvv.js"></script>
+  <script id="cc-cvv-js" src="cc-cvv.js"></script>
   <!--this is where custom styles will be loaded-->
   <style id="customStyles"></style>
 </head>
 
 <body>
   <script>
-    addInputHtmlToDom();
+    document.getElementById('cc-cvv-js').addEventListener('load', addInputHtmlToDom());
+
     window.onload = function() {
       document.getElementById('ccCVV').addEventListener('animationstart', handleAutofill, false);
-      //document.addEventListener('focus', function() {document.getElementById('ccCVV').focus()}, false);
-      //document.getElementById('ccCVV').addEventListener('input', handleChange);
+      document.addEventListener('focus', function() {document.getElementById('ccCVV').focus()}, false);
     };
   </script>
 </body>

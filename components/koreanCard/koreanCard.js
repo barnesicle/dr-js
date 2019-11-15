@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 12);
+/******/ 	return __webpack_require__(__webpack_require__.s = 11);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -18762,11 +18762,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "config", function() { return config; });
 // Holds any configuration data that changes depending on environment
 var config = {
-  domain: "http://localhost:8080",
+  domain: "https://github.com",
   // eslint-disable-line no-undef
   paymentServiceUrl: "https://api.digitalriver.com/payments/sources",
   // eslint-disable-line no-undef
-  basePath: undefined || '',
+  basePath: "/pages/barnesicle/dr-js" || false,
   // eslint-disable-line no-undef
   applePayMerchantId: "merchant.com.test.cert.digitalriver",
   // eslint-disable-line no-undef
@@ -18778,7 +18778,7 @@ var config = {
   // eslint-disable-line no-undef
   adyenProdUrl: "https://checkoutshopper-live.adyen.com/checkoutshopper/sdk/3.0.0/adyen.js",
   // eslint-disable-line no-undef
-  adyenTestUrl: "https://checkoutshopper-test.adyen.com/checkoutshopper/sdk/3.0.0/adyen.js",
+  adyenTestUrl: "https://checkoutshopper-test.adyen.com/checkoutshopper/sdk/3.2.0/adyen.js",
   // eslint-disable-line no-undef
   onlineBankingBanksUrl: "https://api.digitalriver.com/payments/online-banking/banks",
   // eslint-disable-line no-undef
@@ -18794,7 +18794,7 @@ var config = {
 /*!*************************************************************************!*\
   !*** ./src/app/components/controller/controller-create-source-utils.js ***!
   \*************************************************************************/
-/*! exports provided: runCreateSourceAndHandleResponse, runCreateSourceAndHandleResponseForAdyen, retrieveSourceAndHandleResponse, formatComponentTriggerErrors, handleCreateSourceValidation, handlePaymentServiceThen, chooseCreateSourceCatchMessage, handleAdyenError, addBrowserInfoToSourceRequest */
+/*! exports provided: runCreateSourceAndHandleResponse, runCreateSourceAndHandleResponseForAdyen, retrieveSourceAndHandleResponse, updateSourceAndHandleResponse, formatComponentTriggerErrors, handleCreateSourceValidation, handlePaymentServiceThen, chooseCreateSourceCatchMessage, handleAdyenError, addBrowserInfoToSourceRequest */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -18802,6 +18802,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "runCreateSourceAndHandleResponse", function() { return runCreateSourceAndHandleResponse; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "runCreateSourceAndHandleResponseForAdyen", function() { return runCreateSourceAndHandleResponseForAdyen; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "retrieveSourceAndHandleResponse", function() { return retrieveSourceAndHandleResponse; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateSourceAndHandleResponse", function() { return updateSourceAndHandleResponse; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "formatComponentTriggerErrors", function() { return formatComponentTriggerErrors; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleCreateSourceValidation", function() { return handleCreateSourceValidation; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handlePaymentServiceThen", function() { return handlePaymentServiceThen; });
@@ -18852,7 +18853,27 @@ function runCreateSourceAndHandleResponseForAdyen(sourceRequest, clientSecretDat
 
 function retrieveSourceAndHandleResponse(sourceId, clientSecret, apiKey) {
   var paymentServiceUrl = _config__WEBPACK_IMPORTED_MODULE_1__["config"].paymentServiceUrl + '/' + sourceId + '?secret=' + clientSecret;
-  return Object(_payment_service_request__WEBPACK_IMPORTED_MODULE_0__["paymentServiceRequest"])({}, apiKey, paymentServiceUrl).then(function (response) {
+  return Object(_payment_service_request__WEBPACK_IMPORTED_MODULE_0__["paymentServiceGetRequest"])(apiKey, paymentServiceUrl).then(function (response) {
+    return {
+      error: null,
+      source: response.data
+    };
+  }).catch(function (error) {
+    return chooseCreateSourceCatchMessage(error);
+  });
+}
+/**
+ * Updates a payment source and handles response
+ * @param paymentSourceId
+ * @param sourceClientSecret
+ * @param apiKey
+ * @param updatedSourceData
+ * @returns {Promise<T | never>}
+ */
+
+function updateSourceAndHandleResponse(paymentSourceId, sourceClientSecret, apiKey, updatedSourceData) {
+  var paymentServiceUrl = _config__WEBPACK_IMPORTED_MODULE_1__["config"].paymentServiceUrl + '/' + paymentSourceId + '?secret=' + sourceClientSecret;
+  return Object(_payment_service_request__WEBPACK_IMPORTED_MODULE_0__["paymentServiceRequest"])(updatedSourceData, apiKey, paymentServiceUrl).then(function (response) {
     return handlePaymentServiceThen(response);
   }).catch(function (error) {
     return chooseCreateSourceCatchMessage(error);
@@ -19142,7 +19163,7 @@ var cardTypes = {
   diners_club: {
     code: 'dinersclub',
     prefixes: [[300000, 305999], [309500, 309599], [360000, 369999], [380000, 399999]],
-    spacing: defaultSpacing
+    spacing: [4, 6, 4]
   },
   jcb: {
     code: 'jcb',
@@ -19316,7 +19337,9 @@ function validateCreditCardLength(value, brand) {
  */
 
 function creditCardLengthByBrand(brand) {
-  if (brand === 'amex') {
+  if (brand === 'dinersclub') {
+    return 14;
+  } else if (brand === 'amex') {
     return 15;
   } else {
     return 16;
@@ -19367,13 +19390,12 @@ function createEvent(type) {
 /*!********************************************!*\
   !*** ./src/app/components/input-events.js ***!
   \********************************************/
-/*! exports provided: sendEventData, canSendFirstChangeEvent, handleEvent, runEventOnElement */
+/*! exports provided: sendEventData, handleEvent, runEventOnElement */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sendEventData", function() { return sendEventData; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "canSendFirstChangeEvent", function() { return canSendFirstChangeEvent; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleEvent", function() { return handleEvent; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "runEventOnElement", function() { return runEventOnElement; });
 /* harmony import */ var _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../post-robot-wrapper */ "./src/post-robot-wrapper.js");
@@ -19405,7 +19427,6 @@ function sendEventData(controllerDetails, componentId, componentType, event) {
   var dataToSend = Object.assign({}, data);
   dataToSend.elementType = componentType;
   var message = dataToSend.elementType !== 'applepay' ? 'componentEventToController' : 'clientComponentEventToController';
-  console.log('sending event', componentType, event);
   _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_0__["default"].send(controllerDetails.window, message, {
     controllerId: controllerDetails.id,
     componentId: componentId,
@@ -19553,16 +19574,6 @@ function hasPreviousState(prevState) {
   return typeof prevState.empty !== 'undefined';
 }
 /**
- * Checks to see if the element has been focused and has been initialized
- * @param componentData
- * @returns {boolean}
- */
-
-
-function canSendFirstChangeEvent(componentData) {
-  return typeof componentData === 'undefined' || typeof componentData.hasFocused === 'undefined';
-}
-/**
  * To be used on input components.
  * Applies appropriate styles, removes whitespaces, sets prevState and sends event data to controller
  * @param {object} componentData
@@ -19570,6 +19581,7 @@ function canSendFirstChangeEvent(componentData) {
  * @param {event} event
  * @returns {boolean}
  */
+
 
 function handleEvent(componentData, eventType, event) {
   var eventData = {};
@@ -19636,6 +19648,7 @@ function runEventOnElement(event, triggerData) {
         element.value = '';
         var onChangeEvent = Object(_cross_browser_support__WEBPACK_IMPORTED_MODULE_5__["createEvent"])('input'); // Required to force the input event to fire
 
+        onChangeEvent.trigger = 'showError';
         element.dispatchEvent(onChangeEvent);
         return;
       }
@@ -19689,29 +19702,46 @@ function runEventOnElement(event, triggerData) {
 
 /***/ }),
 
-/***/ "./src/app/components/koreanCard/koreanCard.js":
+/***/ "./src/app/components/koreancard/koreancard.html":
+/*!*******************************************************!*\
+  !*** ./src/app/components/koreancard/koreancard.html ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "koreancard\\koreancard.html";
+
+/***/ }),
+
+/***/ "./src/app/components/koreancard/koreancard.js":
 /*!*****************************************************!*\
-  !*** ./src/app/components/koreanCard/koreanCard.js ***!
+  !*** ./src/app/components/koreancard/koreancard.js ***!
   \*****************************************************/
-/*! exports provided: getElement, handleOptions, addInstanceOptions, getComponentData, emitComponentReady, localizeText, handleFormSubmit, resizeIframe, stripLettersFromValue, showFieldsForCardType, closeOverlay, setBirthdateMax */
+/*! exports provided: getElement, getComponentValue, handleOptions, addInstanceOptions, getComponentData, emitComponentReady, localizeText, handleFormSubmit, validateForm, getCardType, removeError, addError, resizeIframe, handleShowKoreanCardOverlay, stripLettersFromValue, showFieldsForCardType, closeOverlay, setBirthdateMax */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getElement", function() { return getElement; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getComponentValue", function() { return getComponentValue; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleOptions", function() { return handleOptions; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addInstanceOptions", function() { return addInstanceOptions; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getComponentData", function() { return getComponentData; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "emitComponentReady", function() { return emitComponentReady; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "localizeText", function() { return localizeText; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleFormSubmit", function() { return handleFormSubmit; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "validateForm", function() { return validateForm; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getCardType", function() { return getCardType; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeError", function() { return removeError; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addError", function() { return addError; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "resizeIframe", function() { return resizeIframe; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleShowKoreanCardOverlay", function() { return handleShowKoreanCardOverlay; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "stripLettersFromValue", function() { return stripLettersFromValue; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "showFieldsForCardType", function() { return showFieldsForCardType; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "closeOverlay", function() { return closeOverlay; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setBirthdateMax", function() { return setBirthdateMax; });
 /* harmony import */ var _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../post-robot-wrapper */ "./src/post-robot-wrapper.js");
-/* harmony import */ var _koreancard_html__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./koreancard.html */ "./src/app/components/koreanCard/koreancard.html");
+/* harmony import */ var _koreancard_html__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./koreancard.html */ "./src/app/components/koreancard/koreancard.html");
 /* harmony import */ var _koreancard_html__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_koreancard_html__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _input_events__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../input-events */ "./src/app/components/input-events.js");
 /* harmony import */ var _options__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../options */ "./src/app/components/options.js");
@@ -19757,11 +19787,12 @@ Object(_payment_events__WEBPACK_IMPORTED_MODULE_7__["addTriggerEvent"])(controll
 function getElement() {
   return document.getElementById('DRKoreanCard');
 }
-controllerListener.on('getComponentData', function () {
+controllerListener.on('getComponentData', getComponentValue);
+function getComponentValue() {
   return new Promise(function (resolve) {
     return resolve(componentData.instanceOptions.value);
   });
-});
+}
 /**
  * handleOptions applies options to the ccNumber dom element
  * @param {object} data
@@ -19772,7 +19803,7 @@ function handleOptions(data) {
   Object(_options__WEBPACK_IMPORTED_MODULE_3__["applyOptions"])(el, data.options, defaultOptions);
   el.removeAttribute('placeholder');
   addInstanceOptions(data.instanceOptions);
-  localizeText(data.instanceOptions.locale || 'ko-KR');
+  localizeText(data.instanceOptions.locale);
   resizeIframe(window.getComputedStyle(document.getElementById('DRKoreanCard')).height);
 }
 /**
@@ -19804,23 +19835,24 @@ function emitComponentReady() {
  */
 
 function localizeText(locale) {
+  var isIE11 = !!window.MSInputMethodContext && !!document.documentMode;
   var birthdate = Object(_localization_localizated_messages__WEBPACK_IMPORTED_MODULE_9__["getLocaleMessage"])(locale, 'birthdate') || 'Birthdate';
   var year = Object(_localization_localizated_messages__WEBPACK_IMPORTED_MODULE_9__["getLocaleMessage"])(locale, 'year') || 'Year';
   var month = Object(_localization_localizated_messages__WEBPACK_IMPORTED_MODULE_9__["getLocaleMessage"])(locale, 'month') || 'Month';
-  var day = Object(_localization_localizated_messages__WEBPACK_IMPORTED_MODULE_9__["getLocaleMessage"])(locale, 'day' || false);
+  var day = Object(_localization_localizated_messages__WEBPACK_IMPORTED_MODULE_9__["getLocaleMessage"])(locale, 'day') || 'Day';
   var birthdateHint = "".concat(birthdate, ": ").concat(year, "-").concat(month, "-").concat(day);
   document.getElementById('additionalInfoText').innerText = Object(_localization_localizated_messages__WEBPACK_IMPORTED_MODULE_9__["getLocaleMessage"])(locale, 'enterAdditionalInformation') || 'Enter Additional Information';
   document.getElementById('cardTypeText').innerText = Object(_localization_localizated_messages__WEBPACK_IMPORTED_MODULE_9__["getLocaleMessage"])(locale, 'cardTypeColon') || 'Card Type:';
   document.getElementById('personalLabel').innerText = Object(_localization_localizated_messages__WEBPACK_IMPORTED_MODULE_9__["getLocaleMessage"])(locale, 'personalNumber') || 'Personal Number';
   document.getElementById('companyLabel').innerText = Object(_localization_localizated_messages__WEBPACK_IMPORTED_MODULE_9__["getLocaleMessage"])(locale, 'company') || 'Company';
-  document.getElementById('birthdate').setAttribute('placeholder', birthdateHint);
+  document.getElementById('birthdate').setAttribute('placeholder', isIE11 ? birthdateHint : birthdate);
   document.getElementById('birthdate').setAttribute('aria-label', birthdateHint);
   document.getElementById('password').setAttribute('placeholder', Object(_localization_localizated_messages__WEBPACK_IMPORTED_MODULE_9__["getLocaleMessage"])(locale, 'password') || 'Password');
   document.getElementById('password').setAttribute('aria-label', Object(_localization_localizated_messages__WEBPACK_IMPORTED_MODULE_9__["getLocaleMessage"])(locale, 'password') || 'Password');
   document.getElementById('corporateRegistrationNumber').setAttribute('placeholder', Object(_localization_localizated_messages__WEBPACK_IMPORTED_MODULE_9__["getLocaleMessage"])(locale, 'corporateRegistrationNumber') || 'Corporate Registration Number');
   document.getElementById('corporateRegistrationNumber').setAttribute('aria-label', Object(_localization_localizated_messages__WEBPACK_IMPORTED_MODULE_9__["getLocaleMessage"])(locale, 'corporateRegistrationNumber') || 'Corporate Registration Number');
   document.getElementById('submitButton').innerText = Object(_localization_localizated_messages__WEBPACK_IMPORTED_MODULE_9__["getLocaleMessage"])(locale, 'continue') || 'Continue';
-  document.getElementById('close').setAttribute('aria-label', Object(_localization_localizated_messages__WEBPACK_IMPORTED_MODULE_9__["getLocaleMessage"])(locale, 'closeWindow'));
+  document.getElementById('close').setAttribute('aria-label', Object(_localization_localizated_messages__WEBPACK_IMPORTED_MODULE_9__["getLocaleMessage"])(locale, 'closeWindow') || 'Close window');
 }
 /**
  * Handles form submit and resolves
@@ -19828,37 +19860,39 @@ function localizeText(locale) {
  */
 
 function handleFormSubmit(event) {
+  var cardType = getCardType(event);
   event.preventDefault();
 
   if (validateForm(event)) {
     var data = {
-      birthdate: event.target.cardType.value === 'personal' ? event.target.birthdate.value : '',
+      birthdate: cardType === 'personal' ? event.target.birthdate.value : null,
       cardPassword: event.target.password.value,
-      corporateRegistrationNumber: event.target.cardType.value === 'company' ? event.target.corporateRegistrationNumber.value : ''
+      corporateRegistrationNumber: cardType === 'company' ? event.target.corporateRegistrationNumber.value : null
     };
     componentData.instanceOptions.value = data;
     componentData.instanceOptions.resolveData({});
   }
 }
-
 function validateForm(event) {
+  var cardType = getCardType(event);
+  var locale = componentData.instanceOptions.locale;
   var passwordMsg = document.querySelector('#passwordField .error');
   var birthdateMsg = document.querySelector('#birthdateField .error');
   var corporateRegistrationNumberMsg = document.querySelector('#corporateRegistrationNumberField .error');
   var isFormValid = true;
 
-  if (event.target.cardType.value === 'personal') {
+  if (cardType === 'personal') {
     if (event.target.birthdate.value === '') {
-      addError(birthdateMsg, 'ko-KR', 'pleaseCheckYourDateOfBirth', 'Please check your date of birth.');
+      addError(birthdateMsg, locale, 'pleaseCheckYourDateOfBirth', 'Please check your date of birth.');
       document.getElementById('birthdate').classList.add('invalid');
       isFormValid = false;
     } else {
       removeError(birthdateMsg);
       document.getElementById('birthdate').classList.remove('invalid');
     }
-  } else if (event.target.cardType.value === 'company') {
+  } else {
     if (event.target.corporateRegistrationNumber.value === '') {
-      addError(corporateRegistrationNumberMsg, 'ko-KR', 'pleaseEnterAValidValue', 'Please enter a valid value');
+      addError(corporateRegistrationNumberMsg, locale, 'pleaseEnterAValidValue', 'Please enter a valid value.');
       document.getElementById('corporateRegistrationNumber').classList.add('invalid');
       isFormValid = false;
     } else {
@@ -19868,7 +19902,7 @@ function validateForm(event) {
   }
 
   if (event.target.password.value === '') {
-    addError(passwordMsg, 'ko-KR', 'pleaseEnterAValidValue', 'Please enter a valid value');
+    addError(passwordMsg, locale, 'pleaseEnterAValidValue', 'Please enter a valid value.');
     document.getElementById('password').classList.add('invalid');
     isFormValid = false;
   } else {
@@ -19878,43 +19912,49 @@ function validateForm(event) {
 
   return isFormValid;
 }
+function getCardType(event) {
+  var cardType;
+  var cardTypeOptions = event.target.cardType;
 
+  for (var i = 0; i < cardTypeOptions.length; i++) {
+    if (cardTypeOptions[i].checked) {
+      cardType = cardTypeOptions[i].value;
+    }
+  }
+
+  return cardType;
+}
 function removeError(el) {
   el.innerHTML = '';
   el.classList.remove('invalid');
   el.style.display = 'none';
   resizeIframe(window.getComputedStyle(document.getElementById('DRKoreanCard')).height);
 }
-
 function addError(el, locale, msgCode, defaultMsg) {
   el.innerHTML = Object(_localization_localizated_messages__WEBPACK_IMPORTED_MODULE_9__["getLocaleMessage"])(locale, msgCode) || defaultMsg;
   el.classList.add('invalid');
   el.style.display = 'block';
   resizeIframe(window.getComputedStyle(document.getElementById('DRKoreanCard')).height);
 }
-
 function resizeIframe() {
   var headerHeight = window.getComputedStyle(document.querySelectorAll('.header')[0]).height;
   var contentHeight = window.getComputedStyle(document.querySelectorAll('.content')[0]).height;
   var newSize = "calc(".concat(headerHeight, " + ").concat(contentHeight, " + 100px)");
-  var eventData = {
-    frame: {
-      height: newSize,
-      id: componentData.componentId
+  var event = {
+    detail: {
+      frame: {
+        height: newSize,
+        id: componentData.componentId
+      }
     }
   };
-  var event = new CustomEvent('resize', {
-    detail: eventData
-  });
   Object(_input_events__WEBPACK_IMPORTED_MODULE_2__["handleEvent"])(componentData, 'resize', event);
 }
 controllerListener.on('showKoreanCardOverlay', handleShowKoreanCardOverlay);
-
 function handleShowKoreanCardOverlay(event) {
   var resolve = event.data.resolve;
   componentData.instanceOptions.resolveData = resolve;
 }
-
 function stripLettersFromValue(e) {
   e.target.value = Object(_utils_js__WEBPACK_IMPORTED_MODULE_5__["stripLetters"])(e.target.value);
 }
@@ -19928,12 +19968,13 @@ function showFieldsForCardType(e) {
   }
 }
 function closeOverlay() {
+  var locale = componentData.instanceOptions.locale;
   var data = {
     'error': {
       'type': 'bad_request',
       'errors': [{
         'code': 'missing_parameter',
-        'message': 'Additional fields are required to use this payment method.  Please try again.'
+        'message': Object(_localization_localizated_messages__WEBPACK_IMPORTED_MODULE_9__["getLocaleMessage"])(locale, 'missing_korean_parameter') || 'Missing information or incorrect values submitted. Please try again.'
       }]
     },
     'source': null
@@ -19946,17 +19987,6 @@ function setBirthdateMax(elementId) {
   var formattedDate = isoDate.split('T')[0];
   document.getElementById(elementId).setAttribute('max', formattedDate);
 }
-
-/***/ }),
-
-/***/ "./src/app/components/koreanCard/koreancard.html":
-/*!*******************************************************!*\
-  !*** ./src/app/components/koreanCard/koreancard.html ***!
-  \*******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "koreanCard\\koreancard.html";
 
 /***/ }),
 
@@ -19992,7 +20022,7 @@ function getLocaleMessage(locale, messageCode) {
 /*! exports provided: ar-EG, cs-CZ, da-DK, de-AT, de-CH, de-DE, el-GR, en-AU, en-CA, en-CH, en-GB, en-IE, en-IN, en-MY, en-NL, en-NZ, en-PR, en-SG, en-US, en-ZA, es-AR, es-CL, es-CO, es-EC, es-ES, es-MX, es-PE, es-VE, fi-FI, fr-BE, fr-CA, fr-CH, fr-FR, hu-HU, it-CH, it-IT, iw-IL, ja-JP, ko-KR, nl-BE, nl-NL, no-NO, pl-PL, pt-BR, pt-PT, ru-RU, sk-SK, sv-SE, th-TH, tr-TR, zh-CN, zh-HK, zh-TW, default */
 /***/ (function(module) {
 
-module.exports = {"ar-EG":{"birthdate":"تاريخ الميلاد","cardInvalid":"البطاقة غير صحيحة، يرجى مراعاة تفاصيل البطاقة","cardSecurityCode":"كود أمان البطاقة","cardExpired":"صلاحية البطاقة انتهت بالفعل","cardNumber":"* رقم البطاقة الائتمانية","cardSecurityCodeInvalid":"كود غير صحيح","cardNumberInvalid":"من فضلك أدخل رقم بطاقة ائتمانية صحيح.","cardExpirationMonthInvalid":"أدخل شهر انتهاء صلاحية صحيح","cardExpirationYearInvalid":"أدخل سنة انتهاء صلاحية صحيحة","month":"الشهر","noBanksAvailable":"يرجى اختيار أحد البنوك أو الشبكات البنكية","noBankSelected":"يرجى اختيار أحد البنوك أو الشبكات البنكية","selectBank":"من فضلك اختر البنك الخاص بك.","year":"السنة"},"cs-CZ":{"birthdate":"Datum narození","cardInvalid":"Karta je neplatná. Zkontrolujte prosím údaje o kartě.","cardSecurityCode":"Bezpečnostní kód karty","cardExpired":"Karta už není platná","cardNumber":"Číslo kreditní karty","cardSecurityCodeInvalid":"Neplatný kód","cardNumberInvalid":"Zadejte platné číslo kreditní karty.","cardExpirationMonthInvalid":"Zadejte měsíc konce platnosti","cardExpirationYearInvalid":"Zadejte rok konce platnosti","month":"Měsíc","noBanksAvailable":"Zvolte banku nebo bankovní síť","noBankSelected":"Zvolte banku nebo bankovní síť","selectBank":"Zvolte banku","year":"Rok"},"da-DK":{"birthdate":"Fødselsdag","cardInvalid":"Kortet er ugyldigt. Kontrollér kortoplysningerne","cardSecurityCode":"Kortsikkerhedskode","cardExpired":"Kortet er udløbet","cardNumber":"Kreditkortnummer","cardSecurityCodeInvalid":"Forkert kode","cardNumberInvalid":"Indtast et gyldigt kreditkortnummer.","cardExpirationMonthInvalid":"Indtast en gyldig udløbsmåned","cardExpirationYearInvalid":"Indtast et gyldigt udløbsår","month":"Måned","noBanksAvailable":"Vælg en bank eller et banknetværk","noBankSelected":"Vælg en bank eller et banknetværk","selectBank":"Vælg din bank","year":"År"},"de-AT":{"birthdate":"Geburtsdatum","cardInvalid":"Karte ist ungültig, bitte überprüfen Sie die Kartendetails.","cardSecurityCode":"Kreditkarten-Sicherheitscode","cardExpired":"Karte ist bereits abgelaufen","cardNumber":"Kreditkartennummer","cardSecurityCodeInvalid":"Ungültiger Code","cardNumberInvalid":"Geben Sie bitte eine gültige Kreditkartennummer ein.","cardExpirationMonthInvalid":"Geben Sie einen gültigen Ablaufmonat ein.","cardExpirationYearInvalid":"Geben Sie ein gültiges Ablaufjahr ein.","month":"Monat","noBanksAvailable":"Bitte wählen Sie eine Bank oder ein Bankennetzwerk aus","noBankSelected":"Bitte wählen Sie eine Bank oder ein Bankennetzwerk aus","selectBank":"Bitte wählen Sie Ihre Bank aus","year":"Jahr"},"de-CH":{"birthdate":"Geburtsdatum","cardInvalid":"Karte ist ungültig, bitte überprüfen Sie die Kartendetails.","cardSecurityCode":"Kreditkarten-Sicherheitscode","cardExpired":"Karte ist bereits abgelaufen","cardNumber":"Kreditkartennummer","cardSecurityCodeInvalid":"Ungültiger Code","cardNumberInvalid":"Geben Sie bitte eine gültige Kreditkartennummer ein.","cardExpirationMonthInvalid":"Geben Sie einen gültigen Ablaufmonat ein.","cardExpirationYearInvalid":"Geben Sie ein gültiges Ablaufjahr ein.","month":"Monat","noBanksAvailable":"Bitte wählen Sie eine Bank oder ein Bankennetzwerk aus","noBankSelected":"Bitte wählen Sie eine Bank oder ein Bankennetzwerk aus","selectBank":"Bitte wählen Sie Ihre Bank aus","year":"Jahr"},"de-DE":{"birthdate":"Geburtsdatum","cardInvalid":"Karte ist ungültig, bitte überprüfen Sie die Kartendetails.","cardSecurityCode":"Kreditkarten-Sicherheitscode","cardExpired":"Karte ist bereits abgelaufen","cardNumber":"Kreditkartennummer","cardSecurityCodeInvalid":"Ungültiger Code","cardNumberInvalid":"Geben Sie bitte eine gültige Kreditkartennummer ein.","cardExpirationMonthInvalid":"Geben Sie einen gültigen Ablaufmonat ein.","cardExpirationYearInvalid":"Geben Sie ein gültiges Ablaufjahr ein.","month":"Monat","noBanksAvailable":"Bitte wählen Sie eine Bank oder ein Bankennetzwerk aus","noBankSelected":"Bitte wählen Sie eine Bank oder ein Bankennetzwerk aus","selectBank":"Bitte wählen Sie Ihre Bank aus","year":"Jahr"},"el-GR":{"birthdate":"Ημερομηνία γέννησης","cardInvalid":"Η κάρτα δεν είναι έγκυρη, ελέγξτε ξανά τα στοιχεία της κάρτας","cardSecurityCode":"Κωδικός Ασφαλείας Κάρτας","cardExpired":"Η κάρτα έχει λήξει","cardNumber":"Αριθμός Πιστωτικής Κάρτας","cardSecurityCodeInvalid":"Μη Έγκυρος Κωδικός","cardNumberInvalid":"Εισαγάγετε έγκυρο αριθμό πιστωτικής κάρτας.","cardExpirationMonthInvalid":"Εισαγωγή έγκυρου μήνα λήξης","cardExpirationYearInvalid":"Εισαγωγή έγκυρου έτους λήξης","month":"Μήνας","noBanksAvailable":"Επιλέξτε τράπεζα ή τραπεζικό δίκτυο","noBankSelected":"Επιλέξτε τράπεζα ή τραπεζικό δίκτυο","selectBank":"Επιλέξτε την τράπεζά σας","year":"Έτος"},"en-AU":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year"},"en-CA":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year"},"en-CH":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year"},"en-GB":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year"},"en-IE":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year"},"en-IN":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year"},"en-MY":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year"},"en-NL":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year"},"en-NZ":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year"},"en-PR":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year"},"en-SG":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year"},"en-US":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year"},"en-ZA":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year"},"es-AR":{"birthdate":"Fecha de nacimiento","cardInvalid":"La tarjeta no es válida, por favor revise los datos de la tarjeta","cardSecurityCode":"Código de la tarjeta de seguridad","cardExpired":"La tarjeta ya expiró.","cardNumber":"Número de la tarjeta de crédito","cardSecurityCodeInvalid":"Código inválido","cardNumberInvalid":"Introduzca un número de tarjeta de crédito válido.","cardExpirationMonthInvalid":"Introduzca un mes de vencimiento válido","cardExpirationYearInvalid":"Introduzca un año de vencimiento válido","month":"Mes","noBanksAvailable":"Seleccione un banco o una red bancaria","noBankSelected":"Seleccione un banco o una red bancaria","selectBank":"Seleccione su banco","year":"Año"},"es-CL":{"birthdate":"Fecha de nacimiento","cardInvalid":"La tarjeta no es válida, por favor revise los datos de la tarjeta","cardSecurityCode":"Código de la tarjeta de seguridad","cardExpired":"La tarjeta ya expiró.","cardNumber":"Número de la tarjeta de crédito","cardSecurityCodeInvalid":"Código inválido","cardNumberInvalid":"Introduzca un número de tarjeta de crédito válido.","cardExpirationMonthInvalid":"Introduzca un mes de vencimiento válido","cardExpirationYearInvalid":"Introduzca un año de vencimiento válido","month":"Mes","noBanksAvailable":"Seleccione un banco o una red bancaria","noBankSelected":"Seleccione un banco o una red bancaria","selectBank":"Seleccione su banco","year":"Año"},"es-CO":{"birthdate":"Fecha de nacimiento","cardInvalid":"La tarjeta no es válida, por favor revise los datos de la tarjeta","cardSecurityCode":"Código de la tarjeta de seguridad","cardExpired":"La tarjeta ya expiró.","cardNumber":"Número de la tarjeta de crédito","cardSecurityCodeInvalid":"Código inválido","cardNumberInvalid":"Introduzca un número de tarjeta de crédito válido.","cardExpirationMonthInvalid":"Introduzca un mes de vencimiento válido","cardExpirationYearInvalid":"Introduzca un año de vencimiento válido","month":"Mes","noBanksAvailable":"Seleccione un banco o una red bancaria","noBankSelected":"Seleccione un banco o una red bancaria","selectBank":"Seleccione su banco","year":"Año"},"es-EC":{"birthdate":"Fecha de nacimiento","cardInvalid":"La tarjeta no es válida, por favor revise los datos de la tarjeta","cardSecurityCode":"Código de la tarjeta de seguridad","cardExpired":"La tarjeta ya expiró.","cardNumber":"Número de la tarjeta de crédito","cardSecurityCodeInvalid":"Código inválido","cardNumberInvalid":"Introduzca un número de tarjeta de crédito válido.","cardExpirationMonthInvalid":"Introduzca un mes de vencimiento válido","cardExpirationYearInvalid":"Introduzca un año de vencimiento válido","month":"Mes","noBanksAvailable":"Seleccione un banco o una red bancaria","noBankSelected":"Seleccione un banco o una red bancaria","selectBank":"Seleccione su banco","year":"Año"},"es-ES":{"birthdate":"Fecha de nacimiento","cardInvalid":"La tarjeta no es válida, compruebe los datos de la tarjeta de débito","cardSecurityCode":"Código de seguridad de la tarjeta","cardExpired":"Tarjeta ya caducada","cardNumber":"Número de tarjeta de crédito","cardSecurityCodeInvalid":"Código no válido","cardNumberInvalid":"Introduzca un número de tarjeta de crédito válido.","cardExpirationMonthInvalid":"Indique un mes de vencimiento válido","cardExpirationYearInvalid":"Indique un año de vencimiento válido","month":"Mes","noBanksAvailable":"Escoja una entidad o red bancaria","noBankSelected":"Escoja una entidad o red bancaria","selectBank":"Seleccione su entidad bancaria","year":"Año"},"es-MX":{"birthdate":"Fecha de nacimiento","cardInvalid":"La tarjeta no es válida, por favor revise los datos de la tarjeta","cardSecurityCode":"Código de la tarjeta de seguridad","cardExpired":"La tarjeta ya expiró.","cardNumber":"Número de la tarjeta de crédito","cardSecurityCodeInvalid":"Código inválido","cardNumberInvalid":"Introduzca un número de tarjeta de crédito válido.","cardExpirationMonthInvalid":"Introduzca un mes de vencimiento válido","cardExpirationYearInvalid":"Introduzca un año de vencimiento válido","month":"Mes","noBanksAvailable":"Seleccione un banco o una red bancaria","noBankSelected":"Seleccione un banco o una red bancaria","selectBank":"Seleccione su banco","year":"Año"},"es-PE":{"birthdate":"Fecha de nacimiento","cardInvalid":"La tarjeta no es válida, por favor revise los datos de la tarjeta","cardSecurityCode":"Código de la tarjeta de seguridad","cardExpired":"La tarjeta ya expiró.","cardNumber":"Número de la tarjeta de crédito","cardSecurityCodeInvalid":"Código inválido","cardNumberInvalid":"Introduzca un número de tarjeta de crédito válido.","cardExpirationMonthInvalid":"Introduzca un mes de vencimiento válido","cardExpirationYearInvalid":"Introduzca un año de vencimiento válido","month":"Mes","noBanksAvailable":"Seleccione un banco o una red bancaria","noBankSelected":"Seleccione un banco o una red bancaria","selectBank":"Seleccione su banco","year":"Año"},"es-VE":{"birthdate":"Fecha de nacimiento","cardInvalid":"La tarjeta no es válida, por favor revise los datos de la tarjeta","cardSecurityCode":"Código de la tarjeta de seguridad","cardExpired":"La tarjeta ya expiró.","cardNumber":"Número de la tarjeta de crédito","cardSecurityCodeInvalid":"Código inválido","cardNumberInvalid":"Introduzca un número de tarjeta de crédito válido.","cardExpirationMonthInvalid":"Introduzca un mes de vencimiento válido","cardExpirationYearInvalid":"Introduzca un año de vencimiento válido","month":"Mes","noBanksAvailable":"Seleccione un banco o una red bancaria","noBankSelected":"Seleccione un banco o una red bancaria","selectBank":"Seleccione su banco","year":"Año"},"fi-FI":{"birthdate":"Syntymäaika","cardInvalid":"Kortti ei ole voimassa, tarkasta kortin tiedot","cardSecurityCode":"Kortin tarkistusnumero","cardExpired":"Kortti on jo vanhentunut","cardNumber":"Luottokortin numero","cardSecurityCodeInvalid":"Väärä koodi","cardNumberInvalid":"Syötä voimassa olevan luottokortin numero.","cardExpirationMonthInvalid":"Syötä kelvollinen viimeinen voimassaolokuukausi","cardExpirationYearInvalid":"Syötä kelvollinen viimeinen voimassaolovuosi","month":"Kuukausi","noBanksAvailable":"Valitse pankki tai pankkiverkko","noBankSelected":"Valitse pankki tai pankkiverkko","selectBank":"Valitse pankkisi","year":"Vuosi"},"fr-BE":{"birthdate":"Date de naissance","cardInvalid":"La carte n&amp;#39;est pas valide, veuillez en vérifier les détails","cardSecurityCode":"Code de sécurité carte","cardExpired":"Carte déjà expirée","cardNumber":"Numéro de carte de crédit","cardSecurityCodeInvalid":"Code invalide","cardNumberInvalid":"Veuillez saisir un numéro de carte de crédit valide.","cardExpirationMonthInvalid":"Indiquer un mois d&#39;expiration valide","cardExpirationYearInvalid":"Indiquer une année d&#39;expiration valide","month":"Mois ","noBanksAvailable":"Veuillez sélectionner une banque ou un réseau bancaire","noBankSelected":"Veuillez sélectionner une banque ou un réseau bancaire","selectBank":"Veuillez sélectionner votre banque","year":"Année "},"fr-CA":{"birthdate":"Date de naissance","cardInvalid":"La carte n&amp;#39;est pas valide, veuillez vérifier les renseignements de la carte.","cardSecurityCode":"Code de sécurité carte","cardExpired":"Carte déjà expirée","cardNumber":"Numéro de carte de crédit","cardSecurityCodeInvalid":"Code invalide","cardNumberInvalid":"Veuillez saisir un numéro de carte de crédit valide.","cardExpirationMonthInvalid":"Entrez un mois d&#39;expiration valide","cardExpirationYearInvalid":"Entrez une année d&#39;expiration valide","month":"Mois ","noBanksAvailable":"Veuillez choisir une banque ou un réseau de banques","noBankSelected":"Veuillez choisir une banque ou un réseau de banques","selectBank":"Veuillez sélectionner votre banque","year":"Année "},"fr-CH":{"birthdate":"Date de naissance","cardInvalid":"La carte n&amp;#39;est pas valide, veuillez en vérifier les détails","cardSecurityCode":"Code de sécurité carte","cardExpired":"Carte déjà expirée","cardNumber":"Numéro de carte de crédit","cardSecurityCodeInvalid":"Code invalide","cardNumberInvalid":"Veuillez saisir un numéro de carte de crédit valide.","cardExpirationMonthInvalid":"Indiquer un mois d&#39;expiration valide","cardExpirationYearInvalid":"Indiquer une année d&#39;expiration valide","month":"Mois ","noBanksAvailable":"Veuillez sélectionner une banque ou un réseau bancaire","noBankSelected":"Veuillez sélectionner une banque ou un réseau bancaire","selectBank":"Veuillez sélectionner votre banque","year":"Année "},"fr-FR":{"birthdate":"Date de naissance","cardInvalid":"La carte n&amp;#39;est pas valide, veuillez en vérifier les détails","cardSecurityCode":"Code de sécurité carte","cardExpired":"Carte déjà expirée","cardNumber":"Numéro de carte de crédit","cardSecurityCodeInvalid":"Code invalide","cardNumberInvalid":"Veuillez saisir un numéro de carte de crédit valide.","cardExpirationMonthInvalid":"Indiquer un mois d&#39;expiration valide","cardExpirationYearInvalid":"Indiquer une année d&#39;expiration valide","month":"Mois ","noBanksAvailable":"Veuillez sélectionner une banque ou un réseau bancaire","noBankSelected":"Veuillez sélectionner une banque ou un réseau bancaire","selectBank":"Veuillez sélectionner votre banque","year":"Année "},"hu-HU":{"birthdate":"Születési idő","cardInvalid":"Érvénytelen kártya, ellenőrizze a kártya adatait","cardSecurityCode":"Kártya biztonsági kódja","cardExpired":"A kártya lejárt","cardNumber":"Bankkártyaszám","cardSecurityCodeInvalid":"Érvénytelen kód","cardNumberInvalid":"Kérjük, adjon meg egy érvényes hitelkártyaszámot.","cardExpirationMonthInvalid":"Adja meg az érvényes lejárati hónapot","cardExpirationYearInvalid":"Adja meg az érvényes lejárati évet","month":"Hónap","noBanksAvailable":"Kérjük, válasszon bankot vagy bankhálózatot","noBankSelected":"Kérjük, válasszon bankot vagy bankhálózatot","selectBank":"Kérjük, válassza ki bankját.","year":"Év"},"it-CH":{"birthdate":"Data di nascita","cardInvalid":"La carta non è valida, controlla i dati","cardSecurityCode":"Codice di sicurezza carta","cardExpired":"Carta già scaduta","cardNumber":"Numero di carta di credito","cardSecurityCodeInvalid":"Codice non valido","cardNumberInvalid":"Inserire un numero di carta di credito valido.","cardExpirationMonthInvalid":"Inserisci un mese di scadenza valido","cardExpirationYearInvalid":"Inserisci un anno di scadenza valido","month":"Mese","noBanksAvailable":"Scegli una banca o una rete bancaria","noBankSelected":"Scegli una banca o una rete bancaria","selectBank":"Seleziona la tua banca","year":"Anno"},"it-IT":{"birthdate":"Data di nascita","cardInvalid":"La carta non è valida, controlla i dati","cardSecurityCode":"Codice di sicurezza carta","cardExpired":"Carta già scaduta","cardNumber":"Numero di carta di credito","cardSecurityCodeInvalid":"Codice non valido","cardNumberInvalid":"Inserire un numero di carta di credito valido.","cardExpirationMonthInvalid":"Inserisci un mese di scadenza valido","cardExpirationYearInvalid":"Inserisci un anno di scadenza valido","month":"Mese","noBanksAvailable":"Scegli una banca o una rete bancaria","noBankSelected":"Scegli una banca o una rete bancaria","selectBank":"Seleziona la tua banca","year":"Anno"},"iw-IL":{"birthdate":"תאריך לידה","cardInvalid":"הכרטיס לא חוקי. אנא בדוק את פרטי הכרטיס","cardSecurityCode":"קוד ביטחון של כרטיס האשראי","cardExpired":"הכרטיס לא בתוקף","cardNumber":"* מס' כרטיס אשראי","cardSecurityCodeInvalid":"קוד לא חוקי","cardNumberInvalid":"נא הזן מספר כרטיס אשראי חוקי.","cardExpirationMonthInvalid":"הזן חודש תפוגה תקף","cardExpirationYearInvalid":"הזן שנת תפוגה תקפה","month":"חודש","noBanksAvailable":"בחר בנק או רשת בנקים","noBankSelected":"בחר בנק או רשת בנקים","selectBank":"בחר את הבנק שלך","year":"שנה"},"ja-JP":{"birthdate":"誕生日","cardInvalid":"クレジットカードは無効です。カードを確認してください。","cardSecurityCode":"カードセキュリティコード","cardExpired":"カードの期限が切れています","cardNumber":"クレジットカード番号<br />（半角）","cardSecurityCodeInvalid":"無効なコード","cardNumberInvalid":"有効なクレジットカード番号を入力してください。","cardExpirationMonthInvalid":"有効期限（月）を入力","cardExpirationYearInvalid":"有効期限（年）を入力","month":"","noBanksAvailable":"銀行または銀行ネットワークを選択してください。","noBankSelected":"銀行または銀行ネットワークを選択してください。","selectBank":"銀行を選択してください。","year":""},"ko-KR":{"birthdate":"생년월일","cardInvalid":"카드가 유효하지 않습니다. 카드 세부 정보를 확인하십시오.","cardSecurityCode":"카드 보안 코드","cardExpired":"카드 유효기간이 이미 만료되었습니다","cardNumber":"신용카드 번호","cardSecurityCodeInvalid":"유효하지 않은 코드","cardNumberInvalid":"올바른 신용카드 번호를 입력하십시오.","cardExpirationMonthInvalid":"유효한 만료 월 입력","cardExpirationYearInvalid":"유효한 만료 연도 입력","cardTypeColon":"카드 종류:","closeWindow":"창 닫기","company":"회사","continue":"계속하기","corporateRegistrationNumber":"사업자 등록 번호","day":"일","enterAdditionalInformation":"추가 정보 입력","month":"월","noBanksAvailable":"은행 또는 은행 네트워크를 선택하십시오.","noBankSelected":"은행 또는 은행 네트워크를 선택하십시오.","password":"암호","personalNumber":"개인 번호","pleaseCheckYourDateOfBirth":"고객님의 생년월일을 확인하십시오.","pleaseEnterAValidValue":"유효한 값을 입력해 주십시오.","requiredField":"필수 필드","selectBank":"은행을 선택하십시오.","year":"연도"},"nl-BE":{"birthdate":"Geboortedatum","cardInvalid":"Kaart is ongeldig, controleer de kaartgegevens","cardSecurityCode":"Beveiligingscode creditcard","cardExpired":"Creditcard is verlopen","cardNumber":"Creditcardnummer","cardSecurityCodeInvalid":"Ongeldige code","cardNumberInvalid":"Voer een geldig creditcardnummer in.","cardExpirationMonthInvalid":"Voer een geldige vervalmaand in","cardExpirationYearInvalid":"Voer een geldig vervaljaar in","month":"Maand","noBanksAvailable":"Selecteer een bank of bankennetwerk","noBankSelected":"Selecteer een bank of bankennetwerk","selectBank":"Selecteer uw bank","year":"Jaar"},"nl-NL":{"birthdate":"Geboortedatum","cardInvalid":"Kaart is ongeldig, controleer de kaartgegevens","cardSecurityCode":"Beveiligingscode creditcard","cardExpired":"Creditcard is verlopen","cardNumber":"Creditcardnummer","cardSecurityCodeInvalid":"Ongeldige code","cardNumberInvalid":"Voer een geldig creditcardnummer in.","cardExpirationMonthInvalid":"Voer een geldige vervalmaand in","cardExpirationYearInvalid":"Voer een geldig vervaljaar in","month":"Maand","noBanksAvailable":"Selecteer een bank of bankennetwerk","noBankSelected":"Selecteer een bank of bankennetwerk","selectBank":"Selecteer uw bank","year":"Jaar"},"no-NO":{"birthdate":"Fødselsdato","cardInvalid":"Ugyldig kort, vennligst sjekk opplysningene på kortet","cardSecurityCode":"Kortets sikkerhetskode","cardExpired":"Kortet er allerede utløpt","cardNumber":"Kredittkortnummer","cardSecurityCodeInvalid":"Ugyldig kode","cardNumberInvalid":"Du må oppgi et gyldig kredittkortnummer.","cardExpirationMonthInvalid":"Oppgi gyldig utløpsmåned","cardExpirationYearInvalid":"Oppgi gyldig utløpsår","month":"Måned","noBanksAvailable":"Velg en bank eller et banknettverk","noBankSelected":"Velg en bank eller et banknettverk","selectBank":"Velg din bank","year":"År"},"pl-PL":{"birthdate":"Data urodzenia","cardInvalid":"Karta jest nieprawidłowa, sprawdź dane karty","cardSecurityCode":"Kod bezpieczeństwa karty","cardExpired":"Ważność karty już wygasła","cardNumber":"Numer karty kredytowej","cardSecurityCodeInvalid":"Nieprawidłowy kod","cardNumberInvalid":"Podaj prawidłowy numer karty kredytowej.","cardExpirationMonthInvalid":"Wpisz prawidłowy miesiąc ważności","cardExpirationYearInvalid":"Wpisz prawidłowy rok ważności","month":"Miesiąc","noBanksAvailable":"Wybierz bank lub sieć banków","noBankSelected":"Wybierz bank lub sieć banków","selectBank":"Wybierz swój bank","year":"Rok"},"pt-BR":{"birthdate":"Aniversário","cardInvalid":"O cartão é inválido, verifique os detalhes sobre o cartão","cardSecurityCode":"Código de segurança do cartão","cardExpired":"O cartão expirou","cardNumber":"Número do cartão de crédito","cardSecurityCodeInvalid":"Código inválido","cardNumberInvalid":"Digite um número de cartão de crédito válido.","cardExpirationMonthInvalid":"Inserir o mês de validade","cardExpirationYearInvalid":"Inserir o ano de validade","month":"Mês","noBanksAvailable":"Escolha um banco ou rede bancária","noBankSelected":"Escolha um banco ou rede bancária","selectBank":"Selecione seu banco","year":"Ano"},"pt-PT":{"birthdate":"Data de nascimento","cardInvalid":"Cartão inválido, verifique os detalhes do cartão","cardSecurityCode":"Código de Segurança do Cartão","cardExpired":"O cartão já expirou","cardNumber":"Número do cartão de crédito","cardSecurityCodeInvalid":"Código Inválido","cardNumberInvalid":"Introduza um número de cartão de crédito válido.","cardExpirationMonthInvalid":"Introduza um mês de expiração válido","cardExpirationYearInvalid":"Introduza um ano de expiração válido","month":"Mês","noBanksAvailable":"Escolha um banco ou rede bancária","noBankSelected":"Escolha um banco ou rede bancária","selectBank":"Selecione o seu banco","year":"Ano"},"ru-RU":{"birthdate":"Дата рождения","cardInvalid":"Карта недействительна, проверьте реквизиты платежной карты","cardSecurityCode":"Код безопасности карты","cardExpired":"Срок действия карты истек","cardNumber":"Номер кредитной карты","cardSecurityCodeInvalid":"Неверный индекс","cardNumberInvalid":"Пожалуйста, введите действительный номер кредитной карты.","cardExpirationMonthInvalid":"Введите верный месяц истечения срока действия","cardExpirationYearInvalid":"Введите верный год истечения срока действия","month":"Месяц","noBanksAvailable":"Пожалуйста, выберите банк или банковскую сеть","noBankSelected":"Пожалуйста, выберите банк или банковскую сеть","selectBank":"Пожалуйста, выберите свой банк","year":"Год"},"sk-SK":{"birthdate":"Dátum narodenia","cardInvalid":"Karta je neplatná, skontrolujte údaje karty","cardSecurityCode":"Bezpečnostný kód na karte","cardExpired":"Platnosť karty skončila","cardNumber":"Číslo kreditnej karty","cardSecurityCodeInvalid":"Neplatný kód","cardNumberInvalid":"Uveďte platné číslo kreditnej karty.","cardExpirationMonthInvalid":"Vložte platný dátum exspirácie","cardExpirationYearInvalid":"Vložte platný rok exspirácie","month":"Mesiac","noBanksAvailable":"Zvoľte banku alebo sieť bánk","noBankSelected":"Zvoľte banku alebo sieť bánk","selectBank":"Vyberte banku","year":"Rok"},"sv-SE":{"birthdate":"Födelsedatum","cardInvalid":"Kortet är ogiltigt, kontrollera kortdetaljerna","cardSecurityCode":"Kortets säkerhetskod","cardExpired":"Giltighetstiden för ditt kort har löpt ut","cardNumber":"Kreditkortsnummer","cardSecurityCodeInvalid":"Ogiltig kod","cardNumberInvalid":"Ange ett giltigt kreditkortsnummer.","cardExpirationMonthInvalid":"Ange giltig utgångsmånad","cardExpirationYearInvalid":"Ange giltigt utgångsår","month":"Månad","noBanksAvailable":"Välj en bank eller ett banknätverk","noBankSelected":"Välj en bank eller ett banknätverk","selectBank":"Välj din bank","year":"År"},"th-TH":{"birthdate":"วันเกิด","cardInvalid":"บัตรไม่ถูกต้อง โปรดตรวจสอบรายละเอียดของบัตร","cardSecurityCode":"รหัสความปลอดภัยบนบัตร (Card Security Code) ","cardExpired":"บัตรหมดอายุแล้ว","cardNumber":"หมายเลขบัตรเครดิต","cardSecurityCodeInvalid":"รหัสไม่ถูกต้อง","cardNumberInvalid":"กรุณาใส่หมายเลขบัตรเครดิตที่ถูกต้อง","cardExpirationMonthInvalid":"ใส่เดือนหมดอายุที่ถูกต้อง","cardExpirationYearInvalid":"ใส่ปีหมดอายุที่ถูกต้อง","month":"เดือน ","noBanksAvailable":"กรุณาเลือกธนาคารหรือเครือข่ายธนาคาร","noBankSelected":"กรุณาเลือกธนาคารหรือเครือข่ายธนาคาร","selectBank":"กรุณาเลือกธนาคารของคุณ","year":"ปี "},"tr-TR":{"birthdate":"Doğum Tarihi","cardInvalid":"Kart geçersiz, lütfen kart detaylarını kontrol edin","cardSecurityCode":"Kart Güvenlik Kodu","cardExpired":"Kart süresi dolmuş","cardNumber":"Kredi Kartı Numarası","cardSecurityCodeInvalid":"Geçersiz Kod","cardNumberInvalid":"Lütfen geçerli bir kredi kartı numarası girin.","cardExpirationMonthInvalid":"Geçerli sona erme ayını girin","cardExpirationYearInvalid":"Geçerli sona erme yılını girin","month":"Ay","noBanksAvailable":"Lütfen bir banka veya banka ağı seçin","noBankSelected":"Lütfen bir banka veya banka ağı seçin","selectBank":"Lütfen bankanızı seçin","year":"Yıl"},"zh-CN":{"birthdate":"出生日期","cardInvalid":"卡片无效，请检查卡片详情","cardSecurityCode":"信用卡安全代码","cardExpired":"信用卡已过期","cardNumber":"信用卡号*","cardSecurityCodeInvalid":"无效代码","cardNumberInvalid":"请输入一个有效的信用卡号。","cardExpirationMonthInvalid":"请输入有效的到期月份","cardExpirationYearInvalid":"请输入有效的到期年份","month":"月份","noBanksAvailable":"请选择一家银行或银行网络","noBankSelected":"请选择一家银行或银行网络","selectBank":"请选择您的银行","year":"年份"},"zh-HK":{"birthdate":"出生日期","cardInvalid":"信用咭無效，請檢查信用咭資料","cardSecurityCode":"信用卡安全碼：","cardExpired":"信用卡已過期","cardNumber":"信用卡號碼","cardSecurityCodeInvalid":"無效代碼","cardNumberInvalid":"請輸入有效的信用卡號碼。","cardExpirationMonthInvalid":"輸入有效的到期月份","cardExpirationYearInvalid":"輸入有效的到期年份","month":"月份","noBanksAvailable":"請選擇銀行或銀行網路","noBankSelected":"請選擇銀行或銀行網路","selectBank":"請選擇您的銀行","year":"年"},"zh-TW":{"birthdate":"生日","cardInvalid":"信用卡無效，請確認卡片詳細資料","cardSecurityCode":"信用卡安全碼：","cardExpired":"信用卡已過期","cardNumber":"信用卡號碼","cardSecurityCodeInvalid":"無效代碼","cardNumberInvalid":"請輸入有效的信用卡號碼。","cardExpirationMonthInvalid":"輸入有效的到期月份","cardExpirationYearInvalid":"輸入有效的到期年份","month":"月份","noBanksAvailable":"請選擇銀行或銀行網路","noBankSelected":"請選擇銀行或銀行網路","selectBank":"請選擇您的銀行","year":"年度"}};
+module.exports = {"ar-EG":{"birthdate":"تاريخ الميلاد","cardInvalid":"البطاقة غير صحيحة، يرجى مراعاة تفاصيل البطاقة","cardSecurityCode":"كود أمان البطاقة","cardExpired":"صلاحية البطاقة انتهت بالفعل","cardNumber":"* رقم البطاقة الائتمانية","cardSecurityCodeInvalid":"كود غير صحيح","cardNumberInvalid":"من فضلك أدخل رقم بطاقة ائتمانية صحيح.","cardExpirationMonthInvalid":"أدخل شهر انتهاء صلاحية صحيح","cardExpirationYearInvalid":"أدخل سنة انتهاء صلاحية صحيحة","month":"الشهر","noBanksAvailable":"يرجى اختيار أحد البنوك أو الشبكات البنكية","noBankSelected":"يرجى اختيار أحد البنوك أو الشبكات البنكية","selectBank":"من فضلك اختر البنك الخاص بك.","year":"السنة"},"cs-CZ":{"birthdate":"Datum narození","cardInvalid":"Karta je neplatná. Zkontrolujte prosím údaje o kartě.","cardSecurityCode":"Bezpečnostní kód karty","cardExpired":"Karta už není platná","cardNumber":"Číslo kreditní karty","cardSecurityCodeInvalid":"Neplatný kód","cardNumberInvalid":"Zadejte platné číslo kreditní karty.","cardExpirationMonthInvalid":"Zadejte měsíc konce platnosti","cardExpirationYearInvalid":"Zadejte rok konce platnosti","month":"Měsíc","noBanksAvailable":"Zvolte banku nebo bankovní síť","noBankSelected":"Zvolte banku nebo bankovní síť","selectBank":"Zvolte banku","year":"Rok"},"da-DK":{"birthdate":"Fødselsdag","cardInvalid":"Kortet er ugyldigt. Kontrollér kortoplysningerne","cardSecurityCode":"Kortsikkerhedskode","cardExpired":"Kortet er udløbet","cardNumber":"Kreditkortnummer","cardSecurityCodeInvalid":"Forkert kode","cardNumberInvalid":"Indtast et gyldigt kreditkortnummer.","cardExpirationMonthInvalid":"Indtast en gyldig udløbsmåned","cardExpirationYearInvalid":"Indtast et gyldigt udløbsår","month":"Måned","noBanksAvailable":"Vælg en bank eller et banknetværk","noBankSelected":"Vælg en bank eller et banknetværk","selectBank":"Vælg din bank","year":"År"},"de-AT":{"birthdate":"Geburtsdatum","cardInvalid":"Karte ist ungültig, bitte überprüfen Sie die Kartendetails.","cardSecurityCode":"Kreditkarten-Sicherheitscode","cardExpired":"Karte ist bereits abgelaufen","cardNumber":"Kreditkartennummer","cardSecurityCodeInvalid":"Ungültiger Code","cardNumberInvalid":"Geben Sie bitte eine gültige Kreditkartennummer ein.","cardExpirationMonthInvalid":"Geben Sie einen gültigen Ablaufmonat ein.","cardExpirationYearInvalid":"Geben Sie ein gültiges Ablaufjahr ein.","month":"Monat","noBanksAvailable":"Bitte wählen Sie eine Bank oder ein Bankennetzwerk aus","noBankSelected":"Bitte wählen Sie eine Bank oder ein Bankennetzwerk aus","selectBank":"Bitte wählen Sie Ihre Bank aus","year":"Jahr"},"de-CH":{"birthdate":"Geburtsdatum","cardInvalid":"Karte ist ungültig, bitte überprüfen Sie die Kartendetails.","cardSecurityCode":"Kreditkarten-Sicherheitscode","cardExpired":"Karte ist bereits abgelaufen","cardNumber":"Kreditkartennummer","cardSecurityCodeInvalid":"Ungültiger Code","cardNumberInvalid":"Geben Sie bitte eine gültige Kreditkartennummer ein.","cardExpirationMonthInvalid":"Geben Sie einen gültigen Ablaufmonat ein.","cardExpirationYearInvalid":"Geben Sie ein gültiges Ablaufjahr ein.","month":"Monat","noBanksAvailable":"Bitte wählen Sie eine Bank oder ein Bankennetzwerk aus","noBankSelected":"Bitte wählen Sie eine Bank oder ein Bankennetzwerk aus","selectBank":"Bitte wählen Sie Ihre Bank aus","year":"Jahr"},"de-DE":{"birthdate":"Geburtsdatum","cardInvalid":"Karte ist ungültig, bitte überprüfen Sie die Kartendetails.","cardSecurityCode":"Kreditkarten-Sicherheitscode","cardExpired":"Karte ist bereits abgelaufen","cardNumber":"Kreditkartennummer","cardSecurityCodeInvalid":"Ungültiger Code","cardNumberInvalid":"Geben Sie bitte eine gültige Kreditkartennummer ein.","cardExpirationMonthInvalid":"Geben Sie einen gültigen Ablaufmonat ein.","cardExpirationYearInvalid":"Geben Sie ein gültiges Ablaufjahr ein.","month":"Monat","noBanksAvailable":"Bitte wählen Sie eine Bank oder ein Bankennetzwerk aus","noBankSelected":"Bitte wählen Sie eine Bank oder ein Bankennetzwerk aus","selectBank":"Bitte wählen Sie Ihre Bank aus","year":"Jahr"},"el-GR":{"birthdate":"Ημερομηνία γέννησης","cardInvalid":"Η κάρτα δεν είναι έγκυρη, ελέγξτε ξανά τα στοιχεία της κάρτας","cardSecurityCode":"Κωδικός Ασφαλείας Κάρτας","cardExpired":"Η κάρτα έχει λήξει","cardNumber":"Αριθμός Πιστωτικής Κάρτας","cardSecurityCodeInvalid":"Μη Έγκυρος Κωδικός","cardNumberInvalid":"Εισαγάγετε έγκυρο αριθμό πιστωτικής κάρτας.","cardExpirationMonthInvalid":"Εισαγωγή έγκυρου μήνα λήξης","cardExpirationYearInvalid":"Εισαγωγή έγκυρου έτους λήξης","month":"Μήνας","noBanksAvailable":"Επιλέξτε τράπεζα ή τραπεζικό δίκτυο","noBankSelected":"Επιλέξτε τράπεζα ή τραπεζικό δίκτυο","selectBank":"Επιλέξτε την τράπεζά σας","year":"Έτος"},"en-AU":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year"},"en-CA":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year"},"en-CH":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year"},"en-GB":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year"},"en-IE":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year"},"en-IN":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year"},"en-MY":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year"},"en-NL":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year"},"en-NZ":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year"},"en-PR":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year"},"en-SG":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year"},"en-US":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year"},"en-ZA":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year"},"es-AR":{"birthdate":"Fecha de nacimiento","cardInvalid":"La tarjeta no es válida, por favor revise los datos de la tarjeta","cardSecurityCode":"Código de la tarjeta de seguridad","cardExpired":"La tarjeta ya expiró.","cardNumber":"Número de la tarjeta de crédito","cardSecurityCodeInvalid":"Código inválido","cardNumberInvalid":"Introduzca un número de tarjeta de crédito válido.","cardExpirationMonthInvalid":"Introduzca un mes de vencimiento válido","cardExpirationYearInvalid":"Introduzca un año de vencimiento válido","month":"Mes","noBanksAvailable":"Seleccione un banco o una red bancaria","noBankSelected":"Seleccione un banco o una red bancaria","selectBank":"Seleccione su banco","year":"Año"},"es-CL":{"birthdate":"Fecha de nacimiento","cardInvalid":"La tarjeta no es válida, por favor revise los datos de la tarjeta","cardSecurityCode":"Código de la tarjeta de seguridad","cardExpired":"La tarjeta ya expiró.","cardNumber":"Número de la tarjeta de crédito","cardSecurityCodeInvalid":"Código inválido","cardNumberInvalid":"Introduzca un número de tarjeta de crédito válido.","cardExpirationMonthInvalid":"Introduzca un mes de vencimiento válido","cardExpirationYearInvalid":"Introduzca un año de vencimiento válido","month":"Mes","noBanksAvailable":"Seleccione un banco o una red bancaria","noBankSelected":"Seleccione un banco o una red bancaria","selectBank":"Seleccione su banco","year":"Año"},"es-CO":{"birthdate":"Fecha de nacimiento","cardInvalid":"La tarjeta no es válida, por favor revise los datos de la tarjeta","cardSecurityCode":"Código de la tarjeta de seguridad","cardExpired":"La tarjeta ya expiró.","cardNumber":"Número de la tarjeta de crédito","cardSecurityCodeInvalid":"Código inválido","cardNumberInvalid":"Introduzca un número de tarjeta de crédito válido.","cardExpirationMonthInvalid":"Introduzca un mes de vencimiento válido","cardExpirationYearInvalid":"Introduzca un año de vencimiento válido","month":"Mes","noBanksAvailable":"Seleccione un banco o una red bancaria","noBankSelected":"Seleccione un banco o una red bancaria","selectBank":"Seleccione su banco","year":"Año"},"es-EC":{"birthdate":"Fecha de nacimiento","cardInvalid":"La tarjeta no es válida, por favor revise los datos de la tarjeta","cardSecurityCode":"Código de la tarjeta de seguridad","cardExpired":"La tarjeta ya expiró.","cardNumber":"Número de la tarjeta de crédito","cardSecurityCodeInvalid":"Código inválido","cardNumberInvalid":"Introduzca un número de tarjeta de crédito válido.","cardExpirationMonthInvalid":"Introduzca un mes de vencimiento válido","cardExpirationYearInvalid":"Introduzca un año de vencimiento válido","month":"Mes","noBanksAvailable":"Seleccione un banco o una red bancaria","noBankSelected":"Seleccione un banco o una red bancaria","selectBank":"Seleccione su banco","year":"Año"},"es-ES":{"birthdate":"Fecha de nacimiento","cardInvalid":"La tarjeta no es válida, compruebe los datos de la tarjeta de débito","cardSecurityCode":"Código de seguridad de la tarjeta","cardExpired":"Tarjeta ya caducada","cardNumber":"Número de tarjeta de crédito","cardSecurityCodeInvalid":"Código no válido","cardNumberInvalid":"Introduzca un número de tarjeta de crédito válido.","cardExpirationMonthInvalid":"Indique un mes de vencimiento válido","cardExpirationYearInvalid":"Indique un año de vencimiento válido","month":"Mes","noBanksAvailable":"Escoja una entidad o red bancaria","noBankSelected":"Escoja una entidad o red bancaria","selectBank":"Seleccione su entidad bancaria","year":"Año"},"es-MX":{"birthdate":"Fecha de nacimiento","cardInvalid":"La tarjeta no es válida, por favor revise los datos de la tarjeta","cardSecurityCode":"Código de la tarjeta de seguridad","cardExpired":"La tarjeta ya expiró.","cardNumber":"Número de la tarjeta de crédito","cardSecurityCodeInvalid":"Código inválido","cardNumberInvalid":"Introduzca un número de tarjeta de crédito válido.","cardExpirationMonthInvalid":"Introduzca un mes de vencimiento válido","cardExpirationYearInvalid":"Introduzca un año de vencimiento válido","month":"Mes","noBanksAvailable":"Seleccione un banco o una red bancaria","noBankSelected":"Seleccione un banco o una red bancaria","selectBank":"Seleccione su banco","year":"Año"},"es-PE":{"birthdate":"Fecha de nacimiento","cardInvalid":"La tarjeta no es válida, por favor revise los datos de la tarjeta","cardSecurityCode":"Código de la tarjeta de seguridad","cardExpired":"La tarjeta ya expiró.","cardNumber":"Número de la tarjeta de crédito","cardSecurityCodeInvalid":"Código inválido","cardNumberInvalid":"Introduzca un número de tarjeta de crédito válido.","cardExpirationMonthInvalid":"Introduzca un mes de vencimiento válido","cardExpirationYearInvalid":"Introduzca un año de vencimiento válido","month":"Mes","noBanksAvailable":"Seleccione un banco o una red bancaria","noBankSelected":"Seleccione un banco o una red bancaria","selectBank":"Seleccione su banco","year":"Año"},"es-VE":{"birthdate":"Fecha de nacimiento","cardInvalid":"La tarjeta no es válida, por favor revise los datos de la tarjeta","cardSecurityCode":"Código de la tarjeta de seguridad","cardExpired":"La tarjeta ya expiró.","cardNumber":"Número de la tarjeta de crédito","cardSecurityCodeInvalid":"Código inválido","cardNumberInvalid":"Introduzca un número de tarjeta de crédito válido.","cardExpirationMonthInvalid":"Introduzca un mes de vencimiento válido","cardExpirationYearInvalid":"Introduzca un año de vencimiento válido","month":"Mes","noBanksAvailable":"Seleccione un banco o una red bancaria","noBankSelected":"Seleccione un banco o una red bancaria","selectBank":"Seleccione su banco","year":"Año"},"fi-FI":{"birthdate":"Syntymäaika","cardInvalid":"Kortti ei ole voimassa, tarkasta kortin tiedot","cardSecurityCode":"Kortin tarkistusnumero","cardExpired":"Kortti on jo vanhentunut","cardNumber":"Luottokortin numero","cardSecurityCodeInvalid":"Väärä koodi","cardNumberInvalid":"Syötä voimassa olevan luottokortin numero.","cardExpirationMonthInvalid":"Syötä kelvollinen viimeinen voimassaolokuukausi","cardExpirationYearInvalid":"Syötä kelvollinen viimeinen voimassaolovuosi","month":"Kuukausi","noBanksAvailable":"Valitse pankki tai pankkiverkko","noBankSelected":"Valitse pankki tai pankkiverkko","selectBank":"Valitse pankkisi","year":"Vuosi"},"fr-BE":{"birthdate":"Date de naissance","cardInvalid":"La carte n&amp;#39;est pas valide, veuillez en vérifier les détails","cardSecurityCode":"Code de sécurité carte","cardExpired":"Carte déjà expirée","cardNumber":"Numéro de carte de crédit","cardSecurityCodeInvalid":"Code invalide","cardNumberInvalid":"Veuillez saisir un numéro de carte de crédit valide.","cardExpirationMonthInvalid":"Indiquer un mois d&#39;expiration valide","cardExpirationYearInvalid":"Indiquer une année d&#39;expiration valide","month":"Mois ","noBanksAvailable":"Veuillez sélectionner une banque ou un réseau bancaire","noBankSelected":"Veuillez sélectionner une banque ou un réseau bancaire","selectBank":"Veuillez sélectionner votre banque","year":"Année "},"fr-CA":{"birthdate":"Date de naissance","cardInvalid":"La carte n&amp;#39;est pas valide, veuillez vérifier les renseignements de la carte.","cardSecurityCode":"Code de sécurité carte","cardExpired":"Carte déjà expirée","cardNumber":"Numéro de carte de crédit","cardSecurityCodeInvalid":"Code invalide","cardNumberInvalid":"Veuillez saisir un numéro de carte de crédit valide.","cardExpirationMonthInvalid":"Entrez un mois d&#39;expiration valide","cardExpirationYearInvalid":"Entrez une année d&#39;expiration valide","month":"Mois ","noBanksAvailable":"Veuillez choisir une banque ou un réseau de banques","noBankSelected":"Veuillez choisir une banque ou un réseau de banques","selectBank":"Veuillez sélectionner votre banque","year":"Année "},"fr-CH":{"birthdate":"Date de naissance","cardInvalid":"La carte n&amp;#39;est pas valide, veuillez en vérifier les détails","cardSecurityCode":"Code de sécurité carte","cardExpired":"Carte déjà expirée","cardNumber":"Numéro de carte de crédit","cardSecurityCodeInvalid":"Code invalide","cardNumberInvalid":"Veuillez saisir un numéro de carte de crédit valide.","cardExpirationMonthInvalid":"Indiquer un mois d&#39;expiration valide","cardExpirationYearInvalid":"Indiquer une année d&#39;expiration valide","month":"Mois ","noBanksAvailable":"Veuillez sélectionner une banque ou un réseau bancaire","noBankSelected":"Veuillez sélectionner une banque ou un réseau bancaire","selectBank":"Veuillez sélectionner votre banque","year":"Année "},"fr-FR":{"birthdate":"Date de naissance","cardInvalid":"La carte n&amp;#39;est pas valide, veuillez en vérifier les détails","cardSecurityCode":"Code de sécurité carte","cardExpired":"Carte déjà expirée","cardNumber":"Numéro de carte de crédit","cardSecurityCodeInvalid":"Code invalide","cardNumberInvalid":"Veuillez saisir un numéro de carte de crédit valide.","cardExpirationMonthInvalid":"Indiquer un mois d&#39;expiration valide","cardExpirationYearInvalid":"Indiquer une année d&#39;expiration valide","month":"Mois ","noBanksAvailable":"Veuillez sélectionner une banque ou un réseau bancaire","noBankSelected":"Veuillez sélectionner une banque ou un réseau bancaire","selectBank":"Veuillez sélectionner votre banque","year":"Année "},"hu-HU":{"birthdate":"Születési idő","cardInvalid":"Érvénytelen kártya, ellenőrizze a kártya adatait","cardSecurityCode":"Kártya biztonsági kódja","cardExpired":"A kártya lejárt","cardNumber":"Bankkártyaszám","cardSecurityCodeInvalid":"Érvénytelen kód","cardNumberInvalid":"Kérjük, adjon meg egy érvényes hitelkártyaszámot.","cardExpirationMonthInvalid":"Adja meg az érvényes lejárati hónapot","cardExpirationYearInvalid":"Adja meg az érvényes lejárati évet","month":"Hónap","noBanksAvailable":"Kérjük, válasszon bankot vagy bankhálózatot","noBankSelected":"Kérjük, válasszon bankot vagy bankhálózatot","selectBank":"Kérjük, válassza ki bankját.","year":"Év"},"it-CH":{"birthdate":"Data di nascita","cardInvalid":"La carta non è valida, controlla i dati","cardSecurityCode":"Codice di sicurezza carta","cardExpired":"Carta già scaduta","cardNumber":"Numero di carta di credito","cardSecurityCodeInvalid":"Codice non valido","cardNumberInvalid":"Inserire un numero di carta di credito valido.","cardExpirationMonthInvalid":"Inserisci un mese di scadenza valido","cardExpirationYearInvalid":"Inserisci un anno di scadenza valido","month":"Mese","noBanksAvailable":"Scegli una banca o una rete bancaria","noBankSelected":"Scegli una banca o una rete bancaria","selectBank":"Seleziona la tua banca","year":"Anno"},"it-IT":{"birthdate":"Data di nascita","cardInvalid":"La carta non è valida, controlla i dati","cardSecurityCode":"Codice di sicurezza carta","cardExpired":"Carta già scaduta","cardNumber":"Numero di carta di credito","cardSecurityCodeInvalid":"Codice non valido","cardNumberInvalid":"Inserire un numero di carta di credito valido.","cardExpirationMonthInvalid":"Inserisci un mese di scadenza valido","cardExpirationYearInvalid":"Inserisci un anno di scadenza valido","month":"Mese","noBanksAvailable":"Scegli una banca o una rete bancaria","noBankSelected":"Scegli una banca o una rete bancaria","selectBank":"Seleziona la tua banca","year":"Anno"},"iw-IL":{"birthdate":"תאריך לידה","cardInvalid":"הכרטיס לא חוקי. אנא בדוק את פרטי הכרטיס","cardSecurityCode":"קוד ביטחון של כרטיס האשראי","cardExpired":"הכרטיס לא בתוקף","cardNumber":"* מס' כרטיס אשראי","cardSecurityCodeInvalid":"קוד לא חוקי","cardNumberInvalid":"נא הזן מספר כרטיס אשראי חוקי.","cardExpirationMonthInvalid":"הזן חודש תפוגה תקף","cardExpirationYearInvalid":"הזן שנת תפוגה תקפה","month":"חודש","noBanksAvailable":"בחר בנק או רשת בנקים","noBankSelected":"בחר בנק או רשת בנקים","selectBank":"בחר את הבנק שלך","year":"שנה"},"ja-JP":{"birthdate":"誕生日","cardInvalid":"クレジットカードは無効です。カードを確認してください。","cardSecurityCode":"カードセキュリティコード","cardExpired":"カードの期限が切れています","cardNumber":"クレジットカード番号","cardSecurityCodeInvalid":"無効なコード","cardNumberInvalid":"有効なクレジットカード番号を入力してください。","cardExpirationMonthInvalid":"有効期限（月）を入力","cardExpirationYearInvalid":"有効期限（年）を入力","month":"月","noBanksAvailable":"銀行または銀行ネットワークを選択してください。","noBankSelected":"銀行または銀行ネットワークを選択してください。","selectBank":"銀行を選択してください。","year":"年"},"ko-KR":{"birthdate":"생년월일","cardInvalid":"카드가 유효하지 않습니다. 카드 세부 정보를 확인하십시오.","cardSecurityCode":"카드 보안 코드","cardExpired":"카드 유효기간이 이미 만료되었습니다","cardNumber":"신용카드 번호","cardSecurityCodeInvalid":"유효하지 않은 코드","cardNumberInvalid":"올바른 신용카드 번호를 입력하십시오.","cardExpirationMonthInvalid":"유효한 만료 월 입력","cardExpirationYearInvalid":"유효한 만료 연도 입력","cardTypeColon":"카드 종류:","closeWindow":"창 닫기","company":"회사","continue":"계속하기","corporateRegistrationNumber":"사업자 등록 번호","day":"일","enterAdditionalInformation":"추가 정보 입력","missing_korean_parameter":"존재하지 않는 정보 또는 부정확한 값을 제출하였습니다. 다시 시도하십시오.","month":"월","noBanksAvailable":"은행 또는 은행 네트워크를 선택하십시오.","noBankSelected":"은행 또는 은행 네트워크를 선택하십시오.","password":"암호","personalNumber":"개인 번호","pleaseCheckYourDateOfBirth":"고객님의 생년월일을 확인하십시오.","pleaseEnterAValidValue":"유효한 값을 입력해 주십시오.","requiredField":"필수 필드","selectBank":"은행을 선택하십시오.","year":"연도"},"nl-BE":{"birthdate":"Geboortedatum","cardInvalid":"Kaart is ongeldig, controleer de kaartgegevens","cardSecurityCode":"Beveiligingscode creditcard","cardExpired":"Creditcard is verlopen","cardNumber":"Creditcardnummer","cardSecurityCodeInvalid":"Ongeldige code","cardNumberInvalid":"Voer een geldig creditcardnummer in.","cardExpirationMonthInvalid":"Voer een geldige vervalmaand in","cardExpirationYearInvalid":"Voer een geldig vervaljaar in","month":"Maand","noBanksAvailable":"Selecteer een bank of bankennetwerk","noBankSelected":"Selecteer een bank of bankennetwerk","selectBank":"Selecteer uw bank","year":"Jaar"},"nl-NL":{"birthdate":"Geboortedatum","cardInvalid":"Kaart is ongeldig, controleer de kaartgegevens","cardSecurityCode":"Beveiligingscode creditcard","cardExpired":"Creditcard is verlopen","cardNumber":"Creditcardnummer","cardSecurityCodeInvalid":"Ongeldige code","cardNumberInvalid":"Voer een geldig creditcardnummer in.","cardExpirationMonthInvalid":"Voer een geldige vervalmaand in","cardExpirationYearInvalid":"Voer een geldig vervaljaar in","month":"Maand","noBanksAvailable":"Selecteer een bank of bankennetwerk","noBankSelected":"Selecteer een bank of bankennetwerk","selectBank":"Selecteer uw bank","year":"Jaar"},"no-NO":{"birthdate":"Fødselsdato","cardInvalid":"Ugyldig kort, vennligst sjekk opplysningene på kortet","cardSecurityCode":"Kortets sikkerhetskode","cardExpired":"Kortet er allerede utløpt","cardNumber":"Kredittkortnummer","cardSecurityCodeInvalid":"Ugyldig kode","cardNumberInvalid":"Du må oppgi et gyldig kredittkortnummer.","cardExpirationMonthInvalid":"Oppgi gyldig utløpsmåned","cardExpirationYearInvalid":"Oppgi gyldig utløpsår","month":"Måned","noBanksAvailable":"Velg en bank eller et banknettverk","noBankSelected":"Velg en bank eller et banknettverk","selectBank":"Velg din bank","year":"År"},"pl-PL":{"birthdate":"Data urodzenia","cardInvalid":"Karta jest nieprawidłowa, sprawdź dane karty","cardSecurityCode":"Kod bezpieczeństwa karty","cardExpired":"Ważność karty już wygasła","cardNumber":"Numer karty kredytowej","cardSecurityCodeInvalid":"Nieprawidłowy kod","cardNumberInvalid":"Podaj prawidłowy numer karty kredytowej.","cardExpirationMonthInvalid":"Wpisz prawidłowy miesiąc ważności","cardExpirationYearInvalid":"Wpisz prawidłowy rok ważności","month":"Miesiąc","noBanksAvailable":"Wybierz bank lub sieć banków","noBankSelected":"Wybierz bank lub sieć banków","selectBank":"Wybierz swój bank","year":"Rok"},"pt-BR":{"birthdate":"Aniversário","cardInvalid":"O cartão é inválido, verifique os detalhes sobre o cartão","cardSecurityCode":"Código de segurança do cartão","cardExpired":"O cartão expirou","cardNumber":"Número do cartão de crédito","cardSecurityCodeInvalid":"Código inválido","cardNumberInvalid":"Digite um número de cartão de crédito válido.","cardExpirationMonthInvalid":"Inserir o mês de validade","cardExpirationYearInvalid":"Inserir o ano de validade","month":"Mês","noBanksAvailable":"Escolha um banco ou rede bancária","noBankSelected":"Escolha um banco ou rede bancária","selectBank":"Selecione seu banco","year":"Ano"},"pt-PT":{"birthdate":"Data de nascimento","cardInvalid":"Cartão inválido, verifique os detalhes do cartão","cardSecurityCode":"Código de Segurança do Cartão","cardExpired":"O cartão já expirou","cardNumber":"Número do cartão de crédito","cardSecurityCodeInvalid":"Código Inválido","cardNumberInvalid":"Introduza um número de cartão de crédito válido.","cardExpirationMonthInvalid":"Introduza um mês de expiração válido","cardExpirationYearInvalid":"Introduza um ano de expiração válido","month":"Mês","noBanksAvailable":"Escolha um banco ou rede bancária","noBankSelected":"Escolha um banco ou rede bancária","selectBank":"Selecione o seu banco","year":"Ano"},"ru-RU":{"birthdate":"Дата рождения","cardInvalid":"Карта недействительна, проверьте реквизиты платежной карты","cardSecurityCode":"Код безопасности карты","cardExpired":"Срок действия карты истек","cardNumber":"Номер кредитной карты","cardSecurityCodeInvalid":"Неверный индекс","cardNumberInvalid":"Пожалуйста, введите действительный номер кредитной карты.","cardExpirationMonthInvalid":"Введите верный месяц истечения срока действия","cardExpirationYearInvalid":"Введите верный год истечения срока действия","month":"Месяц","noBanksAvailable":"Пожалуйста, выберите банк или банковскую сеть","noBankSelected":"Пожалуйста, выберите банк или банковскую сеть","selectBank":"Пожалуйста, выберите свой банк","year":"Год"},"sk-SK":{"birthdate":"Dátum narodenia","cardInvalid":"Karta je neplatná, skontrolujte údaje karty","cardSecurityCode":"Bezpečnostný kód na karte","cardExpired":"Platnosť karty skončila","cardNumber":"Číslo kreditnej karty","cardSecurityCodeInvalid":"Neplatný kód","cardNumberInvalid":"Uveďte platné číslo kreditnej karty.","cardExpirationMonthInvalid":"Vložte platný dátum exspirácie","cardExpirationYearInvalid":"Vložte platný rok exspirácie","month":"Mesiac","noBanksAvailable":"Zvoľte banku alebo sieť bánk","noBankSelected":"Zvoľte banku alebo sieť bánk","selectBank":"Vyberte banku","year":"Rok"},"sv-SE":{"birthdate":"Födelsedatum","cardInvalid":"Kortet är ogiltigt, kontrollera kortdetaljerna","cardSecurityCode":"Kortets säkerhetskod","cardExpired":"Giltighetstiden för ditt kort har löpt ut","cardNumber":"Kreditkortsnummer","cardSecurityCodeInvalid":"Ogiltig kod","cardNumberInvalid":"Ange ett giltigt kreditkortsnummer.","cardExpirationMonthInvalid":"Ange giltig utgångsmånad","cardExpirationYearInvalid":"Ange giltigt utgångsår","month":"Månad","noBanksAvailable":"Välj en bank eller ett banknätverk","noBankSelected":"Välj en bank eller ett banknätverk","selectBank":"Välj din bank","year":"År"},"th-TH":{"birthdate":"วันเกิด","cardInvalid":"บัตรไม่ถูกต้อง โปรดตรวจสอบรายละเอียดของบัตร","cardSecurityCode":"รหัสความปลอดภัยบนบัตร (Card Security Code) ","cardExpired":"บัตรหมดอายุแล้ว","cardNumber":"หมายเลขบัตรเครดิต","cardSecurityCodeInvalid":"รหัสไม่ถูกต้อง","cardNumberInvalid":"กรุณาใส่หมายเลขบัตรเครดิตที่ถูกต้อง","cardExpirationMonthInvalid":"ใส่เดือนหมดอายุที่ถูกต้อง","cardExpirationYearInvalid":"ใส่ปีหมดอายุที่ถูกต้อง","month":"เดือน ","noBanksAvailable":"กรุณาเลือกธนาคารหรือเครือข่ายธนาคาร","noBankSelected":"กรุณาเลือกธนาคารหรือเครือข่ายธนาคาร","selectBank":"กรุณาเลือกธนาคารของคุณ","year":"ปี "},"tr-TR":{"birthdate":"Doğum Tarihi","cardInvalid":"Kart geçersiz, lütfen kart detaylarını kontrol edin","cardSecurityCode":"Kart Güvenlik Kodu","cardExpired":"Kart süresi dolmuş","cardNumber":"Kredi Kartı Numarası","cardSecurityCodeInvalid":"Geçersiz Kod","cardNumberInvalid":"Lütfen geçerli bir kredi kartı numarası girin.","cardExpirationMonthInvalid":"Geçerli sona erme ayını girin","cardExpirationYearInvalid":"Geçerli sona erme yılını girin","month":"Ay","noBanksAvailable":"Lütfen bir banka veya banka ağı seçin","noBankSelected":"Lütfen bir banka veya banka ağı seçin","selectBank":"Lütfen bankanızı seçin","year":"Yıl"},"zh-CN":{"birthdate":"出生日期","cardInvalid":"卡片无效，请检查卡片详情","cardSecurityCode":"信用卡安全代码","cardExpired":"信用卡已过期","cardNumber":"信用卡号*","cardSecurityCodeInvalid":"无效代码","cardNumberInvalid":"请输入一个有效的信用卡号。","cardExpirationMonthInvalid":"请输入有效的到期月份","cardExpirationYearInvalid":"请输入有效的到期年份","month":"月份","noBanksAvailable":"请选择一家银行或银行网络","noBankSelected":"请选择一家银行或银行网络","selectBank":"请选择您的银行","year":"年份"},"zh-HK":{"birthdate":"出生日期","cardInvalid":"信用咭無效，請檢查信用咭資料","cardSecurityCode":"信用卡安全碼：","cardExpired":"信用卡已過期","cardNumber":"信用卡號碼","cardSecurityCodeInvalid":"無效代碼","cardNumberInvalid":"請輸入有效的信用卡號碼。","cardExpirationMonthInvalid":"輸入有效的到期月份","cardExpirationYearInvalid":"輸入有效的到期年份","month":"月份","noBanksAvailable":"請選擇銀行或銀行網路","noBankSelected":"請選擇銀行或銀行網路","selectBank":"請選擇您的銀行","year":"年"},"zh-TW":{"birthdate":"生日","cardInvalid":"信用卡無效，請確認卡片詳細資料","cardSecurityCode":"信用卡安全碼：","cardExpired":"信用卡已過期","cardNumber":"信用卡號碼","cardSecurityCodeInvalid":"無效代碼","cardNumberInvalid":"請輸入有效的信用卡號碼。","cardExpirationMonthInvalid":"輸入有效的到期月份","cardExpirationYearInvalid":"輸入有效的到期年份","month":"月份","noBanksAvailable":"請選擇銀行或銀行網路","noBankSelected":"請選擇銀行或銀行網路","selectBank":"請選擇您的銀行","year":"年度"}};
 
 /***/ }),
 
@@ -20236,7 +20266,6 @@ var MAX_MOUNT_RETRY = 8;
 
 function handleMountWithMessage(controllerEmitter, message, componentData, handleMountData, handleMount, instanceData, emitComponentReady, retryPosition) {
   if (retryPosition >= MAX_MOUNT_RETRY) {
-    console.log('Max retries');
     return Promise.resolve();
   }
 
@@ -20254,12 +20283,9 @@ function handleMountWithMessage(controllerEmitter, message, componentData, handl
 
     emitComponentReady(componentData);
   }).catch(function (error) {
-    console.log('error mounting!', error);
-    /*if (error.message && error.message.includes('No ack for postMessage')) {
+    if (error.message && error.message.includes('No ack for postMessage')) {
       return handleMountWithMessage(controllerEmitter, message, componentData, handleMountData, handleMount, instanceData, emitComponentReady, ++retryPosition);
-    }*/
-
-    return Promise.reject();
+    }
   });
 }
 /**
@@ -21088,12 +21114,12 @@ var fingerprintOptions = {
 var manifest = {
   'dr3dsecure': '/3dsecure/dr3dsecure.html',
   'controller': '/controller/controller.html',
-  'drBeacon': '/beacon/beacon.html',
+  'td': '/td/td.html',
   'cardnumber': '/cc-number/cc-number.html',
   'cardexpiration': '/cc-expiry/cc-expiry.html',
   'cardcvv': '/cc-cvv/cc-cvv.html',
   'googlepay': '/google-pay/google-pay.html',
-  'koreancard': '/koreanCard/koreancard.html',
+  'koreancard': '/koreancard/koreancard.html',
   'onlinebanking': '/online-banking/online-banking.html'
 };
 var eventNames = ['blur', 'change', 'focus', 'ready', 'click', 'source', 'shippingaddresschange', 'shippingoptionchange', 'cancel'];
@@ -21256,6 +21282,7 @@ function mount(node) {
       }
     }
   } catch (err) {
+    console.log('error', err);
     throw new Error("Failed to mount component '".concat(this.type, "'.")); //eslint-disable-line no-console
   }
 }
@@ -21383,7 +21410,7 @@ function getComponentURL(type, id, controllerId) {
  */
 
 function generateComponentId(type) {
-  if (type === 'drBeacon' || type === 'dr3dsecure') {
+  if (type === 'td' || type === 'dr3dsecure') {
     return type;
   } else {
     return type + '-' + uuid_v4__WEBPACK_IMPORTED_MODULE_0___default()();
@@ -21516,7 +21543,7 @@ function getComponentIFrame(type) {
  */
 
 function createOrExtractBeaconController() {
-  var type = 'drBeacon';
+  var type = 'td';
   var beaconComponent = getComponentIFrame(type);
 
   if (!beaconComponent) {
@@ -21842,7 +21869,7 @@ function createFrame(type, node, src, attributes, elementHeight) {
   var iframeStyle = "height: ".concat(elementHeight, "; width: 100%; margin: 0px; padding: 0px; border: none;");
   var adyenIframeStyle = 'height: 400px; width: 70%; position: absolute; left: 15%;border:none';
 
-  if (type === 'controller' || type === 'drBeacon') {
+  if (type === 'controller' || type === 'td') {
     attributes = Object.assign(attributes, {
       width: '0',
       height: '0',
@@ -22446,18 +22473,18 @@ function _on(name, data, callback) {
 
 /***/ }),
 
-/***/ 12:
+/***/ 11:
 /*!***************************************************************************!*\
-  !*** multi @babel/polyfill ./src/app/components/koreanCard/koreanCard.js ***!
+  !*** multi @babel/polyfill ./src/app/components/koreancard/koreancard.js ***!
   \***************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! @babel/polyfill */"./node_modules/@babel/polyfill/lib/index.js");
-module.exports = __webpack_require__(/*! C:\dev\ui-architecture\digitalriverpayments\src\app\components\koreanCard\koreanCard.js */"./src/app/components/koreanCard/koreanCard.js");
+module.exports = __webpack_require__(/*! C:\dev\ui-architecture\digitalriverpayments\src\app\components\koreancard\koreancard.js */"./src/app/components/koreancard/koreancard.js");
 
 
 /***/ })
 
 /******/ })));
-//# sourceMappingURL=koreanCard.js.map
+//# sourceMappingURL=koreancard.js.map

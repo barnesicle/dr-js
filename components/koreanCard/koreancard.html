@@ -53,10 +53,11 @@
         }
 
         .invalid {
-            border-color: currentColor;
+            border-color: red;
+            color: red;
         }
         .invalid::placeholder {
-            color: currentColor;
+            color: red;
         }
 
         .textInput {
@@ -79,12 +80,14 @@
         }
         @media (max-width: 600px) {
             .base {
+                color: #555555;
                 background-color: #fff;
                 width: 90%;
             }
         }
         @media (min-width: 600px) {
             .base {
+                color: #555555;
                 background-color: #fff;
                 width: 60%;
             }
@@ -166,9 +169,8 @@
                 </span>
 
                 <span class="formgroup" id="birthdateField">
-                    <input type="date" class="textInput" placeholder="Birthdate: Year-Month-Day"
-                           id="birthdate" name="birthdate" aria-label="birthdate"
-                           min="2018-01-01" max="2018-01-10"/>
+                    <input type="text" class="textInput" placeholder="Birthdate: Year-Month-Day"
+                           id="birthdate" name="birthdate" aria-label="birthdate"/>
                     <span class="error" style="display:none"></span>
                 </span>
 
@@ -197,9 +199,20 @@
 
 <script>
     window.onload = function() {
+        var isIE11 = !!window.MSInputMethodContext && !!document.documentMode;
         document.getElementById('close').addEventListener('click', closeOverlay, false);
-
         document.getElementById('personal').addEventListener('change', showFieldsForCardType, false);
+
+        document.getElementById('birthdate').addEventListener('focus', function(event) {
+          if(!isIE11) {
+            event.target.type = 'date'
+          }
+        });
+        document.getElementById('birthdate').addEventListener('blur', function(event) {
+          if ((!event.target.value || event.target.value === '') && !isIE11) {
+            event.target.type = 'text';
+          }
+        });
         document.getElementById('company').addEventListener('change', showFieldsForCardType, false);
         document.getElementById('koreancardinfo').addEventListener('submit', handleFormSubmit, false);
 

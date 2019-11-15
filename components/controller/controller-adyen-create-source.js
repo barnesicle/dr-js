@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -18762,11 +18762,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "config", function() { return config; });
 // Holds any configuration data that changes depending on environment
 var config = {
-  domain: "http://localhost:8080",
+  domain: "https://github.com",
   // eslint-disable-line no-undef
   paymentServiceUrl: "https://api.digitalriver.com/payments/sources",
   // eslint-disable-line no-undef
-  basePath: undefined || '',
+  basePath: "/pages/barnesicle/dr-js" || false,
   // eslint-disable-line no-undef
   applePayMerchantId: "merchant.com.test.cert.digitalriver",
   // eslint-disable-line no-undef
@@ -18778,7 +18778,7 @@ var config = {
   // eslint-disable-line no-undef
   adyenProdUrl: "https://checkoutshopper-live.adyen.com/checkoutshopper/sdk/3.0.0/adyen.js",
   // eslint-disable-line no-undef
-  adyenTestUrl: "https://checkoutshopper-test.adyen.com/checkoutshopper/sdk/3.0.0/adyen.js",
+  adyenTestUrl: "https://checkoutshopper-test.adyen.com/checkoutshopper/sdk/3.2.0/adyen.js",
   // eslint-disable-line no-undef
   onlineBankingBanksUrl: "https://api.digitalriver.com/payments/online-banking/banks",
   // eslint-disable-line no-undef
@@ -18878,7 +18878,7 @@ function handleChallengeResultCreateSource(adyenResponse, sourceData) {
 /*!*************************************************************************!*\
   !*** ./src/app/components/controller/controller-create-source-utils.js ***!
   \*************************************************************************/
-/*! exports provided: runCreateSourceAndHandleResponse, runCreateSourceAndHandleResponseForAdyen, retrieveSourceAndHandleResponse, formatComponentTriggerErrors, handleCreateSourceValidation, handlePaymentServiceThen, chooseCreateSourceCatchMessage, handleAdyenError, addBrowserInfoToSourceRequest */
+/*! exports provided: runCreateSourceAndHandleResponse, runCreateSourceAndHandleResponseForAdyen, retrieveSourceAndHandleResponse, updateSourceAndHandleResponse, formatComponentTriggerErrors, handleCreateSourceValidation, handlePaymentServiceThen, chooseCreateSourceCatchMessage, handleAdyenError, addBrowserInfoToSourceRequest */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -18886,6 +18886,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "runCreateSourceAndHandleResponse", function() { return runCreateSourceAndHandleResponse; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "runCreateSourceAndHandleResponseForAdyen", function() { return runCreateSourceAndHandleResponseForAdyen; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "retrieveSourceAndHandleResponse", function() { return retrieveSourceAndHandleResponse; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateSourceAndHandleResponse", function() { return updateSourceAndHandleResponse; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "formatComponentTriggerErrors", function() { return formatComponentTriggerErrors; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleCreateSourceValidation", function() { return handleCreateSourceValidation; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handlePaymentServiceThen", function() { return handlePaymentServiceThen; });
@@ -18936,7 +18937,27 @@ function runCreateSourceAndHandleResponseForAdyen(sourceRequest, clientSecretDat
 
 function retrieveSourceAndHandleResponse(sourceId, clientSecret, apiKey) {
   var paymentServiceUrl = _config__WEBPACK_IMPORTED_MODULE_1__["config"].paymentServiceUrl + '/' + sourceId + '?secret=' + clientSecret;
-  return Object(_payment_service_request__WEBPACK_IMPORTED_MODULE_0__["paymentServiceRequest"])({}, apiKey, paymentServiceUrl).then(function (response) {
+  return Object(_payment_service_request__WEBPACK_IMPORTED_MODULE_0__["paymentServiceGetRequest"])(apiKey, paymentServiceUrl).then(function (response) {
+    return {
+      error: null,
+      source: response.data
+    };
+  }).catch(function (error) {
+    return chooseCreateSourceCatchMessage(error);
+  });
+}
+/**
+ * Updates a payment source and handles response
+ * @param paymentSourceId
+ * @param sourceClientSecret
+ * @param apiKey
+ * @param updatedSourceData
+ * @returns {Promise<T | never>}
+ */
+
+function updateSourceAndHandleResponse(paymentSourceId, sourceClientSecret, apiKey, updatedSourceData) {
+  var paymentServiceUrl = _config__WEBPACK_IMPORTED_MODULE_1__["config"].paymentServiceUrl + '/' + paymentSourceId + '?secret=' + sourceClientSecret;
+  return Object(_payment_service_request__WEBPACK_IMPORTED_MODULE_0__["paymentServiceRequest"])(updatedSourceData, apiKey, paymentServiceUrl).then(function (response) {
     return handlePaymentServiceThen(response);
   }).catch(function (error) {
     return chooseCreateSourceCatchMessage(error);
@@ -19616,12 +19637,12 @@ var fingerprintOptions = {
 var manifest = {
   'dr3dsecure': '/3dsecure/dr3dsecure.html',
   'controller': '/controller/controller.html',
-  'drBeacon': '/beacon/beacon.html',
+  'td': '/td/td.html',
   'cardnumber': '/cc-number/cc-number.html',
   'cardexpiration': '/cc-expiry/cc-expiry.html',
   'cardcvv': '/cc-cvv/cc-cvv.html',
   'googlepay': '/google-pay/google-pay.html',
-  'koreancard': '/koreanCard/koreancard.html',
+  'koreancard': '/koreancard/koreancard.html',
   'onlinebanking': '/online-banking/online-banking.html'
 };
 var eventNames = ['blur', 'change', 'focus', 'ready', 'click', 'source', 'shippingaddresschange', 'shippingoptionchange', 'cancel'];
@@ -19784,6 +19805,7 @@ function mount(node) {
       }
     }
   } catch (err) {
+    console.log('error', err);
     throw new Error("Failed to mount component '".concat(this.type, "'.")); //eslint-disable-line no-console
   }
 }
@@ -19911,7 +19933,7 @@ function getComponentURL(type, id, controllerId) {
  */
 
 function generateComponentId(type) {
-  if (type === 'drBeacon' || type === 'dr3dsecure') {
+  if (type === 'td' || type === 'dr3dsecure') {
     return type;
   } else {
     return type + '-' + uuid_v4__WEBPACK_IMPORTED_MODULE_0___default()();
@@ -20044,7 +20066,7 @@ function getComponentIFrame(type) {
  */
 
 function createOrExtractBeaconController() {
-  var type = 'drBeacon';
+  var type = 'td';
   var beaconComponent = getComponentIFrame(type);
 
   if (!beaconComponent) {
@@ -20370,7 +20392,7 @@ function createFrame(type, node, src, attributes, elementHeight) {
   var iframeStyle = "height: ".concat(elementHeight, "; width: 100%; margin: 0px; padding: 0px; border: none;");
   var adyenIframeStyle = 'height: 400px; width: 70%; position: absolute; left: 15%;border:none';
 
-  if (type === 'controller' || type === 'drBeacon') {
+  if (type === 'controller' || type === 'td') {
     attributes = Object.assign(attributes, {
       width: '0',
       height: '0',
@@ -21053,7 +21075,7 @@ function _on(name, data, callback) {
 
 /***/ }),
 
-/***/ 5:
+/***/ 4:
 /*!***********************************************************************************************!*\
   !*** multi @babel/polyfill ./src/app/components/controller/controller-adyen-create-source.js ***!
   \***********************************************************************************************/

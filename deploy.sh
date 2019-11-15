@@ -1,3 +1,3 @@
 # Requires cd /c/dev/ui-architecture/drjs-demo 
-# cp  -r ./dist/* .  &&
-cp -r ../digitalriverpayments/dist/ ./ &&  git add . && git commit -m "Commit" && git push barnesicle master
+# 
+cp -r ../digitalriverpayments/dist/ ./ && cp  -r ./dist/* .  && git add . && git commit -m "Commit" && git push barnesicle master
