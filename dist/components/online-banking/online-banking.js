@@ -1,5 +1,4 @@
-var DigitalRiver =
-/******/ (function(modules) { // webpackBootstrap
+(function(e, a) { for(var i in a) e[i] = a[i]; }(window, /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
 /******/
@@ -82,7 +81,7 @@ var DigitalRiver =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 14);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -15180,6 +15179,796 @@ function normalizeMockUrl(url) {
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/index.js!./src/app/components/styles/defaults.css":
+/*!**************************************************************************!*\
+  !*** ./node_modules/css-loader!./src/app/components/styles/defaults.css ***!
+  \**************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "body {\n    margin:0;\n    padding:0;\n    height:100vh;\n}\ninput, select {\n    border:none;\n    background:transparent;\n    width:100%;\n    height:100%;\n}\ninput:focus {\n    outline:none;\n}\n/* transition and delay are necessary for detecting autofill with js to apply custom classes for autofill */\ninput:-webkit-autofill{\n    -webkit-transition: background-color .1s ease-out;\n    /* delay is necessary - otherwise you will get events every time user rolls\n        over a new option.  you may still get multiple events if user rolls over\n        options slower than you have your delay set\n    */\n    -webkit-transition-delay: .5s !important;\n    background-color: transparent !important;\n    background: transparent;\n\n    -webkit-animation: autofill 0s forwards;\n    animation: autofill 0s forwards;\n}\n\n@keyframes autofill {\n    100% {\n        background: transparent;\n        color: inherit;\n    }\n}\n\n@-webkit-keyframes autofill {\n    100% {\n        background: transparent;\n        color: inherit;\n    }\n}\n\n\n\n.custom-select-container {\n    position: relative;\n    box-sizing: border-box;;\n}\n.custom-select-container * {\n    box-sizing: border-box;\n}\n.custom-select-container.is-disabled {\n    opacity: .333;\n}\n.custom-select-opener {\n    /*background-color: #ccc;*/\n    padding: 0.5em;\n    display:flex;\n    flex-direction: row;\n    align-items: center;\n    justify-content: space-between;\n    cursor: pointer;\n    width: 100%;\n    outline-color: transparent;\n}\n.custom-select-opener::after {\n    content:\"\\A\";\n    width: 0;\n    height: 0;\n    border-left: .5em solid transparent;\n    border-right:.5em solid transparent;\n    border-top: .5em solid currentColor;\n    margin: .5em .25em;\n    float: right;\n}\n.custom-select-container select {\n    visibility: hidden;\n    position: absolute;\n    top: 0;\n    left: 0;\n}\n.custom-select-panel {\n    max-height: 0;\n    overflow: hidden;\n    position: absolute;\n    top: 100%;\n    z-index: 1;\n    width: 100%;\n    cursor: pointer;\n}\n.custom-select-container.is-open .custom-select-panel {\n    /*TODO calc max-height based on number of options*/\n    max-height: 200px;\n    overflow-y: auto\n}\n.custom-select-option {\n    padding: 0.5em;\n}\n.custom-select-option.is-selected::after {\n    content: \"\\2714\";\n    padding-left: 0.5em;\n}\n.custom-select-optgroup > .custom-select-option {\n    padding-left: 2em;\n}\n.custom-select-optgroup::before {\n    content: attr(data-label);\n    display: block;\n    padding: 0.5em;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/lib/css-base.js":
+/*!*************************************************!*\
+  !*** ./node_modules/css-loader/lib/css-base.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+// css base code, injected by the css-loader
+module.exports = function(useSourceMap) {
+	var list = [];
+
+	// return the list of modules as css string
+	list.toString = function toString() {
+		return this.map(function (item) {
+			var content = cssWithMappingToString(item, useSourceMap);
+			if(item[2]) {
+				return "@media " + item[2] + "{" + content + "}";
+			} else {
+				return content;
+			}
+		}).join("");
+	};
+
+	// import a list of modules into the list
+	list.i = function(modules, mediaQuery) {
+		if(typeof modules === "string")
+			modules = [[null, modules, ""]];
+		var alreadyImportedModules = {};
+		for(var i = 0; i < this.length; i++) {
+			var id = this[i][0];
+			if(typeof id === "number")
+				alreadyImportedModules[id] = true;
+		}
+		for(i = 0; i < modules.length; i++) {
+			var item = modules[i];
+			// skip already imported module
+			// this implementation is not 100% perfect for weird media query combinations
+			//  when a module is imported multiple times with different media queries.
+			//  I hope this will never occur (Hey this way we have smaller bundles)
+			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
+				if(mediaQuery && !item[2]) {
+					item[2] = mediaQuery;
+				} else if(mediaQuery) {
+					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
+				}
+				list.push(item);
+			}
+		}
+	};
+	return list;
+};
+
+function cssWithMappingToString(item, useSourceMap) {
+	var content = item[1] || '';
+	var cssMapping = item[3];
+	if (!cssMapping) {
+		return content;
+	}
+
+	if (useSourceMap && typeof btoa === 'function') {
+		var sourceMapping = toComment(cssMapping);
+		var sourceURLs = cssMapping.sources.map(function (source) {
+			return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */'
+		});
+
+		return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
+	}
+
+	return [content].join('\n');
+}
+
+// Adapted from convert-source-map (MIT)
+function toComment(sourceMap) {
+	// eslint-disable-next-line no-undef
+	var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
+	var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
+
+	return '/*# ' + data + ' */';
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/custom-event-polyfill/custom-event-polyfill.js":
+/*!*********************************************************************!*\
+  !*** ./node_modules/custom-event-polyfill/custom-event-polyfill.js ***!
+  \*********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// Polyfill for creating CustomEvents on IE9/10/11
+
+// code pulled from:
+// https://github.com/d4tocchini/customevent-polyfill
+// https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent#Polyfill
+
+try {
+    var ce = new window.CustomEvent('test');
+    ce.preventDefault();
+    if (ce.defaultPrevented !== true) {
+        // IE has problems with .preventDefault() on custom events
+        // http://stackoverflow.com/questions/23349191
+        throw new Error('Could not prevent default');
+    }
+} catch(e) {
+  var CustomEvent = function(event, params) {
+    var evt, origPrevent;
+    params = params || {
+      bubbles: false,
+      cancelable: false,
+      detail: undefined
+    };
+
+    evt = document.createEvent("CustomEvent");
+    evt.initCustomEvent(event, params.bubbles, params.cancelable, params.detail);
+    origPrevent = evt.preventDefault;
+    evt.preventDefault = function () {
+      origPrevent.call(this);
+      try {
+        Object.defineProperty(this, 'defaultPrevented', {
+          get: function () {
+            return true;
+          }
+        });
+      } catch(e) {
+        this.defaultPrevented = true;
+      }
+    };
+    return evt;
+  };
+
+  CustomEvent.prototype = window.Event.prototype;
+  window.CustomEvent = CustomEvent; // expose definition to window
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/custom-select/build/index.js":
+/*!***************************************************!*\
+  !*** ./node_modules/custom-select/build/index.js ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }(); /**
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          * custom-select
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          * A lightweight JS script for custom select creation.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          * Needs no dependencies.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          * v0.0.1
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          * (https://github.com/custom-select/custom-select)
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          * Copyright (c) 2016 Gionatan Lombardi & Marco Nucara
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          * MIT License
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          */
+
+exports.default = customSelect;
+
+__webpack_require__(/*! custom-event-polyfill */ "./node_modules/custom-event-polyfill/custom-event-polyfill.js");
+
+var defaultParams = {
+  containerClass: 'custom-select-container',
+  openerClass: 'custom-select-opener',
+  panelClass: 'custom-select-panel',
+  optionClass: 'custom-select-option',
+  optgroupClass: 'custom-select-optgroup',
+  isSelectedClass: 'is-selected',
+  hasFocusClass: 'has-focus',
+  isDisabledClass: 'is-disabled',
+  isOpenClass: 'is-open'
+};
+
+function builder(el, builderParams) {
+  var containerClass = 'customSelect';
+  var isOpen = false;
+  var uId = '';
+  var select = el;
+  var container = void 0;
+  var opener = void 0;
+  var focusedElement = void 0;
+  var selectedElement = void 0;
+  var panel = void 0;
+  var currLabel = void 0;
+
+  var resetSearchTimeout = void 0;
+  var searchKey = '';
+
+  //
+  // Inner Functions
+  //
+
+  // Sets the focused element with the neccessary classes substitutions
+  function setFocusedElement(cstOption) {
+    if (focusedElement) {
+      focusedElement.classList.remove(builderParams.hasFocusClass);
+    }
+    if (typeof cstOption !== 'undefined') {
+      focusedElement = cstOption;
+      focusedElement.classList.add(builderParams.hasFocusClass);
+      // Offset update: checks if the focused element is in the visible part of the panelClass
+      // if not dispatches a custom event
+      if (isOpen) {
+        if (cstOption.offsetTop < cstOption.offsetParent.scrollTop || cstOption.offsetTop > cstOption.offsetParent.scrollTop + cstOption.offsetParent.clientHeight - cstOption.clientHeight) {
+          cstOption.dispatchEvent(new CustomEvent('custom-select:focus-outside-panel', { bubbles: true }));
+        }
+      }
+    } else {
+      focusedElement = undefined;
+    }
+  }
+
+  // Reassigns the focused and selected custom option
+  // Updates the opener text
+  // IMPORTANT: the setSelectedElement function doesn't change the select value!
+  function setSelectedElement(cstOption) {
+    if (selectedElement) {
+      selectedElement.classList.remove(builderParams.isSelectedClass);
+      selectedElement.removeAttribute('id');
+      opener.removeAttribute('aria-activedescendant');
+    }
+    if (typeof cstOption !== 'undefined') {
+      cstOption.classList.add(builderParams.isSelectedClass);
+      cstOption.setAttribute('id', containerClass + '-' + uId + '-selectedOption');
+      opener.setAttribute('aria-activedescendant', containerClass + '-' + uId + '-selectedOption');
+      selectedElement = cstOption;
+      opener.children[0].textContent = selectedElement.customSelectOriginalOption.text;
+    } else {
+      selectedElement = undefined;
+      opener.children[0].textContent = '';
+    }
+    setFocusedElement(cstOption);
+  }
+
+  function setValue(value) {
+    // Gets the option with the provided value
+    var toSelect = select.querySelector('option[value=\'' + value + '\']');
+    // If no option has the provided value get the first
+    if (!toSelect) {
+      var _select$options = _slicedToArray(select.options, 1);
+
+      toSelect = _select$options[0];
+    }
+    // The option with the provided value becomes the selected one
+    // And changes the select current value
+    toSelect.selected = true;
+
+    setSelectedElement(select.options[select.selectedIndex].customSelectCstOption);
+  }
+
+  function moveFocuesedElement(direction) {
+    // Get all the .custom-select-options
+    // Get the index of the current focused one
+    var currentFocusedIndex = [].indexOf.call(select.options, focusedElement.customSelectOriginalOption);
+    // If the next or prev custom option exist
+    // Sets it as the new focused one
+    if (select.options[currentFocusedIndex + direction]) {
+      setFocusedElement(select.options[currentFocusedIndex + direction].customSelectCstOption);
+    }
+  }
+
+  // Open/Close function (toggle)
+  function open(bool) {
+    // Open
+    if (bool || typeof bool === 'undefined') {
+      // If present closes an opened instance of the plugin
+      // Only one at time can be open
+      var openedCustomSelect = document.querySelector('.' + containerClass + '.' + builderParams.isOpenClass);
+      if (openedCustomSelect) {
+        openedCustomSelect.customSelect.open = false;
+      }
+
+      // Opens only the clicked one
+      container.classList.add(builderParams.isOpenClass);
+
+      // aria-expanded update
+      container.classList.add(builderParams.isOpenClass);
+      opener.setAttribute('aria-expanded', 'true');
+
+      // Updates the scrollTop position of the panel in relation with the focused option
+      if (selectedElement) {
+        panel.scrollTop = selectedElement.offsetTop;
+      }
+
+      // Dispatches the custom event open
+      container.dispatchEvent(new CustomEvent('custom-select:open'));
+
+      // Sets the global state
+      isOpen = true;
+
+      // Close
+    } else {
+      // Removes the css classes
+      container.classList.remove(builderParams.isOpenClass);
+
+      // aria-expanded update
+      opener.setAttribute('aria-expanded', 'false');
+
+      // Sets the global state
+      isOpen = false;
+
+      // When closing the panel the focused custom option must be the selected one
+      setFocusedElement(selectedElement);
+
+      // Dispatches the custom event close
+      container.dispatchEvent(new CustomEvent('custom-select:close'));
+    }
+    return isOpen;
+  }
+
+  function clickEvent(e) {
+    // Opener click
+    if (e.target === opener || opener.contains(e.target)) {
+      if (isOpen) {
+        open(false);
+      } else {
+        open();
+      }
+      // Custom Option click
+    } else if (e.target.classList && e.target.classList.contains(builderParams.optionClass) && panel.contains(e.target)) {
+      setSelectedElement(e.target);
+      // Sets the corrisponding select's option to selected updating the select's value too
+      selectedElement.customSelectOriginalOption.selected = true;
+      open(false);
+      // Triggers the native change event of the select
+      select.dispatchEvent(new CustomEvent('change'));
+      // click on label or select (click on label corrispond to select click)
+    } else if (e.target === select) {
+      // if the original select is focusable (for any external reason) let the focus
+      // else trigger the focus on opener
+      if (opener !== document.activeElement && select !== document.activeElement) {
+        opener.focus();
+      }
+      // Click outside the container closes the panel
+    } else if (isOpen && !container.contains(e.target)) {
+      open(false);
+    }
+  }
+
+  function mouseoverEvent(e) {
+    // On mouse move over and options it bacames the focused one
+    if (e.target.classList && e.target.classList.contains(builderParams.optionClass)) {
+      setFocusedElement(e.target);
+    }
+  }
+
+  function keydownEvent(e) {
+    if (!isOpen) {
+      // On "Arrow down", "Arrow up" and "Space" keys opens the panel
+      if (e.keyCode === 40 || e.keyCode === 38 || e.keyCode === 32) {
+        open();
+      }
+    } else {
+      switch (e.keyCode) {
+        case 13:
+        case 32:
+          // On "Enter" or "Space" selects the focused element as the selected one
+          setSelectedElement(focusedElement);
+          // Sets the corrisponding select's option to selected updating the select's value too
+          selectedElement.customSelectOriginalOption.selected = true;
+          // Triggers the native change event of the select
+          select.dispatchEvent(new CustomEvent('change'));
+          open(false);
+          break;
+        case 27:
+          // On "Escape" closes the panel
+          open(false);
+          break;
+
+        case 38:
+          // On "Arrow up" set focus to the prev option if present
+          moveFocuesedElement(-1);
+          break;
+        case 40:
+          // On "Arrow down" set focus to the next option if present
+          moveFocuesedElement(+1);
+          break;
+        default:
+          // search in panel (autocomplete)
+          if (e.keyCode >= 48 && e.keyCode <= 90) {
+            // clear existing reset timeout
+            if (resetSearchTimeout) {
+              clearTimeout(resetSearchTimeout);
+            }
+
+            // reset timeout for empty search key
+            resetSearchTimeout = setTimeout(function () {
+              searchKey = '';
+            }, 1500);
+
+            // update search keyword appending the current key
+            searchKey += String.fromCharCode(e.keyCode);
+
+            // search the element
+            for (var i = 0, l = select.options.length; i < l; i++) {
+              // removed cause not supported by IE:
+              // if (options[i].text.startsWith(searchKey))
+              if (select.options[i].text.toUpperCase().substr(0, searchKey.length) === searchKey) {
+                setFocusedElement(select.options[i].customSelectCstOption);
+                break;
+              }
+            }
+          }
+          break;
+      }
+    }
+  }
+
+  function changeEvent() {
+    var index = select.selectedIndex;
+    var element = index === -1 ? undefined : select.options[index].customSelectCstOption;
+
+    setSelectedElement(element);
+  }
+
+  // When the option is outside the visible part of the opened panel, updates the scrollTop position
+  // This is the default behaviour
+  // To block it the plugin user must
+  // add a "custom-select:focus-outside-panel" eventListener on the panel
+  // with useCapture set to true
+  // and stopPropagation
+  function scrollToFocused(e) {
+    var currPanel = e.currentTarget;
+    var currOption = e.target;
+    // Up
+    if (currOption.offsetTop < currPanel.scrollTop) {
+      currPanel.scrollTop = currOption.offsetTop;
+      // Down
+    } else {
+      currPanel.scrollTop = currOption.offsetTop + currOption.clientHeight - currPanel.clientHeight;
+    }
+  }
+
+  function addEvents() {
+    document.addEventListener('click', clickEvent);
+    panel.addEventListener('mouseover', mouseoverEvent);
+    panel.addEventListener('custom-select:focus-outside-panel', scrollToFocused);
+    select.addEventListener('change', changeEvent);
+    container.addEventListener('keydown', keydownEvent);
+  }
+
+  function removeEvents() {
+    document.removeEventListener('click', clickEvent);
+    panel.removeEventListener('mouseover', mouseoverEvent);
+    panel.removeEventListener('custom-select:focus-outside-panel', scrollToFocused);
+    select.removeEventListener('change', changeEvent);
+    container.removeEventListener('keydown', keydownEvent);
+  }
+
+  function disabled(bool) {
+    if (bool && !select.disabled) {
+      container.classList.add(builderParams.isDisabledClass);
+      select.disabled = true;
+      opener.removeAttribute('tabindex');
+      container.dispatchEvent(new CustomEvent('custom-select:disabled'));
+      removeEvents();
+    } else if (!bool && select.disabled) {
+      container.classList.remove(builderParams.isDisabledClass);
+      select.disabled = false;
+      opener.setAttribute('tabindex', '0');
+      container.dispatchEvent(new CustomEvent('custom-select:enabled'));
+      addEvents();
+    }
+  }
+
+  // Form a given select children DOM tree (options and optgroup),
+  // Creates the corresponding custom HTMLElements list (divs with different classes and attributes)
+  function parseMarkup(children) {
+    var nodeList = children;
+    var cstList = [];
+
+    if (typeof nodeList.length === 'undefined') {
+      throw new TypeError('Invalid Argument');
+    }
+
+    for (var i = 0, li = nodeList.length; i < li; i++) {
+      if (nodeList[i] instanceof HTMLElement && nodeList[i].tagName.toUpperCase() === 'OPTGROUP') {
+        var cstOptgroup = document.createElement('div');
+        cstOptgroup.classList.add(builderParams.optgroupClass);
+        cstOptgroup.setAttribute('data-label', nodeList[i].label);
+
+        // IMPORTANT: Stores in a property of the created custom option group
+        // a hook to the the corrisponding select's option group
+        cstOptgroup.customSelectOriginalOptgroup = nodeList[i];
+
+        // IMPORTANT: Stores in a property of select's option group
+        // a hook to the created custom option group
+        nodeList[i].customSelectCstOptgroup = cstOptgroup;
+
+        var subNodes = parseMarkup(nodeList[i].children);
+        for (var j = 0, lj = subNodes.length; j < lj; j++) {
+          cstOptgroup.appendChild(subNodes[j]);
+        }
+
+        cstList.push(cstOptgroup);
+      } else if (nodeList[i] instanceof HTMLElement && nodeList[i].tagName.toUpperCase() === 'OPTION') {
+        var cstOption = document.createElement('div');
+        cstOption.classList.add(builderParams.optionClass);
+        cstOption.textContent = nodeList[i].text;
+        cstOption.setAttribute('data-value', nodeList[i].value);
+        cstOption.setAttribute('role', 'option');
+
+        // IMPORTANT: Stores in a property of the created custom option
+        // a hook to the the corrisponding select's option
+        cstOption.customSelectOriginalOption = nodeList[i];
+
+        // IMPORTANT: Stores in a property of select's option
+        // a hook to the created custom option
+        nodeList[i].customSelectCstOption = cstOption;
+
+        // If the select's option is selected
+        if (nodeList[i].selected) {
+          setSelectedElement(cstOption);
+        }
+        cstList.push(cstOption);
+      } else {
+        throw new TypeError('Invalid Argument');
+      }
+    }
+    return cstList;
+  }
+
+  function _append(nodePar, appendIntoOriginal, targetPar) {
+    var target = void 0;
+    if (typeof targetPar === 'undefined' || targetPar === select) {
+      target = panel;
+    } else if (targetPar instanceof HTMLElement && targetPar.tagName.toUpperCase() === 'OPTGROUP' && select.contains(targetPar)) {
+      target = targetPar.customSelectCstOptgroup;
+    } else {
+      throw new TypeError('Invalid Argument');
+    }
+
+    // If the node provided is a single HTMLElement it is stored in an array
+    var node = nodePar instanceof HTMLElement ? [nodePar] : nodePar;
+
+    // Injects the options|optgroup in the select
+    if (appendIntoOriginal) {
+      for (var i = 0, l = node.length; i < l; i++) {
+        if (target === panel) {
+          select.appendChild(node[i]);
+        } else {
+          target.customSelectOriginalOptgroup.appendChild(node[i]);
+        }
+      }
+    }
+
+    // The custom markup to append
+    var markupToInsert = parseMarkup(node);
+
+    // Injects the created DOM content in the panel
+    for (var _i = 0, _l = markupToInsert.length; _i < _l; _i++) {
+      target.appendChild(markupToInsert[_i]);
+    }
+
+    return node;
+  }
+
+  function _insertBefore(node, targetPar) {
+    var target = void 0;
+    if (targetPar instanceof HTMLElement && targetPar.tagName.toUpperCase() === 'OPTION' && select.contains(targetPar)) {
+      target = targetPar.customSelectCstOption;
+    } else if (targetPar instanceof HTMLElement && targetPar.tagName.toUpperCase() === 'OPTGROUP' && select.contains(targetPar)) {
+      target = targetPar.customSelectCstOptgroup;
+    } else {
+      throw new TypeError('Invalid Argument');
+    }
+
+    // The custom markup to append
+    var markupToInsert = parseMarkup(node.length ? node : [node]);
+
+    target.parentNode.insertBefore(markupToInsert[0], target);
+
+    // Injects the option or optgroup node in the original select and returns the injected node
+    return targetPar.parentNode.insertBefore(node.length ? node[0] : node, targetPar);
+  }
+
+  function remove(node) {
+    var cstNode = void 0;
+    if (node instanceof HTMLElement && node.tagName.toUpperCase() === 'OPTION' && select.contains(node)) {
+      cstNode = node.customSelectCstOption;
+    } else if (node instanceof HTMLElement && node.tagName.toUpperCase() === 'OPTGROUP' && select.contains(node)) {
+      cstNode = node.customSelectCstOptgroup;
+    } else {
+      throw new TypeError('Invalid Argument');
+    }
+    cstNode.parentNode.removeChild(cstNode);
+    var removedNode = node.parentNode.removeChild(node);
+    changeEvent();
+    return removedNode;
+  }
+
+  function empty() {
+    var removed = [];
+    while (select.children.length) {
+      panel.removeChild(panel.children[0]);
+      removed.push(select.removeChild(select.children[0]));
+    }
+    setSelectedElement();
+    return removed;
+  }
+
+  function destroy() {
+    for (var i = 0, l = select.options.length; i < l; i++) {
+      delete select.options[i].customSelectCstOption;
+    }
+    var optGroup = select.getElementsByTagName('optgroup');
+    for (var _i2 = 0, _l2 = optGroup.length; _i2 < _l2; _i2++) {
+      delete optGroup.customSelectCstOptgroup;
+    }
+
+    removeEvents();
+
+    return container.parentNode.replaceChild(select, container);
+  }
+  //
+  // Custom Select DOM tree creation
+  //
+
+  // Creates the container/wrapper
+  container = document.createElement('div');
+  container.classList.add(builderParams.containerClass, containerClass);
+
+  // Creates the opener
+  opener = document.createElement('span');
+  opener.className = builderParams.openerClass;
+  opener.setAttribute('role', 'combobox');
+  opener.setAttribute('aria-autocomplete', 'list');
+  opener.setAttribute('aria-expanded', 'false');
+  opener.innerHTML = '<span>\n   ' + (select.selectedIndex !== -1 ? select.options[select.selectedIndex].text : '') + '\n   </span>';
+
+  // Creates the panel
+  // and injects the markup of the select inside
+  // with some tag and attributes replacement
+  panel = document.createElement('div');
+  // Create random id
+  var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  for (var i = 0; i < 5; i++) {
+    uId += possible.charAt(Math.floor(Math.random() * possible.length));
+  }
+  panel.id = containerClass + '-' + uId + '-panel';
+  panel.className = builderParams.panelClass;
+  panel.setAttribute('role', 'listbox');
+  opener.setAttribute('aria-owns', panel.id);
+
+  _append(select.children, false);
+
+  // Injects the container in the original DOM position of the select
+  container.appendChild(opener);
+  select.parentNode.replaceChild(container, select);
+  container.appendChild(select);
+  container.appendChild(panel);
+
+  // ARIA labelledby - label
+  if (document.querySelector('label[for="' + select.id + '"]')) {
+    currLabel = document.querySelector('label[for="' + select.id + '"]');
+  } else if (container.parentNode.tagName.toUpperCase() === 'LABEL') {
+    currLabel = container.parentNode;
+  }
+  if (typeof currLabel !== 'undefined') {
+    currLabel.setAttribute('id', containerClass + '-' + uId + '-label');
+    opener.setAttribute('aria-labelledby', containerClass + '-' + uId + '-label');
+  }
+
+  // Event Init
+  if (select.disabled) {
+    container.classList.add(builderParams.isDisabledClass);
+  } else {
+    opener.setAttribute('tabindex', '0');
+    select.setAttribute('tabindex', '-1');
+    addEvents();
+  }
+
+  // Stores the plugin public exposed methods and properties, directly in the container HTMLElement
+  container.customSelect = {
+    get pluginOptions() {
+      return builderParams;
+    },
+    get open() {
+      return isOpen;
+    },
+    set open(bool) {
+      open(bool);
+    },
+    get disabled() {
+      return select.disabled;
+    },
+    set disabled(bool) {
+      disabled(bool);
+    },
+    get value() {
+      return select.value;
+    },
+    set value(val) {
+      setValue(val);
+    },
+    append: function append(node, target) {
+      return _append(node, true, target);
+    },
+    insertBefore: function insertBefore(node, target) {
+      return _insertBefore(node, target);
+    },
+    remove: remove,
+    empty: empty,
+    destroy: destroy,
+    opener: opener,
+    select: select,
+    panel: panel,
+    container: container
+  };
+
+  // Stores the plugin directly in the original select
+  select.customSelect = container.customSelect;
+
+  // Returns the plugin instance, with the public exposed methods and properties
+  return container.customSelect;
+}
+
+function customSelect(element, customParams) {
+  // Overrides the default options with the ones provided by the user
+  var nodeList = [];
+  var selects = [];
+
+  return function init() {
+    // The plugin is called on a single HTMLElement
+    if (element && element instanceof HTMLElement && element.tagName.toUpperCase() === 'SELECT') {
+      nodeList.push(element);
+      // The plugin is called on a selector
+    } else if (element && typeof element === 'string') {
+      var elementsList = document.querySelectorAll(element);
+      for (var i = 0, l = elementsList.length; i < l; ++i) {
+        if (elementsList[i] instanceof HTMLElement && elementsList[i].tagName.toUpperCase() === 'SELECT') {
+          nodeList.push(elementsList[i]);
+        }
+      }
+      // The plugin is called on any HTMLElements list (NodeList, HTMLCollection, Array, etc.)
+    } else if (element && element.length) {
+      for (var _i3 = 0, _l3 = element.length; _i3 < _l3; ++_i3) {
+        if (element[_i3] instanceof HTMLElement && element[_i3].tagName.toUpperCase() === 'SELECT') {
+          nodeList.push(element[_i3]);
+        }
+      }
+    }
+
+    // Launches the plugin over every HTMLElement
+    // And stores every plugin instance
+    for (var _i4 = 0, _l4 = nodeList.length; _i4 < _l4; ++_i4) {
+      selects.push(builder(nodeList[_i4], _extends({}, defaultParams, customParams)));
+    }
+
+    // Returns all plugin instances
+    return selects;
+  }();
+}
+
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
 /***/ "./node_modules/fingerprintjs2/fingerprint2.js":
 /*!*****************************************************!*\
   !*** ./node_modules/fingerprintjs2/fingerprint2.js ***!
@@ -16744,360 +17533,6 @@ var toString = {}.toString;
 
 module.exports = Array.isArray || function (arr) {
   return toString.call(arr) == '[object Array]';
-};
-
-
-/***/ }),
-
-/***/ "./node_modules/parse-full-name/index.js":
-/*!***********************************************!*\
-  !*** ./node_modules/parse-full-name/index.js ***!
-  \***********************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-exports.parseFullName = function parseFullName(
-    nameToParse, partToReturn, fixCase, stopOnError, useLongLists
-) {
-  "use strict";
-
-  var i, j, k, l, m, n, part, comma, titleList, suffixList, prefixList, regex,
-    partToCheck, partFound, partsFoundCount, firstComma, remainingCommas,
-    nameParts = [], nameCommas = [null], partsFound = [],
-    conjunctionList = ['&','and','et','e','of','the','und','y'],
-    parsedName = {
-      title: '', first: '', middle: '', last: '', nick: '', suffix: '', error: []
-    };
-
-  // Validate inputs, or set to defaults
-  partToReturn = partToReturn && ['title','first','middle','last','nick',
-    'suffix','error'].indexOf(partToReturn.toLowerCase()) > -1 ?
-    partToReturn.toLowerCase() : 'all';
-    // 'all' = return object with all parts, others return single part
-  if ( fixCase === false ) fixCase = 0;
-  if ( fixCase === true ) fixCase = 1;
-  fixCase = fixCase !== 'undefined' && ( fixCase === 0 || fixCase === 1 ) ?
-    fixCase : -1; // -1 = fix case only if input is all upper or lowercase
-  if ( stopOnError === true ) stopOnError = 1;
-  stopOnError = stopOnError && stopOnError === 1 ? 1 : 0;
-    // false = output warnings on parse error, but don't stop
-  if ( useLongLists === true ) useLongLists = 1;
-  useLongLists = useLongLists && useLongLists === 1 ? 1 : 0; // 0 = short lists
-
-  // If stopOnError = 1, throw error, otherwise return error messages in array
-  function handleError( errorMessage ) {
-    if ( stopOnError ) {
-      throw 'Error: ' + errorMessage;
-    } else {
-      parsedName.error.push('Error: ' + errorMessage);
-    }
-  }
-
-  // If fixCase = 1, fix case of parsedName parts before returning
-  function fixParsedNameCase ( fixedCaseName, fixCaseNow ) {
-    var forceCaseList = ['e','y','av','af','da','dal','de','del','der','di',
-      'la','le','van','der','den','vel','von','II','III','IV','J.D.','LL.M.',
-      'M.D.','D.O.','D.C.','Ph.D.'];
-    var forceCaseListIndex;
-    var namePartLabels = [];
-    var namePartWords;
-    if (fixCaseNow) {
-      namePartLabels = Object.keys(parsedName)
-        .filter( function(v) { return v !== 'error'; } );
-      for ( i = 0, l = namePartLabels.length; i < l; i++ ) {
-        if ( fixedCaseName[namePartLabels[i]] ) {
-          namePartWords = ( fixedCaseName[namePartLabels[i]] + '' ).split(' ');
-          for ( j = 0, m = namePartWords.length; j < m; j++ ) {
-            forceCaseListIndex = forceCaseList
-              .map( function(v) { return v.toLowerCase(); } )
-              .indexOf(namePartWords[j].toLowerCase());
-            if ( forceCaseListIndex > -1 ) { // Set case of words in forceCaseList
-              namePartWords[j] = forceCaseList[forceCaseListIndex];
-            } else if ( namePartWords[j].length === 1 ) { // Uppercase initials
-              namePartWords[j] = namePartWords[j].toUpperCase();
-            } else if (
-                namePartWords[j].length > 2 &&
-                namePartWords[j].slice(0,1)  ===
-                  namePartWords[j].slice(0,1).toUpperCase() &&
-                namePartWords[j].slice(1,2) ===
-                  namePartWords[j].slice(1,2).toLowerCase() &&
-                namePartWords[j].slice(2) ===
-                  namePartWords[j].slice(2).toUpperCase()
-              ) { // Detect McCASE and convert to McCase
-              namePartWords[j] = namePartWords[j].slice(0,3) +
-                namePartWords[j].slice(3).toLowerCase();
-            } else if (
-                namePartLabels[j] === 'suffix' &&
-                nameParts[j].slice(-1) !== '.' &&
-                !suffixList.indexOf(nameParts[j].toLowerCase())
-              ) { // Convert suffix abbreviations to UPPER CASE
-              if ( namePartWords[j] === namePartWords[j].toLowerCase() ) {
-                namePartWords[j] = namePartWords[j].toUpperCase();
-              }
-            } else { // Convert to Title Case
-              namePartWords[j] = namePartWords[j].slice(0,1).toUpperCase() +
-                namePartWords[j].slice(1).toLowerCase();
-            }
-          }
-          fixedCaseName[namePartLabels[i]] = namePartWords.join(' ');
-        }
-      }
-    }
-    return fixedCaseName;
-  }
-
-  // If no input name, or input name is not a string, abort
-  if ( !nameToParse || typeof nameToParse !== 'string' ) {
-    handleError('No input');
-    parsedName = fixParsedNameCase(parsedName, fixCase);
-    return partToReturn === 'all' ? parsedName : parsedName[partToReturn];
-  }
-
-  // Auto-detect fixCase: fix if nameToParse is all upper or all lowercase
-  if ( fixCase === -1 ) {
-    fixCase = (
-      nameToParse === nameToParse.toUpperCase() ||
-      nameToParse === nameToParse.toLowerCase() ? 1 : 0
-    );
-  }
-
-  // Initilize lists of prefixs, suffixs, and titles to detect
-  // Note: These list entries must be all lowercase
-  if ( useLongLists ) {
-    suffixList = ['esq','esquire','jr','jnr','sr','snr','2','ii','iii','iv',
-      'v','clu','chfc','cfp','md','phd','j.d.','ll.m.','m.d.','d.o.','d.c.',
-      'p.c.','ph.d.'];
-    prefixList = ['a','ab','antune','ap','abu','al','alm','alt','bab','bäck',
-      'bar','bath','bat','beau','beck','ben','berg','bet','bin','bint','birch',
-      'björk','björn','bjur','da','dahl','dal','de','degli','dele','del',
-      'della','der','di','dos','du','e','ek','el','escob','esch','fleisch',
-      'fitz','fors','gott','griff','haj','haug','holm','ibn','kauf','kil',
-      'koop','kvarn','la','le','lind','lönn','lund','mac','mhic','mic','mir',
-      'na','naka','neder','nic','ni','nin','nord','norr','ny','o','ua','ui\'',
-      'öfver','ost','över','öz','papa','pour','quarn','skog','skoog','sten',
-      'stor','ström','söder','ter','ter','tre','türk','van','väst','väster',
-      'vest','von'];
-    titleList = ['mr','mrs','ms','miss','dr','herr','monsieur','hr','frau',
-      'a v m','admiraal','admiral','air cdre','air commodore','air marshal',
-      'air vice marshal','alderman','alhaji','ambassador','baron','barones',
-      'brig','brig gen','brig general','brigadier','brigadier general',
-      'brother','canon','capt','captain','cardinal','cdr','chief','cik','cmdr',
-      'coach','col','col dr','colonel','commandant','commander','commissioner',
-      'commodore','comte','comtessa','congressman','conseiller','consul',
-      'conte','contessa','corporal','councillor','count','countess',
-      'crown prince','crown princess','dame','datin','dato','datuk',
-      'datuk seri','deacon','deaconess','dean','dhr','dipl ing','doctor',
-      'dott','dott sa','dr','dr ing','dra','drs','embajador','embajadora','en',
-      'encik','eng','eur ing','exma sra','exmo sr','f o','father',
-      'first lieutient','first officer','flt lieut','flying officer','fr',
-      'frau','fraulein','fru','gen','generaal','general','governor','graaf',
-      'gravin','group captain','grp capt','h e dr','h h','h m','h r h','hajah',
-      'haji','hajim','her highness','her majesty','herr','high chief',
-      'his highness','his holiness','his majesty','hon','hr','hra','ing','ir',
-      'jonkheer','judge','justice','khun ying','kolonel','lady','lcda','lic',
-      'lieut','lieut cdr','lieut col','lieut gen','lord','m','m l','m r',
-      'madame','mademoiselle','maj gen','major','master','mevrouw','miss',
-      'mlle','mme','monsieur','monsignor','mr','mrs','ms','mstr','nti','pastor',
-      'president','prince','princess','princesse','prinses','prof','prof dr',
-      'prof sir','professor','puan','puan sri','rabbi','rear admiral','rev',
-      'rev canon','rev dr','rev mother','reverend','rva','senator','sergeant',
-      'sheikh','sheikha','sig','sig na','sig ra','sir','sister','sqn ldr','sr',
-      'sr d','sra','srta','sultan','tan sri','tan sri dato','tengku','teuku',
-      'than puying','the hon dr','the hon justice','the hon miss','the hon mr',
-      'the hon mrs','the hon ms','the hon sir','the very rev','toh puan','tun',
-      'vice admiral','viscount','viscountess','wg cdr'];
-  } else {
-    suffixList = ['esq','esquire','jr','jnr','sr','snr','2','ii','iii','iv',
-      'md','phd','j.d.','ll.m.','m.d.','d.o.','d.c.','p.c.','ph.d.'];
-    prefixList = ['ab','bar','bin','da','dal','de','de la','del','della','der',
-      'di','du','ibn','l\'','la','le','san','st','st.','ste','ter','van',
-      'van de','van der','van den','vel','ver','vere','von'];
-    titleList = ['dr','miss','mr','mrs','ms','prof','sir','frau','herr','hr',
-      'monsieur','captain','doctor','judge','officer','professor'];
-  }
-
-  // Nickname: remove and store parts with surrounding punctuation as nicknames
-  regex = /\s(?:[‘’']([^‘’']+)[‘’']|[“”"]([^“”"]+)[“”"]|\[([^\]]+)\]|\(([^\)]+)\)),?\s/g;
-  partFound = (' '+nameToParse+' ').match(regex);
-  if ( partFound ) partsFound = partsFound.concat(partFound);
-  partsFoundCount = partsFound.length;
-  if ( partsFoundCount === 1 ) {
-    parsedName.nick = partsFound[0].slice(2).slice(0,-2);
-    if ( parsedName.nick.slice(-1) === ',' ) {
-      parsedName.nick = parsedName.nick.slice(0,-1);
-    }
-    nameToParse = (' '+nameToParse+' ').replace(partsFound[0], ' ').trim();
-    partsFound = [];
-  } else if ( partsFoundCount > 1 ) {
-    handleError( partsFoundCount + ' nicknames found' );
-    for ( i = 0; i < partsFoundCount; i++ ) {
-      nameToParse = ( ' ' + nameToParse + ' ' )
-        .replace(partsFound[i], ' ').trim();
-      partsFound[i] = partsFound[i].slice(2).slice(0,-2);
-      if ( partsFound[i].slice(-1) === ',' ) {
-        partsFound[i] = partsFound[i].slice(0,-1);
-      }
-    }
-    parsedName.nick = partsFound.join(', ');
-    partsFound = [];
-  }
-  if ( !nameToParse.trim().length ) {
-    parsedName = fixParsedNameCase(parsedName, fixCase);
-    return partToReturn === 'all' ? parsedName : parsedName[partToReturn];
-  }
-
-  // Split remaining nameToParse into parts, remove and store preceding commas
-  for ( i = 0, n = nameToParse.split(' '), l = n.length; i < l; i++ ) {
-    part = n[i];
-    comma = null;
-    if ( part.slice(-1) === ',' ) {
-      comma = ',';
-      part = part.slice(0,-1);
-    }
-    nameParts.push(part);
-    nameCommas.push(comma);
-  }
-
-  // Suffix: remove and store matching parts as suffixes
-  for ( l = nameParts.length, i = l-1; i > 0; i-- ) {
-    partToCheck = (nameParts[i].slice(-1) === '.' ?
-      nameParts[i].slice(0,-1).toLowerCase() : nameParts[i].toLowerCase());
-    if (
-        suffixList.indexOf(partToCheck) > -1 ||
-        suffixList.indexOf(partToCheck+'.') > -1
-      ) {
-      partsFound = nameParts.splice(i,1).concat(partsFound);
-      if ( nameCommas[i] === ',' ) { // Keep comma, either before or after
-        nameCommas.splice(i+1,1);
-      } else {
-        nameCommas.splice(i,1);
-      }
-    }
-  }
-  partsFoundCount = partsFound.length;
-  if ( partsFoundCount === 1 ) {
-    parsedName.suffix = partsFound[0];
-    partsFound = [];
-  } else if ( partsFoundCount > 1 ) {
-    handleError(partsFoundCount + ' suffixes found');
-    parsedName.suffix = partsFound.join(', ');
-    partsFound = [];
-  }
-  if ( !nameParts.length ) {
-    parsedName = fixParsedNameCase(parsedName, fixCase);
-    return partToReturn === 'all' ? parsedName : parsedName[partToReturn];
-  }
-
-  // Title: remove and store matching parts as titles
-  for( l = nameParts.length, i = l-1; i >= 0; i--) {
-    partToCheck = (nameParts[i].slice(-1) === '.' ?
-      nameParts[i].slice(0,-1).toLowerCase() : nameParts[i].toLowerCase());
-    if (
-        titleList.indexOf(partToCheck) > -1 ||
-        titleList.indexOf(partToCheck+'.') > -1
-      ) {
-      partsFound = nameParts.splice(i,1).concat(partsFound);
-      if ( nameCommas[i] === ',' ) { // Keep comma, either before or after
-        nameCommas.splice(i+1,1);
-      } else {
-        nameCommas.splice(i,1);
-      }
-    }
-  }
-  partsFoundCount = partsFound.length;
-  if ( partsFoundCount === 1 ) {
-    parsedName.title = partsFound[0];
-    partsFound = [];
-  } else if ( partsFoundCount > 1 ) {
-    handleError(partsFoundCount + ' titles found');
-    parsedName.title = partsFound.join(', ');
-    partsFound = [];
-  }
-  if ( !nameParts.length ) {
-    parsedName = fixParsedNameCase(parsedName, fixCase);
-    return partToReturn === 'all' ? parsedName : parsedName[partToReturn];
-  }
-
-  // Join name prefixes to following names
-  if ( nameParts.length > 1 ) {
-    for ( i = nameParts.length-2; i >= 0; i-- ) {
-      if ( prefixList.indexOf(nameParts[i].toLowerCase()) > -1 ) {
-        nameParts[i] = nameParts[i] + ' ' + nameParts[i+1];
-        nameParts.splice(i+1,1);
-        nameCommas.splice(i+1,1);
-      }
-    }
-  }
-
-  // Join conjunctions to surrounding names
-  if ( nameParts.length > 2 ) {
-    for ( i = nameParts.length-3; i >= 0; i-- ) {
-      if ( conjunctionList.indexOf(nameParts[i+1].toLowerCase()) > -1 ) {
-        nameParts[i] = nameParts[i] + ' ' + nameParts[i+1] + ' ' + nameParts[i+2];
-        nameParts.splice(i+1,2);
-        nameCommas.splice(i+1,2);
-        i--;
-      }
-    }
-  }
-
-  // Suffix: remove and store items after extra commas as suffixes
-  nameCommas.pop();
-  firstComma = nameCommas.indexOf(',');
-  remainingCommas = nameCommas.filter(function(v) { return v !== null; }).length;
-  if ( firstComma > 1 || remainingCommas > 1 ) {
-    for ( i = nameParts.length-1; i >= 2; i-- ) {
-      if ( nameCommas[i] === ',' ) {
-        partsFound = nameParts.splice(i,1).concat(partsFound);
-        nameCommas.splice(i,1);
-        remainingCommas--;
-      } else {
-        break;
-      }
-    }
-  }
-  if ( partsFound.length ) {
-    if ( parsedName.suffix ) {
-      partsFound = [parsedName.suffix].concat(partsFound);
-    }
-    parsedName.suffix = partsFound.join(', ');
-    partsFound = [];
-  }
-
-  // Last name: remove and store last name
-  if ( remainingCommas > 0 ) {
-    if ( remainingCommas > 1 ) {
-      handleError( (remainingCommas-1) + ' extra commas found' );
-    }
-    // Remove and store all parts before first comma as last name
-    if ( nameCommas.indexOf(',') ) {
-      parsedName.last = nameParts.splice(0,nameCommas.indexOf(',')).join(' ');
-      nameCommas.splice(0,nameCommas.indexOf(','));
-    }
-  } else {
-    // Remove and store last part as last name
-    parsedName.last = nameParts.pop();
-  }
-  if ( !nameParts.length ) {
-    parsedName = fixParsedNameCase(parsedName, fixCase);
-    return partToReturn === 'all' ? parsedName : parsedName[partToReturn];
-  }
-
-  // First name: remove and store first part as first name
-  parsedName.first = nameParts.shift();
-  if ( !nameParts.length ) {
-    parsedName = fixParsedNameCase(parsedName, fixCase);
-    return partToReturn === 'all' ? parsedName : parsedName[partToReturn];
-  }
-
-  // Middle name: store all remaining parts as middle name
-  if ( nameParts.length > 2 ) {
-    handleError(nameParts.length + ' middle names');
-  }
-  parsedName.middle = nameParts.join(' ');
-
-  parsedName = fixParsedNameCase(parsedName, fixCase);
-  return partToReturn === 'all' ? parsedName : parsedName[partToReturn];
 };
 
 
@@ -18940,6 +19375,515 @@ process.umask = function() { return 0; };
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/lib/addStyles.js":
+/*!****************************************************!*\
+  !*** ./node_modules/style-loader/lib/addStyles.js ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+
+var stylesInDom = {};
+
+var	memoize = function (fn) {
+	var memo;
+
+	return function () {
+		if (typeof memo === "undefined") memo = fn.apply(this, arguments);
+		return memo;
+	};
+};
+
+var isOldIE = memoize(function () {
+	// Test for IE <= 9 as proposed by Browserhacks
+	// @see http://browserhacks.com/#hack-e71d8692f65334173fee715c222cb805
+	// Tests for existence of standard globals is to allow style-loader
+	// to operate correctly into non-standard environments
+	// @see https://github.com/webpack-contrib/style-loader/issues/177
+	return window && document && document.all && !window.atob;
+});
+
+var getTarget = function (target, parent) {
+  if (parent){
+    return parent.querySelector(target);
+  }
+  return document.querySelector(target);
+};
+
+var getElement = (function (fn) {
+	var memo = {};
+
+	return function(target, parent) {
+                // If passing function in options, then use it for resolve "head" element.
+                // Useful for Shadow Root style i.e
+                // {
+                //   insertInto: function () { return document.querySelector("#foo").shadowRoot }
+                // }
+                if (typeof target === 'function') {
+                        return target();
+                }
+                if (typeof memo[target] === "undefined") {
+			var styleTarget = getTarget.call(this, target, parent);
+			// Special case to return head of iframe instead of iframe itself
+			if (window.HTMLIFrameElement && styleTarget instanceof window.HTMLIFrameElement) {
+				try {
+					// This will throw an exception if access to iframe is blocked
+					// due to cross-origin restrictions
+					styleTarget = styleTarget.contentDocument.head;
+				} catch(e) {
+					styleTarget = null;
+				}
+			}
+			memo[target] = styleTarget;
+		}
+		return memo[target]
+	};
+})();
+
+var singleton = null;
+var	singletonCounter = 0;
+var	stylesInsertedAtTop = [];
+
+var	fixUrls = __webpack_require__(/*! ./urls */ "./node_modules/style-loader/lib/urls.js");
+
+module.exports = function(list, options) {
+	if (typeof DEBUG !== "undefined" && DEBUG) {
+		if (typeof document !== "object") throw new Error("The style-loader cannot be used in a non-browser environment");
+	}
+
+	options = options || {};
+
+	options.attrs = typeof options.attrs === "object" ? options.attrs : {};
+
+	// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
+	// tags it will allow on a page
+	if (!options.singleton && typeof options.singleton !== "boolean") options.singleton = isOldIE();
+
+	// By default, add <style> tags to the <head> element
+        if (!options.insertInto) options.insertInto = "head";
+
+	// By default, add <style> tags to the bottom of the target
+	if (!options.insertAt) options.insertAt = "bottom";
+
+	var styles = listToStyles(list, options);
+
+	addStylesToDom(styles, options);
+
+	return function update (newList) {
+		var mayRemove = [];
+
+		for (var i = 0; i < styles.length; i++) {
+			var item = styles[i];
+			var domStyle = stylesInDom[item.id];
+
+			domStyle.refs--;
+			mayRemove.push(domStyle);
+		}
+
+		if(newList) {
+			var newStyles = listToStyles(newList, options);
+			addStylesToDom(newStyles, options);
+		}
+
+		for (var i = 0; i < mayRemove.length; i++) {
+			var domStyle = mayRemove[i];
+
+			if(domStyle.refs === 0) {
+				for (var j = 0; j < domStyle.parts.length; j++) domStyle.parts[j]();
+
+				delete stylesInDom[domStyle.id];
+			}
+		}
+	};
+};
+
+function addStylesToDom (styles, options) {
+	for (var i = 0; i < styles.length; i++) {
+		var item = styles[i];
+		var domStyle = stylesInDom[item.id];
+
+		if(domStyle) {
+			domStyle.refs++;
+
+			for(var j = 0; j < domStyle.parts.length; j++) {
+				domStyle.parts[j](item.parts[j]);
+			}
+
+			for(; j < item.parts.length; j++) {
+				domStyle.parts.push(addStyle(item.parts[j], options));
+			}
+		} else {
+			var parts = [];
+
+			for(var j = 0; j < item.parts.length; j++) {
+				parts.push(addStyle(item.parts[j], options));
+			}
+
+			stylesInDom[item.id] = {id: item.id, refs: 1, parts: parts};
+		}
+	}
+}
+
+function listToStyles (list, options) {
+	var styles = [];
+	var newStyles = {};
+
+	for (var i = 0; i < list.length; i++) {
+		var item = list[i];
+		var id = options.base ? item[0] + options.base : item[0];
+		var css = item[1];
+		var media = item[2];
+		var sourceMap = item[3];
+		var part = {css: css, media: media, sourceMap: sourceMap};
+
+		if(!newStyles[id]) styles.push(newStyles[id] = {id: id, parts: [part]});
+		else newStyles[id].parts.push(part);
+	}
+
+	return styles;
+}
+
+function insertStyleElement (options, style) {
+	var target = getElement(options.insertInto)
+
+	if (!target) {
+		throw new Error("Couldn't find a style target. This probably means that the value for the 'insertInto' parameter is invalid.");
+	}
+
+	var lastStyleElementInsertedAtTop = stylesInsertedAtTop[stylesInsertedAtTop.length - 1];
+
+	if (options.insertAt === "top") {
+		if (!lastStyleElementInsertedAtTop) {
+			target.insertBefore(style, target.firstChild);
+		} else if (lastStyleElementInsertedAtTop.nextSibling) {
+			target.insertBefore(style, lastStyleElementInsertedAtTop.nextSibling);
+		} else {
+			target.appendChild(style);
+		}
+		stylesInsertedAtTop.push(style);
+	} else if (options.insertAt === "bottom") {
+		target.appendChild(style);
+	} else if (typeof options.insertAt === "object" && options.insertAt.before) {
+		var nextSibling = getElement(options.insertAt.before, target);
+		target.insertBefore(style, nextSibling);
+	} else {
+		throw new Error("[Style Loader]\n\n Invalid value for parameter 'insertAt' ('options.insertAt') found.\n Must be 'top', 'bottom', or Object.\n (https://github.com/webpack-contrib/style-loader#insertat)\n");
+	}
+}
+
+function removeStyleElement (style) {
+	if (style.parentNode === null) return false;
+	style.parentNode.removeChild(style);
+
+	var idx = stylesInsertedAtTop.indexOf(style);
+	if(idx >= 0) {
+		stylesInsertedAtTop.splice(idx, 1);
+	}
+}
+
+function createStyleElement (options) {
+	var style = document.createElement("style");
+
+	if(options.attrs.type === undefined) {
+		options.attrs.type = "text/css";
+	}
+
+	if(options.attrs.nonce === undefined) {
+		var nonce = getNonce();
+		if (nonce) {
+			options.attrs.nonce = nonce;
+		}
+	}
+
+	addAttrs(style, options.attrs);
+	insertStyleElement(options, style);
+
+	return style;
+}
+
+function createLinkElement (options) {
+	var link = document.createElement("link");
+
+	if(options.attrs.type === undefined) {
+		options.attrs.type = "text/css";
+	}
+	options.attrs.rel = "stylesheet";
+
+	addAttrs(link, options.attrs);
+	insertStyleElement(options, link);
+
+	return link;
+}
+
+function addAttrs (el, attrs) {
+	Object.keys(attrs).forEach(function (key) {
+		el.setAttribute(key, attrs[key]);
+	});
+}
+
+function getNonce() {
+	if (false) {}
+
+	return __webpack_require__.nc;
+}
+
+function addStyle (obj, options) {
+	var style, update, remove, result;
+
+	// If a transform function was defined, run it on the css
+	if (options.transform && obj.css) {
+	    result = typeof options.transform === 'function'
+		 ? options.transform(obj.css) 
+		 : options.transform.default(obj.css);
+
+	    if (result) {
+	    	// If transform returns a value, use that instead of the original css.
+	    	// This allows running runtime transformations on the css.
+	    	obj.css = result;
+	    } else {
+	    	// If the transform function returns a falsy value, don't add this css.
+	    	// This allows conditional loading of css
+	    	return function() {
+	    		// noop
+	    	};
+	    }
+	}
+
+	if (options.singleton) {
+		var styleIndex = singletonCounter++;
+
+		style = singleton || (singleton = createStyleElement(options));
+
+		update = applyToSingletonTag.bind(null, style, styleIndex, false);
+		remove = applyToSingletonTag.bind(null, style, styleIndex, true);
+
+	} else if (
+		obj.sourceMap &&
+		typeof URL === "function" &&
+		typeof URL.createObjectURL === "function" &&
+		typeof URL.revokeObjectURL === "function" &&
+		typeof Blob === "function" &&
+		typeof btoa === "function"
+	) {
+		style = createLinkElement(options);
+		update = updateLink.bind(null, style, options);
+		remove = function () {
+			removeStyleElement(style);
+
+			if(style.href) URL.revokeObjectURL(style.href);
+		};
+	} else {
+		style = createStyleElement(options);
+		update = applyToTag.bind(null, style);
+		remove = function () {
+			removeStyleElement(style);
+		};
+	}
+
+	update(obj);
+
+	return function updateStyle (newObj) {
+		if (newObj) {
+			if (
+				newObj.css === obj.css &&
+				newObj.media === obj.media &&
+				newObj.sourceMap === obj.sourceMap
+			) {
+				return;
+			}
+
+			update(obj = newObj);
+		} else {
+			remove();
+		}
+	};
+}
+
+var replaceText = (function () {
+	var textStore = [];
+
+	return function (index, replacement) {
+		textStore[index] = replacement;
+
+		return textStore.filter(Boolean).join('\n');
+	};
+})();
+
+function applyToSingletonTag (style, index, remove, obj) {
+	var css = remove ? "" : obj.css;
+
+	if (style.styleSheet) {
+		style.styleSheet.cssText = replaceText(index, css);
+	} else {
+		var cssNode = document.createTextNode(css);
+		var childNodes = style.childNodes;
+
+		if (childNodes[index]) style.removeChild(childNodes[index]);
+
+		if (childNodes.length) {
+			style.insertBefore(cssNode, childNodes[index]);
+		} else {
+			style.appendChild(cssNode);
+		}
+	}
+}
+
+function applyToTag (style, obj) {
+	var css = obj.css;
+	var media = obj.media;
+
+	if(media) {
+		style.setAttribute("media", media)
+	}
+
+	if(style.styleSheet) {
+		style.styleSheet.cssText = css;
+	} else {
+		while(style.firstChild) {
+			style.removeChild(style.firstChild);
+		}
+
+		style.appendChild(document.createTextNode(css));
+	}
+}
+
+function updateLink (link, options, obj) {
+	var css = obj.css;
+	var sourceMap = obj.sourceMap;
+
+	/*
+		If convertToAbsoluteUrls isn't defined, but sourcemaps are enabled
+		and there is no publicPath defined then lets turn convertToAbsoluteUrls
+		on by default.  Otherwise default to the convertToAbsoluteUrls option
+		directly
+	*/
+	var autoFixUrls = options.convertToAbsoluteUrls === undefined && sourceMap;
+
+	if (options.convertToAbsoluteUrls || autoFixUrls) {
+		css = fixUrls(css);
+	}
+
+	if (sourceMap) {
+		// http://stackoverflow.com/a/26603875
+		css += "\n/*# sourceMappingURL=data:application/json;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + " */";
+	}
+
+	var blob = new Blob([css], { type: "text/css" });
+
+	var oldSrc = link.href;
+
+	link.href = URL.createObjectURL(blob);
+
+	if(oldSrc) URL.revokeObjectURL(oldSrc);
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/lib/urls.js":
+/*!***********************************************!*\
+  !*** ./node_modules/style-loader/lib/urls.js ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+
+/**
+ * When source maps are enabled, `style-loader` uses a link element with a data-uri to
+ * embed the css on the page. This breaks all relative urls because now they are relative to a
+ * bundle instead of the current page.
+ *
+ * One solution is to only use full urls, but that may be impossible.
+ *
+ * Instead, this function "fixes" the relative urls to be absolute according to the current page location.
+ *
+ * A rudimentary test suite is located at `test/fixUrls.js` and can be run via the `npm test` command.
+ *
+ */
+
+module.exports = function (css) {
+  // get current location
+  var location = typeof window !== "undefined" && window.location;
+
+  if (!location) {
+    throw new Error("fixUrls requires window.location");
+  }
+
+	// blank or null?
+	if (!css || typeof css !== "string") {
+	  return css;
+  }
+
+  var baseUrl = location.protocol + "//" + location.host;
+  var currentDir = baseUrl + location.pathname.replace(/\/[^\/]*$/, "/");
+
+	// convert each url(...)
+	/*
+	This regular expression is just a way to recursively match brackets within
+	a string.
+
+	 /url\s*\(  = Match on the word "url" with any whitespace after it and then a parens
+	   (  = Start a capturing group
+	     (?:  = Start a non-capturing group
+	         [^)(]  = Match anything that isn't a parentheses
+	         |  = OR
+	         \(  = Match a start parentheses
+	             (?:  = Start another non-capturing groups
+	                 [^)(]+  = Match anything that isn't a parentheses
+	                 |  = OR
+	                 \(  = Match a start parentheses
+	                     [^)(]*  = Match anything that isn't a parentheses
+	                 \)  = Match a end parentheses
+	             )  = End Group
+              *\) = Match anything and then a close parens
+          )  = Close non-capturing group
+          *  = Match anything
+       )  = Close capturing group
+	 \)  = Match a close parens
+
+	 /gi  = Get all matches, not the first.  Be case insensitive.
+	 */
+	var fixedCss = css.replace(/url\s*\(((?:[^)(]|\((?:[^)(]+|\([^)(]*\))*\))*)\)/gi, function(fullMatch, origUrl) {
+		// strip quotes (if they exist)
+		var unquotedOrigUrl = origUrl
+			.trim()
+			.replace(/^"(.*)"$/, function(o, $1){ return $1; })
+			.replace(/^'(.*)'$/, function(o, $1){ return $1; });
+
+		// already a full url? no change
+		if (/^(#|data:|http:\/\/|https:\/\/|file:\/\/\/|\s*$)/i.test(unquotedOrigUrl)) {
+		  return fullMatch;
+		}
+
+		// convert the url to a full url
+		var newUrl;
+
+		if (unquotedOrigUrl.indexOf("//") === 0) {
+		  	//TODO: should we add protocol?
+			newUrl = unquotedOrigUrl;
+		} else if (unquotedOrigUrl.indexOf("/") === 0) {
+			// path should be relative to the base url
+			newUrl = baseUrl + unquotedOrigUrl; // already starts with '/'
+		} else {
+			// path should be relative to current directory
+			newUrl = currentDir + unquotedOrigUrl.replace(/^\.\//, ""); // Strip leading './'
+		}
+
+		// send back the fixed url(...)
+		return "url(" + JSON.stringify(newUrl) + ")";
+	});
+
+	// send back the fixed css
+	return fixedCss;
+};
+
+
+/***/ }),
+
 /***/ "./node_modules/uuid/lib/bytesToUuid.js":
 /*!**********************************************!*\
   !*** ./node_modules/uuid/lib/bytesToUuid.js ***!
@@ -19125,21 +20069,21 @@ var config = {
   // eslint-disable-line no-undef
   applePayMerchantId: "merchant.com.test.cert.digitalriver",
   // eslint-disable-line no-undef
-  applePayMerchantValidationUrl: Object({"PAYMENT_API_URL":"https://api.digitalriver.com/payments/sources","DOMAIN":"https://github.com","BASE_PATH":"/pages/barnesicle/dr-js","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).APPLEPAY_MERCHANT_VALIDATION_URL,
+  applePayMerchantValidationUrl: "https://api.digitalriver.com/payments/apple-pay/session",
   //eslint-disable-line no-undef
-  beaconStorageUrlNonProd: Object({"PAYMENT_API_URL":"https://api.digitalriver.com/payments/sources","DOMAIN":"https://github.com","BASE_PATH":"/pages/barnesicle/dr-js","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).BEACON_STORAGE_URL_NON_PROD,
+  beaconStorageUrlNonProd: "https://beacon-test.driv-analytics.com/capture",
   // eslint-disable-line no-undef
-  beaconStorageUrlProd: Object({"PAYMENT_API_URL":"https://api.digitalriver.com/payments/sources","DOMAIN":"https://github.com","BASE_PATH":"/pages/barnesicle/dr-js","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).BEACON_STORAGE_URL_PROD,
+  beaconStorageUrlProd: "https://beacon.driv-analytics.com/capture",
   // eslint-disable-line no-undef
-  adyenProdUrl: Object({"PAYMENT_API_URL":"https://api.digitalriver.com/payments/sources","DOMAIN":"https://github.com","BASE_PATH":"/pages/barnesicle/dr-js","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).ADYEN_PROD_URL,
+  adyenProdUrl: "https://checkoutshopper-live.adyen.com/checkoutshopper/sdk/3.0.0/adyen.js",
   // eslint-disable-line no-undef
-  adyenTestUrl: Object({"PAYMENT_API_URL":"https://api.digitalriver.com/payments/sources","DOMAIN":"https://github.com","BASE_PATH":"/pages/barnesicle/dr-js","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).ADYEN_TEST_URL,
+  adyenTestUrl: "https://checkoutshopper-test.adyen.com/checkoutshopper/sdk/3.2.0/adyen.js",
   // eslint-disable-line no-undef
-  onlineBankingBanksUrl: Object({"PAYMENT_API_URL":"https://api.digitalriver.com/payments/sources","DOMAIN":"https://github.com","BASE_PATH":"/pages/barnesicle/dr-js","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).ONLINE_BANKING_BANKS_URL,
+  onlineBankingBanksUrl: "https://api.digitalriver.com/payments/online-banking/banks",
   // eslint-disable-line no-undef
-  originProdKey: Object({"PAYMENT_API_URL":"https://api.digitalriver.com/payments/sources","DOMAIN":"https://github.com","BASE_PATH":"/pages/barnesicle/dr-js","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).ADYEN_PROD_ORIGIN_KEY,
+  originProdKey: "pub.v2.8115061157590058.aHR0cDovL2xvY2FsaG9zdDo4MDgw.FF9fc99f70OC7jS9Ngmqj8z1H_cmKZMXQo_r0cnPAOg",
   // eslint-disable-line no-undef
-  originTestKey: Object({"PAYMENT_API_URL":"https://api.digitalriver.com/payments/sources","DOMAIN":"https://github.com","BASE_PATH":"/pages/barnesicle/dr-js","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).ADYEN_TEST_ORIGIN_KEY // eslint-disable-line no-undef
+  originTestKey: "pub.v2.8115061157590058.aHR0cDovL2xvY2FsaG9zdDo4MDgw.FF9fc99f70OC7jS9Ngmqj8z1H_cmKZMXQo_r0cnPAOg" // eslint-disable-line no-undef
 
 };
 
@@ -19459,39 +20403,6 @@ function formatFailedSourceError(source) {
 
 /***/ }),
 
-/***/ "./src/app/components/create-initial-data.js":
-/*!***************************************************!*\
-  !*** ./src/app/components/create-initial-data.js ***!
-  \***************************************************/
-/*! exports provided: generateInstanceData */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "generateInstanceData", function() { return generateInstanceData; });
-/**
- * generateInstanceData assembles arguments into an object which it returns
- * @param controllerEmitter
- * @param {object} componentData
- * @param {Function} getPaymentOptions
- * @param {Function} getElement
- * @param {Function} setOptions
- * @param {Array<object>} supportedInstruments
- * @returns {{getElement: Function, supportedInstruments: Array<object>, componentData: object, setOptions: Function, getPaymentOptions: Function, controllerEmitter: *}}
- */
-function generateInstanceData(controllerEmitter, componentData, getPaymentOptions, getElement, setOptions, supportedInstruments) {
-  return {
-    controllerEmitter: controllerEmitter,
-    componentData: componentData,
-    getPaymentOptions: getPaymentOptions,
-    getElement: getElement,
-    setOptions: setOptions,
-    supportedInstruments: supportedInstruments
-  };
-}
-
-/***/ }),
-
 /***/ "./src/app/components/credit-card-type.js":
 /*!************************************************!*\
   !*** ./src/app/components/credit-card-type.js ***!
@@ -19770,74 +20681,6 @@ function createEvent(type) {
     event.initEvent(type, true, true);
     return event;
   }
-}
-
-/***/ }),
-
-/***/ "./src/app/components/google-apple-pay-events.js":
-/*!*******************************************************!*\
-  !*** ./src/app/components/google-apple-pay-events.js ***!
-  \*******************************************************/
-/*! exports provided: sendCreateSourceRequest */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sendCreateSourceRequest", function() { return sendCreateSourceRequest; });
-/* harmony import */ var _input_events__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./input-events */ "./src/app/components/input-events.js");
-/* harmony import */ var _client_createComponent__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../client/createComponent */ "./src/client/createComponent.js");
-
-
-/**
- * Returns true when error is a network error
- * @param {object} response
- * @returns {boolean}
- */
-
-function isNetworkError(response) {
-  return response.data.error && response.data.error.message === 'Network Error';
-}
-/**
- * Sends a create source request and returns response
- * @param controllerEmitter
- * @param {object} componentData
- * @param {object} responseData
- * @param {object} paymentServiceSourceData
- * @param {function} toClientSourceEventData - function that will convert data to data contract for client
- * @param {function} complete - function that will complete the transaction acceptance
- */
-
-
-function sendCreateSourceRequest(controllerEmitter, componentData, responseData, paymentServiceSourceData, toClientSourceEventData, complete) {
-  controllerEmitter.send('createSourceFromRequest', {
-    componentId: componentData.componentId,
-    componentType: componentData.componentType,
-    sourceRequest: paymentServiceSourceData,
-    type: componentData.componentType
-  }).then(function (response) {
-    var result = toClientSourceEventData(responseData, response.data, complete);
-    Object(_input_events__WEBPACK_IMPORTED_MODULE_0__["sendEventData"])(componentData.controller, componentData.componentId, componentData.componentType, 'source', result);
-
-    if (isNetworkError(response)) {
-      complete('failure');
-    }
-
-    if (typeof response != 'undefined' && response.data != null && response.data.source != null && response.data.source.id != null) {
-      Object(_client_createComponent__WEBPACK_IMPORTED_MODULE_1__["sendBeaconEventDetails"])('td', 'source', response.data.source.id);
-    }
-  }).catch(function (errorResponse) {
-    var error = {
-      data: {
-        error: {
-          message: errorResponse.message
-        },
-        source: null
-      }
-    };
-    var result = toClientSourceEventData(responseData, error.data, complete);
-    Object(_input_events__WEBPACK_IMPORTED_MODULE_0__["sendEventData"])(componentData.controller, componentData.componentId, componentData.componentType, 'source', result);
-    complete('failure');
-  });
 }
 
 /***/ }),
@@ -20194,6 +21037,297 @@ module.exports = {"ar-EG":{"birthdate":"تاريخ الميلاد","cardInvalid"
 
 /***/ }),
 
+/***/ "./src/app/components/online-banking/online-banking.html":
+/*!***************************************************************!*\
+  !*** ./src/app/components/online-banking/online-banking.html ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "online-banking\\online-banking.html";
+
+/***/ }),
+
+/***/ "./src/app/components/online-banking/online-banking.js":
+/*!*************************************************************!*\
+  !*** ./src/app/components/online-banking/online-banking.js ***!
+  \*************************************************************/
+/*! exports provided: getElement, getFocusElement, handleOptions, addInstanceOptions, customizeSelect, resizeIframe, handleBlur, handleFocus, handleChange, handleAutofill, emitComponentReady, addInputHtmlToDom, inputHtml */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getElement", function() { return getElement; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getFocusElement", function() { return getFocusElement; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleOptions", function() { return handleOptions; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addInstanceOptions", function() { return addInstanceOptions; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "customizeSelect", function() { return customizeSelect; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "resizeIframe", function() { return resizeIframe; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleBlur", function() { return handleBlur; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleFocus", function() { return handleFocus; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleChange", function() { return handleChange; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleAutofill", function() { return handleAutofill; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "emitComponentReady", function() { return emitComponentReady; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addInputHtmlToDom", function() { return addInputHtmlToDom; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "inputHtml", function() { return inputHtml; });
+/* harmony import */ var _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../post-robot-wrapper */ "./src/post-robot-wrapper.js");
+/* harmony import */ var _online_banking_html__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./online-banking.html */ "./src/app/components/online-banking/online-banking.html");
+/* harmony import */ var _online_banking_html__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_online_banking_html__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _styles_defaults_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../styles/defaults.css */ "./src/app/components/styles/defaults.css");
+/* harmony import */ var _styles_defaults_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_styles_defaults_css__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _input_events__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../input-events */ "./src/app/components/input-events.js");
+/* harmony import */ var _options__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../options */ "./src/app/components/options.js");
+/* harmony import */ var _querystring__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../querystring */ "./src/app/components/querystring.js");
+/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../config */ "./src/app/components/config.js");
+/* harmony import */ var _payment_events__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../payment-events */ "./src/app/components/payment-events.js");
+/* harmony import */ var _payment_component_data__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../payment-component-data */ "./src/app/components/payment-component-data.js");
+/* harmony import */ var _client_css_class_utils__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../client/css-class-utils */ "./src/client/css-class-utils.js");
+/* harmony import */ var _localization_localizated_messages__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../localization/localizated-messages */ "./src/app/components/localization/localizated-messages.js");
+/* harmony import */ var custom_select__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! custom-select */ "./node_modules/custom-select/build/index.js");
+/* harmony import */ var custom_select__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(custom_select__WEBPACK_IMPORTED_MODULE_11__);
+
+
+
+
+
+
+
+
+
+
+
+
+var COMPONENT_TYPE = 'onlinebanking';
+var bankSelect;
+var componentData = Object(_payment_component_data__WEBPACK_IMPORTED_MODULE_8__["generateComponentData"])(COMPONENT_TYPE, Object(_querystring__WEBPACK_IMPORTED_MODULE_5__["getComponentIdFromQueryString"])(COMPONENT_TYPE), Object(_querystring__WEBPACK_IMPORTED_MODULE_5__["getControllerIdFromQueryString"])());
+var defaultOptions = {
+  placeholderText: Object(_localization_localizated_messages__WEBPACK_IMPORTED_MODULE_10__["getLocaleMessage"])('en-US', 'selectBank')
+};
+var controllerListener = _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_0__["default"].listener({
+  window: componentData.controller.window,
+  domain: _config__WEBPACK_IMPORTED_MODULE_6__["config"].domain
+});
+var controllerEmitter = _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_0__["default"].client({
+  window: componentData.controller.window,
+  domain: _config__WEBPACK_IMPORTED_MODULE_6__["config"].domain
+});
+var triggerData = {
+  componentData: componentData,
+  getElement: getElement,
+  getFocusElement: getFocusElement
+};
+Object(_payment_events__WEBPACK_IMPORTED_MODULE_7__["mountComponent"])(controllerEmitter, componentData, handleOptions, emitComponentReady);
+Object(_payment_events__WEBPACK_IMPORTED_MODULE_7__["addHandleOptions"])(controllerListener, handleOptions);
+Object(_payment_events__WEBPACK_IMPORTED_MODULE_7__["addGetComponentData"])(controllerListener, getElement);
+Object(_payment_events__WEBPACK_IMPORTED_MODULE_7__["addTriggerEvent"])(controllerListener, _input_events__WEBPACK_IMPORTED_MODULE_3__["runEventOnElement"], triggerData);
+/**
+ * getElement returns the online banking dom element
+ * @returns {HTMLElement}
+ */
+
+function getElement() {
+  return document.getElementById('online-banking');
+}
+/**
+ * getFocusElement returns the online banking dom element for focus
+ * @returns {HTMLElement}
+ */
+
+function getFocusElement() {
+  return bankSelect.opener;
+}
+
+function loadSelectFromBanksData(banks, placeholderText, locale) {
+  // first set defaults
+  var selectedPlaceholderText = defaultOptions.placeholderText; // TODO: we need to get better translations for 'noBanksAvailable' message in the messages.json file.
+  //  English should be 'No Banks Available'
+
+  var noBanksAvailableText = Object(_localization_localizated_messages__WEBPACK_IMPORTED_MODULE_10__["getLocaleMessage"])('en-US', 'noBanksAvailable'); // then look for locale overrides
+
+  if (typeof locale !== 'undefined' && locale !== null) {
+    if (typeof Object(_localization_localizated_messages__WEBPACK_IMPORTED_MODULE_10__["getLocaleMessage"])(locale, 'selectBank') !== 'undefined') {
+      selectedPlaceholderText = Object(_localization_localizated_messages__WEBPACK_IMPORTED_MODULE_10__["getLocaleMessage"])(locale, 'selectBank');
+    }
+
+    if (typeof Object(_localization_localizated_messages__WEBPACK_IMPORTED_MODULE_10__["getLocaleMessage"])(locale, 'noBanksAvailable') !== 'undefined') {
+      noBanksAvailableText = Object(_localization_localizated_messages__WEBPACK_IMPORTED_MODULE_10__["getLocaleMessage"])(locale, 'noBanksAvailable');
+    }
+  } // placeholderText specified by client should override all
+
+
+  if (typeof placeholderText !== 'undefined' && placeholderText !== null) {
+    selectedPlaceholderText = placeholderText;
+  }
+
+  if (typeof banks === 'undefined' || banks.length === 0) {
+    selectedPlaceholderText = noBanksAvailableText;
+    banks = [];
+  }
+
+  var select = getElement();
+
+  if (select.querySelectorAll('option').length > 0) {
+    select.innerHTML = '';
+  }
+
+  var option = document.createElement('option');
+  option.value = '';
+  option.text = selectedPlaceholderText;
+  select.add(option);
+  banks.forEach(function (bank) {
+    var option = document.createElement('option');
+    option.value = bank.bankCode;
+    option.text = bank.bankName;
+    select.add(option);
+  });
+}
+/**
+ * handleOptions applies data to the ccNumber dom element
+ * @param {object} data
+ */
+
+
+function handleOptions(data) {
+  var el = getElement();
+  var banks = data.banks;
+  Object(_options__WEBPACK_IMPORTED_MODULE_4__["applyOptions"])(el, data.options, defaultOptions);
+  var placeholderText = data.options.placeholderText;
+  var locale = data.instanceOptions && data.instanceOptions.hasOwnProperty('locale') ? data.instanceOptions.locale : null;
+  loadSelectFromBanksData(banks, placeholderText, locale);
+  customizeSelect(el, data.options.style);
+  Object(_client_css_class_utils__WEBPACK_IMPORTED_MODULE_9__["setSelectStyles"])('customStyles', data.options);
+  componentData.hasBanks = banks && banks.length > 0;
+  addInstanceOptions(data.instanceOptions);
+}
+/**
+ * Stores the instance options in the component state
+ * @param instanceOptions
+ */
+
+function addInstanceOptions(instanceOptions) {
+  componentData.instanceOptions = instanceOptions;
+}
+function customizeSelect(element, styleOptions) {
+  if (document.querySelector('.custom-select-container')) {
+    document.querySelector('.custom-select-container').customSelect.destroy();
+  }
+
+  bankSelect = custom_select__WEBPACK_IMPORTED_MODULE_11___default()(element)[0];
+  var collapsedHeight = Object(_client_css_class_utils__WEBPACK_IMPORTED_MODULE_9__["getElementHeight"])(styleOptions);
+  resizeIframe(collapsedHeight);
+  bankSelect.container.classList.add('base');
+  bankSelect.container.classList.add('empty');
+  bankSelect.container.addEventListener('custom-select:open', function () {
+    var newSize = "calc(".concat(window.getComputedStyle(bankSelect.panel).height, " + ").concat(collapsedHeight);
+    resizeIframe(newSize);
+  });
+  bankSelect.container.addEventListener('custom-select:close', function () {
+    resizeIframe(collapsedHeight);
+  });
+  bankSelect.select.addEventListener('change', function (event) {
+    // once user has selected a bank, remove placeholder option if it has not already been removed
+    if (event.trigger !== 'showError' && bankSelect.select.options[0].value === '') {
+      bankSelect.remove(bankSelect.select.options[0]);
+    } //removing classes in 3 lines instead of one because IE11 won't support all in one line
+
+
+    bankSelect.container.classList.remove('complete');
+    bankSelect.container.classList.remove('invalid');
+    bankSelect.container.classList.remove('empty');
+    bankSelect.container.setAttribute('class', element.getAttribute('class') + ' ' + bankSelect.container.getAttribute('class'));
+  });
+  bankSelect.opener.addEventListener('focus', function (e) {
+    handleFocus(e);
+  });
+  bankSelect.opener.addEventListener('blur', function (e) {
+    var event = {
+      isTrusted: e.isTrusted,
+      type: 'blur',
+      srcElement: bankSelect.container,
+      target: document.getElementById('online-banking')
+    };
+    handleBlur(event);
+  });
+  window.addEventListener('keydown', function (e) {
+    if (e.key === 'Tab' && bankSelect.open) {
+      resizeIframe(collapsedHeight);
+      bankSelect.open = false;
+    }
+  });
+  window.addEventListener('blur', function () {
+    resizeIframe(collapsedHeight);
+    bankSelect.open = false;
+  });
+  document.addEventListener('focus', function () {
+    bankSelect.opener.focus();
+  }, false);
+}
+function resizeIframe(newSize) {
+  var eventData = {
+    frame: {
+      height: newSize,
+      id: componentData.componentId
+    }
+  };
+  var event = new CustomEvent('resize', {
+    detail: eventData
+  });
+  Object(_input_events__WEBPACK_IMPORTED_MODULE_3__["handleEvent"])(componentData, 'resize', event);
+}
+/**
+ * handleBlur accepts a blur event and sends it on to handleEvent
+ * @param {event} event
+ */
+
+function handleBlur(event) {
+  Object(_input_events__WEBPACK_IMPORTED_MODULE_3__["handleEvent"])(componentData, 'blur', event);
+}
+/**
+ * handleFocus accepts a focus event and sends it on to handleEvent
+ * @param {event} event
+ */
+
+function handleFocus(event) {
+  Object(_input_events__WEBPACK_IMPORTED_MODULE_3__["handleEvent"])(componentData, 'focus', event);
+}
+/**
+ * handleChange accepts a change event
+ * @param {event} event
+ */
+
+function handleChange(event) {
+  Object(_input_events__WEBPACK_IMPORTED_MODULE_3__["handleEvent"])(componentData, 'change', event);
+}
+/**
+ * handleAutofill accepts an autofill event and sends it on to handleEvent
+ * @param {event} event
+ */
+
+function handleAutofill(event) {
+  Object(_input_events__WEBPACK_IMPORTED_MODULE_3__["handleEvent"])(componentData, 'autofill', event);
+}
+/**
+ * emitComponentReady calls handleEvent with 'ready'
+ */
+
+function emitComponentReady() {
+  //const hasBanks =
+  var event = new CustomEvent('ready', {
+    detail: {
+      hasAvailableBanks: componentData.hasBanks
+    }
+  });
+  Object(_input_events__WEBPACK_IMPORTED_MODULE_3__["handleEvent"])(componentData, 'ready', event);
+}
+function addInputHtmlToDom() {
+  document.body.innerHTML += inputHtml();
+}
+function inputHtml() {
+  return "<select id=\"online-banking\"\n         onfocus=\"handleFocus(event)\"\n         onblur=\"handleBlur(event)\"\n         onchange=\"handleChange(event)\"\n  />";
+}
+
+/***/ }),
+
 /***/ "./src/app/components/options.js":
 /*!***************************************!*\
   !*** ./src/app/components/options.js ***!
@@ -20336,663 +21470,6 @@ function mergeOptions(options, newOptions) {
   }
 
   return options;
-}
-
-/***/ }),
-
-/***/ "./src/app/components/payment-api-events.js":
-/*!**************************************************!*\
-  !*** ./src/app/components/payment-api-events.js ***!
-  \**************************************************/
-/*! exports provided: paymentApiTriggerEvent, emitComponentReady, emitComponentCancelled, createCompleteFunction, processPayment, sendShippingAddressChangeEvent, sendShippingOptionChangeEvent, styleAndCreatePaymentRequest, sendClickEvent, waitForClientUpdateWithFunction, onPayButtonClick */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "paymentApiTriggerEvent", function() { return paymentApiTriggerEvent; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "emitComponentReady", function() { return emitComponentReady; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "emitComponentCancelled", function() { return emitComponentCancelled; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createCompleteFunction", function() { return createCompleteFunction; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "processPayment", function() { return processPayment; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sendShippingAddressChangeEvent", function() { return sendShippingAddressChangeEvent; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sendShippingOptionChangeEvent", function() { return sendShippingOptionChangeEvent; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "styleAndCreatePaymentRequest", function() { return styleAndCreatePaymentRequest; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sendClickEvent", function() { return sendClickEvent; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "waitForClientUpdateWithFunction", function() { return waitForClientUpdateWithFunction; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "onPayButtonClick", function() { return onPayButtonClick; });
-/* harmony import */ var _input_events__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./input-events */ "./src/app/components/input-events.js");
-/* harmony import */ var _payment_api__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./payment-api */ "./src/app/components/payment-api.js");
-/* harmony import */ var _options__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./options */ "./src/app/components/options.js");
-/* harmony import */ var _google_apple_pay_events__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./google-apple-pay-events */ "./src/app/components/google-apple-pay-events.js");
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-
-
-
-
-/**
- * Runs appropriate handler for event type
- * @param {string} type - event type
- * @param {object} instanceData
- */
-
-function paymentApiTriggerEvent(type, instanceData) {
-  switch (type) {
-    case 'show':
-      {
-        onPayButtonClick(instanceData); // componentData, paymentOptions, getElement, setOptions
-
-        return;
-      }
-  }
-}
-/**
- * Emits component ready event
- * @param {object} componentData
- */
-
-function emitComponentReady(componentData) {
-  Object(_input_events__WEBPACK_IMPORTED_MODULE_0__["handleEvent"])(componentData, 'ready');
-}
-/**
- * Emits component cancelled event
- * @param {object} componentData
- */
-
-function emitComponentCancelled(componentData) {
-  Object(_input_events__WEBPACK_IMPORTED_MODULE_0__["handleEvent"])(componentData, 'cancel');
-}
-/**
- * Returns complete function for payment source request
- * @param {Function} resolve
- * @param {object} paymentRequestResponseData
- * @returns {Function}
- */
-
-function createCompleteFunction(resolve, paymentRequestResponseData) {
-  var complete = function complete(status) {
-    resolve({
-      instrumentResponse: paymentRequestResponseData,
-      status: status
-    });
-    return status;
-  };
-
-  return complete;
-}
-/**
- * Takes PaymentRequest API payment response and sends it to DR Payment Service
- * @param {object} paymentRequestData
- * @param {Function} resolve
- * @param {object} instanceData
- */
-
-function processPayment(paymentRequestData, resolve, instanceData) {
-  var complete = createCompleteFunction(resolve, paymentRequestData);
-  var paymentServiceRequest = Object(_payment_api__WEBPACK_IMPORTED_MODULE_1__["paymentRequestApiResponseToPaymentServiceRequest"])(paymentRequestData, instanceData.getPaymentOptions()); // Send payment / credit card data to controller to call payment service
-
-  Object(_google_apple_pay_events__WEBPACK_IMPORTED_MODULE_3__["sendCreateSourceRequest"])(instanceData.controllerEmitter, instanceData.componentData, paymentRequestData, paymentServiceRequest, _payment_api__WEBPACK_IMPORTED_MODULE_1__["toSourceEventData"], complete);
-}
-/**
- * Sends shipping address change event to client
- * @param {object} googleShippingAddress
- * @param {string} selectedShippingOption
- * @param {Function} resolve
- * @param {object} instanceData
- * @returns {{updateWith: (function(*=): {requestShipping: boolean, total: {amount: {currency: *, value: *}, label: *}, shippingAddressErrors: (*|changedData.shippingAddressErrors|{country, city}|expected.shippingAddressErrors|{}), error: *, shippingOptions: Array, displayItems: Array}), shippingAddress: {firstName: string, lastName: string, address: {country: string, city: string, postalCode: string, state: string, line2: *, line1: string}, phone: string, name: string, email: string}}}
- */
-
-function sendShippingAddressChangeEvent(googleShippingAddress, selectedShippingOption, resolve, instanceData) {
-  var shippingAddress = Object(_payment_api__WEBPACK_IMPORTED_MODULE_1__["convertPaymentRequestApiShippingAddressForEvent"])(googleShippingAddress);
-  var paymentOptions = instanceData.getPaymentOptions(); // set the previously selected one as selected in the data
-
-  paymentOptions.shippingOptions.forEach(function (shippingOption) {
-    shippingOption.selected = shippingOption.id === selectedShippingOption;
-  });
-
-  var updateWith = function updateWith(clientPassedInData) {
-    var errorData = {};
-
-    if (clientPassedInData.status === 'failure') {
-      errorData = Object(_payment_api__WEBPACK_IMPORTED_MODULE_1__["convertClientShippingAddressErrorsForPaymentRequestUpdateEvent"])(clientPassedInData.error);
-      errorData.shippingOptions = [];
-      delete clientPassedInData[clientPassedInData.error];
-    }
-
-    var mergedDataWithoutErrors = Object(_options__WEBPACK_IMPORTED_MODULE_2__["mergeOptions"])(paymentOptions, clientPassedInData);
-
-    if (clientPassedInData.status === 'success') {
-      delete mergedDataWithoutErrors['error'];
-    }
-
-    instanceData.setOptions(mergedDataWithoutErrors);
-    var mergedData = Object.assign({}, mergedDataWithoutErrors, errorData);
-    var shippingOptions = Object(_payment_api__WEBPACK_IMPORTED_MODULE_1__["updateShippingOptionsSelectedAttribute"])(mergedData);
-    var detailsData = Object(_payment_api__WEBPACK_IMPORTED_MODULE_1__["getDetailsFromOptions"])(shippingOptions);
-    resolve(detailsData);
-    return detailsData;
-  };
-
-  var eventData = {
-    shippingAddress: shippingAddress,
-    updateWith: updateWith
-  };
-  Object(_input_events__WEBPACK_IMPORTED_MODULE_0__["sendEventData"])(instanceData.componentData.controller, instanceData.componentData.componentId, instanceData.componentData.componentType, 'shippingaddresschange', eventData);
-  return eventData;
-}
-/**
- * sends shipping option change event to client
- * @param {string} selectedShippingOption
- * @param {Function} resolve
- * @param {object} instanceData
- * @returns {{updateWith: (function(*=): Object), shippingOption: *}}
- */
-
-function sendShippingOptionChangeEvent(selectedShippingOption, resolve, instanceData) {
-  var updateWith = function updateWith(clientPassedInData) {
-    var paymentOptions = instanceData.getPaymentOptions(); // set the selected one as selected in the data
-
-    paymentOptions.shippingOptions.forEach(function (shippingOption) {
-      shippingOption.selected = shippingOption.id === selectedShippingOption;
-    });
-    var data = Object(_options__WEBPACK_IMPORTED_MODULE_2__["mergeOptions"])(paymentOptions, clientPassedInData);
-    instanceData.setOptions(data);
-    var updatedDetails = Object(_payment_api__WEBPACK_IMPORTED_MODULE_1__["updateShippingOptionsSelectedAttribute"])(data);
-    var detailsData = Object(_payment_api__WEBPACK_IMPORTED_MODULE_1__["getDetailsFromOptions"])(updatedDetails);
-    resolve(detailsData);
-    return detailsData;
-  };
-
-  var paymentOptions = instanceData.getPaymentOptions(); // If there are shippingOptions, find the selected shipping option
-
-  var foundShippingOption = paymentOptions.shippingOptions && paymentOptions.shippingOptions.find(function (shippingOption) {
-    return shippingOption.id === selectedShippingOption;
-  });
-  var eventData = {
-    shippingOption: foundShippingOption,
-    updateWith: updateWith
-  };
-  Object(_input_events__WEBPACK_IMPORTED_MODULE_0__["sendEventData"])(instanceData.componentData.controller, instanceData.componentData.componentId, instanceData.componentData.componentType, 'shippingoptionchange', eventData);
-  return eventData;
-}
-/**
- * Styles payment button and adds click event listener
- * @param {object} instanceData
- */
-
-function styleAndCreatePaymentRequest(instanceData) {
-  if (window.PaymentRequest) {
-    Object(_payment_api__WEBPACK_IMPORTED_MODULE_1__["initPaymentRequest"])(instanceData);
-    var payButton = instanceData.getElement();
-    payButton.setAttribute('style', 'display: inline; width: calc(100% - 2px); cursor: pointer'); //calc to make sure shadow does not get cut off
-
-    payButton.addEventListener('click', function () {
-      return onPayButtonClick(instanceData);
-    });
-  } else {
-    // eslint-disable-next-line no-console
-    console.error('This browser does not support web payments');
-    return null;
-  }
-}
-/**
- * Sends click event to client
- * @param {object} instanceData
- * @param {Function} resolve
- * @returns {{updateWith: (function(*=): Object)}}
- */
-
-function sendClickEvent(instanceData, resolve) {
-  if (waitForClientUpdateWithFunction(instanceData.getPaymentOptions())) {
-    var updateWith = function updateWith(clientPassedInData) {
-      var data = Object(_options__WEBPACK_IMPORTED_MODULE_2__["mergeOptions"])(instanceData.getPaymentOptions(), clientPassedInData);
-      instanceData.setOptions(data);
-      resolve(Object(_payment_api__WEBPACK_IMPORTED_MODULE_1__["getDetailsFromOptions"])(instanceData.getPaymentOptions()));
-      return data;
-    };
-
-    var result = {
-      updateWith: updateWith
-    };
-    Object(_input_events__WEBPACK_IMPORTED_MODULE_0__["sendEventData"])(instanceData.componentData.controller, instanceData.componentData.componentId, instanceData.componentData.componentType, 'click', result);
-    return result;
-  } else {
-    resolve(Object(_payment_api__WEBPACK_IMPORTED_MODULE_1__["getDetailsFromOptions"])(instanceData.getPaymentOptions()));
-    var _result = {};
-    Object(_input_events__WEBPACK_IMPORTED_MODULE_0__["sendEventData"])(instanceData.componentData.controller, instanceData.componentData.componentId, instanceData.componentData.componentType, 'click', _result);
-    return _result;
-  }
-}
-/**
- * Returns true if client has waitOnClick set to true
- * @param {object} paymentOptions
- * @returns {boolean}
- */
-
-function waitForClientUpdateWithFunction(paymentOptions) {
-  return typeof paymentOptions.waitOnClick !== 'undefined' && paymentOptions.waitOnClick === true;
-}
-/**
- * Handles pay button click
- * @param {object} instanceData
- * @returns {Promise<any|never>}
- */
-
-function onPayButtonClick(_x) {
-  return _onPayButtonClick.apply(this, arguments);
-}
-
-function _onPayButtonClick() {
-  _onPayButtonClick = _asyncToGenerator(
-  /*#__PURE__*/
-  regeneratorRuntime.mark(function _callee(instanceData) {
-    var request;
-    return regeneratorRuntime.wrap(function _callee$(_context) {
-      while (1) {
-        switch (_context.prev = _context.next) {
-          case 0:
-            if (!instanceData.waitBeforeShow) {
-              _context.next = 3;
-              break;
-            }
-
-            _context.next = 3;
-            return Object(_payment_api__WEBPACK_IMPORTED_MODULE_1__["processClickEvent"])(instanceData, sendClickEvent);
-
-          case 3:
-            request = Object(_payment_api__WEBPACK_IMPORTED_MODULE_1__["initPaymentRequest"])(instanceData);
-            return _context.abrupt("return", Object(_payment_api__WEBPACK_IMPORTED_MODULE_1__["onBuyClicked"])(request, processPayment, emitComponentCancelled, sendClickEvent, instanceData));
-
-          case 5:
-          case "end":
-            return _context.stop();
-        }
-      }
-    }, _callee);
-  }));
-  return _onPayButtonClick.apply(this, arguments);
-}
-
-/***/ }),
-
-/***/ "./src/app/components/payment-api.js":
-/*!*******************************************!*\
-  !*** ./src/app/components/payment-api.js ***!
-  \*******************************************/
-/*! exports provided: createRequest, onBuyClicked, completePaymentWithSuccess, completePaymentWithFailure, processClickEvent, splitName, paymentRequestApiResponseToPaymentServiceRequest, convertPaymentRequestApiShippingAddressForEvent, toSourceEventData, convertShippingOptions, convertDisplayOptions, getDetailsFromOptions, initPaymentRequest, shippingAddressChange, shippingOptionChange, convertClientShippingAddressErrorsForPaymentRequestUpdateEvent, updateShippingOptionsSelectedAttribute */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createRequest", function() { return createRequest; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "onBuyClicked", function() { return onBuyClicked; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "completePaymentWithSuccess", function() { return completePaymentWithSuccess; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "completePaymentWithFailure", function() { return completePaymentWithFailure; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "processClickEvent", function() { return processClickEvent; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "splitName", function() { return splitName; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "paymentRequestApiResponseToPaymentServiceRequest", function() { return paymentRequestApiResponseToPaymentServiceRequest; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "convertPaymentRequestApiShippingAddressForEvent", function() { return convertPaymentRequestApiShippingAddressForEvent; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toSourceEventData", function() { return toSourceEventData; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "convertShippingOptions", function() { return convertShippingOptions; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "convertDisplayOptions", function() { return convertDisplayOptions; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getDetailsFromOptions", function() { return getDetailsFromOptions; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initPaymentRequest", function() { return initPaymentRequest; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "shippingAddressChange", function() { return shippingAddressChange; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "shippingOptionChange", function() { return shippingOptionChange; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "convertClientShippingAddressErrorsForPaymentRequestUpdateEvent", function() { return convertClientShippingAddressErrorsForPaymentRequestUpdateEvent; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateShippingOptionsSelectedAttribute", function() { return updateShippingOptionsSelectedAttribute; });
-/* harmony import */ var parse_full_name__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! parse-full-name */ "./node_modules/parse-full-name/index.js");
-/* harmony import */ var parse_full_name__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(parse_full_name__WEBPACK_IMPORTED_MODULE_0__);
-
-/**
- * Returns a new payment request
- * @param {object} supportedInstruments
- * @param {object} details
- * @param {object} options
- * @returns {PaymentRequest}
- */
-
-function createRequest(supportedInstruments, details, options) {
-  return new PaymentRequest(supportedInstruments, details, options);
-}
-/**
- * Processes and completes payment source request
- * @param {object} request
- * @param {Function} processPayment
- * @param {Function} sendOnCancelEvent
- * @param {Function} sendClickEvent
- * @param {object} instanceData
- * @returns {Promise<any | never>}
- */
-
-function onBuyClicked(request, processPayment, sendOnCancelEvent, sendClickEvent, instanceData) {
-  // Note: This prevents the case where the payment added support for this and waitBeforeShow was true, it would run twice.
-  var show = instanceData.waitBeforeShow ? request.show() : request.show(processClickEvent(instanceData, sendClickEvent));
-  return show.then(function (instrumentResponse) {
-    return new Promise(function (resolve) {
-      processPayment(instrumentResponse, resolve, instanceData);
-    });
-  }).then(function (data) {
-    if (data.status === 'success') {
-      completePaymentWithSuccess(data.instrumentResponse);
-    } else {
-      completePaymentWithFailure(data.instrumentResponse);
-    }
-  }).catch(function (err) {
-    if (err.message === 'Request cancelled' || err.message === 'The operation was aborted.') {
-      sendOnCancelEvent(instanceData.componentData);
-    }
-  });
-}
-/**
- * Completes payment authorization with success
- * @param {object} instrumentResponse
- */
-
-function completePaymentWithSuccess(instrumentResponse) {
-  instrumentResponse.complete('success');
-}
-/**
- * Completes payment authorization with failure
- * @param instrumentResponse
- */
-
-function completePaymentWithFailure(instrumentResponse) {
-  instrumentResponse.complete('fail');
-}
-/**
- * Sends click event
- * @param {object} instanceData
- * @param {Function} sendClickEvent
- * @returns {Promise<any>}
- */
-
-function processClickEvent(instanceData, sendClickEvent) {
-  return new Promise(function (resolve) {
-    sendClickEvent(instanceData, resolve);
-  });
-}
-/**
- * Splits name into first and last names
- * @param {string} name
- * @returns {{firstName: (CodePathSegment|string|*|E.first|first|ie.selectors.pseudos.first), lastName: (string|*|CodePathSegment|E.last|last|ie.selectors.pseudos.last)}}
- */
-
-function splitName(name) {
-  var pastedName = Object(parse_full_name__WEBPACK_IMPORTED_MODULE_0__["parseFullName"])(name);
-  return {
-    firstName: pastedName.first,
-    lastName: pastedName.last
-  };
-}
-/**
- * Transforms peyment request API data to format required by Payment Service
- * @param {object} googleResponseData
- * @param {object} paymentOptions
- * @returns {{owner: {firstName: (CodePathSegment|string|*|E.first|first|ie.selectors.pseudos.first), lastName: (string|*|CodePathSegment|E.last|last|ie.selectors.pseudos.last), address: {country: (string), city: (string), postalCode: (string), state: (string), line2: *, line1: *}, email: (string|string)}, amount: number, currency: *, type: string, googlePay: {expirationYear: number, number: string, cvv: string, expirationMonth: number}}}
- */
-
-function paymentRequestApiResponseToPaymentServiceRequest(googleResponseData, paymentOptions) {
-  var name = splitName(googleResponseData.details.billingAddress.recipient);
-  return {
-    'type': 'googlePay',
-    'owner': {
-      'firstName': name.firstName,
-      'lastName': name.lastName,
-      'email': googleResponseData.payerEmail,
-      'phoneNumber': googleResponseData.details.billingAddress.phone,
-      'address': {
-        'line1': googleResponseData.details.billingAddress.addressLine.length >= 1 ? googleResponseData.details.billingAddress.addressLine[0] : '',
-        'line2': googleResponseData.details.billingAddress.addressLine.length >= 2 ? googleResponseData.details.billingAddress.addressLine[1] : '',
-        'city': googleResponseData.details.billingAddress.city,
-        'state': googleResponseData.details.billingAddress.region,
-        'country': googleResponseData.details.billingAddress.country,
-        'postalCode': googleResponseData.details.billingAddress.postalCode
-      }
-    },
-    'googlePay': {
-      'number': googleResponseData.details.cardNumber,
-      'expirationMonth': parseInt(googleResponseData.details.expiryMonth, 10),
-      'expirationYear': parseInt(googleResponseData.details.expiryYear, 10),
-      'cvv': googleResponseData.details.cardSecurityCode
-    },
-    'amount': parseFloat(paymentOptions.total.amount),
-    'currency': paymentOptions.currency
-  };
-}
-/**
- * Transforms payment request API shipping address event data to DigitalRiverPaymentRequest data
- * @param {object} shippingAddress
- * @param {string} payerEmail
- * @returns {{firstName: string, lastName: string, address: {country: string, city: string, postalCode: string, state: string, line2: *, line1: string}, phone: string, name: string, email: string}}
- */
-
-function convertPaymentRequestApiShippingAddressForEvent(shippingAddress, payerEmail) {
-  var name = splitName(shippingAddress.recipient);
-  return {
-    name: shippingAddress.recipient,
-    firstName: name.firstName,
-    lastName: name.lastName,
-    phone: shippingAddress.phone,
-    email: payerEmail,
-    address: {
-      line1: shippingAddress.addressLine.length >= 1 ? shippingAddress.addressLine[0] : '',
-      line2: shippingAddress.addressLine.length >= 2 ? shippingAddress.addressLine[1] : '',
-      city: shippingAddress.city,
-      state: shippingAddress.region,
-      country: shippingAddress.country,
-      postalCode: shippingAddress.postalCode
-    }
-  };
-}
-/**
- * Transforms payment request API billing data to DigitalRiverPaymentRequest format
- * @param {object} paymentRequestBillingData
- * @param {object} paymentSource
- * @param {Function} complete
- * @returns {{contactInformation: {phone: (string|string), name: (string|string), email: (string|string)}, shippingAddress: *, source: *, billingAddress: {firstName: string, lastName: string, address: {country: string, city: (string), postalCode: (string), state: (string), line2: string, line1: string}, phone: (string), name: *, email: null}, error: *, complete: *}}
- */
-
-function toSourceEventData(paymentRequestBillingData, paymentSource, complete) {
-  var googleBillingAddress = paymentRequestBillingData.details.billingAddress;
-  var billingAddress = {
-    address: {
-      line1: googleBillingAddress.addressLine && googleBillingAddress.addressLine.length > 0 ? googleBillingAddress.addressLine[0] : '',
-      line2: googleBillingAddress.addressLine && googleBillingAddress.addressLine.length >= 2 ? googleBillingAddress.addressLine[1] : '',
-      city: googleBillingAddress.city || '',
-      postalCode: googleBillingAddress.postalCode || '',
-      state: googleBillingAddress.region || '',
-      country: googleBillingAddress.country ? googleBillingAddress.country.toUpperCase() : ''
-    },
-    name: paymentRequestBillingData.shippingAddress ? paymentRequestBillingData.shippingAddress.recipient : '',
-    firstName: paymentSource.source && paymentSource.source.owner ? paymentSource.source.owner.firstName : '',
-    lastName: paymentSource.source && paymentSource.source.owner ? paymentSource.source.owner.lastName : '',
-    phone: paymentRequestBillingData.details.billingAddress.phone,
-    email: null
-  };
-  var shippingAddress = paymentRequestBillingData.shippingAddress ? convertPaymentRequestApiShippingAddressForEvent(paymentRequestBillingData.shippingAddress, paymentRequestBillingData.payerEmail) : null;
-  var contactInformation = {
-    name: paymentRequestBillingData.payerName,
-    phone: paymentRequestBillingData.payerPhone,
-    email: paymentRequestBillingData.payerEmail
-  };
-  return {
-    error: paymentSource.error,
-    source: paymentSource.source,
-    billingAddress: billingAddress,
-    shippingAddress: shippingAddress,
-    contactInformation: contactInformation,
-    complete: complete
-  };
-}
-/**
- * transforms shipping options
- * @param {object} originalShippingOptions
- * @param {string} currency
- * @returns {Array}
- */
-//TODO find out if this function is still being used and remove if not
-
-function convertShippingOptions(originalShippingOptions, currency) {
-  var shippingOptions = [];
-
-  if (originalShippingOptions && Array.isArray(originalShippingOptions)) {
-    originalShippingOptions.forEach(function (shippingOption, index) {
-      shippingOptions[index] = {
-        id: shippingOption.id,
-        label: shippingOption.label,
-        amount: {
-          value: shippingOption.amount,
-          currency: currency
-        },
-        selected: shippingOption.selected && typeof shippingOption.selected === 'boolean' ? shippingOption.selected : false
-      };
-    });
-  }
-
-  return shippingOptions;
-}
-/**
- * Transforms display items to format needed for Payment Request API and returns them
- * @param originalDisplayItems
- * @param currency
- * @returns {Array}
- */
-
-function convertDisplayOptions(originalDisplayItems, currency) {
-  var displayItems = [];
-
-  if (originalDisplayItems && Array.isArray(originalDisplayItems)) {
-    originalDisplayItems.forEach(function (displayItem, index) {
-      displayItems[index] = {
-        label: displayItem.label,
-        amount: {
-          value: displayItem.amount,
-          currency: currency
-        }
-      };
-
-      if (typeof displayItem.isPending !== 'undefined') {
-        displayItems[index].pending = displayItem.isPending;
-      }
-    });
-  }
-
-  return displayItems;
-}
-/**
- * Transforms data to format needed for Payment Request API
- * @param {object} paymentOptions
- * @returns {{requestShipping: boolean, total: {amount: {currency: *, value: *}, label: *}, shippingAddressErrors: (*|changedData.shippingAddressErrors|{country, city}|expected.shippingAddressErrors|expected.shippingAddressErrors|{}), error: *, shippingOptions: Array, displayItems: Array}}
- */
-
-function getDetailsFromOptions(paymentOptions) {
-  var displayItems = convertDisplayOptions(paymentOptions.displayItems, paymentOptions.currency);
-  var shippingOptions = convertShippingOptions(paymentOptions.shippingOptions, paymentOptions.currency);
-  var options = {
-    error: paymentOptions.error,
-    shippingAddressErrors: paymentOptions.shippingAddressErrors,
-    total: {
-      label: paymentOptions.total.label,
-      amount: {
-        currency: paymentOptions.currency,
-        value: paymentOptions.total.amount
-      }
-    },
-    displayItems: displayItems,
-    shippingOptions: shippingOptions,
-    requestShipping: paymentOptions.requestShipping
-  };
-
-  if (typeof paymentOptions.total.isPending !== 'undefined') {
-    options.total.pending = paymentOptions.total.isPending;
-  }
-
-  return options;
-}
-/**
- * Returns Payment Request object
- * @param {object} instanceData
- * @returns {PaymentRequest}
- */
-
-function initPaymentRequest(instanceData) {
-  // Convert the format of display items
-  var details = getDetailsFromOptions(instanceData.getPaymentOptions()); //if no shipping option has been designated as selected, set first option as selected
-
-  var updatedDetails = updateShippingOptionsSelectedAttribute(details);
-  var options = {
-    requestShipping: updatedDetails.requestShipping,
-    requestPayerEmail: true,
-    requestPayerName: true,
-    requestPayerPhone: true
-  };
-  var request = createRequest(instanceData.supportedInstruments, updatedDetails, options);
-  instanceData.events.forEach(function (event) {
-    request.addEventListener(event.eventName, event.eventFunction);
-  });
-  return request;
-}
-/**
- * Event function for shipping address change event
- * @param {Function} sendShippingAddressChangeEvent
- * @param {object} instanceData
- * @returns {Function}
- */
-
-function shippingAddressChange(sendShippingAddressChangeEvent, instanceData) {
-  return function (event) {
-    event.updateWith(new Promise(function (resolve, reject) {
-      // eslint-disable-line no-unused-vars
-      sendShippingAddressChangeEvent(event.target.shippingAddress, event.target.shippingOption, resolve, instanceData);
-    }));
-  };
-}
-/**
- * Function for shipping option change events
- * @param {Function} sendShippingOptionChangeEvent
- * @param {object} instanceData
- * @returns {Function}
- */
-
-function shippingOptionChange(sendShippingOptionChangeEvent, instanceData) {
-  return function (event) {
-    event.updateWith(new Promise(function (resolve, reject) {
-      // eslint-disable-line no-unused-vars
-      sendShippingOptionChangeEvent(event.target.shippingOption, resolve, instanceData);
-    }));
-  };
-}
-/**
- * Converts the client error to a format for the PaymentRequestUpdateEvent
- * @param error
- */
-
-function convertClientShippingAddressErrorsForPaymentRequestUpdateEvent(error) {
-  var convertedData = {};
-  convertedData.error = error && error.hasOwnProperty('message') ? error.message : 'An Error has occurred.  Please try again.';
-  convertedData.shippingAddressErrors = error && error.hasOwnProperty('fields') ? error.fields : {};
-  return convertedData;
-}
-/**
- * Updating the shipping options to add selected attribute if not exist
- * @param {object} paymentOptions
- * return {object} paymentOptions
- */
-
-function updateShippingOptionsSelectedAttribute(paymentOptions) {
-  //if no shipping option has been designated as selected, set first option as selected
-  if (paymentOptions.shippingOptions.length > 0) {
-    var selectedShippingOptionIndex = 0;
-    paymentOptions.shippingOptions.forEach(function (shippingOption, index) {
-      selectedShippingOptionIndex = typeof shippingOption.selected === 'boolean' && shippingOption.selected ? index : selectedShippingOptionIndex;
-    });
-    paymentOptions.shippingOptions[selectedShippingOptionIndex].selected = true;
-  }
-
-  return paymentOptions;
 }
 
 /***/ }),
@@ -21199,6 +21676,77 @@ function saveCreditCardNumberData(controllerListener, saveData) {
 
 /***/ }),
 
+/***/ "./src/app/components/querystring.js":
+/*!*******************************************!*\
+  !*** ./src/app/components/querystring.js ***!
+  \*******************************************/
+/*! exports provided: getQueryParameter, getControllerIdFromQueryString, getComponentIdFromQueryString */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getQueryParameter", function() { return getQueryParameter; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getControllerIdFromQueryString", function() { return getControllerIdFromQueryString; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getComponentIdFromQueryString", function() { return getComponentIdFromQueryString; });
+/**
+ * Gets a query parameter that matches the name and value tests against the pattern
+ * @param {String} queryString 
+ * @param {String} paramName 
+ * @param {RegExp} pattern 
+ */
+function getQueryParameter(queryString, paramName, pattern) {
+  // URLSearchParams polyfill is 6kb https://github.com/WebReflection/url-search-params
+  // If we didn't need to support IE this could simpler:
+  // let params = new URLSearchParams(queryString);
+  // const value = params.get('controllerId');
+  // Manual query string parse for compatibility
+  if (!queryString) queryString = document.location.search;
+  if (!queryString) return null;
+  var paramString = queryString[0] === '?' ? queryString.slice(1) : queryString.slice(0);
+  if (!paramString) return null;
+  var params = paramString.split('&');
+  var len = params.length;
+
+  for (var i = 0; i < len; i++) {
+    var param = params[i].split('=');
+
+    if (param[0] === paramName) {
+      if (param.length <= 1) {
+        return '';
+      }
+
+      if (pattern.test(param[1])) {
+        return param[1];
+      }
+
+      return null;
+    }
+  }
+
+  return null;
+}
+/**
+ * Parses a controllerId parameter from a query string
+ * @param {String} queryString optional query string, uses document.location.search by default
+ */
+
+function getControllerIdFromQueryString(queryString) {
+  return getQueryParameter(queryString, 'controllerId', /^controller-[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/);
+}
+/**
+ * Parses a component id for a given type from a query string
+ * NOTE: An iframe could use window.name and not have to pass the component id in the URL at all
+ * @param {String} componentType
+ * @param {String} queryString
+ */
+
+function getComponentIdFromQueryString(componentType, queryString) {
+  var pattern = new RegExp('^' + componentType + '-[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$');
+  return getQueryParameter(queryString, 'componentId', pattern);
+}
+
+/***/ }),
+
 /***/ "./src/app/components/sanitize.js":
 /*!****************************************!*\
   !*** ./src/app/components/sanitize.js ***!
@@ -21249,6 +21797,36 @@ function sanitizeInputForPaymentApi(input) {
 
   return input;
 }
+
+/***/ }),
+
+/***/ "./src/app/components/styles/defaults.css":
+/*!************************************************!*\
+  !*** ./src/app/components/styles/defaults.css ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../../node_modules/css-loader!./defaults.css */ "./node_modules/css-loader/index.js!./src/app/components/styles/defaults.css");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
 
 /***/ }),
 
@@ -21792,1915 +22370,6 @@ function getJavaEnabled(window) {
 }
 function getHRef(window) {
   return window.location.href;
-}
-
-/***/ }),
-
-/***/ "./src/client/DigitalRiver.js":
-/*!************************************!*\
-  !*** ./src/client/DigitalRiver.js ***!
-  \************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _dataStore_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./dataStore.js */ "./src/client/dataStore.js");
-/* harmony import */ var _createSource_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./createSource.js */ "./src/client/createSource.js");
-/* harmony import */ var _complianceData__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./complianceData */ "./src/client/complianceData.js");
-/* harmony import */ var _createComponent_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./createComponent.js */ "./src/client/createComponent.js");
-/* harmony import */ var _createController_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./createController.js */ "./src/client/createController.js");
-/* harmony import */ var _app_components_config__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../app/components/config */ "./src/app/components/config.js");
-/* harmony import */ var _DigitalRiverPaymentRequest__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./DigitalRiverPaymentRequest */ "./src/client/DigitalRiverPaymentRequest.js");
-/* harmony import */ var _applepay_applepay__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./applepay/applepay */ "./src/client/applepay/applepay.js");
-/* harmony import */ var _beacon_beacon_client_data__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../beacon/beacon-client-data */ "./src/beacon/beacon-client-data.js");
-/* harmony import */ var _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../post-robot-wrapper */ "./src/post-robot-wrapper.js");
-/* harmony import */ var _app_components_localization_messages__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../app/components/localization/messages */ "./src/app/components/localization/messages.json");
-var _app_components_localization_messages__WEBPACK_IMPORTED_MODULE_10___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../app/components/localization/messages */ "./src/app/components/localization/messages.json", 1);
-/* harmony import */ var _create_dropin__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./create-dropin */ "./src/client/create-dropin.js");
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-var ComponentTypes = ['cardnumber', 'cardexpiration', 'cardcvv', 'googlepay', 'applepay', 'onlinebanking', 'koreancard'];
-var DEFAULT_LOCALE = 'en-US';
-var koreanCard;
-
-function localeMessagesContainsClientProvidedLocale(locale) {
-  return Object.keys(_app_components_localization_messages__WEBPACK_IMPORTED_MODULE_10__).filter(function (key) {
-    return key.toLowerCase() === locale.toLowerCase();
-  }).length > 0;
-}
-
-function forceCasingOfLocale(instanceOptions) {
-  var providedLocaleArray = instanceOptions.locale.split('-');
-  return providedLocaleArray[0] + '-' + providedLocaleArray[1].toUpperCase();
-}
-
-function localeNotProvided(instanceOptions) {
-  return typeof instanceOptions.locale === 'undefined';
-}
-
-function updateInstanceOptionsWithDefaults(instanceOptions) {
-  if (typeof instanceOptions === 'undefined') {
-    instanceOptions = {};
-  }
-
-  if (localeNotProvided(instanceOptions)) {
-    instanceOptions.locale = DEFAULT_LOCALE;
-  } else if (!localeMessagesContainsClientProvidedLocale(instanceOptions.locale)) {
-    instanceOptions.locale = DEFAULT_LOCALE;
-  } else {
-    instanceOptions.locale = forceCasingOfLocale(instanceOptions);
-  }
-
-  return instanceOptions;
-}
-/**
- * Digital River Payments class
- * @constructor
- * @param {string} apiKey A Payment Service API key
- * @param {object} providedInstanceOptions
- */
-
-
-function DigitalRiver(apiKey, providedInstanceOptions) {
-  if (typeof apiKey !== 'string') {
-    throw new Error('Pass an API key.');
-  }
-
-  var instanceOptions = updateInstanceOptionsWithDefaults(providedInstanceOptions);
-  this.Compliance = {
-    getDetails: getDetails
-  }; // creating controller component
-
-  var component = Object(_createController_js__WEBPACK_IMPORTED_MODULE_4__["createController"])(document.body, 'controller'); // creating beacon component
-
-  var beaconComponent = Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_3__["createOrExtractBeaconController"])(); // creating 3dsecure component
-
-  var dr3dsecure = Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_3__["createOrExtractAdyenController"])();
-  this.key = _dataStore_js__WEBPACK_IMPORTED_MODULE_0__["default"].create({
-    apiKey: apiKey,
-    controller: component,
-    components: {},
-    customEvents: [],
-    instanceOptions: instanceOptions
-  });
-  Object(_createController_js__WEBPACK_IMPORTED_MODULE_4__["registerControllerEvents"])(this.key, Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_3__["getComponentWindow"])(component.id), _app_components_config__WEBPACK_IMPORTED_MODULE_5__["config"].domain);
-  Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_3__["sendApiKey"])(component.id, 'sendInitialData', {
-    apiKey: apiKey,
-    browserInfo: Object(_beacon_beacon_client_data__WEBPACK_IMPORTED_MODULE_8__["collectClientData"])(window),
-    instanceOptions: instanceOptions
-  });
-  Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_3__["sendApiKey"])(beaconComponent.id, 'sendBeaconApiKey', {
-    apiKey: apiKey
-  }).then(function () {
-    return Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_3__["sendBeaconEventDetails"])(beaconComponent.id, 'controller_loaded');
-  });
-  Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_3__["sendInitalize3dSecure"])(dr3dsecure.id, apiKey);
-  Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_3__["updateOverlay"])('DRPayment3ds', '0px', '');
-}
-
-function shouldSendCreateSourceBeaconEvent(response) {
-  return typeof response !== 'undefined' && response.source !== null && typeof response.source.id !== 'undefined';
-}
-/**
- * ]
- * @param sourceRequest
- * @param componentInstanceOrSourceData
- * @returns {*}
- */
-
-
-function createSourceForAllPaymentMethods(sourceRequest, componentInstanceOrSourceData) {
-  var _dataStore$get = _dataStore_js__WEBPACK_IMPORTED_MODULE_0__["default"].get(this.key),
-      controller = _dataStore$get.controller;
-
-  if (!controller) {
-    throw new Error('Cannot create source without a controller');
-  }
-
-  var beaconComponent = Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_3__["createOrExtractBeaconController"])();
-
-  if (typeof sourceRequest === 'undefined') {
-    // In this case the componentInstance is actually the source data
-    if (_typeof(componentInstanceOrSourceData) !== 'object') {
-      throw new Error('Please provide Source creation details to the createSource method.');
-    }
-
-    return Object(_createSource_js__WEBPACK_IMPORTED_MODULE_1__["createSource"])(controller.id, '', componentInstanceOrSourceData).then(function (response) {
-      if (typeof response !== 'undefined' && response.source !== null && response.source.id !== undefined) {
-        Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_3__["sendBeaconEventDetails"])(beaconComponent.id, 'source', response.source.id);
-      }
-
-      return response;
-    });
-  } else {
-    if (_typeof(componentInstanceOrSourceData) !== 'object') {
-      throw new Error('Please provide a valid component to the createSource method');
-    }
-
-    if (_typeof(sourceRequest) !== 'object') {
-      throw new Error('Please provide Source creation details to the createSource method');
-    }
-
-    if (isKoreanCard(sourceRequest)) {
-      var key = this.key;
-      return new Promise(function (resolve) {
-        return handleKoreanCard(key, sourceRequest, resolve);
-      }).then(function (responseData) {
-        Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_3__["updateOverlay"])('DRKoreanCard', '0', '');
-
-        if (responseData.error) {
-          koreanCard.destroy();
-          return responseData;
-        } else {
-          return handleCreateSource(controller.id, componentInstanceOrSourceData.type, sourceRequest, beaconComponent);
-        }
-      });
-    }
-
-    return handleCreateSource(controller.id, componentInstanceOrSourceData.type, sourceRequest, beaconComponent);
-  }
-}
-
-function handleCreateSource(controllerId, componentType, sourceRequest, beaconComponent) {
-  return Object(_createSource_js__WEBPACK_IMPORTED_MODULE_1__["createSource"])(controllerId, componentType, sourceRequest).then(function (response) {
-    if (koreanCard) {
-      try {
-        koreanCard.destroy();
-      } catch (err) {
-        koreanCard = undefined;
-      }
-    }
-
-    if (typeof response !== 'undefined' && response.source !== null && response.source.state === 'requires_action' && response.source.nextAction !== null) {
-      // creating Adyen component
-      var adyenComponent = Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_3__["createOrExtractAdyenController"])();
-      Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_3__["updateOverlay"])('DRPayment3ds', '100%', 'rgba(0,0,0,0.3)');
-
-      if (response.source.nextAction.action === 'fingerprint_device' || response.source.nextAction.action === 'challenge_shopper') {
-        return new Promise(function (resolve) {
-          return Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_3__["sendAdyen3dDetails"])(adyenComponent.id, controllerId, response.source, resolve);
-        }).then(function (responseData) {
-          Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_3__["updateOverlay"])('DRPayment3ds', '0px', '');
-
-          if (shouldSendCreateSourceBeaconEvent(responseData)) {
-            Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_3__["sendBeaconEventDetails"])(beaconComponent.id, 'source', response.source.id);
-          }
-
-          return responseData;
-        });
-      } else {
-        // nothing can be done for now
-        if (shouldSendCreateSourceBeaconEvent(response)) {
-          Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_3__["sendBeaconEventDetails"])(beaconComponent.id, 'source', response.source.id);
-        }
-
-        return response;
-      }
-    } else {
-      if (shouldSendCreateSourceBeaconEvent(response)) {
-        Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_3__["sendBeaconEventDetails"])(beaconComponent.id, 'source', response.source.id);
-      }
-
-      return response;
-    }
-  });
-}
-/**
- * Submits a payment source transaction to the payment service
- * @param componentInstanceOrSourceData - Instance of a component that is being submitted
- * @param {object|JSON} sourceRequest JSON as an object containing the source request
- * @returns {Promise} A Promise that contains the successful response or throws on error or timeout
- */
-
-
-DigitalRiver.prototype.createSource = function (componentInstanceOrSourceData, sourceRequest) {
-  return createSourceForAllPaymentMethods.call(this, sourceRequest, componentInstanceOrSourceData);
-};
-
-function getSecretFromSessionClientSecret(sessionClientSecret) {
-  if (sessionClientSecret.includes('_')) {
-    return sessionClientSecret.split('_')[0];
-  } else {
-    return sessionClientSecret;
-  }
-}
-/**
- * Creates a source for the credit card element that uses a session client secret to initiate 3DS
- * @param sessionClientSecret
- * @param element
- * @param sourceRequest
- */
-
-
-DigitalRiver.prototype.createCreditCardSource = function (sessionClientSecret, element, sourceRequest) {
-  if (!sessionClientSecret) {
-    throw new Error('You must provide a sessionClientSecret');
-  } // Copy source request so it does not modify the clients request
-
-
-  var updatedSourceRequest = Object.assign({}, sourceRequest);
-  updatedSourceRequest.sessionId = getSecretFromSessionClientSecret(sessionClientSecret);
-
-  if (typeof updatedSourceRequest.creditCard === 'undefined') {
-    updatedSourceRequest.creditCard = {};
-  }
-
-  if (typeof updatedSourceRequest.creditCard.returnUrl === 'undefined') {
-    updatedSourceRequest.creditCard.returnUrl = window.location.href;
-  }
-
-  return createSourceForAllPaymentMethods.call(this, updatedSourceRequest, element, sessionClientSecret);
-};
-
-function isKoreanCard(sourceRequest) {
-  try {
-    var type = sourceRequest.type;
-    var country = sourceRequest.owner.address.country;
-    return type === 'creditCard' && country === 'KR';
-  } catch (err) {
-    return false;
-  }
-}
-
-function handleKoreanCard(key, sourceRequest, resolve) {
-  var _dataStore$get2 = _dataStore_js__WEBPACK_IMPORTED_MODULE_0__["default"].get(key),
-      controller = _dataStore$get2.controller,
-      components = _dataStore$get2.components;
-
-  if (!document.getElementById('DRKoreanCard')) {
-    Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_3__["createOverlayDiv"])('DRKoreanCard');
-  }
-
-  Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_3__["updateOverlay"])('DRKoreanCard', '100%', 'rgba(0,0,0,0.3)');
-  var options = Object.assign({}, components.cardnumber.options);
-
-  try {
-    options.style.base.height = '400px';
-  } catch (err) {
-    options = Object.assign(options, {
-      style: {
-        base: {
-          height: '400px'
-        }
-      }
-    });
-  }
-
-  delete options.placeholderText;
-  delete options.style.base[':hover'];
-  koreanCard = Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_3__["createComponent"])('koreancard', controller.id, key, options);
-  Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_3__["registerComponentWithController"])(controller.id, koreanCard, options);
-  koreanCard.mount('DRKoreanCard');
-  document.getElementById('DRKoreanCard').setAttribute('class', '');
-  koreanCard.on('ready', function () {
-    sendShowKoreanCardOverlay(controller.id, resolve);
-  });
-}
-
-function sendShowKoreanCardOverlay(controllerId, resolve) {
-  var controllerWindow = Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_3__["getComponentWindow"])(controllerId);
-  var data = {
-    resolve: resolve
-  };
-  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_9__["default"].send(controllerWindow, 'showKoreanCardOverlay', data);
-}
-
-DigitalRiver.prototype.retrieveSource = function (sourceId, sourceClientSecret) {
-  if (!sourceClientSecret) {
-    throw new Error('You must provide a sourceClientSecret');
-  }
-
-  if (!sourceId) {
-    throw new Error('You must provide a sourceId');
-  }
-
-  var _dataStore$get3 = _dataStore_js__WEBPACK_IMPORTED_MODULE_0__["default"].get(this.key),
-      controller = _dataStore$get3.controller;
-
-  if (!controller) {
-    throw new Error('Cannot retrieve source without a controller');
-  }
-
-  var controllerWindow = Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_3__["getComponentWindow"])(controller.id);
-
-  if (!controllerWindow) {
-    throw new Error("Unable to locate controller '".concat(controller.id, "'"));
-  }
-
-  var data = {
-    sourceId: sourceId,
-    sourceClientSecret: sourceClientSecret.split('_')[1]
-  };
-  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_9__["default"].send(controllerWindow, 'retrieveSource', data, {
-    timeout: 10000
-  }).then(function (response) {
-    return response.data;
-  });
-};
-/**
- * Client can update owner and card info with this method
- * @param cardExpirationElement
- * @param sourceData
- */
-
-
-DigitalRiver.prototype.updateSource = function (cardExpirationElement, sourceData) {
-  var _dataStore$get4 = _dataStore_js__WEBPACK_IMPORTED_MODULE_0__["default"].get(this.key),
-      controller = _dataStore$get4.controller,
-      instanceOptions = _dataStore$get4.instanceOptions;
-
-  if (!controller) {
-    throw new Error('Cannot update source without a controller');
-  }
-
-  var controllerWindow = Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_3__["getComponentWindow"])(controller.id);
-
-  if (!controllerWindow) {
-    throw new Error("Unable to locate controller '".concat(controller.id, "'"));
-  }
-
-  if (typeof sourceData === 'undefined') {
-    // In this case the firstArg (cardExpirationElement) is actually sourceData
-    // because client did not provide optional element
-    sourceData = Object.assign({}, cardExpirationElement);
-    cardExpirationElement = undefined;
-  } else {
-    if (cardExpirationElement.type !== 'cardexpiration') {
-      return Promise.resolve({
-        'error': {
-          'type': 'bad_request',
-          'errors': [{
-            'code': 'invalid_element_type',
-            'message': 'An element type of cardexpiration must be provided.'
-          }]
-        },
-        'source': null
-      });
-    }
-  }
-
-  var errors = [];
-
-  if (!sourceData.id) {
-    errors.push({
-      'code': 'missing_parameter',
-      'message': 'A parameter is missing.',
-      'parameter': 'id'
-    });
-  }
-
-  if (!sourceData.clientSecret) {
-    errors.push({
-      'code': 'missing_parameter',
-      'message': 'A parameter is missing.',
-      'parameter': 'clientSecret'
-    });
-  }
-
-  if (errors.length > 0) {
-    return Promise.resolve({
-      'error': {
-        'type': 'bad_request',
-        'errors': errors
-      },
-      'source': null
-    });
-  }
-
-  var data = {
-    sourceData: sourceData,
-    cardExpirationElement: cardExpirationElement,
-    locale: instanceOptions.locale
-  };
-  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_9__["default"].send(controllerWindow, 'updateSource', data, {
-    timeout: 10000
-  }).then(function (response) {
-    return response.data;
-  });
-};
-
-DigitalRiver.prototype.retrieveOnlineBankingBanks = function (country, currency) {
-  var _dataStore$get5 = _dataStore_js__WEBPACK_IMPORTED_MODULE_0__["default"].get(this.key),
-      controller = _dataStore$get5.controller;
-
-  if (!controller) {
-    throw new Error('Cannot get banks without a controller');
-  }
-
-  var controllerWindow = Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_3__["getComponentWindow"])(controller.id);
-
-  if (!controllerWindow) {
-    throw new Error("Unable to locate controller '".concat(controller.id, "'"));
-  } // Send message to Controller Frame to get banks
-
-
-  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_9__["default"].send(controllerWindow, 'getOnlineBankingBanks', {
-    country: country,
-    currency: currency
-  }, {
-    timeout: 10000
-  }).then(function (response) {
-    // This is a Post Robot Response object so you have to get the data out
-    return response.data;
-  }).catch(function () {
-    return [];
-  });
-};
-
-function onlineBankingDoesNotHaveRequiredFields(options) {
-  return typeof options === 'undefined' || typeof options.onlineBanking === 'undefined' || typeof options.onlineBanking.currency === 'undefined' || typeof options.onlineBanking.country === 'undefined';
-}
-/**
- * Creates a payment element
- * @param {string} type Element type
- * @param {object} options Element options
- */
-
-
-DigitalRiver.prototype.createElement = function (type, options) {
-  if (ComponentTypes.indexOf(type) === -1) {
-    throw new Error("Invalid element type '".concat(type, "'"));
-  }
-
-  var _dataStore$get6 = _dataStore_js__WEBPACK_IMPORTED_MODULE_0__["default"].get(this.key),
-      components = _dataStore$get6.components,
-      controller = _dataStore$get6.controller;
-
-  if (components[type]) {
-    throw new Error("Failed to create element. Only one element of type '".concat(type, "' allowed per instance."));
-  }
-
-  if (type === 'googlepay' && !(options instanceof _DigitalRiverPaymentRequest__WEBPACK_IMPORTED_MODULE_6__["default"])) {
-    throw new Error('Use paymentRequest() to create options for google.');
-  }
-
-  if (type === 'onlinebanking' && onlineBankingDoesNotHaveRequiredFields(options)) {
-    throw new Error('Element Creation Error: For onlineBanking, currency and country are required.');
-  }
-
-  var component;
-
-  if (options instanceof _DigitalRiverPaymentRequest__WEBPACK_IMPORTED_MODULE_6__["default"]) {
-    options = options.getData();
-  }
-
-  if (type === 'applepay') {
-    component = Object(_applepay_applepay__WEBPACK_IMPORTED_MODULE_7__["createApplePay"])().createApplepayComponent(controller.id, this.key, options);
-  } else {
-    component = Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_3__["createComponent"])(type, controller.id, this.key, options);
-  } // Add component/element id to component map
-
-
-  var data = _dataStore_js__WEBPACK_IMPORTED_MODULE_0__["default"].get(component.key);
-  data.components = Object.assign({}, data.components, _defineProperty({}, type, component.id));
-  Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_3__["registerComponentWithController"])(controller.id, component, options);
-  return component;
-};
-/**
- * Creates a payment request
- * @param {object} data of the request
- */
-
-
-DigitalRiver.prototype.paymentRequest = function (data) {
-  return new _DigitalRiverPaymentRequest__WEBPACK_IMPORTED_MODULE_6__["default"](data);
-};
-
-function getDetails(entityValue, userLocale) {
-  if (!entityValue) {
-    throw new Error('Without business entity value we cannot trigger this method.');
-  }
-
-  if (!userLocale) {
-    var windowDetails = Object(_beacon_beacon_client_data__WEBPACK_IMPORTED_MODULE_8__["collectClientData"])(window);
-    userLocale = windowDetails.userLocale;
-  }
-
-  return Object(_complianceData__WEBPACK_IMPORTED_MODULE_2__["complianceGetDetails"])(entityValue, userLocale);
-}
-
-DigitalRiver.prototype.createDropin = function (options, clientSourceData) {
-  // TODO Validate session ID exists?
-  var key = this.key;
-  var createElement = this.createElement.bind(this);
-  var createSource = this.createSource.bind(this);
-  return {
-    mount: Object(_create_dropin__WEBPACK_IMPORTED_MODULE_11__["mountDropin"])(key, options, clientSourceData, createSource, createElement)
-  };
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (DigitalRiver);
-
-/***/ }),
-
-/***/ "./src/client/DigitalRiverPaymentRequest.js":
-/*!**************************************************!*\
-  !*** ./src/client/DigitalRiverPaymentRequest.js ***!
-  \**************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-/**
- * Constructs a DigitalRiverPaymentRequest
- * @param {object} data
- * @constructor
- */
-function DigitalRiverPaymentRequest(data) {
-  if (typeof data === 'undefined' || _typeof(data) !== 'object') {
-    throw new Error('Invalid Data');
-  }
-
-  if (typeof data.country === 'undefined' || typeof data.country !== 'string') {
-    throw new Error(generateErrorMessage('country', 'string'));
-  }
-
-  if (typeof data.currency === 'undefined' || typeof data.currency !== 'string') {
-    throw new Error(generateErrorMessage('currency', 'string'));
-  }
-
-  if (typeof data.total === 'undefined' || _typeof(data.total) !== 'object' || Array.isArray(data.total)) {
-    throw new Error(generateErrorMessage('total', 'object'));
-  }
-
-  if (typeof data.total.label === 'undefined' || typeof data.total.label !== 'string') {
-    throw new Error(generateErrorMessage('total.label', 'string'));
-  }
-
-  if (typeof data.total.amount === 'undefined' || typeof data.total.amount !== 'number') {
-    throw new Error(generateErrorMessage('total.amount', 'number'));
-  }
-
-  if (typeof data.requestShipping === 'undefined' || typeof data.requestShipping !== 'boolean') {
-    throw new Error(generateErrorMessage('requestShipping', 'boolean'));
-  }
-
-  if (typeof data.displayItems === 'undefined' || !Array.isArray(data.displayItems)) {
-    throw new Error(generateErrorMessage('displayItems', 'array'));
-  }
-
-  data.displayItems.forEach(function (displayItem) {
-    if (!displayItem.label || typeof displayItem.label !== 'string') {
-      throw new Error(generateErrorMessage('displayItem.label', 'string'));
-    }
-
-    if (typeof displayItem.amount === 'undefined' || typeof displayItem.amount !== 'number') {
-      throw new Error(generateErrorMessage('displayItem.amount', 'number'));
-    }
-  });
-  this.data = data;
-}
-/**
- * Generates error message for invalid or missing attribute
- * @param {string} attribute
- * @param {string} type
- * @returns {string}
- */
-
-
-function generateErrorMessage(attribute, type) {
-  return "Missing ".concat(attribute, " attribute or must be ").concat(type);
-}
-/**
- * Returns data from DigitalRiverPaymentRequest
- * @returns {Object}
- */
-
-
-DigitalRiverPaymentRequest.prototype.getData = function () {
-  return this.data;
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (DigitalRiverPaymentRequest);
-
-/***/ }),
-
-/***/ "./src/client/applepay/applepay-utils.js":
-/*!***********************************************!*\
-  !*** ./src/client/applepay/applepay-utils.js ***!
-  \***********************************************/
-/*! exports provided: modifyShippingOptions, updateShippingOptions, convertShippingOptions, convertDisplayItemsToLineItems, convertTotalToAppleFormat, createApplePayButton, getApplePaySession, setApplePayPaymentRequest, sendShippingAddressChangeEvent, sendShippingMethodChangeEvent, shippingAddressSourceToEventData, appleResponseToPaymentService, paymentSourceToEventData, convertClientErrorToAppleFormat, convertFieldNameToAppleFormat, createAppleCompleteFunction, sendAppleClickEvent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "modifyShippingOptions", function() { return modifyShippingOptions; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateShippingOptions", function() { return updateShippingOptions; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "convertShippingOptions", function() { return convertShippingOptions; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "convertDisplayItemsToLineItems", function() { return convertDisplayItemsToLineItems; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "convertTotalToAppleFormat", function() { return convertTotalToAppleFormat; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createApplePayButton", function() { return createApplePayButton; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getApplePaySession", function() { return getApplePaySession; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setApplePayPaymentRequest", function() { return setApplePayPaymentRequest; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sendShippingAddressChangeEvent", function() { return sendShippingAddressChangeEvent; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sendShippingMethodChangeEvent", function() { return sendShippingMethodChangeEvent; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "shippingAddressSourceToEventData", function() { return shippingAddressSourceToEventData; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appleResponseToPaymentService", function() { return appleResponseToPaymentService; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "paymentSourceToEventData", function() { return paymentSourceToEventData; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "convertClientErrorToAppleFormat", function() { return convertClientErrorToAppleFormat; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "convertFieldNameToAppleFormat", function() { return convertFieldNameToAppleFormat; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createAppleCompleteFunction", function() { return createAppleCompleteFunction; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sendAppleClickEvent", function() { return sendAppleClickEvent; });
-/* harmony import */ var _app_components_options__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../app/components/options */ "./src/app/components/options.js");
-/* harmony import */ var _app_components_input_events__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../app/components/input-events */ "./src/app/components/input-events.js");
-/* harmony import */ var _app_components_config__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../app/components/config */ "./src/app/components/config.js");
-/* harmony import */ var _app_components_payment_api_events__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../app/components/payment-api-events */ "./src/app/components/payment-api-events.js");
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-
-
-
-
-/**
- * This re-organize client shippingOptions data to the format we should send to Apple
- * @param {object} originalShippingOptions - data sent from client
- * @returns {Array} of shipping options
- */
-
-function modifyShippingOptions(originalShippingOptions) {
-  var modifiedShippingOptions = [];
-  var index = originalShippingOptions.findIndex(function (key) {
-    return key.selected == true;
-  });
-
-  if (index === -1) {
-    modifiedShippingOptions = originalShippingOptions;
-  } else {
-    modifiedShippingOptions.push(originalShippingOptions[index]);
-    originalShippingOptions.forEach(function (shippingOption, pos) {
-      if (pos != index) {
-        modifiedShippingOptions.push(shippingOption);
-      }
-    });
-  }
-
-  return modifiedShippingOptions;
-}
-/**
- * This method will remove the selected attribute and add selected attribute based on identifier
- * @param shippingOptions
- * @param identifier
- * @returns {Array} of shipping options
- */
-
-function updateShippingOptions(shippingOptions, identifier) {
-  shippingOptions = shippingOptions ? shippingOptions : [];
-  shippingOptions.forEach(function (shippingOption) {
-    if (shippingOption.id === identifier) {
-      shippingOption['selected'] = true;
-    } else {
-      delete shippingOption.selected;
-    }
-  });
-  return shippingOptions;
-}
-/**
- * This converts client shippingOptions data to the format we should send to Apple
- * @param {object} originalShippingOptions - data sent from client
- * @returns {Array} of shipping options
- */
-
-function convertShippingOptions(originalShippingOptions) {
-  originalShippingOptions = originalShippingOptions ? originalShippingOptions : [];
-  var shippingOptions = [];
-  originalShippingOptions = modifyShippingOptions(originalShippingOptions);
-  originalShippingOptions.forEach(function (shippingOption, index) {
-    shippingOptions[index] = {
-      identifier: shippingOption.id,
-      label: shippingOption.label,
-      amount: shippingOption.amount,
-      detail: shippingOption.detail
-    };
-  });
-  return shippingOptions;
-}
-/**
- * This converts client updateWith data to the format we should send to Apple
- * @param {object} displayItems - data sent from client
- * @returns {Array} of lineItems
- */
-
-function convertDisplayItemsToLineItems(displayItems) {
-  var lineItems = [];
-
-  if (displayItems) {
-    displayItems.forEach(function (item) {
-      var lineItem = convertTotalToAppleFormat(item);
-      lineItems.push(lineItem);
-    });
-  } //TODO: find out what Product expects when client does not pass displayItems.  Currently setting lineItems to empty list.
-
-
-  return lineItems;
-}
-/**
- * This converts client total data to the format we should send to Apple
- * @param {object} total - data sent from client
- * @returns {{amount: *, label: string, type: string}}
- */
-
-function convertTotalToAppleFormat(total) {
-  return {
-    label: total.label,
-    amount: total.amount,
-    type: total.isPending ? 'pending' : 'final'
-  };
-}
-/**
- * Creates apple pay button
- * @param {HTMLElement} parent
- * @param {string} id
- * @param {object} options
- * @param {Function} clickHandler
- */
-
-function createApplePayButton(parent, id, options, clickHandler) {
-  //append stylesheet
-  var stylesheet = document.createElement('link');
-  stylesheet.setAttribute('rel', 'stylesheet');
-  stylesheet.setAttribute('href', "".concat(_app_components_config__WEBPACK_IMPORTED_MODULE_2__["config"].domain).concat(_app_components_config__WEBPACK_IMPORTED_MODULE_2__["config"].basePath, "/css/applepay.css"));
-  document.head.appendChild(stylesheet);
-  var el = parent;
-  var button;
-
-  if (el.querySelector('button')) {
-    button = el.querySelector('button');
-  } else {
-    button = document.createElement('button');
-    el.appendChild(button);
-  }
-
-  button.setAttribute('id', id);
-  button.setAttribute('type', 'button');
-  button.addEventListener('click', clickHandler);
-  var defaultOptions = {
-    buttonType: 'plain',
-    buttonColor: 'dark',
-    buttonLanguage: 'en'
-  }; //todo refactor so only style gets passed into this function
-
-  var style = defaultOptions;
-
-  if (options && options.hasOwnProperty('style')) {
-    style = options.style;
-  } else if (options && options.hasOwnProperty('data') && options.data.hasOwnProperty('style')) {
-    style = options.data.style;
-  }
-
-  style.buttonType = style.buttonType ? style.buttonType : defaultOptions.buttonType;
-  style.buttonColor = style.buttonColor ? style.buttonColor : defaultOptions.buttonColor;
-  style.buttonLanguage = style.buttonLanguage ? style.buttonLanguage : defaultOptions.buttonLanguage; // set button type
-
-  if (style.buttonType === 'buy') {
-    button.setAttribute('style', 'width:100%; -webkit-appearance: -apple-pay-button; -apple-pay-button-type: buy; cursor: pointer;'); // set button color
-
-    if (style.buttonColor === 'light') {
-      button.className = 'apple-pay-button apple-pay-button-white-with-text';
-    } else if (style.buttonColor === 'light-outline') {
-      button.className = 'apple-pay-button apple-pay-button-white-with-line-with-text';
-    } else {
-      button.className = 'apple-pay-button apple-pay-button-black-with-text';
-    }
-  } else {
-    button.setAttribute('style', 'width:100%; -webkit-appearance: -apple-pay-button; -apple-pay-button-type: plain; cursor: pointer;'); // set button color
-
-    if (style.buttonColor === 'light') {
-      button.className = 'apple-pay-button apple-pay-button-white';
-    } else if (style.buttonColor === 'light-outline') {
-      button.className = 'apple-pay-button apple-pay-button-white-with-line';
-    } else {
-      button.className = 'apple-pay-button apple-pay-button-black';
-    }
-  } //set language
-
-
-  if (style.buttonLanguage !== 'en') {
-    button.setAttribute('lang', style.buttonLanguage);
-  } else {
-    button.setAttribute('lang', 'en');
-  }
-}
-/**
- * Gets an ApplePaySession
- * @param {number} version
- * @param {object} paymentOptions
- * @returns {ApplePaySession}
- */
-
-function getApplePaySession(version, paymentOptions) {
-  return new ApplePaySession(version, paymentOptions); //eslint-disable-line no-undef
-}
-/**
- * Creates an Apple Payment Request
- * @param {object} options
- * @returns {{requiredShippingContactFields: string[], supportedNetworks: string[], merchantCapabilities: string[], requiredBillingContactFields: string[]}}
- */
-
-function setApplePayPaymentRequest(options) {
-  var applePaymentRequest = {
-    merchantCapabilities: ['supports3DS'],
-    supportedNetworks: ['amex', 'masterCard', 'visa', 'JCB', 'chinaUnionPay', 'discover', 'privateLabel'],
-    requiredBillingContactFields: ['postalAddress', 'email', 'name', 'phone'],
-    requiredShippingContactFields: ['postalAddress', 'email', 'name', 'phone']
-  };
-
-  if (options.hasOwnProperty('currency')) {
-    applePaymentRequest.currencyCode = options.currency;
-  }
-
-  if (options.hasOwnProperty('country')) {
-    applePaymentRequest.countryCode = options.country.toUpperCase();
-  }
-
-  if (options.hasOwnProperty('shippingOptions')) {
-    applePaymentRequest.shippingMethods = convertShippingOptions(Object.values(options.shippingOptions));
-  }
-
-  if (options.hasOwnProperty('displayItems')) {
-    applePaymentRequest.lineItems = convertDisplayItemsToLineItems(Object.values(options.displayItems));
-  }
-
-  if (options.hasOwnProperty('total')) {
-    applePaymentRequest.total = convertTotalToAppleFormat(options.total);
-  }
-
-  return applePaymentRequest;
-}
-/**
- * Sends shipping address change event to client
- * @param {object} appleShippingAddress
- * @param {Function} resolve
- * @param {object} instanceData
- * @returns {{updateWith: updateWith, shippingAddress: {firstName: (string), lastName: (string), address: {country: string, city: (string), postalCode: *, state: string, line2: string, line1: string}, phone: *, name: string, email: *}}}
- */
-
-function sendShippingAddressChangeEvent(appleShippingAddress, resolve, instanceData) {
-  var updateWith = function updateWith(clientPassedInData) {
-    var data = Object(_app_components_options__WEBPACK_IMPORTED_MODULE_0__["sanitizeOptionsForGoogleApplePay"])(clientPassedInData);
-    instanceData.options = Object(_app_components_options__WEBPACK_IMPORTED_MODULE_0__["mergeOptions"])(instanceData.options, data);
-    var errors = [];
-
-    if (instanceData.options.status !== 'success') {
-      var defaultError = new ApplePayError('unknown'); //eslint-disable-line no-undef
-
-      if (instanceData.options.error) {
-        errors = convertClientErrorToAppleFormat('shippingContactInvalid', instanceData.options.error);
-        delete instanceData.options.error;
-      } else {
-        errors = [defaultError];
-      }
-    }
-
-    var updatedAppleData = {
-      errors: errors
-    };
-
-    if (instanceData.options.shippingOptions) {
-      updatedAppleData.newShippingMethods = convertShippingOptions(instanceData.options.shippingOptions);
-    }
-
-    if (instanceData.options.total) {
-      updatedAppleData.newTotal = convertTotalToAppleFormat(instanceData.options.total);
-    }
-
-    if (instanceData.options.displayItems) {
-      updatedAppleData.newLineItems = convertDisplayItemsToLineItems(instanceData.options.displayItems);
-    }
-
-    resolve(updatedAppleData);
-  };
-
-  var eventData = {
-    shippingAddress: shippingAddressSourceToEventData(appleShippingAddress),
-    updateWith: updateWith
-  };
-  Object(_app_components_input_events__WEBPACK_IMPORTED_MODULE_1__["sendEventData"])(instanceData.componentData.controller, instanceData.componentData.componentId, instanceData.componentData.componentType, 'shippingaddresschange', eventData);
-  return eventData;
-}
-/**
- * Sends Apple shipping method change event to client
- * @param {object} appleShippingMethod
- * @param {Function} resolve
- * @param {object} instanceData
- * @returns {{updateWith: updateWith, shippingOption: {amount: *, id: *, label: *, detail: *}}}
- */
-
-function sendShippingMethodChangeEvent(appleShippingMethod, resolve, instanceData) {
-  instanceData.options.shippingOptions = updateShippingOptions(instanceData.options.shippingOptions, appleShippingMethod.identifier);
-
-  var updateWith = function updateWith(clientPassedInData) {
-    var data = Object(_app_components_options__WEBPACK_IMPORTED_MODULE_0__["sanitizeOptionsForGoogleApplePay"])(clientPassedInData);
-    instanceData.options = Object(_app_components_options__WEBPACK_IMPORTED_MODULE_0__["mergeOptions"])(instanceData.options, data);
-    var errors = [];
-
-    if (instanceData.options.status !== 'success') {
-      var defaultError = new ApplePayError('unknown'); //eslint-disable-line no-undef
-
-      if (instanceData.options.error) {
-        errors = convertClientErrorToAppleFormat('shippingContactInvalid', instanceData.options.error);
-        delete instanceData.options.error;
-      } else {
-        errors = [defaultError];
-      }
-    }
-
-    var updatedAppleData = {
-      errors: errors
-    };
-
-    if (instanceData.options.total) {
-      updatedAppleData.newTotal = convertTotalToAppleFormat(instanceData.options.total);
-    }
-
-    if (instanceData.options.displayItems) {
-      updatedAppleData.newLineItems = convertDisplayItemsToLineItems(instanceData.options.displayItems);
-    }
-
-    resolve(updatedAppleData);
-  };
-
-  var eventData = {
-    shippingOption: {
-      id: appleShippingMethod.identifier,
-      label: appleShippingMethod.label,
-      amount: appleShippingMethod.amount,
-      detail: appleShippingMethod.detail
-    },
-    updateWith: updateWith
-  };
-  Object(_app_components_input_events__WEBPACK_IMPORTED_MODULE_1__["sendEventData"])(instanceData.componentData.controller, instanceData.componentData.componentId, instanceData.componentData.componentType, 'shippingoptionchange', eventData);
-  return eventData;
-}
-/**
- * This converts apple shipping address data to the format we should send to client
- * @param {object} appleData - Apple Pay event data
- * @returns {object}
- */
-
-function shippingAddressSourceToEventData(shippingAddressFromApple) {
-  var firstName = shippingAddressFromApple.givenName || '';
-  var lastName = shippingAddressFromApple.familyName || '';
-  var addressLine1 = '';
-  var addressLine2 = '';
-
-  if (shippingAddressFromApple.hasOwnProperty('addressLines')) {
-    addressLine1 = shippingAddressFromApple.addressLines[0];
-    addressLine2 = shippingAddressFromApple.addressLines[1] || '';
-  }
-
-  var shippingAddress = {
-    name: firstName && lastName ? "".concat(firstName, " ").concat(lastName) : '',
-    firstName: firstName,
-    lastName: lastName,
-    //todo figure out what to do here since this is redacted by apple until payment is authed
-    phone: shippingAddressFromApple.phoneNumber ? shippingAddressFromApple.phoneNumber : '',
-    //todo figure out what to do here since this is redacted by apple until payment is authed
-    email: shippingAddressFromApple.emailAddress ? shippingAddressFromApple.emailAddress : '',
-    address: {
-      //todo figure out what to do here since this is redacted by apple until payment is authed
-      line1: addressLine1,
-      line2: addressLine2,
-      city: shippingAddressFromApple.locality,
-      postalCode: shippingAddressFromApple.postalCode,
-      state: shippingAddressFromApple.administrativeArea,
-      country: shippingAddressFromApple.countryCode.toUpperCase()
-    }
-  };
-  return shippingAddress;
-}
-/**
- * This converts apple pay paymentAuthorized event data to data the payment service can consume
- * @param {object} appleResponseData - Apple Pay paymentAuthorized event data
- * @param {object} instanceData
- * @returns {object}
- */
-
-function appleResponseToPaymentService(appleResponseData, instanceData) {
-  return {
-    'type': 'applePay',
-    'owner': {
-      'firstName': appleResponseData.payment.billingContact.givenName,
-      'lastName': appleResponseData.payment.billingContact.familyName,
-      'email': appleResponseData.payment.shippingContact.emailAddress,
-      'phoneNumber': appleResponseData.payment.shippingContact.phoneNumber,
-      'address': {
-        'line1': appleResponseData.payment.billingContact.addressLines[0],
-        'line2': appleResponseData.payment.billingContact.addressLines.length >= 2 ? appleResponseData.payment.billingContact.addressLines[1] : '',
-        'city': appleResponseData.payment.billingContact.locality,
-        'state': appleResponseData.payment.billingContact.administrativeArea,
-        'country': appleResponseData.payment.billingContact.countryCode.toUpperCase(),
-        'postalCode': appleResponseData.payment.billingContact.postalCode
-      }
-    },
-    'applePay': appleResponseData.payment.token.paymentData,
-    'amount': instanceData.options.total.amount,
-    'currency': instanceData.options.currency
-  };
-}
-/**
- * This converts payment source data to the format we should send in the source event
- * @param {object} applePaymentData - Apple Pay paymentAuthorized event data
- * @param {object} paymentSource
- * @param {function} complete function
- * @returns {object}
- */
-
-function paymentSourceToEventData(applePaymentData, paymentSource, complete) {
-  var shippingContact = applePaymentData.payment.shippingContact;
-  var billingContact = applePaymentData.payment.billingContact;
-  var shippingFullName = shippingContact.givenName && shippingContact.familyName ? "".concat(shippingContact.givenName, " ").concat(shippingContact.familyName) : '';
-  var billingFullName = billingContact.givenName && billingContact.familyName ? "".concat(billingContact.givenName, " ").concat(billingContact.familyName) : '';
-  var billingAddress = {
-    name: billingFullName,
-    firstName: billingContact.givenName || '',
-    lastName: billingContact.familyName || '',
-    phone: shippingContact.phoneNumber || '',
-    //apple does not pass billing phone, so we use shipping here
-    email: shippingContact.emailAddress || '',
-    //apple does not pass billing email, so we use shipping here
-    address: {
-      line1: billingContact.addressLines ? billingContact.addressLines[0] : '',
-      line2: billingContact.addressLines && billingContact.addressLines.length >= 2 ? billingContact.addressLines[1] : '',
-      city: billingContact.locality || '',
-      postalCode: billingContact.postalCode || '',
-      state: billingContact.administrativeArea || '',
-      country: billingContact.countryCode ? billingContact.countryCode.toUpperCase() : ''
-    }
-  };
-  var shippingAddress = {
-    name: shippingFullName,
-    firstName: shippingContact.givenName || '',
-    lastName: shippingContact.familyName || '',
-    phone: shippingContact.phoneNumber || '',
-    email: shippingContact.emailAddress || '',
-    address: {
-      line1: shippingContact.addressLines ? shippingContact.addressLines[0] : '',
-      line2: shippingContact.addressLines && shippingContact.addressLines.length >= 2 ? shippingContact.addressLines[1] : '',
-      city: shippingContact.locality || '',
-      postalCode: shippingContact.postalCode || '',
-      state: shippingContact.administrativeArea || '',
-      country: shippingContact.countryCode ? shippingContact.countryCode.toUpperCase() : ''
-    }
-  };
-  var contactInformation = {
-    name: billingFullName || '',
-    phone: shippingContact.phoneNumber || '',
-    email: shippingContact.emailAddress || ''
-  };
-  var formattedEventData = {
-    error: paymentSource.error !== null,
-    source: paymentSource.source,
-    billingAddress: billingAddress,
-    shippingAddress: shippingAddress,
-    contactInformation: contactInformation,
-    complete: complete
-  };
-  return formattedEventData;
-}
-/**
- * This converts client error messages into Apple Pay format
- * @param {string} errorSource - event the client was responding to with the error
- * @param {object} clientError - error client sends back
- * @returns {object} apple errors
- */
-
-function convertClientErrorToAppleFormat(errorSource, clientError) {
-  var error;
-  var appleErrors = [];
-
-  if (_typeof(clientError) === 'object' && clientError.hasOwnProperty('fields')) {
-    Object.keys(clientError.fields).forEach(function (key) {
-      error = new ApplePayError(errorSource, convertFieldNameToAppleFormat(key), clientError.fields[key]); //eslint-disable-line no-undef
-
-      appleErrors.push(error);
-    });
-  } else {
-    var message = clientError.message !== undefined ? clientError.message : '';
-
-    if (errorSource === 'shippingContactInvalid') {
-      error = new ApplePayError('unknown', 'postalAddress', message); //eslint-disable-line no-undef
-    } else {
-      error = new ApplePayError('unknown', null, message); //eslint-disable-line no-undef
-    }
-
-    appleErrors.push(error);
-  }
-
-  return appleErrors;
-}
-/**
- * This converts DigitalRiverPayments fields into Apple Pay format
- * @param {string} fieldname - fieldname used by DigitalRiverPayments
- * @returns {string}
- */
-
-function convertFieldNameToAppleFormat(fieldName) {
-  var translate = {
-    phone: 'phoneNumber',
-    email: 'emailAddress',
-    recipient: 'name',
-    phoneticName: 'phoneticName',
-    address: 'postalAddress',
-    addressLine: 'addressLines',
-    city: 'locality',
-    region: 'administrativeArea',
-    postalCode: 'postalCode',
-    country: 'country'
-  };
-
-  if (translate.hasOwnProperty(fieldName)) {
-    return translate[fieldName];
-  } else {
-    throw new Error("".concat(fieldName, " is not a supported field for errors"));
-  }
-}
-/**
- * Returns complete function for Apple
- * @param {Function} resolve
- * @returns {Function} complete
- */
-
-function createAppleCompleteFunction(resolve) {
-  var complete = function complete(status) {
-    var transformedStatus = status === 'success' ? ApplePaySession.STATUS_SUCCESS : ApplePaySession.STATUS_FAILURE; //eslint-disable-line no-undef
-
-    var completeData = {
-      status: transformedStatus
-    };
-
-    if (status !== 'success') {
-      var error = new ApplePayError('unknown'); //eslint-disable-line no-undef
-
-      completeData.error = [error];
-    }
-
-    resolve(completeData);
-  };
-
-  return complete;
-}
-/**
- * Sends the click event to controller
- * @param {object} instanceData
- * @returns {object} updateWith/undefined
- */
-
-function sendAppleClickEvent(instanceData) {
-  if (Object(_app_components_payment_api_events__WEBPACK_IMPORTED_MODULE_3__["waitForClientUpdateWithFunction"])(instanceData.getPaymentOptions())) {
-    var updateWith = function updateWith(clientPassedInData) {
-      var sanitizeData = Object(_app_components_options__WEBPACK_IMPORTED_MODULE_0__["sanitizeOptionsForGoogleApplePay"])(clientPassedInData);
-      var data = Object(_app_components_options__WEBPACK_IMPORTED_MODULE_0__["mergeOptions"])(instanceData.getPaymentOptions(), sanitizeData);
-      instanceData.setOptions(data);
-      return data;
-    };
-
-    var result = {
-      updateWith: updateWith
-    };
-    Object(_app_components_input_events__WEBPACK_IMPORTED_MODULE_1__["sendEventData"])(instanceData.componentData.controller, instanceData.componentData.componentId, instanceData.componentData.componentType, 'click', result);
-    return result;
-  } else {
-    var _result = {};
-    Object(_app_components_input_events__WEBPACK_IMPORTED_MODULE_1__["sendEventData"])(instanceData.componentData.controller, instanceData.componentData.componentId, instanceData.componentData.componentType, 'click', _result);
-    return _result;
-  }
-}
-
-/***/ }),
-
-/***/ "./src/client/applepay/applepay.js":
-/*!*****************************************!*\
-  !*** ./src/client/applepay/applepay.js ***!
-  \*****************************************/
-/*! exports provided: processPayment, processAppleClickEvent, applePaymentCanMakePayment, validateMerchant, paymentAuthorization, handleValidateMerchant, shippingAddressChange, shippingOptionChange, createApplePay */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "processPayment", function() { return processPayment; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "processAppleClickEvent", function() { return processAppleClickEvent; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "applePaymentCanMakePayment", function() { return applePaymentCanMakePayment; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "validateMerchant", function() { return validateMerchant; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "paymentAuthorization", function() { return paymentAuthorization; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleValidateMerchant", function() { return handleValidateMerchant; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "shippingAddressChange", function() { return shippingAddressChange; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "shippingOptionChange", function() { return shippingOptionChange; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createApplePay", function() { return createApplePay; });
-/* harmony import */ var _app_components_config__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../app/components/config */ "./src/app/components/config.js");
-/* harmony import */ var _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../post-robot-wrapper */ "./src/post-robot-wrapper.js");
-/* harmony import */ var _createComponent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../createComponent */ "./src/client/createComponent.js");
-/* harmony import */ var _app_components_options__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../app/components/options */ "./src/app/components/options.js");
-/* harmony import */ var _applepay_utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./applepay-utils */ "./src/client/applepay/applepay-utils.js");
-/* harmony import */ var _app_components_payment_api_events__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../app/components/payment-api-events */ "./src/app/components/payment-api-events.js");
-/* harmony import */ var _app_components_payment_events__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../app/components/payment-events */ "./src/app/components/payment-events.js");
-/* harmony import */ var _app_components_create_initial_data__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../app/components/create-initial-data */ "./src/app/components/create-initial-data.js");
-/* harmony import */ var _app_components_google_apple_pay_events__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../app/components/google-apple-pay-events */ "./src/app/components/google-apple-pay-events.js");
-/* harmony import */ var _app_components_payment_component_data__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../app/components/payment-component-data */ "./src/app/components/payment-component-data.js");
-
-
-
-
-
-
-
-
-
-
-var version = 3;
-/**
- * Processes payment sent from apple and sends it to the payment service to create a payment source
- * @param {object} appleResponseData - data received from Apple
- * @param {function} resolve -
- * @param {object} instanceData
- */
-
-function processPayment(appleResponseData, resolve, instanceData) {
-  var complete = Object(_applepay_utils__WEBPACK_IMPORTED_MODULE_4__["createAppleCompleteFunction"])(resolve);
-  var paymentServiceRequest = Object(_applepay_utils__WEBPACK_IMPORTED_MODULE_4__["appleResponseToPaymentService"])(appleResponseData, instanceData);
-  Object(_app_components_google_apple_pay_events__WEBPACK_IMPORTED_MODULE_8__["sendCreateSourceRequest"])(instanceData.controllerEmitter, instanceData.componentData, appleResponseData, paymentServiceRequest, _applepay_utils__WEBPACK_IMPORTED_MODULE_4__["paymentSourceToEventData"], complete);
-}
-/**
- * Process the click event for Apple pay
- * @param {object} instanceData
- * @param {Function} sendAppleClickEvent
- */
-
-function processAppleClickEvent(instanceData, sendAppleClickEvent) {
-  sendAppleClickEvent(instanceData);
-}
-/**
- * Returns boolean true if Apple Pay is supported, false if not supported
- */
-
-function applePaymentCanMakePayment() {
-  if (window.ApplePaySession) {
-    //eslint-disable-line no-undef
-    var merchantIdentifier = _app_components_config__WEBPACK_IMPORTED_MODULE_0__["config"].applePayMerchantId;
-    return ApplePaySession.canMakePayments(merchantIdentifier); //eslint-disable-line no-undef
-  }
-
-  return false;
-}
-/**
- * Validates merchant
- * @param {string} validationUrl
- * @param {object} controllerEmitter
- */
-
-function validateMerchant(controllerEmitter, validationUrl) {
-  //getting domain this way so that it is supported by Safari and iOS Safari
-  var domain = window.location.origin.split('//')[1];
-  var validationData = {
-    validationUrl: validationUrl,
-    domain: domain,
-    displayName: domain
-  };
-  return controllerEmitter.send('validateAppleMerchant', validationData);
-}
-/**
- *
- * @param event - event content from Apple
- * @param processPayment - function for sending the event to the client
- * @param instanceData
- */
-
-function paymentAuthorization(event, processPayment, instanceData) {
-  return new Promise(function (resolve) {
-    return processPayment(event, resolve, instanceData);
-  }).then(function (data) {
-    if (data.status === 0) {
-      instanceData.options = Object(_app_components_options__WEBPACK_IMPORTED_MODULE_3__["mergeOptions"])(instanceData.options, data);
-      delete instanceData.options.errors;
-      instanceData.applepaySession.completePayment(data);
-    } else {
-      instanceData.applepaySession.abort();
-      Object(_app_components_payment_api_events__WEBPACK_IMPORTED_MODULE_5__["emitComponentCancelled"])(instanceData.componentData);
-    }
-  });
-}
-/**
- * Calls validateMerchant and completes merchant validation
- * @param {object} event
- * @param {object} instanceData
- */
-
-function handleValidateMerchant(event, instanceData) {
-  return validateMerchant(instanceData.controllerEmitter, event.validationURL).then(function (response) {
-    instanceData.applepaySession.completeMerchantValidation(response.data.data);
-  }).catch(function (err) {
-    throw new Error(err);
-  });
-}
-/**
- *
- * @param event - event content from Apple
- * @param sendShippingAddressChangeEvent - function for sending the event to the client
- * @param instanceData
- */
-
-function shippingAddressChange(event, sendShippingAddressChangeEvent, instanceData) {
-  var getUpdatedDetails = new Promise(function (resolve) {
-    sendShippingAddressChangeEvent(event.shippingContact, resolve, instanceData);
-  });
-  getUpdatedDetails.then(function (data) {
-    instanceData.applepaySession.completeShippingContactSelection(data);
-  });
-}
-/**
- *
- * @param event - event content from Apple
- * @param sendShippingMethodChangeEvent - function for sending the event to the client
- * @param instanceData
- */
-
-function shippingOptionChange(event, sendShippingMethodChangeEvent, instanceData) {
-  var getUpdatedDetails = new Promise(function (resolve) {
-    sendShippingMethodChangeEvent(event.shippingMethod, resolve, instanceData);
-  });
-  getUpdatedDetails.then(function (data) {
-    instanceData.applepaySession.completeShippingMethodSelection(data);
-  });
-}
-function createApplePay() {
-  var componentData;
-  var controllerEmitter;
-  var controllerListener;
-  var instanceData;
-  var supportedInstruments;
-
-  function getInstanceData() {
-    return instanceData;
-  }
-
-  function handleAppleOptions(data) {
-    setOptions(data.options);
-  }
-  /**
-   * Mounts component
-   * @param node - string or html element where component should be mounted
-   */
-
-
-  function mountApplepay(node) {
-    instanceData.parentNode = node;
-    var applePayMount = _createComponent__WEBPACK_IMPORTED_MODULE_2__["mount"].bind(this);
-    applePayMount(node);
-    return Object(_app_components_payment_events__WEBPACK_IMPORTED_MODULE_6__["mountComponentFromClient"])(instanceData.controllerEmitter, instanceData.componentData, handleAppleOptions, _app_components_payment_api_events__WEBPACK_IMPORTED_MODULE_5__["emitComponentReady"], undefined, instanceData);
-  }
-  /**
-   * Sanitizes options, stores them in variable, changes amount to string
-   * @param {object} unsafeOptions
-   */
-
-
-  function setOptions(unsafeOptions) {
-    var options = Object(_app_components_options__WEBPACK_IMPORTED_MODULE_3__["sanitizeOptionsForGoogleApplePay"])(unsafeOptions);
-    options.total.amount = options.total.amount.toString();
-    instanceData.options = options;
-    var node = typeof instanceData.parentNode === 'string' ? document.getElementById(instanceData.parentNode) : instanceData.parentNode;
-    Object(_applepay_utils__WEBPACK_IMPORTED_MODULE_4__["createApplePayButton"])(node, instanceData.componentData.componentId, instanceData.options, onApplePayButtonClick);
-  }
-  /**
-   * applies updated options sent by the client
-   * @param {object} options
-   */
-
-
-  function handleUpdate(options) {
-    var applePayUpdate = _createComponent__WEBPACK_IMPORTED_MODULE_2__["update"].bind(this);
-    applePayUpdate(options);
-  }
-  /**
-   * Returns payment options
-   */
-
-
-  function getPaymentOptions() {
-    return instanceData.options;
-  }
-  /**
-   * Returns Apple Pay button element
-   */
-
-
-  function getElement() {
-    return document.getElementById(instanceData.componentData.componentId);
-  }
-  /**
-   * Handles click on Apple Pay button and inits Payment Request
-   */
-
-
-  function onApplePayButtonClick() {
-    processAppleClickEvent(instanceData, _applepay_utils__WEBPACK_IMPORTED_MODULE_4__["sendAppleClickEvent"]);
-    var applepayPaymentRequest = Object(_applepay_utils__WEBPACK_IMPORTED_MODULE_4__["setApplePayPaymentRequest"])(instanceData.options);
-    var applepaySession = Object(_applepay_utils__WEBPACK_IMPORTED_MODULE_4__["getApplePaySession"])(version, applepayPaymentRequest);
-
-    applepaySession.onvalidatemerchant = function (event) {
-      return handleValidateMerchant(event, instanceData);
-    };
-
-    applepaySession.onshippingcontactselected = function (event) {
-      return shippingAddressChange(event, _applepay_utils__WEBPACK_IMPORTED_MODULE_4__["sendShippingAddressChangeEvent"], instanceData);
-    };
-
-    applepaySession.onshippingmethodselected = function (event) {
-      return shippingOptionChange(event, _applepay_utils__WEBPACK_IMPORTED_MODULE_4__["sendShippingMethodChangeEvent"], instanceData);
-    };
-
-    applepaySession.onpaymentauthorized = function (event) {
-      return paymentAuthorization(event, processPayment, instanceData);
-    };
-
-    applepaySession.oncancel = function () {
-      return handleCancel(componentData);
-    };
-
-    applepaySession.begin();
-    instanceData.applepaySession = applepaySession;
-  }
-  /**
-   * Sends cancel event data to controller to be sent on to client
-   */
-
-
-  function handleCancel(componentData) {
-    Object(_app_components_payment_api_events__WEBPACK_IMPORTED_MODULE_5__["emitComponentCancelled"])(componentData);
-  }
-
-  function createApplepayComponent(controllerId, key, options) {
-    var type = 'applepay';
-    var id = Object(_createComponent__WEBPACK_IMPORTED_MODULE_2__["generateComponentId"])(type);
-    var applepayComponent = {
-      id: id,
-      key: key,
-      type: type,
-      parentNode: null,
-      controllerId: controllerId,
-      canMakePayment: applePaymentCanMakePayment,
-      mount: mountApplepay,
-      destroy: _createComponent__WEBPACK_IMPORTED_MODULE_2__["destroy"],
-      on: _createComponent__WEBPACK_IMPORTED_MODULE_2__["onEventHandler"],
-      options: Object(_app_components_options__WEBPACK_IMPORTED_MODULE_3__["sanitizeOptionsForGoogleApplePay"])(options),
-      show: onApplePayButtonClick,
-      unmount: _createComponent__WEBPACK_IMPORTED_MODULE_2__["unmount"],
-      update: handleUpdate
-    };
-    componentData = Object(_app_components_payment_component_data__WEBPACK_IMPORTED_MODULE_9__["generateComponentData"])(type, id, controllerId);
-    componentData.key = key;
-    controllerListener = _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_1__["default"].listener({
-      window: componentData.controller.window,
-      domain: _app_components_config__WEBPACK_IMPORTED_MODULE_0__["config"].domain
-    });
-    controllerEmitter = _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_1__["default"].client({
-      window: componentData.controller.window,
-      domain: _app_components_config__WEBPACK_IMPORTED_MODULE_0__["config"].domain
-    });
-    supportedInstruments = [{
-      supportedMethods: 'https://apple.com/apple-pay',
-      data: {
-        version: 3,
-        merchantIdentifier: _app_components_config__WEBPACK_IMPORTED_MODULE_0__["config"].applePayMerchantId,
-        merchantCapabilities: ['supports3DS', 'supportsCredit', 'supportsDebit'],
-        supportedNetworks: ['amex', 'masterCard', 'visa', 'JCB', 'chinaUnionPay', 'discover', 'privateLabel'],
-        countryCode: applepayComponent.options && applepayComponent.options.hasOwnProperty('country') ? applepayComponent.options.country : 'US',
-        requiredBillingContactFields: ['postalAddress', 'email', 'name', 'phone'],
-        requiredShippingContactFields: ['postalAddress', 'email', 'name', 'phone']
-      }
-    }];
-    instanceData = Object(_app_components_create_initial_data__WEBPACK_IMPORTED_MODULE_7__["generateInstanceData"])(controllerEmitter, componentData, getPaymentOptions, getElement, setOptions, supportedInstruments);
-    instanceData.waitBeforeShow = true;
-    instanceData.options = applepayComponent.options;
-    Object(_app_components_payment_events__WEBPACK_IMPORTED_MODULE_6__["addHandleOptions"])(controllerListener, handleAppleOptions);
-    return applepayComponent;
-  }
-
-  return {
-    /**
-     * Creates applepay component
-     * @param {string} controllerId
-     * @param {string} key
-     * @param {object} options
-     */
-    createApplepayComponent: createApplepayComponent,
-    setOptions: setOptions,
-    getElement: getElement,
-    getPaymentOptions: getPaymentOptions,
-    handleUpdate: handleUpdate,
-    handleCancel: handleCancel,
-    handleAppleOptions: handleAppleOptions,
-    handleValidateMerchant: handleValidateMerchant,
-    mountApplepay: mountApplepay,
-    onApplePayButtonClick: onApplePayButtonClick,
-    getInstanceData: getInstanceData
-  };
-}
-
-/***/ }),
-
-/***/ "./src/client/complianceData.js":
-/*!**************************************!*\
-  !*** ./src/client/complianceData.js ***!
-  \**************************************/
-/*! exports provided: complianceGetDetails */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "complianceGetDetails", function() { return complianceGetDetails; });
-/* harmony import */ var _json_compliance_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../json/compliance.json */ "./src/json/compliance.json");
-var _json_compliance_json__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../json/compliance.json */ "./src/json/compliance.json", 1);
-
-var defaultDRStore = 'https://store.digitalriver.com/store/defaults/';
-var eCommerceProvider = '/eCommerceProvider.';
-var slash = '/';
-var supportedLocales = _json_compliance_json__WEBPACK_IMPORTED_MODULE_0__["locale"];
-function complianceGetDetails(businessEntityId, locale) {
-  var updatedLocale = locale.replace('-', '_');
-  var businessEntityName = getBusinessEntityNameFromCode(businessEntityId);
-  var businessEntityNameEncoded = encodeURIComponent(businessEntityName);
-
-  if (!checkLocaleSupports(updatedLocale)) {
-    throw new Error('Locale is not supported');
-  }
-
-  var complianceData = {
-    'disclosure': {
-      'businessEntity': {
-        'name': businessEntityName,
-        'id': businessEntityId
-      },
-      'resellerDisclosure': {
-        'localizedText': localizedText(_json_compliance_json__WEBPACK_IMPORTED_MODULE_0__["keys"].RESELLER_DISCLOSURE, updatedLocale),
-        'url': localizedUrl(updatedLocale, 'DisplayDRAboutDigitalRiverPage', businessEntityNameEncoded)
-      },
-      'termsOfSale': {
-        'localizedText': localizedText(_json_compliance_json__WEBPACK_IMPORTED_MODULE_0__["keys"].TERMS_OF_SALE, updatedLocale),
-        'url': localizedUrl(updatedLocale, 'DisplayDRTermsAndConditionsPage', businessEntityNameEncoded)
-      },
-      'privacyPolicy': {
-        'localizedText': localizedText(_json_compliance_json__WEBPACK_IMPORTED_MODULE_0__["keys"].PRIVACY_POLICY, updatedLocale),
-        'url': localizedUrl(updatedLocale, 'DisplayDRPrivacyPolicyPage', businessEntityNameEncoded)
-      },
-      'cookiePolicy': {
-        'localizedText': localizedText(_json_compliance_json__WEBPACK_IMPORTED_MODULE_0__["keys"].COOKIE_POLICY, updatedLocale),
-        'url': localizedUrl(updatedLocale, 'DisplayDRCookiesPolicyPage', businessEntityNameEncoded)
-      },
-      'cancellationRights': {
-        'localizedText': localizedText(_json_compliance_json__WEBPACK_IMPORTED_MODULE_0__["keys"].CANCELLATION_RIGHTS, updatedLocale),
-        'url': localizedUrl(updatedLocale, 'DisplayDRTermsAndConditionsPage', businessEntityNameEncoded, 'cancellationRights')
-      },
-      'legalNotice': {
-        'localizedText': localizedText(_json_compliance_json__WEBPACK_IMPORTED_MODULE_0__["keys"].LEGAL_NOTICE, updatedLocale),
-        'url': localizedUrl(updatedLocale, 'DisplayDRContactInformationPage', businessEntityNameEncoded)
-      }
-    }
-  };
-  return complianceData;
-}
-
-function checkLocaleSupports(locale) {
-  return supportedLocales.includes(locale);
-}
-
-function localizedText(type, locale) {
-  var localizedValue;
-
-  if (locale in _json_compliance_json__WEBPACK_IMPORTED_MODULE_0__["details"] && type in _json_compliance_json__WEBPACK_IMPORTED_MODULE_0__["details"][locale]) {
-    localizedValue = _json_compliance_json__WEBPACK_IMPORTED_MODULE_0__["details"][locale][type];
-  } else {
-    localizedValue = '';
-  }
-
-  return localizedValue;
-}
-
-function localizedUrl(locale, entityType, entityNameEncoded, urlType) {
-  if (urlType === 'cancellationRights') {
-    return defaultDRStore + locale + slash + entityType + eCommerceProvider + entityNameEncoded + '.#cancellationRight';
-  } else {
-    return defaultDRStore + locale + slash + entityType + eCommerceProvider + entityNameEncoded;
-  }
-}
-
-function getBusinessEntityNameFromCode(entityId) {
-  var entityName;
-  _json_compliance_json__WEBPACK_IMPORTED_MODULE_0__["entityCode"].forEach(function (entity) {
-    if (entityId === entity.code) {
-      entityName = entity.name;
-    }
-  });
-  return entityName;
-}
-
-/***/ }),
-
-/***/ "./src/client/create-dropin.js":
-/*!*************************************!*\
-  !*** ./src/client/create-dropin.js ***!
-  \*************************************/
-/*! exports provided: mountDropin */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mountDropin", function() { return mountDropin; });
-/* harmony import */ var _dataStore__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./dataStore */ "./src/client/dataStore.js");
-/* harmony import */ var _DigitalRiverPaymentRequest__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./DigitalRiverPaymentRequest */ "./src/client/DigitalRiverPaymentRequest.js");
-
-
-
-function getPaymentMethods() {
-  return {
-    'paymentMethods': [{
-      'type': 'creditCard',
-      'flow': 'standard',
-      'supportsRecurring': true
-    }, {
-      'type': 'applePay',
-      'flow': 'standard',
-      'supportsRecurring': false
-    }, {
-      'type': 'googlePay',
-      'flow': 'standard',
-      'supportsRecurring': true
-    }, {
-      'type': 'payPal',
-      'flow': 'redirect',
-      'supportsRecurring': false
-    }, {
-      'type': 'payPalBilling',
-      'flow': 'redirect',
-      'supportsRecurring': true
-    }, {
-      'type': 'payPalCredit',
-      'flow': 'redirect',
-      'supportsRecurring': false
-    }, {
-      'type': 'directDebit',
-      'flow': 'redirect',
-      'supportsRecurring': true
-    }, {
-      'type': 'wireTransfer',
-      'flow': 'receiver',
-      'supportsRecurring': false
-    }, {
-      'type': 'codJapan',
-      'flow': 'standard',
-      'supportsRecurring': false
-    }, {
-      'type': 'payco',
-      'flow': 'redirect',
-      'supportsRecurring': false
-    }, {
-      'type': 'bankTransfer',
-      'flow': 'redirect',
-      'supportsRecurring': false
-    }, {
-      'type': 'onlineBanking',
-      'flow': 'redirect',
-      'supportsRecurring': false
-    }, {
-      'type': 'bPay',
-      'flow': 'receiver',
-      'supportsRecurring': false
-    }, {
-      'type': 'klarna',
-      'flow': 'redirect',
-      'supportsRecurring': false
-    }, {
-      'type': 'klarnaRecurring',
-      'flow': 'redirect',
-      'supportsRecurring': true
-    }]
-  };
-}
-
-var supportedPaymentMethods = [{
-  name: 'Online Banking',
-  code: 'onlinebanking',
-  type: 'onlineBanking',
-  needsPayButton: true
-}, {
-  name: 'Offline Refund',
-  code: 'offlinerefund',
-  type: 'offlineRefund',
-  needsPayButton: true
-}, {
-  name: 'Credit Card',
-  code: 'cardnumber',
-  type: 'creditCard',
-  needsPayButton: true
-}, {
-  name: 'Google Pay',
-  code: 'googlepay',
-  type: 'googlePay'
-}, {
-  name: 'Apple Pay',
-  code: 'applepay',
-  type: 'applePay'
-}];
-function mountDropin(key, options, clientSourceData, createSource, createElement) {
-  return function (node) {
-    if (typeof node === 'string') {
-      node = document.getElementById(node);
-    }
-
-    if (node instanceof HTMLElement === false) {
-      throw new Error('mount() requires a valid HTMLElement or id attribute.');
-    }
-
-    var componentsMounted = {// TODO Find a better way
-    };
-    var availablePaymentMethods = getPaymentMethods().paymentMethods;
-    var parent = document.createElement('div');
-    parent.className = 'card';
-    node.appendChild(parent);
-
-    var _dataStore$get = _dataStore__WEBPACK_IMPORTED_MODULE_0__["default"].get(key),
-        controller = _dataStore$get.controller;
-
-    availablePaymentMethods.forEach(function (availablePaymentMethod) {
-      var paymentMethod = supportedPaymentMethods.find(function (paymentMethod) {
-        return paymentMethod.type === availablePaymentMethod.type;
-      });
-
-      if (!paymentMethod) {
-        return;
-      }
-
-      var bodyId = 'collapse-' + paymentMethod.code + '-' + controller.id;
-      var headerId = 'heading-' + paymentMethod.code + '-' + controller.id;
-      var componentId = paymentMethod.code + '-' + controller.id;
-
-      var _createComponentConta = createComponentContainer(paymentMethod, parent, bodyId, headerId, componentId),
-          bodyParent = _createComponentConta.bodyParent,
-          componentHolder = _createComponentConta.componentHolder;
-
-      parent.appendChild(bodyParent);
-
-      if (paymentMethod.needsPayButton) {
-        bodyParent.appendChild(createSubmitButton(options, clientSourceData, createSource, componentsMounted, paymentMethod));
-      }
-
-      var componentOptionsKey = findOptionsKey(options, paymentMethod);
-      var componentOptions = typeof componentOptionsKey !== 'undefined' ? options[componentOptionsKey] : {};
-
-      try {
-        var componentOptionsOrPaymentRequest = paymentMethod.code === 'googlepay' ? new _DigitalRiverPaymentRequest__WEBPACK_IMPORTED_MODULE_1__["default"](componentOptions.data) : componentOptions;
-        var component = createElement(paymentMethod.code, componentOptionsOrPaymentRequest);
-
-        if (typeof component.canMakePayment !== 'undefined' && !component.canMakePayment()) {
-          clearComponentFromDOM(headerId, bodyId);
-          return;
-        }
-
-        component.mount(componentHolder.id);
-        componentsMounted[paymentMethod.code] = component;
-        addEventsToComponent(componentOptions, component);
-      } catch (e) {
-        console.error('mounting error', e); // TODO What to do here?
-      }
-    });
-  };
-}
-
-function createHeaderDiv(paymentMethod, headerId, bodyId) {
-  var headerDiv = document.createElement('div');
-  headerDiv.className = 'card-header';
-  headerDiv.id = headerId;
-  var header = document.createElement('h5');
-  header.className = 'mb-0';
-  var headerButton = document.createElement('button');
-  headerButton.className = 'btn btn-link collapsed';
-  headerButton.innerText = paymentMethod.name;
-  headerButton.setAttribute('data-toggle', 'collapse');
-  headerButton.setAttribute('data-target', '#' + bodyId);
-  headerButton.setAttribute('aria-expanded', 'aria-expanded');
-  header.appendChild(headerButton);
-  headerDiv.appendChild(header);
-  return headerDiv;
-}
-
-function createComponentContainer(paymentMethod, parent, bodyId, headerId, componentId) {
-  var headerDiv = createHeaderDiv(paymentMethod, headerId, bodyId);
-  parent.appendChild(headerDiv);
-  var bodyParent = document.createElement('div');
-  bodyParent.className = 'collapse';
-  bodyParent.id = bodyId;
-  bodyParent.setAttribute('aria-labelledby', bodyId);
-  bodyParent.setAttribute('data-parent', '#accordion');
-  var cardBody = document.createElement('div');
-  cardBody.className = 'card-body';
-  var row = document.createElement('div');
-  row.className = 'row';
-  var componentHolder = document.createElement('div');
-  componentHolder.id = componentId;
-  row.appendChild(componentHolder);
-  cardBody.appendChild(row);
-  bodyParent.appendChild(cardBody);
-  return {
-    bodyParent: bodyParent,
-    componentHolder: componentHolder
-  };
-}
-
-function createSubmitButton(options, clientSourceData, createSource, componentsMounted, paymentMethod) {
-  var submitButton = document.createElement('button');
-  submitButton.className = 'btn btn-primary btn-lg btn-block';
-  submitButton.type = 'submit';
-  submitButton.innerText = 'Pay'; // TODO Localize. Configurable?
-
-  submitButton.addEventListener('click', options.onSubmit); // TODO Wrap this function and call after create source
-
-  submitButton.onclick = function () {
-    console.log('create source');
-    clientSourceData.type = paymentMethod.type;
-    createSource(componentsMounted[paymentMethod.code], clientSourceData).then(function (source) {
-      console.log('source data returned', source);
-      options.onSubmit(source); // TODO Check if not provided and is function.
-    });
-  };
-
-  return submitButton;
-}
-
-function findOptionsKey(options, paymentMethod) {
-  return Object.keys(options).find(function (option) {
-    return option.toLowerCase() === paymentMethod.code;
-  });
-}
-
-function addEventsToComponent(componentOptions, component) {
-  if (typeof componentOptions.events !== 'undefined' && Object.keys(componentOptions.events).length > 0) {
-    Object.keys(componentOptions.events).forEach(function (event) {
-      component.on(event, componentOptions.events[event]);
-    });
-  }
-}
-
-function clearComponentFromDOM(headerId, bodyId) {
-  document.getElementById(headerId).remove();
-  document.getElementById(bodyId).remove();
 }
 
 /***/ }),
@@ -24566,85 +23235,6 @@ function createFrame(type, node, src, attributes, elementHeight) {
 
 /***/ }),
 
-/***/ "./src/client/createSource.js":
-/*!************************************!*\
-  !*** ./src/client/createSource.js ***!
-  \************************************/
-/*! exports provided: createSource, createSourceWithAdyen */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createSource", function() { return createSource; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createSourceWithAdyen", function() { return createSourceWithAdyen; });
-/* harmony import */ var _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../post-robot-wrapper */ "./src/post-robot-wrapper.js");
-/* harmony import */ var _beacon_beacon_client_data__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../beacon/beacon-client-data */ "./src/beacon/beacon-client-data.js");
-/* harmony import */ var _createComponent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./createComponent */ "./src/client/createComponent.js");
-/* harmony import */ var _app_components_controller_controller_create_source_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../app/components/controller/controller-create-source-utils */ "./src/app/components/controller/controller-create-source-utils.js");
-
-
-
-
-/**
- * Locate a controller frame and send a createSource event via postRobot
- * @private
- * @param {string} controllerId controllerId string
- * @param {string} type of the component
- * @param {object} data source request payload (JSON as object)
- */
-
-function createSource(controllerId, type, data) {
-  var controllerWindow = Object(_createComponent__WEBPACK_IMPORTED_MODULE_2__["getComponentWindow"])(controllerId);
-
-  if (!controllerWindow) {
-    throw new Error("Unable to locate controller '".concat(controllerId, "'"));
-  } // Send message to Controller Frame to call createSource
-
-
-  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_0__["default"].send(controllerWindow, 'createSourceFromRequest', {
-    sourceRequest: data,
-    type: type,
-    browserInfo: Object(_beacon_beacon_client_data__WEBPACK_IMPORTED_MODULE_1__["collectClientData"])(window)
-  }, {
-    timeout: 10000
-  }).then(function (response) {
-    // This is a Post Robot Response object so you have to get the data out
-    return response.data;
-  }).catch(function (error) {
-    throw new Error(error);
-  });
-}
-/**
- * Locate a controller frame and send a createSourceWithAdyen event via postRobot
- * @private
- * @param {string} controllerId controllerId string
- * @param {object} data source request payload (JSON as object)
- * @param {object} client data (JSON as object)
- */
-
-function createSourceWithAdyen(controllerId, data, clientData) {
-  var controllerWindow = Object(_createComponent__WEBPACK_IMPORTED_MODULE_2__["getComponentWindow"])(controllerId);
-
-  if (!controllerWindow) {
-    throw new Error("Unable to locate controller '".concat(controllerId, "'"));
-  } // Send message to Controller Frame to call createSource
-
-
-  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_0__["default"].send(controllerWindow, 'createSourceFromAdyenRequest', {
-    sourceRequest: data,
-    clientSecretData: clientData
-  }, {
-    timeout: 10000
-  }).then(function (response) {
-    // This is a Post Robot Response object so you have to get the data out
-    return response.data;
-  }).catch(function (error) {
-    return Object(_app_components_controller_controller_create_source_utils__WEBPACK_IMPORTED_MODULE_3__["chooseCreateSourceCatchMessage"])(error);
-  });
-}
-
-/***/ }),
-
 /***/ "./src/client/css-class-utils.js":
 /*!***************************************!*\
   !*** ./src/client/css-class-utils.js ***!
@@ -25159,31 +23749,6 @@ function removeEventsForType(key, componentType) {
 
 /***/ }),
 
-/***/ "./src/client/index.js":
-/*!*****************************!*\
-  !*** ./src/client/index.js ***!
-  \*****************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-/**
- * This wraps the ES6 export so that it only exports the default for Webpack to include as the global variable
- */
-module.exports = __webpack_require__(/*! ./DigitalRiver */ "./src/client/DigitalRiver.js").default;
-
-/***/ }),
-
-/***/ "./src/json/compliance.json":
-/*!**********************************!*\
-  !*** ./src/json/compliance.json ***!
-  \**********************************/
-/*! exports provided: details, locale, entityCode, keys, default */
-/***/ (function(module) {
-
-module.exports = {"details":{"ar_EG":{"cancellationRights":"حق الإلغاء","cookiePolicy":"ملفات كوكيز","legalNotice":"ملحوظة قانونية","privacyPolicy":"سياسة الخصوصية","resellerDisclosure":"هو الموزع والتاجر المعتمد للمنتجات والخدمات المقدمة في هذا المتجر.","termsOfSale":"شروط البيع"},"cs_CZ":{"cancellationRights":"Oprávnění ke zrušení","cookiePolicy":"Cookies","legalNotice":"Právní dokument","privacyPolicy":"Zásady zachování soukromí","resellerDisclosure":"je autorizovaným prodejcem a obchodníkem s produkty a službami, které tento obchod nabízí.","termsOfSale":"Prodejní podmínky"},"da_DK":{"cancellationRights":"Fortrydelsesret","cookiePolicy":"Cookies","legalNotice":"Juridisk note","privacyPolicy":"Retningslinjer for personbeskyttelse","resellerDisclosure":"er den autoriserede forhandler af de produkter og tjenesteydelser, der tilbydes i denne forretning.","termsOfSale":"Salgsvilkår"},"de_AT":{"cancellationRights":"Widerrufsrecht","cookiePolicy":"Cookies","legalNotice":"Impressum","privacyPolicy":"Datenschutzrichtlinien","resellerDisclosure":"ist der autorisierte Wiederverkäufer und Händler der Produkte und Dienstleistungen die in diesem Shop angeboten werden.","termsOfSale":"Verkaufsbedingungen"},"de_CH":{"cancellationRights":"Widerrufsrecht","cookiePolicy":"Cookies","legalNotice":"Impressum","privacyPolicy":"Datenschutzrichtlinien","resellerDisclosure":"ist der autorisierte Wiederverkäufer und Händler der Produkte und Dienstleistungen die in diesem Shop angeboten werden.","termsOfSale":"Verkaufsbedingungen"},"de_DE":{"cancellationRights":"Widerrufsrecht","cookiePolicy":"Cookies","legalNotice":"Impressum","privacyPolicy":"Datenschutzrichtlinien","resellerDisclosure":"ist der autorisierte Wiederverkäufer und Händler der Produkte und Dienstleistungen die in diesem Shop angeboten werden.","termsOfSale":"Verkaufsbedingungen"},"el_GR":{"cancellationRights":"Δικαίωμα Ακύρωσης","cookiePolicy":"Cookies","legalNotice":"Νομική Σημείωση","privacyPolicy":"Πολιτική Ιδιωτικού Απορρήτου","resellerDisclosure":" είναι ο εξουσιοδοτημένος μεταπωλητής και έμπορος των προϊόντων και υπηρεσιών, που προσφέρονται σε αυτό το κατάστημα.","termsOfSale":"Όροι Πώλησης"},"en_AU":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"is the authorised reseller and merchant of the products and services offered within this store.","termsOfSale":"Terms of Sale"},"en_BE":{"privacyPolicy":"Privacy Policy","resellerDisclosure":"is the authorised retailer and merchant providing e-commerce services for this shop.","termsOfSale":"Terms and Conditions"},"en_CA":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"is the authorised reseller and merchant of the products and services offered within this store.","termsOfSale":"Terms of Sale"},"en_CH":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"is the authorized reseller and merchant of the products and services offered within this store.","termsOfSale":"Terms of Sale"},"en_DK":{"privacyPolicy":"Privacy Policy","resellerDisclosure":"is the authorised retailer and merchant providing e-commerce services for this shop.","termsOfSale":"Terms and Conditions"},"en_FI":{"privacyPolicy":"Privacy Policy","resellerDisclosure":"is the authorised retailer and merchant providing e-commerce services for this shop.","termsOfSale":"Terms and Conditions"},"en_GB":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"is the authorised reseller and merchant of the products and services offered within this store.","termsOfSale":"Terms of Sale"},"en_IE":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"is the authorised reseller and merchant of the products and services offered within this store.","termsOfSale":"Terms of Sale"},"en_IN":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"is the authorised reseller and merchant of the products and services offered within this store.","termsOfSale":"Terms of Sale"},"en_MY":{"privacyPolicy":"Privacy Policy","termsOfSale":"Terms and Conditions"},"en_NL":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"is the authorised reseller and merchant of the products and services offered within this store.","termsOfSale":"Terms of Sale"},"en_NO":{"privacyPolicy":"Privacy Policy","resellerDisclosure":"is the authorised retailer and merchant providing e-commerce services for this shop.","termsOfSale":"Terms and Conditions"},"en_NZ":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"is the authorised reseller and merchant of the products and services offered within this store.","termsOfSale":"Terms of Sale"},"en_PR":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"is the authorised reseller and merchant of the products and services offered within this store.","termsOfSale":"Terms of Sale"},"en_SE":{"privacyPolicy":"Privacy Policy","resellerDisclosure":"is the authorised retailer and merchant providing e-commerce services for this shop.","termsOfSale":"Terms and Conditions"},"en_SG":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"is the authorised reseller and merchant of the products and services offered within this store.","termsOfSale":"Terms of Sale"},"en_US":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"is the authorized reseller and merchant of the products and services offered within this store.","termsOfSale":"Terms of Sale"},"en_ZA":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"is the authorised reseller and merchant of the products and services offered within this store.","termsOfSale":"Terms of Sale"},"es_AR":{"cancellationRights":"Derechos de cancelación","cookiePolicy":"Cookies","legalNotice":"Aviso legal","privacyPolicy":"Política de privacidad","resellerDisclosure":"es el revendedor y comercializador autorizado de los productos ofrecidos en esta tienda.","termsOfSale":"Términos de la venta"},"es_CL":{"cancellationRights":"Derechos de cancelación","cookiePolicy":"Cookies","legalNotice":"Aviso legal","privacyPolicy":"Política de privacidad","resellerDisclosure":"es el revendedor y comercializador autorizado de los productos ofrecidos en esta tienda.","termsOfSale":"Términos de la venta"},"es_CO":{"cancellationRights":"Derechos de cancelación","cookiePolicy":"Cookies","legalNotice":"Aviso legal","privacyPolicy":"Política de privacidad","resellerDisclosure":"es el revendedor y comercializador autorizado de los productos ofrecidos en esta tienda.","termsOfSale":"Términos de la venta"},"es_EC":{"cancellationRights":"Derechos de cancelación","cookiePolicy":"Cookies","legalNotice":"Aviso legal","privacyPolicy":"Política de privacidad","resellerDisclosure":"es el revendedor y comercializador autorizado de los productos ofrecidos en esta tienda.","termsOfSale":"Términos de la venta"},"es_ES":{"cancellationRights":"Derechos de cancelación","cookiePolicy":"Cookies","legalNotice":"Aviso legal","privacyPolicy":"Política de confidencialidad","resellerDisclosure":"es el distribuidor y el vendedor autorizado de los productos y servicios ofrecidos en esta tienda virtual.","termsOfSale":"Condiciones de venta"},"es_MX":{"cancellationRights":"Derechos de cancelación","cookiePolicy":"Cookies","legalNotice":"Aviso legal","privacyPolicy":"Política de privacidad","resellerDisclosure":"es el revendedor y comercializador autorizado de los productos ofrecidos en esta tienda.","termsOfSale":"Términos de la venta"},"es_PE":{"cancellationRights":"Derechos de cancelación","cookiePolicy":"Cookies","legalNotice":"Aviso legal","privacyPolicy":"Política de privacidad","resellerDisclosure":"es el revendedor y comercializador autorizado de los productos ofrecidos en esta tienda.","termsOfSale":"Términos de la venta"},"es_VE":{"cancellationRights":"Derechos de cancelación","cookiePolicy":"Cookies","legalNotice":"Aviso legal","privacyPolicy":"Política de privacidad","resellerDisclosure":"es el revendedor y comercializador autorizado de los productos ofrecidos en esta tienda.","termsOfSale":"Términos de la venta"},"et_EE":{"privacyPolicy":"Privaatsuspoliitika","resellerDisclosure":"on sellele kauplusele e-kaubanduse teenuseid osutav volitatud edasimüüja.","termsOfSale":"Tingimused"},"fi_FI":{"cancellationRights":"Peruutusoikeus","cookiePolicy":"Evästeet","legalNotice":"Lainmukainen tiedotus","privacyPolicy":"Yksityisyyden suoja","resellerDisclosure":"on valtuutettu jälleenmyyjä, joka myy tässä kaupassa tarjolla olevia tuotteita ja palveluja.","termsOfSale":"Myyntiehdot"},"fr_BE":{"cancellationRights":"Droits d'annulation","cookiePolicy":"Témoins de connexion","legalNotice":"Mentions legales","privacyPolicy":"Politique de confidentialité","resellerDisclosure":"est le revendeur et marchand agréé pour les produits et services proposés au sein de ce magasin.","termsOfSale":"Conditions de vente"},"fr_CA":{"cancellationRights":"Droits d'annulation","cookiePolicy":"Témoins","legalNotice":"Mentions legales","privacyPolicy":"Politique sur la confidentialité","resellerDisclosure":"est le revendeur et commerçant autorisé fournissant les services de commerce électronique pour ce magasin.","termsOfSale":"Conditions de vente"},"fr_CH":{"cancellationRights":"Droits d'annulation","cookiePolicy":"Témoins de connexion","legalNotice":"Mentions legales","privacyPolicy":"Politique de confidentialité","resellerDisclosure":"est le revendeur et marchand agréé pour les produits et services proposés au sein de ce magasin.","termsOfSale":"Conditions de vente"},"fr_FR":{"cancellationRights":"Droits d'annulation","cookiePolicy":"Témoins de connexion","legalNotice":"Mentions legales","privacyPolicy":"Politique de confidentialité","resellerDisclosure":"est le revendeur et marchand agréé pour les produits et services proposés au sein de ce magasin.","termsOfSale":"Conditions de vente"},"hu_HU":{"cancellationRights":"Rendelés törlésének lehetõsége","cookiePolicy":"Cookie-k","legalNotice":"Jogi nyilatkozat","privacyPolicy":"Adatvédelmi politika","resellerDisclosure":"az áruházban megvásárolható termékek és szolgáltatások hivatalos értékesítő partnere és forgalmazója.","termsOfSale":"Értékesítési feltételek"},"it_CH":{"cancellationRights":"Diritto di recesso","cookiePolicy":"Cookie","legalNotice":"Avviso legale","privacyPolicy":"Tutela della privacy","resellerDisclosure":"è il rivenditore autorizzato e fornitore dei prodotti e dei servizi offerti all&#39;interno di questo negozio.","termsOfSale":"Condizioni di vendita"},"it_IT":{"cancellationRights":"Diritto di recesso","cookiePolicy":"Cookie","legalNotice":"Avviso legale","privacyPolicy":"Tutela della privacy","resellerDisclosure":"è il rivenditore autorizzato dei prodotti di {2} venduti in questo negozio online.","termsOfSale":"Condizioni di vendita","warrantyInformation":"Informazioni sulla Garanzia"},"iw_IL":{"cancellationRights":"זכות ביטול הזמנה","cookiePolicy":"קובצי cookie","legalNotice":"הודעה משפטית","privacyPolicy":"מדיניות שמירה על פרטיות","resellerDisclosure":"הוא המפיץ והסוחר המורשה עבור חנוות מקוונת זו.","termsOfSale":"תנאי מכירה"},"ja_JP":{"cancellationRights":"キャンセル権","cookiePolicy":"クッキー","legalNotice":"本サイトのご利用について","privacyPolicy":"プライバシーポリシー","resellerDisclosure":"は、このストアで提供される製品とサービスの認定再販業者および代理店です。","termsOfSale":"販売条件"},"ko_KR":{"cancellationRights":"취소 권한","cookiePolicy":"쿠키","legalNotice":"법적 고지","privacyPolicy":"개인정보 보호 정책","resellerDisclosure":"은(는) 이 스토어에서 제품과 서비스를 제공하도록 인가된 리셀러 및 판매자입니다.","termsOfSale":"판매 조건"},"lt_LT":{"privacyPolicy":"Privatumo strategija","resellerDisclosure":"įgaliotasis mažmenininkas ir šios parduotuvės el. prekybos paslaugų didmenininkas.","termsOfSale":"Nuostatos ir sąlygos"},"lv_LV":{"privacyPolicy":"Konfidencialitātes politika","resellerDisclosure":"ir pilnvarots tālākpārdevējs un tirgotājs, kas šim veikalam nodrošina e-komecijas pakalpojumus.","termsOfSale":"Noteikumi un nosacījumi"},"nl_BE":{"cancellationRights":"Recht op annulering","cookiePolicy":"Cookies","legalNotice":"Juridische kennisgeving","privacyPolicy":"Privacybeleid","resellerDisclosure":"is de erkende reseller die de producten en services voor deze store levert.","termsOfSale":"Algemene verkoopvoorwaarden"},"nl_NL":{"cancellationRights":"Recht op annulering","cookiePolicy":"Cookies","legalNotice":"Juridische kennisgeving","privacyPolicy":"Privacybeleid","resellerDisclosure":"is de erkende reseller die de producten en services voor deze store levert.","termsOfSale":"Algemene verkoopvoorwaarden"},"no_NO":{"cancellationRights":"Rett til avbestilling","cookiePolicy":"Informasjonskapsler","legalNotice":"Juridiske bestemmelser","privacyPolicy":"Personvern","resellerDisclosure":"er den autoriserte selgeren og forhandleren av varene og tjenestene som tilbys i denne butikken.","termsOfSale":"Salgsbetingelser"},"pl_PL":{"cancellationRights":"Prawo do anulowania zamówienia","cookiePolicy":"Pliki cookie","legalNotice":"Nota prawna","privacyPolicy":"Polityka ochrony danych","resellerDisclosure":"to autoryzowany dystrybutor oraz sprzedawca produktów i usług dostępnych w naszym sklepie.","termsOfSale":"Warunki sprzedaży"},"pt_BR":{"cancellationRights":"Regras de cancelamento","cookiePolicy":"Cookies","legalNotice":"Aviso legal","privacyPolicy":"Política de privacidade","resellerDisclosure":"é o revendedor e o distribuidor autorizado dos produtos e serviços oferecidos nesta loja.","termsOfSale":"Termos de vendas"},"pt_PT":{"cancellationRights":"Direito de Cancelamento","cookiePolicy":"Cookies","legalNotice":"Aviso Legal","privacyPolicy":"Política de privacidade","resellerDisclosure":"é o revendedor autorizado e o comerciante dos produtos e serviços disponibilizados nesta loja.","termsOfSale":"Termos de Venda"},"ro_RO":{"privacyPolicy":"Politică de confidenţialitate","resellerDisclosure":"este un vânzător şi comerciant cu amănuntul autorizat ce furnizează servicii de comerţ electronic pentru acest magazin.","termsOfSale":"Termeni şi condiţii"},"ru_RU":{"cancellationRights":"Право отмены","cookiePolicy":"Cookie","legalNotice":"Юридическое уведомление","privacyPolicy":"Политика конфиденциальности","resellerDisclosure":"является авторизованным реселлером и продавцом продукции и услуг, предлагаемых в настоящем магазине.","termsOfSale":"Условия продажи"},"sk_SK":{"cancellationRights":"Oprávnenie na zrušenie","cookiePolicy":"Cookies","legalNotice":"Právny dokument","privacyPolicy":"Politika ochrany osobných údajov","resellerDisclosure":"je predajca alebo veľkoobchod s produktmi a službami poskytovanými v tomto obchode.","termsOfSale":"Predajné podmienky"},"sl_SI":{"privacyPolicy":"Pravilnik o zasebnosti","resellerDisclosure":"je pooblaščen trgovec na debelo in drobno, ki ponuja storitve spletne prodaje za to trgovino.","termsOfSale":"Pogoji in določila"},"sr_YU":{"privacyPolicy":"Pravilnik o poverljivosti","resellerDisclosure":" je ovlašćen za maloprodaju i trgovinu i pruža usluge e-trgovine za ovu prodavnicu.","termsOfSale":"Uslovi"},"sv_SE":{"cancellationRights":"Ångerrätt","cookiePolicy":"Cookies","legalNotice":"Juridisk information","privacyPolicy":"Sekretesspolicy","resellerDisclosure":"är den auktoriserade återförsäljaren av de produkter och tjänster som erbjuds i den här butiken.","termsOfSale":"Försäljningsvillkor"},"th_TH":{"cancellationRights":"สิทธิ์ในการยกเลิก","cookiePolicy":"คุกกี้","legalNotice":"ข้อความสงวนสิทธิ์ทางกฎหมาย","privacyPolicy":"นโยบายการเก็บรักษาข้อมูลส่วนบุคคล","resellerDisclosure":"เป็นผู้ค้าและผู้จำหน่ายที่ได้รับอนุญาตสำหรับผลิตภัณฑ์และบริการที่นำเสนอภายในร้านค้าแห่งนี้","termsOfSale":"เงื่อนไขการขาย"},"tr_TR":{"cancellationRights":"İptal Hakkı","cookiePolicy":"Tanımlama Bilgileri","legalNotice":"Yasal Uyarı","privacyPolicy":"Gizlilik Politikası","resellerDisclosure":"bu mağazada ürünlerin ve servislerin önerilen yetkili satıcısı ve tüccarıdır.","termsOfSale":"Satış Şartları"},"zh_CN":{"cancellationRights":"取消订单权","cookiePolicy":"Cookie","legalNotice":"法律声明","privacyPolicy":"隐私政策","resellerDisclosure":"是本商店提供的产品和服务的授权经销商和商家。","termsOfSale":"销售条款"},"zh_HK":{"cancellationRights":"取消權利","cookiePolicy":"Cookies","legalNotice":"法律聲明","privacyPolicy":"隱私權政策","resellerDisclosure":"是本商店內所提供產品及服務的授權轉售商和販售者。","termsOfSale":"銷售條款"},"zh_TW":{"cancellationRights":"取消權利","cookiePolicy":"Cookie","legalNotice":"法律聲明","privacyPolicy":"隱私權政策","resellerDisclosure":"本商店所提供商品及服務的授權經銷商及批發商。","termsOfSale":"銷售條款"}},"locale":["ar_EG","cs_CZ","da_DK","de_AT","de_CH","de_DE","el_GR","en_AU","en_BE","en_CA","en_CH","en_DK","en_FI","en_GB","en_IE","en_IN","en_MY","en_NL","en_NO","en_NZ","en_PR","en_SE","en_SG","en_US","en_ZA","es_AR","es_CL","es_CO","es_EC","es_ES","es_MX","es_PE","es_VE","et_EE","fi_FI","fr_BE","fr_CA","fr_CH","fr_FR","hu_HU","it_CH","it_IT","iw_IL","ja_JP","ko_KR","lt_LT","lv_LV","nl_BE","nl_NL","no_NO","pl_PL","pt_BR","pt_PT","ro_RO","ru_RU","sk_SK","sl_SI","sr_YU","sv_SE","th_TH","tr_TR","zh_CN","zh_HK","zh_TW"],"entityCode":[{"code":"DRES_INC-ENTITY","name":"DR Education Services"},{"code":"DR_WP-ENTITY","name":"DR World Payments"},{"code":"DR_WPAB-ENTITY","name":"DR World Payments AB"},{"code":"C5_INC-ENTITY","name":"DR globalTech Inc."},{"code":"DR_BRAZIL-ENTITY","name":"Digital River Brazil"},{"code":"DR_CHINA-ENTITY","name":"Digital River China"},{"code":"DR_GMBH-ENTITY","name":"Digital River GmbH"},{"code":"DR_INC-ENTITY","name":"Digital River Inc."},{"code":"DR_INDIA-ENTITY","name":"Digital River India Pvt"},{"code":"DR_IRELAND-ENTITY","name":"Digital River Ireland Ltd."},{"code":"DR_JAPAN-ENTITY","name":"Digital River Japan"},{"code":"DR_KOREA-ENTITY","name":"Digital River Korea YH"},{"code":"DR_MEXICO-ENTITY","name":"Digital River Mexico"},{"code":"DR_RUSSIA-ENTITY","name":"Digital River Russia"},{"code":"DR_TAIWAN-ENTITY","name":"Digital River Taiwan"},{"code":"DR_SARL-ENTITY","name":"Digital River, International SARL"}],"keys":{"RESELLER_DISCLOSURE":"resellerDisclosure","TERMS_OF_SALE":"termsOfSale","PRIVACY_POLICY":"privacyPolicy","COOKIE_POLICY":"cookiePolicy","CANCELLATION_RIGHTS":"cancellationRights","LEGAL_NOTICE":"legalNotice"}};
-
-/***/ }),
-
 /***/ "./src/post-robot-wrapper.js":
 /*!***********************************!*\
   !*** ./src/post-robot-wrapper.js ***!
@@ -25240,18 +23805,18 @@ function _on(name, data, callback) {
 
 /***/ }),
 
-/***/ 0:
-/*!***************************************************!*\
-  !*** multi @babel/polyfill ./src/client/index.js ***!
-  \***************************************************/
+/***/ 14:
+/*!***********************************************************************************!*\
+  !*** multi @babel/polyfill ./src/app/components/online-banking/online-banking.js ***!
+  \***********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! @babel/polyfill */"./node_modules/@babel/polyfill/lib/index.js");
-module.exports = __webpack_require__(/*! C:\dev\ui-architecture\digitalriverpayments\src\client\index.js */"./src/client/index.js");
+module.exports = __webpack_require__(/*! C:\dev\ui-architecture\digitalriverpayments\src\app\components\online-banking\online-banking.js */"./src/app/components/online-banking/online-banking.js");
 
 
 /***/ })
 
-/******/ });
-//# sourceMappingURL=DigitalRiver.js.map
+/******/ })));
+//# sourceMappingURL=online-banking.js.map
