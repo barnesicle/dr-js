@@ -18786,7 +18786,11 @@ var config = {
   // eslint-disable-line no-undef
   originTestKey: "pub.v2.8115061157590058.aHR0cDovL2xvY2FsaG9zdDo4MDgw.FF9fc99f70OC7jS9Ngmqj8z1H_cmKZMXQo_r0cnPAOg",
   // eslint-disable-line no-undef
-  paymentServiceBaseUrl: "https://api.digitalriver.com/payments" // eslint-disable-line no-undef
+  paymentServiceBaseUrl: "https://api.digitalriver.com/payments",
+  // eslint-disable-line no-undef
+  paypalRedirectBaseUrl: "https://payments-test.digitalriver.com/redirect/",
+  // eslint-disable-line no-undef
+  paymentMethodsUrl: "https://api.digitalriver.com/payments/payment-methods" // eslint-disable-line no-undef
 
 };
 
@@ -19646,7 +19650,10 @@ var manifest = {
   'googlepay': '/google-pay/google-pay.html',
   'koreancard': '/koreancard/koreancard.html',
   'onlinebanking': '/online-banking/online-banking.html',
-  'konbini': '/konbini/konbini.html'
+  'offlinerefund': '/offline-refund/offline-refund.html',
+  'konbini': '/konbini/konbini.html',
+  'creditcard': '',
+  'paypal': '/paypal/paypal.html'
 };
 var eventNames = ['blur', 'change', 'focus', 'ready', 'click', 'source', 'shippingaddresschange', 'shippingoptionchange', 'cancel'];
 /**
@@ -19780,6 +19787,10 @@ function mount(node) {
 
       if (typeof this.options !== 'undefined') {
         //arbitrate custom vs default options
+        if (this.type === 'offlinerefund') {
+          this.options.style.base.height = '200px';
+        }
+
         this.options.classes = Object(_css_class_utils__WEBPACK_IMPORTED_MODULE_7__["getCssClasses"])(this.options.classes);
         var elementHeight = Object(_css_class_utils__WEBPACK_IMPORTED_MODULE_7__["getElementHeight"])(this.options.style); // If we have options, send them and wait for them to be sent before creating the component
 
@@ -19793,10 +19804,9 @@ function mount(node) {
         };
         _dataStore__WEBPACK_IMPORTED_MODULE_4__["default"].set(key, data); // Set base css class & empty class since field is empty
 
-        var DRElementClass = data.components[this.type].options.classes.base;
-        node.classList.add(DRElementClass);
-
-        if (this.type !== 'googlepay' && this.type !== 'applepay') {
+        if (this.type !== 'googlepay' && this.type !== 'applepay' && this.type !== 'paypal' && this.type !== 'offlinerefund') {
+          var DRElementClass = data.components[this.type].options.classes.base;
+          node.classList.add(DRElementClass);
           var DREmptyClass = data.components[this.type].options.classes.empty;
           node.classList.add(DREmptyClass);
         }
@@ -20306,7 +20316,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /**
  * Creates controller
- * @param {node} domNode
+ * @param {HTMLElement} domNode
  * @param {string} type
  * @returns {{unmount, controllerId, clear, destroy, blur, focus, update, parentNode, type, mount, options, id, key, on}}
  */
@@ -20333,7 +20343,7 @@ function registerControllerEvents(key, controllerWindow, domain) {
         eventData = _event$data.eventData,
         eventType = _event$data.eventType;
 
-    if (eventType === 'googlepay' || eventType === 'applepay') {
+    if (eventType === 'googlepay' || eventType === 'applepay' || eventType === 'paypal') {
       Object(_event_middleware__WEBPACK_IMPORTED_MODULE_2__["processNonCreditCardEvents"])(key, componentType, eventType, eventData);
     } else {
       Object(_event_middleware__WEBPACK_IMPORTED_MODULE_2__["processEvent"])(key, componentType, eventType, eventData);
@@ -20847,6 +20857,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "processNonCreditCardEvents", function() { return processNonCreditCardEvents; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeEventsForType", function() { return removeEventsForType; });
 /* harmony import */ var _dataStore__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./dataStore */ "./src/client/dataStore.js");
+/* harmony import */ var _createComponent__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./createComponent */ "./src/client/createComponent.js");
+/* harmony import */ var _app_components_config__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../app/components/config */ "./src/app/components/config.js");
+
+
 
 /**
  * Wraps updateWith function in function to validate that it is an object
@@ -20939,25 +20953,10 @@ function runListenersBasedOnType(data, key, componentType, eventName, publicData
     }
   });
 }
-/**
- * Processes event and applies correct CSS classes to parent node
- * @param {string} key
- * @param {string} componentType
- * @param {string} eventName
- * @param {object} publicData
- */
 
-
-function processEvent(key, componentType, eventName, publicData) {
-  var data = _dataStore__WEBPACK_IMPORTED_MODULE_0__["default"].get(key);
-  runListenersBasedOnType(data, key, componentType, eventName, publicData);
+function applyCSSClassesBasedOnEvent(data, componentType, eventName, publicData) {
   var node = data.components[componentType].parent;
   var cssClasses = data.components[componentType].options.classes;
-
-  if (eventName === 'resize') {
-    var frame = document.getElementById(publicData.frame.id);
-    frame.style.height = publicData.frame.height;
-  }
 
   if (typeof cssClasses !== 'undefined') {
     if (eventName === 'focus') {
@@ -20966,7 +20965,7 @@ function processEvent(key, componentType, eventName, publicData) {
       node.classList.remove(cssClasses.focus);
     }
 
-    if (eventName === 'change') {
+    if (eventName === 'change' || eventName === 'clear') {
       if (publicData.complete === true) {
         node.classList.add(cssClasses.complete);
       } else {
@@ -20993,6 +20992,57 @@ function processEvent(key, componentType, eventName, publicData) {
     }
   }
 }
+
+function renderPayPalIFrameDialog(publicData) {
+  Object(_createComponent__WEBPACK_IMPORTED_MODULE_1__["createOverlayDiv"])('DRPayPal');
+  Object(_createComponent__WEBPACK_IMPORTED_MODULE_1__["updateOverlay"])('DRPayPal', '100%', 'rgba(0,0,0,0.3)');
+  var drMockFrame = document.createElement('iframe');
+  drMockFrame.id = 'DRPayPalFrame';
+  drMockFrame.src = _app_components_config__WEBPACK_IMPORTED_MODULE_2__["config"].paypalRedirectBaseUrl + publicData.sourceId;
+  drMockFrame.height = '300';
+  drMockFrame.width = '300';
+  drMockFrame.style.background = 'white';
+  var overlay = document.getElementById('DRPayPal');
+  overlay.appendChild(drMockFrame);
+}
+
+function removePayPalIFrameDialog() {
+  document.getElementById('DRPayPal').remove();
+}
+/**
+ * Processes event and applies correct CSS classes to parent node
+ * @param {string} key
+ * @param {string} componentType
+ * @param {string} eventName
+ * @param {object} publicData
+ */
+
+
+function processEvent(key, componentType, eventName, publicData) {
+  var data = _dataStore__WEBPACK_IMPORTED_MODULE_0__["default"].get(key);
+  runListenersBasedOnType(data, key, componentType, eventName, publicData);
+
+  if (eventName === 'resize') {
+    var frame = document.getElementById(publicData.frame.id);
+    frame.style.height = publicData.frame.height;
+  }
+
+  if (eventName === 'dialog' && componentType === 'paypal' && publicData.action === 'close') {
+    removePayPalIFrameDialog();
+  }
+
+  if (eventName === 'dialog' && componentType === 'paypal' && publicData.action === 'open') {
+    renderPayPalIFrameDialog(publicData);
+  }
+
+  if (!isCSSExcludedComponent(componentType)) {
+    applyCSSClassesBasedOnEvent(data, componentType, eventName, publicData);
+  }
+}
+
+function isCSSExcludedComponent(componentType) {
+  return componentType === 'offlinerefund' || componentType === 'paypal';
+}
 /**
  * Processes events that are not credit card events
  * @param {string} key
@@ -21000,6 +21050,7 @@ function processEvent(key, componentType, eventName, publicData) {
  * @param {string} eventName
  * @param {string} publicData
  */
+
 
 function processNonCreditCardEvents(key, componentType, eventName, publicData) {
   var data = _dataStore__WEBPACK_IMPORTED_MODULE_0__["default"].get(key);

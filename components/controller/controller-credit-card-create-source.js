@@ -12178,7 +12178,11 @@ var config = {
   // eslint-disable-line no-undef
   originTestKey: "pub.v2.8115061157590058.aHR0cDovL2xvY2FsaG9zdDo4MDgw.FF9fc99f70OC7jS9Ngmqj8z1H_cmKZMXQo_r0cnPAOg",
   // eslint-disable-line no-undef
-  paymentServiceBaseUrl: "https://api.digitalriver.com/payments" // eslint-disable-line no-undef
+  paymentServiceBaseUrl: "https://api.digitalriver.com/payments",
+  // eslint-disable-line no-undef
+  paypalRedirectBaseUrl: "https://payments-test.digitalriver.com/redirect/",
+  // eslint-disable-line no-undef
+  paymentMethodsUrl: "https://api.digitalriver.com/payments/payment-methods" // eslint-disable-line no-undef
 
 };
 

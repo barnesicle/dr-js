@@ -19141,7 +19141,11 @@ var config = {
   // eslint-disable-line no-undef
   originTestKey: Object({"PAYMENT_API_URL":"https://api.digitalriver.com/payments/sources","DOMAIN":"https://github.digitalriverws.net","BASE_PATH":"/pages/lbarnes/drjs-demo","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).ADYEN_TEST_ORIGIN_KEY,
   // eslint-disable-line no-undef
-  paymentServiceBaseUrl: Object({"PAYMENT_API_URL":"https://api.digitalriver.com/payments/sources","DOMAIN":"https://github.digitalriverws.net","BASE_PATH":"/pages/lbarnes/drjs-demo","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).PAYMENT_API_BASE_URL // eslint-disable-line no-undef
+  paymentServiceBaseUrl: Object({"PAYMENT_API_URL":"https://api.digitalriver.com/payments/sources","DOMAIN":"https://github.digitalriverws.net","BASE_PATH":"/pages/lbarnes/drjs-demo","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).PAYMENT_API_BASE_URL,
+  // eslint-disable-line no-undef
+  paypalRedirectBaseUrl: "https://payments-test.digitalriver.com/redirect/",
+  // eslint-disable-line no-undef
+  paymentMethodsUrl: Object({"PAYMENT_API_URL":"https://api.digitalriver.com/payments/sources","DOMAIN":"https://github.digitalriverws.net","BASE_PATH":"/pages/lbarnes/drjs-demo","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).PAYMENT_METHODS_URL // eslint-disable-line no-undef
 
 };
 
@@ -19753,6 +19757,348 @@ function getPrefix(value, prefix) {
 
 /***/ }),
 
+/***/ "./src/app/components/creditcard/creditcard.js":
+/*!*****************************************************!*\
+  !*** ./src/app/components/creditcard/creditcard.js ***!
+  \*****************************************************/
+/*! exports provided: createCreditCard, createElements, mountCreditCard, handleCreditCardEvent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createCreditCard", function() { return createCreditCard; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createElements", function() { return createElements; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mountCreditCard", function() { return mountCreditCard; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleCreditCardEvent", function() { return handleCreditCardEvent; });
+/* harmony import */ var _client_createComponent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../client/createComponent */ "./src/client/createComponent.js");
+/* harmony import */ var _options__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../options */ "./src/app/components/options.js");
+/* harmony import */ var _client_dataStore__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../client/dataStore */ "./src/client/dataStore.js");
+/* harmony import */ var _input_events__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../input-events */ "./src/app/components/input-events.js");
+/* harmony import */ var _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../post-robot-wrapper */ "./src/post-robot-wrapper.js");
+/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../config */ "./src/app/components/config.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../utils */ "./src/app/components/utils.js");
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+
+
+
+
+var elements = {};
+var componentData = {};
+var controllerEmitter;
+
+function createDom(parentNodeId, controllerId) {
+  // TODO Future story: Localize labels
+  var uniqueId = controllerId;
+  document.getElementById(parentNodeId).innerHTML = "<div id=\"".concat(uniqueId, "\" style=\"display: flex; flex-direction: column; padding: 10px\">\n        <label>Card Number</label>\n        <div id=\"DRCardNumber-").concat(uniqueId, "\"></div>\n        <div id=\"DRCardNumber-").concat(uniqueId, "-error\" style=\"margin-bottom: 20px; color: red\"></div>\n        <div style=\"display: flex; flex-direction: row\">\n          <div style=\"display: flex; flex-direction: column; width: 50%;\">\n            <label>Expiration Date</label>\n            <div id=\"DRCardExpiration-").concat(uniqueId, "\" style=\"margin-right: 10px\"></div>\n            <div id=\"DRCardExpiration-").concat(uniqueId, "-error\" style=\"color: red\"></div>\n          </div>\n          <div style=\"display: flex; flex-direction: column; width: 50%;\">\n            <label>CVC / CVV</label>\n            <div id=\"DRCardCvv-").concat(uniqueId, "\"></div>\n            <div id=\"DRCardCvv-").concat(uniqueId, "-error\" style=\"color: red\"></div>\n          </div>\n        </div>\n    </div>");
+}
+/**
+ *
+ * @param controllerId
+ * @param key
+ * @param options
+ * @returns {{unmount: unmount, controllerId: (*|null), options: (*|*), destroy: destroy, update: update, id: string, parentNode: null, type: string, mount: mountCreditCard, key: *, on: onEventHandler}}
+ */
+
+
+function createCreditCard(controllerId, key, options) {
+  var type = 'creditcard';
+  var id = Object(_client_createComponent__WEBPACK_IMPORTED_MODULE_0__["generateComponentId"])(type);
+  var creditcardComponent = {
+    id: id,
+    key: key,
+    type: type,
+    parentNode: null,
+    controllerId: controllerId,
+    mount: mountCreditCard,
+    destroy: destroyCreditCard,
+    on: _client_createComponent__WEBPACK_IMPORTED_MODULE_0__["onEventHandler"],
+    options: Object(_options__WEBPACK_IMPORTED_MODULE_1__["sanitizeOptionsForType"])(options, type) || {},
+    unmount: unmountCreditCard,
+    update: updateCreditCard,
+    window: Window
+  };
+  var creditcardElements = createElements(controllerId, key, options); // we don't want the classes on the parent div for this one, we just need them to pass down to child components
+
+  creditcardComponent.options.classes = {};
+  elements = Object.assign(elements, creditcardElements);
+  componentData = {
+    componentType: type,
+    componentId: id,
+    controller: {
+      id: controllerId,
+      window: Object(_client_createComponent__WEBPACK_IMPORTED_MODULE_0__["getComponentWindow"])(controllerId)
+    },
+    prevState: {
+      empty: true,
+      complete: false,
+      error: null
+    },
+    options: creditcardComponent.options
+  };
+  controllerEmitter = _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_4__["default"].client({
+    window: componentData.controller.window,
+    domain: _config__WEBPACK_IMPORTED_MODULE_5__["config"].domain
+  });
+  return creditcardComponent;
+}
+/**
+ *
+ * @param controllerId
+ * @param key
+ * @param options
+ * @returns {{cardcvv: {parentId: string, component}, cardnumber: {parentId: string, component}, cardexpiration: {parentId: string, component}}}
+ */
+
+function createElements(controllerId, key, options) {
+  var data = _client_dataStore__WEBPACK_IMPORTED_MODULE_2__["default"].get(key);
+  var elements = {
+    cardnumber: {
+      parentId: 'DRCardNumber',
+      options: {
+        placeholderText: '1234 5678 9012 3456'
+      },
+      focus: false,
+      empty: true,
+      complete: false
+    },
+    cardexpiration: {
+      parentId: 'DRCardExpiration',
+      options: {
+        placeholderText: 'MM/YY'
+      },
+      focus: false,
+      empty: true,
+      complete: false
+    },
+    cardcvv: {
+      parentId: 'DRCardCvv',
+      options: {
+        placeholderText: '123'
+      },
+      focus: false,
+      empty: true,
+      complete: false
+    }
+  };
+  Object.keys(elements).forEach(function (elementType) {
+    elements[elementType].options = Object.assign(elements[elementType].options, options);
+    elements[elementType].component = Object(_client_createComponent__WEBPACK_IMPORTED_MODULE_0__["createComponent"])(elementType, controllerId, key, elements[elementType].options);
+    data.components = Object.assign({}, data.components, _defineProperty({}, elementType, elements[elementType].component.id));
+    Object(_client_createComponent__WEBPACK_IMPORTED_MODULE_0__["registerComponentWithController"])(controllerId, elements[elementType].component, elements[elementType].options);
+    elements[elementType].component.on('ready', function () {
+      handleFieldReady(elements, elementType);
+    });
+    elements[elementType].component.on('blur', function () {
+      handleFieldBlur(elements, elementType);
+    });
+    elements[elementType].component.on('change', function (details) {
+      handleFieldChange(elements, elementType, details);
+    });
+  });
+  return elements;
+}
+function mountCreditCard(parentNodeId) {
+  var parent = document.getElementById(parentNodeId);
+  componentData.window = window;
+  var data = _client_dataStore__WEBPACK_IMPORTED_MODULE_2__["default"].get(this.key);
+  data.components[this.type] = {
+    'parent': parent,
+    'options': Object(_options__WEBPACK_IMPORTED_MODULE_1__["sanitizeOptionsForType"])(this.options, this.type)
+  };
+  _client_dataStore__WEBPACK_IMPORTED_MODULE_2__["default"].set(this.key, data);
+  this.parentNode = parent;
+  var componentId = this.id;
+  createDom(parentNodeId, componentId);
+  mountElements(componentId, elements);
+  return controllerEmitter.send('mountClientComponent', {
+    componentId: componentData.componentId,
+    componentType: componentData.componentType
+  });
+}
+
+function mountElements(parentNode, elements) {
+  Object.keys(elements).forEach(function (elementType) {
+    var elementDivId = elements[elementType].parentId + '-' + parentNode;
+    elements[elementType].component.mount(elementDivId);
+  });
+}
+
+function unmountCreditCard() {
+  Object.keys(elements).forEach(function (elementType) {
+    if (elements[elementType].component.parentNode) {
+      elements[elementType].component.unmount();
+    }
+
+    elements[elementType].ready = false;
+  });
+  _client_createComponent__WEBPACK_IMPORTED_MODULE_0__["unmount"].call(this);
+}
+
+function updateCreditCard(options) {
+  Object.keys(elements).forEach(function (elementType) {
+    elements[elementType].component.update(options);
+  }); // we do not want classes applied to the container div, so we strip them before update
+
+  if (options.hasOwnProperty('classes')) {
+    options.classes = {};
+  }
+}
+
+function destroyCreditCard() {
+  Object.keys(elements).forEach(function (elementType) {
+    elements[elementType].component.destroy();
+    elements[elementType].ready = false;
+  });
+  _client_createComponent__WEBPACK_IMPORTED_MODULE_0__["destroy"].call(this);
+}
+
+function getNextElement(elementType) {
+  if (elementType === 'cardnumber') {
+    return 'cardexpiration';
+  } else if (elementType === 'cardexpiration') {
+    return 'cardcvv';
+  }
+} // handlers for field component events
+
+
+function handleFieldChange(elements, elementType, details) {
+  var nextElement = getNextElement(elementType);
+
+  if (details.complete && typeof nextElement !== 'undefined') {
+    elements[nextElement].component.focus();
+  }
+
+  updateCard(elements, elementType, details);
+  handleCardFieldEvent(elements, 'change');
+}
+
+function handleFieldBlur(elements, elementType) {
+  updateCard(elements, elementType, {
+    focus: false
+  });
+  handleCardFieldEvent(elements, 'blur', {});
+}
+
+function handleFieldReady(elements, elementType) {
+  updateCard(elements, elementType, {
+    ready: true
+  });
+  handleReady(elements);
+}
+
+function setErrorMessages(uniqueId, elements) {
+  Object.keys(elements).forEach(function (elementType) {
+    var error = getError(elementType);
+
+    if (error) {
+      var parentId = elements[elementType].parentId;
+      setElementErrorMessage("".concat(parentId, "-").concat(uniqueId, "-error"), error.message);
+    }
+  });
+}
+
+function resetErrorMessages(uniqueId, elements) {
+  Object.keys(elements).forEach(function (elementType) {
+    var parentId = elements[elementType].parentId;
+    setElementErrorMessage("".concat(parentId, "-").concat(uniqueId, "-error"), '');
+  });
+}
+
+function setElementErrorMessage(id, message) {
+  document.getElementById(id).innerText = message;
+}
+
+function handleCardFieldEvent(elements, eventType) {
+  componentData.empty = isCardEmpty(elements);
+  componentData.complete = isCardComplete(elements);
+  componentData.error = isCardError(elements);
+  var dataToSend = {
+    empty: componentData.empty,
+    complete: componentData.complete,
+    error: componentData.error,
+    brand: elements.cardnumber.brand
+  };
+  handleCreditCardEvent(componentData, eventType, dataToSend);
+  resetErrorMessages(componentData.componentId, elements);
+
+  if (componentData.error) {
+    setErrorMessages(componentData.componentId, elements);
+  }
+} // handlers for creditcard component events
+
+
+function handleReady(elements) {
+  var numberReady = elements.cardnumber.ready === true;
+  var expirationReady = elements.cardexpiration.ready === true;
+  var cvvReady = elements.cardcvv.ready === true;
+
+  if (numberReady && expirationReady && cvvReady) {
+    Object(_input_events__WEBPACK_IMPORTED_MODULE_3__["handleEvent"])(componentData, 'ready');
+  }
+}
+
+function handleCreditCardEvent(componentData, eventType, event) {
+  var eventData = {
+    'empty': event.empty,
+    'complete': event.complete,
+    'error': event.error,
+    'brand': event.brand || 'unknown'
+  }; //For event type "change" Fire only if the event data has changed from the previous event
+
+  if (eventType === 'change' && Object(_utils__WEBPACK_IMPORTED_MODULE_6__["isShallowEquivalent"])(componentData.prevState, eventData)) {
+    return false;
+  } //If the user blurs, but something has changed, send a change event
+
+
+  if (eventType === 'blur' && componentData.prevState !== {} && !Object(_utils__WEBPACK_IMPORTED_MODULE_6__["isShallowEquivalent"])(componentData.prevState, eventData)) {
+    Object(_input_events__WEBPACK_IMPORTED_MODULE_3__["sendEventData"])(componentData.controller, componentData.componentId, componentData.componentType, 'change', eventData);
+  }
+
+  componentData.prevState = Object.assign({}, eventData);
+
+  if (eventType === 'blur') {
+    // we only send blur for this component if something has changed
+    return false;
+  }
+
+  Object(_input_events__WEBPACK_IMPORTED_MODULE_3__["sendEventData"])(componentData.controller, componentData.componentId, componentData.componentType, eventType, eventData);
+  return true;
+} // checks for creditcard component status
+
+function isCardComplete(elements) {
+  return elements.cardnumber.complete && elements.cardexpiration.complete && elements.cardcvv.complete;
+}
+
+function isCardEmpty(elements) {
+  return elements.cardnumber.empty && elements.cardexpiration.empty && elements.cardcvv.empty;
+}
+
+function isCardError(elements) {
+  var errors = [];
+  Object.keys(elements).forEach(function (elementType) {
+    var error = getError(elementType);
+    if (error) errors.push(error);
+  });
+  errors = errors.length > 0 ? errors : null;
+  return errors;
+}
+
+function getError(elementType) {
+  return elements[elementType].hasOwnProperty('error') && elements[elementType].error ? elements[elementType].error : null;
+} // utility functions
+
+
+function updateCard(elements, element, details) {
+  elements[element] = Object.assign(elements[element], details);
+}
+
+/***/ }),
+
 /***/ "./src/app/components/cross-browser-support.js":
 /*!*****************************************************!*\
   !*** ./src/app/components/cross-browser-support.js ***!
@@ -19883,8 +20229,9 @@ function sendEventData(controllerDetails, componentId, componentType, event) {
   var data = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : {};
   // send component type for all events
   var dataToSend = Object.assign({}, data);
+  var clientComponents = ['applepay', 'creditcard'];
   dataToSend.elementType = componentType;
-  var message = dataToSend.elementType !== 'applepay' ? 'componentEventToController' : 'clientComponentEventToController';
+  var message = !clientComponents.includes(componentType) ? 'componentEventToController' : 'clientComponentEventToController';
   _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_0__["default"].send(controllerDetails.window, message, {
     controllerId: controllerDetails.id,
     componentId: componentId,
@@ -19963,7 +20310,7 @@ function generateEventData(type, value, eventType, componentData, eventTrigger) 
     validated = validationMethod(value);
   }
 
-  var isChangeEventForcedErrorToFalse = eventType === 'change' && eventTrigger !== 'showError' && (validated.errorType.startsWith('incomplete_') || validated.errorType === 'ELEMENT_DATA_REQUIRED');
+  var isChangeEventForcedErrorToFalse = eventTrigger === 'clear' || eventType === 'change' && eventTrigger !== 'showError' && (validated.errorType.startsWith('incomplete_') || validated.errorType === 'ELEMENT_DATA_REQUIRED');
   var isError = isChangeEventForcedErrorToFalse ? false : validated.error;
   var isComplete = isChangeEventForcedErrorToFalse ? false : isError === false; // On Change event - If a value has not been set (no change event has been fired) then return empty as false
 
@@ -20041,7 +20388,7 @@ function hasPreviousState(prevState) {
  * Applies appropriate styles, removes whitespaces, sets prevState and sends event data to controller
  * @param {object} componentData
  * @param {string} eventType
- * @param {event} event
+ * @param {Event} event
  * @returns {boolean}
  */
 
@@ -20050,11 +20397,15 @@ function handleEvent(componentData, eventType, event) {
   var eventData = {};
   var privateData = null;
 
-  if (eventType === 'change' || eventType === 'blur') {
+  if (eventType === 'change' || eventType === 'blur' || eventType === 'clear') {
     // when event data has changed since last change event
     var removedWhiteSpaces = event.target.value.replace(/\s/g, '');
     eventData = generateEventData(componentData.componentType, removedWhiteSpaces, eventType, componentData, event.trigger);
     applyInputStylesToEvent(eventData, event);
+  }
+
+  if (event && event.hasOwnProperty('trigger') && event.trigger === 'clear') {
+    sendEventData(componentData.controller, componentData.componentId, componentData.componentType, 'clear', eventData, privateData);
   } // For event type "change" Fire only if the event data has changed from the previous event
 
 
@@ -20122,7 +20473,7 @@ function runEventOnElement(event, triggerData) {
         element.value = '';
         var onChangeEvent = Object(_cross_browser_support__WEBPACK_IMPORTED_MODULE_5__["createEvent"])('input'); // Required to force the input event to fire
 
-        onChangeEvent.trigger = 'showError';
+        onChangeEvent.trigger = 'clear';
         element.dispatchEvent(onChangeEvent);
         return;
       }
@@ -20205,7 +20556,7 @@ function getLocaleMessage(locale, messageCode) {
 /*! exports provided: ar-EG, cs-CZ, da-DK, de-AT, de-CH, de-DE, el-GR, en-AU, en-CA, en-CH, en-GB, en-IE, en-IN, en-MY, en-NL, en-NZ, en-PR, en-SG, en-US, en-ZA, es-AR, es-CL, es-CO, es-EC, es-ES, es-MX, es-PE, es-VE, fi-FI, fr-BE, fr-CA, fr-CH, fr-FR, hu-HU, it-CH, it-IT, iw-IL, ja-JP, ko-KR, nl-BE, nl-NL, no-NO, pl-PL, pt-BR, pt-PT, ru-RU, sk-SK, sv-SE, th-TH, tr-TR, zh-CN, zh-HK, zh-TW, default */
 /***/ (function(module) {
 
-module.exports = {"ar-EG":{"birthdate":"تاريخ الميلاد","cardInvalid":"البطاقة غير صحيحة، يرجى مراعاة تفاصيل البطاقة","cardSecurityCode":"كود أمان البطاقة","cardExpired":"صلاحية البطاقة انتهت بالفعل","cardNumber":"* رقم البطاقة الائتمانية","cardSecurityCodeInvalid":"كود غير صحيح","cardNumberInvalid":"من فضلك أدخل رقم بطاقة ائتمانية صحيح.","cardExpirationMonthInvalid":"أدخل شهر انتهاء صلاحية صحيح","cardExpirationYearInvalid":"أدخل سنة انتهاء صلاحية صحيحة","konbiniSelectStore":"اختر متجرًا.","month":"الشهر","noBanksAvailable":"يرجى اختيار أحد البنوك أو الشبكات البنكية","noBankSelected":"يرجى اختيار أحد البنوك أو الشبكات البنكية","selectBank":"من فضلك اختر البنك الخاص بك.","year":"السنة"},"cs-CZ":{"birthdate":"Datum narození","cardInvalid":"Karta je neplatná. Zkontrolujte prosím údaje o kartě.","cardSecurityCode":"Bezpečnostní kód karty","cardExpired":"Karta už není platná","cardNumber":"Číslo kreditní karty","cardSecurityCodeInvalid":"Neplatný kód","cardNumberInvalid":"Zadejte platné číslo kreditní karty.","cardExpirationMonthInvalid":"Zadejte měsíc konce platnosti","cardExpirationYearInvalid":"Zadejte rok konce platnosti","konbiniSelectStore":"Vyberte obchod.","month":"Měsíc","noBanksAvailable":"Zvolte banku nebo bankovní síť","noBankSelected":"Zvolte banku nebo bankovní síť","selectBank":"Zvolte banku","year":"Rok"},"da-DK":{"birthdate":"Fødselsdag","cardInvalid":"Kortet er ugyldigt. Kontrollér kortoplysningerne","cardSecurityCode":"Kortsikkerhedskode","cardExpired":"Kortet er udløbet","cardNumber":"Kreditkortnummer","cardSecurityCodeInvalid":"Forkert kode","cardNumberInvalid":"Indtast et gyldigt kreditkortnummer.","cardExpirationMonthInvalid":"Indtast en gyldig udløbsmåned","cardExpirationYearInvalid":"Indtast et gyldigt udløbsår","konbiniSelectStore":"Vælg en butik.","month":"Måned","noBanksAvailable":"Vælg en bank eller et banknetværk","noBankSelected":"Vælg en bank eller et banknetværk","selectBank":"Vælg din bank","year":"År"},"de-AT":{"birthdate":"Geburtsdatum","cardInvalid":"Karte ist ungültig, bitte überprüfen Sie die Kartendetails.","cardSecurityCode":"Kreditkarten-Sicherheitscode","cardExpired":"Karte ist bereits abgelaufen","cardNumber":"Kreditkartennummer","cardSecurityCodeInvalid":"Ungültiger Code","cardNumberInvalid":"Geben Sie bitte eine gültige Kreditkartennummer ein.","cardExpirationMonthInvalid":"Geben Sie einen gültigen Ablaufmonat ein.","cardExpirationYearInvalid":"Geben Sie ein gültiges Ablaufjahr ein.","konbiniSelectStore":"Wählen Sie einen Laden.","month":"Monat","noBanksAvailable":"Bitte wählen Sie eine Bank oder ein Bankennetzwerk aus","noBankSelected":"Bitte wählen Sie eine Bank oder ein Bankennetzwerk aus","selectBank":"Bitte wählen Sie Ihre Bank aus","year":"Jahr"},"de-CH":{"birthdate":"Geburtsdatum","cardInvalid":"Karte ist ungültig, bitte überprüfen Sie die Kartendetails.","cardSecurityCode":"Kreditkarten-Sicherheitscode","cardExpired":"Karte ist bereits abgelaufen","cardNumber":"Kreditkartennummer","cardSecurityCodeInvalid":"Ungültiger Code","cardNumberInvalid":"Geben Sie bitte eine gültige Kreditkartennummer ein.","cardExpirationMonthInvalid":"Geben Sie einen gültigen Ablaufmonat ein.","cardExpirationYearInvalid":"Geben Sie ein gültiges Ablaufjahr ein.","konbiniSelectStore":"Wählen Sie einen Laden.","month":"Monat","noBanksAvailable":"Bitte wählen Sie eine Bank oder ein Bankennetzwerk aus","noBankSelected":"Bitte wählen Sie eine Bank oder ein Bankennetzwerk aus","selectBank":"Bitte wählen Sie Ihre Bank aus","year":"Jahr"},"de-DE":{"birthdate":"Geburtsdatum","cardInvalid":"Karte ist ungültig, bitte überprüfen Sie die Kartendetails.","cardSecurityCode":"Kreditkarten-Sicherheitscode","cardExpired":"Karte ist bereits abgelaufen","cardNumber":"Kreditkartennummer","cardSecurityCodeInvalid":"Ungültiger Code","cardNumberInvalid":"Geben Sie bitte eine gültige Kreditkartennummer ein.","cardExpirationMonthInvalid":"Geben Sie einen gültigen Ablaufmonat ein.","cardExpirationYearInvalid":"Geben Sie ein gültiges Ablaufjahr ein.","konbiniSelectStore":"Wählen Sie einen Laden.","month":"Monat","noBanksAvailable":"Bitte wählen Sie eine Bank oder ein Bankennetzwerk aus","noBankSelected":"Bitte wählen Sie eine Bank oder ein Bankennetzwerk aus","selectBank":"Bitte wählen Sie Ihre Bank aus","year":"Jahr"},"el-GR":{"birthdate":"Ημερομηνία γέννησης","cardInvalid":"Η κάρτα δεν είναι έγκυρη, ελέγξτε ξανά τα στοιχεία της κάρτας","cardSecurityCode":"Κωδικός Ασφαλείας Κάρτας","cardExpired":"Η κάρτα έχει λήξει","cardNumber":"Αριθμός Πιστωτικής Κάρτας","cardSecurityCodeInvalid":"Μη Έγκυρος Κωδικός","cardNumberInvalid":"Εισαγάγετε έγκυρο αριθμό πιστωτικής κάρτας.","cardExpirationMonthInvalid":"Εισαγωγή έγκυρου μήνα λήξης","cardExpirationYearInvalid":"Εισαγωγή έγκυρου έτους λήξης","konbiniSelectStore":"Επιλέξτε κατάστημα.","month":"Μήνας","noBanksAvailable":"Επιλέξτε τράπεζα ή τραπεζικό δίκτυο","noBankSelected":"Επιλέξτε τράπεζα ή τραπεζικό δίκτυο","selectBank":"Επιλέξτε την τράπεζά σας","year":"Έτος"},"en-AU":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","konbiniSelectStore":"Select a store.","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year"},"en-CA":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","konbiniSelectStore":"Select a store.","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year"},"en-CH":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","konbiniSelectStore":"Select a store.","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year"},"en-GB":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","konbiniSelectStore":"Select a store.","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year"},"en-IE":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","konbiniSelectStore":"Select a store.","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year"},"en-IN":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","konbiniSelectStore":"Select a store.","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year"},"en-MY":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","konbiniSelectStore":"Select a store.","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year"},"en-NL":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","konbiniSelectStore":"Select a store.","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year"},"en-NZ":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","konbiniSelectStore":"Select a store.","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year"},"en-PR":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","konbiniSelectStore":"Select a store.","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year"},"en-SG":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","konbiniSelectStore":"Select a store.","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year"},"en-US":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","konbiniSelectStore":"Select a store.","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year"},"en-ZA":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","konbiniSelectStore":"Select a store.","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year"},"es-AR":{"birthdate":"Fecha de nacimiento","cardInvalid":"La tarjeta no es válida, por favor revise los datos de la tarjeta","cardSecurityCode":"Código de la tarjeta de seguridad","cardExpired":"La tarjeta ya expiró.","cardNumber":"Número de la tarjeta de crédito","cardSecurityCodeInvalid":"Código inválido","cardNumberInvalid":"Introduzca un número de tarjeta de crédito válido.","cardExpirationMonthInvalid":"Introduzca un mes de vencimiento válido","cardExpirationYearInvalid":"Introduzca un año de vencimiento válido","konbiniSelectStore":"Selecciona una tienda.","month":"Mes","noBanksAvailable":"Seleccione un banco o una red bancaria","noBankSelected":"Seleccione un banco o una red bancaria","selectBank":"Seleccione su banco","year":"Año"},"es-CL":{"birthdate":"Fecha de nacimiento","cardInvalid":"La tarjeta no es válida, por favor revise los datos de la tarjeta","cardSecurityCode":"Código de la tarjeta de seguridad","cardExpired":"La tarjeta ya expiró.","cardNumber":"Número de la tarjeta de crédito","cardSecurityCodeInvalid":"Código inválido","cardNumberInvalid":"Introduzca un número de tarjeta de crédito válido.","cardExpirationMonthInvalid":"Introduzca un mes de vencimiento válido","cardExpirationYearInvalid":"Introduzca un año de vencimiento válido","konbiniSelectStore":"Selecciona una tienda.","month":"Mes","noBanksAvailable":"Seleccione un banco o una red bancaria","noBankSelected":"Seleccione un banco o una red bancaria","selectBank":"Seleccione su banco","year":"Año"},"es-CO":{"birthdate":"Fecha de nacimiento","cardInvalid":"La tarjeta no es válida, por favor revise los datos de la tarjeta","cardSecurityCode":"Código de la tarjeta de seguridad","cardExpired":"La tarjeta ya expiró.","cardNumber":"Número de la tarjeta de crédito","cardSecurityCodeInvalid":"Código inválido","cardNumberInvalid":"Introduzca un número de tarjeta de crédito válido.","cardExpirationMonthInvalid":"Introduzca un mes de vencimiento válido","cardExpirationYearInvalid":"Introduzca un año de vencimiento válido","konbiniSelectStore":"Selecciona una tienda.","month":"Mes","noBanksAvailable":"Seleccione un banco o una red bancaria","noBankSelected":"Seleccione un banco o una red bancaria","selectBank":"Seleccione su banco","year":"Año"},"es-EC":{"birthdate":"Fecha de nacimiento","cardInvalid":"La tarjeta no es válida, por favor revise los datos de la tarjeta","cardSecurityCode":"Código de la tarjeta de seguridad","cardExpired":"La tarjeta ya expiró.","cardNumber":"Número de la tarjeta de crédito","cardSecurityCodeInvalid":"Código inválido","cardNumberInvalid":"Introduzca un número de tarjeta de crédito válido.","cardExpirationMonthInvalid":"Introduzca un mes de vencimiento válido","cardExpirationYearInvalid":"Introduzca un año de vencimiento válido","konbiniSelectStore":"Selecciona una tienda.","month":"Mes","noBanksAvailable":"Seleccione un banco o una red bancaria","noBankSelected":"Seleccione un banco o una red bancaria","selectBank":"Seleccione su banco","year":"Año"},"es-ES":{"birthdate":"Fecha de nacimiento","cardInvalid":"La tarjeta no es válida, compruebe los datos de la tarjeta de débito","cardSecurityCode":"Código de seguridad de la tarjeta","cardExpired":"Tarjeta ya caducada","cardNumber":"Número de tarjeta de crédito","cardSecurityCodeInvalid":"Código no válido","cardNumberInvalid":"Introduzca un número de tarjeta de crédito válido.","cardExpirationMonthInvalid":"Indique un mes de vencimiento válido","cardExpirationYearInvalid":"Indique un año de vencimiento válido","konbiniSelectStore":"Selecciona una tienda.","month":"Mes","noBanksAvailable":"Escoja una entidad o red bancaria","noBankSelected":"Escoja una entidad o red bancaria","selectBank":"Seleccione su entidad bancaria","year":"Año"},"es-MX":{"birthdate":"Fecha de nacimiento","cardInvalid":"La tarjeta no es válida, por favor revise los datos de la tarjeta","cardSecurityCode":"Código de la tarjeta de seguridad","cardExpired":"La tarjeta ya expiró.","cardNumber":"Número de la tarjeta de crédito","cardSecurityCodeInvalid":"Código inválido","cardNumberInvalid":"Introduzca un número de tarjeta de crédito válido.","cardExpirationMonthInvalid":"Introduzca un mes de vencimiento válido","cardExpirationYearInvalid":"Introduzca un año de vencimiento válido","konbiniSelectStore":"Selecciona una tienda.","month":"Mes","noBanksAvailable":"Seleccione un banco o una red bancaria","noBankSelected":"Seleccione un banco o una red bancaria","selectBank":"Seleccione su banco","year":"Año"},"es-PE":{"birthdate":"Fecha de nacimiento","cardInvalid":"La tarjeta no es válida, por favor revise los datos de la tarjeta","cardSecurityCode":"Código de la tarjeta de seguridad","cardExpired":"La tarjeta ya expiró.","cardNumber":"Número de la tarjeta de crédito","cardSecurityCodeInvalid":"Código inválido","cardNumberInvalid":"Introduzca un número de tarjeta de crédito válido.","cardExpirationMonthInvalid":"Introduzca un mes de vencimiento válido","cardExpirationYearInvalid":"Introduzca un año de vencimiento válido","konbiniSelectStore":"Selecciona una tienda.","month":"Mes","noBanksAvailable":"Seleccione un banco o una red bancaria","noBankSelected":"Seleccione un banco o una red bancaria","selectBank":"Seleccione su banco","year":"Año"},"es-VE":{"birthdate":"Fecha de nacimiento","cardInvalid":"La tarjeta no es válida, por favor revise los datos de la tarjeta","cardSecurityCode":"Código de la tarjeta de seguridad","cardExpired":"La tarjeta ya expiró.","cardNumber":"Número de la tarjeta de crédito","cardSecurityCodeInvalid":"Código inválido","cardNumberInvalid":"Introduzca un número de tarjeta de crédito válido.","cardExpirationMonthInvalid":"Introduzca un mes de vencimiento válido","cardExpirationYearInvalid":"Introduzca un año de vencimiento válido","konbiniSelectStore":"Selecciona una tienda.","month":"Mes","noBanksAvailable":"Seleccione un banco o una red bancaria","noBankSelected":"Seleccione un banco o una red bancaria","selectBank":"Seleccione su banco","year":"Año"},"fi-FI":{"birthdate":"Syntymäaika","cardInvalid":"Kortti ei ole voimassa, tarkasta kortin tiedot","cardSecurityCode":"Kortin tarkistusnumero","cardExpired":"Kortti on jo vanhentunut","cardNumber":"Luottokortin numero","cardSecurityCodeInvalid":"Väärä koodi","cardNumberInvalid":"Syötä voimassa olevan luottokortin numero.","cardExpirationMonthInvalid":"Syötä kelvollinen viimeinen voimassaolokuukausi","cardExpirationYearInvalid":"Syötä kelvollinen viimeinen voimassaolovuosi","konbiniSelectStore":"Valitse kauppa.","month":"Kuukausi","noBanksAvailable":"Valitse pankki tai pankkiverkko","noBankSelected":"Valitse pankki tai pankkiverkko","selectBank":"Valitse pankkisi","year":"Vuosi"},"fr-BE":{"birthdate":"Date de naissance","cardInvalid":"La carte n'est pas valide, veuillez en vérifier les détails","cardSecurityCode":"Code de sécurité carte","cardExpired":"Carte déjà expirée","cardNumber":"Numéro de carte de crédit","cardSecurityCodeInvalid":"Code invalide","cardNumberInvalid":"Veuillez saisir un numéro de carte de crédit valide.","cardExpirationMonthInvalid":"Indiquer un mois d'expiration valide","cardExpirationYearInvalid":"Indiquer une année d'expiration valide","konbiniSelectStore":"Sélectionnez une boutique.","month":"Mois ","noBanksAvailable":"Veuillez sélectionner une banque ou un réseau bancaire","noBankSelected":"Veuillez sélectionner une banque ou un réseau bancaire","selectBank":"Veuillez sélectionner votre banque","year":"Année "},"fr-CA":{"birthdate":"Date de naissance","cardInvalid":"La carte n'est pas valide, veuillez en vérifier les détails","cardSecurityCode":"Code de sécurité carte","cardExpired":"Carte déjà expirée","cardNumber":"Numéro de carte de crédit","cardSecurityCodeInvalid":"Code invalide","cardNumberInvalid":"Veuillez saisir un numéro de carte de crédit valide.","cardExpirationMonthInvalid":"Indiquer un mois d'expiration valide","cardExpirationYearInvalid":"Entrez une année d'expiration valide","konbiniSelectStore":"Sélectionnez une boutique.","month":"Mois ","noBanksAvailable":"Veuillez choisir une banque ou un réseau de banques","noBankSelected":"Veuillez choisir une banque ou un réseau de banques","selectBank":"Veuillez sélectionner votre banque","year":"Année "},"fr-CH":{"birthdate":"Date de naissance","cardInvalid":"La carte n'est pas valide, veuillez en vérifier les détails","cardSecurityCode":"Code de sécurité carte","cardExpired":"Carte déjà expirée","cardNumber":"Numéro de carte de crédit","cardSecurityCodeInvalid":"Code invalide","cardNumberInvalid":"Veuillez saisir un numéro de carte de crédit valide.","cardExpirationMonthInvalid":"Indiquer un mois d'expiration valide","cardExpirationYearInvalid":"Indiquer une année d'expiration valide","konbiniSelectStore":"Sélectionnez une boutique.","month":"Mois ","noBanksAvailable":"Veuillez sélectionner une banque ou un réseau bancaire","noBankSelected":"Veuillez sélectionner une banque ou un réseau bancaire","selectBank":"Veuillez sélectionner votre banque","year":"Année "},"fr-FR":{"birthdate":"Date de naissance","cardInvalid":"La carte n'est pas valide, veuillez en vérifier les détails","cardSecurityCode":"Code de sécurité carte","cardExpired":"Carte déjà expirée","cardNumber":"Numéro de carte de crédit","cardSecurityCodeInvalid":"Code invalide","cardNumberInvalid":"Veuillez saisir un numéro de carte de crédit valide.","cardExpirationMonthInvalid":"Indiquer un mois d'expiration valide","cardExpirationYearInvalid":"Indiquer une année d'expiration valide","konbiniSelectStore":"Sélectionnez une boutique.","month":"Mois ","noBanksAvailable":"Veuillez sélectionner une banque ou un réseau bancaire","noBankSelected":"Veuillez sélectionner une banque ou un réseau bancaire","selectBank":"Veuillez sélectionner votre banque","year":"Année "},"hu-HU":{"birthdate":"Születési idő","cardInvalid":"Érvénytelen kártya, ellenőrizze a kártya adatait","cardSecurityCode":"Kártya biztonsági kódja","cardExpired":"A kártya lejárt","cardNumber":"Bankkártyaszám","cardSecurityCodeInvalid":"Érvénytelen kód","cardNumberInvalid":"Kérjük, adjon meg egy érvényes hitelkártyaszámot.","cardExpirationMonthInvalid":"Adja meg az érvényes lejárati hónapot","cardExpirationYearInvalid":"Adja meg az érvényes lejárati évet","konbiniSelectStore":"Válasszon áruházat!","month":"Hónap","noBanksAvailable":"Kérjük, válasszon bankot vagy bankhálózatot","noBankSelected":"Kérjük, válasszon bankot vagy bankhálózatot","selectBank":"Kérjük, válassza ki bankját.","year":"Év"},"it-CH":{"birthdate":"Data di nascita","cardInvalid":"La carta non è valida, controlla i dati","cardSecurityCode":"Codice di sicurezza carta","cardExpired":"Carta già scaduta","cardNumber":"Numero di carta di credito","cardSecurityCodeInvalid":"Codice non valido","cardNumberInvalid":"Inserire un numero di carta di credito valido.","cardExpirationMonthInvalid":"Inserisci un mese di scadenza valido","cardExpirationYearInvalid":"Inserisci un anno di scadenza valido","konbiniSelectStore":"Seleziona un punto vendita.","month":"Mese","noBanksAvailable":"Scegli una banca o una rete bancaria","noBankSelected":"Scegli una banca o una rete bancaria","selectBank":"Seleziona la tua banca","year":"Anno"},"it-IT":{"birthdate":"Data di nascita","cardInvalid":"La carta non è valida, controlla i dati","cardSecurityCode":"Codice di sicurezza carta","cardExpired":"Carta già scaduta","cardNumber":"Numero di carta di credito","cardSecurityCodeInvalid":"Codice non valido","cardNumberInvalid":"Inserire un numero di carta di credito valido.","cardExpirationMonthInvalid":"Inserisci un mese di scadenza valido","cardExpirationYearInvalid":"Inserisci un anno di scadenza valido","konbiniSelectStore":"Seleziona un punto vendita.","month":"Mese","noBanksAvailable":"Scegli una banca o una rete bancaria","noBankSelected":"Scegli una banca o una rete bancaria","selectBank":"Seleziona la tua banca","year":"Anno"},"iw-IL":{"birthdate":"תאריך לידה","cardInvalid":"הכרטיס לא חוקי. אנא בדוק את פרטי הכרטיס","cardSecurityCode":"קוד ביטחון של כרטיס האשראי","cardExpired":"הכרטיס לא בתוקף","cardNumber":"* מס' כרטיס אשראי","cardSecurityCodeInvalid":"קוד לא חוקי","cardNumberInvalid":"נא הזן מספר כרטיס אשראי חוקי.","cardExpirationMonthInvalid":"הזן חודש תפוגה תקף","cardExpirationYearInvalid":"הזן שנת תפוגה תקפה","konbiniSelectStore":"בחר חנות.","month":"חודש","noBanksAvailable":"בחר בנק או רשת בנקים","noBankSelected":"בחר בנק או רשת בנקים","selectBank":"בחר את הבנק שלך","year":"שנה"},"ja-JP":{"birthdate":"誕生日","cardInvalid":"クレジットカードは無効です。カードを確認してください。","cardSecurityCode":"カードセキュリティコード","cardExpired":"カードの期限が切れています","cardNumber":"クレジットカード番号","cardSecurityCodeInvalid":"無効なコード","cardNumberInvalid":"有効なクレジットカード番号を入力してください。","cardExpirationMonthInvalid":"有効期限（月）を入力","cardExpirationYearInvalid":"有効期限（年）を入力","konbiniSelectStore":"コンビニ名を選択してください。 ","month":"月","noBanksAvailable":"銀行または銀行ネットワークを選択してください。","noBankSelected":"銀行または銀行ネットワークを選択してください。","selectBank":"銀行を選択してください。","year":"年"},"ko-KR":{"birthdate":"생년월일","cardInvalid":"카드가 유효하지 않습니다. 카드 세부 정보를 확인하십시오.","cardSecurityCode":"카드 보안 코드","cardExpired":"카드 유효기간이 이미 만료되었습니다","cardNumber":"신용카드 번호","cardSecurityCodeInvalid":"유효하지 않은 코드","cardNumberInvalid":"올바른 신용카드 번호를 입력하십시오.","cardExpirationMonthInvalid":"유효한 만료 월 입력","cardExpirationYearInvalid":"유효한 만료 연도 입력","cardTypeColon":"카드 종류:","closeWindow":"창 닫기","company":"회사","continue":"계속하기","corporateRegistrationNumber":"사업자 등록 번호","day":"일","enterAdditionalInformation":"추가 정보 입력","konbiniSelectStore":"스토어를 선택하십시오.","missing_korean_parameter":"존재하지 않는 정보 또는 부정확한 값을 제출하였습니다. 다시 시도하십시오.","month":"월","noBanksAvailable":"은행 또는 은행 네트워크를 선택하십시오.","noBankSelected":"은행 또는 은행 네트워크를 선택하십시오.","password":"암호","personalNumber":"개인 번호","pleaseCheckYourDateOfBirth":"고객님의 생년월일을 확인하십시오.","pleaseEnterAValidValue":"유효한 값을 입력해 주십시오.","requiredField":"필수 필드","selectBank":"은행을 선택하십시오.","year":"연도"},"nl-BE":{"birthdate":"Geboortedatum","cardInvalid":"Kaart is ongeldig, controleer de kaartgegevens","cardSecurityCode":"Beveiligingscode creditcard","cardExpired":"Creditcard is verlopen","cardNumber":"Creditcardnummer","cardSecurityCodeInvalid":"Ongeldige code","cardNumberInvalid":"Voer een geldig creditcardnummer in.","cardExpirationMonthInvalid":"Voer een geldige vervalmaand in","cardExpirationYearInvalid":"Voer een geldig vervaljaar in","konbiniSelectStore":"Kies een winkel.","month":"Maand","noBanksAvailable":"Selecteer een bank of bankennetwerk","noBankSelected":"Selecteer een bank of bankennetwerk","selectBank":"Selecteer uw bank","year":"Jaar"},"nl-NL":{"birthdate":"Geboortedatum","cardInvalid":"Kaart is ongeldig, controleer de kaartgegevens","cardSecurityCode":"Beveiligingscode creditcard","cardExpired":"Creditcard is verlopen","cardNumber":"Creditcardnummer","cardSecurityCodeInvalid":"Ongeldige code","cardNumberInvalid":"Voer een geldig creditcardnummer in.","cardExpirationMonthInvalid":"Voer een geldige vervalmaand in","cardExpirationYearInvalid":"Voer een geldig vervaljaar in","konbiniSelectStore":"Kies een winkel.","month":"Maand","noBanksAvailable":"Selecteer een bank of bankennetwerk","noBankSelected":"Selecteer een bank of bankennetwerk","selectBank":"Selecteer uw bank","year":"Jaar"},"no-NO":{"birthdate":"Fødselsdato","cardInvalid":"Ugyldig kort, vennligst sjekk opplysningene på kortet","cardSecurityCode":"Kortets sikkerhetskode","cardExpired":"Kortet er allerede utløpt","cardNumber":"Kredittkortnummer","cardSecurityCodeInvalid":"Ugyldig kode","cardNumberInvalid":"Du må oppgi et gyldig kredittkortnummer.","cardExpirationMonthInvalid":"Oppgi gyldig utløpsmåned","cardExpirationYearInvalid":"Oppgi gyldig utløpsår","konbiniSelectStore":"","month":"Måned","noBanksAvailable":"Velg en bank eller et banknettverk","noBankSelected":"Velg en bank eller et banknettverk","selectBank":"Velg din bank","year":"År"},"pl-PL":{"birthdate":"Data urodzenia","cardInvalid":"Karta jest nieprawidłowa, sprawdź dane karty","cardSecurityCode":"Kod bezpieczeństwa karty","cardExpired":"Ważność karty już wygasła","cardNumber":"Numer karty kredytowej","cardSecurityCodeInvalid":"Nieprawidłowy kod","cardNumberInvalid":"Podaj prawidłowy numer karty kredytowej.","cardExpirationMonthInvalid":"Wpisz prawidłowy miesiąc ważności","cardExpirationYearInvalid":"Wpisz prawidłowy rok ważności","konbiniSelectStore":"Velg en butikk.","month":"Miesiąc","noBanksAvailable":"Wybierz bank lub sieć banków","noBankSelected":"Wybierz bank lub sieć banków","selectBank":"Wybierz swój bank","year":"Rok"},"pt-BR":{"birthdate":"Aniversário","cardInvalid":"O cartão é inválido, verifique os detalhes sobre o cartão","cardSecurityCode":"Código de segurança do cartão","cardExpired":"O cartão expirou","cardNumber":"Número do cartão de crédito","cardSecurityCodeInvalid":"Código inválido","cardNumberInvalid":"Digite um número de cartão de crédito válido.","cardExpirationMonthInvalid":"Inserir o mês de validade","cardExpirationYearInvalid":"Inserir o ano de validade","konbiniSelectStore":"Selecione uma loja.","month":"Mês","noBanksAvailable":"Escolha um banco ou rede bancária","noBankSelected":"Escolha um banco ou rede bancária","selectBank":"Selecione seu banco","year":"Ano"},"pt-PT":{"birthdate":"Data de nascimento","cardInvalid":"Cartão inválido, verifique os detalhes do cartão","cardSecurityCode":"Código de Segurança do Cartão","cardExpired":"O cartão já expirou","cardNumber":"Número do cartão de crédito","cardSecurityCodeInvalid":"Código Inválido","cardNumberInvalid":"Introduza um número de cartão de crédito válido.","cardExpirationMonthInvalid":"Introduza um mês de expiração válido","cardExpirationYearInvalid":"Introduza um ano de expiração válido","konbiniSelectStore":"Selecione uma loja.","month":"Mês","noBanksAvailable":"Escolha um banco ou rede bancária","noBankSelected":"Escolha um banco ou rede bancária","selectBank":"Selecione o seu banco","year":"Ano"},"ru-RU":{"birthdate":"Дата рождения","cardInvalid":"Карта недействительна, проверьте реквизиты платежной карты","cardSecurityCode":"Код безопасности карты","cardExpired":"Срок действия карты истек","cardNumber":"Номер кредитной карты","cardSecurityCodeInvalid":"Неверный индекс","cardNumberInvalid":"Пожалуйста, введите действительный номер кредитной карты.","cardExpirationMonthInvalid":"Введите верный месяц истечения срока действия","cardExpirationYearInvalid":"Введите верный год истечения срока действия","konbiniSelectStore":"Выберите магазин.","month":"Месяц","noBanksAvailable":"Пожалуйста, выберите банк или банковскую сеть","noBankSelected":"Пожалуйста, выберите банк или банковскую сеть","selectBank":"Пожалуйста, выберите свой банк","year":"Год"},"sk-SK":{"birthdate":"Dátum narodenia","cardInvalid":"Karta je neplatná, skontrolujte údaje karty","cardSecurityCode":"Bezpečnostný kód na karte","cardExpired":"Platnosť karty skončila","cardNumber":"Číslo kreditnej karty","cardSecurityCodeInvalid":"Neplatný kód","cardNumberInvalid":"Uveďte platné číslo kreditnej karty.","cardExpirationMonthInvalid":"Vložte platný dátum exspirácie","cardExpirationYearInvalid":"Vložte platný rok exspirácie","konbiniSelectStore":"Vyberte obchod.","month":"Mesiac","noBanksAvailable":"Zvoľte banku alebo sieť bánk","noBankSelected":"Zvoľte banku alebo sieť bánk","selectBank":"Vyberte banku","year":"Rok"},"sv-SE":{"birthdate":"Födelsedatum","cardInvalid":"Kortet är ogiltigt, kontrollera kortdetaljerna","cardSecurityCode":"Kortets säkerhetskod","cardExpired":"Giltighetstiden för ditt kort har löpt ut","cardNumber":"Kreditkortsnummer","cardSecurityCodeInvalid":"Ogiltig kod","cardNumberInvalid":"Ange ett giltigt kreditkortsnummer.","cardExpirationMonthInvalid":"Ange giltig utgångsmånad","cardExpirationYearInvalid":"Ange giltigt utgångsår","konbiniSelectStore":"Välj en butik.","month":"Månad","noBanksAvailable":"Välj en bank eller ett banknätverk","noBankSelected":"Välj en bank eller ett banknätverk","selectBank":"Välj din bank","year":"År"},"th-TH":{"birthdate":"วันเกิด","cardInvalid":"บัตรไม่ถูกต้อง โปรดตรวจสอบรายละเอียดของบัตร","cardSecurityCode":"รหัสความปลอดภัยบนบัตร (Card Security Code) ","cardExpired":"บัตรหมดอายุแล้ว","cardNumber":"หมายเลขบัตรเครดิต","cardSecurityCodeInvalid":"รหัสไม่ถูกต้อง","cardNumberInvalid":"กรุณาใส่หมายเลขบัตรเครดิตที่ถูกต้อง","cardExpirationMonthInvalid":"ใส่เดือนหมดอายุที่ถูกต้อง","cardExpirationYearInvalid":"ใส่ปีหมดอายุที่ถูกต้อง","konbiniSelectStore":"เลือกร้านค้า ","month":"เดือน ","noBanksAvailable":"กรุณาเลือกธนาคารหรือเครือข่ายธนาคาร","noBankSelected":"กรุณาเลือกธนาคารหรือเครือข่ายธนาคาร","selectBank":"กรุณาเลือกธนาคารของคุณ","year":"ปี "},"tr-TR":{"birthdate":"Doğum Tarihi","cardInvalid":"Kart geçersiz, lütfen kart detaylarını kontrol edin","cardSecurityCode":"Kart Güvenlik Kodu","cardExpired":"Kart süresi dolmuş","cardNumber":"Kredi Kartı Numarası","cardSecurityCodeInvalid":"Geçersiz Kod","cardNumberInvalid":"Lütfen geçerli bir kredi kartı numarası girin.","cardExpirationMonthInvalid":"Geçerli sona erme ayını girin","cardExpirationYearInvalid":"Geçerli sona erme yılını girin","konbiniSelectStore":"Bir mağaza seçin.","month":"Ay","noBanksAvailable":"Lütfen bir banka veya banka ağı seçin","noBankSelected":"Lütfen bir banka veya banka ağı seçin","selectBank":"Lütfen bankanızı seçin","year":"Yıl"},"zh-CN":{"birthdate":"出生日期","cardInvalid":"卡片无效，请检查卡片详情","cardSecurityCode":"信用卡安全代码","cardExpired":"信用卡已过期","cardNumber":"信用卡号*","cardSecurityCodeInvalid":"无效代码","cardNumberInvalid":"请输入一个有效的信用卡号。","cardExpirationMonthInvalid":"请输入有效的到期月份","cardExpirationYearInvalid":"请输入有效的到期年份","konbiniSelectStore":"选择商店。","month":"月份","noBanksAvailable":"请选择一家银行或银行网络","noBankSelected":"请选择一家银行或银行网络","selectBank":"请选择您的银行","year":"年份"},"zh-HK":{"birthdate":"出生日期","cardInvalid":"信用咭無效，請檢查信用咭資料","cardSecurityCode":"信用卡安全碼：","cardExpired":"信用卡已過期","cardNumber":"信用卡號碼","cardSecurityCodeInvalid":"無效代碼","cardNumberInvalid":"請輸入有效的信用卡號碼。","cardExpirationMonthInvalid":"輸入有效的到期月份","cardExpirationYearInvalid":"輸入有效的到期年份","konbiniSelectStore":"選取商店。","month":"月份","noBanksAvailable":"請選擇銀行或銀行網路","noBankSelected":"請選擇銀行或銀行網路","selectBank":"請選擇您的銀行","year":"年"},"zh-TW":{"birthdate":"生日","cardInvalid":"信用卡無效，請確認卡片詳細資料","cardSecurityCode":"信用卡安全碼：","cardExpired":"信用卡已過期","cardNumber":"信用卡號碼","cardSecurityCodeInvalid":"無效代碼","cardNumberInvalid":"請輸入有效的信用卡號碼。","cardExpirationMonthInvalid":"輸入有效的到期月份","cardExpirationYearInvalid":"輸入有效的到期年份","konbiniSelectStore":"選擇商店。","month":"月份","noBanksAvailable":"請選擇銀行或銀行網路","noBankSelected":"請選擇銀行或銀行網路","selectBank":"請選擇您的銀行","year":"年度"}};
+module.exports = {"ar-EG":{"birthdate":"تاريخ الميلاد","cardInvalid":"البطاقة غير صحيحة، يرجى مراعاة تفاصيل البطاقة","cardSecurityCode":"كود أمان البطاقة","cardExpired":"صلاحية البطاقة انتهت بالفعل","cardNumber":"* رقم البطاقة الائتمانية","cardSecurityCodeInvalid":"كود غير صحيح","cardNumberInvalid":"من فضلك أدخل رقم بطاقة ائتمانية صحيح.","cardExpirationMonthInvalid":"أدخل شهر انتهاء صلاحية صحيح","cardExpirationYearInvalid":"أدخل سنة انتهاء صلاحية صحيحة","konbiniSelectStore":"اختر متجرًا.","month":"الشهر","noBanksAvailable":"يرجى اختيار أحد البنوك أو الشبكات البنكية","noBankSelected":"يرجى اختيار أحد البنوك أو الشبكات البنكية","selectBank":"من فضلك اختر البنك الخاص بك.","year":"السنة","offlineRefundInsufficientData":"تم إرسال معلومات ناقصة أو قيم غير صحيحة.  من فضلك حاول مرة أخرى."},"cs-CZ":{"birthdate":"Datum narození","cardInvalid":"Karta je neplatná. Zkontrolujte prosím údaje o kartě.","cardSecurityCode":"Bezpečnostní kód karty","cardExpired":"Karta už není platná","cardNumber":"Číslo kreditní karty","cardSecurityCodeInvalid":"Neplatný kód","cardNumberInvalid":"Zadejte platné číslo kreditní karty.","cardExpirationMonthInvalid":"Zadejte měsíc konce platnosti","cardExpirationYearInvalid":"Zadejte rok konce platnosti","konbiniSelectStore":"Vyberte obchod.","month":"Měsíc","noBanksAvailable":"Zvolte banku nebo bankovní síť","noBankSelected":"Zvolte banku nebo bankovní síť","selectBank":"Zvolte banku","year":"Rok","offlineRefundInsufficientData":"Odeslány chybějící informace nebo neplatné hodnoty.  Prosím, zkuste to znovu."},"da-DK":{"birthdate":"Fødselsdag","cardInvalid":"Kortet er ugyldigt. Kontrollér kortoplysningerne","cardSecurityCode":"Kortsikkerhedskode","cardExpired":"Kortet er udløbet","cardNumber":"Kreditkortnummer","cardSecurityCodeInvalid":"Forkert kode","cardNumberInvalid":"Indtast et gyldigt kreditkortnummer.","cardExpirationMonthInvalid":"Indtast en gyldig udløbsmåned","cardExpirationYearInvalid":"Indtast et gyldigt udløbsår","konbiniSelectStore":"Vælg en butik.","month":"Måned","noBanksAvailable":"Vælg en bank eller et banknetværk","noBankSelected":"Vælg en bank eller et banknetværk","selectBank":"Vælg din bank","year":"År","offlineRefundInsufficientData":"Der mangler oplysninger, eller der er angivet forkerte værdier.  Prøv venligst igen."},"de-AT":{"birthdate":"Geburtsdatum","cardInvalid":"Karte ist ungültig, bitte überprüfen Sie die Kartendetails.","cardSecurityCode":"Kreditkarten-Sicherheitscode","cardExpired":"Karte ist bereits abgelaufen","cardNumber":"Kreditkartennummer","cardSecurityCodeInvalid":"Ungültiger Code","cardNumberInvalid":"Geben Sie bitte eine gültige Kreditkartennummer ein.","cardExpirationMonthInvalid":"Geben Sie einen gültigen Ablaufmonat ein.","cardExpirationYearInvalid":"Geben Sie ein gültiges Ablaufjahr ein.","konbiniSelectStore":"Wählen Sie einen Laden.","month":"Monat","noBanksAvailable":"Bitte wählen Sie eine Bank oder ein Bankennetzwerk aus","noBankSelected":"Bitte wählen Sie eine Bank oder ein Bankennetzwerk aus","selectBank":"Bitte wählen Sie Ihre Bank aus","year":"Jahr","offlineRefundInsufficientData":"Die versendeten Angaben sind unvollständig oder fehlerhaft.  Bitte versuchen Sie es noch einmal."},"de-CH":{"birthdate":"Geburtsdatum","cardInvalid":"Karte ist ungültig, bitte überprüfen Sie die Kartendetails.","cardSecurityCode":"Kreditkarten-Sicherheitscode","cardExpired":"Karte ist bereits abgelaufen","cardNumber":"Kreditkartennummer","cardSecurityCodeInvalid":"Ungültiger Code","cardNumberInvalid":"Geben Sie bitte eine gültige Kreditkartennummer ein.","cardExpirationMonthInvalid":"Geben Sie einen gültigen Ablaufmonat ein.","cardExpirationYearInvalid":"Geben Sie ein gültiges Ablaufjahr ein.","konbiniSelectStore":"Wählen Sie einen Laden.","month":"Monat","noBanksAvailable":"Bitte wählen Sie eine Bank oder ein Bankennetzwerk aus","noBankSelected":"Bitte wählen Sie eine Bank oder ein Bankennetzwerk aus","selectBank":"Bitte wählen Sie Ihre Bank aus","year":"Jahr","offlineRefundInsufficientData":"Die versendeten Angaben sind unvollständig oder fehlerhaft.  Bitte versuchen Sie es noch einmal."},"de-DE":{"birthdate":"Geburtsdatum","cardInvalid":"Karte ist ungültig, bitte überprüfen Sie die Kartendetails.","cardSecurityCode":"Kreditkarten-Sicherheitscode","cardExpired":"Karte ist bereits abgelaufen","cardNumber":"Kreditkartennummer","cardSecurityCodeInvalid":"Ungültiger Code","cardNumberInvalid":"Geben Sie bitte eine gültige Kreditkartennummer ein.","cardExpirationMonthInvalid":"Geben Sie einen gültigen Ablaufmonat ein.","cardExpirationYearInvalid":"Geben Sie ein gültiges Ablaufjahr ein.","konbiniSelectStore":"Wählen Sie einen Laden.","month":"Monat","noBanksAvailable":"Bitte wählen Sie eine Bank oder ein Bankennetzwerk aus","noBankSelected":"Bitte wählen Sie eine Bank oder ein Bankennetzwerk aus","selectBank":"Bitte wählen Sie Ihre Bank aus","year":"Jahr","offlineRefundInsufficientData":"Die versendeten Angaben sind unvollständig oder fehlerhaft.  Bitte versuchen Sie es noch einmal."},"el-GR":{"birthdate":"Ημερομηνία γέννησης","cardInvalid":"Η κάρτα δεν είναι έγκυρη, ελέγξτε ξανά τα στοιχεία της κάρτας","cardSecurityCode":"Κωδικός Ασφαλείας Κάρτας","cardExpired":"Η κάρτα έχει λήξει","cardNumber":"Αριθμός Πιστωτικής Κάρτας","cardSecurityCodeInvalid":"Μη Έγκυρος Κωδικός","cardNumberInvalid":"Εισαγάγετε έγκυρο αριθμό πιστωτικής κάρτας.","cardExpirationMonthInvalid":"Εισαγωγή έγκυρου μήνα λήξης","cardExpirationYearInvalid":"Εισαγωγή έγκυρου έτους λήξης","konbiniSelectStore":"Επιλέξτε κατάστημα.","month":"Μήνας","noBanksAvailable":"Επιλέξτε τράπεζα ή τραπεζικό δίκτυο","noBankSelected":"Επιλέξτε τράπεζα ή τραπεζικό δίκτυο","selectBank":"Επιλέξτε την τράπεζά σας","year":"Έτος","offlineRefundInsufficientData":"Λείπουν πληροφορίες ή έχουν υποβληθεί εσφαλμένες τιμές.  Δοκιμάστε ξανά."},"en-AU":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","konbiniSelectStore":"Select a store.","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year","offlineRefundInsufficientData":"Missing information or incorrect values submitted.  Please try again."},"en-CA":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","konbiniSelectStore":"Select a store.","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year","offlineRefundInsufficientData":"Missing information or incorrect values submitted.  Please try again."},"en-CH":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","konbiniSelectStore":"Select a store.","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year","offlineRefundInsufficientData":"Missing information or incorrect values submitted.  Please try again."},"en-GB":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","konbiniSelectStore":"Select a store.","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year","offlineRefundInsufficientData":"Missing information or incorrect values submitted.  Please try again."},"en-IE":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","konbiniSelectStore":"Select a store.","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year","offlineRefundInsufficientData":"Missing information or incorrect values submitted.  Please try again."},"en-IN":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","konbiniSelectStore":"Select a store.","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year","offlineRefundInsufficientData":"Missing information or incorrect values submitted.  Please try again."},"en-MY":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","konbiniSelectStore":"Select a store.","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year","offlineRefundInsufficientData":"Missing information or incorrect values submitted.  Please try again."},"en-NL":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","konbiniSelectStore":"Select a store.","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year","offlineRefundInsufficientData":"Missing information or incorrect values submitted.  Please try again."},"en-NZ":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","konbiniSelectStore":"Select a store.","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year","offlineRefundInsufficientData":"Missing information or incorrect values submitted.  Please try again."},"en-PR":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","konbiniSelectStore":"Select a store.","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year","offlineRefundInsufficientData":"Missing information or incorrect values submitted.  Please try again."},"en-SG":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","konbiniSelectStore":"Select a store.","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year","offlineRefundInsufficientData":"Missing information or incorrect values submitted.  Please try again."},"en-US":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","konbiniSelectStore":"Select a store.","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year","offlineRefundInsufficientData":"Missing information or incorrect values submitted.  Please try again."},"en-ZA":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","konbiniSelectStore":"Select a store.","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year","offlineRefundInsufficientData":"Missing information or incorrect values submitted.  Please try again."},"es-AR":{"birthdate":"Fecha de nacimiento","cardInvalid":"La tarjeta no es válida, por favor revise los datos de la tarjeta","cardSecurityCode":"Código de la tarjeta de seguridad","cardExpired":"La tarjeta ya expiró.","cardNumber":"Número de la tarjeta de crédito","cardSecurityCodeInvalid":"Código inválido","cardNumberInvalid":"Introduzca un número de tarjeta de crédito válido.","cardExpirationMonthInvalid":"Introduzca un mes de vencimiento válido","cardExpirationYearInvalid":"Introduzca un año de vencimiento válido","konbiniSelectStore":"Selecciona una tienda.","month":"Mes","noBanksAvailable":"Seleccione un banco o una red bancaria","noBankSelected":"Seleccione un banco o una red bancaria","selectBank":"Seleccione su banco","year":"Año","offlineRefundInsufficientData":"Falta información o se han especificado valores incorrectos.  Intente de nuevo."},"es-CL":{"birthdate":"Fecha de nacimiento","cardInvalid":"La tarjeta no es válida, por favor revise los datos de la tarjeta","cardSecurityCode":"Código de la tarjeta de seguridad","cardExpired":"La tarjeta ya expiró.","cardNumber":"Número de la tarjeta de crédito","cardSecurityCodeInvalid":"Código inválido","cardNumberInvalid":"Introduzca un número de tarjeta de crédito válido.","cardExpirationMonthInvalid":"Introduzca un mes de vencimiento válido","cardExpirationYearInvalid":"Introduzca un año de vencimiento válido","konbiniSelectStore":"Selecciona una tienda.","month":"Mes","noBanksAvailable":"Seleccione un banco o una red bancaria","noBankSelected":"Seleccione un banco o una red bancaria","selectBank":"Seleccione su banco","year":"Año","offlineRefundInsufficientData":"Falta información o se han especificado valores incorrectos.  Intente de nuevo."},"es-CO":{"birthdate":"Fecha de nacimiento","cardInvalid":"La tarjeta no es válida, por favor revise los datos de la tarjeta","cardSecurityCode":"Código de la tarjeta de seguridad","cardExpired":"La tarjeta ya expiró.","cardNumber":"Número de la tarjeta de crédito","cardSecurityCodeInvalid":"Código inválido","cardNumberInvalid":"Introduzca un número de tarjeta de crédito válido.","cardExpirationMonthInvalid":"Introduzca un mes de vencimiento válido","cardExpirationYearInvalid":"Introduzca un año de vencimiento válido","konbiniSelectStore":"Selecciona una tienda.","month":"Mes","noBanksAvailable":"Seleccione un banco o una red bancaria","noBankSelected":"Seleccione un banco o una red bancaria","selectBank":"Seleccione su banco","year":"Año","offlineRefundInsufficientData":"Falta información o se han especificado valores incorrectos.  Intente de nuevo."},"es-EC":{"birthdate":"Fecha de nacimiento","cardInvalid":"La tarjeta no es válida, por favor revise los datos de la tarjeta","cardSecurityCode":"Código de la tarjeta de seguridad","cardExpired":"La tarjeta ya expiró.","cardNumber":"Número de la tarjeta de crédito","cardSecurityCodeInvalid":"Código inválido","cardNumberInvalid":"Introduzca un número de tarjeta de crédito válido.","cardExpirationMonthInvalid":"Introduzca un mes de vencimiento válido","cardExpirationYearInvalid":"Introduzca un año de vencimiento válido","konbiniSelectStore":"Selecciona una tienda.","month":"Mes","noBanksAvailable":"Seleccione un banco o una red bancaria","noBankSelected":"Seleccione un banco o una red bancaria","selectBank":"Seleccione su banco","year":"Año","offlineRefundInsufficientData":"Falta información o se han especificado valores incorrectos.  Intente de nuevo."},"es-ES":{"birthdate":"Fecha de nacimiento","cardInvalid":"La tarjeta no es válida, compruebe los datos de la tarjeta de débito","cardSecurityCode":"Código de seguridad de la tarjeta","cardExpired":"Tarjeta ya caducada","cardNumber":"Número de tarjeta de crédito","cardSecurityCodeInvalid":"Código no válido","cardNumberInvalid":"Introduzca un número de tarjeta de crédito válido.","cardExpirationMonthInvalid":"Indique un mes de vencimiento válido","cardExpirationYearInvalid":"Indique un año de vencimiento válido","konbiniSelectStore":"Selecciona una tienda.","month":"Mes","noBanksAvailable":"Escoja una entidad o red bancaria","noBankSelected":"Escoja una entidad o red bancaria","selectBank":"Seleccione su entidad bancaria","year":"Año","offlineRefundInsufficientData":"Falta información o se han especificado valores incorrectos.  Intente de nuevo."},"es-MX":{"birthdate":"Fecha de nacimiento","cardInvalid":"La tarjeta no es válida, por favor revise los datos de la tarjeta","cardSecurityCode":"Código de la tarjeta de seguridad","cardExpired":"La tarjeta ya expiró.","cardNumber":"Número de la tarjeta de crédito","cardSecurityCodeInvalid":"Código inválido","cardNumberInvalid":"Introduzca un número de tarjeta de crédito válido.","cardExpirationMonthInvalid":"Introduzca un mes de vencimiento válido","cardExpirationYearInvalid":"Introduzca un año de vencimiento válido","konbiniSelectStore":"Selecciona una tienda.","month":"Mes","noBanksAvailable":"Seleccione un banco o una red bancaria","noBankSelected":"Seleccione un banco o una red bancaria","selectBank":"Seleccione su banco","year":"Año","offlineRefundInsufficientData":"Falta información o se han especificado valores incorrectos.  Intente de nuevo."},"es-PE":{"birthdate":"Fecha de nacimiento","cardInvalid":"La tarjeta no es válida, por favor revise los datos de la tarjeta","cardSecurityCode":"Código de la tarjeta de seguridad","cardExpired":"La tarjeta ya expiró.","cardNumber":"Número de la tarjeta de crédito","cardSecurityCodeInvalid":"Código inválido","cardNumberInvalid":"Introduzca un número de tarjeta de crédito válido.","cardExpirationMonthInvalid":"Introduzca un mes de vencimiento válido","cardExpirationYearInvalid":"Introduzca un año de vencimiento válido","konbiniSelectStore":"Selecciona una tienda.","month":"Mes","noBanksAvailable":"Seleccione un banco o una red bancaria","noBankSelected":"Seleccione un banco o una red bancaria","selectBank":"Seleccione su banco","year":"Año","offlineRefundInsufficientData":"Falta información o se han especificado valores incorrectos.  Intente de nuevo."},"es-VE":{"birthdate":"Fecha de nacimiento","cardInvalid":"La tarjeta no es válida, por favor revise los datos de la tarjeta","cardSecurityCode":"Código de la tarjeta de seguridad","cardExpired":"La tarjeta ya expiró.","cardNumber":"Número de la tarjeta de crédito","cardSecurityCodeInvalid":"Código inválido","cardNumberInvalid":"Introduzca un número de tarjeta de crédito válido.","cardExpirationMonthInvalid":"Introduzca un mes de vencimiento válido","cardExpirationYearInvalid":"Introduzca un año de vencimiento válido","konbiniSelectStore":"Selecciona una tienda.","month":"Mes","noBanksAvailable":"Seleccione un banco o una red bancaria","noBankSelected":"Seleccione un banco o una red bancaria","selectBank":"Seleccione su banco","year":"Año","offlineRefundInsufficientData":"Falta información o se han especificado valores incorrectos.  Intente de nuevo."},"fi-FI":{"birthdate":"Syntymäaika","cardInvalid":"Kortti ei ole voimassa, tarkasta kortin tiedot","cardSecurityCode":"Kortin tarkistusnumero","cardExpired":"Kortti on jo vanhentunut","cardNumber":"Luottokortin numero","cardSecurityCodeInvalid":"Väärä koodi","cardNumberInvalid":"Syötä voimassa olevan luottokortin numero.","cardExpirationMonthInvalid":"Syötä kelvollinen viimeinen voimassaolokuukausi","cardExpirationYearInvalid":"Syötä kelvollinen viimeinen voimassaolovuosi","konbiniSelectStore":"Valitse kauppa.","month":"Kuukausi","noBanksAvailable":"Valitse pankki tai pankkiverkko","noBankSelected":"Valitse pankki tai pankkiverkko","selectBank":"Valitse pankkisi","year":"Vuosi","offlineRefundInsufficientData":"Tietoja puuttuu tai annetut arvot eivät kelpaa.  Yritä uudelleen."},"fr-BE":{"birthdate":"Date de naissance","cardInvalid":"La carte n'est pas valide, veuillez en vérifier les détails","cardSecurityCode":"Code de sécurité carte","cardExpired":"Carte déjà expirée","cardNumber":"Numéro de carte de crédit","cardSecurityCodeInvalid":"Code invalide","cardNumberInvalid":"Veuillez saisir un numéro de carte de crédit valide.","cardExpirationMonthInvalid":"Indiquer un mois d'expiration valide","cardExpirationYearInvalid":"Indiquer une année d'expiration valide","konbiniSelectStore":"Sélectionnez une boutique.","month":"Mois ","noBanksAvailable":"Veuillez sélectionner une banque ou un réseau bancaire","noBankSelected":"Veuillez sélectionner une banque ou un réseau bancaire","selectBank":"Veuillez sélectionner votre banque","year":"Année","offlineRefundInsufficientData":"Il manque certaines informations ou des valeurs incorrectes ont été envoyées.  Veuillez essayer à nouveau."},"fr-CA":{"birthdate":"Date de naissance","cardInvalid":"La carte n'est pas valide, veuillez en vérifier les détails","cardSecurityCode":"Code de sécurité carte","cardExpired":"Carte déjà expirée","cardNumber":"Numéro de carte de crédit","cardSecurityCodeInvalid":"Code invalide","cardNumberInvalid":"Veuillez saisir un numéro de carte de crédit valide.","cardExpirationMonthInvalid":"Indiquer un mois d'expiration valide","cardExpirationYearInvalid":"Entrez une année d'expiration valide","konbiniSelectStore":"Sélectionnez une boutique.","month":"Mois ","noBanksAvailable":"Veuillez choisir une banque ou un réseau de banques","noBankSelected":"Veuillez choisir une banque ou un réseau de banques","selectBank":"Veuillez sélectionner votre banque","year":"Année ","offlineRefundInsufficientData":"Il manque certaines informations ou des valeurs incorrectes ont été envoyées.  Veuillez essayer à nouveau."},"fr-CH":{"birthdate":"Date de naissance","cardInvalid":"La carte n'est pas valide, veuillez en vérifier les détails","cardSecurityCode":"Code de sécurité carte","cardExpired":"Carte déjà expirée","cardNumber":"Numéro de carte de crédit","cardSecurityCodeInvalid":"Code invalide","cardNumberInvalid":"Veuillez saisir un numéro de carte de crédit valide.","cardExpirationMonthInvalid":"Indiquer un mois d'expiration valide","cardExpirationYearInvalid":"Indiquer une année d'expiration valide","konbiniSelectStore":"Sélectionnez une boutique.","month":"Mois ","noBanksAvailable":"Veuillez sélectionner une banque ou un réseau bancaire","noBankSelected":"Veuillez sélectionner une banque ou un réseau bancaire","selectBank":"Veuillez sélectionner votre banque","year":"Année ","offlineRefundInsufficientData":"Il manque certaines informations ou des valeurs incorrectes ont été envoyées.  Veuillez essayer à nouveau."},"fr-FR":{"birthdate":"Date de naissance","cardInvalid":"La carte n'est pas valide, veuillez en vérifier les détails","cardSecurityCode":"Code de sécurité carte","cardExpired":"Carte déjà expirée","cardNumber":"Numéro de carte de crédit","cardSecurityCodeInvalid":"Code invalide","cardNumberInvalid":"Veuillez saisir un numéro de carte de crédit valide.","cardExpirationMonthInvalid":"Indiquer un mois d'expiration valide","cardExpirationYearInvalid":"Indiquer une année d'expiration valide","konbiniSelectStore":"Sélectionnez une boutique.","month":"Mois ","noBanksAvailable":"Veuillez sélectionner une banque ou un réseau bancaire","noBankSelected":"Veuillez sélectionner une banque ou un réseau bancaire","selectBank":"Veuillez sélectionner votre banque","year":"Année ","offlineRefundInsufficientData":"Il manque certaines informations ou des valeurs incorrectes ont été envoyées.  Veuillez essayer à nouveau."},"hu-HU":{"birthdate":"Születési idő","cardInvalid":"Érvénytelen kártya, ellenőrizze a kártya adatait","cardSecurityCode":"Kártya biztonsági kódja","cardExpired":"A kártya lejárt","cardNumber":"Bankkártyaszám","cardSecurityCodeInvalid":"Érvénytelen kód","cardNumberInvalid":"Kérjük, adjon meg egy érvényes hitelkártyaszámot.","cardExpirationMonthInvalid":"Adja meg az érvényes lejárati hónapot","cardExpirationYearInvalid":"Adja meg az érvényes lejárati évet","konbiniSelectStore":"Válasszon áruházat!","month":"Hónap","noBanksAvailable":"Kérjük, válasszon bankot vagy bankhálózatot","noBankSelected":"Kérjük, válasszon bankot vagy bankhálózatot","selectBank":"Kérjük, válassza ki bankját.","year":"Év","offlineRefundInsufficientData":"Hiányzó adatok vagy helytelenek az elküldött értékek.  Kérjük, próbálja meg újra."},"it-CH":{"birthdate":"Data di nascita","cardInvalid":"La carta non è valida, controlla i dati","cardSecurityCode":"Codice di sicurezza carta","cardExpired":"Carta già scaduta","cardNumber":"Numero di carta di credito","cardSecurityCodeInvalid":"Codice non valido","cardNumberInvalid":"Inserire un numero di carta di credito valido.","cardExpirationMonthInvalid":"Inserisci un mese di scadenza valido","cardExpirationYearInvalid":"Inserisci un anno di scadenza valido","konbiniSelectStore":"Seleziona un punto vendita.","month":"Mese","noBanksAvailable":"Scegli una banca o una rete bancaria","noBankSelected":"Scegli una banca o una rete bancaria","selectBank":"Seleziona la tua banca","year":"Anno","offlineRefundInsufficientData":"Sono state inviate informazioni mancanti o errate.  Riprova."},"it-IT":{"birthdate":"Data di nascita","cardInvalid":"La carta non è valida, controlla i dati","cardSecurityCode":"Codice di sicurezza carta","cardExpired":"Carta già scaduta","cardNumber":"Numero di carta di credito","cardSecurityCodeInvalid":"Codice non valido","cardNumberInvalid":"Inserire un numero di carta di credito valido.","cardExpirationMonthInvalid":"Inserisci un mese di scadenza valido","cardExpirationYearInvalid":"Inserisci un anno di scadenza valido","konbiniSelectStore":"Seleziona un punto vendita.","month":"Mese","noBanksAvailable":"Scegli una banca o una rete bancaria","noBankSelected":"Scegli una banca o una rete bancaria","selectBank":"Seleziona la tua banca","year":"Anno","offlineRefundInsufficientData":"Sono state inviate informazioni mancanti o errate.  Riprova."},"iw-IL":{"birthdate":"תאריך לידה","cardInvalid":"הכרטיס לא חוקי. אנא בדוק את פרטי הכרטיס","cardSecurityCode":"קוד ביטחון של כרטיס האשראי","cardExpired":"הכרטיס לא בתוקף","cardNumber":"* מס' כרטיס אשראי","cardSecurityCodeInvalid":"קוד לא חוקי","cardNumberInvalid":"נא הזן מספר כרטיס אשראי חוקי.","cardExpirationMonthInvalid":"הזן חודש תפוגה תקף","cardExpirationYearInvalid":"הזן שנת תפוגה תקפה","konbiniSelectStore":"בחר חנות.","month":"חודש","noBanksAvailable":"בחר בנק או רשת בנקים","noBankSelected":"בחר בנק או רשת בנקים","selectBank":"בחר את הבנק שלך","year":"שנה","offlineRefundInsufficientData":"חסר מידע או שסופקו ערכים שגויים.  אנא נסה שוב."},"ja-JP":{"birthdate":"誕生日","cardInvalid":"クレジットカードは無効です。カードを確認してください。","cardSecurityCode":"カードセキュリティコード","cardExpired":"カードの期限が切れています","cardNumber":"クレジットカード番号","cardSecurityCodeInvalid":"無効なコード","cardNumberInvalid":"有効なクレジットカード番号を入力してください。","cardExpirationMonthInvalid":"有効期限（月）を入力","cardExpirationYearInvalid":"有効期限（年）を入力","konbiniSelectStore":"コンビニ名を選択してください。 ","month":"月","noBanksAvailable":"銀行または銀行ネットワークを選択してください。","noBankSelected":"銀行または銀行ネットワークを選択してください。","selectBank":"銀行を選択してください。","year":"年","offlineRefundInsufficientData":"送信された情報に不備があるか、値に誤りがあります。  やり直してください。"},"ko-KR":{"birthdate":"생년월일","cardInvalid":"카드가 유효하지 않습니다. 카드 세부 정보를 확인하십시오.","cardSecurityCode":"카드 보안 코드","cardExpired":"카드 유효기간이 이미 만료되었습니다","cardNumber":"신용카드 번호","cardSecurityCodeInvalid":"유효하지 않은 코드","cardNumberInvalid":"올바른 신용카드 번호를 입력하십시오.","cardExpirationMonthInvalid":"유효한 만료 월 입력","cardExpirationYearInvalid":"유효한 만료 연도 입력","cardTypeColon":"카드 종류:","closeWindow":"창 닫기","company":"회사","continue":"계속하기","corporateRegistrationNumber":"사업자 등록 번호","day":"일","enterAdditionalInformation":"추가 정보 입력","konbiniSelectStore":"스토어를 선택하십시오.","missing_korean_parameter":"존재하지 않는 정보 또는 부정확한 값을 제출하였습니다. 다시 시도하십시오.","month":"월","noBanksAvailable":"은행 또는 은행 네트워크를 선택하십시오.","noBankSelected":"은행 또는 은행 네트워크를 선택하십시오.","password":"암호","personalNumber":"개인 번호","pleaseCheckYourDateOfBirth":"고객님의 생년월일을 확인하십시오.","pleaseEnterAValidValue":"유효한 값을 입력해 주십시오.","requiredField":"필수 필드","selectBank":"은행을 선택하십시오.","year":"연도","offlineRefundInsufficientData":"정보가 누락되었거나 잘못된 값이 제출되었습니다.  다시 시도해 주십시오."},"nl-BE":{"birthdate":"Geboortedatum","cardInvalid":"Kaart is ongeldig, controleer de kaartgegevens","cardSecurityCode":"Beveiligingscode creditcard","cardExpired":"Creditcard is verlopen","cardNumber":"Creditcardnummer","cardSecurityCodeInvalid":"Ongeldige code","cardNumberInvalid":"Voer een geldig creditcardnummer in.","cardExpirationMonthInvalid":"Voer een geldige vervalmaand in","cardExpirationYearInvalid":"Voer een geldig vervaljaar in","konbiniSelectStore":"Kies een winkel.","month":"Maand","noBanksAvailable":"Selecteer een bank of bankennetwerk","noBankSelected":"Selecteer een bank of bankennetwerk","selectBank":"Selecteer uw bank","year":"Jaar","offlineRefundInsufficientData":"Gegevens ontbreken of onjuiste waarden zijn ingevoerd.  Probeer het nog een keer."},"nl-NL":{"birthdate":"Geboortedatum","cardInvalid":"Kaart is ongeldig, controleer de kaartgegevens","cardSecurityCode":"Beveiligingscode creditcard","cardExpired":"Creditcard is verlopen","cardNumber":"Creditcardnummer","cardSecurityCodeInvalid":"Ongeldige code","cardNumberInvalid":"Voer een geldig creditcardnummer in.","cardExpirationMonthInvalid":"Voer een geldige vervalmaand in","cardExpirationYearInvalid":"Voer een geldig vervaljaar in","konbiniSelectStore":"Kies een winkel.","month":"Maand","noBanksAvailable":"Selecteer een bank of bankennetwerk","noBankSelected":"Selecteer een bank of bankennetwerk","selectBank":"Selecteer uw bank","year":"Jaar","offlineRefundInsufficientData":"Gegevens ontbreken of onjuiste waarden zijn ingevoerd.  Probeer het nog een keer."},"no-NO":{"birthdate":"Fødselsdato","cardInvalid":"Ugyldig kort, vennligst sjekk opplysningene på kortet","cardSecurityCode":"Kortets sikkerhetskode","cardExpired":"Kortet er allerede utløpt","cardNumber":"Kredittkortnummer","cardSecurityCodeInvalid":"Ugyldig kode","cardNumberInvalid":"Du må oppgi et gyldig kredittkortnummer.","cardExpirationMonthInvalid":"Oppgi gyldig utløpsmåned","cardExpirationYearInvalid":"Oppgi gyldig utløpsår","konbiniSelectStore":"","month":"Måned","noBanksAvailable":"Velg en bank eller et banknettverk","noBankSelected":"Velg en bank eller et banknettverk","selectBank":"Velg din bank","year":"År","offlineRefundInsufficientData":"Opplysninger mangler eller feil verdier er angitt.  Prøv på nytt."},"pl-PL":{"birthdate":"Data urodzenia","cardInvalid":"Karta jest nieprawidłowa, sprawdź dane karty","cardSecurityCode":"Kod bezpieczeństwa karty","cardExpired":"Ważność karty już wygasła","cardNumber":"Numer karty kredytowej","cardSecurityCodeInvalid":"Nieprawidłowy kod","cardNumberInvalid":"Podaj prawidłowy numer karty kredytowej.","cardExpirationMonthInvalid":"Wpisz prawidłowy miesiąc ważności","cardExpirationYearInvalid":"Wpisz prawidłowy rok ważności","konbiniSelectStore":"Velg en butikk.","month":"Miesiąc","noBanksAvailable":"Wybierz bank lub sieć banków","noBankSelected":"Wybierz bank lub sieć banków","selectBank":"Wybierz swój bank","year":"Rok","offlineRefundInsufficientData":"Nie wprowadzono wszystkich danych, lub wprowadzono niewłaściwe wartości.  Spróbuj ponownie."},"pt-BR":{"birthdate":"Aniversário","cardInvalid":"O cartão é inválido, verifique os detalhes sobre o cartão","cardSecurityCode":"Código de segurança do cartão","cardExpired":"O cartão expirou","cardNumber":"Número do cartão de crédito","cardSecurityCodeInvalid":"Código inválido","cardNumberInvalid":"Digite um número de cartão de crédito válido.","cardExpirationMonthInvalid":"Inserir o mês de validade","cardExpirationYearInvalid":"Inserir o ano de validade","konbiniSelectStore":"Selecione uma loja.","month":"Mês","noBanksAvailable":"Escolha um banco ou rede bancária","noBankSelected":"Escolha um banco ou rede bancária","selectBank":"Selecione seu banco","year":"Ano","offlineRefundInsufficientData":"Faltam informações ou foram submetidos valores incorrectos.  É favor tentar de novo."},"pt-PT":{"birthdate":"Data de nascimento","cardInvalid":"Cartão inválido, verifique os detalhes do cartão","cardSecurityCode":"Código de Segurança do Cartão","cardExpired":"O cartão já expirou","cardNumber":"Número do cartão de crédito","cardSecurityCodeInvalid":"Código Inválido","cardNumberInvalid":"Introduza um número de cartão de crédito válido.","cardExpirationMonthInvalid":"Introduza um mês de expiração válido","cardExpirationYearInvalid":"Introduza um ano de expiração válido","konbiniSelectStore":"Selecione uma loja.","month":"Mês","noBanksAvailable":"Escolha um banco ou rede bancária","noBankSelected":"Escolha um banco ou rede bancária","selectBank":"Selecione o seu banco","year":"Ano","offlineRefundInsufficientData":"Faltam informações ou foram submetidos valores incorrectos.  É favor tentar de novo."},"ru-RU":{"birthdate":"Дата рождения","cardInvalid":"Карта недействительна, проверьте реквизиты платежной карты","cardSecurityCode":"Код безопасности карты","cardExpired":"Срок действия карты истек","cardNumber":"Номер кредитной карты","cardSecurityCodeInvalid":"Неверный индекс","cardNumberInvalid":"Пожалуйста, введите действительный номер кредитной карты.","cardExpirationMonthInvalid":"Введите верный месяц истечения срока действия","cardExpirationYearInvalid":"Введите верный год истечения срока действия","konbiniSelectStore":"Выберите магазин.","month":"Месяц","noBanksAvailable":"Пожалуйста, выберите банк или банковскую сеть","noBankSelected":"Пожалуйста, выберите банк или банковскую сеть","selectBank":"Пожалуйста, выберите свой банк","year":"Год","offlineRefundInsufficientData":"Отсутствует необходимая информация или указаны некорректные значения.  Повторите попытку."},"sk-SK":{"birthdate":"Dátum narodenia","cardInvalid":"Karta je neplatná, skontrolujte údaje karty","cardSecurityCode":"Bezpečnostný kód na karte","cardExpired":"Platnosť karty skončila","cardNumber":"Číslo kreditnej karty","cardSecurityCodeInvalid":"Neplatný kód","cardNumberInvalid":"Uveďte platné číslo kreditnej karty.","cardExpirationMonthInvalid":"Vložte platný dátum exspirácie","cardExpirationYearInvalid":"Vložte platný rok exspirácie","konbiniSelectStore":"Vyberte obchod.","month":"Mesiac","noBanksAvailable":"Zvoľte banku alebo sieť bánk","noBankSelected":"Zvoľte banku alebo sieť bánk","selectBank":"Vyberte banku","year":"Rok","offlineRefundInsufficientData":"Chýbajúce údaje alebo odoslané nesprávne údaje.  Prosím, skúste to znova."},"sv-SE":{"birthdate":"Födelsedatum","cardInvalid":"Kortet är ogiltigt, kontrollera kortdetaljerna","cardSecurityCode":"Kortets säkerhetskod","cardExpired":"Giltighetstiden för ditt kort har löpt ut","cardNumber":"Kreditkortsnummer","cardSecurityCodeInvalid":"Ogiltig kod","cardNumberInvalid":"Ange ett giltigt kreditkortsnummer.","cardExpirationMonthInvalid":"Ange giltig utgångsmånad","cardExpirationYearInvalid":"Ange giltigt utgångsår","konbiniSelectStore":"Välj en butik.","month":"Månad","noBanksAvailable":"Välj en bank eller ett banknätverk","noBankSelected":"Välj en bank eller ett banknätverk","selectBank":"Välj din bank","year":"År","offlineRefundInsufficientData":"Det saknas information eller felaktiga belopp har angivits. Försök igen."},"th-TH":{"birthdate":"วันเกิด","cardInvalid":"บัตรไม่ถูกต้อง โปรดตรวจสอบรายละเอียดของบัตร","cardSecurityCode":"รหัสความปลอดภัยบนบัตร (Card Security Code) ","cardExpired":"บัตรหมดอายุแล้ว","cardNumber":"หมายเลขบัตรเครดิต","cardSecurityCodeInvalid":"รหัสไม่ถูกต้อง","cardNumberInvalid":"กรุณาใส่หมายเลขบัตรเครดิตที่ถูกต้อง","cardExpirationMonthInvalid":"ใส่เดือนหมดอายุที่ถูกต้อง","cardExpirationYearInvalid":"ใส่ปีหมดอายุที่ถูกต้อง","konbiniSelectStore":"เลือกร้านค้า ","month":"เดือน ","noBanksAvailable":"กรุณาเลือกธนาคารหรือเครือข่ายธนาคาร","noBankSelected":"กรุณาเลือกธนาคารหรือเครือข่ายธนาคาร","selectBank":"กรุณาเลือกธนาคารของคุณ","year":"ปี ","offlineRefundInsufficientData":"ข้อมูลหายไปหรือมีการส่งค่าที่ไม่ถูกต้อง  กรุณาลองอีกครั้ง"},"tr-TR":{"birthdate":"Doğum Tarihi","cardInvalid":"Kart geçersiz, lütfen kart detaylarını kontrol edin","cardSecurityCode":"Kart Güvenlik Kodu","cardExpired":"Kart süresi dolmuş","cardNumber":"Kredi Kartı Numarası","cardSecurityCodeInvalid":"Geçersiz Kod","cardNumberInvalid":"Lütfen geçerli bir kredi kartı numarası girin.","cardExpirationMonthInvalid":"Geçerli sona erme ayını girin","cardExpirationYearInvalid":"Geçerli sona erme yılını girin","konbiniSelectStore":"Bir mağaza seçin.","month":"Ay","noBanksAvailable":"Lütfen bir banka veya banka ağı seçin","noBankSelected":"Lütfen bir banka veya banka ağı seçin","selectBank":"Lütfen bankanızı seçin","year":"Yıl","offlineRefundInsufficientData":"Eksik bilgi var ya da yanlış değerler girildi.  Lütfen tekrar deneyin."},"zh-CN":{"birthdate":"出生日期","cardInvalid":"卡片无效，请检查卡片详情","cardSecurityCode":"信用卡安全代码","cardExpired":"信用卡已过期","cardNumber":"信用卡号*","cardSecurityCodeInvalid":"无效代码","cardNumberInvalid":"请输入一个有效的信用卡号。","cardExpirationMonthInvalid":"请输入有效的到期月份","cardExpirationYearInvalid":"请输入有效的到期年份","konbiniSelectStore":"选择商店。","month":"月份","noBanksAvailable":"请选择一家银行或银行网络","noBankSelected":"请选择一家银行或银行网络","selectBank":"请选择您的银行","year":"年份","offlineRefundInsufficientData":"所提交的信息不完整或数据不正确。请重试。"},"zh-HK":{"birthdate":"出生日期","cardInvalid":"信用咭無效，請檢查信用咭資料","cardSecurityCode":"信用卡安全碼：","cardExpired":"信用卡已過期","cardNumber":"信用卡號碼","cardSecurityCodeInvalid":"無效代碼","cardNumberInvalid":"請輸入有效的信用卡號碼。","cardExpirationMonthInvalid":"輸入有效的到期月份","cardExpirationYearInvalid":"輸入有效的到期年份","konbiniSelectStore":"選取商店。","month":"月份","noBanksAvailable":"請選擇銀行或銀行網路","noBankSelected":"請選擇銀行或銀行網路","selectBank":"請選擇您的銀行","year":"年","offlineRefundInsufficientData":"所提交的信息不完整或数据不正确。请重试。"},"zh-TW":{"birthdate":"生日","cardInvalid":"信用卡無效，請確認卡片詳細資料","cardSecurityCode":"信用卡安全碼：","cardExpired":"信用卡已過期","cardNumber":"信用卡號碼","cardSecurityCodeInvalid":"無效代碼","cardNumberInvalid":"請輸入有效的信用卡號碼。","cardExpirationMonthInvalid":"輸入有效的到期月份","cardExpirationYearInvalid":"輸入有效的到期年份","konbiniSelectStore":"選擇商店。","month":"月份","noBanksAvailable":"請選擇銀行或銀行網路","noBankSelected":"請選擇銀行或銀行網路","selectBank":"請選擇您的銀行","year":"年度","offlineRefundInsufficientData":"所提交的信息不完整或数据不正确。请重试。"}};
 
 /***/ }),
 
@@ -20696,7 +21047,7 @@ function onBuyClicked(request, processPayment, sendOnCancelEvent, sendClickEvent
       completePaymentWithFailure(data.instrumentResponse);
     }
   }).catch(function (err) {
-    if (err.message.includes('User closed the Payment Request') || err.message === 'Request cancelled' || err.message === 'The operation was aborted.') {
+    if (err.message && (err.message.includes('User closed the Payment Request') || err.message === 'Request cancelled' || err.message === 'The operation was aborted.')) {
       sendOnCancelEvent(instanceData.componentData);
     }
   });
@@ -21856,6 +22207,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../post-robot-wrapper */ "./src/post-robot-wrapper.js");
 /* harmony import */ var _app_components_localization_messages__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../app/components/localization/messages */ "./src/app/components/localization/messages.json");
 var _app_components_localization_messages__WEBPACK_IMPORTED_MODULE_10___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../app/components/localization/messages */ "./src/app/components/localization/messages.json", 1);
+/* harmony import */ var _create_dropin__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./create-dropin */ "./src/client/create-dropin.js");
+/* harmony import */ var _app_components_creditcard_creditcard__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../app/components/creditcard/creditcard */ "./src/app/components/creditcard/creditcard.js");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -21872,9 +22225,10 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 
 
 
-var ComponentTypes = ['cardnumber', 'cardexpiration', 'cardcvv', 'googlepay', 'applepay', 'onlinebanking', 'koreancard', 'konbini'];
+
+
+var ComponentTypes = ['cardnumber', 'cardexpiration', 'cardcvv', 'creditcard', 'googlepay', 'applepay', 'onlinebanking', 'koreancard', 'konbini', 'offlinerefund', 'paypal'];
 var DEFAULT_LOCALE = 'en-US';
-var koreanCard;
 
 function localeMessagesContainsClientProvidedLocale(locale) {
   return Object.keys(_app_components_localization_messages__WEBPACK_IMPORTED_MODULE_10__).filter(function (key) {
@@ -21921,7 +22275,7 @@ function DigitalRiver(apiKey, providedInstanceOptions) {
 
   var instanceOptions = updateInstanceOptionsWithDefaults(providedInstanceOptions);
   this.Compliance = {
-    getDetails: getDetails
+    getDetails: getDetails.bind(instanceOptions)
   }; // creating controller component
 
   var component = Object(_createController_js__WEBPACK_IMPORTED_MODULE_4__["createController"])(document.body, 'controller'); // creating beacon component
@@ -21996,13 +22350,14 @@ function createSourceForAllPaymentMethods(sourceRequest, componentInstanceOrSour
 
     if (isKoreanCard(sourceRequest)) {
       var key = this.key;
+      var self = this;
       return new Promise(function (resolve) {
-        return handleKoreanCard(key, sourceRequest, resolve);
+        self.koreanCard = handleKoreanCard(key, sourceRequest, resolve);
       }).then(function (responseData) {
         Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_3__["updateOverlay"])('DRKoreanCard', '0', '');
+        self.koreanCard.destroy();
 
         if (responseData.error) {
-          koreanCard.destroy();
           return responseData;
         } else {
           return handleCreateSource(controller.id, componentInstanceOrSourceData.type, sourceRequest, beaconComponent);
@@ -22016,14 +22371,6 @@ function createSourceForAllPaymentMethods(sourceRequest, componentInstanceOrSour
 
 function handleCreateSource(controllerId, componentType, sourceRequest, beaconComponent) {
   return Object(_createSource_js__WEBPACK_IMPORTED_MODULE_1__["createSource"])(controllerId, componentType, sourceRequest).then(function (response) {
-    if (koreanCard) {
-      try {
-        koreanCard.destroy();
-      } catch (err) {
-        koreanCard = undefined;
-      }
-    }
-
     if (typeof response !== 'undefined' && response.source !== null && response.source.state === 'requires_action' && response.source.nextAction !== null) {
       // creating Adyen component
       var adyenComponent = Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_3__["createOrExtractAdyenController"])();
@@ -22141,13 +22488,14 @@ function handleKoreanCard(key, sourceRequest, resolve) {
 
   delete options.placeholderText;
   delete options.style.base[':hover'];
-  koreanCard = Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_3__["createComponent"])('koreancard', controller.id, key, options);
+  var koreanCard = Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_3__["createComponent"])('koreancard', controller.id, key, options);
   Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_3__["registerComponentWithController"])(controller.id, koreanCard, options);
   koreanCard.mount('DRKoreanCard');
   document.getElementById('DRKoreanCard').setAttribute('class', '');
   koreanCard.on('ready', function () {
     sendShowKoreanCardOverlay(controller.id, resolve);
   });
+  return koreanCard;
 }
 
 function sendShowKoreanCardOverlay(controllerId, resolve) {
@@ -22339,6 +22687,8 @@ DigitalRiver.prototype.createElement = function (type, options) {
 
   if (type === 'applepay') {
     component = Object(_applepay_applepay__WEBPACK_IMPORTED_MODULE_7__["createApplePay"])().createApplepayComponent(controller.id, this.key, options);
+  } else if (type === 'creditcard') {
+    component = Object(_app_components_creditcard_creditcard__WEBPACK_IMPORTED_MODULE_12__["createCreditCard"])(controller.id, this.key, options); //component.window = getComponentWindow(component.id);
   } else {
     component = Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_3__["createComponent"])(type, controller.id, this.key, options);
   } // Add component/element id to component map
@@ -22365,12 +22715,43 @@ function getDetails(entityValue, userLocale) {
   }
 
   if (!userLocale) {
-    var windowDetails = Object(_beacon_beacon_client_data__WEBPACK_IMPORTED_MODULE_8__["collectClientData"])(window);
-    userLocale = windowDetails.userLocale;
+    userLocale = this.locale;
   }
 
   return Object(_complianceData__WEBPACK_IMPORTED_MODULE_2__["complianceGetDetails"])(entityValue, userLocale);
 }
+
+DigitalRiver.prototype.retrieveKonbiniStores = function () {
+  var _dataStore$get7 = _dataStore_js__WEBPACK_IMPORTED_MODULE_0__["default"].get(this.key),
+      controller = _dataStore$get7.controller;
+
+  if (!controller) {
+    throw new Error('Cannot get stores without a controller');
+  }
+
+  var controllerWindow = Object(_createComponent_js__WEBPACK_IMPORTED_MODULE_3__["getComponentWindow"])(controller.id);
+
+  if (!controllerWindow) {
+    throw new Error("Unable to locate controller '".concat(controller.id, "'"));
+  } // Send message to Controller Frame to get banks
+
+
+  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_9__["default"].send(controllerWindow, 'getKonbiniStores', {}).then(function (response) {
+    // This is a Post Robot Response object so you have to get the data out
+    return response.data;
+  }).catch(function () {
+    return [];
+  });
+};
+
+DigitalRiver.prototype.createDropin = function (options, clientSourceData) {
+  var key = this.key;
+  var createElement = this.createElement.bind(this);
+  var createSource = this.createSource.bind(this);
+  return {
+    mount: Object(_create_dropin__WEBPACK_IMPORTED_MODULE_11__["mountDropin"])(key, options, clientSourceData, createSource, createElement)
+  };
+};
 
 /* harmony default export */ __webpack_exports__["default"] = (DigitalRiver);
 
@@ -23456,7 +23837,7 @@ function complianceGetDetails(businessEntityId, locale) {
       },
       'cancellationRights': {
         'localizedText': localizedText(_json_compliance_json__WEBPACK_IMPORTED_MODULE_0__["keys"].CANCELLATION_RIGHTS, updatedLocale, businessEntityName),
-        'url': localizedUrl(updatedLocale, 'DisplayDRTermsAndConditionsPage', businessEntityNameEncoded, 'cancellationRights')
+        'url': localizedUrl(updatedLocale, 'DisplayDRTermsAndConditionsPage', businessEntityNameEncoded, 'cancellationRight')
       },
       'legalNotice': {
         'localizedText': localizedText(_json_compliance_json__WEBPACK_IMPORTED_MODULE_0__["keys"].LEGAL_NOTICE, updatedLocale, businessEntityName),
@@ -23467,6 +23848,17 @@ function complianceGetDetails(businessEntityId, locale) {
       }
     }
   };
+  var californiaPrivacyRights = getCaliforniaPrivacyRights(updatedLocale, businessEntityName);
+  var warrantyInformation = getWarrantyInformation(updatedLocale, businessEntityName);
+
+  if (typeof californiaPrivacyRights !== 'undefined') {
+    complianceData.disclosure.californiaPrivacyRights = californiaPrivacyRights;
+  }
+
+  if (typeof warrantyInformation !== 'undefined') {
+    complianceData.disclosure.warrantyInformation = warrantyInformation;
+  }
+
   return complianceData;
 }
 
@@ -23508,12 +23900,14 @@ function evaluateVars(string, locale, businessEntityName) {
   return string;
 }
 
-function localizedUrl(locale, entityType, entityNameEncoded, urlType) {
-  if (urlType === 'cancellationRights') {
-    return defaultDRStore + locale + slash + entityType + eCommerceProvider + entityNameEncoded + '.#cancellationRight';
-  } else {
-    return defaultDRStore + locale + slash + entityType + eCommerceProvider + entityNameEncoded;
+function localizedUrl(locale, entityType, entityNameEncoded, anchor) {
+  var url = defaultDRStore + locale + slash + entityType + eCommerceProvider + entityNameEncoded;
+
+  if (anchor) {
+    url = "".concat(url, "#").concat(anchor);
   }
+
+  return url;
 }
 
 function getBusinessEntityNameFromCode(entityId) {
@@ -23524,6 +23918,274 @@ function getBusinessEntityNameFromCode(entityId) {
     }
   });
   return entityName;
+}
+
+function getCaliforniaPrivacyRights(updatedLocale, businessEntityName) {
+  var californiaPrivacyRights;
+  var californiaPrivacyRightText = localizedText(_json_compliance_json__WEBPACK_IMPORTED_MODULE_0__["keys"].CALIFORNIA_PRIVACY_RIGHTS, updatedLocale, businessEntityName);
+
+  if (californiaPrivacyRightText !== '') {
+    californiaPrivacyRights = {
+      'localizedText': californiaPrivacyRightText,
+      'url': 'https://store.digitalriver.com/store/defaults/en_US/DisplayCCPAPage'
+    };
+  }
+
+  return californiaPrivacyRights;
+}
+
+function getWarrantyInformation(updatedLocale, businessEntityName) {
+  var warrantyInformation;
+  var warrantyInformationText = localizedText(_json_compliance_json__WEBPACK_IMPORTED_MODULE_0__["keys"].WARRANTY_INFORMATION, updatedLocale, businessEntityName);
+  var warrantyInformationUrl = localizedUrl(updatedLocale, 'DisplayDRTermsAndConditionsPage', encodeURIComponent(businessEntityName), 'warrantyInformation');
+
+  if (warrantyInformationText !== '') {
+    warrantyInformation = {
+      'localizedText': warrantyInformationText,
+      'url': warrantyInformationUrl
+    };
+  }
+
+  return warrantyInformation;
+}
+
+/***/ }),
+
+/***/ "./src/client/create-dropin.js":
+/*!*************************************!*\
+  !*** ./src/client/create-dropin.js ***!
+  \*************************************/
+/*! exports provided: addStandaloneButtonOptions, mountDropin */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addStandaloneButtonOptions", function() { return addStandaloneButtonOptions; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mountDropin", function() { return mountDropin; });
+/* harmony import */ var _dataStore__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./dataStore */ "./src/client/dataStore.js");
+/* harmony import */ var _DigitalRiverPaymentRequest__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./DigitalRiverPaymentRequest */ "./src/client/DigitalRiverPaymentRequest.js");
+/* harmony import */ var _fetch_payment_methods__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./fetch-payment-methods */ "./src/client/fetch-payment-methods.js");
+
+
+
+var supportedPaymentMethods = [{
+  name: 'Online Banking',
+  code: 'onlinebanking',
+  type: 'onlineBanking',
+  needsPayButton: true,
+  standaloneButton: false
+}, {
+  name: 'Offline Refund',
+  code: 'offlinerefund',
+  type: 'offlineRefund',
+  needsPayButton: true,
+  standaloneButton: false
+}, {
+  name: 'Credit Card',
+  code: 'creditcard',
+  type: 'creditCard',
+  needsPayButton: true,
+  standaloneButton: false
+}, {
+  name: 'Google Pay',
+  code: 'googlepay',
+  type: 'googlePay',
+  needsPayButton: false,
+  standaloneButton: true
+}, {
+  name: 'Apple Pay',
+  code: 'applepay',
+  type: 'applePay',
+  needsPayButton: false,
+  standaloneButton: true
+}, {
+  name: 'PayPal',
+  code: 'paypal',
+  type: 'payPal',
+  needsPayButton: false,
+  standaloneButton: true
+}, {
+  name: 'Konbini',
+  code: 'konbini',
+  type: 'konbini',
+  needsPayButton: true,
+  standaloneButton: false
+}];
+
+function paymentMethodNotSupported(paymentMethod) {
+  return !paymentMethod;
+}
+
+function runUpdateWith(event, data) {
+  if (typeof event.updateWith !== 'undefined') {
+    event.updateWith(data);
+  }
+}
+
+function addStandaloneButtonOptions(component, options) {
+  component.on('source', function (event) {
+    if (typeof event.complete !== 'undefined') {
+      event.complete('success');
+    }
+
+    options.onSubmit(event);
+  });
+  component.on('click', function (event) {
+    runUpdateWith(event, {});
+  });
+  component.on('shippingaddresschange', function (event) {
+    runUpdateWith(event, {
+      status: 'success'
+    });
+  });
+  component.on('shippingoptionchange', function (event) {
+    runUpdateWith(event, {});
+  });
+}
+function mountDropin(key, options, clientSourceData, createSource, createElement) {
+  var _dataStore$get = _dataStore__WEBPACK_IMPORTED_MODULE_0__["default"].get(key),
+      controller = _dataStore$get.controller;
+
+  return function (node) {
+    if (typeof node === 'string') {
+      node = document.getElementById(node);
+    }
+
+    if (node instanceof HTMLElement === false) {
+      throw new Error('mount() requires a valid HTMLElement or id attribute.');
+    }
+
+    return Object(_fetch_payment_methods__WEBPACK_IMPORTED_MODULE_2__["getPaymentMethods"])(controller.id).then(function (availablePaymentMethods) {
+      var componentsMounted = {};
+      var parent = document.createElement('div');
+      parent.className = 'card';
+      node.appendChild(parent);
+      availablePaymentMethods.forEach(function (availablePaymentMethod) {
+        var paymentMethod = supportedPaymentMethods.find(function (paymentMethod) {
+          return paymentMethod.type === availablePaymentMethod.type;
+        });
+
+        if (paymentMethodNotSupported(paymentMethod)) {
+          return;
+        }
+
+        var bodyId = 'collapse-' + paymentMethod.type + '-' + controller.id;
+        var headerId = 'heading-' + paymentMethod.type + '-' + controller.id;
+        var submitButtonId = 'submit-' + paymentMethod.type + '-' + controller.id;
+        var componentId = paymentMethod.type + '-' + controller.id;
+
+        var _createComponentConta = createComponentContainer(paymentMethod, parent, bodyId, headerId, componentId),
+            bodyParent = _createComponentConta.bodyParent,
+            componentHolder = _createComponentConta.componentHolder;
+
+        if (paymentMethod.needsPayButton) {
+          bodyParent.appendChild(createSubmitButton(options, clientSourceData, createSource, componentsMounted, paymentMethod, submitButtonId));
+        }
+
+        var componentOptionsKey = findOptionsKey(options, paymentMethod);
+        var componentOptions = typeof componentOptionsKey !== 'undefined' ? options[componentOptionsKey] : {};
+        var componentOptionsOrPaymentRequest = paymentMethod.code === 'googlepay' ? new _DigitalRiverPaymentRequest__WEBPACK_IMPORTED_MODULE_1__["default"](componentOptions.data) : componentOptions;
+        var events = Object.assign({}, componentOptions.events);
+        delete componentOptionsOrPaymentRequest.events;
+        var component = createElement(paymentMethod.code, componentOptionsOrPaymentRequest);
+
+        if (typeof component.canMakePayment !== 'undefined' && !component.canMakePayment()) {
+          clearComponentFromDOM(headerId, bodyId);
+          return;
+        }
+
+        component.mount(componentHolder.id);
+        componentsMounted[paymentMethod.code] = component;
+        addEventsToComponent(events, component);
+
+        if (paymentMethod.standaloneButton) {
+          addStandaloneButtonOptions(component, options);
+        }
+      });
+    });
+  };
+}
+
+function createHeaderDiv(paymentMethod, headerId, bodyId) {
+  var headerDiv = document.createElement('div');
+  headerDiv.className = 'card-header';
+  headerDiv.id = headerId;
+  var header = document.createElement('h5');
+  header.className = 'mb-0';
+  var headerButton = document.createElement('button');
+  headerButton.className = 'btn btn-link collapsed';
+  headerButton.innerText = paymentMethod.name;
+  headerButton.setAttribute('data-toggle', 'collapse');
+  headerButton.setAttribute('data-target', '#' + bodyId);
+  headerButton.setAttribute('aria-expanded', 'aria-expanded');
+  header.appendChild(headerButton);
+  headerDiv.appendChild(header);
+  return headerDiv;
+}
+
+function createComponentContainer(paymentMethod, parent, bodyId, headerId, componentId) {
+  var headerDiv = createHeaderDiv(paymentMethod, headerId, bodyId);
+  parent.appendChild(headerDiv);
+  var bodyParent = document.createElement('div');
+  bodyParent.className = 'collapse';
+  bodyParent.id = bodyId;
+  bodyParent.setAttribute('aria-labelledby', bodyId);
+  bodyParent.setAttribute('data-parent', '#accordion');
+  var cardBody = document.createElement('div');
+  cardBody.className = 'card-body';
+  var row = document.createElement('div');
+  row.className = 'row';
+  var componentHolder = document.createElement('div');
+  componentHolder.id = componentId;
+  componentHolder.style.width = '100%';
+  row.appendChild(componentHolder);
+  cardBody.appendChild(row);
+  bodyParent.appendChild(cardBody);
+  parent.appendChild(bodyParent);
+  return {
+    bodyParent: bodyParent,
+    componentHolder: componentHolder
+  };
+}
+
+function createSubmitButton(options, clientSourceData, createSource, componentsMounted, paymentMethod, submitButtonId) {
+  var submitButton = document.createElement('button');
+  submitButton.id = submitButtonId;
+  submitButton.className = 'btn btn-primary btn-lg btn-block';
+  submitButton.type = 'submit';
+  submitButton.innerText = 'Pay'; // TODO Localize. Configurable?
+
+  submitButton.onclick = function () {
+    clientSourceData.type = paymentMethod.type;
+    createSource(componentsMounted[paymentMethod.code], clientSourceData).then(function (source) {
+      if (options.onSubmit) {
+        options.onSubmit(source);
+      }
+    });
+  };
+
+  return submitButton;
+}
+
+function findOptionsKey(options, paymentMethod) {
+  return Object.keys(options).find(function (option) {
+    return option.toLowerCase() === paymentMethod.code;
+  });
+}
+
+function addEventsToComponent(events, component) {
+  if (typeof events !== 'undefined' && Object.keys(events).length > 0) {
+    Object.keys(events).forEach(function (event) {
+      component.on(event, events[event]);
+    });
+  }
+}
+
+function clearComponentFromDOM(headerId, bodyId) {
+  var header = document.getElementById(headerId);
+  var body = document.getElementById(bodyId);
+  header.parentNode.removeChild(header);
+  body.parentNode.removeChild(body);
 }
 
 /***/ }),
@@ -23607,7 +24269,10 @@ var manifest = {
   'googlepay': '/google-pay/google-pay.html',
   'koreancard': '/koreancard/koreancard.html',
   'onlinebanking': '/online-banking/online-banking.html',
-  'konbini': '/konbini/konbini.html'
+  'offlinerefund': '/offline-refund/offline-refund.html',
+  'konbini': '/konbini/konbini.html',
+  'creditcard': '',
+  'paypal': '/paypal/paypal.html'
 };
 var eventNames = ['blur', 'change', 'focus', 'ready', 'click', 'source', 'shippingaddresschange', 'shippingoptionchange', 'cancel'];
 /**
@@ -23741,6 +24406,10 @@ function mount(node) {
 
       if (typeof this.options !== 'undefined') {
         //arbitrate custom vs default options
+        if (this.type === 'offlinerefund') {
+          this.options.style.base.height = '200px';
+        }
+
         this.options.classes = Object(_css_class_utils__WEBPACK_IMPORTED_MODULE_7__["getCssClasses"])(this.options.classes);
         var elementHeight = Object(_css_class_utils__WEBPACK_IMPORTED_MODULE_7__["getElementHeight"])(this.options.style); // If we have options, send them and wait for them to be sent before creating the component
 
@@ -23754,10 +24423,9 @@ function mount(node) {
         };
         _dataStore__WEBPACK_IMPORTED_MODULE_4__["default"].set(key, data); // Set base css class & empty class since field is empty
 
-        var DRElementClass = data.components[this.type].options.classes.base;
-        node.classList.add(DRElementClass);
-
-        if (this.type !== 'googlepay' && this.type !== 'applepay') {
+        if (this.type !== 'googlepay' && this.type !== 'applepay' && this.type !== 'paypal' && this.type !== 'offlinerefund') {
+          var DRElementClass = data.components[this.type].options.classes.base;
+          node.classList.add(DRElementClass);
           var DREmptyClass = data.components[this.type].options.classes.empty;
           node.classList.add(DREmptyClass);
         }
@@ -24267,7 +24935,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /**
  * Creates controller
- * @param {node} domNode
+ * @param {HTMLElement} domNode
  * @param {string} type
  * @returns {{unmount, controllerId, clear, destroy, blur, focus, update, parentNode, type, mount, options, id, key, on}}
  */
@@ -24294,7 +24962,7 @@ function registerControllerEvents(key, controllerWindow, domain) {
         eventData = _event$data.eventData,
         eventType = _event$data.eventType;
 
-    if (eventType === 'googlepay' || eventType === 'applepay') {
+    if (eventType === 'googlepay' || eventType === 'applepay' || eventType === 'paypal') {
       Object(_event_middleware__WEBPACK_IMPORTED_MODULE_2__["processNonCreditCardEvents"])(key, componentType, eventType, eventData);
     } else {
       Object(_event_middleware__WEBPACK_IMPORTED_MODULE_2__["processEvent"])(key, componentType, eventType, eventData);
@@ -24808,6 +25476,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "processNonCreditCardEvents", function() { return processNonCreditCardEvents; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeEventsForType", function() { return removeEventsForType; });
 /* harmony import */ var _dataStore__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./dataStore */ "./src/client/dataStore.js");
+/* harmony import */ var _createComponent__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./createComponent */ "./src/client/createComponent.js");
+/* harmony import */ var _app_components_config__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../app/components/config */ "./src/app/components/config.js");
+
+
 
 /**
  * Wraps updateWith function in function to validate that it is an object
@@ -24900,25 +25572,10 @@ function runListenersBasedOnType(data, key, componentType, eventName, publicData
     }
   });
 }
-/**
- * Processes event and applies correct CSS classes to parent node
- * @param {string} key
- * @param {string} componentType
- * @param {string} eventName
- * @param {object} publicData
- */
 
-
-function processEvent(key, componentType, eventName, publicData) {
-  var data = _dataStore__WEBPACK_IMPORTED_MODULE_0__["default"].get(key);
-  runListenersBasedOnType(data, key, componentType, eventName, publicData);
+function applyCSSClassesBasedOnEvent(data, componentType, eventName, publicData) {
   var node = data.components[componentType].parent;
   var cssClasses = data.components[componentType].options.classes;
-
-  if (eventName === 'resize') {
-    var frame = document.getElementById(publicData.frame.id);
-    frame.style.height = publicData.frame.height;
-  }
 
   if (typeof cssClasses !== 'undefined') {
     if (eventName === 'focus') {
@@ -24927,7 +25584,7 @@ function processEvent(key, componentType, eventName, publicData) {
       node.classList.remove(cssClasses.focus);
     }
 
-    if (eventName === 'change') {
+    if (eventName === 'change' || eventName === 'clear') {
       if (publicData.complete === true) {
         node.classList.add(cssClasses.complete);
       } else {
@@ -24954,6 +25611,57 @@ function processEvent(key, componentType, eventName, publicData) {
     }
   }
 }
+
+function renderPayPalIFrameDialog(publicData) {
+  Object(_createComponent__WEBPACK_IMPORTED_MODULE_1__["createOverlayDiv"])('DRPayPal');
+  Object(_createComponent__WEBPACK_IMPORTED_MODULE_1__["updateOverlay"])('DRPayPal', '100%', 'rgba(0,0,0,0.3)');
+  var drMockFrame = document.createElement('iframe');
+  drMockFrame.id = 'DRPayPalFrame';
+  drMockFrame.src = _app_components_config__WEBPACK_IMPORTED_MODULE_2__["config"].paypalRedirectBaseUrl + publicData.sourceId;
+  drMockFrame.height = '300';
+  drMockFrame.width = '300';
+  drMockFrame.style.background = 'white';
+  var overlay = document.getElementById('DRPayPal');
+  overlay.appendChild(drMockFrame);
+}
+
+function removePayPalIFrameDialog() {
+  document.getElementById('DRPayPal').remove();
+}
+/**
+ * Processes event and applies correct CSS classes to parent node
+ * @param {string} key
+ * @param {string} componentType
+ * @param {string} eventName
+ * @param {object} publicData
+ */
+
+
+function processEvent(key, componentType, eventName, publicData) {
+  var data = _dataStore__WEBPACK_IMPORTED_MODULE_0__["default"].get(key);
+  runListenersBasedOnType(data, key, componentType, eventName, publicData);
+
+  if (eventName === 'resize') {
+    var frame = document.getElementById(publicData.frame.id);
+    frame.style.height = publicData.frame.height;
+  }
+
+  if (eventName === 'dialog' && componentType === 'paypal' && publicData.action === 'close') {
+    removePayPalIFrameDialog();
+  }
+
+  if (eventName === 'dialog' && componentType === 'paypal' && publicData.action === 'open') {
+    renderPayPalIFrameDialog(publicData);
+  }
+
+  if (!isCSSExcludedComponent(componentType)) {
+    applyCSSClassesBasedOnEvent(data, componentType, eventName, publicData);
+  }
+}
+
+function isCSSExcludedComponent(componentType) {
+  return componentType === 'offlinerefund' || componentType === 'paypal';
+}
 /**
  * Processes events that are not credit card events
  * @param {string} key
@@ -24961,6 +25669,7 @@ function processEvent(key, componentType, eventName, publicData) {
  * @param {string} eventName
  * @param {string} publicData
  */
+
 
 function processNonCreditCardEvents(key, componentType, eventName, publicData) {
   var data = _dataStore__WEBPACK_IMPORTED_MODULE_0__["default"].get(key);
@@ -24978,6 +25687,35 @@ function removeEventsForType(key, componentType) {
     return event.eventType !== componentType;
   });
   _dataStore__WEBPACK_IMPORTED_MODULE_0__["default"].set(key, data);
+}
+
+/***/ }),
+
+/***/ "./src/client/fetch-payment-methods.js":
+/*!*********************************************!*\
+  !*** ./src/client/fetch-payment-methods.js ***!
+  \*********************************************/
+/*! exports provided: getPaymentMethods */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getPaymentMethods", function() { return getPaymentMethods; });
+/* harmony import */ var _createComponent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./createComponent */ "./src/client/createComponent.js");
+/* harmony import */ var _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../post-robot-wrapper */ "./src/post-robot-wrapper.js");
+
+
+function getPaymentMethods(controllerId) {
+  var controllerWindow = Object(_createComponent__WEBPACK_IMPORTED_MODULE_0__["getComponentWindow"])(controllerId);
+
+  if (!controllerWindow) {
+    throw new Error("Unable to locate controller '".concat(controllerId, "'"));
+  } // Send message to Controller Frame to call createSource
+
+
+  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_1__["default"].send(controllerWindow, 'fetchAvailablePaymentMethods', {}).then(function (response) {
+    return response.data;
+  });
 }
 
 /***/ }),
@@ -25003,7 +25741,7 @@ module.exports = __webpack_require__(/*! ./DigitalRiver */ "./src/client/Digital
 /*! exports provided: details, locale, entityCode, keys, default */
 /***/ (function(module) {
 
-module.exports = {"details":{"ar_EG":{"cancellationRights":"حق الإلغاء","cookiePolicy":"ملفات كوكيز","legalNotice":"ملحوظة قانونية","privacyPolicy":"سياسة الخصوصية","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> هو الموزع والموزع المعتمد للمنتجات والخدمات المقدمة في هذا المتجر.","termsOfSale":"شروط البيع","confirmDisclosure":"بإرسال طلبي فإنني أوافق على <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">شروط البيع</a> و<a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">سياسة الخصوصية</a> لدى {businessEntityName}."},"cs_CZ":{"cancellationRights":"Oprávnění ke zrušení","cookiePolicy":"Cookies","legalNotice":"Právní dokument","privacyPolicy":"Zásady zachování soukromí","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> je autorizovaným prodejcem a obchodníkem s produkty a službami, které tento obchod nabízí.","termsOfSale":"Prodejní podmínky","confirmDisclosure":"Odesláním své objednávky vyjadřuji souhlas s <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">prodejními podmínkami</a> a <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">ochranou soukromí</a> {businessEntityName}."},"da_DK":{"cancellationRights":"Fortrydelsesret","cookiePolicy":"Cookies","legalNotice":"Juridisk note","privacyPolicy":"Retningslinjer for personbeskyttelse","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> er den autoriserede forhandler af de produkter og tjenesteydelser, der tilbydes i denne forretning.","termsOfSale":"Salgsvilkår","confirmDisclosure":"Ved at indsende min bestilling, accepterer jeg <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Salgsvilkårene</a> og <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Politikken om beskyttelse af personlige oplysninger</a> på {businessEntityName}."},"de_AT":{"cancellationRights":"Widerrufsrecht","cookiePolicy":"Cookies","legalNotice":"Impressum","privacyPolicy":"Datenschutzrichtlinien","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> ist der autorisierte Wiederverkäufer und Händler der Produkte und Dienstleistungen die in diesem Shop angeboten werden.","termsOfSale":"Verkaufsbedingungen","confirmDisclosure":"Durch Einreichen meiner Bestellung stimme ich den <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Verkaufsbedingungen</a> und den <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Datenschutzrichtlinien</a> von {businessEntityName} zu."},"de_CH":{"cancellationRights":"Widerrufsrecht","cookiePolicy":"Cookies","legalNotice":"Impressum","privacyPolicy":"Datenschutzrichtlinien","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> ist der autorisierte Wiederverkäufer und Händler der Produkte und Dienstleistungen die in diesem Shop angeboten werden.","termsOfSale":"Verkaufsbedingungen","confirmDisclosure":"Durch Einreichen meiner Bestellung stimme ich den <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Verkaufsbedingungen</a> und den <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Datenschutzrichtlinien</a> von {businessEntityName} zu."},"de_DE":{"cancellationRights":"Widerrufsrecht","cookiePolicy":"Cookies","legalNotice":"Impressum","privacyPolicy":"Datenschutzrichtlinien","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> ist der autorisierte Wiederverkäufer und Händler der Produkte und Dienstleistungen die in diesem Shop angeboten werden.","termsOfSale":"Verkaufsbedingungen","confirmDisclosure":"Durch Einreichen meiner Bestellung stimme ich den <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Verkaufsbedingungen</a> und den <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Datenschutzrichtlinien</a> von {businessEntityName} zu."},"el_GR":{"cancellationRights":"Δικαίωμα Ακύρωσης","cookiePolicy":"Cookies","legalNotice":"Νομική Σημείωση","privacyPolicy":"Πολιτική Ιδιωτικού Απορρήτου","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> είναι ο εξουσιοδοτημένος μεταπωλητής και έμπορος των προϊόντων και υπηρεσιών, που προσφέρονται σε αυτό το κατάστημα.","termsOfSale":"Όροι Πώλησης","confirmDisclosure":"Υποβάλλοντας την παραγγελία μου, συμφωνώ με τους <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Όρους πώλησης</a> και την <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Πολιτική ιδιωτικού απορρήτου</a> της {businessEntityName}."},"en_AU":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> is the authorised reseller and merchant of the products and services offered within this store.","termsOfSale":"Terms of Sale","confirmDisclosure":"By submitting my order, I agree to the <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Terms of Sale</a> and the <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Privacy Policy</a> of {businessEntityName}."},"en_BE":{"privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> is the authorised retailer and merchant providing e-commerce services for this shop.","termsOfSale":"Terms and Conditions","confirmDisclosure":"By submitting my order, I agree to the <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Terms of Sale</a> and the <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Privacy Policy</a> of {businessEntityName}."},"en_CA":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> is the authorised reseller and merchant of the products and services offered within this store.","termsOfSale":"Terms of Sale","confirmDisclosure":"By submitting my order, I agree to the <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Terms of Sale</a> and the <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Privacy Policy</a> of {businessEntityName}."},"en_CH":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> is the authorized reseller and merchant of the products and services offered within this store.","termsOfSale":"Terms of Sale","confirmDisclosure":"By submitting my order, I agree to the <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Terms of Sale</a> and the <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Privacy Policy</a> of {businessEntityName}."},"en_DK":{"privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> is the authorised retailer and merchant providing e-commerce services for this shop.","termsOfSale":"Terms and Conditions","confirmDisclosure":"By submitting my order, I agree to the <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Terms of Sale</a> and the <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Privacy Policy</a> of {businessEntityName}."},"en_FI":{"privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> is the authorised retailer and merchant providing e-commerce services for this shop.","termsOfSale":"Terms and Conditions","confirmDisclosure":"By submitting my order, I agree to the <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Terms of Sale</a> and the <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Privacy Policy</a> of {businessEntityName}."},"en_GB":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> is the authorised reseller and merchant of the products and services offered within this store.","termsOfSale":"Terms of Sale","confirmDisclosure":"By submitting my order, I agree to the <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Terms of Sale</a> and the <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Privacy Policy</a> of {businessEntityName}."},"en_IE":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> is the authorised reseller and merchant of the products and services offered within this store.","termsOfSale":"Terms of Sale","confirmDisclosure":"By submitting my order, I agree to the <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Terms of Sale</a> and the <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Privacy Policy</a> of {businessEntityName}."},"en_IN":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> is the authorised reseller and merchant of the products and services offered within this store.","termsOfSale":"Terms of Sale","confirmDisclosure":"By submitting my order, I agree to the <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Terms of Sale</a> and the <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Privacy Policy</a> of {businessEntityName}."},"en_MY":{"privacyPolicy":"Privacy Policy","termsOfSale":"Terms and Conditions","confirmDisclosure":"By submitting my order, I agree to the <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Terms of Sale</a> and the <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Privacy Policy</a> of {businessEntityName}."},"en_NL":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> is the authorised reseller and merchant of the products and services offered within this store.","termsOfSale":"Terms of Sale","confirmDisclosure":"By submitting my order, I agree to the <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Terms of Sale</a> and the <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Privacy Policy</a> of {businessEntityName}."},"en_NO":{"privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> is the authorised retailer and merchant providing e-commerce services for this shop.","termsOfSale":"Terms and Conditions","confirmDisclosure":"By submitting my order, I agree to the <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Terms of Sale</a> and the <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Privacy Policy</a> of {businessEntityName}."},"en_NZ":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> is the authorised reseller and merchant of the products and services offered within this store.","termsOfSale":"Terms of Sale","confirmDisclosure":"By submitting my order, I agree to the <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Terms of Sale</a> and the <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Privacy Policy</a> of {businessEntityName}."},"en_PR":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> is the authorised reseller and merchant of the products and services offered within this store.","termsOfSale":"Terms of Sale","confirmDisclosure":"By submitting my order, I agree to the <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Terms of Sale</a> and the <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Privacy Policy</a> of {businessEntityName}."},"en_SE":{"privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> is the authorised retailer and merchant providing e-commerce services for this shop.","termsOfSale":"Terms and Conditions","confirmDisclosure":"By submitting my order, I agree to the <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Terms of Sale</a> and the <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Privacy Policy</a> of {businessEntityName}."},"en_SG":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> is the authorised reseller and merchant of the products and services offered within this store.","termsOfSale":"Terms of Sale","confirmDisclosure":"By submitting my order, I agree to the <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Terms of Sale</a> and the <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Privacy Policy</a> of {businessEntityName}."},"en_US":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> is the authorized reseller and merchant of the products and services offered within this store.","termsOfSale":"Terms of Sale","confirmDisclosure":"By submitting my order, I agree to the <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Terms of Sale</a> and the <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Privacy Policy</a> of {businessEntityName}."},"en_ZA":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> is the authorised reseller and merchant of the products and services offered within this store.","termsOfSale":"Terms of Sale","confirmDisclosure":"By submitting my order, I agree to the <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Terms of Sale</a> and the <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Privacy Policy</a> of {businessEntityName}."},"es_AR":{"cancellationRights":"Derechos de cancelación","cookiePolicy":"Cookies","legalNotice":"Aviso legal","privacyPolicy":"Política de privacidad","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> es el revendedor y comercializador autorizado de los productos ofrecidos en esta tienda.","termsOfSale":"Términos de la venta","confirmDisclosure":"Al enviar mi pedido, acepto los <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Términos de ventas</a> y la <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Política de privacidad</a> de {businessEntityName}."},"es_CL":{"cancellationRights":"Derechos de cancelación","cookiePolicy":"Cookies","legalNotice":"Aviso legal","privacyPolicy":"Política de privacidad","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> es el revendedor y comercializador autorizado de los productos ofrecidos en esta tienda.","termsOfSale":"Términos de la venta","confirmDisclosure":"Al enviar mi pedido, acepto los <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Términos de ventas</a> y la <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Política de privacidad</a> de {businessEntityName}."},"es_CO":{"cancellationRights":"Derechos de cancelación","cookiePolicy":"Cookies","legalNotice":"Aviso legal","privacyPolicy":"Política de privacidad","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> es el revendedor y comercializador autorizado de los productos ofrecidos en esta tienda.","termsOfSale":"Términos de la venta","confirmDisclosure":"Al enviar mi pedido, acepto los <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Términos de ventas</a> y la <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Política de privacidad</a> de {businessEntityName}."},"es_EC":{"cancellationRights":"Derechos de cancelación","cookiePolicy":"Cookies","legalNotice":"Aviso legal","privacyPolicy":"Política de privacidad","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> es el revendedor y comercializador autorizado de los productos ofrecidos en esta tienda.","termsOfSale":"Términos de la venta","confirmDisclosure":"Al enviar mi pedido, acepto los <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Términos de ventas</a> y la <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Política de privacidad</a> de {businessEntityName}."},"es_ES":{"cancellationRights":"Derechos de cancelación","cookiePolicy":"Cookies","legalNotice":"Aviso legal","privacyPolicy":"Política de confidencialidad","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> es el distribuidor y el vendedor autorizado de los productos y servicios ofrecidos en esta tienda virtual.","termsOfSale":"Condiciones de venta","confirmDisclosure":"Al enviar mi pedido, acepto los <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Términos de ventas</a> y la <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Política de privacidad</a> de {businessEntityName}."},"es_MX":{"cancellationRights":"Derechos de cancelación","cookiePolicy":"Cookies","legalNotice":"Aviso legal","privacyPolicy":"Política de privacidad","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> es el revendedor y comercializador autorizado de los productos ofrecidos en esta tienda.","termsOfSale":"Términos de la venta","confirmDisclosure":"Al enviar mi pedido, acepto los <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Términos de ventas</a> y la <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Política de privacidad</a> de {businessEntityName}."},"es_PE":{"cancellationRights":"Derechos de cancelación","cookiePolicy":"Cookies","legalNotice":"Aviso legal","privacyPolicy":"Política de privacidad","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> es el revendedor y comercializador autorizado de los productos ofrecidos en esta tienda.","termsOfSale":"Términos de la venta","confirmDisclosure":"Al enviar mi pedido, acepto los <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Términos de ventas</a> y la <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Política de privacidad</a> de {businessEntityName}."},"es_VE":{"cancellationRights":"Derechos de cancelación","cookiePolicy":"Cookies","legalNotice":"Aviso legal","privacyPolicy":"Política de privacidad","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> es el revendedor y comercializador autorizado de los productos ofrecidos en esta tienda.","termsOfSale":"Términos de la venta","confirmDisclosure":"Al enviar mi pedido, acepto los <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Términos de ventas</a> y la <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Política de privacidad</a> de {businessEntityName}."},"et_EE":{"privacyPolicy":"Privaatsuspoliitika","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> on sellele kauplusele e-kaubanduse teenuseid osutav volitatud edasimüüja.","termsOfSale":"Tingimused","confirmDisclosure":""},"fi_FI":{"cancellationRights":"Peruutusoikeus","cookiePolicy":"Evästeet","legalNotice":"Lainmukainen tiedotus","privacyPolicy":"Yksityisyyden suoja","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> on valtuutettu jälleenmyyjä, joka myy tässä kaupassa tarjolla olevia tuotteita ja palveluja.","termsOfSale":"Myyntiehdot","confirmDisclosure":"Lähettämällä tilaukseni hyväksyn {businessEntityName} <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Myyntiehdot</a> ja <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Tietosuojamenettelyn</a>."},"fr_BE":{"cancellationRights":"Droits d'annulation","cookiePolicy":"Témoins de connexion","legalNotice":"Mentions legales","privacyPolicy":"Politique de confidentialité","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> est le revendeur et marchand agréé pour les produits et services proposés au sein de ce magasin.","termsOfSale":"Conditions de vente","confirmDisclosure":"En envoyant ma commande, j&rsquo;accepte les <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Conditions de vente</a> et la <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Politique de confidentialité</a> de {businessEntityName}."},"fr_CA":{"cancellationRights":"Droits d'annulation","cookiePolicy":"Témoins","legalNotice":"Mentions legales","privacyPolicy":"Politique sur la confidentialité","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> est le revendeur et commerçant autorisé fournissant les services de commerce électronique pour ce magasin.","termsOfSale":"Conditions de vente","confirmDisclosure":"En soumettant ma commande, j&#39;accepte les <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Conditions de vente</a> et la <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Politique de confidentialité</a> de {businessEntityName}."},"fr_CH":{"cancellationRights":"Droits d'annulation","cookiePolicy":"Témoins de connexion","legalNotice":"Mentions legales","privacyPolicy":"Politique de confidentialité","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> est le revendeur et marchand agréé pour les produits et services proposés au sein de ce magasin.","termsOfSale":"Conditions de vente","confirmDisclosure":"En envoyant ma commande, j&#39;accepte les <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Conditions de vente</a> et la <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Politique de confidentialité</a> de {businessEntityName}."},"fr_FR":{"cancellationRights":"Droits d'annulation","cookiePolicy":"Témoins de connexion","legalNotice":"Mentions legales","privacyPolicy":"Politique de confidentialité","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> est le revendeur et marchand agréé pour les produits et services proposés au sein de ce magasin.","termsOfSale":"Conditions de vente","confirmDisclosure":"En envoyant ma commande, j&#39;accepte les <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Conditions de vente</a> et la <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Politique de confidentialité</a> de {businessEntityName}."},"hu_HU":{"cancellationRights":"Rendelés törlésének lehetõsége","cookiePolicy":"Cookie-k","legalNotice":"Jogi nyilatkozat","privacyPolicy":"Adatvédelmi politika","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> az áruházban megvásárolható termékek és szolgáltatások hivatalos értékesítő partnere és forgalmazója.","termsOfSale":"Értékesítési feltételek","confirmDisclosure":"A rendelés elküldésével elfogadom a(z) {businessEntityName} <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Értékesítési feltételeit</a> és <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Adatvédelmi nyilatkozatát</a>."},"it_CH":{"cancellationRights":"Diritto di recesso","cookiePolicy":"Cookie","legalNotice":"Avviso legale","privacyPolicy":"Tutela della privacy","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> è il rivenditore autorizzato e fornitore dei prodotti e dei servizi offerti all&#39;interno di questo negozio.","termsOfSale":"Condizioni di vendita","confirmDisclosure":"Inviando il mio ordine accetto le <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Condizioni di vendita</a> e l&rsquo;<a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Informativa sulla privacy</a> di {businessEntityName}."},"it_IT":{"cancellationRights":"Diritto di recesso","cookiePolicy":"Cookie","legalNotice":"Avviso legale","privacyPolicy":"Tutela della privacy","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> è il rivenditore autorizzato dei prodotti di {2} venduti in questo negozio online.","termsOfSale":"Condizioni di vendita","warrantyInformation":"Informazioni sulla Garanzia","confirmDisclosure":"Inviando il mio ordine accetto le <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Condizioni di vendita</a> e l&rsquo;<a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Informativa sulla privacy</a> di {businessEntityName}."},"iw_IL":{"cancellationRights":"זכות ביטול הזמנה","cookiePolicy":"קובצי cookie","legalNotice":"הודעה משפטית","privacyPolicy":"מדיניות שמירה על פרטיות","resellerDisclosure":" <a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a>  הוא המפיץ והסוחר המורשה עבור חנוות מקוונת זו.","termsOfSale":"תנאי מכירה","confirmDisclosure":"ביצוע ההזמנה מהווה עדות לכך שאני מסכים <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">לתנאי המכירה</a> וכן <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">למדיניות הפרטיות</a> של {businessEntityName}."},"ja_JP":{"cancellationRights":"キャンセル権","cookiePolicy":"クッキー","legalNotice":"本サイトのご利用について","privacyPolicy":"プライバシーポリシー","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> は、このストアで提供される製品とサービスの認定再販業者および代理店です。","termsOfSale":"販売条件","confirmDisclosure":"注文の送信により、{businessEntityName}の<a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">売買条件</a>および<a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">プライバシーポリシー</a>に同意します。"},"ko_KR":{"cancellationRights":"취소 권한","cookiePolicy":"쿠키","legalNotice":"법적 고지","privacyPolicy":"개인정보 보호 정책","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> 은(는) 이 스토어에서 제품과 서비스를 제공하도록 인가된 리셀러 및 판매자입니다.","termsOfSale":"판매 조건","confirmDisclosure":"주문을 제출하면 {businessEntityName}의 <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">이용약관</a>과 <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">개인정보보호정책</a>에 동의한 것으로 간주됩니다."},"lt_LT":{"privacyPolicy":"Privatumo strategija","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> įgaliotasis mažmenininkas ir šios parduotuvės el. prekybos paslaugų didmenininkas.","termsOfSale":"Nuostatos ir sąlygos","confirmDisclosure":""},"lv_LV":{"privacyPolicy":"Konfidencialitātes politika","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> ir pilnvarots tālākpārdevējs un tirgotājs, kas šim veikalam nodrošina e-komecijas pakalpojumus.","termsOfSale":"Noteikumi un nosacījumi","confirmDisclosure":""},"nl_BE":{"cancellationRights":"Recht op annulering","cookiePolicy":"Cookies","legalNotice":"Juridische kennisgeving","privacyPolicy":"Privacybeleid","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> is de erkende reseller die de producten en services voor deze store levert.","termsOfSale":"Algemene verkoopvoorwaarden","confirmDisclosure":"Door mijn bestelling in te dienen, ga ik akkoord met de <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Verkoopvoorwaarden</a> en het <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Privacybeleid</a> van {businessEntityName}."},"nl_NL":{"cancellationRights":"Recht op annulering","cookiePolicy":"Cookies","legalNotice":"Juridische kennisgeving","privacyPolicy":"Privacybeleid","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> is de erkende reseller die de producten en services voor deze store levert.","termsOfSale":"Algemene verkoopvoorwaarden","confirmDisclosure":"Door mijn bestelling in te dienen, ga ik akkoord met de <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Verkoopvoorwaarden</a> en het <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Privacybeleid</a> van {businessEntityName}."},"no_NO":{"cancellationRights":"Rett til avbestilling","cookiePolicy":"Informasjonskapsler","legalNotice":"Juridiske bestemmelser","privacyPolicy":"Personvern","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> er den autoriserte selgeren og forhandleren av varene og tjenestene som tilbys i denne butikken.","termsOfSale":"Salgsbetingelser","confirmDisclosure":"Ved å sende inn min bestilling, samtykker jeg i <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Salgsbetingelsene</a> og <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Personvernpolitikken</a> for {businessEntityName}."},"pl_PL":{"cancellationRights":"Prawo do anulowania zamówienia","cookiePolicy":"Pliki cookie","legalNotice":"Nota prawna","privacyPolicy":"Polityka ochrony danych","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> to autoryzowany dystrybutor oraz sprzedawca produktów i usług dostępnych w naszym sklepie.","termsOfSale":"Warunki sprzedaży","confirmDisclosure":"Składając zamówienie, akceptuję <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Warunki sprzedaży</a> oraz <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Politykę prywatności</a> {businessEntityName}."},"pt_BR":{"cancellationRights":"Regras de cancelamento","cookiePolicy":"Cookies","legalNotice":"Aviso legal","privacyPolicy":"Política de privacidade","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> é o revendedor e o distribuidor autorizado dos produtos e serviços oferecidos nesta loja.","termsOfSale":"Termos de vendas","confirmDisclosure":"Ao enviar meu pedido, eu concordo com os <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Termos de vendas</a> e com a <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Política de privacidade</a> de {businessEntityName}."},"pt_PT":{"cancellationRights":"Direito de Cancelamento","cookiePolicy":"Cookies","legalNotice":"Aviso Legal","privacyPolicy":"Política de privacidade","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> é o revendedor autorizado e o comerciante dos produtos e serviços disponibilizados nesta loja.","termsOfSale":"Termos de Venda","confirmDisclosure":"Ao submeter a minha encomenda, concordo com os <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Termos de Venda</a> e a <a href=\"{privacyPolicyUrl}\" target=\"_blank\"  class=\"dr_privacyPolicy\">Política de Privacidade</a> de {businessEntityName}."},"ro_RO":{"privacyPolicy":"Politică de confidenţialitate","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> este un vânzător şi comerciant cu amănuntul autorizat ce furnizează servicii de comerţ electronic pentru acest magazin.","termsOfSale":"Termeni şi condiţii","confirmDisclosure":""},"ru_RU":{"cancellationRights":"Право отмены","cookiePolicy":"Cookie","legalNotice":"Юридическое уведомление","privacyPolicy":"Политика конфиденциальности","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> является авторизованным реселлером и продавцом продукции и услуг, предлагаемых в настоящем магазине.","termsOfSale":"Условия продажи","confirmDisclosure":"Подтверждая заказ, я соглашаюсь с <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Условиями продажи</a> и <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Политикой конфиденциальности</a> {businessEntityName}."},"sk_SK":{"cancellationRights":"Oprávnenie na zrušenie","cookiePolicy":"Cookies","legalNotice":"Právny dokument","privacyPolicy":"Politika ochrany osobných údajov","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> je predajca alebo veľkoobchod s produktmi a službami poskytovanými v tomto obchode.","termsOfSale":"Predajné podmienky","confirmDisclosure":"Odoslaním objednávky vyjadrujem svoj súhlas s <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">predajnými podmienkami</a> a <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">zásadami ochrany osobných údajov</a> spoločnosti {businessEntityName}."},"sl_SI":{"privacyPolicy":"Pravilnik o zasebnosti","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> je pooblaščen trgovec na debelo in drobno, ki ponuja storitve spletne prodaje za to trgovino.","termsOfSale":"Pogoji in določila","confirmDisclosure":""},"sr_YU":{"privacyPolicy":"Pravilnik o poverljivosti","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> je ovlašćen za maloprodaju i trgovinu i pruža usluge e-trgovine za ovu prodavnicu.","termsOfSale":"Uslovi","confirmDisclosure":""},"sv_SE":{"cancellationRights":"Ångerrätt","cookiePolicy":"Cookies","legalNotice":"Juridisk information","privacyPolicy":"Sekretesspolicy","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> är den auktoriserade återförsäljaren av de produkter och tjänster som erbjuds i den här butiken.","termsOfSale":"Försäljningsvillkor","confirmDisclosure":"Genom att skicka ordern godkänner jag <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">köpvillkoren</a> och <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">sekretesspolicyn</a> för {businessEntityName}."},"th_TH":{"cancellationRights":"สิทธิ์ในการยกเลิก","cookiePolicy":"คุกกี้","legalNotice":"ข้อความสงวนสิทธิ์ทางกฎหมาย","privacyPolicy":"นโยบายการเก็บรักษาข้อมูลส่วนบุคคล","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> เป็นผู้ค้าและผู้จำหน่ายที่ได้รับอนุญาตสำหรับผลิตภัณฑ์และบริการที่นำเสนอภายในร้านค้าแห่งนี้","termsOfSale":"เงื่อนไขการขาย","confirmDisclosure":"ในการส่งคำสั่งซื้อของฉัน ฉันยอมรับ<a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">ข้อกำหนดการจำหน่าย</a>และ<a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">นโยบายความเป็นส่วนตัว</a>ของ {businessEntityName}"},"tr_TR":{"cancellationRights":"İptal Hakkı","cookiePolicy":"Tanımlama Bilgileri","legalNotice":"Yasal Uyarı","privacyPolicy":"Gizlilik Politikası","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> bu mağazada ürünlerin ve servislerin önerilen yetkili satıcısı ve tüccarıdır.","termsOfSale":"Satış Şartları","confirmDisclosure":"Siparişimi göndererek {businessEntityName}&rsquo;ye ait <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Satış Şartları</a> ve <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Gizlilik Politikası</a>&rsquo;nı kabul ediyorum."},"zh_CN":{"cancellationRights":"取消订单权","cookiePolicy":"Cookie","legalNotice":"法律声明","privacyPolicy":"隐私政策","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> 是本商店提供的产品和服务的授权经销商和商家。","termsOfSale":"销售条款","confirmDisclosure":"通过提交我的订单，我同意{businessEntityName}的<a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">销售条款</a>和<a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">隐私政策</a>。"},"zh_HK":{"cancellationRights":"取消權利","cookiePolicy":"Cookies","legalNotice":"法律聲明","privacyPolicy":"隱私權政策","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> 是本商店內所提供產品及服務的授權轉售商和販售者。","termsOfSale":"銷售條款","confirmDisclosure":"通过提交我的订单，我同意{businessEntityName}的<a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">销售条款</a>和<a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">隐私政策</a>。"},"zh_TW":{"cancellationRights":"取消權利","cookiePolicy":"Cookie","legalNotice":"法律聲明","privacyPolicy":"隱私權政策","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> 本商店所提供商品及服務的授權經銷商及批發商。","termsOfSale":"銷售條款","confirmDisclosure":"通过提交我的订单，我同意{businessEntityName}的<a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">销售条款</a>和<a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">隐私政策</a>。"}},"locale":["ar_EG","cs_CZ","da_DK","de_AT","de_CH","de_DE","el_GR","en_AU","en_BE","en_CA","en_CH","en_DK","en_FI","en_GB","en_IE","en_IN","en_MY","en_NL","en_NO","en_NZ","en_PR","en_SE","en_SG","en_US","en_ZA","es_AR","es_CL","es_CO","es_EC","es_ES","es_MX","es_PE","es_VE","et_EE","fi_FI","fr_BE","fr_CA","fr_CH","fr_FR","hu_HU","it_CH","it_IT","iw_IL","ja_JP","ko_KR","lt_LT","lv_LV","nl_BE","nl_NL","no_NO","pl_PL","pt_BR","pt_PT","ro_RO","ru_RU","sk_SK","sl_SI","sr_YU","sv_SE","th_TH","tr_TR","zh_CN","zh_HK","zh_TW"],"entityCode":[{"code":"DRES_INC-ENTITY","name":"DR Education Services"},{"code":"DR_WP-ENTITY","name":"DR World Payments"},{"code":"DR_WPAB-ENTITY","name":"DR World Payments AB"},{"code":"C5_INC-ENTITY","name":"DR globalTech Inc."},{"code":"DR_BRAZIL-ENTITY","name":"Digital River Brazil"},{"code":"DR_CHINA-ENTITY","name":"Digital River China"},{"code":"DR_GMBH-ENTITY","name":"Digital River GmbH"},{"code":"DR_INC-ENTITY","name":"Digital River Inc."},{"code":"DR_INDIA-ENTITY","name":"Digital River India Pvt"},{"code":"DR_IRELAND-ENTITY","name":"Digital River Ireland Ltd."},{"code":"DR_JAPAN-ENTITY","name":"Digital River Japan"},{"code":"DR_KOREA-ENTITY","name":"Digital River Korea YH"},{"code":"DR_MEXICO-ENTITY","name":"Digital River Mexico"},{"code":"DR_RUSSIA-ENTITY","name":"Digital River Russia"},{"code":"DR_TAIWAN-ENTITY","name":"Digital River Taiwan"},{"code":"DR_SARL-ENTITY","name":"Digital River, International SARL"}],"keys":{"RESELLER_DISCLOSURE":"resellerDisclosure","TERMS_OF_SALE":"termsOfSale","PRIVACY_POLICY":"privacyPolicy","COOKIE_POLICY":"cookiePolicy","CANCELLATION_RIGHTS":"cancellationRights","CONFIRM_DISCLOSURE":"confirmDisclosure","LEGAL_NOTICE":"legalNotice"}};
+module.exports = {"details":{"ar_EG":{"cancellationRights":"حق الإلغاء","cookiePolicy":"ملفات كوكيز","legalNotice":"ملحوظة قانونية","privacyPolicy":"سياسة الخصوصية","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> هو الموزع والموزع المعتمد للمنتجات والخدمات المقدمة في هذا المتجر.","termsOfSale":"شروط البيع","confirmDisclosure":"بإرسال طلبي فإنني أوافق على <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">شروط البيع</a> و<a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">سياسة الخصوصية</a> لدى {businessEntityName}."},"cs_CZ":{"cancellationRights":"Oprávnění ke zrušení","cookiePolicy":"Cookies","legalNotice":"Právní dokument","privacyPolicy":"Zásady zachování soukromí","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> je autorizovaným prodejcem a obchodníkem s produkty a službami, které tento obchod nabízí.","termsOfSale":"Prodejní podmínky","confirmDisclosure":"Odesláním své objednávky vyjadřuji souhlas s <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">prodejními podmínkami</a> a <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">ochranou soukromí</a> {businessEntityName}."},"da_DK":{"cancellationRights":"Fortrydelsesret","cookiePolicy":"Cookies","legalNotice":"Juridisk note","privacyPolicy":"Retningslinjer for personbeskyttelse","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> er den autoriserede forhandler af de produkter og tjenesteydelser, der tilbydes i denne forretning.","termsOfSale":"Salgsvilkår","confirmDisclosure":"Ved at indsende min bestilling, accepterer jeg <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Salgsvilkårene</a> og <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Politikken om beskyttelse af personlige oplysninger</a> på {businessEntityName}."},"de_AT":{"cancellationRights":"Widerrufsrecht","cookiePolicy":"Cookies","legalNotice":"Impressum","privacyPolicy":"Datenschutzrichtlinien","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> ist der autorisierte Wiederverkäufer und Händler der Produkte und Dienstleistungen die in diesem Shop angeboten werden.","termsOfSale":"Verkaufsbedingungen","confirmDisclosure":"Durch Einreichen meiner Bestellung stimme ich den <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Verkaufsbedingungen</a> und den <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Datenschutzrichtlinien</a> von {businessEntityName} zu."},"de_CH":{"cancellationRights":"Widerrufsrecht","cookiePolicy":"Cookies","legalNotice":"Impressum","privacyPolicy":"Datenschutzrichtlinien","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> ist der autorisierte Wiederverkäufer und Händler der Produkte und Dienstleistungen die in diesem Shop angeboten werden.","termsOfSale":"Verkaufsbedingungen","confirmDisclosure":"Durch Einreichen meiner Bestellung stimme ich den <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Verkaufsbedingungen</a> und den <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Datenschutzrichtlinien</a> von {businessEntityName} zu."},"de_DE":{"cancellationRights":"Widerrufsrecht","cookiePolicy":"Cookies","legalNotice":"Impressum","privacyPolicy":"Datenschutzrichtlinien","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> ist der autorisierte Wiederverkäufer und Händler der Produkte und Dienstleistungen die in diesem Shop angeboten werden.","termsOfSale":"Verkaufsbedingungen","confirmDisclosure":"Durch Einreichen meiner Bestellung stimme ich den <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Verkaufsbedingungen</a> und den <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Datenschutzrichtlinien</a> von {businessEntityName} zu."},"el_GR":{"cancellationRights":"Δικαίωμα Ακύρωσης","cookiePolicy":"Cookies","legalNotice":"Νομική Σημείωση","privacyPolicy":"Πολιτική Ιδιωτικού Απορρήτου","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> είναι ο εξουσιοδοτημένος μεταπωλητής και έμπορος των προϊόντων και υπηρεσιών, που προσφέρονται σε αυτό το κατάστημα.","termsOfSale":"Όροι Πώλησης","confirmDisclosure":"Υποβάλλοντας την παραγγελία μου, συμφωνώ με τους <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Όρους πώλησης</a> και την <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Πολιτική ιδιωτικού απορρήτου</a> της {businessEntityName}."},"en_AU":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> is the authorised reseller and merchant of the products and services offered within this store.","termsOfSale":"Terms of Sale","confirmDisclosure":"By submitting my order, I agree to the <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Terms of Sale</a> and the <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Privacy Policy</a> of {businessEntityName}."},"en_BE":{"privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> is the authorised retailer and merchant providing e-commerce services for this shop.","termsOfSale":"Terms and Conditions","confirmDisclosure":"By submitting my order, I agree to the <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Terms of Sale</a> and the <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Privacy Policy</a> of {businessEntityName}."},"en_CA":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> is the authorised reseller and merchant of the products and services offered within this store.","termsOfSale":"Terms of Sale","confirmDisclosure":"By submitting my order, I agree to the <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Terms of Sale</a> and the <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Privacy Policy</a> of {businessEntityName}."},"en_CH":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> is the authorized reseller and merchant of the products and services offered within this store.","termsOfSale":"Terms of Sale","confirmDisclosure":"By submitting my order, I agree to the <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Terms of Sale</a> and the <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Privacy Policy</a> of {businessEntityName}."},"en_DK":{"privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> is the authorised retailer and merchant providing e-commerce services for this shop.","termsOfSale":"Terms and Conditions","confirmDisclosure":"By submitting my order, I agree to the <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Terms of Sale</a> and the <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Privacy Policy</a> of {businessEntityName}."},"en_FI":{"privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> is the authorised retailer and merchant providing e-commerce services for this shop.","termsOfSale":"Terms and Conditions","confirmDisclosure":"By submitting my order, I agree to the <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Terms of Sale</a> and the <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Privacy Policy</a> of {businessEntityName}."},"en_GB":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> is the authorised reseller and merchant of the products and services offered within this store.","termsOfSale":"Terms of Sale","confirmDisclosure":"By submitting my order, I agree to the <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Terms of Sale</a> and the <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Privacy Policy</a> of {businessEntityName}."},"en_IE":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> is the authorised reseller and merchant of the products and services offered within this store.","termsOfSale":"Terms of Sale","confirmDisclosure":"By submitting my order, I agree to the <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Terms of Sale</a> and the <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Privacy Policy</a> of {businessEntityName}."},"en_IN":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> is the authorised reseller and merchant of the products and services offered within this store.","termsOfSale":"Terms of Sale","confirmDisclosure":"By submitting my order, I agree to the <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Terms of Sale</a> and the <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Privacy Policy</a> of {businessEntityName}."},"en_MY":{"privacyPolicy":"Privacy Policy","termsOfSale":"Terms and Conditions","confirmDisclosure":"By submitting my order, I agree to the <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Terms of Sale</a> and the <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Privacy Policy</a> of {businessEntityName}."},"en_NL":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> is the authorised reseller and merchant of the products and services offered within this store.","termsOfSale":"Terms of Sale","confirmDisclosure":"By submitting my order, I agree to the <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Terms of Sale</a> and the <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Privacy Policy</a> of {businessEntityName}."},"en_NO":{"privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> is the authorised retailer and merchant providing e-commerce services for this shop.","termsOfSale":"Terms and Conditions","confirmDisclosure":"By submitting my order, I agree to the <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Terms of Sale</a> and the <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Privacy Policy</a> of {businessEntityName}."},"en_NZ":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> is the authorised reseller and merchant of the products and services offered within this store.","termsOfSale":"Terms of Sale","confirmDisclosure":"By submitting my order, I agree to the <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Terms of Sale</a> and the <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Privacy Policy</a> of {businessEntityName}."},"en_PR":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> is the authorised reseller and merchant of the products and services offered within this store.","termsOfSale":"Terms of Sale","confirmDisclosure":"By submitting my order, I agree to the <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Terms of Sale</a> and the <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Privacy Policy</a> of {businessEntityName}."},"en_SE":{"privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> is the authorised retailer and merchant providing e-commerce services for this shop.","termsOfSale":"Terms and Conditions","confirmDisclosure":"By submitting my order, I agree to the <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Terms of Sale</a> and the <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Privacy Policy</a> of {businessEntityName}."},"en_SG":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> is the authorised reseller and merchant of the products and services offered within this store.","termsOfSale":"Terms of Sale","confirmDisclosure":"By submitting my order, I agree to the <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Terms of Sale</a> and the <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Privacy Policy</a> of {businessEntityName}."},"en_US":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> is the authorized reseller and merchant of the products and services offered within this store.","termsOfSale":"Terms of Sale","confirmDisclosure":"By submitting my order, I agree to the <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Terms of Sale</a> and the <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Privacy Policy</a> of {businessEntityName}.","californiaPrivacyRights":"Your California Privacy Rights"},"en_ZA":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> is the authorised reseller and merchant of the products and services offered within this store.","termsOfSale":"Terms of Sale","confirmDisclosure":"By submitting my order, I agree to the <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Terms of Sale</a> and the <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Privacy Policy</a> of {businessEntityName}."},"es_AR":{"cancellationRights":"Derechos de cancelación","cookiePolicy":"Cookies","legalNotice":"Aviso legal","privacyPolicy":"Política de privacidad","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> es el revendedor y comercializador autorizado de los productos ofrecidos en esta tienda.","termsOfSale":"Términos de la venta","confirmDisclosure":"Al enviar mi pedido, acepto los <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Términos de ventas</a> y la <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Política de privacidad</a> de {businessEntityName}."},"es_CL":{"cancellationRights":"Derechos de cancelación","cookiePolicy":"Cookies","legalNotice":"Aviso legal","privacyPolicy":"Política de privacidad","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> es el revendedor y comercializador autorizado de los productos ofrecidos en esta tienda.","termsOfSale":"Términos de la venta","confirmDisclosure":"Al enviar mi pedido, acepto los <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Términos de ventas</a> y la <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Política de privacidad</a> de {businessEntityName}."},"es_CO":{"cancellationRights":"Derechos de cancelación","cookiePolicy":"Cookies","legalNotice":"Aviso legal","privacyPolicy":"Política de privacidad","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> es el revendedor y comercializador autorizado de los productos ofrecidos en esta tienda.","termsOfSale":"Términos de la venta","confirmDisclosure":"Al enviar mi pedido, acepto los <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Términos de ventas</a> y la <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Política de privacidad</a> de {businessEntityName}."},"es_EC":{"cancellationRights":"Derechos de cancelación","cookiePolicy":"Cookies","legalNotice":"Aviso legal","privacyPolicy":"Política de privacidad","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> es el revendedor y comercializador autorizado de los productos ofrecidos en esta tienda.","termsOfSale":"Términos de la venta","confirmDisclosure":"Al enviar mi pedido, acepto los <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Términos de ventas</a> y la <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Política de privacidad</a> de {businessEntityName}."},"es_ES":{"cancellationRights":"Derechos de cancelación","cookiePolicy":"Cookies","legalNotice":"Aviso legal","privacyPolicy":"Política de confidencialidad","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> es el distribuidor y el vendedor autorizado de los productos y servicios ofrecidos en esta tienda virtual.","termsOfSale":"Condiciones de venta","confirmDisclosure":"Al enviar mi pedido, acepto los <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Términos de ventas</a> y la <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Política de privacidad</a> de {businessEntityName}."},"es_MX":{"cancellationRights":"Derechos de cancelación","cookiePolicy":"Cookies","legalNotice":"Aviso legal","privacyPolicy":"Política de privacidad","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> es el revendedor y comercializador autorizado de los productos ofrecidos en esta tienda.","termsOfSale":"Términos de la venta","confirmDisclosure":"Al enviar mi pedido, acepto los <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Términos de ventas</a> y la <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Política de privacidad</a> de {businessEntityName}."},"es_PE":{"cancellationRights":"Derechos de cancelación","cookiePolicy":"Cookies","legalNotice":"Aviso legal","privacyPolicy":"Política de privacidad","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> es el revendedor y comercializador autorizado de los productos ofrecidos en esta tienda.","termsOfSale":"Términos de la venta","confirmDisclosure":"Al enviar mi pedido, acepto los <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Términos de ventas</a> y la <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Política de privacidad</a> de {businessEntityName}."},"es_VE":{"cancellationRights":"Derechos de cancelación","cookiePolicy":"Cookies","legalNotice":"Aviso legal","privacyPolicy":"Política de privacidad","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> es el revendedor y comercializador autorizado de los productos ofrecidos en esta tienda.","termsOfSale":"Términos de la venta","confirmDisclosure":"Al enviar mi pedido, acepto los <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Términos de ventas</a> y la <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Política de privacidad</a> de {businessEntityName}."},"et_EE":{"privacyPolicy":"Privaatsuspoliitika","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> on sellele kauplusele e-kaubanduse teenuseid osutav volitatud edasimüüja.","termsOfSale":"Tingimused","confirmDisclosure":""},"fi_FI":{"cancellationRights":"Peruutusoikeus","cookiePolicy":"Evästeet","legalNotice":"Lainmukainen tiedotus","privacyPolicy":"Yksityisyyden suoja","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> on valtuutettu jälleenmyyjä, joka myy tässä kaupassa tarjolla olevia tuotteita ja palveluja.","termsOfSale":"Myyntiehdot","confirmDisclosure":"Lähettämällä tilaukseni hyväksyn {businessEntityName} <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Myyntiehdot</a> ja <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Tietosuojamenettelyn</a>."},"fr_BE":{"cancellationRights":"Droits d'annulation","cookiePolicy":"Témoins de connexion","legalNotice":"Mentions legales","privacyPolicy":"Politique de confidentialité","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> est le revendeur et marchand agréé pour les produits et services proposés au sein de ce magasin.","termsOfSale":"Conditions de vente","confirmDisclosure":"En envoyant ma commande, j&rsquo;accepte les <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Conditions de vente</a> et la <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Politique de confidentialité</a> de {businessEntityName}."},"fr_CA":{"cancellationRights":"Droits d'annulation","cookiePolicy":"Témoins","legalNotice":"Mentions legales","privacyPolicy":"Politique sur la confidentialité","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> est le revendeur et commerçant autorisé fournissant les services de commerce électronique pour ce magasin.","termsOfSale":"Conditions de vente","confirmDisclosure":"En soumettant ma commande, j&#39;accepte les <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Conditions de vente</a> et la <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Politique de confidentialité</a> de {businessEntityName}."},"fr_CH":{"cancellationRights":"Droits d'annulation","cookiePolicy":"Témoins de connexion","legalNotice":"Mentions legales","privacyPolicy":"Politique de confidentialité","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> est le revendeur et marchand agréé pour les produits et services proposés au sein de ce magasin.","termsOfSale":"Conditions de vente","confirmDisclosure":"En envoyant ma commande, j&#39;accepte les <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Conditions de vente</a> et la <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Politique de confidentialité</a> de {businessEntityName}."},"fr_FR":{"cancellationRights":"Droits d'annulation","cookiePolicy":"Témoins de connexion","legalNotice":"Mentions legales","privacyPolicy":"Politique de confidentialité","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> est le revendeur et marchand agréé pour les produits et services proposés au sein de ce magasin.","termsOfSale":"Conditions de vente","confirmDisclosure":"En envoyant ma commande, j&#39;accepte les <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Conditions de vente</a> et la <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Politique de confidentialité</a> de {businessEntityName}."},"hu_HU":{"cancellationRights":"Rendelés törlésének lehetõsége","cookiePolicy":"Cookie-k","legalNotice":"Jogi nyilatkozat","privacyPolicy":"Adatvédelmi politika","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> az áruházban megvásárolható termékek és szolgáltatások hivatalos értékesítő partnere és forgalmazója.","termsOfSale":"Értékesítési feltételek","confirmDisclosure":"A rendelés elküldésével elfogadom a(z) {businessEntityName} <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Értékesítési feltételeit</a> és <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Adatvédelmi nyilatkozatát</a>."},"it_CH":{"cancellationRights":"Diritto di recesso","cookiePolicy":"Cookie","legalNotice":"Avviso legale","privacyPolicy":"Tutela della privacy","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> è il rivenditore autorizzato e fornitore dei prodotti e dei servizi offerti all&#39;interno di questo negozio.","termsOfSale":"Condizioni di vendita","confirmDisclosure":"Inviando il mio ordine accetto le <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Condizioni di vendita</a> e l&rsquo;<a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Informativa sulla privacy</a> di {businessEntityName}."},"it_IT":{"cancellationRights":"Diritto di recesso","cookiePolicy":"Cookie","legalNotice":"Avviso legale","privacyPolicy":"Tutela della privacy","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> è il rivenditore autorizzato dei prodotti di {2} venduti in questo negozio online.","termsOfSale":"Condizioni di vendita","warrantyInformation":"Informazioni sulla Garanzia","confirmDisclosure":"Inviando il mio ordine accetto le <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Condizioni di vendita</a> e l&rsquo;<a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Informativa sulla privacy</a> di {businessEntityName}."},"iw_IL":{"cancellationRights":"זכות ביטול הזמנה","cookiePolicy":"קובצי cookie","legalNotice":"הודעה משפטית","privacyPolicy":"מדיניות שמירה על פרטיות","resellerDisclosure":" <a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a>  הוא המפיץ והסוחר המורשה עבור חנוות מקוונת זו.","termsOfSale":"תנאי מכירה","confirmDisclosure":"ביצוע ההזמנה מהווה עדות לכך שאני מסכים <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">לתנאי המכירה</a> וכן <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">למדיניות הפרטיות</a> של {businessEntityName}."},"ja_JP":{"cancellationRights":"キャンセル権","cookiePolicy":"クッキー","legalNotice":"本サイトのご利用について","privacyPolicy":"プライバシーポリシー","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> は、このストアで提供される製品とサービスの認定再販業者および代理店です。","termsOfSale":"販売条件","confirmDisclosure":"注文の送信により、{businessEntityName}の<a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">売買条件</a>および<a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">プライバシーポリシー</a>に同意します。"},"ko_KR":{"cancellationRights":"취소 권한","cookiePolicy":"쿠키","legalNotice":"법적 고지","privacyPolicy":"개인정보 보호 정책","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> 은(는) 이 스토어에서 제품과 서비스를 제공하도록 인가된 리셀러 및 판매자입니다.","termsOfSale":"판매 조건","confirmDisclosure":"주문을 제출하면 {businessEntityName}의 <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">이용약관</a>과 <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">개인정보보호정책</a>에 동의한 것으로 간주됩니다."},"lt_LT":{"privacyPolicy":"Privatumo strategija","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> įgaliotasis mažmenininkas ir šios parduotuvės el. prekybos paslaugų didmenininkas.","termsOfSale":"Nuostatos ir sąlygos","confirmDisclosure":""},"lv_LV":{"privacyPolicy":"Konfidencialitātes politika","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> ir pilnvarots tālākpārdevējs un tirgotājs, kas šim veikalam nodrošina e-komecijas pakalpojumus.","termsOfSale":"Noteikumi un nosacījumi","confirmDisclosure":""},"nl_BE":{"cancellationRights":"Recht op annulering","cookiePolicy":"Cookies","legalNotice":"Juridische kennisgeving","privacyPolicy":"Privacybeleid","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> is de erkende reseller die de producten en services voor deze store levert.","termsOfSale":"Algemene verkoopvoorwaarden","confirmDisclosure":"Door mijn bestelling in te dienen, ga ik akkoord met de <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Verkoopvoorwaarden</a> en het <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Privacybeleid</a> van {businessEntityName}."},"nl_NL":{"cancellationRights":"Recht op annulering","cookiePolicy":"Cookies","legalNotice":"Juridische kennisgeving","privacyPolicy":"Privacybeleid","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> is de erkende reseller die de producten en services voor deze store levert.","termsOfSale":"Algemene verkoopvoorwaarden","confirmDisclosure":"Door mijn bestelling in te dienen, ga ik akkoord met de <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Verkoopvoorwaarden</a> en het <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Privacybeleid</a> van {businessEntityName}."},"no_NO":{"cancellationRights":"Rett til avbestilling","cookiePolicy":"Informasjonskapsler","legalNotice":"Juridiske bestemmelser","privacyPolicy":"Personvern","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> er den autoriserte selgeren og forhandleren av varene og tjenestene som tilbys i denne butikken.","termsOfSale":"Salgsbetingelser","confirmDisclosure":"Ved å sende inn min bestilling, samtykker jeg i <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Salgsbetingelsene</a> og <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Personvernpolitikken</a> for {businessEntityName}."},"pl_PL":{"cancellationRights":"Prawo do anulowania zamówienia","cookiePolicy":"Pliki cookie","legalNotice":"Nota prawna","privacyPolicy":"Polityka ochrony danych","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> to autoryzowany dystrybutor oraz sprzedawca produktów i usług dostępnych w naszym sklepie.","termsOfSale":"Warunki sprzedaży","confirmDisclosure":"Składając zamówienie, akceptuję <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Warunki sprzedaży</a> oraz <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Politykę prywatności</a> {businessEntityName}."},"pt_BR":{"cancellationRights":"Regras de cancelamento","cookiePolicy":"Cookies","legalNotice":"Aviso legal","privacyPolicy":"Política de privacidade","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> é o revendedor e o distribuidor autorizado dos produtos e serviços oferecidos nesta loja.","termsOfSale":"Termos de vendas","confirmDisclosure":"Ao enviar meu pedido, eu concordo com os <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Termos de vendas</a> e com a <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Política de privacidade</a> de {businessEntityName}."},"pt_PT":{"cancellationRights":"Direito de Cancelamento","cookiePolicy":"Cookies","legalNotice":"Aviso Legal","privacyPolicy":"Política de privacidade","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> é o revendedor autorizado e o comerciante dos produtos e serviços disponibilizados nesta loja.","termsOfSale":"Termos de Venda","confirmDisclosure":"Ao submeter a minha encomenda, concordo com os <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Termos de Venda</a> e a <a href=\"{privacyPolicyUrl}\" target=\"_blank\"  class=\"dr_privacyPolicy\">Política de Privacidade</a> de {businessEntityName}."},"ro_RO":{"privacyPolicy":"Politică de confidenţialitate","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> este un vânzător şi comerciant cu amănuntul autorizat ce furnizează servicii de comerţ electronic pentru acest magazin.","termsOfSale":"Termeni şi condiţii","confirmDisclosure":""},"ru_RU":{"cancellationRights":"Право отмены","cookiePolicy":"Cookie","legalNotice":"Юридическое уведомление","privacyPolicy":"Политика конфиденциальности","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> является авторизованным реселлером и продавцом продукции и услуг, предлагаемых в настоящем магазине.","termsOfSale":"Условия продажи","confirmDisclosure":"Подтверждая заказ, я соглашаюсь с <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Условиями продажи</a> и <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Политикой конфиденциальности</a> {businessEntityName}."},"sk_SK":{"cancellationRights":"Oprávnenie na zrušenie","cookiePolicy":"Cookies","legalNotice":"Právny dokument","privacyPolicy":"Politika ochrany osobných údajov","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> je predajca alebo veľkoobchod s produktmi a službami poskytovanými v tomto obchode.","termsOfSale":"Predajné podmienky","confirmDisclosure":"Odoslaním objednávky vyjadrujem svoj súhlas s <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">predajnými podmienkami</a> a <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">zásadami ochrany osobných údajov</a> spoločnosti {businessEntityName}."},"sl_SI":{"privacyPolicy":"Pravilnik o zasebnosti","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> je pooblaščen trgovec na debelo in drobno, ki ponuja storitve spletne prodaje za to trgovino.","termsOfSale":"Pogoji in določila","confirmDisclosure":""},"sr_YU":{"privacyPolicy":"Pravilnik o poverljivosti","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> je ovlašćen za maloprodaju i trgovinu i pruža usluge e-trgovine za ovu prodavnicu.","termsOfSale":"Uslovi","confirmDisclosure":""},"sv_SE":{"cancellationRights":"Ångerrätt","cookiePolicy":"Cookies","legalNotice":"Juridisk information","privacyPolicy":"Sekretesspolicy","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> är den auktoriserade återförsäljaren av de produkter och tjänster som erbjuds i den här butiken.","termsOfSale":"Försäljningsvillkor","confirmDisclosure":"Genom att skicka ordern godkänner jag <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">köpvillkoren</a> och <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">sekretesspolicyn</a> för {businessEntityName}."},"th_TH":{"cancellationRights":"สิทธิ์ในการยกเลิก","cookiePolicy":"คุกกี้","legalNotice":"ข้อความสงวนสิทธิ์ทางกฎหมาย","privacyPolicy":"นโยบายการเก็บรักษาข้อมูลส่วนบุคคล","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> เป็นผู้ค้าและผู้จำหน่ายที่ได้รับอนุญาตสำหรับผลิตภัณฑ์และบริการที่นำเสนอภายในร้านค้าแห่งนี้","termsOfSale":"เงื่อนไขการขาย","confirmDisclosure":"ในการส่งคำสั่งซื้อของฉัน ฉันยอมรับ<a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">ข้อกำหนดการจำหน่าย</a>และ<a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">นโยบายความเป็นส่วนตัว</a>ของ {businessEntityName}"},"tr_TR":{"cancellationRights":"İptal Hakkı","cookiePolicy":"Tanımlama Bilgileri","legalNotice":"Yasal Uyarı","privacyPolicy":"Gizlilik Politikası","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> bu mağazada ürünlerin ve servislerin önerilen yetkili satıcısı ve tüccarıdır.","termsOfSale":"Satış Şartları","confirmDisclosure":"Siparişimi göndererek {businessEntityName}&rsquo;ye ait <a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">Satış Şartları</a> ve <a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">Gizlilik Politikası</a>&rsquo;nı kabul ediyorum."},"zh_CN":{"cancellationRights":"取消订单权","cookiePolicy":"Cookie","legalNotice":"法律声明","privacyPolicy":"隐私政策","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> 是本商店提供的产品和服务的授权经销商和商家。","termsOfSale":"销售条款","confirmDisclosure":"通过提交我的订单，我同意{businessEntityName}的<a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">销售条款</a>和<a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">隐私政策</a>。"},"zh_HK":{"cancellationRights":"取消權利","cookiePolicy":"Cookies","legalNotice":"法律聲明","privacyPolicy":"隱私權政策","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> 是本商店內所提供產品及服務的授權轉售商和販售者。","termsOfSale":"銷售條款","confirmDisclosure":"通过提交我的订单，我同意{businessEntityName}的<a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">销售条款</a>和<a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">隐私政策</a>。"},"zh_TW":{"cancellationRights":"取消權利","cookiePolicy":"Cookie","legalNotice":"法律聲明","privacyPolicy":"隱私權政策","resellerDisclosure":"<a href=\"{resellerDisclosureUrl}\" target=\"_blank\" class=\"dr_resellerDisclosure\">{businessEntityName}</a> 本商店所提供商品及服務的授權經銷商及批發商。","termsOfSale":"銷售條款","confirmDisclosure":"通过提交我的订单，我同意{businessEntityName}的<a href=\"{termsOfSaleUrl}\" target=\"_blank\" class=\"dr_termsAndConditions\">销售条款</a>和<a href=\"{privacyPolicyUrl}\" target=\"_blank\" class=\"dr_privacyPolicy\">隐私政策</a>。"}},"locale":["ar_EG","cs_CZ","da_DK","de_AT","de_CH","de_DE","el_GR","en_AU","en_BE","en_CA","en_CH","en_DK","en_FI","en_GB","en_IE","en_IN","en_MY","en_NL","en_NO","en_NZ","en_PR","en_SE","en_SG","en_US","en_ZA","es_AR","es_CL","es_CO","es_EC","es_ES","es_MX","es_PE","es_VE","et_EE","fi_FI","fr_BE","fr_CA","fr_CH","fr_FR","hu_HU","it_CH","it_IT","iw_IL","ja_JP","ko_KR","lt_LT","lv_LV","nl_BE","nl_NL","no_NO","pl_PL","pt_BR","pt_PT","ro_RO","ru_RU","sk_SK","sl_SI","sr_YU","sv_SE","th_TH","tr_TR","zh_CN","zh_HK","zh_TW"],"entityCode":[{"code":"DRES_INC-ENTITY","name":"DR Education Services"},{"code":"DR_WP-ENTITY","name":"DR World Payments"},{"code":"DR_WPAB-ENTITY","name":"DR World Payments AB"},{"code":"C5_INC-ENTITY","name":"DR globalTech Inc."},{"code":"DR_BRAZIL-ENTITY","name":"Digital River Brazil"},{"code":"DR_CHINA-ENTITY","name":"Digital River China"},{"code":"DR_GMBH-ENTITY","name":"Digital River GmbH"},{"code":"DR_INC-ENTITY","name":"Digital River Inc."},{"code":"DR_INDIA-ENTITY","name":"Digital River India Pvt"},{"code":"DR_IRELAND-ENTITY","name":"Digital River Ireland Ltd."},{"code":"DR_JAPAN-ENTITY","name":"Digital River Japan"},{"code":"DR_KOREA-ENTITY","name":"Digital River Korea YH"},{"code":"DR_MEXICO-ENTITY","name":"Digital River Mexico"},{"code":"DR_RUSSIA-ENTITY","name":"Digital River Russia"},{"code":"DR_TAIWAN-ENTITY","name":"Digital River Taiwan"},{"code":"DR_SARL-ENTITY","name":"Digital River, International SARL"}],"keys":{"RESELLER_DISCLOSURE":"resellerDisclosure","TERMS_OF_SALE":"termsOfSale","PRIVACY_POLICY":"privacyPolicy","COOKIE_POLICY":"cookiePolicy","CANCELLATION_RIGHTS":"cancellationRights","CONFIRM_DISCLOSURE":"confirmDisclosure","LEGAL_NOTICE":"legalNotice","CALIFORNIA_PRIVACY_RIGHTS":"californiaPrivacyRights","WARRANTY_INFORMATION":"warrantyInformation"}};
 
 /***/ }),
 
