@@ -487,6 +487,14 @@
                         </div>
                       </div>
                     </div>
+                    <br /><br /><br />
+                    <div class="row">
+                      <div class="col-md-12 mb-3 paymentElement">
+                          <div>
+                              <div id="konbini"></div>
+                          </div>
+                      </div>
+                    </div>
 
                     <hr class="mb-4">
                     <button id="addPaymentButton" class="btn btn-primary btn-lg btn-block" type="submit" onclick="addPayment()">Add Payment
@@ -618,6 +626,7 @@
               <button id="submitPaymentButton" class="btn btn-primary btn-lg btn-block" onclick="submitCreditCardPayment()">Submit CC Payment</button>
               <button id="submitPaymentButtonWith3DS" class="btn btn-secondary btn-lg btn-block" onclick="submitCreditCardPaymentWith3DS()">Submit CC Payment with 3DS</button>
               <button id="submitIBPPaymentButton" class="btn btn-primary btn-lg btn-block" onclick="submitIbpPayment()">Submit IBP Payment</button>
+              <button id="submitKonbiniPaymentButton" class="btn btn-primary btn-lg btn-block" onclick="submitKonbiniPayment()">Submit Konbini</button>
             </div>
           </div>
         </div>
@@ -679,6 +688,7 @@
   let googlePayComponent;
   let applePayComponent;
   let ibpBanksComponent;
+  let konbiniComponent;
 
   let googlePayPaymentRequest;
   let googlePayUpdatePaymentRequest;
@@ -833,7 +843,7 @@
 
     }
 
-    const options = { 'locale': 'en-US'};
+    const options = { 'locale': 'ko-KR'};
     digitalRiverPayments = new DigitalRiver(apiKey, options);
 
     let updatedccNumOptions = {
@@ -958,12 +968,16 @@
     googlePayComponent = digitalRiverPayments.createElement('googlepay', googlePayPaymentRequest);
     applePayComponent = digitalRiverPayments.createElement('applepay', applePayPaymentRequest);
 
+    konbiniComponent = digitalRiverPayments.createElement('konbini', {
+      style: styles,
+    });
 
     console.log('Calling mount functions');
 
     creditCardExpiryComponent.mount("cardexpiration");
     creditCardCvvComponent.mount("cardcvv");
     ibpBanksComponent.mount('ibpbanks');
+    konbiniComponent.mount('konbini');
 
     if (googlePayComponent.canMakePayment()) {
       googlePayComponent.mount("google-pay");
@@ -1066,7 +1080,8 @@
       });
 
       googlePayComponent.on('cancel', function(event) {
-        responseLog('googlepay session was canceled ' + JSON.stringify(event));
+        responseLog('googlepay session was canceled ');
+        responseLog(JSON.stringify(event));
       });
 
     }
@@ -1280,6 +1295,22 @@
     });
 
     ibpBanksComponent.on('change', function (event) {
+      responseLog(event.elementType + ' change received ' + JSON.stringify(event) + ' for ' + event.elementType);
+    });
+
+    konbiniComponent.on('ready', function (event) {
+      responseLog( event.elementType + ' ready received ' + JSON.stringify(event) + ' for ' + event.elementType);
+    });
+
+    konbiniComponent.on('blur', function (event) {
+      responseLog(event.elementType + ' blur received ' + JSON.stringify(event) + ' for ' + event.elementType);
+    });
+
+    konbiniComponent.on('focus', function (event) {
+      responseLog(event.elementType + ' focus received ' + JSON.stringify(event) + ' for ' + event.elementType);
+    });
+
+    konbiniComponent.on('change', function (event) {
       responseLog(event.elementType + ' change received ' + JSON.stringify(event) + ' for ' + event.elementType);
     });
 
@@ -1544,6 +1575,28 @@
         document.getElementById("response").innerHTML += "IBP Payment response received error: " + JSON.stringify(response, null, '\t');
       } else {
         document.getElementById("response").innerHTML += "IBP Payment response: " + "" + JSON.stringify(response.source, null, '\t');
+      }
+    }).catch(function (err) {
+      console.error('createSource failed:', err);
+    });
+  }
+
+  function submitKonbiniPayment() {
+    // Call CreateSource
+    const payload = {
+      "type": "konbini",
+      "usage": "single",
+      "owner": owner,
+      "amount": 100,
+      "currency": "JPY",
+    };
+
+    document.getElementById("response").innerHTML += "Submitting Konbini payment...please wait<br/>";
+    digitalRiverPayments.createSource(konbiniComponent, payload).then( function(response) {
+      if(response.error) {
+        document.getElementById("response").innerHTML += "Konbini response received error: " + JSON.stringify(response, null, '\t');
+      } else {
+        document.getElementById("response").innerHTML += "Konbini response: " + "" + JSON.stringify(response.source, null, '\t');
       }
     }).catch(function (err) {
       console.error('createSource failed:', err);

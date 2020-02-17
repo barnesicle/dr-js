@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8" />
-  <title>CC-Number</title>
+  <title>Refund</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="./offline-refund.js"></script>
   <!--this is where custom styles will be loaded-->
@@ -64,6 +64,16 @@
       height: 40px;
     }
 
+    select {
+      border: 1px solid #999;
+      border-radius: 4px;
+      height: 55px;
+      padding: 1em;
+      font-size:inherit;
+      font-family: inherit;
+      color: currentColor;
+    }
+
     form {
       display: inline-block;
       box-sizing: border-box;
@@ -71,8 +81,8 @@
     }
 
     .base {
-      background-color: #fff;
       width: 90%;
+      height: 100%
     }
 
     .cardType.formgroup span, .cardType.formgroup label {
@@ -97,6 +107,15 @@
 
     #error {
       color: red;
+      text-align: center;
+    }
+
+    #success {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
     }
   </style>
 </head>
@@ -104,20 +123,25 @@
 <body>
   <script>
     window.onload = function() {
-      document.getElementById('offlineRefundForm').addEventListener('submit', handleFormSubmit, false);
+      document.getElementById('submitButton').addEventListener('click', handleFormSubmit, false);
     };
   </script>
   <div id="DROfflineRefund" class="base">
-    <form id="offlineRefundForm" >
+    <div id="offlineRefundForm" >
       <div id="content" class="content">
       </div>
-      <div class="buttongroup">
-        <button id="submitButton" type="submit">Submit</button>
-      </div>
-      <div id="error">
+        <div id="error">
 
+        </div>
+      <div class="buttongroup">
+        <button id="submitButton" type="button">Submit</button>
       </div>
-    </form>
+    </div>
+    <div id="success" style="display: none">
+        <div>
+            <img src="checkmark.svg" style="height: 50px; width: 50px" />
+        </div>
+    </div>
   </div>
 </body>
 </html>
