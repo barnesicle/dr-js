@@ -19444,7 +19444,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
  // Create a postRobot listener/emitter tied to the parent window and domain only
 
 var clientDomain = document.referrer === '' ? 'file://' : Object(_utils__WEBPACK_IMPORTED_MODULE_6__["getParentDomain"])();
-console.log('client domain', clientDomain);
+console.log('client domain \'', clientDomain, '\'');
 var clientListener = _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_1__["default"].listener({
   window: window.parent,
   domain: clientDomain
