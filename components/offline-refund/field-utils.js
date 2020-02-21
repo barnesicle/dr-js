@@ -10252,15 +10252,9 @@ try {
   !*** ./src/app/components/offline-refund/field-utils.js ***!
   \**********************************************************/
 /*! exports provided: getHeightOffsetByID */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getHeightOffsetByID", function() { return getHeightOffsetByID; });
-function getHeightOffsetByID(id) {
-  var element = document.getElementById(id);
-  return element != null ? element.offsetHeight : null;
-}
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nError: ENOENT: no such file or directory, open 'C:\\dev\\ui-architecture\\digitalriverpayments\\src\\app\\components\\offline-refund\\field-utils.js'");
 
 /***/ }),
 

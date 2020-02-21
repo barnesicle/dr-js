@@ -10252,25 +10252,9 @@ try {
   !*** ./src/app/components/paypal/paypal-controller-events.js ***!
   \***************************************************************/
 /*! exports provided: onAuthorizeListener */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "onAuthorizeListener", function() { return onAuthorizeListener; });
-function onAuthorizeListener(controllerListener, componentData, onAuthorizeEvent, sendCloseDialogEvent, handleCancel) {
-  controllerListener.on('authorize', function (event) {
-    var action = event.data.action;
-
-    if (action === 'return') {
-      onAuthorizeEvent();
-    } else {
-      sendCloseDialogEvent();
-      handleCancel(componentData);
-    }
-
-    return Promise.resolve();
-  });
-}
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nError: ENOENT: no such file or directory, open 'C:\\dev\\ui-architecture\\digitalriverpayments\\src\\app\\components\\paypal\\paypal-controller-events.js'");
 
 /***/ }),
 

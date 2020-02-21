@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 9);
+/******/ 	return __webpack_require__(__webpack_require__.s = 8);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -12154,11 +12154,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "config", function() { return config; });
 // Holds any configuration data that changes depending on environment
 var config = {
-  domain: "https://github.digitalriverws.net",
+  domain: "https://barnesicle.github.io",
   // eslint-disable-line no-undef
   paymentServiceUrl: "https://api.digitalriver.com/payments/sources",
   // eslint-disable-line no-undef
-  basePath: "/pages/lbarnes/drjs-demo" || false,
+  basePath: "/dr-js" || false,
   // eslint-disable-line no-undef
   applePayMerchantId: "merchant.com.test.cert.digitalriver",
   // eslint-disable-line no-undef
@@ -12178,11 +12178,7 @@ var config = {
   // eslint-disable-line no-undef
   originTestKey: "pub.v2.8115061157590058.aHR0cDovL2xvY2FsaG9zdDo4MDgw.FF9fc99f70OC7jS9Ngmqj8z1H_cmKZMXQo_r0cnPAOg",
   // eslint-disable-line no-undef
-  paymentServiceBaseUrl: "https://api.digitalriver.com/payments",
-  // eslint-disable-line no-undef
-  paypalRedirectBaseUrl: "https://payments-test.digitalriver.com/redirect/",
-  // eslint-disable-line no-undef
-  paymentMethodsUrl: "https://api.digitalriver.com/payments/payment-methods" // eslint-disable-line no-undef
+  paymentServiceBaseUrl: "https://api.digitalriver.com/payments" // eslint-disable-line no-undef
 
 };
 
@@ -12673,7 +12669,7 @@ var generateAuthHeader = function generateAuthHeader(apiKey) {
 
 /***/ }),
 
-/***/ 9:
+/***/ 8:
 /*!********************************************************************************************************!*\
   !*** multi @babel/polyfill ./src/app/components/controller/controller-online-banking-create-source.js ***!
   \********************************************************************************************************/
