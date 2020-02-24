@@ -15029,6 +15029,8 @@ function getDomainFromUrl(url) {
         return getDomain();
     }
 
+    
+    
     domain = domain.split('/').slice(0, 3).join('/');
 
     return domain;
@@ -18762,11 +18764,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "config", function() { return config; });
 // Holds any configuration data that changes depending on environment
 var config = {
-  domain: "https://barnesicle.github.io",
+  domain: "https://github.digitalriverws.net",
   // eslint-disable-line no-undef
   paymentServiceUrl: "https://api.digitalriver.com/payments/sources",
   // eslint-disable-line no-undef
-  basePath: "/dr-js" || false,
+  basePath: "/pages/lbarnes/drjs-demo" || false,
   // eslint-disable-line no-undef
   applePayMerchantId: "merchant.com.test.cert.digitalriver",
   // eslint-disable-line no-undef
@@ -19424,9 +19426,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _validator__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../validator */ "./src/app/components/validator.js");
 /* harmony import */ var _localization_localizated_messages__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../localization/localizated-messages */ "./src/app/components/localization/localizated-messages.js");
 /* harmony import */ var _controller_konbini__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./controller-konbini */ "./src/app/components/controller/controller-konbini.js");
+/* harmony import */ var cross_domain_utils__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! cross-domain-utils */ "./node_modules/cross-domain-utils/dist/module/index.js");
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 
 
 
@@ -19447,7 +19451,8 @@ var clientDomain = 'https://nowlearningdev.service-now.com'; //document.referrer
 
 console.log('document.referrer \'', document.referrer, '\'');
 console.log('client domain \'', clientDomain, '\'');
-console.log('parent domain \'', Object(_utils__WEBPACK_IMPORTED_MODULE_6__["getParentDomain"])(), '\''); //const clientListener = postRobot.listener({ window: window.parent, domain: clientDomain });
+console.log('parent domain \'', Object(_utils__WEBPACK_IMPORTED_MODULE_6__["getParentDomain"])(), '\'');
+console.log('domain from URL', Object(cross_domain_utils__WEBPACK_IMPORTED_MODULE_14__["getDomainFromUrl"])(null)); //const clientListener = postRobot.listener({ window: window.parent, domain: clientDomain });
 //const clientEmitter = postRobot.client({ window: window.parent, domain: clientDomain });
 //const clientListener = postRobot.listener({ domain: clientDomain });
 //const clientEmitter = postRobot.client({ domain: clientDomain });
