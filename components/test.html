@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <script type="application/javascript">
+    console.log('document referrer', document.referrer)
     function receiveMessage(event) {
       console.log('received', event)
       document.getElementById("received-message").innerHTML = event.data;
