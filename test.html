@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Component</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script type="application/javascript">
+      console.log('document referrer', document.referrer)
+      function receiveMessage(event) {
+        console.log('received', event)
+        document.getElementById("received-message").innerHTML = event.data;
+      }
+
+      if ( window.addEventListener ) {
+        window.addEventListener('message', receiveMessage, false);
+      } else if ( window.attachEvent ) { // ie8
+        window.attachEvent('onmessage', receiveMessage);
+      }
+    </script>
+</head>
+
+<body>
+<div id="controller">
+    I have rendered.
+    <div id="received-message">
+
+    </div>
+</div>
+</body>
+<script>
+
+</script>
+
+</html>
