@@ -19449,6 +19449,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 var clientDomain = 'https://nowlearningdev.service-now.com'; //document.referrer === '' ? 'file://' : getParentDomain();
 
+console.log('1');
 console.log("document.referrer '".concat(document.referrer, "'"));
 console.log("client domain '".concat(clientDomain, "'"));
 console.log("parent domain '".concat(Object(_utils__WEBPACK_IMPORTED_MODULE_6__["getParentDomain"])(), "'")); // console.log(`domain from URL '${getDomainFromUrl(null)}'`);
