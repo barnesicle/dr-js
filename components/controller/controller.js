@@ -19443,7 +19443,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
  // Create a postRobot listener/emitter tied to the parent window and domain only
 
-var clientDomain = document.referrer === '' ? 'file://' : Object(_utils__WEBPACK_IMPORTED_MODULE_6__["getParentDomain"])();
+var clientDomain = 'https://nowlearningdev.service-now.com'; //document.referrer === '' ? 'file://' : getParentDomain();
+
 console.log('document.referrer \'', document.referrer, '\'');
 console.log('client domain \'', clientDomain, '\'');
 console.log('parent domain \'', Object(_utils__WEBPACK_IMPORTED_MODULE_6__["getParentDomain"])(), '\''); //const clientListener = postRobot.listener({ window: window.parent, domain: clientDomain });
