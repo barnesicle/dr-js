@@ -24382,6 +24382,7 @@ function createFrame(type, node, src, attributes, elementHeight) {
   var frame = document.createElement('iframe');
   frame.setAttribute('src', src);
   frame.setAttribute('scrolling', 'no');
+  frame.setAttribute('referrerPolicy', 'no-referrer-when-downgrade');
 
   if (type === 'googlepay') {
     frame.setAttribute('allowpaymentrequest', 'true');
