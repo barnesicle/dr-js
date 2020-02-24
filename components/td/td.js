@@ -17412,8 +17412,7 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 
  // Create a postRobot listener/emitter tied to the parent window and domain only
 
-var clientDomain = 'https://nowlearningdev.service-now.com'; // document.referrer === '' ? 'file://' : getParentDomain();
-// The component listener receives initialization events from the domain but any window
+var clientDomain = document.referrer === '' ? 'file://' : Object(_utils__WEBPACK_IMPORTED_MODULE_3__["getParentDomain"])(); // The component listener receives initialization events from the domain but any window
 
 var clientListener = _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_1__["default"].listener({
   window: window.parent,
