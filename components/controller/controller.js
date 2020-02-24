@@ -19449,10 +19449,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 var clientDomain = 'https://nowlearningdev.service-now.com'; //document.referrer === '' ? 'file://' : getParentDomain();
 
-console.log('document.referrer \'', document.referrer, '\'');
-console.log('client domain \'', clientDomain, '\'');
-console.log('parent domain \'', Object(_utils__WEBPACK_IMPORTED_MODULE_6__["getParentDomain"])(), '\'');
-console.log('domain from URL', Object(cross_domain_utils__WEBPACK_IMPORTED_MODULE_14__["getDomainFromUrl"])(null)); //const clientListener = postRobot.listener({ window: window.parent, domain: clientDomain });
+console.log("document.referrer '".concat(document.referrer, "'"));
+console.log("client domain '".concat(clientDomain, "'"));
+console.log("parent domain '".concat(Object(_utils__WEBPACK_IMPORTED_MODULE_6__["getParentDomain"])(), "'")); // console.log(`domain from URL '${getDomainFromUrl(null)}'`);
+//const clientListener = postRobot.listener({ window: window.parent, domain: clientDomain });
 //const clientEmitter = postRobot.client({ window: window.parent, domain: clientDomain });
 //const clientListener = postRobot.listener({ domain: clientDomain });
 //const clientEmitter = postRobot.client({ domain: clientDomain });
