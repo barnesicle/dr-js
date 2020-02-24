@@ -20443,8 +20443,8 @@ function sendApiKey(controllerId, eventName, data) {
   } // Send component Id to the controller, we return a promise but you don't really need to wait?
 
 
-  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_2__["default"].send(controllerWindow, eventName, data).catch(function () {
-    throw new Error('Sending apiKey error');
+  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_2__["default"].send(controllerWindow, eventName, data).catch(function (error) {
+    throw new Error('Sending apiKey error' + error.toString());
   });
 }
 /**

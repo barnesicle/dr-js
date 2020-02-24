@@ -19444,7 +19444,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
  // Create a postRobot listener/emitter tied to the parent window and domain only
 
 var clientDomain = document.referrer === '' ? 'file://' : Object(_utils__WEBPACK_IMPORTED_MODULE_6__["getParentDomain"])();
+console.log('document.referrer \'', document.referrer, '\'');
 console.log('client domain \'', clientDomain, '\'');
+console.log('parent domain \'', Object(_utils__WEBPACK_IMPORTED_MODULE_6__["getParentDomain"])(), '\''); //const clientListener = postRobot.listener({ window: window.parent, domain: clientDomain });
+//const clientEmitter = postRobot.client({ window: window.parent, domain: clientDomain });
+//const clientListener = postRobot.listener({ domain: clientDomain });
+//const clientEmitter = postRobot.client({ domain: clientDomain });
+//const clientListener = postRobot.listener({ window: window.parent });
+//const clientEmitter = postRobot.client({ window: window.parent });
+
 var clientListener = _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_1__["default"].listener({
   window: window.parent,
   domain: clientDomain
@@ -19595,6 +19603,7 @@ function handleRegisterNewComponent(event) {
       componentType = _event$data2.componentType,
       componentId = _event$data2.componentId,
       unsafeOptions = _event$data2.options;
+  console.log('registering component ', componentType);
 
   if (components[componentType]) {
     return Promise.reject("Controller already has component of type '".concat(componentType, "' registered."));
@@ -19655,6 +19664,8 @@ function handleMountComponent(event, currentRetryTime) {
   if (!components[componentType]) {
     return Object(_retry__WEBPACK_IMPORTED_MODULE_7__["retry"])(handleMountComponent, event, currentRetryTime, DEFAULT_MAX_RETRIES, "Unable to handle mount. This controller does not have a component of type '".concat(componentType, "'."));
   }
+
+  console.log('mounting component ', componentType);
 
   if (components[componentType].id !== componentId) {
     return Promise.reject("Unable to handle mount. This controller does not own the component '".concat(componentId, "' of type '").concat(componentType, "'"));
@@ -21693,8 +21704,8 @@ function sendApiKey(controllerId, eventName, data) {
   } // Send component Id to the controller, we return a promise but you don't really need to wait?
 
 
-  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_2__["default"].send(controllerWindow, eventName, data).catch(function () {
-    throw new Error('Sending apiKey error');
+  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_2__["default"].send(controllerWindow, eventName, data).catch(function (error) {
+    throw new Error('Sending apiKey error' + error.toString());
   });
 }
 /**

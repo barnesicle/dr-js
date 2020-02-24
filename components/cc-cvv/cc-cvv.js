@@ -20820,6 +20820,8 @@ function handleMountWithMessage(controllerEmitter, message, componentData, handl
     componentId: componentData.componentId,
     componentType: componentData.componentType
   }).then(function (response) {
+    console.log('component successfully mounted.', response);
+
     if (response.data) {
       handleMountData(response.data);
     }
@@ -20830,6 +20832,8 @@ function handleMountWithMessage(controllerEmitter, message, componentData, handl
 
     emitComponentReady(componentData);
   }).catch(function (error) {
+    console.log('component failed to mount.', error);
+
     if (error.message && error.message.includes('No ack for postMessage')) {
       return handleMountWithMessage(controllerEmitter, message, componentData, handleMountData, handleMount, instanceData, emitComponentReady, ++retryPosition);
     }
@@ -22119,8 +22123,8 @@ function sendApiKey(controllerId, eventName, data) {
   } // Send component Id to the controller, we return a promise but you don't really need to wait?
 
 
-  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_2__["default"].send(controllerWindow, eventName, data).catch(function () {
-    throw new Error('Sending apiKey error');
+  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_2__["default"].send(controllerWindow, eventName, data).catch(function (error) {
+    throw new Error('Sending apiKey error' + error.toString());
   });
 }
 /**
