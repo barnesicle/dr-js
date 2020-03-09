@@ -24156,7 +24156,11 @@ function addStandaloneButtonOptions(component, options) {
         amount: 10,
         detail: 'Will arrive tomorrow morning'
       }],
-      total: 101.00,
+      total: {
+        label: 'Order Total after update',
+        amount: 50,
+        isPending: false
+      },
       style: {
         buttonType: 'buy',
         buttonColor: 'light',
@@ -24220,7 +24224,7 @@ function mountDropin(key, options, createSource, createElement) {
         },
         paymentMethods: paymentMethodResponse
       };
-      console.error('7');
+      console.error('8');
       mockedResponse.paymentMethods.forEach(function (availablePaymentMethod) {
         var paymentMethod = supportedPaymentMethods.find(function (paymentMethod) {
           return paymentMethod.type === availablePaymentMethod.type;
