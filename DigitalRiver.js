@@ -24203,23 +24203,29 @@ function mountDropin(key, options, createSource, createElement) {
           var componentOptionsOrPaymentRequest = paymentMethod.code === 'googlepay' ? new _DigitalRiverPaymentRequest__WEBPACK_IMPORTED_MODULE_1__["default"](componentOptions.data) : componentOptions;
           var events = Object.assign({}, componentOptions.events);
           delete componentOptionsOrPaymentRequest.events;
-          var component = createElement(paymentMethod.code, componentOptionsOrPaymentRequest); // TODO What should happen when create fails?
 
-          if (typeof component.canMakePayment !== 'undefined' && !component.canMakePayment()) {
-            clearComponentFromDOM(parent, headerId, bodyId);
-            return;
-          }
+          try {
+            var component = createElement(paymentMethod.code, componentOptionsOrPaymentRequest); // TODO What should happen when create fails?
 
-          if (typeof options.onReady !== 'undefined') {
-            addReadyEventToComponents(component, componentsReadyStatus, options.onReady);
-          }
+            if (typeof component.canMakePayment !== 'undefined' && !component.canMakePayment()) {
+              console.log('can make paymenet?', component.canMakePayment());
+              clearComponentFromDOM(parent, headerId, bodyId);
+              return;
+            }
 
-          addClientEventsToComponent(events, component);
-          component.mount(componentHolder.id);
-          componentsMounted[paymentMethod.code] = component;
+            if (typeof options.onReady !== 'undefined') {
+              addReadyEventToComponents(component, componentsReadyStatus, options.onReady);
+            }
 
-          if (paymentMethod.standaloneButton) {
-            addStandaloneButtonOptions(component, options);
+            addClientEventsToComponent(events, component);
+            component.mount(componentHolder.id);
+            componentsMounted[paymentMethod.code] = component;
+
+            if (paymentMethod.standaloneButton) {
+              addStandaloneButtonOptions(component, options);
+            }
+          } catch (e) {
+            console.log('error', e);
           }
         }
       });
