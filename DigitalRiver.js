@@ -23583,6 +23583,8 @@ function paymentAuthorization(event, processPayment, instanceData) {
       instanceData.applepaySession.abort();
       Object(_app_components_payment_api_events__WEBPACK_IMPORTED_MODULE_5__["emitComponentCancelled"])(instanceData.componentData);
     }
+  }).catch(function (error) {
+    console.error('paymentAuthorization error', error);
   });
 }
 /**
@@ -24224,7 +24226,7 @@ function mountDropin(key, options, createSource, createElement) {
         },
         paymentMethods: paymentMethodResponse
       };
-      console.error('8');
+      console.error('9');
       mockedResponse.paymentMethods.forEach(function (availablePaymentMethod) {
         var paymentMethod = supportedPaymentMethods.find(function (paymentMethod) {
           return paymentMethod.type === availablePaymentMethod.type;
