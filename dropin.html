@@ -554,6 +554,61 @@
 
     const dropinGoogleSettings = getDefaultGooglePayData();
 
+    const applePayPaymentRequest = digitalRiverPayments.paymentRequest({
+      country: "us",
+      currency: "USD",
+      total: {
+        label: "Your Order Total",
+        amount: 1,
+        isPending: false
+      },
+      displayItems: [
+        {
+          label: "Subtotal",
+          amount: 1,
+          isPending: false
+        },
+        {
+          label: "Shipping",
+          amount: 0,
+          isPending: false
+        }
+      ],
+      //shippingOptions: shippingOptions,
+      requestShipping: false,
+      style: {
+        buttonType: "plain",
+        buttonColor: "dark",
+        buttonLanguage: "en"
+      },
+      waitOnClick: true
+    });
+
+    updatedAppleInfo = {
+      total: {
+        label: "Order Total after update",
+        amount: 2,
+        isPending: false
+      },
+      displayItems: [
+        {
+          label: "subtotal after update",
+          amount: 1,
+          isPending: false
+        },
+        {
+          label: "shipping after update",
+          amount: 0,
+          isPending: false
+        }
+      ],
+      style: {
+        buttonType: "buy",
+        buttonColor: "light",
+        buttonLanguage: "fr"
+      }
+    };
+
     const sourceData = {
       "usage": "single",
       "owner": owner,
@@ -605,7 +660,7 @@
           data: dropinGoogleSettings, // TODO Need to cater for this
         },
         applePay: {
-          data: dropinGoogleSettings, // TODO Need to cater for this
+          data: applePayPaymentRequest, // TODO Need to cater for this
         },
         payPal: {
           style: {

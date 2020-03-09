@@ -24208,7 +24208,6 @@ function mountDropin(key, options, createSource, createElement) {
             var component = createElement(paymentMethod.code, componentOptionsOrPaymentRequest); // TODO What should happen when create fails?
 
             if (typeof component.canMakePayment !== 'undefined' && !component.canMakePayment()) {
-              console.log('can make paymenet?', component.canMakePayment());
               clearComponentFromDOM(parent, headerId, bodyId);
               return;
             }
