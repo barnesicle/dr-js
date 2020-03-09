@@ -19473,7 +19473,7 @@ function createElements(controllerId, key, options) {
     cardnumber: {
       parentId: 'DRCardNumber',
       options: {
-        placeholderText: options.cardNumberPlaceholderText || '1234 5678 9012 3456'
+        placeholderText: '1234 5678 9012 3456'
       },
       focus: false,
       empty: true,
@@ -19482,7 +19482,7 @@ function createElements(controllerId, key, options) {
     cardexpiration: {
       parentId: 'DRCardExpiration',
       options: {
-        placeholderText: options.cardExpirationPlaceholderText || 'MM/YY'
+        placeholderText: 'MM/YY'
       },
       focus: false,
       empty: true,
@@ -19491,7 +19491,7 @@ function createElements(controllerId, key, options) {
     cardcvv: {
       parentId: 'DRCardCvv',
       options: {
-        placeholderText: options.cardCvvPlaceholderText || '123'
+        placeholderText: '123'
       },
       focus: false,
       empty: true,

@@ -389,7 +389,7 @@
                 </div>
               </div>
             </div>
-            <br />Drop in example:<br />
+            <br />
             <div id="dropin"></div>
           </div>
         </div>
@@ -552,9 +552,9 @@
     digitalRiverPayments = new DigitalRiver(apiKey, instanceOptions);
 
 
-    const dropinGoogleSettings = getDefaultGooglePayData();
-
-    const applePayPaymentRequest = digitalRiverPayments.paymentRequest({
+    // FR: e40a04e1-3cf8-47a1-acf5-c6eb14c0df8c
+    // US: 8d6df7ce-2a43-4edf-b57c-b5c9bac08515
+    const applePayPaymentRequest = {
       country: "us",
       currency: "USD",
       total: {
@@ -582,7 +582,7 @@
         buttonLanguage: "en"
       },
       waitOnClick: true
-    });
+    };
 
     updatedAppleInfo = {
       total: {
@@ -607,17 +607,6 @@
         buttonColor: "light",
         buttonLanguage: "fr"
       }
-    };
-
-    const sourceData = {
-      "usage": "single",
-      "owner": owner,
-      "amount": 100,
-      "currency": "USD",
-      "onlineBanking" : {
-        "returnUrl" : window.location.href,
-        "cancelUrl" : window.location.href,
-      },
     };
 
     const options = {
@@ -657,10 +646,17 @@
           placeholderText: "Select a Bank",
         },
         googlePay: {
-          data: dropinGoogleSettings, // TODO Need to cater for this
+          style: {
+            buttonType: 'plain',
+            buttonColor: 'dark',
+            buttonLanguage: 'en'
+          }
         },
         applePay: {
           data: applePayPaymentRequest, // TODO Need to cater for this
+        },
+        konbini: {
+          style: styles,
         },
         payPal: {
           style: {
@@ -671,7 +667,7 @@
             layout: 'horizontal',
             fundingicons: 'false'
           },
-          sourceData: { // NOTE: This goes away when sessions are used.
+          sourceData: { // TODO: NOTE: This goes away when sessions are used.
             type: 'payPal',
             amount: 914.14,
             currency: 'USD',
@@ -702,31 +698,23 @@
               }
             }
           },
-          events: {
-            ready: function (event) {
-              console.log('ready event for ', event);
-            },
-            change: function (event) {
-              console.log('change event for ', event);
-            }
-          }
         },
       },
       onSuccess: function (data) {
-        console.log('Returned data to client', data);
-        responseLog('Success ' + JSON.stringify(data))
+        console.log('onSuccess - Returned data to client', data);
+        responseLog('onSuccess ' + JSON.stringify(data, null, '\t'))
       },
       onError: function (data) {
-        console.log('Returned data to client', data);
-        responseLog('Error ' + JSON.stringify(data))
+        console.log('onError - Returned data to client', data);
+        responseLog('onError ' + JSON.stringify(data, null, '\t'))
       },
-      onReady: function(data) {
-        responseLog('Dropin Ready')
+      onReady: function() {
+        responseLog('onReady - Dropin')
       },
 
     };
 
-    digitalRiverPayments.createDropin(options, sourceData).mount('dropin');
+    digitalRiverPayments.createDropin(options).mount('dropin');
 
   }
 

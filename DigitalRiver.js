@@ -19861,7 +19861,7 @@ function createElements(controllerId, key, options) {
     cardnumber: {
       parentId: 'DRCardNumber',
       options: {
-        placeholderText: options.cardNumberPlaceholderText || '1234 5678 9012 3456'
+        placeholderText: '1234 5678 9012 3456'
       },
       focus: false,
       empty: true,
@@ -19870,7 +19870,7 @@ function createElements(controllerId, key, options) {
     cardexpiration: {
       parentId: 'DRCardExpiration',
       options: {
-        placeholderText: options.cardExpirationPlaceholderText || 'MM/YY'
+        placeholderText: 'MM/YY'
       },
       focus: false,
       empty: true,
@@ -19879,7 +19879,7 @@ function createElements(controllerId, key, options) {
     cardcvv: {
       parentId: 'DRCardCvv',
       options: {
-        placeholderText: options.cardCvvPlaceholderText || '123'
+        placeholderText: '123'
       },
       focus: false,
       empty: true,
@@ -20798,7 +20798,12 @@ function createCompleteFunction(resolve, paymentRequestResponseData) {
 
 function processPayment(paymentRequestData, resolve, instanceData) {
   var complete = createCompleteFunction(resolve, paymentRequestData);
-  var paymentServiceRequest = Object(_payment_api__WEBPACK_IMPORTED_MODULE_1__["paymentRequestApiResponseToPaymentServiceRequest"])(paymentRequestData, instanceData.getPaymentOptions()); // Send payment / credit card data to controller to call payment service
+  var paymentServiceRequest = Object(_payment_api__WEBPACK_IMPORTED_MODULE_1__["paymentRequestApiResponseToPaymentServiceRequest"])(paymentRequestData, instanceData.getPaymentOptions());
+
+  if (typeof instanceData.getPaymentOptions().billingAddress !== 'undefined') {
+    paymentServiceRequest.owner = instanceData.getPaymentOptions().billingAddress;
+  } // Send payment / credit card data to controller to call payment service
+
 
   Object(_google_apple_pay_events__WEBPACK_IMPORTED_MODULE_3__["sendCreateSourceRequest"])(instanceData.controllerEmitter, instanceData.componentData, paymentRequestData, paymentServiceRequest, _payment_api__WEBPACK_IMPORTED_MODULE_1__["toSourceEventData"], complete);
 }
@@ -21279,22 +21284,28 @@ function getDetailsFromOptions(paymentOptions) {
 
   return options;
 }
+
+function shouldRequestPayer(instanceData) {
+  return typeof instanceData.getPaymentOptions().sessionId === 'undefined';
+}
 /**
  * Returns Payment Request object
  * @param {object} instanceData
  * @returns {PaymentRequest}
  */
 
+
 function initPaymentRequest(instanceData) {
   // Convert the format of display items
   var details = getDetailsFromOptions(instanceData.getPaymentOptions()); //if no shipping option has been designated as selected, set first option as selected
 
   var updatedDetails = updateShippingOptionsSelectedAttribute(details);
+  var requestPayer = shouldRequestPayer(instanceData);
   var options = {
     requestShipping: updatedDetails.requestShipping,
-    requestPayerEmail: true,
-    requestPayerName: true,
-    requestPayerPhone: true
+    requestPayerEmail: requestPayer,
+    requestPayerName: requestPayer,
+    requestPayerPhone: requestPayer
   };
   var request = createRequest(instanceData.supportedInstruments, updatedDetails, options);
   instanceData.events.forEach(function (event) {
@@ -22799,23 +22810,26 @@ function DigitalRiverPaymentRequest(data) {
     throw new Error(generateErrorMessage('total.amount', 'number'));
   }
 
-  if (typeof data.requestShipping === 'undefined' || typeof data.requestShipping !== 'boolean') {
-    throw new Error(generateErrorMessage('requestShipping', 'boolean'));
-  }
-
-  if (typeof data.displayItems === 'undefined' || !Array.isArray(data.displayItems)) {
-    throw new Error(generateErrorMessage('displayItems', 'array'));
-  }
-
-  data.displayItems.forEach(function (displayItem) {
-    if (!displayItem.label || typeof displayItem.label !== 'string') {
-      throw new Error(generateErrorMessage('displayItem.label', 'string'));
+  if (typeof data.sessionId === 'undefined') {
+    if (typeof data.requestShipping === 'undefined' || typeof data.requestShipping !== 'boolean') {
+      throw new Error(generateErrorMessage('requestShipping', 'boolean'));
     }
 
-    if (typeof displayItem.amount === 'undefined' || typeof displayItem.amount !== 'number') {
-      throw new Error(generateErrorMessage('displayItem.amount', 'number'));
+    if (typeof data.displayItems === 'undefined' || !Array.isArray(data.displayItems)) {
+      throw new Error(generateErrorMessage('displayItems', 'array'));
     }
-  });
+
+    data.displayItems.forEach(function (displayItem) {
+      if (!displayItem.label || typeof displayItem.label !== 'string') {
+        throw new Error(generateErrorMessage('displayItem.label', 'string'));
+      }
+
+      if (typeof displayItem.amount === 'undefined' || typeof displayItem.amount !== 'number') {
+        throw new Error(generateErrorMessage('displayItem.amount', 'number'));
+      }
+    });
+  }
+
   this.data = data;
 }
 /**
@@ -23966,12 +23980,13 @@ function getWarrantyInformation(updatedLocale, businessEntityName) {
 /*!*************************************!*\
   !*** ./src/client/create-dropin.js ***!
   \*************************************/
-/*! exports provided: addStandaloneButtonOptions, mountDropin, handleRedirectSource */
+/*! exports provided: addStandaloneButtonOptions, getSessionPaymentRequest, mountDropin, handleRedirectSource */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addStandaloneButtonOptions", function() { return addStandaloneButtonOptions; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getSessionPaymentRequest", function() { return getSessionPaymentRequest; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mountDropin", function() { return mountDropin; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleRedirectSource", function() { return handleRedirectSource; });
 /* harmony import */ var _dataStore__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./dataStore */ "./src/client/dataStore.js");
@@ -24100,13 +24115,6 @@ var supportedPaymentMethods = [{
   needsPayButton: true,
   standaloneButton: false,
   onlyButton: true
-}, {
-  name: 'Direct Debit GB',
-  code: 'directdebitgb',
-  type: 'directDebitGb',
-  needsPayButton: true,
-  standaloneButton: false,
-  onlyButton: true
 }];
 
 function paymentMethodNotSupported(paymentMethod) {
@@ -24137,6 +24145,25 @@ function addStandaloneButtonOptions(component, options) {
   });
   component.on('shippingoptionchange', function (event) {
     runUpdateWith(event, {});
+  });
+}
+function getSessionPaymentRequest(options, sessionInformation, providedStyle) {
+  var style = typeof providedStyle !== 'undefined' ? providedStyle : {
+    buttonType: 'plain',
+    buttonColor: 'light',
+    buttonLanguage: 'en'
+  };
+  return new _DigitalRiverPaymentRequest__WEBPACK_IMPORTED_MODULE_1__["default"]({
+    sessionId: options.sessionId,
+    country: sessionInformation.country,
+    currency: sessionInformation.currency,
+    total: {
+      label: 'Order Total',
+      // TODO Localize
+      amount: sessionInformation.amount
+    },
+    style: style,
+    billingAddress: options.billingAddress
   });
 }
 function mountDropin(key, options, createSource, createElement) {
@@ -24200,7 +24227,7 @@ function mountDropin(key, options, createSource, createElement) {
         if (!paymentMethod.onlyButton) {
           var componentOptionsKey = findOptionsKey(options.paymentMethodConfiguration, paymentMethod);
           var componentOptions = typeof componentOptionsKey !== 'undefined' && typeof options.paymentMethodConfiguration !== 'undefined' && typeof options.paymentMethodConfiguration[componentOptionsKey] !== 'undefined' ? options.paymentMethodConfiguration[componentOptionsKey] : {};
-          var componentOptionsOrPaymentRequest = paymentMethod.code === 'googlepay' ? new _DigitalRiverPaymentRequest__WEBPACK_IMPORTED_MODULE_1__["default"](componentOptions.data) : componentOptions;
+          var componentOptionsOrPaymentRequest = paymentMethod.code === 'googlepay' || paymentMethod.code === 'applepay' ? getSessionPaymentRequest(options, mockedResponse.sessionInformation, componentOptions.style) : componentOptions;
           var events = Object.assign({}, componentOptions.events);
           delete componentOptionsOrPaymentRequest.events;
 

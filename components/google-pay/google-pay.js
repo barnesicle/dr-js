@@ -21272,7 +21272,12 @@ function createCompleteFunction(resolve, paymentRequestResponseData) {
 
 function processPayment(paymentRequestData, resolve, instanceData) {
   var complete = createCompleteFunction(resolve, paymentRequestData);
-  var paymentServiceRequest = Object(_payment_api__WEBPACK_IMPORTED_MODULE_1__["paymentRequestApiResponseToPaymentServiceRequest"])(paymentRequestData, instanceData.getPaymentOptions()); // Send payment / credit card data to controller to call payment service
+  var paymentServiceRequest = Object(_payment_api__WEBPACK_IMPORTED_MODULE_1__["paymentRequestApiResponseToPaymentServiceRequest"])(paymentRequestData, instanceData.getPaymentOptions());
+
+  if (typeof instanceData.getPaymentOptions().billingAddress !== 'undefined') {
+    paymentServiceRequest.owner = instanceData.getPaymentOptions().billingAddress;
+  } // Send payment / credit card data to controller to call payment service
+
 
   Object(_google_apple_pay_events__WEBPACK_IMPORTED_MODULE_3__["sendCreateSourceRequest"])(instanceData.controllerEmitter, instanceData.componentData, paymentRequestData, paymentServiceRequest, _payment_api__WEBPACK_IMPORTED_MODULE_1__["toSourceEventData"], complete);
 }
@@ -21753,22 +21758,28 @@ function getDetailsFromOptions(paymentOptions) {
 
   return options;
 }
+
+function shouldRequestPayer(instanceData) {
+  return typeof instanceData.getPaymentOptions().sessionId === 'undefined';
+}
 /**
  * Returns Payment Request object
  * @param {object} instanceData
  * @returns {PaymentRequest}
  */
 
+
 function initPaymentRequest(instanceData) {
   // Convert the format of display items
   var details = getDetailsFromOptions(instanceData.getPaymentOptions()); //if no shipping option has been designated as selected, set first option as selected
 
   var updatedDetails = updateShippingOptionsSelectedAttribute(details);
+  var requestPayer = shouldRequestPayer(instanceData);
   var options = {
     requestShipping: updatedDetails.requestShipping,
-    requestPayerEmail: true,
-    requestPayerName: true,
-    requestPayerPhone: true
+    requestPayerEmail: requestPayer,
+    requestPayerName: requestPayer,
+    requestPayerPhone: requestPayer
   };
   var request = createRequest(instanceData.supportedInstruments, updatedDetails, options);
   instanceData.events.forEach(function (event) {
