@@ -23575,6 +23575,8 @@ function paymentAuthorization(event, processPayment, instanceData) {
   return new Promise(function (resolve) {
     return processPayment(event, resolve, instanceData);
   }).then(function (data) {
+    console.log('data', data);
+
     if (data.status === 0) {
       instanceData.options = Object(_app_components_options__WEBPACK_IMPORTED_MODULE_3__["mergeOptions"])(instanceData.options, data);
       delete instanceData.options.errors;
