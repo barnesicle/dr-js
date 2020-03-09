@@ -23112,11 +23112,11 @@ function setApplePayPaymentRequest(options) {
 
   if (options.hasOwnProperty('total')) {
     applePaymentRequest.total = convertTotalToAppleFormat(options.total);
-  }
+  } //applePaymentRequest.requestPayerEmail = false;
+  //applePaymentRequest.requestPayerName = false;
+  //applePaymentRequest.requestPayerPhone = false;
 
-  applePaymentRequest.requestPayerEmail = false;
-  applePaymentRequest.requestPayerName = false;
-  applePaymentRequest.requestPayerPhone = false;
+
   return applePaymentRequest;
 }
 /**
