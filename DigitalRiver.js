@@ -23685,32 +23685,36 @@ function createApplePay() {
 
 
   function onApplePayButtonClick() {
-    processAppleClickEvent(instanceData, _applepay_utils__WEBPACK_IMPORTED_MODULE_4__["sendAppleClickEvent"]);
-    var applepayPaymentRequest = Object(_applepay_utils__WEBPACK_IMPORTED_MODULE_4__["setApplePayPaymentRequest"])(instanceData.options);
-    var applepaySession = Object(_applepay_utils__WEBPACK_IMPORTED_MODULE_4__["getApplePaySession"])(version, applepayPaymentRequest);
+    try {
+      processAppleClickEvent(instanceData, _applepay_utils__WEBPACK_IMPORTED_MODULE_4__["sendAppleClickEvent"]);
+      var applepayPaymentRequest = Object(_applepay_utils__WEBPACK_IMPORTED_MODULE_4__["setApplePayPaymentRequest"])(instanceData.options);
+      var applepaySession = Object(_applepay_utils__WEBPACK_IMPORTED_MODULE_4__["getApplePaySession"])(version, applepayPaymentRequest);
 
-    applepaySession.onvalidatemerchant = function (event) {
-      return handleValidateMerchant(event, instanceData);
-    };
+      applepaySession.onvalidatemerchant = function (event) {
+        return handleValidateMerchant(event, instanceData);
+      };
 
-    applepaySession.onshippingcontactselected = function (event) {
-      return shippingAddressChange(event, _applepay_utils__WEBPACK_IMPORTED_MODULE_4__["sendShippingAddressChangeEvent"], instanceData);
-    };
+      applepaySession.onshippingcontactselected = function (event) {
+        return shippingAddressChange(event, _applepay_utils__WEBPACK_IMPORTED_MODULE_4__["sendShippingAddressChangeEvent"], instanceData);
+      };
 
-    applepaySession.onshippingmethodselected = function (event) {
-      return shippingOptionChange(event, _applepay_utils__WEBPACK_IMPORTED_MODULE_4__["sendShippingMethodChangeEvent"], instanceData);
-    };
+      applepaySession.onshippingmethodselected = function (event) {
+        return shippingOptionChange(event, _applepay_utils__WEBPACK_IMPORTED_MODULE_4__["sendShippingMethodChangeEvent"], instanceData);
+      };
 
-    applepaySession.onpaymentauthorized = function (event) {
-      return paymentAuthorization(event, processPayment, instanceData);
-    };
+      applepaySession.onpaymentauthorized = function (event) {
+        return paymentAuthorization(event, processPayment, instanceData);
+      };
 
-    applepaySession.oncancel = function () {
-      return handleCancel(componentData);
-    };
+      applepaySession.oncancel = function () {
+        return handleCancel(componentData);
+      };
 
-    applepaySession.begin();
-    instanceData.applepaySession = applepaySession;
+      applepaySession.begin();
+      instanceData.applepaySession = applepaySession;
+    } catch (e) {
+      console.log('err', e);
+    }
   }
   /**
    * Sends cancel event data to controller to be sent on to client
