@@ -24143,7 +24143,25 @@ function addStandaloneButtonOptions(component, options) {
   component.on('shippingaddresschange', function (event) {
     console.log('running shippingaddresschange');
     runUpdateWith(event, {
-      status: 'success'
+      status: 'success',
+      shippingOptions: [{
+        id: "free-shipping 2 ",
+        label: "Free Shipping 2",
+        amount: 0,
+        detail: "Will arrive in a few days",
+        selected: true
+      }, {
+        id: "overnight-shipping 2",
+        label: "Óvêrnight ShiÞþing 2",
+        amount: 10,
+        detail: "Will arrive tomorrow morning"
+      }],
+      total: '101.00',
+      style: {
+        buttonType: "buy",
+        buttonColor: "light",
+        buttonLanguage: "fr"
+      }
     });
   });
   component.on('shippingoptionchange', function (event) {
@@ -24202,7 +24220,7 @@ function mountDropin(key, options, createSource, createElement) {
         },
         paymentMethods: paymentMethodResponse
       };
-      console.error('4');
+      console.error('5');
       mockedResponse.paymentMethods.forEach(function (availablePaymentMethod) {
         var paymentMethod = supportedPaymentMethods.find(function (paymentMethod) {
           return paymentMethod.type === availablePaymentMethod.type;
