@@ -23613,6 +23613,9 @@ function shippingAddressChange(event, sendShippingAddressChangeEvent, instanceDa
   getUpdatedDetails.then(function (data) {
     console.log('shippingAddressChange', data);
     instanceData.applepaySession.completeShippingContactSelection(data);
+    console.log('shippingAddressChange 2', data);
+  }).catch(function (error) {
+    console.error('shippingAddressChange error', error);
   });
 }
 /**
@@ -24199,7 +24202,7 @@ function mountDropin(key, options, createSource, createElement) {
         },
         paymentMethods: paymentMethodResponse
       };
-      console.error('3');
+      console.error('4');
       mockedResponse.paymentMethods.forEach(function (availablePaymentMethod) {
         var paymentMethod = supportedPaymentMethods.find(function (paymentMethod) {
           return paymentMethod.type === availablePaymentMethod.type;
