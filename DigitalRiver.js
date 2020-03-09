@@ -23126,11 +23126,11 @@ function setApplePayPaymentRequest(options) {
 
   if (options.hasOwnProperty('total')) {
     applePaymentRequest.total = convertTotalToAppleFormat(options.total);
-  } //applePaymentRequest.requestPayerEmail = false;
-  //applePaymentRequest.requestPayerName = false;
-  //applePaymentRequest.requestPayerPhone = false;
+  }
 
-
+  applePaymentRequest.requestPayerEmail = false;
+  applePaymentRequest.requestPayerName = false;
+  applePaymentRequest.requestPayerPhone = false;
   return applePaymentRequest;
 }
 /**
@@ -23575,8 +23575,6 @@ function paymentAuthorization(event, processPayment, instanceData) {
   return new Promise(function (resolve) {
     return processPayment(event, resolve, instanceData);
   }).then(function (data) {
-    console.log('data', data);
-
     if (data.status === 0) {
       instanceData.options = Object(_app_components_options__WEBPACK_IMPORTED_MODULE_3__["mergeOptions"])(instanceData.options, data);
       delete instanceData.options.errors;
@@ -24228,7 +24226,7 @@ function mountDropin(key, options, createSource, createElement) {
         },
         paymentMethods: paymentMethodResponse
       };
-      console.error('12');
+      console.error('13');
       mockedResponse.paymentMethods.forEach(function (availablePaymentMethod) {
         var paymentMethod = supportedPaymentMethods.find(function (paymentMethod) {
           return paymentMethod.type === availablePaymentMethod.type;
