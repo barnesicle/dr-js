@@ -23575,6 +23575,8 @@ function paymentAuthorization(event, processPayment, instanceData) {
   return new Promise(function (resolve) {
     return processPayment(event, resolve, instanceData);
   }).then(function (data) {
+    console.log('paymentAuthorization', data);
+
     if (data.status === 0) {
       instanceData.options = Object(_app_components_options__WEBPACK_IMPORTED_MODULE_3__["mergeOptions"])(instanceData.options, data);
       delete instanceData.options.errors;
@@ -23597,7 +23599,6 @@ function handleValidateMerchant(event, instanceData) {
   return validateMerchant(instanceData.controllerEmitter, event.validationURL).then(function (response) {
     instanceData.applepaySession.completeMerchantValidation(response.data.data);
   }).catch(function (err) {
-    console.error('handleValidateMerchant', err);
     throw new Error(err);
   });
 }
@@ -24145,29 +24146,7 @@ function addStandaloneButtonOptions(component, options) {
   component.on('shippingaddresschange', function (event) {
     console.log('running shippingaddresschange');
     runUpdateWith(event, {
-      status: 'success',
-      shippingOptions: [{
-        id: 'free-shipping 2 ',
-        label: 'Free Shipping 2',
-        amount: 0,
-        detail: 'Will arrive in a few days',
-        selected: true
-      }, {
-        id: 'overnight-shipping 2',
-        label: 'Óvêrnight ShiÞþing 2',
-        amount: 10,
-        detail: 'Will arrive tomorrow morning'
-      }],
-      total: {
-        label: 'Order Total after update',
-        amount: 50,
-        isPending: false
-      },
-      style: {
-        buttonType: 'buy',
-        buttonColor: 'light',
-        buttonLanguage: 'fr'
-      }
+      status: 'success'
     });
   });
   component.on('shippingoptionchange', function (event) {
@@ -24226,7 +24205,7 @@ function mountDropin(key, options, createSource, createElement) {
         },
         paymentMethods: paymentMethodResponse
       };
-      console.error('13');
+      console.error('14');
       mockedResponse.paymentMethods.forEach(function (availablePaymentMethod) {
         var paymentMethod = supportedPaymentMethods.find(function (paymentMethod) {
           return paymentMethod.type === availablePaymentMethod.type;

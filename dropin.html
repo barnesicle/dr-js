@@ -475,62 +475,6 @@
     });
   }
 
-  function getDefaultGooglePayData() {
-
-    const lineItems = [
-      {
-        label: "Some Product",
-        amount: 10,
-        isPending: false
-      },
-      {
-        label: "Discount (20% off)",
-        amount: 5,
-        isPending: false
-      },
-      {
-        label: "Sales Tax",
-        amount: 3,
-        isPending: true
-      }
-    ];
-
-    const shippingOptions = [
-      {
-        id: "free-shipping",
-        label: "Free Shipping",
-        amount: 0,
-        detail: "Will arrive in a few days"
-      },
-      {
-        id: "overnight-shipping",
-        label: "Overnight Shipping",
-        amount: 10,
-        detail: "Will arrive tomorrow morning"
-      }
-    ];
-
-    return {
-      country: "us",
-      currency: "USD",
-      total: {
-        label: "Order Total",
-        amount: 6.20,
-        isPending: true
-      },
-      displayItems: lineItems,
-      shippingOptions: shippingOptions,
-      requestShipping: true,
-      style: {
-        buttonType: "plain",
-        buttonColor: "light",
-        buttonLanguage: "en"
-      },
-      waitOnClick: false
-    };
-
-  }
-
   function onLoad() {
     var isIE = !!window.MSInputMethodContext && !!document.documentMode;
     //console.log(isIE);
