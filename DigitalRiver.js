@@ -24138,11 +24138,13 @@ function addStandaloneButtonOptions(component, options) {
     runUpdateWith(event, {});
   });
   component.on('shippingaddresschange', function (event) {
+    console.log('running shippingaddresschange');
     runUpdateWith(event, {
       status: 'success'
     });
   });
   component.on('shippingoptionchange', function (event) {
+    console.log('running shippingoptionchange');
     runUpdateWith(event, {});
   });
 }
@@ -24197,7 +24199,7 @@ function mountDropin(key, options, createSource, createElement) {
         },
         paymentMethods: paymentMethodResponse
       };
-      console.error('2');
+      console.error('3');
       mockedResponse.paymentMethods.forEach(function (availablePaymentMethod) {
         var paymentMethod = supportedPaymentMethods.find(function (paymentMethod) {
           return paymentMethod.type === availablePaymentMethod.type;
@@ -24230,28 +24232,23 @@ function mountDropin(key, options, createSource, createElement) {
           var componentOptionsOrPaymentRequest = paymentMethod.code === 'googlepay' || paymentMethod.code === 'applepay' ? getSessionPaymentRequest(options, mockedResponse.sessionInformation, componentOptions.style) : componentOptions;
           var events = Object.assign({}, componentOptions.events);
           delete componentOptionsOrPaymentRequest.events;
+          var component = createElement(paymentMethod.code, componentOptionsOrPaymentRequest); // TODO What should happen when create fails?
 
-          try {
-            var component = createElement(paymentMethod.code, componentOptionsOrPaymentRequest); // TODO What should happen when create fails?
+          if (typeof component.canMakePayment !== 'undefined' && !component.canMakePayment()) {
+            clearComponentFromDOM(parent, headerId, bodyId);
+            return;
+          }
 
-            if (typeof component.canMakePayment !== 'undefined' && !component.canMakePayment()) {
-              clearComponentFromDOM(parent, headerId, bodyId);
-              return;
-            }
+          if (typeof options.onReady !== 'undefined') {
+            addReadyEventToComponents(component, componentsReadyStatus, options.onReady);
+          }
 
-            if (typeof options.onReady !== 'undefined') {
-              addReadyEventToComponents(component, componentsReadyStatus, options.onReady);
-            }
+          addClientEventsToComponent(events, component);
+          component.mount(componentHolder.id);
+          componentsMounted[paymentMethod.code] = component;
 
-            addClientEventsToComponent(events, component);
-            component.mount(componentHolder.id);
-            componentsMounted[paymentMethod.code] = component;
-
-            if (paymentMethod.standaloneButton) {
-              addStandaloneButtonOptions(component, options);
-            }
-          } catch (e) {
-            console.log('error', e);
+          if (paymentMethod.standaloneButton) {
+            addStandaloneButtonOptions(component, options);
           }
         }
       });
