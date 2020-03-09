@@ -12154,11 +12154,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "config", function() { return config; });
 // Holds any configuration data that changes depending on environment
 var config = {
-  domain: "https://barnesicle.github.io",
+  domain: "https://github.digitalriverws.net",
   // eslint-disable-line no-undef
   paymentServiceUrl: "https://api.digitalriver.com/payments/sources",
   // eslint-disable-line no-undef
-  basePath: "/dr-js" || false,
+  basePath: "/pages/lbarnes/drjs-demo" || false,
   // eslint-disable-line no-undef
   applePayMerchantId: "merchant.com.test.cert.digitalriver",
   // eslint-disable-line no-undef
@@ -12178,7 +12178,11 @@ var config = {
   // eslint-disable-line no-undef
   originTestKey: "pub.v2.8115061157590058.aHR0cDovL2xvY2FsaG9zdDo4MDgw.FF9fc99f70OC7jS9Ngmqj8z1H_cmKZMXQo_r0cnPAOg",
   // eslint-disable-line no-undef
-  paymentServiceBaseUrl: "https://api.digitalriver.com/payments" // eslint-disable-line no-undef
+  paymentServiceBaseUrl: "https://api.digitalriver.com/payments",
+  // eslint-disable-line no-undef
+  paypalRedirectBaseUrl: "https://payments-test.digitalriver.com/redirect/",
+  // eslint-disable-line no-undef
+  paymentMethodsUrl: "https://api.digitalriver.com/payments/payment-methods" // eslint-disable-line no-undef
 
 };
 
@@ -12502,12 +12506,12 @@ function formatFailedSourceError(source) {
 /*!*************************************************************!*\
   !*** ./src/app/components/controller/controller-konbini.js ***!
   \*************************************************************/
-/*! exports provided: runStoresHandleResponse, handleKonbiniCreateSource */
+/*! exports provided: runGetKonbiniStoresHandleResponse, handleKonbiniCreateSource */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "runStoresHandleResponse", function() { return runStoresHandleResponse; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "runGetKonbiniStoresHandleResponse", function() { return runGetKonbiniStoresHandleResponse; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleKonbiniCreateSource", function() { return handleKonbiniCreateSource; });
 /* harmony import */ var _payment_service_request__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../payment-service-request */ "./src/app/payment-service-request.js");
 /* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../config */ "./src/app/components/config.js");
@@ -12515,7 +12519,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function runStoresHandleResponse(apiKey) {
+function runGetKonbiniStoresHandleResponse(apiKey) {
   return Object(_payment_service_request__WEBPACK_IMPORTED_MODULE_0__["paymentServiceGetRequest"])(apiKey, "".concat(_config__WEBPACK_IMPORTED_MODULE_1__["config"].paymentServiceBaseUrl, "/konbini/stores")).then(function (response) {
     return response.data;
   }).catch(function () {

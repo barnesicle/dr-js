@@ -57,7 +57,7 @@
       border: none;
     }
 
-    .custom--base, .myCustomBase2 {
+    .custom--base, .myCustomBase2, .cc--base {
       border:1px solid #ced4da;
       margin:0 0.2rem;
       border-radius:.25rem;
@@ -70,7 +70,7 @@
       box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
     }
 
-    .custom--focus {
+    .custom--focus, .cc--focus {
       border-color: #80bdff;
       background-color: rgba(128, 189, 255, 0.5);
       outline: 0;
@@ -83,14 +83,14 @@
       box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.31);
     }
 
-    .custom--invalid {
+    .custom--invalid, .cc--invalid {
       border-color: #dc3545;
       background-color: rgba(220, 53, 69, 0.5);
       outline: 0;
       box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.31);
     }
 
-    .DRElement--complete {
+    .DRElement--complete, .cc--complete {
       border-color: #28a745;
       outline: 0;
       box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.31);
@@ -109,7 +109,7 @@
       box-shadow: 0 0 0 0.2rem rgba(219, 69, 24, 0.31);
     }
 
-    .custom--empty {
+    .custom--empty, .cc--empty {
       border-color: #db4518;
       background-color: rgba(219, 69, 24, 0.5);
       outline: 0;
@@ -157,6 +157,7 @@
     .complianceCancellationLink {
       width: 160px;
     }
+
   </style>
 <script type="text/javascript" src="DigitalRiver.js"></script></head>
 
@@ -410,7 +411,11 @@
                       <!--apple pay loads here-->
                     </div>
                   </div>
-
+                  <div class="row">
+                    <div id="creditcard">
+                      <!--creditcard element loads here-->
+                    </div>
+                  </div>
                   <form id="payment-form">
                     <div class="row" id="creditCardPanel">
                       <div class="col-md-6 mb-3 paymentElement">
@@ -482,6 +487,14 @@
 
                     <div class="row">
                       <div class="col-md-12 mb-3 paymentElement">
+                        <div>
+                          <div id="offlinerefund"></div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-12 mb-3 paymentElement">
                         <div id="ibp">
                           <div id="ibpbanks"></div>
                         </div>
@@ -495,6 +508,7 @@
                           </div>
                       </div>
                     </div>
+
 
                     <hr class="mb-4">
                     <button id="addPaymentButton" class="btn btn-primary btn-lg btn-block" type="submit" onclick="addPayment()">Add Payment
@@ -677,8 +691,10 @@
 <script src="https://www.paypalobjects.com/api/checkout.js"></script>
 <script type="text/javascript">
   let apiKey = 'pk_hc_8e3f70c75f314c46855e840ba7a8baab';
+  // let apiKey = 'pk_test_d6b3712c81c640288142f204a88f3de5'; // NOTE: Use this key for paypal for test mode / to display mock page
   //let apiKey = 'cc203ec2d74e4002a7e341abd6df6eb5'; // DoDJS15
   let digitalRiverPayments;
+  let digitalRiverPayments2;
   let owner = {};
   let response = document.getElementById('response');
 
@@ -688,13 +704,14 @@
   let googlePayComponent;
   let applePayComponent;
   let ibpBanksComponent;
+  let offlineRefundComponent;
   let konbiniComponent;
+  let paypalComponent;
 
   let googlePayPaymentRequest;
   let googlePayUpdatePaymentRequest;
 
   let updatedAppleInfo;
-  let paypalSourceId;
 
   let ccNumComplete = false;
   let ccExpirationComplete = false;
@@ -736,13 +753,14 @@
       }
     },
     empty: {
-      color: '#db4518',
+      color: '#000000'
+      /*color: '#db4518',
       ':hover': {
         color: '#db4518'
       },
       '::placeholder': {
         color: '#db4518'
-      }
+      }*/
     },
 
   };
@@ -843,8 +861,9 @@
 
     }
 
-    const options = { 'locale': 'ko-KR'};
+    const options = { 'locale': 'en-US'};
     digitalRiverPayments = new DigitalRiver(apiKey, options);
+    digitalRiverPayments2 = new DigitalRiver(apiKey, options);
 
     let updatedccNumOptions = {
       placeholderText: 'Number',
@@ -857,6 +876,10 @@
     let ccCVVOptions = {
       placeholderText: 'CVV',
       style: styles
+    };
+    const offlineOptions = {
+      style: styles,
+      refundToken: 'fb19fceb-a5e7-454d-af1a-017b7bd73a5b'
     };
 
     googlePayPaymentRequest = digitalRiverPayments.paymentRequest(getDefaultGooglePayData());
@@ -965,6 +988,8 @@
       onlineBanking: { currency: 'EUR', country: 'DE' }
     });
 
+    offlineRefundComponent = digitalRiverPayments.createElement('offlinerefund', offlineOptions);
+
     googlePayComponent = digitalRiverPayments.createElement('googlepay', googlePayPaymentRequest);
     applePayComponent = digitalRiverPayments.createElement('applepay', applePayPaymentRequest);
 
@@ -978,6 +1003,7 @@
     creditCardCvvComponent.mount("cardcvv");
     ibpBanksComponent.mount('ibpbanks');
     konbiniComponent.mount('konbini');
+    offlineRefundComponent.mount('offlinerefund');
 
     if (googlePayComponent.canMakePayment()) {
       googlePayComponent.mount("google-pay");
@@ -1177,8 +1203,8 @@
                   if(details.hasOwnProperty('updateWith')) {
                     console.log('client sending updated shipping option info')
                     details.updateWith(updatedDetails);
-                  };
-                })
+                  }
+                });
         responseLog('sending info back to DR for Apple');
         responseLog(JSON.stringify(updatedDetails));
       }, 2000);
@@ -1298,6 +1324,14 @@
       responseLog(event.elementType + ' change received ' + JSON.stringify(event) + ' for ' + event.elementType);
     });
 
+    offlineRefundComponent.on('ready', function (event) {
+      responseLog( event.elementType + ' ready received ' + JSON.stringify(event) + ' for ' + event.elementType);
+    });
+
+    offlineRefundComponent.on('change', function (event) {
+      responseLog(event.elementType + ' change received ' + JSON.stringify(event) + ' for ' + event.elementType);
+    });
+
     konbiniComponent.on('ready', function (event) {
       responseLog( event.elementType + ' ready received ' + JSON.stringify(event) + ' for ' + event.elementType);
     });
@@ -1360,12 +1394,10 @@
           }
         }
       }
-    }
+    };
 
-    paypal.Button.render({
-      // Configure environment
-      env: 'sandbox',
-      locale: 'en_US',
+
+    paypalComponent = digitalRiverPayments.createElement('paypal', {
       style: {
         label: 'checkout',
         size: 'responsive',
@@ -1374,22 +1406,29 @@
         layout: 'horizontal',
         fundingicons: 'false'
       },
-      // Set up a payment
-      payment: function (data, actions) {
-        return digitalRiverPayments.createSource(paypalSourceData).then(function (result) {
-          responseLog('payPal create source ' + JSON.stringify(result));
-          paypalSourceId = result.source.id;
-          return result.source.payPal.token;
-        });
-      },
-      // Execute the payment
-      onAuthorize: function (data, actions) {
-        let source = {
-          sourceId: paypalSourceId
-        }
-        responseLog('payPal success ' + JSON.stringify(data)+','+ JSON.stringify(source));
-      }
-    }, '#paypal-btn');
+      sourceData: paypalSourceData
+    });
+
+    paypalComponent.mount('paypal-btn');
+
+    paypalComponent.on('ready', function(event) {
+      responseLog('paypal ready received ' + JSON.stringify(event));
+    });
+
+    paypalComponent.on('click', function(event) {
+      responseLog('paypal click ' + JSON.stringify(event));
+    });
+
+    paypalComponent.on('cancel', function(event) {
+      responseLog('paypal cancel ' + JSON.stringify(event));
+    });
+
+    paypalComponent.on('source', function(event) {
+      responseLog('paypal source was created');
+      responseLog(JSON.stringify(event));
+    });
+
+
   }
 
   function creditCardEvents() {
@@ -1418,6 +1457,7 @@
       ccNumComplete = event.complete;
       checkFormComplete();
     });
+
   }
 
   function responseLog(msg) {
@@ -1565,6 +1605,9 @@
       "onlineBanking" : {
         "returnUrl" : window.location.href,
         "cancelUrl" : window.location.href,
+
+      },
+      "creditCard" : {
 
       }
     };
@@ -1838,6 +1881,37 @@
             })
 
   }
+
+
+
+  //creditcard element js
+  const ccOptions = {
+    style: styles,
+    classes: {
+      base: 'cc--base',
+      focus: 'cc--focus',
+      invalid: 'cc--invalid',
+      empty: 'cc--empty',
+      complete: 'cc--complete',
+      webkitAutofill: 'cc--webkit-autofill'
+    }
+  };
+  const drCC = new DigitalRiver(apiKey);
+  const creditcard = drCC.createElement('creditcard', ccOptions);
+  creditcard.on('ready', function(event) {
+    responseLog('creditcard element is ready \n' + JSON.stringify(event))
+  });
+  creditcard.on('focus', function(event) {
+    responseLog('creditcard element is focused \n' + JSON.stringify(event))
+  });
+  creditcard.on('blur', function(event) {
+    responseLog('creditcard element is blurred \n' + JSON.stringify(event))
+  });
+  creditcard.on('change', function(event) {
+    responseLog('creditcard element changed \n' + JSON.stringify(event))
+  });
+
+  creditcard.mount('creditcard');
 </script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

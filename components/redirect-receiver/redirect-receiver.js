@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 25);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -18798,90 +18798,6 @@ var config = {
 
 /***/ }),
 
-/***/ "./src/app/components/controller/controller-adyen-create-source.js":
-/*!*************************************************************************!*\
-  !*** ./src/app/components/controller/controller-adyen-create-source.js ***!
-  \*************************************************************************/
-/*! exports provided: handleFingerPrintCreateSource, handleChallengeResultCreateSource */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleFingerPrintCreateSource", function() { return handleFingerPrintCreateSource; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleChallengeResultCreateSource", function() { return handleChallengeResultCreateSource; });
-/* harmony import */ var _client_createSource__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../client/createSource */ "./src/client/createSource.js");
-/* harmony import */ var _client_createComponent__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../client/createComponent */ "./src/client/createComponent.js");
-
-
-/**
- * Method to handle the finger print response and prepare the payload for createSource adyen.
- * @param adyenResponseFingerprint
- * @param sourceData
- * @return {Promise<never>|*|Promise<T | never>|undefined}
- */
-
-function handleFingerPrintCreateSource(adyenResponseFingerprint, sourceData) {
-  var clientSecret = sourceData.paymentData.clientSecret;
-
-  if (!clientSecret) {
-    return Promise.reject('Cannot send data to paymentservice because required data is missing.');
-  }
-
-  var sourceRequest = {
-    type: sourceData.paymentData.type,
-    creditCard: {
-      fingerprint: adyenResponseFingerprint
-    }
-  };
-  var clientSecretId = {
-    clientSecret: clientSecret.split('_')
-  };
-  return Object(_client_createSource__WEBPACK_IMPORTED_MODULE_0__["createSourceWithAdyen"])(sourceData.controllerId, sourceRequest, clientSecretId).then(function (response) {
-    if (typeof response !== 'undefined' && response.source !== null && response.source.state === 'requires_action' && response.source.nextAction !== null) {
-      Object(_client_createComponent__WEBPACK_IMPORTED_MODULE_1__["sendAdyenAction"])(sourceData.componentId, sourceData.controllerId, response.source, sourceData.resolve);
-      return response;
-    } else {
-      sourceData.resolve(response);
-      return response;
-    }
-  });
-}
-/**
- * Method to handle the challenge shopper response and prepare the payload for createSource adyen.
- * @param adyenResponse
- * @param sourceData
- * @return {Promise<never>|*|Promise<T | never>|undefined}
- */
-
-function handleChallengeResultCreateSource(adyenResponse, sourceData) {
-  var clientSecret = sourceData.paymentData.clientSecret;
-
-  if (!clientSecret) {
-    return Promise.reject('Cannot send data to paymentservice because required data is missing.');
-  }
-
-  var sourceRequest = {
-    type: sourceData.paymentData.type,
-    creditCard: {
-      challengeResult: adyenResponse
-    }
-  };
-  var clientSecretId = {
-    clientSecret: clientSecret.split('_')
-  };
-  return Object(_client_createSource__WEBPACK_IMPORTED_MODULE_0__["createSourceWithAdyen"])(sourceData.controllerId, sourceRequest, clientSecretId).then(function (response) {
-    if (typeof response !== 'undefined' && response.source !== null && response.source.state === 'requires_action' && response.source.nextAction !== null) {
-      Object(_client_createComponent__WEBPACK_IMPORTED_MODULE_1__["sendAdyenAction"])(sourceData.componentId, sourceData.controllerId, response.source, sourceData.resolve);
-      return response;
-    } else {
-      sourceData.resolve(response);
-      return response;
-    }
-  });
-}
-
-/***/ }),
-
 /***/ "./src/app/components/controller/controller-create-source-utils.js":
 /*!*************************************************************************!*\
   !*** ./src/app/components/controller/controller-create-source-utils.js ***!
@@ -19338,6 +19254,196 @@ function mergeOptions(options, newOptions) {
   }
 
   return options;
+}
+
+/***/ }),
+
+/***/ "./src/app/components/payment-component-data.js":
+/*!******************************************************!*\
+  !*** ./src/app/components/payment-component-data.js ***!
+  \******************************************************/
+/*! exports provided: generateComponentData */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "generateComponentData", function() { return generateComponentData; });
+/* harmony import */ var _client_createComponent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../client/createComponent */ "./src/client/createComponent.js");
+
+/**
+ * Returns component data
+ * @param {string} type
+ * @param {string} id
+ * @param {string} controllerId
+ */
+
+function generateComponentData(type, id, controllerId) {
+  var componentData = {
+    componentType: type,
+    componentId: id,
+    controller: {
+      id: controllerId
+    }
+  };
+
+  if (componentData.componentType === null) {
+    // Stops execution
+    throw new Error('Component does not have an Type.');
+  }
+
+  if (type !== 'applepay') {
+    componentData['prevState'] = {};
+  }
+
+  if (type === 'cardcvv') {
+    componentData['creditCardData'] = {};
+  }
+
+  if (componentData.componentId === null) {
+    // Stops execution
+    throw new Error('Component does not have an Id.');
+  }
+
+  if (componentData.controller.id === null) {
+    // Stops execution
+    throw new Error('Component requires a controller.');
+  }
+
+  componentData.controller.window = Object(_client_createComponent__WEBPACK_IMPORTED_MODULE_0__["getComponentWindow"])(componentData.controller.id);
+
+  if (componentData.controller.window === null) {
+    // Stops execution
+    throw new Error('Component cannot locate the controller window.');
+  }
+
+  return componentData;
+}
+
+/***/ }),
+
+/***/ "./src/app/components/querystring.js":
+/*!*******************************************!*\
+  !*** ./src/app/components/querystring.js ***!
+  \*******************************************/
+/*! exports provided: getQueryParameter, getControllerIdFromQueryString, getComponentIdFromQueryString, getActionFromQueryString */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getQueryParameter", function() { return getQueryParameter; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getControllerIdFromQueryString", function() { return getControllerIdFromQueryString; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getComponentIdFromQueryString", function() { return getComponentIdFromQueryString; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getActionFromQueryString", function() { return getActionFromQueryString; });
+/**
+ * Gets a query parameter that matches the name and value tests against the pattern
+ * @param {String} queryString 
+ * @param {String} paramName 
+ * @param {RegExp} pattern 
+ */
+function getQueryParameter(queryString, paramName, pattern) {
+  // URLSearchParams polyfill is 6kb https://github.com/WebReflection/url-search-params
+  // If we didn't need to support IE this could simpler:
+  // let params = new URLSearchParams(queryString);
+  // const value = params.get('controllerId');
+  // Manual query string parse for compatibility
+  if (!queryString) queryString = document.location.search;
+  if (!queryString) return null;
+  var paramString = queryString[0] === '?' ? queryString.slice(1) : queryString.slice(0);
+  if (!paramString) return null;
+  var params = paramString.split('&');
+  var len = params.length;
+
+  for (var i = 0; i < len; i++) {
+    var param = params[i].split('=');
+
+    if (param[0] === paramName) {
+      if (param.length <= 1) {
+        return '';
+      }
+
+      if (pattern.test(param[1])) {
+        return param[1];
+      }
+
+      return null;
+    }
+  }
+
+  return null;
+}
+/**
+ * Parses a controllerId parameter from a query string
+ * @param {String} queryString optional query string, uses document.location.search by default
+ */
+
+function getControllerIdFromQueryString(queryString) {
+  return getQueryParameter(queryString, 'controllerId', /^controller-[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/);
+}
+/**
+ * Parses a component id for a given type from a query string
+ * NOTE: An iframe could use window.name and not have to pass the component id in the URL at all
+ * @param {String} componentType
+ * @param {String} queryString
+ */
+
+function getComponentIdFromQueryString(componentType, queryString) {
+  var pattern = new RegExp('^' + componentType + '-[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$');
+  return getQueryParameter(queryString, 'componentId', pattern);
+}
+function getActionFromQueryString(queryString) {
+  var pattern = new RegExp('[A-Za-z]');
+  return getQueryParameter(queryString, 'action', pattern);
+}
+
+/***/ }),
+
+/***/ "./src/app/components/redirect-receiver/redirect-receiver.html":
+/*!*********************************************************************!*\
+  !*** ./src/app/components/redirect-receiver/redirect-receiver.html ***!
+  \*********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "redirect-receiver\\redirect-receiver.html";
+
+/***/ }),
+
+/***/ "./src/app/components/redirect-receiver/redirect-receiver.js":
+/*!*******************************************************************!*\
+  !*** ./src/app/components/redirect-receiver/redirect-receiver.js ***!
+  \*******************************************************************/
+/*! exports provided: sendAction */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sendAction", function() { return sendAction; });
+/* harmony import */ var _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../post-robot-wrapper */ "./src/post-robot-wrapper.js");
+/* harmony import */ var _redirect_receiver_html__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./redirect-receiver.html */ "./src/app/components/redirect-receiver/redirect-receiver.html");
+/* harmony import */ var _redirect_receiver_html__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_redirect_receiver_html__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _querystring__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../querystring */ "./src/app/components/querystring.js");
+/* harmony import */ var _payment_component_data__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../payment-component-data */ "./src/app/components/payment-component-data.js");
+
+
+
+
+var COMPONENT_TYPE = 'redirect-receiver';
+var componentData = Object(_payment_component_data__WEBPACK_IMPORTED_MODULE_3__["generateComponentData"])(COMPONENT_TYPE, Object(_querystring__WEBPACK_IMPORTED_MODULE_2__["getComponentIdFromQueryString"])(COMPONENT_TYPE), Object(_querystring__WEBPACK_IMPORTED_MODULE_2__["getControllerIdFromQueryString"])());
+var actionFromQueryString = Object(_querystring__WEBPACK_IMPORTED_MODULE_2__["getActionFromQueryString"])();
+
+if (actionFromQueryString) {
+  componentData.controller.window = window.opener;
+  sendAction(componentData.controller, componentData.componentId, componentData.componentType, actionFromQueryString);
+}
+
+function sendAction(controllerDetails, componentId, componentType, action) {
+  _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_0__["default"].send(controllerDetails.window, 'redirectComplete', {
+    action: action
+  }).then(function () {
+    window.close();
+  }).catch(function () {
+    window.close();
+  });
 }
 
 /***/ }),
@@ -20444,85 +20550,6 @@ function createFrame(type, node, src, attributes, elementHeight) {
 
 /***/ }),
 
-/***/ "./src/client/createSource.js":
-/*!************************************!*\
-  !*** ./src/client/createSource.js ***!
-  \************************************/
-/*! exports provided: createSource, createSourceWithAdyen */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createSource", function() { return createSource; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createSourceWithAdyen", function() { return createSourceWithAdyen; });
-/* harmony import */ var _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../post-robot-wrapper */ "./src/post-robot-wrapper.js");
-/* harmony import */ var _beacon_beacon_client_data__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../beacon/beacon-client-data */ "./src/beacon/beacon-client-data.js");
-/* harmony import */ var _createComponent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./createComponent */ "./src/client/createComponent.js");
-/* harmony import */ var _app_components_controller_controller_create_source_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../app/components/controller/controller-create-source-utils */ "./src/app/components/controller/controller-create-source-utils.js");
-
-
-
-
-/**
- * Locate a controller frame and send a createSource event via postRobot
- * @private
- * @param {string} controllerId controllerId string
- * @param {string} type of the component
- * @param {object} data source request payload (JSON as object)
- */
-
-function createSource(controllerId, type, data) {
-  var controllerWindow = Object(_createComponent__WEBPACK_IMPORTED_MODULE_2__["getComponentWindow"])(controllerId);
-
-  if (!controllerWindow) {
-    throw new Error("Unable to locate controller '".concat(controllerId, "'"));
-  } // Send message to Controller Frame to call createSource
-
-
-  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_0__["default"].send(controllerWindow, 'createSourceFromRequest', {
-    sourceRequest: data,
-    type: type,
-    browserInfo: Object(_beacon_beacon_client_data__WEBPACK_IMPORTED_MODULE_1__["collectClientData"])(window)
-  }, {
-    timeout: 10000
-  }).then(function (response) {
-    // This is a Post Robot Response object so you have to get the data out
-    return response.data;
-  }).catch(function (error) {
-    throw new Error(error);
-  });
-}
-/**
- * Locate a controller frame and send a createSourceWithAdyen event via postRobot
- * @private
- * @param {string} controllerId controllerId string
- * @param {object} data source request payload (JSON as object)
- * @param {object} clientData (JSON as object)
- */
-
-function createSourceWithAdyen(controllerId, data, clientData) {
-  var controllerWindow = Object(_createComponent__WEBPACK_IMPORTED_MODULE_2__["getComponentWindow"])(controllerId);
-
-  if (!controllerWindow) {
-    throw new Error("Unable to locate controller '".concat(controllerId, "'"));
-  } // Send message to Controller Frame to call createSource
-
-
-  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_0__["default"].send(controllerWindow, 'createSourceFromAdyenRequest', {
-    sourceRequest: data,
-    clientSecretData: clientData
-  }, {
-    timeout: 10000
-  }).then(function (response) {
-    // This is a Post Robot Response object so you have to get the data out
-    return response.data;
-  }).catch(function (error) {
-    return Object(_app_components_controller_controller_create_source_utils__WEBPACK_IMPORTED_MODULE_3__["chooseCreateSourceCatchMessage"])(error);
-  });
-}
-
-/***/ }),
-
 /***/ "./src/client/css-class-utils.js":
 /*!***************************************!*\
   !*** ./src/client/css-class-utils.js ***!
@@ -21134,18 +21161,18 @@ function _on(name, data, callback) {
 
 /***/ }),
 
-/***/ 4:
-/*!***********************************************************************************************!*\
-  !*** multi @babel/polyfill ./src/app/components/controller/controller-adyen-create-source.js ***!
-  \***********************************************************************************************/
+/***/ 25:
+/*!*****************************************************************************************!*\
+  !*** multi @babel/polyfill ./src/app/components/redirect-receiver/redirect-receiver.js ***!
+  \*****************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! @babel/polyfill */"./node_modules/@babel/polyfill/lib/index.js");
-module.exports = __webpack_require__(/*! C:\dev\ui-architecture\digitalriverpayments\src\app\components\controller\controller-adyen-create-source.js */"./src/app/components/controller/controller-adyen-create-source.js");
+module.exports = __webpack_require__(/*! C:\dev\ui-architecture\digitalriverpayments\src\app\components\redirect-receiver\redirect-receiver.js */"./src/app/components/redirect-receiver/redirect-receiver.js");
 
 
 /***/ })
 
 /******/ })));
-//# sourceMappingURL=controller-adyen-create-source.js.map
+//# sourceMappingURL=redirect-receiver.js.map
