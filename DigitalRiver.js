@@ -24227,6 +24227,7 @@ function mountDropin(key, options, createSource, createElement) {
         if (!paymentMethod.onlyButton) {
           var componentOptionsKey = findOptionsKey(options.paymentMethodConfiguration, paymentMethod);
           var componentOptions = typeof componentOptionsKey !== 'undefined' && typeof options.paymentMethodConfiguration !== 'undefined' && typeof options.paymentMethodConfiguration[componentOptionsKey] !== 'undefined' ? options.paymentMethodConfiguration[componentOptionsKey] : {};
+          console.log('options for ', paymentMethod, options);
           var componentOptionsOrPaymentRequest = paymentMethod.code === 'googlepay' || paymentMethod.code === 'applepay' ? getSessionPaymentRequest(options, mockedResponse.sessionInformation, componentOptions.style) : componentOptions;
           var events = Object.assign({}, componentOptions.events);
           delete componentOptionsOrPaymentRequest.events;
