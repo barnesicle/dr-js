@@ -24220,7 +24220,7 @@ function mountDropin(key, options, createSource, createElement) {
         },
         paymentMethods: paymentMethodResponse
       };
-      console.error('6');
+      console.error('7');
       mockedResponse.paymentMethods.forEach(function (availablePaymentMethod) {
         var paymentMethod = supportedPaymentMethods.find(function (paymentMethod) {
           return paymentMethod.type === availablePaymentMethod.type;
