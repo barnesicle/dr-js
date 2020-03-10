@@ -23107,6 +23107,12 @@ function setApplePayPaymentRequest(options) {
     supportedNetworks: ['amex', 'masterCard', 'visa', 'JCB', 'chinaUnionPay', 'discover', 'privateLabel']
   };
 
+  if (typeof options.sessionId === 'undefined') {
+    console.log('no session id, adding fields');
+    applePaymentRequest.requiredBillingContactFields = ['postalAddress', 'email', 'name', 'phone'];
+    applePaymentRequest.requiredShippingContactFields = ['postalAddress', 'email', 'name', 'phone'];
+  }
+
   if (options.hasOwnProperty('currency')) {
     applePaymentRequest.currencyCode = options.currency;
   }
@@ -23309,6 +23315,7 @@ function appleResponseToPaymentService(appleResponseData, instanceData) {
  */
 
 function paymentSourceToEventData(applePaymentData, paymentSource, complete) {
+  console.log('applePaymentData', applePaymentData);
   var shippingContact = applePaymentData.payment.shippingContact;
   var billingContact = applePaymentData.payment.billingContact;
   var shippingFullName = shippingContact.givenName && shippingContact.familyName ? "".concat(shippingContact.givenName, " ").concat(shippingContact.familyName) : '';
@@ -23510,6 +23517,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var version = 3;
+
+function isSessionMode(instanceData) {
+  return typeof instanceData.options.sessionId !== 'undefined';
+}
 /**
  * Processes payment sent from apple and sends it to the payment service to create a payment source
  * @param {object} appleResponseData - data received from Apple
@@ -23517,9 +23528,20 @@ var version = 3;
  * @param {object} instanceData
  */
 
+
 function processPayment(appleResponseData, resolve, instanceData) {
   var complete = Object(_applepay_utils__WEBPACK_IMPORTED_MODULE_4__["createAppleCompleteFunction"])(resolve);
   var paymentServiceRequest = Object(_applepay_utils__WEBPACK_IMPORTED_MODULE_4__["appleResponseToPaymentService"])(appleResponseData, instanceData);
+  console.log('paymentServiceRequest before', paymentServiceRequest);
+  console.log('isSessionMode', isSessionMode(instanceData));
+
+  if (isSessionMode(instanceData)) {
+    console.log('isSessionMode', instanceData);
+    paymentServiceRequest.owner = instanceData.options.billingAddress;
+    paymentServiceRequest.sessionId = instanceData.options.sessionId;
+  }
+
+  console.log('paymentServiceRequest after', paymentServiceRequest);
   Object(_app_components_google_apple_pay_events__WEBPACK_IMPORTED_MODULE_8__["sendCreateSourceRequest"])(instanceData.controllerEmitter, instanceData.componentData, appleResponseData, paymentServiceRequest, _applepay_utils__WEBPACK_IMPORTED_MODULE_4__["paymentSourceToEventData"], complete);
 }
 /**
@@ -24202,7 +24224,7 @@ function mountDropin(key, options, createSource, createElement) {
         },
         paymentMethods: paymentMethodResponse
       };
-      console.error('17');
+      console.error('18');
       mockedResponse.paymentMethods.forEach(function (availablePaymentMethod) {
         var paymentMethod = supportedPaymentMethods.find(function (paymentMethod) {
           return paymentMethod.type === availablePaymentMethod.type;
