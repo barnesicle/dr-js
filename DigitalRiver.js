@@ -19861,7 +19861,7 @@ function createElements(controllerId, key, options) {
     cardnumber: {
       parentId: 'DRCardNumber',
       options: {
-        placeholderText: '1234 5678 9012 3456'
+        placeholderText: options.cardNumberPlaceholderText || '1234 5678 9012 3456'
       },
       focus: false,
       empty: true,
@@ -19870,7 +19870,7 @@ function createElements(controllerId, key, options) {
     cardexpiration: {
       parentId: 'DRCardExpiration',
       options: {
-        placeholderText: 'MM/YY'
+        placeholderText: options.cardExpirationPlaceholderText || 'MM/YY'
       },
       focus: false,
       empty: true,
@@ -19879,7 +19879,7 @@ function createElements(controllerId, key, options) {
     cardcvv: {
       parentId: 'DRCardCvv',
       options: {
-        placeholderText: '123'
+        placeholderText: options.cardCvvPlaceholderText || '123'
       },
       focus: false,
       empty: true,
@@ -23109,7 +23109,6 @@ function setApplePayPaymentRequest(options) {
   };
 
   if (typeof options.sessionId === 'undefined') {
-    console.log('no session id, adding fields');
     applePaymentRequest.requiredBillingContactFields = ['postalAddress', 'email', 'name', 'phone'];
     applePaymentRequest.requiredShippingContactFields = ['postalAddress', 'email', 'name', 'phone'];
   }
@@ -23323,7 +23322,6 @@ function paymentSourceToEventDataForSession(applePaymentData, paymentSource, com
  */
 
 function paymentSourceToEventData(applePaymentData, paymentSource, complete) {
-  console.log('applePaymentData', applePaymentData);
   var shippingContact = applePaymentData.payment.shippingContact;
   var billingContact = applePaymentData.payment.billingContact;
   var shippingFullName = shippingContact.givenName && shippingContact.familyName ? "".concat(shippingContact.givenName, " ").concat(shippingContact.familyName) : '';
@@ -23490,11 +23488,12 @@ function sendAppleClickEvent(instanceData) {
 /*!*****************************************!*\
   !*** ./src/client/applepay/applepay.js ***!
   \*****************************************/
-/*! exports provided: processPayment, processAppleClickEvent, applePaymentCanMakePayment, validateMerchant, paymentAuthorization, handleValidateMerchant, shippingAddressChange, shippingOptionChange, createApplePay */
+/*! exports provided: getPaymentServiceData, processPayment, processAppleClickEvent, applePaymentCanMakePayment, validateMerchant, paymentAuthorization, handleValidateMerchant, shippingAddressChange, shippingOptionChange, createApplePay */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getPaymentServiceData", function() { return getPaymentServiceData; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "processPayment", function() { return processPayment; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "processAppleClickEvent", function() { return processAppleClickEvent; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "applePaymentCanMakePayment", function() { return applePaymentCanMakePayment; });
@@ -23562,7 +23561,6 @@ function getPaymentServiceData(instanceData, appleResponseData) {
  * @param {object} instanceData
  */
 
-
 function processPayment(appleResponseData, resolve, instanceData) {
   var complete = Object(_applepay_utils__WEBPACK_IMPORTED_MODULE_4__["createAppleCompleteFunction"])(resolve);
   var paymentServiceRequest = getPaymentServiceData(instanceData, appleResponseData);
@@ -23617,8 +23615,6 @@ function paymentAuthorization(event, processPayment, instanceData) {
   return new Promise(function (resolve) {
     return processPayment(event, resolve, instanceData);
   }).then(function (data) {
-    console.log('paymentAuthorization', data);
-
     if (data.status === 0) {
       instanceData.options = Object(_app_components_options__WEBPACK_IMPORTED_MODULE_3__["mergeOptions"])(instanceData.options, data);
       delete instanceData.options.errors;
@@ -23627,8 +23623,6 @@ function paymentAuthorization(event, processPayment, instanceData) {
       instanceData.applepaySession.abort();
       Object(_app_components_payment_api_events__WEBPACK_IMPORTED_MODULE_5__["emitComponentCancelled"])(instanceData.componentData);
     }
-  }).catch(function (error) {
-    console.error('paymentAuthorization ', error);
   });
 }
 /**
@@ -23656,11 +23650,7 @@ function shippingAddressChange(event, sendShippingAddressChangeEvent, instanceDa
     sendShippingAddressChangeEvent(event.shippingContact, resolve, instanceData);
   });
   getUpdatedDetails.then(function (data) {
-    console.log('shippingAddressChange', data);
     instanceData.applepaySession.completeShippingContactSelection(data);
-    console.log('shippingAddressChange 2', data);
-  }).catch(function (error) {
-    console.error('shippingAddressChange error', error);
   });
 }
 /**
@@ -23675,7 +23665,6 @@ function shippingOptionChange(event, sendShippingMethodChangeEvent, instanceData
     sendShippingMethodChangeEvent(event.shippingMethod, resolve, instanceData);
   });
   getUpdatedDetails.then(function (data) {
-    console.log('shippingOptionChange', data);
     instanceData.applepaySession.completeShippingMethodSelection(data);
   });
 }
@@ -24162,6 +24151,13 @@ var supportedPaymentMethods = [{
   needsPayButton: true,
   standaloneButton: false,
   onlyButton: true
+}, {
+  name: 'Direct Debit GB',
+  code: 'directdebitgb',
+  type: 'directDebitGb',
+  needsPayButton: true,
+  standaloneButton: false,
+  onlyButton: true
 }];
 
 function paymentMethodNotSupported(paymentMethod) {
@@ -24186,13 +24182,11 @@ function addStandaloneButtonOptions(component, options) {
     runUpdateWith(event, {});
   });
   component.on('shippingaddresschange', function (event) {
-    console.log('running shippingaddresschange');
     runUpdateWith(event, {
       status: 'success'
     });
   });
   component.on('shippingoptionchange', function (event) {
-    console.log('running shippingoptionchange');
     runUpdateWith(event, {});
   });
 }
@@ -24216,6 +24210,11 @@ function getSessionPaymentRequest(options, sessionInformation, providedStyle) {
     requestShipping: false
   });
 }
+
+function isPaymentRequestUsed(paymentMethod) {
+  return paymentMethod.code === 'googlepay' || paymentMethod.code === 'applepay';
+}
+
 function mountDropin(key, options, createSource, createElement) {
   var _dataStore$get = _dataStore__WEBPACK_IMPORTED_MODULE_0__["default"].get(key),
       controller = _dataStore$get.controller;
@@ -24236,20 +24235,10 @@ function mountDropin(key, options, createSource, createElement) {
     Object(_dropin_events__WEBPACK_IMPORTED_MODULE_3__["registerRedirectOnComplete"])(controller, options);
     return Object(_fetch_payment_methods__WEBPACK_IMPORTED_MODULE_2__["getPaymentMethods"])(controller.id, options.sessionId).then(function (paymentMethodResponse) {
       var componentsMounted = {};
-      var componentsReadyStatus = []; // TODO Get paymentMethodResponse.sessionInformation
+      var componentsReadyStatus = [];
+      console.error('23'); // TODO Do I need to add country?
 
-      var mockedResponse = {
-        // TODO PS will change the structure, we we will need to do, paymentMethodResponse.paymentMethods
-        'sessionInformation': {
-          'currency': 'USD',
-          'country': 'US',
-          'businessEntityCode': 'dr-inc',
-          'amount': 100
-        },
-        paymentMethods: paymentMethodResponse
-      };
-      console.error('22');
-      mockedResponse.paymentMethods.forEach(function (availablePaymentMethod) {
+      paymentMethodResponse.paymentMethods.forEach(function (availablePaymentMethod) {
         var paymentMethod = supportedPaymentMethods.find(function (paymentMethod) {
           return paymentMethod.type === availablePaymentMethod.type;
         });
@@ -24272,13 +24261,13 @@ function mountDropin(key, options, createSource, createElement) {
             componentHolder = _createComponentConta.componentHolder;
 
         if (paymentMethod.needsPayButton) {
-          bodyParent.appendChild(createSubmitButton(controller.id, options, createSource, componentsMounted, paymentMethod, submitButtonId, availablePaymentMethod, mockedResponse.sessionInformation));
+          bodyParent.appendChild(createSubmitButton(controller.id, options, createSource, componentsMounted, paymentMethod, submitButtonId, availablePaymentMethod, paymentMethodResponse.sessionInformation));
         }
 
         if (!paymentMethod.onlyButton) {
           var componentOptionsKey = findOptionsKey(options.paymentMethodConfiguration, paymentMethod);
           var componentOptions = typeof componentOptionsKey !== 'undefined' && typeof options.paymentMethodConfiguration !== 'undefined' && typeof options.paymentMethodConfiguration[componentOptionsKey] !== 'undefined' ? options.paymentMethodConfiguration[componentOptionsKey] : {};
-          var componentOptionsOrPaymentRequest = paymentMethod.code === 'googlepay' || paymentMethod.code === 'applepay' ? getSessionPaymentRequest(options, mockedResponse.sessionInformation, componentOptions.style) : componentOptions;
+          var componentOptionsOrPaymentRequest = isPaymentRequestUsed(paymentMethod) ? getSessionPaymentRequest(options, paymentMethodResponse.sessionInformation, componentOptions.style) : componentOptions;
           var events = Object.assign({}, componentOptions.events);
           delete componentOptionsOrPaymentRequest.events;
           var component = createElement(paymentMethod.code, componentOptionsOrPaymentRequest); // TODO What should happen when create fails?
