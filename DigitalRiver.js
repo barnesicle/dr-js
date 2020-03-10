@@ -23104,9 +23104,7 @@ function getApplePaySession(version, paymentOptions) {
 function setApplePayPaymentRequest(options) {
   var applePaymentRequest = {
     merchantCapabilities: ['supports3DS'],
-    supportedNetworks: ['amex', 'masterCard', 'visa', 'JCB', 'chinaUnionPay', 'discover', 'privateLabel'] //requiredBillingContactFields: ['postalAddress','email', 'name', 'phone'],
-    //requiredShippingContactFields: ['postalAddress','email', 'name', 'phone']
-
+    supportedNetworks: ['amex', 'masterCard', 'visa', 'JCB', 'chinaUnionPay', 'discover', 'privateLabel']
   };
 
   if (options.hasOwnProperty('currency')) {
