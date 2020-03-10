@@ -498,60 +498,6 @@
 
     // FR: e40a04e1-3cf8-47a1-acf5-c6eb14c0df8c
     // US: 8d6df7ce-2a43-4edf-b57c-b5c9bac08515
-    const applePayPaymentRequest = {
-      country: "us",
-      currency: "USD",
-      total: {
-        label: "Your Order Total",
-        amount: 1,
-        isPending: false
-      },
-      displayItems: [
-        {
-          label: "Subtotal",
-          amount: 1,
-          isPending: false
-        },
-        {
-          label: "Shipping",
-          amount: 0,
-          isPending: false
-        }
-      ],
-      //shippingOptions: shippingOptions,
-      requestShipping: false,
-      style: {
-        buttonType: "plain",
-        buttonColor: "dark",
-        buttonLanguage: "en"
-      },
-      waitOnClick: true
-    };
-
-    updatedAppleInfo = {
-      total: {
-        label: "Order Total after update3",
-        amount: 2,
-        isPending: false
-      },
-      displayItems: [
-        {
-          label: "subtotal after update",
-          amount: 1,
-          isPending: false
-        },
-        {
-          label: "shipping after update",
-          amount: 0,
-          isPending: false
-        }
-      ],
-      style: {
-        buttonType: "buy",
-        buttonColor: "light",
-        buttonLanguage: "fr"
-      }
-    };
 
     const options = {
       sessionId: 'e40a04e1-3cf8-47a1-acf5-c6eb14c0df8c',
@@ -597,7 +543,11 @@
           }
         },
         applePay: {
-          data: applePayPaymentRequest, // TODO Need to cater for this
+          style: {
+            buttonType: 'plain',
+            buttonColor: 'dark',
+            buttonLanguage: 'en'
+          }
         },
         konbini: {
           style: styles,

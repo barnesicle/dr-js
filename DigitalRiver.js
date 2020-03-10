@@ -23032,6 +23032,7 @@ function createApplePayButton(parent, id, options, clickHandler) {
   style.buttonType = style.buttonType ? style.buttonType : defaultOptions.buttonType;
   style.buttonColor = style.buttonColor ? style.buttonColor : defaultOptions.buttonColor;
   style.buttonLanguage = style.buttonLanguage ? style.buttonLanguage : defaultOptions.buttonLanguage;
+  console.log('style', style);
   applyButtonStyleForType(button, style.buttonType);
 
   if (style.buttonType === 'plain') {
@@ -23103,9 +23104,9 @@ function getApplePaySession(version, paymentOptions) {
 function setApplePayPaymentRequest(options) {
   var applePaymentRequest = {
     merchantCapabilities: ['supports3DS'],
-    supportedNetworks: ['amex', 'masterCard', 'visa', 'JCB', 'chinaUnionPay', 'discover', 'privateLabel'],
-    requiredBillingContactFields: ['postalAddress', 'email', 'name', 'phone'],
-    requiredShippingContactFields: ['postalAddress', 'email', 'name', 'phone']
+    supportedNetworks: ['amex', 'masterCard', 'visa', 'JCB', 'chinaUnionPay', 'discover', 'privateLabel'] //requiredBillingContactFields: ['postalAddress','email', 'name', 'phone'],
+    //requiredShippingContactFields: ['postalAddress','email', 'name', 'phone']
+
   };
 
   if (options.hasOwnProperty('currency')) {
@@ -23128,9 +23129,6 @@ function setApplePayPaymentRequest(options) {
     applePaymentRequest.total = convertTotalToAppleFormat(options.total);
   }
 
-  applePaymentRequest.requestPayerEmail = false;
-  applePaymentRequest.requestPayerName = false;
-  applePaymentRequest.requestPayerPhone = false;
   return applePaymentRequest;
 }
 /**
@@ -24170,7 +24168,8 @@ function getSessionPaymentRequest(options, sessionInformation, providedStyle) {
       amount: sessionInformation.amount
     },
     style: style,
-    billingAddress: options.billingAddress
+    billingAddress: options.billingAddress,
+    requestShipping: false
   });
 }
 function mountDropin(key, options, createSource, createElement) {
@@ -24205,7 +24204,7 @@ function mountDropin(key, options, createSource, createElement) {
         },
         paymentMethods: paymentMethodResponse
       };
-      console.error('14');
+      console.error('17');
       mockedResponse.paymentMethods.forEach(function (availablePaymentMethod) {
         var paymentMethod = supportedPaymentMethods.find(function (paymentMethod) {
           return paymentMethod.type === availablePaymentMethod.type;
