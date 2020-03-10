@@ -23285,6 +23285,7 @@ function shippingAddressSourceToEventData(shippingAddressFromApple) {
  */
 
 function appleResponseToPaymentService(appleResponseData, instanceData) {
+  console.log('appleResponseData', appleResponseData);
   return {
     'type': 'applePay',
     'owner': {
@@ -24224,7 +24225,7 @@ function mountDropin(key, options, createSource, createElement) {
         },
         paymentMethods: paymentMethodResponse
       };
-      console.error('19');
+      console.error('20');
       mockedResponse.paymentMethods.forEach(function (availablePaymentMethod) {
         var paymentMethod = supportedPaymentMethods.find(function (paymentMethod) {
           return paymentMethod.type === availablePaymentMethod.type;
