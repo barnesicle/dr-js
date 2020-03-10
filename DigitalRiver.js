@@ -22861,7 +22861,7 @@ DigitalRiverPaymentRequest.prototype.getData = function () {
 /*!***********************************************!*\
   !*** ./src/client/applepay/applepay-utils.js ***!
   \***********************************************/
-/*! exports provided: modifyShippingOptions, updateShippingOptions, convertShippingOptions, convertDisplayItemsToLineItems, convertTotalToAppleFormat, createApplePayButton, getApplePaySession, setApplePayPaymentRequest, sendShippingAddressChangeEvent, sendShippingMethodChangeEvent, shippingAddressSourceToEventData, appleResponseToPaymentService, paymentSourceToEventData, convertClientErrorToAppleFormat, convertFieldNameToAppleFormat, createAppleCompleteFunction, sendAppleClickEvent */
+/*! exports provided: modifyShippingOptions, updateShippingOptions, convertShippingOptions, convertDisplayItemsToLineItems, convertTotalToAppleFormat, createApplePayButton, getApplePaySession, setApplePayPaymentRequest, sendShippingAddressChangeEvent, sendShippingMethodChangeEvent, shippingAddressSourceToEventData, appleResponseToPaymentService, paymentSourceToEventDataForSession, paymentSourceToEventData, convertClientErrorToAppleFormat, convertFieldNameToAppleFormat, createAppleCompleteFunction, sendAppleClickEvent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -22878,6 +22878,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sendShippingMethodChangeEvent", function() { return sendShippingMethodChangeEvent; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "shippingAddressSourceToEventData", function() { return shippingAddressSourceToEventData; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appleResponseToPaymentService", function() { return appleResponseToPaymentService; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "paymentSourceToEventDataForSession", function() { return paymentSourceToEventDataForSession; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "paymentSourceToEventData", function() { return paymentSourceToEventData; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "convertClientErrorToAppleFormat", function() { return convertClientErrorToAppleFormat; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "convertFieldNameToAppleFormat", function() { return convertFieldNameToAppleFormat; });
@@ -23306,6 +23307,13 @@ function appleResponseToPaymentService(appleResponseData, instanceData) {
     'currency': instanceData.options.currency
   };
 }
+function paymentSourceToEventDataForSession(applePaymentData, paymentSource, complete) {
+  return {
+    error: paymentSource.error !== null,
+    source: paymentSource.source,
+    complete: complete
+  };
+}
 /**
  * This converts payment source data to the format we should send in the source event
  * @param {object} applePaymentData - Apple Pay paymentAuthorized event data
@@ -23528,19 +23536,23 @@ function getPaymentServiceData(instanceData, appleResponseData) {
   if (isSessionMode(instanceData)) {
     console.log('isSessionMode', instanceData);
     var paymentServiceRequest = {
-      // TODO Extract to function
       'type': 'applePay',
+      'sessionId': instanceData.options.sessionId,
       'owner': instanceData.options.billingAddress,
       'applePay': appleResponseData.payment.token.paymentData,
       'amount': instanceData.options.total.amount,
       'currency': instanceData.options.currency
     };
-    paymentServiceRequest.owner = instanceData.options.billingAddress;
-    paymentServiceRequest.sessionId = instanceData.options.sessionId;
-    return paymentServiceRequest;
+    return {
+      eventFunction: _applepay_utils__WEBPACK_IMPORTED_MODULE_4__["paymentSourceToEventDataForSession"],
+      paymentServiceRequestData: paymentServiceRequest
+    };
   } else {
     console.log('not session mode', instanceData);
-    return Object(_applepay_utils__WEBPACK_IMPORTED_MODULE_4__["appleResponseToPaymentService"])(appleResponseData, instanceData);
+    return {
+      eventFunction: _applepay_utils__WEBPACK_IMPORTED_MODULE_4__["paymentSourceToEventData"],
+      paymentServiceRequestData: Object(_applepay_utils__WEBPACK_IMPORTED_MODULE_4__["appleResponseToPaymentService"])(appleResponseData, instanceData)
+    };
   }
 }
 /**
@@ -23554,7 +23566,7 @@ function getPaymentServiceData(instanceData, appleResponseData) {
 function processPayment(appleResponseData, resolve, instanceData) {
   var complete = Object(_applepay_utils__WEBPACK_IMPORTED_MODULE_4__["createAppleCompleteFunction"])(resolve);
   var paymentServiceRequest = getPaymentServiceData(instanceData, appleResponseData);
-  Object(_app_components_google_apple_pay_events__WEBPACK_IMPORTED_MODULE_8__["sendCreateSourceRequest"])(instanceData.controllerEmitter, instanceData.componentData, appleResponseData, paymentServiceRequest, _applepay_utils__WEBPACK_IMPORTED_MODULE_4__["paymentSourceToEventData"], complete);
+  Object(_app_components_google_apple_pay_events__WEBPACK_IMPORTED_MODULE_8__["sendCreateSourceRequest"])(instanceData.controllerEmitter, instanceData.componentData, appleResponseData, paymentServiceRequest.paymentServiceRequestData, paymentServiceRequest.eventFunction, complete);
 }
 /**
  * Process the click event for Apple pay
@@ -24236,7 +24248,7 @@ function mountDropin(key, options, createSource, createElement) {
         },
         paymentMethods: paymentMethodResponse
       };
-      console.error('21');
+      console.error('22');
       mockedResponse.paymentMethods.forEach(function (availablePaymentMethod) {
         var paymentMethod = supportedPaymentMethods.find(function (paymentMethod) {
           return paymentMethod.type === availablePaymentMethod.type;
