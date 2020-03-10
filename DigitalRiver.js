@@ -23033,7 +23033,6 @@ function createApplePayButton(parent, id, options, clickHandler) {
   style.buttonType = style.buttonType ? style.buttonType : defaultOptions.buttonType;
   style.buttonColor = style.buttonColor ? style.buttonColor : defaultOptions.buttonColor;
   style.buttonLanguage = style.buttonLanguage ? style.buttonLanguage : defaultOptions.buttonLanguage;
-  console.log('style', style);
   applyButtonStyleForType(button, style.buttonType);
 
   if (style.buttonType === 'plain') {
@@ -23530,10 +23529,7 @@ function isSessionMode(instanceData) {
 }
 
 function getPaymentServiceData(instanceData, appleResponseData) {
-  console.log('isSessionMode', isSessionMode(instanceData));
-
   if (isSessionMode(instanceData)) {
-    console.log('isSessionMode', instanceData);
     var paymentServiceRequest = {
       'type': 'applePay',
       'sessionId': instanceData.options.sessionId,
@@ -23547,7 +23543,6 @@ function getPaymentServiceData(instanceData, appleResponseData) {
       paymentServiceRequestData: paymentServiceRequest
     };
   } else {
-    console.log('not session mode', instanceData);
     return {
       eventFunction: _applepay_utils__WEBPACK_IMPORTED_MODULE_4__["paymentSourceToEventData"],
       paymentServiceRequestData: Object(_applepay_utils__WEBPACK_IMPORTED_MODULE_4__["appleResponseToPaymentService"])(appleResponseData, instanceData)
@@ -24203,7 +24198,7 @@ function getSessionPaymentRequest(options, sessionInformation, providedStyle) {
     total: {
       label: 'Order Total',
       // TODO Localize
-      amount: sessionInformation.amount
+      amount: parseFloat(sessionInformation.amount)
     },
     style: style,
     billingAddress: options.billingAddress,
@@ -24236,7 +24231,7 @@ function mountDropin(key, options, createSource, createElement) {
     return Object(_fetch_payment_methods__WEBPACK_IMPORTED_MODULE_2__["getPaymentMethods"])(controller.id, options.sessionId).then(function (paymentMethodResponse) {
       var componentsMounted = {};
       var componentsReadyStatus = [];
-      console.error('24'); // TODO Do I need to add country?
+      console.error('25'); // TODO Do I need to add country?
 
       paymentMethodResponse.sessionInformation.country = 'US';
       paymentMethodResponse.paymentMethods.forEach(function (availablePaymentMethod) {
