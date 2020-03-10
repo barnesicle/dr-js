@@ -24231,9 +24231,7 @@ function mountDropin(key, options, createSource, createElement) {
     return Object(_fetch_payment_methods__WEBPACK_IMPORTED_MODULE_2__["getPaymentMethods"])(controller.id, options.sessionId).then(function (paymentMethodResponse) {
       var componentsMounted = {};
       var componentsReadyStatus = [];
-      console.error('25'); // TODO Do I need to add country?
-
-      paymentMethodResponse.sessionInformation.country = 'US';
+      console.error('26');
       paymentMethodResponse.paymentMethods.forEach(function (availablePaymentMethod) {
         var paymentMethod = supportedPaymentMethods.find(function (paymentMethod) {
           return paymentMethod.type === availablePaymentMethod.type;
