@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 26);
+/******/ 	return __webpack_require__(__webpack_require__.s = 27);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -17342,13 +17342,13 @@ __webpack_require__.r(__webpack_exports__);
 var config = {
   domain: "https://github.digitalriverws.net",
   // eslint-disable-line no-undef
-  paymentServiceUrl: "https://api.digitalriver.com/payments/sources",
+  paymentServiceUrl: "https://api.digitalriverws.com/payments/sources",
   // eslint-disable-line no-undef
   basePath: "/pages/lbarnes/drjs-demo" || false,
   // eslint-disable-line no-undef
   applePayMerchantId: "merchant.com.test.cert.digitalriver",
   // eslint-disable-line no-undef
-  applePayMerchantValidationUrl: "https://api.digitalriver.com/payments/apple-pay/session",
+  applePayMerchantValidationUrl: "https://api.digitalriverws.com/payments/apple-pay/session",
   //eslint-disable-line no-undef
   beaconStorageUrlNonProd: "https://beacon-test.driv-analytics.com/capture",
   // eslint-disable-line no-undef
@@ -17358,17 +17358,17 @@ var config = {
   // eslint-disable-line no-undef
   adyenTestUrl: "https://checkoutshopper-test.adyen.com/checkoutshopper/sdk/3.2.0/adyen.js",
   // eslint-disable-line no-undef
-  onlineBankingBanksUrl: "https://api.digitalriver.com/payments/online-banking/banks",
+  onlineBankingBanksUrl: "https://api.digitalriverws.com/payments/online-banking/banks",
   // eslint-disable-line no-undef
   originProdKey: "pub.v2.8115061157590058.aHR0cDovL2xvY2FsaG9zdDo4MDgw.FF9fc99f70OC7jS9Ngmqj8z1H_cmKZMXQo_r0cnPAOg",
   // eslint-disable-line no-undef
   originTestKey: "pub.v2.8115061157590058.aHR0cDovL2xvY2FsaG9zdDo4MDgw.FF9fc99f70OC7jS9Ngmqj8z1H_cmKZMXQo_r0cnPAOg",
   // eslint-disable-line no-undef
-  paymentServiceBaseUrl: "https://api.digitalriver.com/payments",
+  paymentServiceBaseUrl: "https://api.digitalriverws.com/payments",
   // eslint-disable-line no-undef
   paypalRedirectBaseUrl: "https://payments-test.digitalriver.com/redirect/",
   // eslint-disable-line no-undef
-  paymentMethodsUrl: "https://api.digitalriver.com/payments/payment-methods" // eslint-disable-line no-undef
+  paymentMethodsUrl: "https://api.digitalriverws.com/payments/payment-methods" // eslint-disable-line no-undef
 
 };
 
@@ -17692,7 +17692,7 @@ __webpack_require__.r(__webpack_exports__);
 var BEACON_ID = 'dr_beacon_id';
 
 function createCookie(window, name, value, expires) {
-  window.document.cookie = name + '=' + value + '; expires=' + expires.toUTCString() + ';  path=/';
+  window.document.cookie = name + '=' + value + '; expires=' + expires.toUTCString() + '; SameSite=None; Secure; path=/';
 }
 
 function createBeaconIDCookie(window) {
@@ -17833,7 +17833,7 @@ function _on(name, data, callback) {
 
 /***/ }),
 
-/***/ 26:
+/***/ 27:
 /*!***********************************************************!*\
   !*** multi @babel/polyfill ./src/app/components/td/td.js ***!
   \***********************************************************/

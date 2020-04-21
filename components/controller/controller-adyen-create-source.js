@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 5);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -18766,13 +18766,13 @@ __webpack_require__.r(__webpack_exports__);
 var config = {
   domain: "https://github.digitalriverws.net",
   // eslint-disable-line no-undef
-  paymentServiceUrl: "https://api.digitalriver.com/payments/sources",
+  paymentServiceUrl: "https://api.digitalriverws.com/payments/sources",
   // eslint-disable-line no-undef
   basePath: "/pages/lbarnes/drjs-demo" || false,
   // eslint-disable-line no-undef
   applePayMerchantId: "merchant.com.test.cert.digitalriver",
   // eslint-disable-line no-undef
-  applePayMerchantValidationUrl: "https://api.digitalriver.com/payments/apple-pay/session",
+  applePayMerchantValidationUrl: "https://api.digitalriverws.com/payments/apple-pay/session",
   //eslint-disable-line no-undef
   beaconStorageUrlNonProd: "https://beacon-test.driv-analytics.com/capture",
   // eslint-disable-line no-undef
@@ -18782,17 +18782,17 @@ var config = {
   // eslint-disable-line no-undef
   adyenTestUrl: "https://checkoutshopper-test.adyen.com/checkoutshopper/sdk/3.2.0/adyen.js",
   // eslint-disable-line no-undef
-  onlineBankingBanksUrl: "https://api.digitalriver.com/payments/online-banking/banks",
+  onlineBankingBanksUrl: "https://api.digitalriverws.com/payments/online-banking/banks",
   // eslint-disable-line no-undef
   originProdKey: "pub.v2.8115061157590058.aHR0cDovL2xvY2FsaG9zdDo4MDgw.FF9fc99f70OC7jS9Ngmqj8z1H_cmKZMXQo_r0cnPAOg",
   // eslint-disable-line no-undef
   originTestKey: "pub.v2.8115061157590058.aHR0cDovL2xvY2FsaG9zdDo4MDgw.FF9fc99f70OC7jS9Ngmqj8z1H_cmKZMXQo_r0cnPAOg",
   // eslint-disable-line no-undef
-  paymentServiceBaseUrl: "https://api.digitalriver.com/payments",
+  paymentServiceBaseUrl: "https://api.digitalriverws.com/payments",
   // eslint-disable-line no-undef
   paypalRedirectBaseUrl: "https://payments-test.digitalriver.com/redirect/",
   // eslint-disable-line no-undef
-  paymentMethodsUrl: "https://api.digitalriver.com/payments/payment-methods" // eslint-disable-line no-undef
+  paymentMethodsUrl: "https://api.digitalriverws.com/payments/payment-methods" // eslint-disable-line no-undef
 
 };
 
@@ -19422,7 +19422,7 @@ var paymentServiceRequest = function paymentServiceRequest(data, apiKey, payment
       'Authorization': generateAuthHeader(apiKey)
     }
   };
-  var url = paymentApiUrl !== undefined ? paymentApiUrl : "https://api.digitalriver.com/payments/sources"; //eslint-disable-line no-undef
+  var url = paymentApiUrl !== undefined ? paymentApiUrl : "https://api.digitalriverws.com/payments/sources"; //eslint-disable-line no-undef
 
   return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post(url, data, options);
 };
@@ -19658,7 +19658,8 @@ var manifest = {
   'offlinerefund': '/offline-refund/offline-refund.html',
   'konbini': '/konbini/konbini.html',
   'creditcard': '',
-  'paypal': '/paypal/paypal.html'
+  'paypal': '/paypal/paypal.html',
+  'paypalcredit': '/paypal/paypal.html'
 };
 var eventNames = ['blur', 'change', 'focus', 'ready', 'click', 'source', 'shippingaddresschange', 'shippingoptionchange', 'cancel'];
 /**
@@ -19809,7 +19810,7 @@ function mount(node) {
         };
         _dataStore__WEBPACK_IMPORTED_MODULE_4__["default"].set(key, data); // Set base css class & empty class since field is empty
 
-        if (this.type !== 'googlepay' && this.type !== 'applepay' && this.type !== 'paypal' && this.type !== 'offlinerefund') {
+        if (this.type !== 'googlepay' && this.type !== 'applepay' && this.type !== 'paypal' && this.type !== 'paypalcredit' && this.type !== 'offlinerefund') {
           var DRElementClass = data.components[this.type].options.classes.base;
           node.classList.add(DRElementClass);
           var DREmptyClass = data.components[this.type].options.classes.empty;
@@ -20527,7 +20528,7 @@ function createSourceWithAdyen(controllerId, data, clientData) {
 /*!***************************************!*\
   !*** ./src/client/css-class-utils.js ***!
   \***************************************/
-/*! exports provided: getCssClasses, removeClasses, getElementHeight, getActiveClasses, applyActiveClasses, formatStyleCss, setSelectStyles, convertToAlphaColor */
+/*! exports provided: getCssClasses, removeClasses, getElementHeight, getActiveClasses, applyActiveClasses, formatStyleCss, setSelectStyles, convertToAlphaColor, createCssSpinner */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -20540,6 +20541,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "formatStyleCss", function() { return formatStyleCss; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setSelectStyles", function() { return setSelectStyles; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "convertToAlphaColor", function() { return convertToAlphaColor; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createCssSpinner", function() { return createCssSpinner; });
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
@@ -20790,6 +20792,9 @@ function convertToAlphaColor(cssColor, percent) {
   document.body.removeChild(document.getElementById('tempDiv'));
   return rgbaColor;
 }
+function createCssSpinner(altText) {
+  return "<div class=\"DR-spinner\">\n      <span class=\"DR-spinnerText\">".concat(altText, "</span>\n      <div class=\"DR-bounce1\"></div>\n      <div class=\"DR-bounce2\"></div>\n      <div class=\"DR-bounce3\"></div>\n      </div>");
+}
 
 /***/ }),
 
@@ -20863,10 +20868,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "processNonCreditCardEvents", function() { return processNonCreditCardEvents; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeEventsForType", function() { return removeEventsForType; });
 /* harmony import */ var _dataStore__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./dataStore */ "./src/client/dataStore.js");
-/* harmony import */ var _createComponent__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./createComponent */ "./src/client/createComponent.js");
-/* harmony import */ var _app_components_config__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../app/components/config */ "./src/app/components/config.js");
-
-
 
 /**
  * Wraps updateWith function in function to validate that it is an object
@@ -20998,23 +20999,6 @@ function applyCSSClassesBasedOnEvent(data, componentType, eventName, publicData)
     }
   }
 }
-
-function renderPayPalIFrameDialog(publicData) {
-  Object(_createComponent__WEBPACK_IMPORTED_MODULE_1__["createOverlayDiv"])('DRPayPal');
-  Object(_createComponent__WEBPACK_IMPORTED_MODULE_1__["updateOverlay"])('DRPayPal', '100%', 'rgba(0,0,0,0.3)');
-  var drMockFrame = document.createElement('iframe');
-  drMockFrame.id = 'DRPayPalFrame';
-  drMockFrame.src = _app_components_config__WEBPACK_IMPORTED_MODULE_2__["config"].paypalRedirectBaseUrl + publicData.sourceId;
-  drMockFrame.height = '300';
-  drMockFrame.width = '300';
-  drMockFrame.style.background = 'white';
-  var overlay = document.getElementById('DRPayPal');
-  overlay.appendChild(drMockFrame);
-}
-
-function removePayPalIFrameDialog() {
-  document.getElementById('DRPayPal').remove();
-}
 /**
  * Processes event and applies correct CSS classes to parent node
  * @param {string} key
@@ -21031,14 +21015,6 @@ function processEvent(key, componentType, eventName, publicData) {
   if (eventName === 'resize') {
     var frame = document.getElementById(publicData.frame.id);
     frame.style.height = publicData.frame.height;
-  }
-
-  if (eventName === 'dialog' && componentType === 'paypal' && publicData.action === 'close') {
-    removePayPalIFrameDialog();
-  }
-
-  if (eventName === 'dialog' && componentType === 'paypal' && publicData.action === 'open') {
-    renderPayPalIFrameDialog(publicData);
   }
 
   if (!isCSSExcludedComponent(componentType)) {
@@ -21134,7 +21110,7 @@ function _on(name, data, callback) {
 
 /***/ }),
 
-/***/ 4:
+/***/ 5:
 /*!***********************************************************************************************!*\
   !*** multi @babel/polyfill ./src/app/components/controller/controller-adyen-create-source.js ***!
   \***********************************************************************************************/

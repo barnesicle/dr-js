@@ -17105,6 +17105,1980 @@ exports.parseFullName = function parseFullName(
 
 /***/ }),
 
+/***/ "./node_modules/post-robot/dist/post-robot.ie.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/post-robot/dist/post-robot.ie.js ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(Buffer) {!function(root, factory) {
+     true ? module.exports = factory() : undefined;
+}("undefined" != typeof self ? self : this, function() {
+    return function(modules) {
+        var installedModules = {};
+        function __webpack_require__(moduleId) {
+            if (installedModules[moduleId]) return installedModules[moduleId].exports;
+            var module = installedModules[moduleId] = {
+                i: moduleId,
+                l: !1,
+                exports: {}
+            };
+            return modules[moduleId].call(module.exports, module, module.exports, __webpack_require__), 
+            module.l = !0, module.exports;
+        }
+        return __webpack_require__.m = modules, __webpack_require__.c = installedModules, 
+        __webpack_require__.d = function(exports, name, getter) {
+            __webpack_require__.o(exports, name) || Object.defineProperty(exports, name, {
+                enumerable: !0,
+                get: getter
+            });
+        }, __webpack_require__.r = function(exports) {
+            "undefined" != typeof Symbol && Symbol.toStringTag && Object.defineProperty(exports, Symbol.toStringTag, {
+                value: "Module"
+            }), Object.defineProperty(exports, "__esModule", {
+                value: !0
+            });
+        }, __webpack_require__.t = function(value, mode) {
+            if (1 & mode && (value = __webpack_require__(value)), 8 & mode) return value;
+            if (4 & mode && "object" == typeof value && value && value.__esModule) return value;
+            var ns = Object.create(null);
+            if (__webpack_require__.r(ns), Object.defineProperty(ns, "default", {
+                enumerable: !0,
+                value: value
+            }), 2 & mode && "string" != typeof value) for (var key in value) __webpack_require__.d(ns, key, function(key) {
+                return value[key];
+            }.bind(null, key));
+            return ns;
+        }, __webpack_require__.n = function(module) {
+            var getter = module && module.__esModule ? function() {
+                return module.default;
+            } : function() {
+                return module;
+            };
+            return __webpack_require__.d(getter, "a", getter), getter;
+        }, __webpack_require__.o = function(object, property) {
+            return {}.hasOwnProperty.call(object, property);
+        }, __webpack_require__.p = "", __webpack_require__(__webpack_require__.s = 0);
+    }([ function(module, __webpack_exports__, __webpack_require__) {
+        "use strict";
+        __webpack_require__.r(__webpack_exports__);
+        var interface_namespaceObject = {};
+        function isRegex(item) {
+            return "[object RegExp]" === {}.toString.call(item);
+        }
+        __webpack_require__.r(interface_namespaceObject), __webpack_require__.d(interface_namespaceObject, "WeakMap", function() {
+            return weakmap_CrossDomainSafeWeakMap;
+        });
+        var PROTOCOL = {
+            MOCK: "mock:",
+            FILE: "file:",
+            ABOUT: "about:"
+        }, WILDCARD = "*", IE_WIN_ACCESS_ERROR = "Call was rejected by callee.\r\n";
+        function isAboutProtocol(win) {
+            return void 0 === win && (win = window), win.location.protocol === PROTOCOL.ABOUT;
+        }
+        function getParent(win) {
+            if (win) try {
+                if (win.parent && win.parent !== win) return win.parent;
+            } catch (err) {}
+        }
+        function getOpener(win) {
+            if (win && !getParent(win)) try {
+                return win.opener;
+            } catch (err) {}
+        }
+        function canReadFromWindow(win) {
+            try {
+                return !0;
+            } catch (err) {}
+            return !1;
+        }
+        function getActualDomain(win) {
+            var location = (win = win || window).location;
+            if (!location) throw new Error("Can not read window location");
+            var protocol = location.protocol;
+            if (!protocol) throw new Error("Can not read window protocol");
+            if (protocol === PROTOCOL.FILE) return PROTOCOL.FILE + "//";
+            if (protocol === PROTOCOL.ABOUT) {
+                var parent = getParent(win);
+                return parent && canReadFromWindow() ? getActualDomain(parent) : PROTOCOL.ABOUT + "//";
+            }
+            var host = location.host;
+            if (!host) throw new Error("Can not read window host");
+            return protocol + "//" + host;
+        }
+        function getDomain(win) {
+            var domain = getActualDomain(win = win || window);
+            return domain && win.mockDomain && 0 === win.mockDomain.indexOf(PROTOCOL.MOCK) ? win.mockDomain : domain;
+        }
+        function isSameDomain(win) {
+            if (!function(win) {
+                try {
+                    if (win === window) return !0;
+                } catch (err) {}
+                try {
+                    var desc = Object.getOwnPropertyDescriptor(win, "location");
+                    if (desc && !1 === desc.enumerable) return !1;
+                } catch (err) {}
+                try {
+                    if (isAboutProtocol(win) && canReadFromWindow()) return !0;
+                } catch (err) {}
+                try {
+                    if (getActualDomain(win) === getActualDomain(window)) return !0;
+                } catch (err) {}
+                return !1;
+            }(win)) return !1;
+            try {
+                if (win === window) return !0;
+                if (isAboutProtocol(win) && canReadFromWindow()) return !0;
+                if (getDomain(window) === getDomain(win)) return !0;
+            } catch (err) {}
+            return !1;
+        }
+        function isAncestorParent(parent, child) {
+            if (!parent || !child) return !1;
+            var childParent = getParent(child);
+            return childParent ? childParent === parent : -1 !== function(win) {
+                var result = [];
+                try {
+                    for (;win.parent !== win; ) result.push(win.parent), win = win.parent;
+                } catch (err) {}
+                return result;
+            }(child).indexOf(parent);
+        }
+        function getFrames(win) {
+            var frames, len, result = [];
+            try {
+                frames = win.frames;
+            } catch (err) {
+                frames = win;
+            }
+            try {
+                len = frames.length;
+            } catch (err) {}
+            if (0 === len) return result;
+            if (len) {
+                for (var i = 0; i < len; i++) {
+                    var frame = void 0;
+                    try {
+                        frame = frames[i];
+                    } catch (err) {
+                        continue;
+                    }
+                    result.push(frame);
+                }
+                return result;
+            }
+            for (var _i = 0; _i < 100; _i++) {
+                var _frame = void 0;
+                try {
+                    _frame = frames[_i];
+                } catch (err) {
+                    return result;
+                }
+                if (!_frame) return result;
+                result.push(_frame);
+            }
+            return result;
+        }
+        function getAllChildFrames(win) {
+            for (var result = [], _i3 = 0, _getFrames2 = getFrames(win); _i3 < _getFrames2.length; _i3++) {
+                var frame = _getFrames2[_i3];
+                result.push(frame);
+                for (var _i5 = 0, _getAllChildFrames2 = getAllChildFrames(frame); _i5 < _getAllChildFrames2.length; _i5++) result.push(_getAllChildFrames2[_i5]);
+            }
+            return result;
+        }
+        function getTop(win) {
+            if (win) {
+                try {
+                    if (win.top) return win.top;
+                } catch (err) {}
+                if (getParent(win) === win) return win;
+                try {
+                    if (isAncestorParent(window, win) && window.top) return window.top;
+                } catch (err) {}
+                try {
+                    if (isAncestorParent(win, window) && window.top) return window.top;
+                } catch (err) {}
+                for (var _i7 = 0, _getAllChildFrames4 = getAllChildFrames(win); _i7 < _getAllChildFrames4.length; _i7++) {
+                    var frame = _getAllChildFrames4[_i7];
+                    try {
+                        if (frame.top) return frame.top;
+                    } catch (err) {}
+                    if (getParent(frame) === frame) return frame;
+                }
+            }
+        }
+        function getAllFramesInWindow(win) {
+            var top = getTop(win);
+            if (!top) throw new Error("Can not determine top window");
+            return [].concat(getAllChildFrames(top), [ top ]);
+        }
+        var iframeWindows = [], iframeFrames = [];
+        function isWindowClosed(win, allowMock) {
+            void 0 === allowMock && (allowMock = !0);
+            try {
+                if (win === window) return !1;
+            } catch (err) {
+                return !0;
+            }
+            try {
+                if (!win) return !0;
+            } catch (err) {
+                return !0;
+            }
+            try {
+                if (win.closed) return !0;
+            } catch (err) {
+                return !err || err.message !== IE_WIN_ACCESS_ERROR;
+            }
+            if (allowMock && isSameDomain(win)) try {
+                if (win.mockclosed) return !0;
+            } catch (err) {}
+            try {
+                if (!win.parent || !win.top) return !0;
+            } catch (err) {}
+            var iframeIndex = function(collection, item) {
+                for (var i = 0; i < collection.length; i++) try {
+                    if (collection[i] === item) return i;
+                } catch (err) {}
+                return -1;
+            }(iframeWindows, win);
+            if (-1 !== iframeIndex) {
+                var frame = iframeFrames[iframeIndex];
+                if (frame && function(frame) {
+                    if (!frame.contentWindow) return !0;
+                    if (!frame.parentNode) return !0;
+                    var doc = frame.ownerDocument;
+                    return !(!doc || !doc.documentElement || doc.documentElement.contains(frame));
+                }(frame)) return !0;
+            }
+            return !1;
+        }
+        function getUserAgent(win) {
+            return (win = win || window).navigator.mockUserAgent || win.navigator.userAgent;
+        }
+        function getFrameByName(win, name) {
+            for (var winFrames = getFrames(win), _i9 = 0; _i9 < winFrames.length; _i9++) {
+                var childFrame = winFrames[_i9];
+                try {
+                    if (isSameDomain(childFrame) && childFrame.name === name && -1 !== winFrames.indexOf(childFrame)) return childFrame;
+                } catch (err) {}
+            }
+            try {
+                if (-1 !== winFrames.indexOf(win.frames[name])) return win.frames[name];
+            } catch (err) {}
+            try {
+                if (-1 !== winFrames.indexOf(win[name])) return win[name];
+            } catch (err) {}
+        }
+        function isOpener(parent, child) {
+            return parent === getOpener(child);
+        }
+        function getAncestor(win) {
+            return getOpener(win = win || window) || getParent(win) || void 0;
+        }
+        function anyMatch(collection1, collection2) {
+            for (var _i17 = 0; _i17 < collection1.length; _i17++) for (var item1 = collection1[_i17], _i19 = 0; _i19 < collection2.length; _i19++) if (item1 === collection2[_i19]) return !0;
+            return !1;
+        }
+        function isSameTopWindow(win1, win2) {
+            var top1 = getTop(win1) || win1, top2 = getTop(win2) || win2;
+            try {
+                if (top1 && top2) return top1 === top2;
+            } catch (err) {}
+            var allFrames1 = getAllFramesInWindow(win1), allFrames2 = getAllFramesInWindow(win2);
+            if (anyMatch(allFrames1, allFrames2)) return !0;
+            var opener1 = getOpener(top1), opener2 = getOpener(top2);
+            return !(opener1 && anyMatch(getAllFramesInWindow(opener1), allFrames2) || (opener2 && anyMatch(getAllFramesInWindow(opener2), allFrames1), 
+            1));
+        }
+        function matchDomain(pattern, origin) {
+            if ("string" == typeof pattern) {
+                if ("string" == typeof origin) return pattern === WILDCARD || origin === pattern;
+                if (isRegex(origin)) return !1;
+                if (Array.isArray(origin)) return !1;
+            }
+            return isRegex(pattern) ? isRegex(origin) ? pattern.toString() === origin.toString() : !Array.isArray(origin) && Boolean(origin.match(pattern)) : !!Array.isArray(pattern) && (Array.isArray(origin) ? JSON.stringify(pattern) === JSON.stringify(origin) : !isRegex(origin) && pattern.some(function(subpattern) {
+                return matchDomain(subpattern, origin);
+            }));
+        }
+        function getDomainFromUrl(url) {
+            return url.match(/^(https?|mock|file):\/\//) ? url.split("/").slice(0, 3).join("/") : getDomain();
+        }
+        function isWindow(obj) {
+            try {
+                if (obj === window) return !0;
+            } catch (err) {
+                if (err && err.message === IE_WIN_ACCESS_ERROR) return !0;
+            }
+            try {
+                if ("[object Window]" === {}.toString.call(obj)) return !0;
+            } catch (err) {
+                if (err && err.message === IE_WIN_ACCESS_ERROR) return !0;
+            }
+            try {
+                if (window.Window && obj instanceof window.Window) return !0;
+            } catch (err) {
+                if (err && err.message === IE_WIN_ACCESS_ERROR) return !0;
+            }
+            try {
+                if (obj && obj.self === obj) return !0;
+            } catch (err) {
+                if (err && err.message === IE_WIN_ACCESS_ERROR) return !0;
+            }
+            try {
+                if (obj && obj.parent === obj) return !0;
+            } catch (err) {
+                if (err && err.message === IE_WIN_ACCESS_ERROR) return !0;
+            }
+            try {
+                if (obj && obj.top === obj) return !0;
+            } catch (err) {
+                if (err && err.message === IE_WIN_ACCESS_ERROR) return !0;
+            }
+            return !1;
+        }
+        function utils_isPromise(item) {
+            try {
+                if (!item) return !1;
+                if ("undefined" != typeof Promise && item instanceof Promise) return !0;
+                if ("undefined" != typeof window && window.Window && item instanceof window.Window) return !1;
+                if ("undefined" != typeof window && window.constructor && item instanceof window.constructor) return !1;
+                var _toString = {}.toString;
+                if (_toString) {
+                    var name = _toString.call(item);
+                    if ("[object Window]" === name || "[object global]" === name || "[object DOMWindow]" === name) return !1;
+                }
+                if ("function" == typeof item.then) return !0;
+            } catch (err) {
+                return !1;
+            }
+            return !1;
+        }
+        var flushPromise, dispatchedErrors = [], possiblyUnhandledPromiseHandlers = [], activeCount = 0;
+        function flushActive() {
+            if (!activeCount && flushPromise) {
+                var promise = flushPromise;
+                flushPromise = null, promise.resolve();
+            }
+        }
+        function startActive() {
+            activeCount += 1;
+        }
+        function endActive() {
+            activeCount -= 1, flushActive();
+        }
+        var promise_ZalgoPromise = function() {
+            function ZalgoPromise(handler) {
+                var _this = this;
+                if (this.resolved = void 0, this.rejected = void 0, this.errorHandled = void 0, 
+                this.value = void 0, this.error = void 0, this.handlers = void 0, this.dispatching = void 0, 
+                this.stack = void 0, this.resolved = !1, this.rejected = !1, this.errorHandled = !1, 
+                this.handlers = [], handler) {
+                    var _result, _error, resolved = !1, rejected = !1, isAsync = !1;
+                    startActive();
+                    try {
+                        handler(function(res) {
+                            isAsync ? _this.resolve(res) : (resolved = !0, _result = res);
+                        }, function(err) {
+                            isAsync ? _this.reject(err) : (rejected = !0, _error = err);
+                        });
+                    } catch (err) {
+                        return endActive(), void this.reject(err);
+                    }
+                    endActive(), isAsync = !0, resolved ? this.resolve(_result) : rejected && this.reject(_error);
+                }
+            }
+            var _proto = ZalgoPromise.prototype;
+            return _proto.resolve = function(result) {
+                if (this.resolved || this.rejected) return this;
+                if (utils_isPromise(result)) throw new Error("Can not resolve promise with another promise");
+                return this.resolved = !0, this.value = result, this.dispatch(), this;
+            }, _proto.reject = function(error) {
+                var _this2 = this;
+                if (this.resolved || this.rejected) return this;
+                if (utils_isPromise(error)) throw new Error("Can not reject promise with another promise");
+                if (!error) {
+                    var _err = error && "function" == typeof error.toString ? error.toString() : {}.toString.call(error);
+                    error = new Error("Expected reject to be called with Error, got " + _err);
+                }
+                return this.rejected = !0, this.error = error, this.errorHandled || setTimeout(function() {
+                    _this2.errorHandled || function(err, promise) {
+                        if (-1 === dispatchedErrors.indexOf(err)) {
+                            dispatchedErrors.push(err), setTimeout(function() {
+                                throw err;
+                            }, 1);
+                            for (var j = 0; j < possiblyUnhandledPromiseHandlers.length; j++) possiblyUnhandledPromiseHandlers[j](err, promise);
+                        }
+                    }(error, _this2);
+                }, 1), this.dispatch(), this;
+            }, _proto.asyncReject = function(error) {
+                return this.errorHandled = !0, this.reject(error), this;
+            }, _proto.dispatch = function() {
+                var _this3 = this, resolved = this.resolved, rejected = this.rejected, handlers = this.handlers;
+                if (!this.dispatching && (resolved || rejected)) {
+                    this.dispatching = !0, startActive();
+                    for (var _loop = function(i) {
+                        var _handlers$i = handlers[i], onSuccess = _handlers$i.onSuccess, onError = _handlers$i.onError, promise = _handlers$i.promise, result = void 0;
+                        if (resolved) try {
+                            result = onSuccess ? onSuccess(_this3.value) : _this3.value;
+                        } catch (err) {
+                            return promise.reject(err), "continue";
+                        } else if (rejected) {
+                            if (!onError) return promise.reject(_this3.error), "continue";
+                            try {
+                                result = onError(_this3.error);
+                            } catch (err) {
+                                return promise.reject(err), "continue";
+                            }
+                        }
+                        result instanceof ZalgoPromise && (result.resolved || result.rejected) ? (result.resolved ? promise.resolve(result.value) : promise.reject(result.error), 
+                        result.errorHandled = !0) : utils_isPromise(result) ? result instanceof ZalgoPromise && (result.resolved || result.rejected) ? result.resolved ? promise.resolve(result.value) : promise.reject(result.error) : result.then(function(res) {
+                            promise.resolve(res);
+                        }, function(err) {
+                            promise.reject(err);
+                        }) : promise.resolve(result);
+                    }, i = 0; i < handlers.length; i++) _loop(i);
+                    handlers.length = 0, this.dispatching = !1, endActive();
+                }
+            }, _proto.then = function(onSuccess, onError) {
+                if (onSuccess && "function" != typeof onSuccess && !onSuccess.call) throw new Error("Promise.then expected a function for success handler");
+                if (onError && "function" != typeof onError && !onError.call) throw new Error("Promise.then expected a function for error handler");
+                var promise = new ZalgoPromise();
+                return this.handlers.push({
+                    promise: promise,
+                    onSuccess: onSuccess,
+                    onError: onError
+                }), this.errorHandled = !0, this.dispatch(), promise;
+            }, _proto.catch = function(onError) {
+                return this.then(void 0, onError);
+            }, _proto.finally = function(onFinally) {
+                if (onFinally && "function" != typeof onFinally && !onFinally.call) throw new Error("Promise.finally expected a function");
+                return this.then(function(result) {
+                    return ZalgoPromise.try(onFinally).then(function() {
+                        return result;
+                    });
+                }, function(err) {
+                    return ZalgoPromise.try(onFinally).then(function() {
+                        throw err;
+                    });
+                });
+            }, _proto.timeout = function(time, err) {
+                var _this4 = this;
+                if (this.resolved || this.rejected) return this;
+                var timeout = setTimeout(function() {
+                    _this4.resolved || _this4.rejected || _this4.reject(err || new Error("Promise timed out after " + time + "ms"));
+                }, time);
+                return this.then(function(result) {
+                    return clearTimeout(timeout), result;
+                });
+            }, _proto.toPromise = function() {
+                if ("undefined" == typeof Promise) throw new TypeError("Could not find Promise");
+                return Promise.resolve(this);
+            }, ZalgoPromise.resolve = function(value) {
+                return value instanceof ZalgoPromise ? value : utils_isPromise(value) ? new ZalgoPromise(function(resolve, reject) {
+                    return value.then(resolve, reject);
+                }) : new ZalgoPromise().resolve(value);
+            }, ZalgoPromise.reject = function(error) {
+                return new ZalgoPromise().reject(error);
+            }, ZalgoPromise.asyncReject = function(error) {
+                return new ZalgoPromise().asyncReject(error);
+            }, ZalgoPromise.all = function(promises) {
+                var promise = new ZalgoPromise(), count = promises.length, results = [];
+                if (!count) return promise.resolve(results), promise;
+                for (var _loop2 = function(i) {
+                    var prom = promises[i];
+                    if (prom instanceof ZalgoPromise) {
+                        if (prom.resolved) return results[i] = prom.value, count -= 1, "continue";
+                    } else if (!utils_isPromise(prom)) return results[i] = prom, count -= 1, "continue";
+                    ZalgoPromise.resolve(prom).then(function(result) {
+                        results[i] = result, 0 == (count -= 1) && promise.resolve(results);
+                    }, function(err) {
+                        promise.reject(err);
+                    });
+                }, i = 0; i < promises.length; i++) _loop2(i);
+                return 0 === count && promise.resolve(results), promise;
+            }, ZalgoPromise.hash = function(promises) {
+                var result = {};
+                return ZalgoPromise.all(Object.keys(promises).map(function(key) {
+                    return ZalgoPromise.resolve(promises[key]).then(function(value) {
+                        result[key] = value;
+                    });
+                })).then(function() {
+                    return result;
+                });
+            }, ZalgoPromise.map = function(items, method) {
+                return ZalgoPromise.all(items.map(method));
+            }, ZalgoPromise.onPossiblyUnhandledException = function(handler) {
+                return function(handler) {
+                    return possiblyUnhandledPromiseHandlers.push(handler), {
+                        cancel: function() {
+                            possiblyUnhandledPromiseHandlers.splice(possiblyUnhandledPromiseHandlers.indexOf(handler), 1);
+                        }
+                    };
+                }(handler);
+            }, ZalgoPromise.try = function(method, context, args) {
+                if (method && "function" != typeof method && !method.call) throw new Error("Promise.try expected a function");
+                var result;
+                startActive();
+                try {
+                    result = method.apply(context, args || []);
+                } catch (err) {
+                    return endActive(), ZalgoPromise.reject(err);
+                }
+                return endActive(), ZalgoPromise.resolve(result);
+            }, ZalgoPromise.delay = function(_delay) {
+                return new ZalgoPromise(function(resolve) {
+                    setTimeout(resolve, _delay);
+                });
+            }, ZalgoPromise.isPromise = function(value) {
+                return !!(value && value instanceof ZalgoPromise) || utils_isPromise(value);
+            }, ZalgoPromise.flush = function() {
+                return promise = flushPromise = flushPromise || new ZalgoPromise(), flushActive(), 
+                promise;
+                var promise;
+            }, ZalgoPromise;
+        }();
+        function _extends() {
+            return (_extends = Object.assign || function(target) {
+                for (var i = 1; i < arguments.length; i++) {
+                    var source = arguments[i];
+                    for (var key in source) ({}).hasOwnProperty.call(source, key) && (target[key] = source[key]);
+                }
+                return target;
+            }).apply(this, arguments);
+        }
+        function util_safeIndexOf(collection, item) {
+            for (var i = 0; i < collection.length; i++) try {
+                if (collection[i] === item) return i;
+            } catch (err) {}
+            return -1;
+        }
+        var objectIDs, defineProperty = Object.defineProperty, counter = Date.now() % 1e9, weakmap_CrossDomainSafeWeakMap = function() {
+            function CrossDomainSafeWeakMap() {
+                if (this.name = void 0, this.weakmap = void 0, this.keys = void 0, this.values = void 0, 
+                counter += 1, this.name = "__weakmap_" + (1e9 * Math.random() >>> 0) + "__" + counter, 
+                function() {
+                    if ("undefined" == typeof WeakMap) return !1;
+                    if (void 0 === Object.freeze) return !1;
+                    try {
+                        var testWeakMap = new WeakMap(), testKey = {};
+                        return Object.freeze(testKey), testWeakMap.set(testKey, "__testvalue__"), "__testvalue__" === testWeakMap.get(testKey);
+                    } catch (err) {
+                        return !1;
+                    }
+                }()) try {
+                    this.weakmap = new WeakMap();
+                } catch (err) {}
+                this.keys = [], this.values = [];
+            }
+            var _proto = CrossDomainSafeWeakMap.prototype;
+            return _proto._cleanupClosedWindows = function() {
+                for (var weakmap = this.weakmap, keys = this.keys, i = 0; i < keys.length; i++) {
+                    var value = keys[i];
+                    if (isWindow(value) && isWindowClosed(value)) {
+                        if (weakmap) try {
+                            weakmap.delete(value);
+                        } catch (err) {}
+                        keys.splice(i, 1), this.values.splice(i, 1), i -= 1;
+                    }
+                }
+            }, _proto.isSafeToReadWrite = function(key) {
+                return !isWindow(key);
+            }, _proto.set = function(key, value) {
+                if (!key) throw new Error("WeakMap expected key");
+                var weakmap = this.weakmap;
+                if (weakmap) try {
+                    weakmap.set(key, value);
+                } catch (err) {
+                    delete this.weakmap;
+                }
+                if (this.isSafeToReadWrite(key)) {
+                    var name = this.name, entry = key[name];
+                    entry && entry[0] === key ? entry[1] = value : defineProperty(key, name, {
+                        value: [ key, value ],
+                        writable: !0
+                    });
+                } else {
+                    this._cleanupClosedWindows();
+                    var keys = this.keys, values = this.values, index = util_safeIndexOf(keys, key);
+                    -1 === index ? (keys.push(key), values.push(value)) : values[index] = value;
+                }
+            }, _proto.get = function(key) {
+                if (!key) throw new Error("WeakMap expected key");
+                var weakmap = this.weakmap;
+                if (weakmap) try {
+                    if (weakmap.has(key)) return weakmap.get(key);
+                } catch (err) {
+                    delete this.weakmap;
+                }
+                if (!this.isSafeToReadWrite(key)) {
+                    this._cleanupClosedWindows();
+                    var index = util_safeIndexOf(this.keys, key);
+                    if (-1 === index) return;
+                    return this.values[index];
+                }
+                var entry = key[this.name];
+                if (entry && entry[0] === key) return entry[1];
+            }, _proto.delete = function(key) {
+                if (!key) throw new Error("WeakMap expected key");
+                var weakmap = this.weakmap;
+                if (weakmap) try {
+                    weakmap.delete(key);
+                } catch (err) {
+                    delete this.weakmap;
+                }
+                if (this.isSafeToReadWrite(key)) {
+                    var entry = key[this.name];
+                    entry && entry[0] === key && (entry[0] = entry[1] = void 0);
+                } else {
+                    this._cleanupClosedWindows();
+                    var keys = this.keys, index = util_safeIndexOf(keys, key);
+                    -1 !== index && (keys.splice(index, 1), this.values.splice(index, 1));
+                }
+            }, _proto.has = function(key) {
+                if (!key) throw new Error("WeakMap expected key");
+                var weakmap = this.weakmap;
+                if (weakmap) try {
+                    if (weakmap.has(key)) return !0;
+                } catch (err) {
+                    delete this.weakmap;
+                }
+                if (this.isSafeToReadWrite(key)) {
+                    var entry = key[this.name];
+                    return !(!entry || entry[0] !== key);
+                }
+                return this._cleanupClosedWindows(), -1 !== util_safeIndexOf(this.keys, key);
+            }, _proto.getOrSet = function(key, getter) {
+                if (this.has(key)) return this.get(key);
+                var value = getter();
+                return this.set(key, value), value;
+            }, CrossDomainSafeWeakMap;
+        }();
+        function uniqueID() {
+            var chars = "0123456789abcdef";
+            return "xxxxxxxxxx".replace(/./g, function() {
+                return chars.charAt(Math.floor(Math.random() * chars.length));
+            }) + "_" + function(str) {
+                if ("function" == typeof btoa) return btoa(str);
+                if ("undefined" != typeof Buffer) return Buffer.from(str, "utf8").toString("base64");
+                throw new Error("Can not find window.btoa or Buffer");
+            }(new Date().toISOString().slice(11, 19).replace("T", ".")).replace(/[^a-zA-Z0-9]/g, "").toLowerCase();
+        }
+        function src_util_noop() {}
+        function stringifyError(err, level) {
+            if (void 0 === level && (level = 1), level >= 3) return "stringifyError stack overflow";
+            try {
+                if (!err) return "<unknown error: " + {}.toString.call(err) + ">";
+                if ("string" == typeof err) return err;
+                if (err instanceof Error) {
+                    var stack = err && err.stack, message = err && err.message;
+                    if (stack && message) return -1 !== stack.indexOf(message) ? stack : message + "\n" + stack;
+                    if (stack) return stack;
+                    if (message) return message;
+                }
+                return "function" == typeof err.toString ? err.toString() : {}.toString.call(err);
+            } catch (newErr) {
+                return "Error while stringifying error: " + stringifyError(newErr, level + 1);
+            }
+        }
+        function stringify(item) {
+            return "string" == typeof item ? item : item && "function" == typeof item.toString ? item.toString() : {}.toString.call(item);
+        }
+        function util_isRegex(item) {
+            return "[object RegExp]" === {}.toString.call(item);
+        }
+        function util_getOrSet(obj, key, getter) {
+            if (obj.hasOwnProperty(key)) return obj[key];
+            var val = getter();
+            return obj[key] = val, val;
+        }
+        Object.create(Error.prototype);
+        var MESSAGE_NAME = {
+            METHOD: "postrobot_method",
+            HELLO: "postrobot_hello",
+            OPEN_TUNNEL: "postrobot_open_tunnel"
+        }, BRIDGE_NAME_PREFIX = "__postrobot_bridge__", constants_WILDCARD = "*", SERIALIZATION_TYPE = {
+            CROSS_DOMAIN_ZALGO_PROMISE: "cross_domain_zalgo_promise",
+            CROSS_DOMAIN_FUNCTION: "cross_domain_function",
+            CROSS_DOMAIN_WINDOW: "cross_domain_window"
+        };
+        function global_getGlobal(win) {
+            return void 0 === win && (win = window), win !== window ? win.__post_robot_10_0_10__ : win.__post_robot_10_0_10__ = win.__post_robot_10_0_10__ || {};
+        }
+        var getObj = function() {
+            return {};
+        };
+        function globalStore(key, defStore) {
+            return void 0 === key && (key = "store"), void 0 === defStore && (defStore = getObj), 
+            util_getOrSet(global_getGlobal(), key, function() {
+                var store = defStore();
+                return {
+                    has: function(storeKey) {
+                        return store.hasOwnProperty(storeKey);
+                    },
+                    get: function(storeKey, defVal) {
+                        return store.hasOwnProperty(storeKey) ? store[storeKey] : defVal;
+                    },
+                    set: function(storeKey, val) {
+                        return store[storeKey] = val, val;
+                    },
+                    del: function(storeKey) {
+                        delete store[storeKey];
+                    },
+                    getOrSet: function(storeKey, getter) {
+                        return util_getOrSet(store, storeKey, getter);
+                    },
+                    reset: function() {
+                        store = defStore();
+                    },
+                    keys: function() {
+                        return Object.keys(store);
+                    }
+                };
+            });
+        }
+        var WildCard = function() {};
+        function getWildcard() {
+            var global = global_getGlobal();
+            return global.WINDOW_WILDCARD = global.WINDOW_WILDCARD || new WildCard(), global.WINDOW_WILDCARD;
+        }
+        function windowStore(key, defStore) {
+            return void 0 === key && (key = "store"), void 0 === defStore && (defStore = getObj), 
+            globalStore("windowStore").getOrSet(key, function() {
+                var winStore = new weakmap_CrossDomainSafeWeakMap(), getStore = function(win) {
+                    return winStore.getOrSet(win, defStore);
+                };
+                return {
+                    has: function(win) {
+                        return getStore(win).hasOwnProperty(key);
+                    },
+                    get: function(win, defVal) {
+                        var store = getStore(win);
+                        return store.hasOwnProperty(key) ? store[key] : defVal;
+                    },
+                    set: function(win, val) {
+                        return getStore(win)[key] = val, val;
+                    },
+                    del: function(win) {
+                        delete getStore(win)[key];
+                    },
+                    getOrSet: function(win, getter) {
+                        return util_getOrSet(getStore(win), key, getter);
+                    }
+                };
+            });
+        }
+        function hello_getInstanceID() {
+            return globalStore("instance").getOrSet("instanceID", uniqueID);
+        }
+        function getHelloPromise(win) {
+            return windowStore("helloPromises").getOrSet(win, function() {
+                return new promise_ZalgoPromise();
+            });
+        }
+        function sayHello(win, _ref3) {
+            return (0, _ref3.send)(win, MESSAGE_NAME.HELLO, {
+                instanceID: hello_getInstanceID()
+            }, {
+                domain: constants_WILDCARD,
+                timeout: -1
+            }).then(function(_ref4) {
+                var origin = _ref4.origin, instanceID = _ref4.data.instanceID;
+                return getHelloPromise(win).resolve({
+                    win: win,
+                    domain: origin
+                }), {
+                    win: win,
+                    domain: origin,
+                    instanceID: instanceID
+                };
+            });
+        }
+        function getWindowInstanceID(win, _ref5) {
+            var send = _ref5.send;
+            return windowStore("windowInstanceIDPromises").getOrSet(win, function() {
+                return sayHello(win, {
+                    send: send
+                }).then(function(_ref6) {
+                    return _ref6.instanceID;
+                });
+            });
+        }
+        function awaitWindowHello(win, timeout, name) {
+            void 0 === timeout && (timeout = 5e3), void 0 === name && (name = "Window");
+            var promise = getHelloPromise(win);
+            return -1 !== timeout && (promise = promise.timeout(timeout, new Error(name + " did not load after " + timeout + "ms"))), 
+            promise;
+        }
+        function markWindowKnown(win) {
+            windowStore("knownWindows").set(win, !0);
+        }
+        var _SERIALIZER, TYPE = {
+            FUNCTION: "function",
+            ERROR: "error",
+            PROMISE: "promise",
+            REGEX: "regex",
+            DATE: "date",
+            ARRAY: "array",
+            OBJECT: "object",
+            STRING: "string",
+            NUMBER: "number",
+            BOOLEAN: "boolean",
+            NULL: "null",
+            UNDEFINED: "undefined"
+        };
+        function isSerializedType(item) {
+            return "object" == typeof item && null !== item && "string" == typeof item.__type__;
+        }
+        function determineType(val) {
+            return void 0 === val ? TYPE.UNDEFINED : null === val ? TYPE.NULL : Array.isArray(val) ? TYPE.ARRAY : "function" == typeof val ? TYPE.FUNCTION : "object" == typeof val ? val instanceof Error ? TYPE.ERROR : "function" == typeof val.then ? TYPE.PROMISE : "[object RegExp]" === {}.toString.call(val) ? TYPE.REGEX : "[object Date]" === {}.toString.call(val) ? TYPE.DATE : TYPE.OBJECT : "string" == typeof val ? TYPE.STRING : "number" == typeof val ? TYPE.NUMBER : "boolean" == typeof val ? TYPE.BOOLEAN : void 0;
+        }
+        function serializeType(type, val) {
+            return {
+                __type__: type,
+                __val__: val
+            };
+        }
+        var _DESERIALIZER, SERIALIZER = ((_SERIALIZER = {})[TYPE.FUNCTION] = function() {}, 
+        _SERIALIZER[TYPE.ERROR] = function(_ref) {
+            return serializeType(TYPE.ERROR, {
+                message: _ref.message,
+                stack: _ref.stack,
+                code: _ref.code
+            });
+        }, _SERIALIZER[TYPE.PROMISE] = function() {}, _SERIALIZER[TYPE.REGEX] = function(val) {
+            return serializeType(TYPE.REGEX, val.source);
+        }, _SERIALIZER[TYPE.DATE] = function(val) {
+            return serializeType(TYPE.DATE, val.toJSON());
+        }, _SERIALIZER[TYPE.ARRAY] = function(val) {
+            return val;
+        }, _SERIALIZER[TYPE.OBJECT] = function(val) {
+            return val;
+        }, _SERIALIZER[TYPE.STRING] = function(val) {
+            return val;
+        }, _SERIALIZER[TYPE.NUMBER] = function(val) {
+            return val;
+        }, _SERIALIZER[TYPE.BOOLEAN] = function(val) {
+            return val;
+        }, _SERIALIZER[TYPE.NULL] = function(val) {
+            return val;
+        }, _SERIALIZER), defaultSerializers = {}, DESERIALIZER = ((_DESERIALIZER = {})[TYPE.FUNCTION] = function() {
+            throw new Error("Function serialization is not implemented; nothing to deserialize");
+        }, _DESERIALIZER[TYPE.ERROR] = function(_ref2) {
+            var stack = _ref2.stack, code = _ref2.code, error = new Error(_ref2.message);
+            return error.code = code, error.stack = stack + "\n\n" + error.stack, error;
+        }, _DESERIALIZER[TYPE.PROMISE] = function() {
+            throw new Error("Promise serialization is not implemented; nothing to deserialize");
+        }, _DESERIALIZER[TYPE.REGEX] = function(val) {
+            return new RegExp(val);
+        }, _DESERIALIZER[TYPE.DATE] = function(val) {
+            return new Date(val);
+        }, _DESERIALIZER[TYPE.ARRAY] = function(val) {
+            return val;
+        }, _DESERIALIZER[TYPE.OBJECT] = function(val) {
+            return val;
+        }, _DESERIALIZER[TYPE.STRING] = function(val) {
+            return val;
+        }, _DESERIALIZER[TYPE.NUMBER] = function(val) {
+            return val;
+        }, _DESERIALIZER[TYPE.BOOLEAN] = function(val) {
+            return val;
+        }, _DESERIALIZER[TYPE.NULL] = function(val) {
+            return val;
+        }, _DESERIALIZER), defaultDeserializers = {};
+        function needsBridgeForBrowser() {
+            return !!getUserAgent(window).match(/MSIE|trident|edge\/12|edge\/13/i);
+        }
+        function needsBridgeForWin(win) {
+            return !isSameTopWindow(window, win);
+        }
+        function needsBridgeForDomain(domain, win) {
+            if (domain) {
+                if (getDomain() !== getDomainFromUrl(domain)) return !0;
+            } else if (win && !isSameDomain(win)) return !0;
+            return !1;
+        }
+        function needsBridge(_ref) {
+            var win = _ref.win, domain = _ref.domain;
+            return !(!needsBridgeForBrowser() || domain && !needsBridgeForDomain(domain, win) || win && !needsBridgeForWin(win));
+        }
+        function getBridgeName(domain) {
+            var sanitizedDomain = (domain = domain || getDomainFromUrl(domain)).replace(/[^a-zA-Z0-9]+/g, "_");
+            return BRIDGE_NAME_PREFIX + "_" + sanitizedDomain;
+        }
+        function isBridge() {
+            return Boolean(window.name && window.name === getBridgeName(getDomain()));
+        }
+        var documentBodyReady = new promise_ZalgoPromise(function(resolve) {
+            if (window.document && window.document.body) return resolve(window.document.body);
+            var interval = setInterval(function() {
+                if (window.document && window.document.body) return clearInterval(interval), resolve(window.document.body);
+            }, 10);
+        });
+        function registerRemoteWindow(win) {
+            windowStore("remoteWindowPromises").getOrSet(win, function() {
+                return new promise_ZalgoPromise();
+            });
+        }
+        function findRemoteWindow(win) {
+            var remoteWinPromise = windowStore("remoteWindowPromises").get(win);
+            if (!remoteWinPromise) throw new Error("Remote window promise not found");
+            return remoteWinPromise;
+        }
+        function registerRemoteSendMessage(win, domain, sendMessage) {
+            findRemoteWindow(win).resolve(function(remoteWin, remoteDomain, message) {
+                if (remoteWin !== win) throw new Error("Remote window does not match window");
+                if (!matchDomain(remoteDomain, domain)) throw new Error("Remote domain " + remoteDomain + " does not match domain " + domain);
+                sendMessage.fireAndForget(message);
+            });
+        }
+        function rejectRemoteSendMessage(win, err) {
+            findRemoteWindow(win).reject(err).catch(src_util_noop);
+        }
+        function linkWindow(_ref3) {
+            for (var win = _ref3.win, name = _ref3.name, domain = _ref3.domain, popupWindowsByName = globalStore("popupWindowsByName"), popupWindowsByWin = windowStore("popupWindowsByWin"), _i2 = 0, _popupWindowsByName$k2 = popupWindowsByName.keys(); _i2 < _popupWindowsByName$k2.length; _i2++) {
+                var winName = _popupWindowsByName$k2[_i2];
+                isWindowClosed(popupWindowsByName.get(winName).win) && popupWindowsByName.del(winName);
+            }
+            var details = popupWindowsByWin.getOrSet(win, function() {
+                return name ? popupWindowsByName.getOrSet(name, function() {
+                    return {
+                        win: win,
+                        name: name
+                    };
+                }) : {
+                    win: win
+                };
+            });
+            if (details.win && details.win !== win) throw new Error("Different window already linked for window: " + (name || "undefined"));
+            if (name) {
+                if (details.name && details.name !== name) throw new Error("Different window already linked for name " + name + ": " + details.name);
+                details.name = name, popupWindowsByName.set(name, details);
+            }
+            return domain && (details.domain = domain, registerRemoteWindow(win)), popupWindowsByWin.set(win, details), 
+            details;
+        }
+        function setupBridge(_ref) {
+            var windowOpen, on = _ref.on, send = _ref.send, receiveMessage = _ref.receiveMessage;
+            windowOpen = window.open, window.open = function(url, name, options, last) {
+                var win = windowOpen.call(this, function(url) {
+                    if (0 !== getDomainFromUrl(url).indexOf(PROTOCOL.MOCK)) return url;
+                    throw new Error("Mock urls not supported out of test mode");
+                }(url), name, options, last);
+                return win ? (linkWindow({
+                    win: win,
+                    name: name,
+                    domain: url ? getDomainFromUrl(url) : null
+                }), win) : win;
+            }, function(_ref) {
+                var on = _ref.on, send = _ref.send, receiveMessage = _ref.receiveMessage, popupWindowsByName = globalStore("popupWindowsByName");
+                on(MESSAGE_NAME.OPEN_TUNNEL, function(_ref2) {
+                    var source = _ref2.source, origin = _ref2.origin, data = _ref2.data, bridgePromise = globalStore("bridges").get(origin);
+                    if (!bridgePromise) throw new Error("Can not find bridge promise for domain " + origin);
+                    return bridgePromise.then(function(bridge) {
+                        if (source !== bridge) throw new Error("Message source does not matched registered bridge for domain " + origin);
+                        if (!data.name) throw new Error("Register window expected to be passed window name");
+                        if (!data.sendMessage) throw new Error("Register window expected to be passed sendMessage method");
+                        if (!popupWindowsByName.has(data.name)) throw new Error("Window with name " + data.name + " does not exist, or was not opened by this window");
+                        if (!popupWindowsByName.get(data.name).domain) throw new Error("We do not have a registered domain for window " + data.name);
+                        if (popupWindowsByName.get(data.name).domain !== origin) throw new Error("Message origin " + origin + " does not matched registered window origin " + popupWindowsByName.get(data.name).domain);
+                        return registerRemoteSendMessage(popupWindowsByName.get(data.name).win, origin, data.sendMessage), 
+                        {
+                            sendMessage: function(message) {
+                                if (window && !window.closed) {
+                                    var winDetails = popupWindowsByName.get(data.name);
+                                    if (winDetails) try {
+                                        receiveMessage({
+                                            data: message,
+                                            origin: winDetails.domain,
+                                            source: winDetails.win
+                                        }, {
+                                            on: on,
+                                            send: send
+                                        });
+                                    } catch (err) {
+                                        promise_ZalgoPromise.reject(err);
+                                    }
+                                }
+                            }
+                        };
+                    });
+                });
+            }({
+                on: on,
+                send: send,
+                receiveMessage: receiveMessage
+            }), function(_ref2) {
+                var send = _ref2.send;
+                global_getGlobal(window).openTunnelToParent = function(_ref3) {
+                    var name = _ref3.name, source = _ref3.source, canary = _ref3.canary, sendMessage = _ref3.sendMessage, tunnelWindows = globalStore("tunnelWindows"), parentWindow = getParent(window);
+                    if (!parentWindow) throw new Error("No parent window found to open tunnel to");
+                    var id = function(_ref) {
+                        var name = _ref.name, source = _ref.source, canary = _ref.canary, sendMessage = _ref.sendMessage;
+                        !function() {
+                            for (var tunnelWindows = globalStore("tunnelWindows"), _i2 = 0, _tunnelWindows$keys2 = tunnelWindows.keys(); _i2 < _tunnelWindows$keys2.length; _i2++) {
+                                var key = _tunnelWindows$keys2[_i2];
+                                isWindowClosed(tunnelWindows[key].source) && tunnelWindows.del(key);
+                            }
+                        }();
+                        var id = uniqueID();
+                        return globalStore("tunnelWindows").set(id, {
+                            name: name,
+                            source: source,
+                            canary: canary,
+                            sendMessage: sendMessage
+                        }), id;
+                    }({
+                        name: name,
+                        source: source,
+                        canary: canary,
+                        sendMessage: sendMessage
+                    });
+                    return send(parentWindow, MESSAGE_NAME.OPEN_TUNNEL, {
+                        name: name,
+                        sendMessage: function() {
+                            var tunnelWindow = tunnelWindows.get(id);
+                            if (tunnelWindow && tunnelWindow.source && !isWindowClosed(tunnelWindow.source)) {
+                                try {
+                                    tunnelWindow.canary();
+                                } catch (err) {
+                                    return;
+                                }
+                                tunnelWindow.sendMessage.apply(this, arguments);
+                            }
+                        }
+                    }, {
+                        domain: constants_WILDCARD
+                    });
+                };
+            }({
+                on: on,
+                send: send
+            }), function(_ref) {
+                var on = _ref.on, send = _ref.send, receiveMessage = _ref.receiveMessage;
+                promise_ZalgoPromise.try(function() {
+                    var win, opener = getOpener(window);
+                    if (opener && needsBridge({
+                        win: opener
+                    })) return registerRemoteWindow(opener), (win = opener, windowStore("remoteBridgeAwaiters").getOrSet(win, function() {
+                        return promise_ZalgoPromise.try(function() {
+                            var frame = getFrameByName(win, getBridgeName(getDomain()));
+                            if (frame) return isSameDomain(frame) && isSameDomain(frame) && global_getGlobal(frame) ? frame : new promise_ZalgoPromise(function(resolve) {
+                                var interval, timeout;
+                                interval = setInterval(function() {
+                                    if (frame && isSameDomain(frame) && global_getGlobal(frame)) return clearInterval(interval), 
+                                    clearTimeout(timeout), resolve(frame);
+                                }, 100), timeout = setTimeout(function() {
+                                    return clearInterval(interval), resolve();
+                                }, 2e3);
+                            });
+                        });
+                    })).then(function(bridge) {
+                        return bridge ? window.name ? global_getGlobal(bridge).openTunnelToParent({
+                            name: window.name,
+                            source: window,
+                            canary: function() {},
+                            sendMessage: function(message) {
+                                if (window && !window.closed) try {
+                                    receiveMessage({
+                                        data: message,
+                                        origin: this.origin,
+                                        source: this.source
+                                    }, {
+                                        on: on,
+                                        send: send
+                                    });
+                                } catch (err) {
+                                    promise_ZalgoPromise.reject(err);
+                                }
+                            }
+                        }).then(function(_ref2) {
+                            var source = _ref2.source, origin = _ref2.origin, data = _ref2.data;
+                            if (source !== opener) throw new Error("Source does not match opener");
+                            registerRemoteSendMessage(source, origin, data.sendMessage);
+                        }).catch(function(err) {
+                            throw rejectRemoteSendMessage(opener, err), err;
+                        }) : rejectRemoteSendMessage(opener, new Error("Can not register with opener: window does not have a name")) : rejectRemoteSendMessage(opener, new Error("Can not register with opener: no bridge found in opener"));
+                    });
+                });
+            }({
+                on: on,
+                send: send,
+                receiveMessage: receiveMessage
+            });
+        }
+        function cleanupProxyWindows() {
+            for (var idToProxyWindow = globalStore("idToProxyWindow"), _i2 = 0, _idToProxyWindow$keys2 = idToProxyWindow.keys(); _i2 < _idToProxyWindow$keys2.length; _i2++) {
+                var id = _idToProxyWindow$keys2[_i2];
+                idToProxyWindow.get(id).shouldClean() && idToProxyWindow.del(id);
+            }
+        }
+        var window_ProxyWindow = function() {
+            function ProxyWindow(serializedWindow, actualWindow, _ref) {
+                var send = _ref.send;
+                this.isProxyWindow = !0, this.serializedWindow = void 0, this.actualWindow = void 0, 
+                this.actualWindowPromise = void 0, this.send = void 0, this.serializedWindow = serializedWindow, 
+                this.actualWindowPromise = new promise_ZalgoPromise(), actualWindow && this.setWindow(actualWindow), 
+                this.serializedWindow.getInstanceID = function(method) {
+                    var cache = {};
+                    function memoizedPromiseFunction() {
+                        for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) args[_key2] = arguments[_key2];
+                        var key = function(args) {
+                            try {
+                                return JSON.stringify([].slice.call(args), function(subkey, val) {
+                                    return "function" == typeof val ? "memoize[" + function(obj) {
+                                        if (objectIDs = objectIDs || new weakmap_CrossDomainSafeWeakMap(), null == obj || "object" != typeof obj && "function" != typeof obj) throw new Error("Invalid object");
+                                        var uid = objectIDs.get(obj);
+                                        return uid || (uid = typeof obj + ":" + uniqueID(), objectIDs.set(obj, uid)), uid;
+                                    }(val) + "]" : val;
+                                });
+                            } catch (err) {
+                                throw new Error("Arguments not serializable -- can not be used to memoize");
+                            }
+                        }(args);
+                        return cache.hasOwnProperty(key) ? cache[key] : (cache[key] = method.apply(this, arguments).finally(function() {
+                            delete cache[key];
+                        }), cache[key]);
+                    }
+                    return memoizedPromiseFunction.reset = function() {
+                        cache = {};
+                    }, memoizedPromiseFunction;
+                }(this.serializedWindow.getInstanceID), this.send = send;
+            }
+            var _proto = ProxyWindow.prototype;
+            return _proto.getType = function() {
+                return this.serializedWindow.type;
+            }, _proto.isPopup = function() {
+                return "popup" === this.getType();
+            }, _proto.isIframe = function() {
+                return "iframe" === this.getType();
+            }, _proto.setLocation = function(href) {
+                var _this = this;
+                return promise_ZalgoPromise.try(function() {
+                    if (!_this.actualWindow) return _this.serializedWindow.setLocation(href);
+                    _this.actualWindow.location = href;
+                }).then(function() {
+                    return _this;
+                });
+            }, _proto.setName = function(name) {
+                var _this2 = this;
+                return promise_ZalgoPromise.try(function() {
+                    if (!_this2.actualWindow) return _this2.serializedWindow.setName(name);
+                    if (!isSameDomain(_this2.actualWindow)) throw new Error("Can not set name for window on different domain");
+                    _this2.actualWindow.name = name, _this2.actualWindow.frameElement && _this2.actualWindow.frameElement.setAttribute("name", name), 
+                    linkWindow({
+                        win: _this2.actualWindow,
+                        name: name
+                    });
+                }).then(function() {
+                    return _this2;
+                });
+            }, _proto.close = function() {
+                var _this3 = this;
+                return promise_ZalgoPromise.try(function() {
+                    if (!_this3.actualWindow) return _this3.serializedWindow.close();
+                    _this3.actualWindow.close();
+                }).then(function() {
+                    return _this3;
+                });
+            }, _proto.focus = function() {
+                var _this4 = this;
+                return promise_ZalgoPromise.try(function() {
+                    return _this4.actualWindow && _this4.actualWindow.focus(), _this4.serializedWindow.focus();
+                }).then(function() {
+                    return _this4;
+                });
+            }, _proto.isClosed = function() {
+                var _this5 = this;
+                return promise_ZalgoPromise.try(function() {
+                    return _this5.actualWindow ? isWindowClosed(_this5.actualWindow) : _this5.serializedWindow.isClosed();
+                });
+            }, _proto.getWindow = function() {
+                return this.actualWindow;
+            }, _proto.setWindow = function(win) {
+                this.actualWindow = win, this.actualWindowPromise.resolve(win);
+            }, _proto.awaitWindow = function() {
+                return this.actualWindowPromise;
+            }, _proto.matchWindow = function(win) {
+                var _this6 = this;
+                return promise_ZalgoPromise.try(function() {
+                    return _this6.actualWindow ? win === _this6.actualWindow : promise_ZalgoPromise.all([ _this6.getInstanceID(), getWindowInstanceID(win, {
+                        send: _this6.send
+                    }) ]).then(function(_ref2) {
+                        var match = _ref2[0] === _ref2[1];
+                        return match && _this6.setWindow(win), match;
+                    });
+                });
+            }, _proto.unwrap = function() {
+                return this.actualWindow || this;
+            }, _proto.getInstanceID = function() {
+                return this.actualWindow ? getWindowInstanceID(this.actualWindow, {
+                    send: this.send
+                }) : this.serializedWindow.getInstanceID();
+            }, _proto.serialize = function() {
+                return this.serializedWindow;
+            }, _proto.shouldClean = function() {
+                return this.actualWindow && isWindowClosed(this.actualWindow);
+            }, ProxyWindow.unwrap = function(win) {
+                return ProxyWindow.isProxyWindow(win) ? win.unwrap() : win;
+            }, ProxyWindow.serialize = function(win, _ref3) {
+                var send = _ref3.send;
+                return cleanupProxyWindows(), ProxyWindow.toProxyWindow(win, {
+                    send: send
+                }).serialize();
+            }, ProxyWindow.deserialize = function(serializedWindow, _ref4) {
+                var on = _ref4.on, send = _ref4.send;
+                return cleanupProxyWindows(), globalStore("idToProxyWindow").getOrSet(serializedWindow.id, function() {
+                    return new ProxyWindow(serializedWindow, null, {
+                        on: on,
+                        send: send
+                    });
+                });
+            }, ProxyWindow.isProxyWindow = function(obj) {
+                return Boolean(obj && !isWindow(obj) && obj.isProxyWindow);
+            }, ProxyWindow.toProxyWindow = function(win, _ref5) {
+                var send = _ref5.send;
+                return cleanupProxyWindows(), ProxyWindow.isProxyWindow(win) ? win : windowStore("winToProxyWindow").getOrSet(win, function() {
+                    var id = uniqueID();
+                    return globalStore("idToProxyWindow").set(id, new ProxyWindow({
+                        id: id,
+                        type: getOpener(win) ? "popup" : "iframe",
+                        getInstanceID: function() {
+                            return getWindowInstanceID(win, {
+                                send: send
+                            });
+                        },
+                        close: function() {
+                            return promise_ZalgoPromise.try(function() {
+                                win.close();
+                            });
+                        },
+                        focus: function() {
+                            return promise_ZalgoPromise.try(function() {
+                                win.focus();
+                            });
+                        },
+                        isClosed: function() {
+                            return promise_ZalgoPromise.try(function() {
+                                return isWindowClosed(win);
+                            });
+                        },
+                        setLocation: function(href) {
+                            return promise_ZalgoPromise.try(function() {
+                                if (isSameDomain(win)) try {
+                                    if (win.location && "function" == typeof win.location.replace) return void win.location.replace(href);
+                                } catch (err) {}
+                                win.location = href;
+                            });
+                        },
+                        setName: function(name) {
+                            return promise_ZalgoPromise.try(function() {
+                                linkWindow({
+                                    win: win,
+                                    name: name
+                                }), win.name = name;
+                            });
+                        }
+                    }, win, {
+                        send: send
+                    }));
+                });
+            }, ProxyWindow;
+        }();
+        function addMethod(id, val, name, source, domain) {
+            var methodStore = windowStore("methodStore"), proxyWindowMethods = globalStore("proxyWindowMethods");
+            window_ProxyWindow.isProxyWindow(source) ? proxyWindowMethods.set(id, {
+                val: val,
+                name: name,
+                domain: domain,
+                source: source
+            }) : (proxyWindowMethods.del(id), methodStore.getOrSet(source, function() {
+                return {};
+            })[id] = {
+                domain: domain,
+                name: name,
+                val: val,
+                source: source
+            });
+        }
+        function lookupMethod(source, id) {
+            var methodStore = windowStore("methodStore"), proxyWindowMethods = globalStore("proxyWindowMethods");
+            return methodStore.getOrSet(source, function() {
+                return {};
+            })[id] || proxyWindowMethods.get(id);
+        }
+        function function_serializeFunction(destination, domain, val, key, _ref3) {
+            !function(_ref) {
+                var on = _ref3.on;
+                globalStore("builtinListeners").getOrSet("functionCalls", function() {
+                    return on(MESSAGE_NAME.METHOD, {
+                        domain: constants_WILDCARD
+                    }, function(_ref2) {
+                        var source = _ref2.source, origin = _ref2.origin, data = _ref2.data, id = data.id, name = data.name, meth = lookupMethod(source, id);
+                        if (!meth) throw new Error("Could not find method '" + data.name + "' with id: " + data.id + " in " + getDomain(window));
+                        var methodSource = meth.source, domain = meth.domain, val = meth.val;
+                        return promise_ZalgoPromise.try(function() {
+                            if (!matchDomain(domain, origin)) throw new Error("Method '" + data.name + "' domain " + JSON.stringify(util_isRegex(meth.domain) ? meth.domain.source : meth.domain) + " does not match origin " + origin + " in " + getDomain(window));
+                            if (window_ProxyWindow.isProxyWindow(methodSource)) return methodSource.matchWindow(source).then(function(match) {
+                                if (!match) throw new Error("Method call '" + data.name + "' failed - proxy window does not match source in " + getDomain(window));
+                            });
+                        }).then(function() {
+                            return val.apply({
+                                source: source,
+                                origin: origin
+                            }, data.args);
+                        }, function(err) {
+                            return promise_ZalgoPromise.try(function() {
+                                if (val.onError) return val.onError(err);
+                            }).then(function() {
+                                throw err.stack && (err.stack = "Remote call to " + name + "()\n\n" + err.stack), 
+                                err;
+                            });
+                        }).then(function(result) {
+                            return {
+                                result: result,
+                                id: id,
+                                name: name
+                            };
+                        });
+                    });
+                });
+            }();
+            var id = val.__id__ || uniqueID();
+            destination = window_ProxyWindow.unwrap(destination);
+            var name = val.__name__ || val.name || key;
+            return window_ProxyWindow.isProxyWindow(destination) ? (addMethod(id, val, name, destination, domain), 
+            destination.awaitWindow().then(function(win) {
+                addMethod(id, val, name, win, domain);
+            })) : addMethod(id, val, name, destination, domain), serializeType(SERIALIZATION_TYPE.CROSS_DOMAIN_FUNCTION, {
+                id: id,
+                name: name
+            });
+        }
+        function serializeMessage(destination, domain, obj, _ref) {
+            var _serialize, on = _ref.on, send = _ref.send;
+            return function(obj, serializers) {
+                void 0 === serializers && (serializers = defaultSerializers);
+                var result = JSON.stringify(obj, function(key) {
+                    var val = this[key];
+                    if (isSerializedType(this)) return val;
+                    var type = determineType(val);
+                    if (!type) return val;
+                    var serializer = serializers[type] || SERIALIZER[type];
+                    return serializer ? serializer(val, key) : val;
+                });
+                return void 0 === result ? TYPE.UNDEFINED : result;
+            }(obj, ((_serialize = {})[TYPE.PROMISE] = function(val, key) {
+                return function(destination, domain, val, key, _ref) {
+                    return serializeType(SERIALIZATION_TYPE.CROSS_DOMAIN_ZALGO_PROMISE, {
+                        then: function_serializeFunction(destination, domain, function(resolve, reject) {
+                            return val.then(resolve, reject);
+                        }, key, {
+                            on: _ref.on,
+                            send: _ref.send
+                        })
+                    });
+                }(destination, domain, val, key, {
+                    on: on,
+                    send: send
+                });
+            }, _serialize[TYPE.FUNCTION] = function(val, key) {
+                return function_serializeFunction(destination, domain, val, key, {
+                    on: on,
+                    send: send
+                });
+            }, _serialize[TYPE.OBJECT] = function(val) {
+                return isWindow(val) || window_ProxyWindow.isProxyWindow(val) ? serializeType(SERIALIZATION_TYPE.CROSS_DOMAIN_WINDOW, window_ProxyWindow.serialize(val, {
+                    send: send
+                })) : val;
+            }, _serialize));
+        }
+        function deserializeMessage(source, origin, message, _ref2) {
+            var _deserialize, on = _ref2.on, send = _ref2.send;
+            return function(str, deserializers) {
+                if (void 0 === deserializers && (deserializers = defaultDeserializers), str !== TYPE.UNDEFINED) return JSON.parse(str, function(key, val) {
+                    if (isSerializedType(this)) return val;
+                    var type, value;
+                    if (isSerializedType(val) ? (type = val.__type__, value = val.__val__) : (type = determineType(val), 
+                    value = val), !type) return value;
+                    var deserializer = deserializers[type] || DESERIALIZER[type];
+                    return deserializer ? deserializer(value, key) : value;
+                });
+            }(message, ((_deserialize = {})[SERIALIZATION_TYPE.CROSS_DOMAIN_ZALGO_PROMISE] = function(serializedPromise) {
+                return new promise_ZalgoPromise(serializedPromise.then);
+            }, _deserialize[SERIALIZATION_TYPE.CROSS_DOMAIN_FUNCTION] = function(serializedFunction) {
+                return function(source, origin, _ref4, _ref5) {
+                    var id = serializedFunction.id, name = serializedFunction.name, send = _ref5.send, getDeserializedFunction = function(opts) {
+                        function crossDomainFunctionWrapper() {
+                            var _arguments = arguments;
+                            return window_ProxyWindow.toProxyWindow(source, {
+                                send: send
+                            }).awaitWindow().then(function(win) {
+                                var meth = lookupMethod(win, id);
+                                if (meth && meth.val !== crossDomainFunctionWrapper) return meth.val.apply({
+                                    source: window,
+                                    origin: getDomain()
+                                }, _arguments);
+                                var options = {
+                                    domain: origin,
+                                    fireAndForget: opts.fireAndForget
+                                }, _args = [].slice.call(_arguments);
+                                return send(win, MESSAGE_NAME.METHOD, {
+                                    id: id,
+                                    name: name,
+                                    args: _args
+                                }, options).then(function(res) {
+                                    if (!opts.fireAndForget) return res.data.result;
+                                });
+                            }).catch(function(err) {
+                                throw err;
+                            });
+                        }
+                        return void 0 === opts && (opts = {}), crossDomainFunctionWrapper.__name__ = name, 
+                        crossDomainFunctionWrapper.__origin__ = origin, crossDomainFunctionWrapper.__source__ = source, 
+                        crossDomainFunctionWrapper.__id__ = id, crossDomainFunctionWrapper.origin = origin, 
+                        crossDomainFunctionWrapper;
+                    }, crossDomainFunctionWrapper = getDeserializedFunction();
+                    return crossDomainFunctionWrapper.fireAndForget = getDeserializedFunction({
+                        fireAndForget: !0
+                    }), crossDomainFunctionWrapper;
+                }(source, origin, 0, {
+                    on: on,
+                    send: send
+                });
+            }, _deserialize[SERIALIZATION_TYPE.CROSS_DOMAIN_WINDOW] = function(serializedWindow) {
+                return window_ProxyWindow.deserialize(serializedWindow, {
+                    on: (_ref7 = {
+                        on: on,
+                        send: send
+                    }).on,
+                    send: _ref7.send
+                });
+                var _ref7;
+            }, _deserialize));
+        }
+        var SEND_MESSAGE_STRATEGIES = {};
+        function send_sendMessage(win, domain, message, _ref) {
+            var _serializeMessage, on = _ref.on, send = _ref.send;
+            if (isWindowClosed(win)) throw new Error("Window is closed");
+            for (var serializedMessage = serializeMessage(win, domain, ((_serializeMessage = {}).__post_robot_10_0_10__ = _extends({
+                id: uniqueID(),
+                origin: getDomain(window)
+            }, message), _serializeMessage), {
+                on: on,
+                send: send
+            }), strategies = Object.keys(SEND_MESSAGE_STRATEGIES), errors = [], _i2 = 0; _i2 < strategies.length; _i2++) {
+                var strategyName = strategies[_i2];
+                try {
+                    SEND_MESSAGE_STRATEGIES[strategyName](win, serializedMessage, domain);
+                } catch (err) {
+                    errors.push(err);
+                }
+            }
+            if (errors.length === strategies.length) throw new Error("All post-robot messaging strategies failed:\n\n" + errors.map(stringifyError).join("\n\n"));
+        }
+        SEND_MESSAGE_STRATEGIES.postrobot_post_message = function(win, serializedMessage, domain) {
+            (Array.isArray(domain) ? domain : "string" == typeof domain ? [ domain ] : [ constants_WILDCARD ]).map(function(dom) {
+                return 0 === dom.indexOf(PROTOCOL.FILE) ? constants_WILDCARD : dom;
+            }).forEach(function(dom) {
+                win.postMessage(serializedMessage, dom);
+            });
+        }, SEND_MESSAGE_STRATEGIES.postrobot_bridge = function(win, serializedMessage, domain) {
+            if (needsBridgeForBrowser() || isBridge()) {
+                if (isSameDomain(win)) throw new Error("Post message through bridge disabled between same domain windows");
+                if (!1 !== isSameTopWindow(window, win)) throw new Error("Can only use bridge to communicate between two different windows, not between frames");
+                !function(win, domain, message) {
+                    var messagingChild = isOpener(window, win), messagingParent = isOpener(win, window);
+                    if (!messagingChild && !messagingParent) throw new Error("Can only send messages to and from parent and popup windows");
+                    findRemoteWindow(win).then(function(sendMessage) {
+                        return sendMessage(win, domain, message);
+                    });
+                }(win, domain, serializedMessage);
+            }
+        }, SEND_MESSAGE_STRATEGIES.postrobot_global = function(win, serializedMessage) {
+            if (getUserAgent(window).match(/MSIE|rv:11|trident|edge\/12|edge\/13/i)) {
+                if (!isSameDomain(win)) throw new Error("Post message through global disabled between different domain windows");
+                if (!1 !== isSameTopWindow(window, win)) throw new Error("Can only use global to communicate between two different windows, not between frames");
+                var foreignGlobal = global_getGlobal(win);
+                if (!foreignGlobal) throw new Error("Can not find postRobot global on foreign window");
+                foreignGlobal.receiveMessage({
+                    source: window,
+                    origin: getDomain(),
+                    data: serializedMessage
+                });
+            }
+        };
+        var _RECEIVE_MESSAGE_TYPE, __DOMAIN_REGEX__ = "__domain_regex__";
+        function getResponseListener(hash) {
+            return globalStore("responseListeners").get(hash);
+        }
+        function deleteResponseListener(hash) {
+            globalStore("responseListeners").del(hash);
+        }
+        function isResponseListenerErrored(hash) {
+            return globalStore("erroredResponseListeners").has(hash);
+        }
+        function getRequestListener(_ref) {
+            var name = _ref.name, win = _ref.win, domain = _ref.domain, requestListeners = windowStore("requestListeners");
+            if (win === constants_WILDCARD && (win = null), domain === constants_WILDCARD && (domain = null), 
+            !name) throw new Error("Name required to get request listener");
+            for (var _i2 = 0, _ref3 = [ win, getWildcard() ]; _i2 < _ref3.length; _i2++) {
+                var winQualifier = _ref3[_i2];
+                if (winQualifier) {
+                    var nameListeners = requestListeners.get(winQualifier);
+                    if (nameListeners) {
+                        var domainListeners = nameListeners[name];
+                        if (domainListeners) {
+                            if (domain && "string" == typeof domain) {
+                                if (domainListeners[domain]) return domainListeners[domain];
+                                if (domainListeners[__DOMAIN_REGEX__]) for (var _i4 = 0, _domainListeners$__DO2 = domainListeners[__DOMAIN_REGEX__]; _i4 < _domainListeners$__DO2.length; _i4++) {
+                                    var _domainListeners$__DO3 = _domainListeners$__DO2[_i4], listener = _domainListeners$__DO3.listener;
+                                    if (matchDomain(_domainListeners$__DO3.regex, domain)) return listener;
+                                }
+                            }
+                            if (domainListeners[constants_WILDCARD]) return domainListeners[constants_WILDCARD];
+                        }
+                    }
+                }
+            }
+        }
+        var RECEIVE_MESSAGE_TYPES = ((_RECEIVE_MESSAGE_TYPE = {}).postrobot_message_request = function(source, origin, message, _ref) {
+            var on = _ref.on, send = _ref.send, options = getRequestListener({
+                name: message.name,
+                win: source,
+                domain: origin
+            });
+            function sendResponse(type, ack, response) {
+                void 0 === response && (response = {}), message.fireAndForget || isWindowClosed(source) || send_sendMessage(source, origin, _extends({
+                    type: type,
+                    ack: ack,
+                    hash: message.hash,
+                    name: message.name
+                }, response), {
+                    on: on,
+                    send: send
+                });
+            }
+            return promise_ZalgoPromise.all([ sendResponse("postrobot_message_ack"), promise_ZalgoPromise.try(function() {
+                if (!options) throw new Error("No handler found for post message: " + message.name + " from " + origin + " in " + window.location.protocol + "//" + window.location.host + window.location.pathname);
+                if (!matchDomain(options.domain, origin)) throw new Error("Request origin " + origin + " does not match domain " + options.domain.toString());
+                return options.handler({
+                    source: source,
+                    origin: origin,
+                    data: message.data
+                });
+            }).then(function(data) {
+                return sendResponse("postrobot_message_response", "success", {
+                    data: data
+                });
+            }, function(error) {
+                return sendResponse("postrobot_message_response", "error", {
+                    error: error
+                });
+            }) ]).then(src_util_noop).catch(function(err) {
+                if (options && options.handleError) return options.handleError(err);
+                throw err;
+            });
+        }, _RECEIVE_MESSAGE_TYPE.postrobot_message_ack = function(source, origin, message) {
+            if (!isResponseListenerErrored(message.hash)) {
+                var options = getResponseListener(message.hash);
+                if (!options) throw new Error("No handler found for post message ack for message: " + message.name + " from " + origin + " in " + window.location.protocol + "//" + window.location.host + window.location.pathname);
+                if (!matchDomain(options.domain, origin)) throw new Error("Ack origin " + origin + " does not match domain " + options.domain.toString());
+                if (source !== options.win) throw new Error("Ack source does not match registered window");
+                options.ack = !0;
+            }
+        }, _RECEIVE_MESSAGE_TYPE.postrobot_message_response = function(source, origin, message) {
+            if (!isResponseListenerErrored(message.hash)) {
+                var pattern, options = getResponseListener(message.hash);
+                if (!options) throw new Error("No handler found for post message response for message: " + message.name + " from " + origin + " in " + window.location.protocol + "//" + window.location.host + window.location.pathname);
+                if (!matchDomain(options.domain, origin)) throw new Error("Response origin " + origin + " does not match domain " + (pattern = options.domain, 
+                Array.isArray(pattern) ? "(" + pattern.join(" | ") + ")" : isRegex(pattern) ? "RegExp(" + pattern.toString() : pattern.toString()));
+                if (source !== options.win) throw new Error("Response source does not match registered window");
+                deleteResponseListener(message.hash), "error" === message.ack ? options.promise.reject(message.error) : "success" === message.ack && options.promise.resolve({
+                    source: source,
+                    origin: origin,
+                    data: message.data
+                });
+            }
+        }, _RECEIVE_MESSAGE_TYPE);
+        function receive_receiveMessage(event, _ref2) {
+            var on = _ref2.on, send = _ref2.send, receivedMessages = globalStore("receivedMessages");
+            if (!window || window.closed) throw new Error("Message recieved in closed window");
+            try {
+                if (!event.source) return;
+            } catch (err) {
+                return;
+            }
+            var source = event.source, origin = event.origin, message = function(message, source, origin, _ref) {
+                var parsedMessage, on = _ref.on, send = _ref.send;
+                try {
+                    parsedMessage = deserializeMessage(source, origin, message, {
+                        on: on,
+                        send: send
+                    });
+                } catch (err) {
+                    return;
+                }
+                if (parsedMessage && "object" == typeof parsedMessage && null !== parsedMessage && (parsedMessage = parsedMessage.__post_robot_10_0_10__) && "object" == typeof parsedMessage && null !== parsedMessage && parsedMessage.type && "string" == typeof parsedMessage.type && RECEIVE_MESSAGE_TYPES[parsedMessage.type]) return parsedMessage;
+            }(event.data, source, origin, {
+                on: on,
+                send: send
+            });
+            message && (markWindowKnown(source), receivedMessages.has(message.id) || (receivedMessages.set(message.id, !0), 
+            isWindowClosed(source) && !message.fireAndForget || (0 === message.origin.indexOf(PROTOCOL.FILE) && (origin = message.origin), 
+            RECEIVE_MESSAGE_TYPES[message.type](source, origin, message, {
+                on: on,
+                send: send
+            }))));
+        }
+        function on_on(name, options, handler) {
+            if (!name) throw new Error("Expected name");
+            if ("function" == typeof options && (handler = options, options = {}), !handler) throw new Error("Expected handler");
+            (options = options || {}).name = name, options.handler = handler || options.handler;
+            var win = options.window, domain = options.domain, requestListener = function addRequestListener(_ref4, listener) {
+                var name = _ref4.name, win = _ref4.win, domain = _ref4.domain, requestListeners = windowStore("requestListeners");
+                if (!name || "string" != typeof name) throw new Error("Name required to add request listener");
+                if (Array.isArray(win)) {
+                    for (var listenersCollection = [], _i6 = 0, _win2 = win; _i6 < _win2.length; _i6++) listenersCollection.push(addRequestListener({
+                        name: name,
+                        domain: domain,
+                        win: _win2[_i6]
+                    }, listener));
+                    return {
+                        cancel: function() {
+                            for (var _i8 = 0; _i8 < listenersCollection.length; _i8++) listenersCollection[_i8].cancel();
+                        }
+                    };
+                }
+                if (Array.isArray(domain)) {
+                    for (var _listenersCollection = [], _i10 = 0, _domain2 = domain; _i10 < _domain2.length; _i10++) _listenersCollection.push(addRequestListener({
+                        name: name,
+                        win: win,
+                        domain: _domain2[_i10]
+                    }, listener));
+                    return {
+                        cancel: function() {
+                            for (var _i12 = 0; _i12 < _listenersCollection.length; _i12++) _listenersCollection[_i12].cancel();
+                        }
+                    };
+                }
+                var existingListener = getRequestListener({
+                    name: name,
+                    win: win,
+                    domain: domain
+                });
+                if (win && win !== constants_WILDCARD || (win = getWildcard()), domain = domain || constants_WILDCARD, 
+                existingListener) throw win && domain ? new Error("Request listener already exists for " + name + " on domain " + domain.toString() + " for " + (win === getWildcard() ? "wildcard" : "specified") + " window") : win ? new Error("Request listener already exists for " + name + " for " + (win === getWildcard() ? "wildcard" : "specified") + " window") : domain ? new Error("Request listener already exists for " + name + " on domain " + domain.toString()) : new Error("Request listener already exists for " + name);
+                var regexListeners, regexListener, nameListeners = requestListeners.getOrSet(win, function() {
+                    return {};
+                }), domainListeners = util_getOrSet(nameListeners, name, function() {
+                    return {};
+                }), strDomain = domain.toString();
+                return util_isRegex(domain) ? (regexListeners = util_getOrSet(domainListeners, __DOMAIN_REGEX__, function() {
+                    return [];
+                })).push(regexListener = {
+                    regex: domain,
+                    listener: listener
+                }) : domainListeners[strDomain] = listener, {
+                    cancel: function() {
+                        delete domainListeners[strDomain], regexListener && (regexListeners.splice(regexListeners.indexOf(regexListener, 1)), 
+                        regexListeners.length || delete domainListeners[__DOMAIN_REGEX__]), Object.keys(domainListeners).length || delete nameListeners[name], 
+                        win && !Object.keys(nameListeners).length && requestListeners.del(win);
+                    }
+                };
+            }({
+                name: name,
+                win: win,
+                domain: domain
+            }, {
+                handler: options.handler,
+                handleError: options.errorHandler || function(err) {
+                    throw err;
+                },
+                window: win,
+                domain: domain || constants_WILDCARD,
+                name: name
+            });
+            return {
+                cancel: function() {
+                    requestListener.cancel();
+                }
+            };
+        }
+        function on_once(name, options, handler) {
+            "function" == typeof (options = options || {}) && (handler = options, options = {});
+            var listener, promise = new promise_ZalgoPromise();
+            return options.errorHandler = function(err) {
+                listener.cancel(), promise.reject(err);
+            }, listener = on_on(name, options, function(event) {
+                if (listener.cancel(), promise.resolve(event), handler) return handler(event);
+            }), promise.cancel = listener.cancel, promise;
+        }
+        var src_bridge, send_send = function send(win, name, data, options) {
+            var domain = (options = options || {}).domain || constants_WILDCARD, responseTimeout = options.timeout || -1, childTimeout = options.timeout || 5e3, fireAndForget = options.fireAndForget || !1;
+            return promise_ZalgoPromise.try(function() {
+                return function(name, win, domain) {
+                    if (!name) throw new Error("Expected name");
+                    if (domain && "string" != typeof domain && !Array.isArray(domain) && !util_isRegex(domain)) throw new TypeError("Expected domain to be a string, array, or regex");
+                    if (isWindowClosed(win)) throw new Error("Target window is closed");
+                }(name, win, domain), function(win, domain, childTimeout, _ref) {
+                    var send = _ref.send;
+                    return promise_ZalgoPromise.try(function() {
+                        return function(parent, child) {
+                            var actualParent = getAncestor(child);
+                            if (actualParent) return actualParent === parent;
+                            if (child === parent) return !1;
+                            if (getTop(child) === child) return !1;
+                            for (var _i15 = 0, _getFrames8 = getFrames(parent); _i15 < _getFrames8.length; _i15++) if (_getFrames8[_i15] === child) return !0;
+                            return !1;
+                        }(window, win) ? awaitWindowHello(win, childTimeout) : util_isRegex(domain) ? sayHello(win, {
+                            send: send
+                        }) : {
+                            domain: domain
+                        };
+                    }).then(function(_ref2) {
+                        return _ref2.domain;
+                    });
+                }(win, domain, childTimeout, {
+                    send: send
+                });
+            }).then(function(targetDomain) {
+                if (!matchDomain(domain, targetDomain)) throw new Error("Domain " + stringify(domain) + " does not match " + stringify(targetDomain));
+                domain = targetDomain;
+                var method, timeout, logName = name === MESSAGE_NAME.METHOD && data && "string" == typeof data.name ? data.name + "()" : name, promise = new promise_ZalgoPromise(), hash = name + "_" + uniqueID();
+                if (!fireAndForget) {
+                    var responseListener = {
+                        name: name,
+                        win: win,
+                        domain: domain,
+                        promise: promise
+                    };
+                    !function(hash, listener) {
+                        globalStore("responseListeners").set(hash, listener);
+                    }(hash, responseListener);
+                    var reqPromises = windowStore("requestPromises").getOrSet(win, function() {
+                        return [];
+                    });
+                    reqPromises.push(promise), promise.catch(function() {
+                        !function(hash) {
+                            globalStore("erroredResponseListeners").set(hash, !0);
+                        }(hash), deleteResponseListener(hash);
+                    });
+                    var totalAckTimeout = function(win) {
+                        return windowStore("knownWindows").get(win, !1);
+                    }(win) ? 1e4 : 2e3, totalResTimeout = responseTimeout, ackTimeout = totalAckTimeout, resTimeout = totalResTimeout, interval = (method = function() {
+                        return isWindowClosed(win) ? promise.reject(new Error("Window closed for " + name + " before " + (responseListener.ack ? "response" : "ack"))) : (ackTimeout = Math.max(ackTimeout - 500, 0), 
+                        -1 !== resTimeout && (resTimeout = Math.max(resTimeout - 500, 0)), responseListener.ack || 0 !== ackTimeout ? 0 === resTimeout ? promise.reject(new Error("No response for postMessage " + logName + " in " + getDomain() + " in " + totalResTimeout + "ms")) : void 0 : promise.reject(new Error("No ack for postMessage " + logName + " in " + getDomain() + " in " + totalAckTimeout + "ms")));
+                    }, 500, function loop() {
+                        timeout = setTimeout(function() {
+                            method(), loop();
+                        }, 500);
+                    }(), {
+                        cancel: function() {
+                            clearTimeout(timeout);
+                        }
+                    });
+                    promise.finally(function() {
+                        interval.cancel(), reqPromises.splice(reqPromises.indexOf(promise, 1));
+                    }).catch(src_util_noop);
+                }
+                return send_sendMessage(win, domain, {
+                    type: "postrobot_message_request",
+                    hash: hash,
+                    name: name,
+                    data: data,
+                    fireAndForget: fireAndForget
+                }, {
+                    on: on_on,
+                    send: send
+                }), fireAndForget ? promise.resolve() : promise;
+            });
+        };
+        function setup_serializeMessage(destination, domain, obj) {
+            return serializeMessage(destination, domain, obj, {
+                on: on_on,
+                send: send_send
+            });
+        }
+        function setup_deserializeMessage(source, origin, message) {
+            return deserializeMessage(source, origin, message, {
+                on: on_on,
+                send: send_send
+            });
+        }
+        function setup_toProxyWindow(win) {
+            return window_ProxyWindow.toProxyWindow(win, {
+                send: send_send
+            });
+        }
+        function setup() {
+            var _ref3, on, send, global;
+            global_getGlobal().initialized || (global_getGlobal().initialized = !0, on = (_ref3 = {
+                on: on_on,
+                send: send_send
+            }).on, send = _ref3.send, (global = global_getGlobal()).receiveMessage = global.receiveMessage || function(message) {
+                return receive_receiveMessage(message, {
+                    on: on,
+                    send: send
+                });
+            }, function(_ref5) {
+                var on = _ref5.on, send = _ref5.send;
+                globalStore().getOrSet("postMessageListener", function() {
+                    return (obj = window).addEventListener("message", handler = function(event) {
+                        !function(event, _ref4) {
+                            var on = _ref4.on, send = _ref4.send, source = event.source || event.sourceElement, origin = event.origin || event.originalEvent && event.originalEvent.origin, data = event.data;
+                            if ("null" === origin && (origin = PROTOCOL.FILE + "//"), source) {
+                                if (!origin) throw new Error("Post message did not have origin domain");
+                                receive_receiveMessage({
+                                    source: source,
+                                    origin: origin,
+                                    data: data
+                                }, {
+                                    on: on,
+                                    send: send
+                                });
+                            }
+                        }(event, {
+                            on: on,
+                            send: send
+                        });
+                    }), {
+                        cancel: function() {
+                            obj.removeEventListener("message", handler);
+                        }
+                    };
+                    var obj, handler;
+                });
+            }({
+                on: on_on,
+                send: send_send
+            }), setupBridge({
+                on: on_on,
+                send: send_send,
+                receiveMessage: receive_receiveMessage
+            }), function(_ref7) {
+                var on = _ref7.on, send = _ref7.send;
+                globalStore("builtinListeners").getOrSet("helloListener", function() {
+                    var listener = on(MESSAGE_NAME.HELLO, {
+                        domain: constants_WILDCARD
+                    }, function(_ref2) {
+                        var source = _ref2.source, origin = _ref2.origin;
+                        return getHelloPromise(source).resolve({
+                            win: source,
+                            domain: origin
+                        }), {
+                            instanceID: hello_getInstanceID()
+                        };
+                    }), parent = getAncestor();
+                    return parent && sayHello(parent, {
+                        send: send
+                    }).catch(src_util_noop), listener;
+                });
+            }({
+                on: on_on,
+                send: send_send
+            }));
+        }
+        function destroy() {
+            var listener;
+            (listener = globalStore().get("postMessageListener")) && listener.cancel(), delete window.__post_robot_10_0_10__;
+        }
+        function cleanUpWindow(win) {
+            for (var _i2 = 0, _requestPromises$get2 = windowStore("requestPromises").get(win, []); _i2 < _requestPromises$get2.length; _i2++) _requestPromises$get2[_i2].reject(new Error("Window cleaned up before response")).catch(src_util_noop);
+        }
+        __webpack_require__.d(__webpack_exports__, "bridge", function() {
+            return src_bridge;
+        }), __webpack_require__.d(__webpack_exports__, "Promise", function() {
+            return promise_ZalgoPromise;
+        }), __webpack_require__.d(__webpack_exports__, "TYPES", function() {
+            return !0;
+        }), __webpack_require__.d(__webpack_exports__, "ProxyWindow", function() {
+            return window_ProxyWindow;
+        }), __webpack_require__.d(__webpack_exports__, "setup", function() {
+            return setup;
+        }), __webpack_require__.d(__webpack_exports__, "destroy", function() {
+            return destroy;
+        }), __webpack_require__.d(__webpack_exports__, "serializeMessage", function() {
+            return setup_serializeMessage;
+        }), __webpack_require__.d(__webpack_exports__, "deserializeMessage", function() {
+            return setup_deserializeMessage;
+        }), __webpack_require__.d(__webpack_exports__, "toProxyWindow", function() {
+            return setup_toProxyWindow;
+        }), __webpack_require__.d(__webpack_exports__, "on", function() {
+            return on_on;
+        }), __webpack_require__.d(__webpack_exports__, "once", function() {
+            return on_once;
+        }), __webpack_require__.d(__webpack_exports__, "send", function() {
+            return send_send;
+        }), __webpack_require__.d(__webpack_exports__, "markWindowKnown", function() {
+            return markWindowKnown;
+        }), __webpack_require__.d(__webpack_exports__, "cleanUpWindow", function() {
+            return cleanUpWindow;
+        }), src_bridge = {
+            setupBridge: setupBridge,
+            openBridge: function(url, domain) {
+                var bridges = globalStore("bridges"), bridgeFrames = globalStore("bridgeFrames");
+                return domain = domain || getDomainFromUrl(url), bridges.getOrSet(domain, function() {
+                    return promise_ZalgoPromise.try(function() {
+                        if (getDomain() === domain) throw new Error("Can not open bridge on the same domain as current domain: " + domain);
+                        var name = getBridgeName(domain);
+                        if (getFrameByName(window, name)) throw new Error("Frame with name " + name + " already exists on page");
+                        var iframe = function(name, url) {
+                            var iframe = document.createElement("iframe");
+                            return iframe.setAttribute("name", name), iframe.setAttribute("id", name), iframe.setAttribute("style", "display: none; margin: 0; padding: 0; border: 0px none; overflow: hidden;"), 
+                            iframe.setAttribute("frameborder", "0"), iframe.setAttribute("border", "0"), iframe.setAttribute("scrolling", "no"), 
+                            iframe.setAttribute("allowTransparency", "true"), iframe.setAttribute("tabindex", "-1"), 
+                            iframe.setAttribute("hidden", "true"), iframe.setAttribute("title", ""), iframe.setAttribute("role", "presentation"), 
+                            iframe.src = url, iframe;
+                        }(name, url);
+                        return bridgeFrames.set(domain, iframe), documentBodyReady.then(function(body) {
+                            body.appendChild(iframe);
+                            var bridge = iframe.contentWindow;
+                            return new promise_ZalgoPromise(function(resolve, reject) {
+                                iframe.addEventListener("load", resolve), iframe.addEventListener("error", reject);
+                            }).then(function() {
+                                return awaitWindowHello(bridge, 5e3, "Bridge " + url);
+                            }).then(function() {
+                                return bridge;
+                            });
+                        });
+                    });
+                });
+            },
+            linkWindow: linkWindow,
+            linkUrl: function(win, url) {
+                linkWindow({
+                    win: win,
+                    domain: getDomainFromUrl(url)
+                });
+            },
+            isBridge: isBridge,
+            needsBridge: needsBridge,
+            needsBridgeForBrowser: needsBridgeForBrowser,
+            hasBridge: function(url, domain) {
+                return globalStore("bridges").has(domain || getDomainFromUrl(url));
+            },
+            needsBridgeForWin: needsBridgeForWin,
+            needsBridgeForDomain: needsBridgeForDomain,
+            destroyBridges: function() {
+                for (var bridges = globalStore("bridges"), bridgeFrames = globalStore("bridgeFrames"), _i4 = 0, _bridgeFrames$keys2 = bridgeFrames.keys(); _i4 < _bridgeFrames$keys2.length; _i4++) {
+                    var frame = bridgeFrames.get(_bridgeFrames$keys2[_i4]);
+                    frame && frame.parentNode && frame.parentNode.removeChild(frame);
+                }
+                bridgeFrames.reset(), bridges.reset();
+            }
+        }, setup();
+    } ]);
+});
+//# sourceMappingURL=post-robot.ie.js.map
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../buffer/index.js */ "./node_modules/buffer/index.js").Buffer))
+
+/***/ }),
+
 /***/ "./node_modules/post-robot/dist/post-robot.js":
 /*!****************************************************!*\
   !*** ./node_modules/post-robot/dist/post-robot.js ***!
@@ -19121,33 +21095,33 @@ __webpack_require__.r(__webpack_exports__);
 var config = {
   domain: "https://github.digitalriverws.net",
   // eslint-disable-line no-undef
-  paymentServiceUrl: "https://api.digitalriver.com/payments/sources",
+  paymentServiceUrl: "https://api.digitalriverws.com/payments/sources",
   // eslint-disable-line no-undef
   basePath: "/pages/lbarnes/drjs-demo" || false,
   // eslint-disable-line no-undef
   applePayMerchantId: "merchant.com.test.cert.digitalriver",
   // eslint-disable-line no-undef
-  applePayMerchantValidationUrl: Object({"PAYMENT_API_URL":"https://api.digitalriver.com/payments/sources","DOMAIN":"https://github.digitalriverws.net","BASE_PATH":"/pages/lbarnes/drjs-demo","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).APPLEPAY_MERCHANT_VALIDATION_URL,
+  applePayMerchantValidationUrl: Object({"PAYMENT_API_URL":"https://api.digitalriverws.com/payments/sources","DOMAIN":"https://github.digitalriverws.net","BASE_PATH":"/pages/lbarnes/drjs-demo","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).APPLEPAY_MERCHANT_VALIDATION_URL,
   //eslint-disable-line no-undef
-  beaconStorageUrlNonProd: Object({"PAYMENT_API_URL":"https://api.digitalriver.com/payments/sources","DOMAIN":"https://github.digitalriverws.net","BASE_PATH":"/pages/lbarnes/drjs-demo","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).BEACON_STORAGE_URL_NON_PROD,
+  beaconStorageUrlNonProd: Object({"PAYMENT_API_URL":"https://api.digitalriverws.com/payments/sources","DOMAIN":"https://github.digitalriverws.net","BASE_PATH":"/pages/lbarnes/drjs-demo","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).BEACON_STORAGE_URL_NON_PROD,
   // eslint-disable-line no-undef
-  beaconStorageUrlProd: Object({"PAYMENT_API_URL":"https://api.digitalriver.com/payments/sources","DOMAIN":"https://github.digitalriverws.net","BASE_PATH":"/pages/lbarnes/drjs-demo","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).BEACON_STORAGE_URL_PROD,
+  beaconStorageUrlProd: Object({"PAYMENT_API_URL":"https://api.digitalriverws.com/payments/sources","DOMAIN":"https://github.digitalriverws.net","BASE_PATH":"/pages/lbarnes/drjs-demo","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).BEACON_STORAGE_URL_PROD,
   // eslint-disable-line no-undef
-  adyenProdUrl: Object({"PAYMENT_API_URL":"https://api.digitalriver.com/payments/sources","DOMAIN":"https://github.digitalriverws.net","BASE_PATH":"/pages/lbarnes/drjs-demo","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).ADYEN_PROD_URL,
+  adyenProdUrl: Object({"PAYMENT_API_URL":"https://api.digitalriverws.com/payments/sources","DOMAIN":"https://github.digitalriverws.net","BASE_PATH":"/pages/lbarnes/drjs-demo","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).ADYEN_PROD_URL,
   // eslint-disable-line no-undef
-  adyenTestUrl: Object({"PAYMENT_API_URL":"https://api.digitalriver.com/payments/sources","DOMAIN":"https://github.digitalriverws.net","BASE_PATH":"/pages/lbarnes/drjs-demo","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).ADYEN_TEST_URL,
+  adyenTestUrl: Object({"PAYMENT_API_URL":"https://api.digitalriverws.com/payments/sources","DOMAIN":"https://github.digitalriverws.net","BASE_PATH":"/pages/lbarnes/drjs-demo","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).ADYEN_TEST_URL,
   // eslint-disable-line no-undef
-  onlineBankingBanksUrl: Object({"PAYMENT_API_URL":"https://api.digitalriver.com/payments/sources","DOMAIN":"https://github.digitalriverws.net","BASE_PATH":"/pages/lbarnes/drjs-demo","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).ONLINE_BANKING_BANKS_URL,
+  onlineBankingBanksUrl: Object({"PAYMENT_API_URL":"https://api.digitalriverws.com/payments/sources","DOMAIN":"https://github.digitalriverws.net","BASE_PATH":"/pages/lbarnes/drjs-demo","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).ONLINE_BANKING_BANKS_URL,
   // eslint-disable-line no-undef
-  originProdKey: Object({"PAYMENT_API_URL":"https://api.digitalriver.com/payments/sources","DOMAIN":"https://github.digitalriverws.net","BASE_PATH":"/pages/lbarnes/drjs-demo","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).ADYEN_PROD_ORIGIN_KEY,
+  originProdKey: Object({"PAYMENT_API_URL":"https://api.digitalriverws.com/payments/sources","DOMAIN":"https://github.digitalriverws.net","BASE_PATH":"/pages/lbarnes/drjs-demo","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).ADYEN_PROD_ORIGIN_KEY,
   // eslint-disable-line no-undef
-  originTestKey: Object({"PAYMENT_API_URL":"https://api.digitalriver.com/payments/sources","DOMAIN":"https://github.digitalriverws.net","BASE_PATH":"/pages/lbarnes/drjs-demo","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).ADYEN_TEST_ORIGIN_KEY,
+  originTestKey: Object({"PAYMENT_API_URL":"https://api.digitalriverws.com/payments/sources","DOMAIN":"https://github.digitalriverws.net","BASE_PATH":"/pages/lbarnes/drjs-demo","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).ADYEN_TEST_ORIGIN_KEY,
   // eslint-disable-line no-undef
-  paymentServiceBaseUrl: Object({"PAYMENT_API_URL":"https://api.digitalriver.com/payments/sources","DOMAIN":"https://github.digitalriverws.net","BASE_PATH":"/pages/lbarnes/drjs-demo","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).PAYMENT_API_BASE_URL,
+  paymentServiceBaseUrl: Object({"PAYMENT_API_URL":"https://api.digitalriverws.com/payments/sources","DOMAIN":"https://github.digitalriverws.net","BASE_PATH":"/pages/lbarnes/drjs-demo","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).PAYMENT_API_BASE_URL,
   // eslint-disable-line no-undef
   paypalRedirectBaseUrl: "https://payments-test.digitalriver.com/redirect/",
   // eslint-disable-line no-undef
-  paymentMethodsUrl: Object({"PAYMENT_API_URL":"https://api.digitalriver.com/payments/sources","DOMAIN":"https://github.digitalriverws.net","BASE_PATH":"/pages/lbarnes/drjs-demo","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).PAYMENT_METHODS_URL // eslint-disable-line no-undef
+  paymentMethodsUrl: Object({"PAYMENT_API_URL":"https://api.digitalriverws.com/payments/sources","DOMAIN":"https://github.digitalriverws.net","BASE_PATH":"/pages/lbarnes/drjs-demo","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).PAYMENT_METHODS_URL // eslint-disable-line no-undef
 
 };
 
@@ -19779,7 +21753,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../post-robot-wrapper */ "./src/post-robot-wrapper.js");
 /* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../config */ "./src/app/components/config.js");
 /* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../utils */ "./src/app/components/utils.js");
+/* harmony import */ var _localization_localizated_messages__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../localization/localizated-messages */ "./src/app/components/localization/localizated-messages.js");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -19793,9 +21769,8 @@ var elements = {};
 var componentData = {};
 var controllerEmitter;
 
-function createDom(parentNodeId, uniqueId) {
-  // TODO Future story: Localize labels
-  document.getElementById(parentNodeId).innerHTML = "<div id=\"".concat(uniqueId, "\" style=\"display: flex; flex-direction: column; padding: 10px\">\n        <label>Card Number</label>\n        <div id=\"DRCardNumber-").concat(uniqueId, "\"></div>\n        <div id=\"DRCardNumber-").concat(uniqueId, "-error\" style=\"margin-bottom: 20px; color: red\"></div>\n        <div style=\"display: flex; flex-direction: row\">\n          <div style=\"display: flex; flex-direction: column; width: 50%;\">\n            <label>Expiration Date</label>\n            <div id=\"DRCardExpiration-").concat(uniqueId, "\" style=\"margin-right: 10px\"></div>\n            <div id=\"DRCardExpiration-").concat(uniqueId, "-error\" style=\"color: red\"></div>\n          </div>\n          <div style=\"display: flex; flex-direction: column; width: 50%;\">\n            <label>CVC / CVV</label>\n            <div id=\"DRCardCvv-").concat(uniqueId, "\"></div>\n            <div id=\"DRCardCvv-").concat(uniqueId, "-error\" style=\"color: red\"></div>\n          </div>\n        </div>\n    </div>");
+function createDom(parentNodeId, uniqueId, locale) {
+  document.getElementById(parentNodeId).innerHTML = "<div id=\"".concat(uniqueId, "\" style=\"display: flex; flex-direction: column; padding: 10px\">\n        <label>").concat(Object(_localization_localizated_messages__WEBPACK_IMPORTED_MODULE_7__["getLocaleMessage"])(locale, 'cardNumber') || 'Card Number', "</label>\n        <div id=\"DRCardNumber-").concat(uniqueId, "\"></div>\n        <div id=\"DRCardNumber-").concat(uniqueId, "-error\" style=\"margin-bottom: 20px; color: red\"></div>\n        <div style=\"display: flex; flex-direction: row\">\n          <div style=\"display: flex; flex-direction: column; width: 50%;\">\n            <label>").concat(Object(_localization_localizated_messages__WEBPACK_IMPORTED_MODULE_7__["getLocaleMessage"])(locale, 'cardExpirationDate') || 'Expiration Date', "</label>\n            <div id=\"DRCardExpiration-").concat(uniqueId, "\" style=\"margin-right: 10px\"></div>\n            <div id=\"DRCardExpiration-").concat(uniqueId, "-error\" style=\"color: red\"></div>\n          </div>\n          <div style=\"display: flex; flex-direction: column; width: 50%;\">\n            <label>").concat(Object(_localization_localizated_messages__WEBPACK_IMPORTED_MODULE_7__["getLocaleMessage"])(locale, 'cardSecurityCode') || 'Card Security Code', "</label>\n            <div id=\"DRCardCvv-").concat(uniqueId, "\"></div>\n            <div id=\"DRCardCvv-").concat(uniqueId, "-error\" style=\"color: red\"></div>\n          </div>\n        </div>\n    </div>");
 }
 /**
  *
@@ -19914,7 +21889,7 @@ function mountCreditCard(parentNodeId) {
   _client_dataStore__WEBPACK_IMPORTED_MODULE_2__["default"].set(this.key, data);
   this.parentNode = parent;
   var componentId = this.id;
-  createDom(parentNodeId, componentId);
+  createDom(parentNodeId, componentId, data.instanceOptions.locale);
   mountElements(componentId, elements);
   return controllerEmitter.send('mountClientComponent', {
     componentId: componentData.componentId,
@@ -20557,7 +22532,7 @@ function getLocaleMessage(locale, messageCode) {
 /*! exports provided: ar-EG, cs-CZ, da-DK, de-AT, de-CH, de-DE, el-GR, en-AU, en-CA, en-CH, en-GB, en-IE, en-IN, en-MY, en-NL, en-NZ, en-PR, en-SG, en-US, en-ZA, es-AR, es-CL, es-CO, es-EC, es-ES, es-MX, es-PE, es-VE, fi-FI, fr-BE, fr-CA, fr-CH, fr-FR, hu-HU, it-CH, it-IT, iw-IL, ja-JP, ko-KR, nl-BE, nl-NL, no-NO, pl-PL, pt-BR, pt-PT, ru-RU, sk-SK, sv-SE, th-TH, tr-TR, zh-CN, zh-HK, zh-TW, default */
 /***/ (function(module) {
 
-module.exports = {"ar-EG":{"birthdate":"تاريخ الميلاد","cardInvalid":"البطاقة غير صحيحة، يرجى مراعاة تفاصيل البطاقة","cardSecurityCode":"كود أمان البطاقة","cardExpired":"صلاحية البطاقة انتهت بالفعل","cardNumber":"* رقم البطاقة الائتمانية","cardSecurityCodeInvalid":"كود غير صحيح","cardNumberInvalid":"من فضلك أدخل رقم بطاقة ائتمانية صحيح.","cardExpirationMonthInvalid":"أدخل شهر انتهاء صلاحية صحيح","cardExpirationYearInvalid":"أدخل سنة انتهاء صلاحية صحيحة","konbiniSelectStore":"اختر متجرًا.","month":"الشهر","noBanksAvailable":"يرجى اختيار أحد البنوك أو الشبكات البنكية","noBankSelected":"يرجى اختيار أحد البنوك أو الشبكات البنكية","selectBank":"من فضلك اختر البنك الخاص بك.","year":"السنة","offlineRefundInsufficientData":"تم إرسال معلومات ناقصة أو قيم غير صحيحة.  من فضلك حاول مرة أخرى."},"cs-CZ":{"birthdate":"Datum narození","cardInvalid":"Karta je neplatná. Zkontrolujte prosím údaje o kartě.","cardSecurityCode":"Bezpečnostní kód karty","cardExpired":"Karta už není platná","cardNumber":"Číslo kreditní karty","cardSecurityCodeInvalid":"Neplatný kód","cardNumberInvalid":"Zadejte platné číslo kreditní karty.","cardExpirationMonthInvalid":"Zadejte měsíc konce platnosti","cardExpirationYearInvalid":"Zadejte rok konce platnosti","konbiniSelectStore":"Vyberte obchod.","month":"Měsíc","noBanksAvailable":"Zvolte banku nebo bankovní síť","noBankSelected":"Zvolte banku nebo bankovní síť","selectBank":"Zvolte banku","year":"Rok","offlineRefundInsufficientData":"Odeslány chybějící informace nebo neplatné hodnoty.  Prosím, zkuste to znovu."},"da-DK":{"birthdate":"Fødselsdag","cardInvalid":"Kortet er ugyldigt. Kontrollér kortoplysningerne","cardSecurityCode":"Kortsikkerhedskode","cardExpired":"Kortet er udløbet","cardNumber":"Kreditkortnummer","cardSecurityCodeInvalid":"Forkert kode","cardNumberInvalid":"Indtast et gyldigt kreditkortnummer.","cardExpirationMonthInvalid":"Indtast en gyldig udløbsmåned","cardExpirationYearInvalid":"Indtast et gyldigt udløbsår","konbiniSelectStore":"Vælg en butik.","month":"Måned","noBanksAvailable":"Vælg en bank eller et banknetværk","noBankSelected":"Vælg en bank eller et banknetværk","selectBank":"Vælg din bank","year":"År","offlineRefundInsufficientData":"Der mangler oplysninger, eller der er angivet forkerte værdier.  Prøv venligst igen."},"de-AT":{"birthdate":"Geburtsdatum","cardInvalid":"Karte ist ungültig, bitte überprüfen Sie die Kartendetails.","cardSecurityCode":"Kreditkarten-Sicherheitscode","cardExpired":"Karte ist bereits abgelaufen","cardNumber":"Kreditkartennummer","cardSecurityCodeInvalid":"Ungültiger Code","cardNumberInvalid":"Geben Sie bitte eine gültige Kreditkartennummer ein.","cardExpirationMonthInvalid":"Geben Sie einen gültigen Ablaufmonat ein.","cardExpirationYearInvalid":"Geben Sie ein gültiges Ablaufjahr ein.","konbiniSelectStore":"Wählen Sie einen Laden.","month":"Monat","noBanksAvailable":"Bitte wählen Sie eine Bank oder ein Bankennetzwerk aus","noBankSelected":"Bitte wählen Sie eine Bank oder ein Bankennetzwerk aus","selectBank":"Bitte wählen Sie Ihre Bank aus","year":"Jahr","offlineRefundInsufficientData":"Die versendeten Angaben sind unvollständig oder fehlerhaft.  Bitte versuchen Sie es noch einmal."},"de-CH":{"birthdate":"Geburtsdatum","cardInvalid":"Karte ist ungültig, bitte überprüfen Sie die Kartendetails.","cardSecurityCode":"Kreditkarten-Sicherheitscode","cardExpired":"Karte ist bereits abgelaufen","cardNumber":"Kreditkartennummer","cardSecurityCodeInvalid":"Ungültiger Code","cardNumberInvalid":"Geben Sie bitte eine gültige Kreditkartennummer ein.","cardExpirationMonthInvalid":"Geben Sie einen gültigen Ablaufmonat ein.","cardExpirationYearInvalid":"Geben Sie ein gültiges Ablaufjahr ein.","konbiniSelectStore":"Wählen Sie einen Laden.","month":"Monat","noBanksAvailable":"Bitte wählen Sie eine Bank oder ein Bankennetzwerk aus","noBankSelected":"Bitte wählen Sie eine Bank oder ein Bankennetzwerk aus","selectBank":"Bitte wählen Sie Ihre Bank aus","year":"Jahr","offlineRefundInsufficientData":"Die versendeten Angaben sind unvollständig oder fehlerhaft.  Bitte versuchen Sie es noch einmal."},"de-DE":{"birthdate":"Geburtsdatum","cardInvalid":"Karte ist ungültig, bitte überprüfen Sie die Kartendetails.","cardSecurityCode":"Kreditkarten-Sicherheitscode","cardExpired":"Karte ist bereits abgelaufen","cardNumber":"Kreditkartennummer","cardSecurityCodeInvalid":"Ungültiger Code","cardNumberInvalid":"Geben Sie bitte eine gültige Kreditkartennummer ein.","cardExpirationMonthInvalid":"Geben Sie einen gültigen Ablaufmonat ein.","cardExpirationYearInvalid":"Geben Sie ein gültiges Ablaufjahr ein.","konbiniSelectStore":"Wählen Sie einen Laden.","month":"Monat","noBanksAvailable":"Bitte wählen Sie eine Bank oder ein Bankennetzwerk aus","noBankSelected":"Bitte wählen Sie eine Bank oder ein Bankennetzwerk aus","selectBank":"Bitte wählen Sie Ihre Bank aus","year":"Jahr","offlineRefundInsufficientData":"Die versendeten Angaben sind unvollständig oder fehlerhaft.  Bitte versuchen Sie es noch einmal."},"el-GR":{"birthdate":"Ημερομηνία γέννησης","cardInvalid":"Η κάρτα δεν είναι έγκυρη, ελέγξτε ξανά τα στοιχεία της κάρτας","cardSecurityCode":"Κωδικός Ασφαλείας Κάρτας","cardExpired":"Η κάρτα έχει λήξει","cardNumber":"Αριθμός Πιστωτικής Κάρτας","cardSecurityCodeInvalid":"Μη Έγκυρος Κωδικός","cardNumberInvalid":"Εισαγάγετε έγκυρο αριθμό πιστωτικής κάρτας.","cardExpirationMonthInvalid":"Εισαγωγή έγκυρου μήνα λήξης","cardExpirationYearInvalid":"Εισαγωγή έγκυρου έτους λήξης","konbiniSelectStore":"Επιλέξτε κατάστημα.","month":"Μήνας","noBanksAvailable":"Επιλέξτε τράπεζα ή τραπεζικό δίκτυο","noBankSelected":"Επιλέξτε τράπεζα ή τραπεζικό δίκτυο","selectBank":"Επιλέξτε την τράπεζά σας","year":"Έτος","offlineRefundInsufficientData":"Λείπουν πληροφορίες ή έχουν υποβληθεί εσφαλμένες τιμές.  Δοκιμάστε ξανά."},"en-AU":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","konbiniSelectStore":"Select a store.","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year","offlineRefundInsufficientData":"Missing information or incorrect values submitted.  Please try again."},"en-CA":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","konbiniSelectStore":"Select a store.","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year","offlineRefundInsufficientData":"Missing information or incorrect values submitted.  Please try again."},"en-CH":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","konbiniSelectStore":"Select a store.","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year","offlineRefundInsufficientData":"Missing information or incorrect values submitted.  Please try again."},"en-GB":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","konbiniSelectStore":"Select a store.","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year","offlineRefundInsufficientData":"Missing information or incorrect values submitted.  Please try again."},"en-IE":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","konbiniSelectStore":"Select a store.","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year","offlineRefundInsufficientData":"Missing information or incorrect values submitted.  Please try again."},"en-IN":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","konbiniSelectStore":"Select a store.","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year","offlineRefundInsufficientData":"Missing information or incorrect values submitted.  Please try again."},"en-MY":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","konbiniSelectStore":"Select a store.","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year","offlineRefundInsufficientData":"Missing information or incorrect values submitted.  Please try again."},"en-NL":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","konbiniSelectStore":"Select a store.","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year","offlineRefundInsufficientData":"Missing information or incorrect values submitted.  Please try again."},"en-NZ":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","konbiniSelectStore":"Select a store.","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year","offlineRefundInsufficientData":"Missing information or incorrect values submitted.  Please try again."},"en-PR":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","konbiniSelectStore":"Select a store.","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year","offlineRefundInsufficientData":"Missing information or incorrect values submitted.  Please try again."},"en-SG":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","konbiniSelectStore":"Select a store.","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year","offlineRefundInsufficientData":"Missing information or incorrect values submitted.  Please try again."},"en-US":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","konbiniSelectStore":"Select a store.","koreanCardPasswordHint":"Please enter the first two digits of your card password.","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year","offlineRefundInsufficientData":"Missing information or incorrect values submitted.  Please try again."},"en-ZA":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","konbiniSelectStore":"Select a store.","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year","offlineRefundInsufficientData":"Missing information or incorrect values submitted.  Please try again."},"es-AR":{"birthdate":"Fecha de nacimiento","cardInvalid":"La tarjeta no es válida, por favor revise los datos de la tarjeta","cardSecurityCode":"Código de la tarjeta de seguridad","cardExpired":"La tarjeta ya expiró.","cardNumber":"Número de la tarjeta de crédito","cardSecurityCodeInvalid":"Código inválido","cardNumberInvalid":"Introduzca un número de tarjeta de crédito válido.","cardExpirationMonthInvalid":"Introduzca un mes de vencimiento válido","cardExpirationYearInvalid":"Introduzca un año de vencimiento válido","konbiniSelectStore":"Selecciona una tienda.","month":"Mes","noBanksAvailable":"Seleccione un banco o una red bancaria","noBankSelected":"Seleccione un banco o una red bancaria","selectBank":"Seleccione su banco","year":"Año","offlineRefundInsufficientData":"Falta información o se han especificado valores incorrectos.  Intente de nuevo."},"es-CL":{"birthdate":"Fecha de nacimiento","cardInvalid":"La tarjeta no es válida, por favor revise los datos de la tarjeta","cardSecurityCode":"Código de la tarjeta de seguridad","cardExpired":"La tarjeta ya expiró.","cardNumber":"Número de la tarjeta de crédito","cardSecurityCodeInvalid":"Código inválido","cardNumberInvalid":"Introduzca un número de tarjeta de crédito válido.","cardExpirationMonthInvalid":"Introduzca un mes de vencimiento válido","cardExpirationYearInvalid":"Introduzca un año de vencimiento válido","konbiniSelectStore":"Selecciona una tienda.","month":"Mes","noBanksAvailable":"Seleccione un banco o una red bancaria","noBankSelected":"Seleccione un banco o una red bancaria","selectBank":"Seleccione su banco","year":"Año","offlineRefundInsufficientData":"Falta información o se han especificado valores incorrectos.  Intente de nuevo."},"es-CO":{"birthdate":"Fecha de nacimiento","cardInvalid":"La tarjeta no es válida, por favor revise los datos de la tarjeta","cardSecurityCode":"Código de la tarjeta de seguridad","cardExpired":"La tarjeta ya expiró.","cardNumber":"Número de la tarjeta de crédito","cardSecurityCodeInvalid":"Código inválido","cardNumberInvalid":"Introduzca un número de tarjeta de crédito válido.","cardExpirationMonthInvalid":"Introduzca un mes de vencimiento válido","cardExpirationYearInvalid":"Introduzca un año de vencimiento válido","konbiniSelectStore":"Selecciona una tienda.","month":"Mes","noBanksAvailable":"Seleccione un banco o una red bancaria","noBankSelected":"Seleccione un banco o una red bancaria","selectBank":"Seleccione su banco","year":"Año","offlineRefundInsufficientData":"Falta información o se han especificado valores incorrectos.  Intente de nuevo."},"es-EC":{"birthdate":"Fecha de nacimiento","cardInvalid":"La tarjeta no es válida, por favor revise los datos de la tarjeta","cardSecurityCode":"Código de la tarjeta de seguridad","cardExpired":"La tarjeta ya expiró.","cardNumber":"Número de la tarjeta de crédito","cardSecurityCodeInvalid":"Código inválido","cardNumberInvalid":"Introduzca un número de tarjeta de crédito válido.","cardExpirationMonthInvalid":"Introduzca un mes de vencimiento válido","cardExpirationYearInvalid":"Introduzca un año de vencimiento válido","konbiniSelectStore":"Selecciona una tienda.","month":"Mes","noBanksAvailable":"Seleccione un banco o una red bancaria","noBankSelected":"Seleccione un banco o una red bancaria","selectBank":"Seleccione su banco","year":"Año","offlineRefundInsufficientData":"Falta información o se han especificado valores incorrectos.  Intente de nuevo."},"es-ES":{"birthdate":"Fecha de nacimiento","cardInvalid":"La tarjeta no es válida, compruebe los datos de la tarjeta de débito","cardSecurityCode":"Código de seguridad de la tarjeta","cardExpired":"Tarjeta ya caducada","cardNumber":"Número de tarjeta de crédito","cardSecurityCodeInvalid":"Código no válido","cardNumberInvalid":"Introduzca un número de tarjeta de crédito válido.","cardExpirationMonthInvalid":"Indique un mes de vencimiento válido","cardExpirationYearInvalid":"Indique un año de vencimiento válido","konbiniSelectStore":"Selecciona una tienda.","month":"Mes","noBanksAvailable":"Escoja una entidad o red bancaria","noBankSelected":"Escoja una entidad o red bancaria","selectBank":"Seleccione su entidad bancaria","year":"Año","offlineRefundInsufficientData":"Falta información o se han especificado valores incorrectos.  Intente de nuevo."},"es-MX":{"birthdate":"Fecha de nacimiento","cardInvalid":"La tarjeta no es válida, por favor revise los datos de la tarjeta","cardSecurityCode":"Código de la tarjeta de seguridad","cardExpired":"La tarjeta ya expiró.","cardNumber":"Número de la tarjeta de crédito","cardSecurityCodeInvalid":"Código inválido","cardNumberInvalid":"Introduzca un número de tarjeta de crédito válido.","cardExpirationMonthInvalid":"Introduzca un mes de vencimiento válido","cardExpirationYearInvalid":"Introduzca un año de vencimiento válido","konbiniSelectStore":"Selecciona una tienda.","month":"Mes","noBanksAvailable":"Seleccione un banco o una red bancaria","noBankSelected":"Seleccione un banco o una red bancaria","selectBank":"Seleccione su banco","year":"Año","offlineRefundInsufficientData":"Falta información o se han especificado valores incorrectos.  Intente de nuevo."},"es-PE":{"birthdate":"Fecha de nacimiento","cardInvalid":"La tarjeta no es válida, por favor revise los datos de la tarjeta","cardSecurityCode":"Código de la tarjeta de seguridad","cardExpired":"La tarjeta ya expiró.","cardNumber":"Número de la tarjeta de crédito","cardSecurityCodeInvalid":"Código inválido","cardNumberInvalid":"Introduzca un número de tarjeta de crédito válido.","cardExpirationMonthInvalid":"Introduzca un mes de vencimiento válido","cardExpirationYearInvalid":"Introduzca un año de vencimiento válido","konbiniSelectStore":"Selecciona una tienda.","month":"Mes","noBanksAvailable":"Seleccione un banco o una red bancaria","noBankSelected":"Seleccione un banco o una red bancaria","selectBank":"Seleccione su banco","year":"Año","offlineRefundInsufficientData":"Falta información o se han especificado valores incorrectos.  Intente de nuevo."},"es-VE":{"birthdate":"Fecha de nacimiento","cardInvalid":"La tarjeta no es válida, por favor revise los datos de la tarjeta","cardSecurityCode":"Código de la tarjeta de seguridad","cardExpired":"La tarjeta ya expiró.","cardNumber":"Número de la tarjeta de crédito","cardSecurityCodeInvalid":"Código inválido","cardNumberInvalid":"Introduzca un número de tarjeta de crédito válido.","cardExpirationMonthInvalid":"Introduzca un mes de vencimiento válido","cardExpirationYearInvalid":"Introduzca un año de vencimiento válido","konbiniSelectStore":"Selecciona una tienda.","month":"Mes","noBanksAvailable":"Seleccione un banco o una red bancaria","noBankSelected":"Seleccione un banco o una red bancaria","selectBank":"Seleccione su banco","year":"Año","offlineRefundInsufficientData":"Falta información o se han especificado valores incorrectos.  Intente de nuevo."},"fi-FI":{"birthdate":"Syntymäaika","cardInvalid":"Kortti ei ole voimassa, tarkasta kortin tiedot","cardSecurityCode":"Kortin tarkistusnumero","cardExpired":"Kortti on jo vanhentunut","cardNumber":"Luottokortin numero","cardSecurityCodeInvalid":"Väärä koodi","cardNumberInvalid":"Syötä voimassa olevan luottokortin numero.","cardExpirationMonthInvalid":"Syötä kelvollinen viimeinen voimassaolokuukausi","cardExpirationYearInvalid":"Syötä kelvollinen viimeinen voimassaolovuosi","konbiniSelectStore":"Valitse kauppa.","month":"Kuukausi","noBanksAvailable":"Valitse pankki tai pankkiverkko","noBankSelected":"Valitse pankki tai pankkiverkko","selectBank":"Valitse pankkisi","year":"Vuosi","offlineRefundInsufficientData":"Tietoja puuttuu tai annetut arvot eivät kelpaa.  Yritä uudelleen."},"fr-BE":{"birthdate":"Date de naissance","cardInvalid":"La carte n'est pas valide, veuillez en vérifier les détails","cardSecurityCode":"Code de sécurité carte","cardExpired":"Carte déjà expirée","cardNumber":"Numéro de carte de crédit","cardSecurityCodeInvalid":"Code invalide","cardNumberInvalid":"Veuillez saisir un numéro de carte de crédit valide.","cardExpirationMonthInvalid":"Indiquer un mois d'expiration valide","cardExpirationYearInvalid":"Indiquer une année d'expiration valide","konbiniSelectStore":"Sélectionnez une boutique.","month":"Mois ","noBanksAvailable":"Veuillez sélectionner une banque ou un réseau bancaire","noBankSelected":"Veuillez sélectionner une banque ou un réseau bancaire","selectBank":"Veuillez sélectionner votre banque","year":"Année","offlineRefundInsufficientData":"Il manque certaines informations ou des valeurs incorrectes ont été envoyées.  Veuillez essayer à nouveau."},"fr-CA":{"birthdate":"Date de naissance","cardInvalid":"La carte n'est pas valide, veuillez en vérifier les détails","cardSecurityCode":"Code de sécurité carte","cardExpired":"Carte déjà expirée","cardNumber":"Numéro de carte de crédit","cardSecurityCodeInvalid":"Code invalide","cardNumberInvalid":"Veuillez saisir un numéro de carte de crédit valide.","cardExpirationMonthInvalid":"Indiquer un mois d'expiration valide","cardExpirationYearInvalid":"Entrez une année d'expiration valide","konbiniSelectStore":"Sélectionnez une boutique.","month":"Mois ","noBanksAvailable":"Veuillez choisir une banque ou un réseau de banques","noBankSelected":"Veuillez choisir une banque ou un réseau de banques","selectBank":"Veuillez sélectionner votre banque","year":"Année ","offlineRefundInsufficientData":"Il manque certaines informations ou des valeurs incorrectes ont été envoyées.  Veuillez essayer à nouveau."},"fr-CH":{"birthdate":"Date de naissance","cardInvalid":"La carte n'est pas valide, veuillez en vérifier les détails","cardSecurityCode":"Code de sécurité carte","cardExpired":"Carte déjà expirée","cardNumber":"Numéro de carte de crédit","cardSecurityCodeInvalid":"Code invalide","cardNumberInvalid":"Veuillez saisir un numéro de carte de crédit valide.","cardExpirationMonthInvalid":"Indiquer un mois d'expiration valide","cardExpirationYearInvalid":"Indiquer une année d'expiration valide","konbiniSelectStore":"Sélectionnez une boutique.","month":"Mois ","noBanksAvailable":"Veuillez sélectionner une banque ou un réseau bancaire","noBankSelected":"Veuillez sélectionner une banque ou un réseau bancaire","selectBank":"Veuillez sélectionner votre banque","year":"Année ","offlineRefundInsufficientData":"Il manque certaines informations ou des valeurs incorrectes ont été envoyées.  Veuillez essayer à nouveau."},"fr-FR":{"birthdate":"Date de naissance","cardInvalid":"La carte n'est pas valide, veuillez en vérifier les détails","cardSecurityCode":"Code de sécurité carte","cardExpired":"Carte déjà expirée","cardNumber":"Numéro de carte de crédit","cardSecurityCodeInvalid":"Code invalide","cardNumberInvalid":"Veuillez saisir un numéro de carte de crédit valide.","cardExpirationMonthInvalid":"Indiquer un mois d'expiration valide","cardExpirationYearInvalid":"Indiquer une année d'expiration valide","konbiniSelectStore":"Sélectionnez une boutique.","month":"Mois ","noBanksAvailable":"Veuillez sélectionner une banque ou un réseau bancaire","noBankSelected":"Veuillez sélectionner une banque ou un réseau bancaire","selectBank":"Veuillez sélectionner votre banque","year":"Année ","offlineRefundInsufficientData":"Il manque certaines informations ou des valeurs incorrectes ont été envoyées.  Veuillez essayer à nouveau."},"hu-HU":{"birthdate":"Születési idő","cardInvalid":"Érvénytelen kártya, ellenőrizze a kártya adatait","cardSecurityCode":"Kártya biztonsági kódja","cardExpired":"A kártya lejárt","cardNumber":"Bankkártyaszám","cardSecurityCodeInvalid":"Érvénytelen kód","cardNumberInvalid":"Kérjük, adjon meg egy érvényes hitelkártyaszámot.","cardExpirationMonthInvalid":"Adja meg az érvényes lejárati hónapot","cardExpirationYearInvalid":"Adja meg az érvényes lejárati évet","konbiniSelectStore":"Válasszon áruházat!","month":"Hónap","noBanksAvailable":"Kérjük, válasszon bankot vagy bankhálózatot","noBankSelected":"Kérjük, válasszon bankot vagy bankhálózatot","selectBank":"Kérjük, válassza ki bankját.","year":"Év","offlineRefundInsufficientData":"Hiányzó adatok vagy helytelenek az elküldött értékek.  Kérjük, próbálja meg újra."},"it-CH":{"birthdate":"Data di nascita","cardInvalid":"La carta non è valida, controlla i dati","cardSecurityCode":"Codice di sicurezza carta","cardExpired":"Carta già scaduta","cardNumber":"Numero di carta di credito","cardSecurityCodeInvalid":"Codice non valido","cardNumberInvalid":"Inserire un numero di carta di credito valido.","cardExpirationMonthInvalid":"Inserisci un mese di scadenza valido","cardExpirationYearInvalid":"Inserisci un anno di scadenza valido","konbiniSelectStore":"Seleziona un punto vendita.","month":"Mese","noBanksAvailable":"Scegli una banca o una rete bancaria","noBankSelected":"Scegli una banca o una rete bancaria","selectBank":"Seleziona la tua banca","year":"Anno","offlineRefundInsufficientData":"Sono state inviate informazioni mancanti o errate.  Riprova."},"it-IT":{"birthdate":"Data di nascita","cardInvalid":"La carta non è valida, controlla i dati","cardSecurityCode":"Codice di sicurezza carta","cardExpired":"Carta già scaduta","cardNumber":"Numero di carta di credito","cardSecurityCodeInvalid":"Codice non valido","cardNumberInvalid":"Inserire un numero di carta di credito valido.","cardExpirationMonthInvalid":"Inserisci un mese di scadenza valido","cardExpirationYearInvalid":"Inserisci un anno di scadenza valido","konbiniSelectStore":"Seleziona un punto vendita.","month":"Mese","noBanksAvailable":"Scegli una banca o una rete bancaria","noBankSelected":"Scegli una banca o una rete bancaria","selectBank":"Seleziona la tua banca","year":"Anno","offlineRefundInsufficientData":"Sono state inviate informazioni mancanti o errate.  Riprova."},"iw-IL":{"birthdate":"תאריך לידה","cardInvalid":"הכרטיס לא חוקי. אנא בדוק את פרטי הכרטיס","cardSecurityCode":"קוד ביטחון של כרטיס האשראי","cardExpired":"הכרטיס לא בתוקף","cardNumber":"* מס' כרטיס אשראי","cardSecurityCodeInvalid":"קוד לא חוקי","cardNumberInvalid":"נא הזן מספר כרטיס אשראי חוקי.","cardExpirationMonthInvalid":"הזן חודש תפוגה תקף","cardExpirationYearInvalid":"הזן שנת תפוגה תקפה","konbiniSelectStore":"בחר חנות.","month":"חודש","noBanksAvailable":"בחר בנק או רשת בנקים","noBankSelected":"בחר בנק או רשת בנקים","selectBank":"בחר את הבנק שלך","year":"שנה","offlineRefundInsufficientData":"חסר מידע או שסופקו ערכים שגויים.  אנא נסה שוב."},"ja-JP":{"birthdate":"誕生日","cardInvalid":"クレジットカードは無効です。カードを確認してください。","cardSecurityCode":"カードセキュリティコード","cardExpired":"カードの期限が切れています","cardNumber":"クレジットカード番号","cardSecurityCodeInvalid":"無効なコード","cardNumberInvalid":"有効なクレジットカード番号を入力してください。","cardExpirationMonthInvalid":"有効期限（月）を入力","cardExpirationYearInvalid":"有効期限（年）を入力","konbiniSelectStore":"コンビニ名を選択してください。 ","month":"月","noBanksAvailable":"銀行または銀行ネットワークを選択してください。","noBankSelected":"銀行または銀行ネットワークを選択してください。","selectBank":"銀行を選択してください。","year":"年","offlineRefundInsufficientData":"送信された情報に不備があるか、値に誤りがあります。  やり直してください。"},"ko-KR":{"birthdate":"생년월일","cardInvalid":"카드가 유효하지 않습니다. 카드 세부 정보를 확인하십시오.","cardSecurityCode":"카드 보안 코드","cardExpired":"카드 유효기간이 이미 만료되었습니다","cardNumber":"신용카드 번호","cardSecurityCodeInvalid":"유효하지 않은 코드","cardNumberInvalid":"올바른 신용카드 번호를 입력하십시오.","cardExpirationMonthInvalid":"유효한 만료 월 입력","cardExpirationYearInvalid":"유효한 만료 연도 입력","cardTypeColon":"카드 종류:","closeWindow":"창 닫기","company":"회사","continue":"계속하기","corporateRegistrationNumber":"사업자 등록 번호","day":"일","enterAdditionalInformation":"추가 정보 입력","konbiniSelectStore":"스토어를 선택하십시오.","koreanCardPasswordHint":"카드 비밀번호 앞 두자리를 입력해 주십시오.","missing_korean_parameter":"존재하지 않는 정보 또는 부정확한 값을 제출하였습니다. 다시 시도하십시오.","month":"월","noBanksAvailable":"은행 또는 은행 네트워크를 선택하십시오.","noBankSelected":"은행 또는 은행 네트워크를 선택하십시오.","password":"암호","personalNumber":"개인 번호","pleaseCheckYourDateOfBirth":"고객님의 생년월일을 확인하십시오.","pleaseEnterAValidValue":"유효한 값을 입력해 주십시오.","requiredField":"필수 필드","selectBank":"은행을 선택하십시오.","year":"연도","offlineRefundInsufficientData":"정보가 누락되었거나 잘못된 값이 제출되었습니다.  다시 시도해 주십시오."},"nl-BE":{"birthdate":"Geboortedatum","cardInvalid":"Kaart is ongeldig, controleer de kaartgegevens","cardSecurityCode":"Beveiligingscode creditcard","cardExpired":"Creditcard is verlopen","cardNumber":"Creditcardnummer","cardSecurityCodeInvalid":"Ongeldige code","cardNumberInvalid":"Voer een geldig creditcardnummer in.","cardExpirationMonthInvalid":"Voer een geldige vervalmaand in","cardExpirationYearInvalid":"Voer een geldig vervaljaar in","konbiniSelectStore":"Kies een winkel.","month":"Maand","noBanksAvailable":"Selecteer een bank of bankennetwerk","noBankSelected":"Selecteer een bank of bankennetwerk","selectBank":"Selecteer uw bank","year":"Jaar","offlineRefundInsufficientData":"Gegevens ontbreken of onjuiste waarden zijn ingevoerd.  Probeer het nog een keer."},"nl-NL":{"birthdate":"Geboortedatum","cardInvalid":"Kaart is ongeldig, controleer de kaartgegevens","cardSecurityCode":"Beveiligingscode creditcard","cardExpired":"Creditcard is verlopen","cardNumber":"Creditcardnummer","cardSecurityCodeInvalid":"Ongeldige code","cardNumberInvalid":"Voer een geldig creditcardnummer in.","cardExpirationMonthInvalid":"Voer een geldige vervalmaand in","cardExpirationYearInvalid":"Voer een geldig vervaljaar in","konbiniSelectStore":"Kies een winkel.","month":"Maand","noBanksAvailable":"Selecteer een bank of bankennetwerk","noBankSelected":"Selecteer een bank of bankennetwerk","selectBank":"Selecteer uw bank","year":"Jaar","offlineRefundInsufficientData":"Gegevens ontbreken of onjuiste waarden zijn ingevoerd.  Probeer het nog een keer."},"no-NO":{"birthdate":"Fødselsdato","cardInvalid":"Ugyldig kort, vennligst sjekk opplysningene på kortet","cardSecurityCode":"Kortets sikkerhetskode","cardExpired":"Kortet er allerede utløpt","cardNumber":"Kredittkortnummer","cardSecurityCodeInvalid":"Ugyldig kode","cardNumberInvalid":"Du må oppgi et gyldig kredittkortnummer.","cardExpirationMonthInvalid":"Oppgi gyldig utløpsmåned","cardExpirationYearInvalid":"Oppgi gyldig utløpsår","konbiniSelectStore":"","month":"Måned","noBanksAvailable":"Velg en bank eller et banknettverk","noBankSelected":"Velg en bank eller et banknettverk","selectBank":"Velg din bank","year":"År","offlineRefundInsufficientData":"Opplysninger mangler eller feil verdier er angitt.  Prøv på nytt."},"pl-PL":{"birthdate":"Data urodzenia","cardInvalid":"Karta jest nieprawidłowa, sprawdź dane karty","cardSecurityCode":"Kod bezpieczeństwa karty","cardExpired":"Ważność karty już wygasła","cardNumber":"Numer karty kredytowej","cardSecurityCodeInvalid":"Nieprawidłowy kod","cardNumberInvalid":"Podaj prawidłowy numer karty kredytowej.","cardExpirationMonthInvalid":"Wpisz prawidłowy miesiąc ważności","cardExpirationYearInvalid":"Wpisz prawidłowy rok ważności","konbiniSelectStore":"Velg en butikk.","month":"Miesiąc","noBanksAvailable":"Wybierz bank lub sieć banków","noBankSelected":"Wybierz bank lub sieć banków","selectBank":"Wybierz swój bank","year":"Rok","offlineRefundInsufficientData":"Nie wprowadzono wszystkich danych, lub wprowadzono niewłaściwe wartości.  Spróbuj ponownie."},"pt-BR":{"birthdate":"Aniversário","cardInvalid":"O cartão é inválido, verifique os detalhes sobre o cartão","cardSecurityCode":"Código de segurança do cartão","cardExpired":"O cartão expirou","cardNumber":"Número do cartão de crédito","cardSecurityCodeInvalid":"Código inválido","cardNumberInvalid":"Digite um número de cartão de crédito válido.","cardExpirationMonthInvalid":"Inserir o mês de validade","cardExpirationYearInvalid":"Inserir o ano de validade","konbiniSelectStore":"Selecione uma loja.","month":"Mês","noBanksAvailable":"Escolha um banco ou rede bancária","noBankSelected":"Escolha um banco ou rede bancária","selectBank":"Selecione seu banco","year":"Ano","offlineRefundInsufficientData":"Faltam informações ou foram submetidos valores incorrectos.  É favor tentar de novo."},"pt-PT":{"birthdate":"Data de nascimento","cardInvalid":"Cartão inválido, verifique os detalhes do cartão","cardSecurityCode":"Código de Segurança do Cartão","cardExpired":"O cartão já expirou","cardNumber":"Número do cartão de crédito","cardSecurityCodeInvalid":"Código Inválido","cardNumberInvalid":"Introduza um número de cartão de crédito válido.","cardExpirationMonthInvalid":"Introduza um mês de expiração válido","cardExpirationYearInvalid":"Introduza um ano de expiração válido","konbiniSelectStore":"Selecione uma loja.","month":"Mês","noBanksAvailable":"Escolha um banco ou rede bancária","noBankSelected":"Escolha um banco ou rede bancária","selectBank":"Selecione o seu banco","year":"Ano","offlineRefundInsufficientData":"Faltam informações ou foram submetidos valores incorrectos.  É favor tentar de novo."},"ru-RU":{"birthdate":"Дата рождения","cardInvalid":"Карта недействительна, проверьте реквизиты платежной карты","cardSecurityCode":"Код безопасности карты","cardExpired":"Срок действия карты истек","cardNumber":"Номер кредитной карты","cardSecurityCodeInvalid":"Неверный индекс","cardNumberInvalid":"Пожалуйста, введите действительный номер кредитной карты.","cardExpirationMonthInvalid":"Введите верный месяц истечения срока действия","cardExpirationYearInvalid":"Введите верный год истечения срока действия","konbiniSelectStore":"Выберите магазин.","month":"Месяц","noBanksAvailable":"Пожалуйста, выберите банк или банковскую сеть","noBankSelected":"Пожалуйста, выберите банк или банковскую сеть","selectBank":"Пожалуйста, выберите свой банк","year":"Год","offlineRefundInsufficientData":"Отсутствует необходимая информация или указаны некорректные значения.  Повторите попытку."},"sk-SK":{"birthdate":"Dátum narodenia","cardInvalid":"Karta je neplatná, skontrolujte údaje karty","cardSecurityCode":"Bezpečnostný kód na karte","cardExpired":"Platnosť karty skončila","cardNumber":"Číslo kreditnej karty","cardSecurityCodeInvalid":"Neplatný kód","cardNumberInvalid":"Uveďte platné číslo kreditnej karty.","cardExpirationMonthInvalid":"Vložte platný dátum exspirácie","cardExpirationYearInvalid":"Vložte platný rok exspirácie","konbiniSelectStore":"Vyberte obchod.","month":"Mesiac","noBanksAvailable":"Zvoľte banku alebo sieť bánk","noBankSelected":"Zvoľte banku alebo sieť bánk","selectBank":"Vyberte banku","year":"Rok","offlineRefundInsufficientData":"Chýbajúce údaje alebo odoslané nesprávne údaje.  Prosím, skúste to znova."},"sv-SE":{"birthdate":"Födelsedatum","cardInvalid":"Kortet är ogiltigt, kontrollera kortdetaljerna","cardSecurityCode":"Kortets säkerhetskod","cardExpired":"Giltighetstiden för ditt kort har löpt ut","cardNumber":"Kreditkortsnummer","cardSecurityCodeInvalid":"Ogiltig kod","cardNumberInvalid":"Ange ett giltigt kreditkortsnummer.","cardExpirationMonthInvalid":"Ange giltig utgångsmånad","cardExpirationYearInvalid":"Ange giltigt utgångsår","konbiniSelectStore":"Välj en butik.","month":"Månad","noBanksAvailable":"Välj en bank eller ett banknätverk","noBankSelected":"Välj en bank eller ett banknätverk","selectBank":"Välj din bank","year":"År","offlineRefundInsufficientData":"Det saknas information eller felaktiga belopp har angivits. Försök igen."},"th-TH":{"birthdate":"วันเกิด","cardInvalid":"บัตรไม่ถูกต้อง โปรดตรวจสอบรายละเอียดของบัตร","cardSecurityCode":"รหัสความปลอดภัยบนบัตร (Card Security Code) ","cardExpired":"บัตรหมดอายุแล้ว","cardNumber":"หมายเลขบัตรเครดิต","cardSecurityCodeInvalid":"รหัสไม่ถูกต้อง","cardNumberInvalid":"กรุณาใส่หมายเลขบัตรเครดิตที่ถูกต้อง","cardExpirationMonthInvalid":"ใส่เดือนหมดอายุที่ถูกต้อง","cardExpirationYearInvalid":"ใส่ปีหมดอายุที่ถูกต้อง","konbiniSelectStore":"เลือกร้านค้า ","month":"เดือน ","noBanksAvailable":"กรุณาเลือกธนาคารหรือเครือข่ายธนาคาร","noBankSelected":"กรุณาเลือกธนาคารหรือเครือข่ายธนาคาร","selectBank":"กรุณาเลือกธนาคารของคุณ","year":"ปี ","offlineRefundInsufficientData":"ข้อมูลหายไปหรือมีการส่งค่าที่ไม่ถูกต้อง  กรุณาลองอีกครั้ง"},"tr-TR":{"birthdate":"Doğum Tarihi","cardInvalid":"Kart geçersiz, lütfen kart detaylarını kontrol edin","cardSecurityCode":"Kart Güvenlik Kodu","cardExpired":"Kart süresi dolmuş","cardNumber":"Kredi Kartı Numarası","cardSecurityCodeInvalid":"Geçersiz Kod","cardNumberInvalid":"Lütfen geçerli bir kredi kartı numarası girin.","cardExpirationMonthInvalid":"Geçerli sona erme ayını girin","cardExpirationYearInvalid":"Geçerli sona erme yılını girin","konbiniSelectStore":"Bir mağaza seçin.","month":"Ay","noBanksAvailable":"Lütfen bir banka veya banka ağı seçin","noBankSelected":"Lütfen bir banka veya banka ağı seçin","selectBank":"Lütfen bankanızı seçin","year":"Yıl","offlineRefundInsufficientData":"Eksik bilgi var ya da yanlış değerler girildi.  Lütfen tekrar deneyin."},"zh-CN":{"birthdate":"出生日期","cardInvalid":"卡片无效，请检查卡片详情","cardSecurityCode":"信用卡安全代码","cardExpired":"信用卡已过期","cardNumber":"信用卡号*","cardSecurityCodeInvalid":"无效代码","cardNumberInvalid":"请输入一个有效的信用卡号。","cardExpirationMonthInvalid":"请输入有效的到期月份","cardExpirationYearInvalid":"请输入有效的到期年份","konbiniSelectStore":"选择商店。","month":"月份","noBanksAvailable":"请选择一家银行或银行网络","noBankSelected":"请选择一家银行或银行网络","selectBank":"请选择您的银行","year":"年份","offlineRefundInsufficientData":"所提交的信息不完整或数据不正确。请重试。"},"zh-HK":{"birthdate":"出生日期","cardInvalid":"信用咭無效，請檢查信用咭資料","cardSecurityCode":"信用卡安全碼：","cardExpired":"信用卡已過期","cardNumber":"信用卡號碼","cardSecurityCodeInvalid":"無效代碼","cardNumberInvalid":"請輸入有效的信用卡號碼。","cardExpirationMonthInvalid":"輸入有效的到期月份","cardExpirationYearInvalid":"輸入有效的到期年份","konbiniSelectStore":"選取商店。","month":"月份","noBanksAvailable":"請選擇銀行或銀行網路","noBankSelected":"請選擇銀行或銀行網路","selectBank":"請選擇您的銀行","year":"年","offlineRefundInsufficientData":"所提交的信息不完整或数据不正确。请重试。"},"zh-TW":{"birthdate":"生日","cardInvalid":"信用卡無效，請確認卡片詳細資料","cardSecurityCode":"信用卡安全碼：","cardExpired":"信用卡已過期","cardNumber":"信用卡號碼","cardSecurityCodeInvalid":"無效代碼","cardNumberInvalid":"請輸入有效的信用卡號碼。","cardExpirationMonthInvalid":"輸入有效的到期月份","cardExpirationYearInvalid":"輸入有效的到期年份","konbiniSelectStore":"選擇商店。","month":"月份","noBanksAvailable":"請選擇銀行或銀行網路","noBankSelected":"請選擇銀行或銀行網路","selectBank":"請選擇您的銀行","year":"年度","offlineRefundInsufficientData":"所提交的信息不完整或数据不正确。请重试。"}};
+module.exports = {"ar-EG":{"birthdate":"تاريخ الميلاد","cardInvalid":"البطاقة غير صحيحة، يرجى مراعاة تفاصيل البطاقة","cardSecurityCode":"كود أمان البطاقة","cardExpired":"صلاحية البطاقة انتهت بالفعل","cardNumber":"* رقم البطاقة الائتمانية","cardSecurityCodeInvalid":"كود غير صحيح","cardNumberInvalid":"من فضلك أدخل رقم بطاقة ائتمانية صحيح.","cardExpirationDate":"تاريخ الانتهاء","cardExpirationMonthInvalid":"أدخل شهر انتهاء صلاحية صحيح","cardExpirationYearInvalid":"أدخل سنة انتهاء صلاحية صحيحة","konbiniSelectStore":"اختر متجرًا.","month":"الشهر","noBanksAvailable":"يرجى اختيار أحد البنوك أو الشبكات البنكية","noBankSelected":"يرجى اختيار أحد البنوك أو الشبكات البنكية","selectBank":"من فضلك اختر البنك الخاص بك.","year":"السنة","offlineRefundInsufficientData":"تم إرسال معلومات ناقصة أو قيم غير صحيحة.  من فضلك حاول مرة أخرى.","processingYourRequest":"جاري تنفيذ طلبك","payNow":"ادفع الآن","orderTotal":"إجمالي الطلب","bPay":"BPAY","creditCard":"البطاقة الائتمانية","konbini":"الدفع الإلكتروني عن طريق المتجر المريح","directDebit":"خدمة Direct Debit","directDebitGb":"خدمة Direct Debit","onlineBanking":"المعاملات البنكية عبر الإنترنت","payPal":"PayPal","payPalBilling":"PayPal","wireTransfer":"تحويل مالي","alipay":"نظام Alipay"},"cs-CZ":{"birthdate":"Datum narození","cardInvalid":"Karta je neplatná. Zkontrolujte prosím údaje o kartě.","cardSecurityCode":"Bezpečnostní kód karty","cardExpired":"Karta už není platná","cardNumber":"Číslo kreditní karty","cardSecurityCodeInvalid":"Neplatný kód","cardNumberInvalid":"Zadejte platné číslo kreditní karty.","cardExpirationDate":"Termín vypršení platnosti","cardExpirationMonthInvalid":"Zadejte měsíc konce platnosti","cardExpirationYearInvalid":"Zadejte rok konce platnosti","konbiniSelectStore":"Vyberte obchod.","month":"Měsíc","noBanksAvailable":"Zvolte banku nebo bankovní síť","noBankSelected":"Zvolte banku nebo bankovní síť","selectBank":"Zvolte banku","year":"Rok","offlineRefundInsufficientData":"Odeslány chybějící informace nebo neplatné hodnoty.  Prosím, zkuste to znovu.","processingYourRequest":"Váš požadavek se zpracovává","payNow":"Zaplatit nyní","orderTotal":"Objednávka celkem","bPay":"BPAY","creditCard":"Kreditní karta","konbini":"Platba ve výhodném obchodě elektronicky","directDebit":"Přímý debet","directDebitGb":"Přímý debet","onlineBanking":"Internetové bankovnictví","payPal":"PayPal","payPalBilling":"PayPal","wireTransfer":"Telegrafický převod","alipay":"Alipay"},"da-DK":{"birthdate":"Fødselsdag","cardInvalid":"Kortet er ugyldigt. Kontrollér kortoplysningerne","cardSecurityCode":"Kortsikkerhedskode","cardExpired":"Kortet er udløbet","cardNumber":"Kreditkortnummer","cardSecurityCodeInvalid":"Forkert kode","cardNumberInvalid":"Indtast et gyldigt kreditkortnummer.","cardExpirationDate":"Udløbsdato","cardExpirationMonthInvalid":"Indtast en gyldig udløbsmåned","cardExpirationYearInvalid":"Indtast et gyldigt udløbsår","konbiniSelectStore":"Vælg en butik.","month":"Måned","noBanksAvailable":"Vælg en bank eller et banknetværk","noBankSelected":"Vælg en bank eller et banknetværk","selectBank":"Vælg din bank","year":"År","offlineRefundInsufficientData":"Der mangler oplysninger, eller der er angivet forkerte værdier.  Prøv venligst igen.","processingYourRequest":"Bearbejdning af din henvendelse","payNow":"Betal nu","orderTotal":"Bestilling i alt","bPay":"BPAY","creditCard":"Kreditkort","konbini":"Papirløs døgnbutik betaling","directDebit":"Direkte debitering","directDebitGb":"Direkte debitering","onlineBanking":"Online bankaktiviteter","payPal":"PayPal","payPalBilling":"PayPal","wireTransfer":"Bankoverførsel","alipay":"Alipay","klarnaCredit":"Køb nu. Betal senere.","klarnaCreditRecurring":"Køb nu. Betal senere."},"de-AT":{"birthdate":"Geburtsdatum","cardInvalid":"Karte ist ungültig, bitte überprüfen Sie die Kartendetails.","cardSecurityCode":"Kreditkarten-Sicherheitscode","cardExpired":"Karte ist bereits abgelaufen","cardNumber":"Kreditkartennummer","cardSecurityCodeInvalid":"Ungültiger Code","cardNumberInvalid":"Geben Sie bitte eine gültige Kreditkartennummer ein.","cardExpirationDate":"Ablaufdatum","cardExpirationMonthInvalid":"Geben Sie einen gültigen Ablaufmonat ein.","cardExpirationYearInvalid":"Geben Sie ein gültiges Ablaufjahr ein.","konbiniSelectStore":"Wählen Sie einen Laden.","month":"Monat","noBanksAvailable":"Bitte wählen Sie eine Bank oder ein Bankennetzwerk aus","noBankSelected":"Bitte wählen Sie eine Bank oder ein Bankennetzwerk aus","selectBank":"Bitte wählen Sie Ihre Bank aus","year":"Jahr","offlineRefundInsufficientData":"Die versendeten Angaben sind unvollständig oder fehlerhaft.  Bitte versuchen Sie es noch einmal.","processingYourRequest":"Ihre Anfrage wird bearbeitet","payNow":"Jetzt bezahlen","orderTotal":"Gesamtbestellwert","bPay":"BPAY","creditCard":"Kreditkarte","konbini":"Papierlose Bezahlung im Shop Ihrer Wahl","directDebit":"Lastschriftverfahren","directDebitGb":"Lastschriftverfahren","onlineBanking":"Online-Banking","payPal":"PayPal","payPalBilling":"PayPal","wireTransfer":"Überweisung","alipay":"Alipay","klarnaCredit":"Rechnung & Ratenkauf","klarnaCreditRecurring":"Rechnung & Ratenkauf"},"de-CH":{"birthdate":"Geburtsdatum","cardInvalid":"Karte ist ungültig, bitte überprüfen Sie die Kartendetails.","cardSecurityCode":"Kreditkarten-Sicherheitscode","cardExpired":"Karte ist bereits abgelaufen","cardNumber":"Kreditkartennummer","cardSecurityCodeInvalid":"Ungültiger Code","cardNumberInvalid":"Geben Sie bitte eine gültige Kreditkartennummer ein.","cardExpirationDate":"Ablaufdatum","cardExpirationMonthInvalid":"Geben Sie einen gültigen Ablaufmonat ein.","cardExpirationYearInvalid":"Geben Sie ein gültiges Ablaufjahr ein.","konbiniSelectStore":"Wählen Sie einen Laden.","month":"Monat","noBanksAvailable":"Bitte wählen Sie eine Bank oder ein Bankennetzwerk aus","noBankSelected":"Bitte wählen Sie eine Bank oder ein Bankennetzwerk aus","selectBank":"Bitte wählen Sie Ihre Bank aus","year":"Jahr","offlineRefundInsufficientData":"Die versendeten Angaben sind unvollständig oder fehlerhaft.  Bitte versuchen Sie es noch einmal.","processingYourRequest":"Ihre Anfrage wird bearbeitet","payNow":"Jetzt bezahlen","orderTotal":"Gesamtbestellwert","bPay":"BPAY","creditCard":"Kreditkarte","konbini":"Papierlose Bezahlung im Shop Ihrer Wahl","directDebit":"Lastschriftverfahren","directDebitGb":"Lastschriftverfahren","onlineBanking":"Online-Banking","payPal":"PayPal","payPalBilling":"PayPal","wireTransfer":"Überweisung","alipay":"Alipay"},"de-DE":{"birthdate":"Geburtsdatum","cardInvalid":"Karte ist ungültig, bitte überprüfen Sie die Kartendetails.","cardSecurityCode":"Kreditkarten-Sicherheitscode","cardExpired":"Karte ist bereits abgelaufen","cardNumber":"Kreditkartennummer","cardSecurityCodeInvalid":"Ungültiger Code","cardNumberInvalid":"Geben Sie bitte eine gültige Kreditkartennummer ein.","cardExpirationDate":"Ablaufdatum","cardExpirationMonthInvalid":"Geben Sie einen gültigen Ablaufmonat ein.","cardExpirationYearInvalid":"Geben Sie ein gültiges Ablaufjahr ein.","konbiniSelectStore":"Wählen Sie einen Laden.","month":"Monat","noBanksAvailable":"Bitte wählen Sie eine Bank oder ein Bankennetzwerk aus","noBankSelected":"Bitte wählen Sie eine Bank oder ein Bankennetzwerk aus","selectBank":"Bitte wählen Sie Ihre Bank aus","year":"Jahr","offlineRefundInsufficientData":"Die versendeten Angaben sind unvollständig oder fehlerhaft.  Bitte versuchen Sie es noch einmal.","processingYourRequest":"Ihre Anfrage wird bearbeitet","payNow":"Jetzt bezahlen","orderTotal":"Gesamtbestellwert","bPay":"BPAY","creditCard":"Kreditkarte","konbini":"Papierlose Bezahlung im Shop Ihrer Wahl","directDebit":"Lastschriftverfahren","directDebitGb":"Lastschriftverfahren","onlineBanking":"Online-Banking","payPal":"PayPal","payPalBilling":"PayPal","wireTransfer":"Überweisung","alipay":"Alipay","klarnaCredit":"Rechnung & Ratenkauf","klarnaCreditRecurring":"Rechnung & Ratenkauf"},"el-GR":{"birthdate":"Ημερομηνία γέννησης","cardInvalid":"Η κάρτα δεν είναι έγκυρη, ελέγξτε ξανά τα στοιχεία της κάρτας","cardSecurityCode":"Κωδικός Ασφαλείας Κάρτας","cardExpired":"Η κάρτα έχει λήξει","cardNumber":"Αριθμός Πιστωτικής Κάρτας","cardSecurityCodeInvalid":"Μη Έγκυρος Κωδικός","cardNumberInvalid":"Εισαγάγετε έγκυρο αριθμό πιστωτικής κάρτας.","cardExpirationDate":"Ημερομηνία λήξης","cardExpirationMonthInvalid":"Εισαγωγή έγκυρου μήνα λήξης","cardExpirationYearInvalid":"Εισαγωγή έγκυρου έτους λήξης","konbiniSelectStore":"Επιλέξτε κατάστημα.","month":"Μήνας","noBanksAvailable":"Επιλέξτε τράπεζα ή τραπεζικό δίκτυο","noBankSelected":"Επιλέξτε τράπεζα ή τραπεζικό δίκτυο","selectBank":"Επιλέξτε την τράπεζά σας","year":"Έτος","offlineRefundInsufficientData":"Λείπουν πληροφορίες ή έχουν υποβληθεί εσφαλμένες τιμές.  Δοκιμάστε ξανά.","processingYourRequest":"Επεξεργασία της Αίτησής σας","payNow":"Πληρωμή τώρα","orderTotal":"Σύνολο Παραγγελίας","bPay":"BPAY","creditCard":"Πιστωτική Κάρτα","konbini":"Πληρωμή σε κατάστημα χωρίς χρήση εντύπου","directDebit":"Άμεση Χρέωση","directDebitGb":"Άμεση Χρέωση","onlineBanking":"Τραπεζικές Υπηρεσίες Online","payPal":"PayPal","payPalBilling":"PayPal","wireTransfer":"Έμβασμα","alipay":"Alipay"},"en-AU":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationDate":"Expiration Date","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","konbiniSelectStore":"Select a store.","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year","offlineRefundInsufficientData":"Missing information or incorrect values submitted.  Please try again.","processingYourRequest":"Processing Your Request","payNow":"Pay now","orderTotal":"Order Total","bPay":"BPAY","creditCard":"Credit Card","konbini":"Paperless convenience store payment","directDebit":"Direct Debit","directDebitGb":"Direct Debit","onlineBanking":"Online Banking","payPal":"PayPal","payPalBilling":"PayPal","payPalCredit":"PayPal Credit","wireTransfer":"Wire Transfer","alipay":"Alipay"},"en-CA":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationDate":"Expiration Date","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","konbiniSelectStore":"Select a store.","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year","offlineRefundInsufficientData":"Missing information or incorrect values submitted.  Please try again.","processingYourRequest":"Processing Your Request","payNow":"Pay now","orderTotal":"Order Total","bPay":"BPAY","creditCard":"Credit Card","directDebit":"Direct Debit","directDebitGb":"Direct Debit","onlineBanking":"Online Banking","payPal":"PayPal","payPalBilling":"PayPal","payPalCredit":"PayPal Credit","wireTransfer":"Wire Transfer","alipay":"Alipay"},"en-CH":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationDate":"Expiration Date","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","konbiniSelectStore":"Select a store.","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year","offlineRefundInsufficientData":"Missing information or incorrect values submitted.  Please try again.","processingYourRequest":"Processing Your Request","payNow":"Pay now","orderTotal":"Order Total","bPay":"BPAY","creditCard":"Credit Card","konbini":"Paperless convenience store payment","directDebit":"Direct Debit","directDebitGb":"Direct Debit","onlineBanking":"Online Banking","payPal":"PayPal","payPalBilling":"PayPal","payPalCredit":"PayPal Credit","wireTransfer":"Wire Transfer","alipay":"Alipay"},"en-GB":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationDate":"Expiration Date","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","konbiniSelectStore":"Select a store.","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year","offlineRefundInsufficientData":"Missing information or incorrect values submitted.  Please try again.","processingYourRequest":"Processing Your Request","payNow":"Pay now","orderTotal":"Order Total","bPay":"BPAY","creditCard":"Credit Card","konbini":"Paperless convenience store payment","directDebit":"Direct Debit","directDebitGb":"Direct Debit","onlineBanking":"Online Banking","payPal":"PayPal","payPalBilling":"PayPal","payPalCredit":"PayPal Credit","wireTransfer":"Wire Transfer","alipay":"Alipay","klarnaCredit":"Buy now, pay later","klarnaCreditRecurring":"Buy now, pay later"},"en-IE":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationDate":"Expiration Date","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","konbiniSelectStore":"Select a store.","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year","offlineRefundInsufficientData":"Missing information or incorrect values submitted.  Please try again.","processingYourRequest":"Processing Your Request","payNow":"Pay now","orderTotal":"Order Total","bPay":"BPAY","creditCard":"Credit Card","konbini":"Paperless convenience store payment","directDebit":"Direct Debit","directDebitGb":"Direct Debit","onlineBanking":"Online Banking","payPal":"PayPal","payPalBilling":"PayPal","payPalCredit":"PayPal Credit","wireTransfer":"Wire Transfer","alipay":"Alipay","klarnaCredit":"Buy now, pay later","klarnaCreditRecurring":"Buy now, pay later"},"en-IN":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationDate":"Expiration Date","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","konbiniSelectStore":"Select a store.","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year","offlineRefundInsufficientData":"Missing information or incorrect values submitted.  Please try again.","processingYourRequest":"Processing Your Request","payNow":"Pay now","orderTotal":"Order Total","bPay":"BPAY","creditCard":"Credit Card","konbini":"Paperless convenience store payment","directDebit":"Direct Debit","directDebitGb":"Direct Debit","onlineBanking":"Online Banking","payPal":"PayPal","payPalBilling":"PayPal","payPalCredit":"PayPal Credit","wireTransfer":"Wire Transfer","alipay":"Alipay","klarnaCredit":"Buy now, pay later","klarnaCreditRecurring":"Buy now, pay later"},"en-MY":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationDate":"Expiration Date","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","konbiniSelectStore":"Select a store.","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year","offlineRefundInsufficientData":"Missing information or incorrect values submitted.  Please try again.","processingYourRequest":"Processing Your Request","payNow":"Pay now","orderTotal":"Order Total","creditCard":"Credit Card","konbini":"Paperless convenience store payment","payPal":"PayPal","payPalBilling":"PayPal","payPalCredit":"PayPal Credit","wireTransfer":"Wire Transfer","klarnaCredit":"Buy now, pay later","klarnaCreditRecurring":"Buy now, pay later"},"en-NL":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationDate":"Expiration Date","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","konbiniSelectStore":"Select a store.","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year","offlineRefundInsufficientData":"Missing information or incorrect values submitted.  Please try again.","processingYourRequest":"Processing Your Request","payNow":"Pay now","orderTotal":"Order Total","bPay":"BPAY","creditCard":"Credit Card","konbini":"Paperless convenience store payment","directDebit":"Direct Debit","directDebitGb":"Direct Debit","onlineBanking":"Online Banking","payPal":"PayPal","payPalBilling":"PayPal","payPalCredit":"PayPal Credit","wireTransfer":"Wire Transfer","alipay":"Alipay","klarnaCredit":"Buy now, pay later","klarnaCreditRecurring":"Buy now, pay later"},"en-NZ":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationDate":"Expiration Date","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","konbiniSelectStore":"Select a store.","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year","offlineRefundInsufficientData":"Missing information or incorrect values submitted.  Please try again.","processingYourRequest":"Processing Your Request","payNow":"Pay now","orderTotal":"Order Total","bPay":"BPAY","creditCard":"Credit Card","konbini":"Paperless convenience store payment","directDebit":"Direct Debit","directDebitGb":"Direct Debit","onlineBanking":"Online Banking","payPal":"PayPal","payPalBilling":"PayPal","payPalCredit":"PayPal Credit","wireTransfer":"Wire Transfer","alipay":"Alipay","klarnaCredit":"Buy now, pay later","klarnaCreditRecurring":"Buy now, pay later"},"en-PR":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationDate":"Expiration Date","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","konbiniSelectStore":"Select a store.","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year","offlineRefundInsufficientData":"Missing information or incorrect values submitted.  Please try again.","processingYourRequest":"Processing Your Request","payNow":"Pay now","orderTotal":"Order Total","bPay":"BPAY","creditCard":"Credit Card","konbini":"Paperless convenience store payment","directDebit":"Direct Debit","directDebitGb":"Direct Debit","onlineBanking":"Online Banking","payPal":"PayPal","payPalBilling":"PayPal","payPalCredit":"PayPal Credit","wireTransfer":"Wire Transfer","alipay":"Alipay","klarnaCredit":"Buy now, pay later","klarnaCreditRecurring":"Buy now, pay later"},"en-SG":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationDate":"Expiration Date","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","konbiniSelectStore":"Select a store.","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year","offlineRefundInsufficientData":"Missing information or incorrect values submitted.  Please try again.","processingYourRequest":"Processing Your Request","payNow":"Pay now","orderTotal":"Order Total","bPay":"BPAY","creditCard":"Credit Card","konbini":"Paperless convenience store payment","directDebit":"Direct Debit","directDebitGb":"Direct Debit","onlineBanking":"Online Banking","payPal":"PayPal","payPalBilling":"PayPal","payPalCredit":"PayPal Credit","wireTransfer":"Wire Transfer","alipay":"Alipay"},"en-US":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationDate":"Expiration Date","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","konbiniSelectStore":"Select a store.","koreanCardPasswordHint":"Please enter the first two digits of your card password.","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year","offlineRefundInsufficientData":"Missing information or incorrect values submitted.  Please try again.","processingYourRequest":"Processing Your Request","payNow":"Pay now","orderTotal":"Order Total","bPay":"BPAY","creditCard":"Credit Card","konbini":"Paperless convenience store payment","directDebit":"Direct Debit","directDebitGb":"Direct Debit","onlineBanking":"Online Banking","payPal":"PayPal","payPalBilling":"PayPal","payPalCredit":"PayPal Credit","wireTransfer":"Wire Transfer","alipay":"Alipay","klarnaCredit":"Buy now, pay later","klarnaCreditRecurring":"Buy now, pay later"},"en-ZA":{"birthdate":"Birthdate","cardInvalid":"Card is invalid, please check card details","cardSecurityCode":"Card Security Code","cardExpired":"Card already expired","cardNumber":"Credit Card Number","cardSecurityCodeInvalid":"Invalid Code","cardNumberInvalid":"Please enter a valid credit card number.","cardExpirationDate":"Expiration Date","cardExpirationMonthInvalid":"Enter valid expiration month","cardExpirationYearInvalid":"Enter valid expiration year","konbiniSelectStore":"Select a store.","month":"Month","noBanksAvailable":"Please choose a bank or bank network","noBankSelected":"Please choose a bank or bank network","selectBank":"Please select your bank","year":"Year","offlineRefundInsufficientData":"Missing information or incorrect values submitted.  Please try again.","processingYourRequest":"Processing Your Request","payNow":"Pay now","orderTotal":"Order Total","bPay":"BPAY","creditCard":"Credit Card","konbini":"Paperless convenience store payment","directDebit":"Direct Debit","directDebitGb":"Direct Debit","onlineBanking":"Online Banking","payPal":"PayPal","payPalBilling":"PayPal","payPalCredit":"PayPal Credit","wireTransfer":"Wire Transfer","alipay":"Alipay","klarnaCredit":"Buy now, pay later","klarnaCreditRecurring":"Buy now, pay later"},"es-AR":{"birthdate":"Fecha de nacimiento","cardInvalid":"La tarjeta no es válida, por favor revise los datos de la tarjeta","cardSecurityCode":"Código de la tarjeta de seguridad","cardExpired":"La tarjeta ya expiró.","cardNumber":"Número de la tarjeta de crédito","cardSecurityCodeInvalid":"Código inválido","cardNumberInvalid":"Introduzca un número de tarjeta de crédito válido.","cardExpirationDate":"Fecha de caducidad","cardExpirationMonthInvalid":"Introduzca un mes de vencimiento válido","cardExpirationYearInvalid":"Introduzca un año de vencimiento válido","konbiniSelectStore":"Selecciona una tienda.","month":"Mes","noBanksAvailable":"Seleccione un banco o una red bancaria","noBankSelected":"Seleccione un banco o una red bancaria","selectBank":"Seleccione su banco","year":"Año","offlineRefundInsufficientData":"Falta información o se han especificado valores incorrectos.  Intente de nuevo.","processingYourRequest":"Procesando su solicitud","payNow":"Pague ahora","orderTotal":"Total de la orden","bPay":"BPAY","creditCard":"Tarjeta de crédito","directDebit":"Débito directo","directDebitGb":"Débito directo","onlineBanking":"Banca en línea","payPal":"PayPal","payPalBilling":"PayPal","wireTransfer":"Transferencia electrónica","alipay":"Alipay"},"es-CL":{"birthdate":"Fecha de nacimiento","cardInvalid":"La tarjeta no es válida, por favor revise los datos de la tarjeta","cardSecurityCode":"Código de la tarjeta de seguridad","cardExpired":"La tarjeta ya expiró.","cardNumber":"Número de la tarjeta de crédito","cardSecurityCodeInvalid":"Código inválido","cardNumberInvalid":"Introduzca un número de tarjeta de crédito válido.","cardExpirationDate":"Fecha de caducidad","cardExpirationMonthInvalid":"Introduzca un mes de vencimiento válido","cardExpirationYearInvalid":"Introduzca un año de vencimiento válido","konbiniSelectStore":"Selecciona una tienda.","month":"Mes","noBanksAvailable":"Seleccione un banco o una red bancaria","noBankSelected":"Seleccione un banco o una red bancaria","selectBank":"Seleccione su banco","year":"Año","offlineRefundInsufficientData":"Falta información o se han especificado valores incorrectos.  Intente de nuevo.","processingYourRequest":"Procesando su solicitud","payNow":"Pague ahora","orderTotal":"Total de la orden","bPay":"BPAY","creditCard":"Tarjeta de crédito","directDebit":"Débito directo","directDebitGb":"Débito directo","onlineBanking":"Banca en línea","payPal":"PayPal","payPalBilling":"PayPal","wireTransfer":"Transferencia electrónica","alipay":"Alipay"},"es-CO":{"birthdate":"Fecha de nacimiento","cardInvalid":"La tarjeta no es válida, por favor revise los datos de la tarjeta","cardSecurityCode":"Código de la tarjeta de seguridad","cardExpired":"La tarjeta ya expiró.","cardNumber":"Número de la tarjeta de crédito","cardSecurityCodeInvalid":"Código inválido","cardNumberInvalid":"Introduzca un número de tarjeta de crédito válido.","cardExpirationDate":"Fecha de caducidad","cardExpirationMonthInvalid":"Introduzca un mes de vencimiento válido","cardExpirationYearInvalid":"Introduzca un año de vencimiento válido","konbiniSelectStore":"Selecciona una tienda.","month":"Mes","noBanksAvailable":"Seleccione un banco o una red bancaria","noBankSelected":"Seleccione un banco o una red bancaria","selectBank":"Seleccione su banco","year":"Año","offlineRefundInsufficientData":"Falta información o se han especificado valores incorrectos.  Intente de nuevo.","processingYourRequest":"Procesando su solicitud","payNow":"Pague ahora","orderTotal":"Total de la orden","bPay":"BPAY","creditCard":"Tarjeta de crédito","directDebit":"Débito directo","directDebitGb":"Débito directo","onlineBanking":"Banca en línea","payPal":"PayPal","payPalBilling":"PayPal","wireTransfer":"Transferencia electrónica","alipay":"Alipay"},"es-EC":{"birthdate":"Fecha de nacimiento","cardInvalid":"La tarjeta no es válida, por favor revise los datos de la tarjeta","cardSecurityCode":"Código de la tarjeta de seguridad","cardExpired":"La tarjeta ya expiró.","cardNumber":"Número de la tarjeta de crédito","cardSecurityCodeInvalid":"Código inválido","cardNumberInvalid":"Introduzca un número de tarjeta de crédito válido.","cardExpirationDate":"Fecha de caducidad","cardExpirationMonthInvalid":"Introduzca un mes de vencimiento válido","cardExpirationYearInvalid":"Introduzca un año de vencimiento válido","konbiniSelectStore":"Selecciona una tienda.","month":"Mes","noBanksAvailable":"Seleccione un banco o una red bancaria","noBankSelected":"Seleccione un banco o una red bancaria","selectBank":"Seleccione su banco","year":"Año","offlineRefundInsufficientData":"Falta información o se han especificado valores incorrectos.  Intente de nuevo.","processingYourRequest":"Procesando su solicitud","payNow":"Pague ahora","orderTotal":"Total de la orden","bPay":"BPAY","creditCard":"Tarjeta de crédito","directDebit":"Débito directo","directDebitGb":"Débito directo","onlineBanking":"Banca en línea","payPal":"PayPal","payPalBilling":"PayPal","wireTransfer":"Transferencia electrónica","alipay":"Alipay"},"es-ES":{"birthdate":"Fecha de nacimiento","cardInvalid":"La tarjeta no es válida, compruebe los datos de la tarjeta de débito","cardSecurityCode":"Código de seguridad de la tarjeta","cardExpired":"Tarjeta ya caducada","cardNumber":"Número de tarjeta de crédito","cardSecurityCodeInvalid":"Código no válido","cardNumberInvalid":"Introduzca un número de tarjeta de crédito válido.","cardExpirationDate":"Fecha de caducidad","cardExpirationMonthInvalid":"Indique un mes de vencimiento válido","cardExpirationYearInvalid":"Indique un año de vencimiento válido","konbiniSelectStore":"Selecciona una tienda.","month":"Mes","noBanksAvailable":"Escoja una entidad o red bancaria","noBankSelected":"Escoja una entidad o red bancaria","selectBank":"Seleccione su entidad bancaria","year":"Año","offlineRefundInsufficientData":"Falta información o se han especificado valores incorrectos.  Intente de nuevo.","processingYourRequest":"Procesando su solicitud","payNow":"Pagar ahora","orderTotal":"Pedido total","bPay":"BPAY","creditCard":"Tarjeta de crédito","konbini":"Pago en la tienda sin papeleo","directDebit":"Cargo directo","directDebitGb":"Cargo directo","onlineBanking":"Banca en línea","payPal":"PayPal","payPalBilling":"PayPal","wireTransfer":"Giro postal","alipay":"Alipay"},"es-MX":{"birthdate":"Fecha de nacimiento","cardInvalid":"La tarjeta no es válida, por favor revise los datos de la tarjeta","cardSecurityCode":"Código de la tarjeta de seguridad","cardExpired":"La tarjeta ya expiró.","cardNumber":"Número de la tarjeta de crédito","cardSecurityCodeInvalid":"Código inválido","cardNumberInvalid":"Introduzca un número de tarjeta de crédito válido.","cardExpirationDate":"Fecha de caducidad","cardExpirationMonthInvalid":"Introduzca un mes de vencimiento válido","cardExpirationYearInvalid":"Introduzca un año de vencimiento válido","konbiniSelectStore":"Selecciona una tienda.","month":"Mes","noBanksAvailable":"Seleccione un banco o una red bancaria","noBankSelected":"Seleccione un banco o una red bancaria","selectBank":"Seleccione su banco","year":"Año","offlineRefundInsufficientData":"Falta información o se han especificado valores incorrectos.  Intente de nuevo.","processingYourRequest":"Procesando su solicitud","payNow":"Pague ahora","orderTotal":"Total de la orden","bPay":"BPAY","creditCard":"Tarjeta de crédito","directDebit":"Débito directo","directDebitGb":"Débito directo","onlineBanking":"Banca en línea","payPal":"PayPal","payPalBilling":"PayPal","wireTransfer":"Transferencia electrónica","alipay":"Alipay"},"es-PE":{"birthdate":"Fecha de nacimiento","cardInvalid":"La tarjeta no es válida, por favor revise los datos de la tarjeta","cardSecurityCode":"Código de la tarjeta de seguridad","cardExpired":"La tarjeta ya expiró.","cardNumber":"Número de la tarjeta de crédito","cardSecurityCodeInvalid":"Código inválido","cardNumberInvalid":"Introduzca un número de tarjeta de crédito válido.","cardExpirationDate":"Fecha de caducidad","cardExpirationMonthInvalid":"Introduzca un mes de vencimiento válido","cardExpirationYearInvalid":"Introduzca un año de vencimiento válido","konbiniSelectStore":"Selecciona una tienda.","month":"Mes","noBanksAvailable":"Seleccione un banco o una red bancaria","noBankSelected":"Seleccione un banco o una red bancaria","selectBank":"Seleccione su banco","year":"Año","offlineRefundInsufficientData":"Falta información o se han especificado valores incorrectos.  Intente de nuevo.","processingYourRequest":"Procesando su solicitud","payNow":"Pague ahora","orderTotal":"Total de la orden","bPay":"BPAY","creditCard":"Tarjeta de crédito","directDebit":"Débito directo","directDebitGb":"Débito directo","onlineBanking":"Banca en línea","payPal":"PayPal","payPalBilling":"PayPal","wireTransfer":"Transferencia electrónica","alipay":"Alipay"},"es-VE":{"birthdate":"Fecha de nacimiento","cardInvalid":"La tarjeta no es válida, por favor revise los datos de la tarjeta","cardSecurityCode":"Código de la tarjeta de seguridad","cardExpired":"La tarjeta ya expiró.","cardNumber":"Número de la tarjeta de crédito","cardSecurityCodeInvalid":"Código inválido","cardNumberInvalid":"Introduzca un número de tarjeta de crédito válido.","cardExpirationDate":"Fecha de caducidad","cardExpirationMonthInvalid":"Introduzca un mes de vencimiento válido","cardExpirationYearInvalid":"Introduzca un año de vencimiento válido","konbiniSelectStore":"Selecciona una tienda.","month":"Mes","noBanksAvailable":"Seleccione un banco o una red bancaria","noBankSelected":"Seleccione un banco o una red bancaria","selectBank":"Seleccione su banco","year":"Año","offlineRefundInsufficientData":"Falta información o se han especificado valores incorrectos.  Intente de nuevo.","processingYourRequest":"Procesando su solicitud","payNow":"Pague ahora","orderTotal":"Total de la orden","bPay":"BPAY","creditCard":"Tarjeta de crédito","directDebit":"Débito directo","directDebitGb":"Débito directo","onlineBanking":"Banca en línea","payPal":"PayPal","payPalBilling":"PayPal","wireTransfer":"Transferencia electrónica","alipay":"Alipay"},"fi-FI":{"birthdate":"Syntymäaika","cardInvalid":"Kortti ei ole voimassa, tarkasta kortin tiedot","cardSecurityCode":"Kortin tarkistusnumero","cardExpired":"Kortti on jo vanhentunut","cardNumber":"Luottokortin numero","cardSecurityCodeInvalid":"Väärä koodi","cardNumberInvalid":"Syötä voimassa olevan luottokortin numero.","cardExpirationDate":"Voimassaolon päättymispäivä","cardExpirationMonthInvalid":"Syötä kelvollinen viimeinen voimassaolokuukausi","cardExpirationYearInvalid":"Syötä kelvollinen viimeinen voimassaolovuosi","konbiniSelectStore":"Valitse kauppa.","month":"Kuukausi","noBanksAvailable":"Valitse pankki tai pankkiverkko","noBankSelected":"Valitse pankki tai pankkiverkko","selectBank":"Valitse pankkisi","year":"Vuosi","offlineRefundInsufficientData":"Tietoja puuttuu tai annetut arvot eivät kelpaa.  Yritä uudelleen.","processingYourRequest":"Pyyntösi käsittely","payNow":"Maksa nyt","orderTotal":"Kokonaistilaus","bPay":"BPAY","creditCard":"Luottokortti","konbini":"Sähköinen maksu muualta kuin pankin kautta","directDebit":"Suoraveloitus","directDebitGb":"Suoraveloitus","onlineBanking":"Verkkopankkipalvelut","payPal":"PayPal","payPalBilling":"PayPal","wireTransfer":"Tilisiirto","alipay":"Alipay","klarnaCredit":"Maksa myöhemmin","klarnaCreditRecurring":"Maksa myöhemmin"},"fr-BE":{"birthdate":"Date de naissance","cardInvalid":"La carte n'est pas valide, veuillez en vérifier les détails","cardSecurityCode":"Code de sécurité carte","cardExpired":"Carte déjà expirée","cardNumber":"Numéro de carte de crédit","cardSecurityCodeInvalid":"Code invalide","cardNumberInvalid":"Veuillez saisir un numéro de carte de crédit valide.","cardExpirationDate":"Date d’expiration","cardExpirationMonthInvalid":"Indiquer un mois d'expiration valide","cardExpirationYearInvalid":"Indiquer une année d'expiration valide","konbiniSelectStore":"Sélectionnez une boutique.","month":"Mois ","noBanksAvailable":"Veuillez sélectionner une banque ou un réseau bancaire","noBankSelected":"Veuillez sélectionner une banque ou un réseau bancaire","selectBank":"Veuillez sélectionner votre banque","year":"Année","offlineRefundInsufficientData":"Il manque certaines informations ou des valeurs incorrectes ont été envoyées.  Veuillez essayer à nouveau.","processingYourRequest":"Traitement de votre demande","payNow":"Payer maintenant","orderTotal":"Total de la commande","bPay":"BPAY","creditCard":"Carte de crédit","konbini":"Règlement pratique au magasin, sans paperasserie","directDebit":"Prélèvement automatique","directDebitGb":"Prélèvement automatique","onlineBanking":"Opérations bancaires en ligne","payPal":"PayPal","payPalBilling":"PayPal","wireTransfer":"Virement bancaire","alipay":"Alipay"},"fr-CA":{"birthdate":"Date de naissance","cardInvalid":"La carte n'est pas valide, veuillez en vérifier les détails","cardSecurityCode":"Code de sécurité carte","cardExpired":"Carte déjà expirée","cardNumber":"Numéro de carte de crédit","cardSecurityCodeInvalid":"Code invalide","cardNumberInvalid":"Veuillez saisir un numéro de carte de crédit valide.","cardExpirationDate":"Date d’expiration","cardExpirationMonthInvalid":"Indiquer un mois d'expiration valide","cardExpirationYearInvalid":"Entrez une année d'expiration valide","konbiniSelectStore":"Sélectionnez une boutique.","month":"Mois ","noBanksAvailable":"Veuillez choisir une banque ou un réseau de banques","noBankSelected":"Veuillez choisir une banque ou un réseau de banques","selectBank":"Veuillez sélectionner votre banque","year":"Année ","offlineRefundInsufficientData":"Il manque certaines informations ou des valeurs incorrectes ont été envoyées.  Veuillez essayer à nouveau.","processingYourRequest":"Traitement de votre demande","payNow":"Payer maintenant","orderTotal":"Total de la commande","bPay":"BPAY","creditCard":"Carte de crédit","konbini":"Règlement pratique au magasin, sans papier","directDebit":"Prélèvement automatique","directDebitGb":"Prélèvement automatique","onlineBanking":"Banque en ligne","payPal":"PayPal","payPalBilling":"PayPal","wireTransfer":"Virement bancaire","alipay":"Alipay"},"fr-CH":{"birthdate":"Date de naissance","cardInvalid":"La carte n'est pas valide, veuillez en vérifier les détails","cardSecurityCode":"Code de sécurité carte","cardExpired":"Carte déjà expirée","cardNumber":"Numéro de carte de crédit","cardSecurityCodeInvalid":"Code invalide","cardNumberInvalid":"Veuillez saisir un numéro de carte de crédit valide.","cardExpirationDate":"Date d’expiration","cardExpirationMonthInvalid":"Indiquer un mois d'expiration valide","cardExpirationYearInvalid":"Indiquer une année d'expiration valide","konbiniSelectStore":"Sélectionnez une boutique.","month":"Mois ","noBanksAvailable":"Veuillez sélectionner une banque ou un réseau bancaire","noBankSelected":"Veuillez sélectionner une banque ou un réseau bancaire","selectBank":"Veuillez sélectionner votre banque","year":"Année ","offlineRefundInsufficientData":"Il manque certaines informations ou des valeurs incorrectes ont été envoyées.  Veuillez essayer à nouveau.","processingYourRequest":"Traitement de votre demande","payNow":"Payer maintenant","orderTotal":"Total de la commande","bPay":"BPAY","creditCard":"Carte de crédit","konbini":"Règlement pratique au magasin, sans paperasserie","directDebit":"Prélèvement automatique","directDebitGb":"Prélèvement automatique","onlineBanking":"Opérations bancaires en ligne","payPal":"PayPal","payPalBilling":"PayPal","wireTransfer":"Virement bancaire","alipay":"Alipay"},"fr-FR":{"birthdate":"Date de naissance","cardInvalid":"La carte n'est pas valide, veuillez en vérifier les détails","cardSecurityCode":"Code de sécurité carte","cardExpired":"Carte déjà expirée","cardNumber":"Numéro de carte de crédit","cardSecurityCodeInvalid":"Code invalide","cardNumberInvalid":"Veuillez saisir un numéro de carte de crédit valide.","cardExpirationDate":"Date d’expiration","cardExpirationMonthInvalid":"Indiquer un mois d'expiration valide","cardExpirationYearInvalid":"Indiquer une année d'expiration valide","konbiniSelectStore":"Sélectionnez une boutique.","month":"Mois ","noBanksAvailable":"Veuillez sélectionner une banque ou un réseau bancaire","noBankSelected":"Veuillez sélectionner une banque ou un réseau bancaire","selectBank":"Veuillez sélectionner votre banque","year":"Année ","offlineRefundInsufficientData":"Il manque certaines informations ou des valeurs incorrectes ont été envoyées.  Veuillez essayer à nouveau.","processingYourRequest":"Traitement de votre demande","payNow":"Payer maintenant","orderTotal":"Total de la commande","bPay":"BPAY","creditCard":"Carte de crédit","konbini":"Règlement pratique au magasin, sans paperasserie","directDebit":"Prélèvement automatique","directDebitGb":"Prélèvement automatique","onlineBanking":"Opérations bancaires en ligne","payPal":"PayPal","payPalBilling":"PayPal","wireTransfer":"Virement bancaire","alipay":"Alipay"},"hu-HU":{"birthdate":"Születési idő","cardInvalid":"Érvénytelen kártya, ellenőrizze a kártya adatait","cardSecurityCode":"Kártya biztonsági kódja","cardExpired":"A kártya lejárt","cardNumber":"Bankkártyaszám","cardSecurityCodeInvalid":"Érvénytelen kód","cardNumberInvalid":"Kérjük, adjon meg egy érvényes hitelkártyaszámot.","cardExpirationDate":"Lejárat dátuma","cardExpirationMonthInvalid":"Adja meg az érvényes lejárati hónapot","cardExpirationYearInvalid":"Adja meg az érvényes lejárati évet","konbiniSelectStore":"Válasszon áruházat!","month":"Hónap","noBanksAvailable":"Kérjük, válasszon bankot vagy bankhálózatot","noBankSelected":"Kérjük, válasszon bankot vagy bankhálózatot","selectBank":"Kérjük, válassza ki bankját.","year":"Év","offlineRefundInsufficientData":"Hiányzó adatok vagy helytelenek az elküldött értékek.  Kérjük, próbálja meg újra.","processingYourRequest":"Kérés feldolgozás alatt","payNow":"Fizetés most","orderTotal":"Rendelés összesen","bPay":"BPAY","creditCard":"Bankkártya","konbini":"Papír nélküli kényelmes fizetés","directDebit":"Közvetlen levonás","directDebitGb":"Közvetlen levonás","onlineBanking":"Online bankolás","payPal":"PayPal","payPalBilling":"PayPal","wireTransfer":"Távirati utalás","alipay":"Alipay"},"it-CH":{"birthdate":"Data di nascita","cardInvalid":"La carta non è valida, controlla i dati","cardSecurityCode":"Codice di sicurezza carta","cardExpired":"Carta già scaduta","cardNumber":"Numero di carta di credito","cardSecurityCodeInvalid":"Codice non valido","cardNumberInvalid":"Inserire un numero di carta di credito valido.","cardExpirationDate":"Data scadenza","cardExpirationMonthInvalid":"Inserisci un mese di scadenza valido","cardExpirationYearInvalid":"Inserisci un anno di scadenza valido","konbiniSelectStore":"Seleziona un punto vendita.","month":"Mese","noBanksAvailable":"Scegli una banca o una rete bancaria","noBankSelected":"Scegli una banca o una rete bancaria","selectBank":"Seleziona la tua banca","year":"Anno","offlineRefundInsufficientData":"Sono state inviate informazioni mancanti o errate.  Riprova.","processingYourRequest":"Stiamo processando la vostra richiesta","payNow":"Paga adesso","orderTotal":"Totale ordine","bPay":"BPAY","creditCard":"Carta di credito","directDebit":"Addebito diretto","directDebitGb":"Addebito diretto","onlineBanking":"Banca online","payPal":"PayPal","payPalBilling":"PayPal","wireTransfer":"Bonifico","alipay":"Alipay"},"it-IT":{"birthdate":"Data di nascita","cardInvalid":"La carta non è valida, controlla i dati","cardSecurityCode":"Codice di sicurezza carta","cardExpired":"Carta già scaduta","cardNumber":"Numero di carta di credito","cardSecurityCodeInvalid":"Codice non valido","cardNumberInvalid":"Inserire un numero di carta di credito valido.","cardExpirationDate":"Data scadenza","cardExpirationMonthInvalid":"Inserisci un mese di scadenza valido","cardExpirationYearInvalid":"Inserisci un anno di scadenza valido","konbiniSelectStore":"Seleziona un punto vendita.","month":"Mese","noBanksAvailable":"Scegli una banca o una rete bancaria","noBankSelected":"Scegli una banca o una rete bancaria","selectBank":"Seleziona la tua banca","year":"Anno","offlineRefundInsufficientData":"Sono state inviate informazioni mancanti o errate.  Riprova.","processingYourRequest":"Stiamo processando la vostra richiesta","payNow":"Paga adesso","orderTotal":"Totale ordine","bPay":"BPAY","creditCard":"Carta di credito","directDebit":"Addebito diretto","directDebitGb":"Addebito diretto","onlineBanking":"Banca online","payPal":"PayPal","payPalBilling":"PayPal","wireTransfer":"Bonifico","alipay":"Alipay"},"iw-IL":{"birthdate":"תאריך לידה","cardInvalid":"הכרטיס לא חוקי. אנא בדוק את פרטי הכרטיס","cardSecurityCode":"קוד ביטחון של כרטיס האשראי","cardExpired":"הכרטיס לא בתוקף","cardNumber":"* מס' כרטיס אשראי","cardSecurityCodeInvalid":"קוד לא חוקי","cardNumberInvalid":"נא הזן מספר כרטיס אשראי חוקי.","cardExpirationDate":"תאריך פקיעת תוקף","cardExpirationMonthInvalid":"הזן חודש תפוגה תקף","cardExpirationYearInvalid":"הזן שנת תפוגה תקפה","konbiniSelectStore":"בחר חנות.","month":"חודש","noBanksAvailable":"בחר בנק או רשת בנקים","noBankSelected":"בחר בנק או רשת בנקים","selectBank":"בחר את הבנק שלך","year":"שנה","offlineRefundInsufficientData":"חסר מידע או שסופקו ערכים שגויים.  אנא נסה שוב.","processingYourRequest":"בקשתך בטיפול","payNow":"לתשלום","orderTotal":"סה\"כ בהזמנה","bPay":"BPAY","creditCard":"כרטיס אשראי","konbini":"תשלום ללא מזומנים (בחנויות מכולת או מינימרקט במקומות בהם אפשרות זו זמינה)","directDebit":"Direct Debit","directDebitGb":"Direct Debit","onlineBanking":"בנקאות מקוונת","payPal":"PayPal","payPalBilling":"PayPal","wireTransfer":"העברה בנקאית","alipay":"Alipay"},"ja-JP":{"birthdate":"誕生日","cardInvalid":"クレジットカードは無効です。カードを確認してください。","cardSecurityCode":"カードセキュリティコード","cardExpired":"カードの期限が切れています","cardNumber":"クレジットカード番号","cardSecurityCodeInvalid":"無効なコード","cardNumberInvalid":"有効なクレジットカード番号を入力してください。","cardExpirationDate":"有効期限","cardExpirationMonthInvalid":"有効期限（月）を入力","cardExpirationYearInvalid":"有効期限（年）を入力","konbiniSelectStore":"コンビニ名を選択してください。 ","month":"月","noBanksAvailable":"銀行または銀行ネットワークを選択してください。","noBankSelected":"銀行または銀行ネットワークを選択してください。","selectBank":"銀行を選択してください。","year":"年","offlineRefundInsufficientData":"送信された情報に不備があるか、値に誤りがあります。  やり直してください。","processingYourRequest":"リクエストの処理","payNow":"いますぐ支払う","orderTotal":"注文合計額（税込）","bPay":"BPAY","codJapan":"代金引換","creditCard":"クレジットカード","konbini":"コンビニ決済","directDebit":"口座引き落とし","directDebitGb":"口座引き落とし","onlineBanking":"オンラインバンキング","payPal":"PayPal","payPalBilling":"PayPal","wireTransfer":"電信送金","alipay":"Alipay"},"ko-KR":{"birthdate":"생년월일","cardInvalid":"카드가 유효하지 않습니다. 카드 세부 정보를 확인하십시오.","cardSecurityCode":"카드 보안 코드","cardExpired":"카드 유효기간이 이미 만료되었습니다","cardNumber":"신용카드 번호","cardSecurityCodeInvalid":"유효하지 않은 코드","cardNumberInvalid":"올바른 신용카드 번호를 입력하십시오.","cardExpirationDate":"만기일","cardExpirationMonthInvalid":"유효한 만료 월 입력","cardExpirationYearInvalid":"유효한 만료 연도 입력","cardTypeColon":"카드 종류:","closeWindow":"창 닫기","company":"회사","continue":"계속하기","corporateRegistrationNumber":"사업자 등록 번호","day":"일","enterAdditionalInformation":"추가 정보 입력","konbiniSelectStore":"스토어를 선택하십시오.","koreanCardPasswordHint":"카드 비밀번호 앞 두자리를 입력해 주십시오.","missing_korean_parameter":"존재하지 않는 정보 또는 부정확한 값을 제출하였습니다. 다시 시도하십시오.","month":"월","noBanksAvailable":"은행 또는 은행 네트워크를 선택하십시오.","noBankSelected":"은행 또는 은행 네트워크를 선택하십시오.","password":"암호","personalNumber":"개인 번호","pleaseCheckYourDateOfBirth":"고객님의 생년월일을 확인하십시오.","pleaseEnterAValidValue":"유효한 값을 입력해 주십시오.","requiredField":"필수 필드","selectBank":"은행을 선택하십시오.","year":"연도","offlineRefundInsufficientData":"정보가 누락되었거나 잘못된 값이 제출되었습니다.  다시 시도해 주십시오.","processingYourRequest":"귀하의 요청을 처리중","payNow":"지금 결제","orderTotal":"주문 총계","bPay":"BPAY","creditCard":"신용카드","directDebit":"직불 카드","directDebitGb":"직불 카드","onlineBanking":"온라인 뱅킹","payPal":"PayPal","payPalBilling":"PayPal","wireTransfer":"계좌이체","alipay":"Alipay"},"nl-BE":{"birthdate":"Geboortedatum","cardInvalid":"Kaart is ongeldig, controleer de kaartgegevens","cardSecurityCode":"Beveiligingscode creditcard","cardExpired":"Creditcard is verlopen","cardNumber":"Creditcardnummer","cardSecurityCodeInvalid":"Ongeldige code","cardNumberInvalid":"Voer een geldig creditcardnummer in.","cardExpirationDate":"Vervaldatum","cardExpirationMonthInvalid":"Voer een geldige vervalmaand in","cardExpirationYearInvalid":"Voer een geldig vervaljaar in","konbiniSelectStore":"Kies een winkel.","month":"Maand","noBanksAvailable":"Selecteer een bank of bankennetwerk","noBankSelected":"Selecteer een bank of bankennetwerk","selectBank":"Selecteer uw bank","year":"Jaar","offlineRefundInsufficientData":"Gegevens ontbreken of onjuiste waarden zijn ingevoerd.  Probeer het nog een keer.","processingYourRequest":"Uw verzoek wordt verwerkt","payNow":"Nu betalen","orderTotal":"Totaal bestelling","bPay":"BPAY","creditCard":"Creditcard","konbini":"Niet-contante betaling via dag- en avondwinkel","directDebit":"Automatische afschrijving","directDebitGb":"Automatische afschrijving","onlineBanking":"Online bankieren","payPal":"PayPal","payPalBilling":"PayPal","wireTransfer":"Bankoverschrijving","alipay":"Alipay"},"nl-NL":{"birthdate":"Geboortedatum","cardInvalid":"Kaart is ongeldig, controleer de kaartgegevens","cardSecurityCode":"Beveiligingscode creditcard","cardExpired":"Creditcard is verlopen","cardNumber":"Creditcardnummer","cardSecurityCodeInvalid":"Ongeldige code","cardNumberInvalid":"Voer een geldig creditcardnummer in.","cardExpirationDate":"Vervaldatum","cardExpirationMonthInvalid":"Voer een geldige vervalmaand in","cardExpirationYearInvalid":"Voer een geldig vervaljaar in","konbiniSelectStore":"Kies een winkel.","month":"Maand","noBanksAvailable":"Selecteer een bank of bankennetwerk","noBankSelected":"Selecteer een bank of bankennetwerk","selectBank":"Selecteer uw bank","year":"Jaar","offlineRefundInsufficientData":"Gegevens ontbreken of onjuiste waarden zijn ingevoerd.  Probeer het nog een keer.","processingYourRequest":"Uw verzoek wordt verwerkt","payNow":"Nu betalen","orderTotal":"Totaal bestelling","bPay":"BPAY","creditCard":"Creditcard","konbini":"Niet-contante betaling via dag- en avondwinkel","directDebit":"Automatische afschrijving","directDebitGb":"Automatische afschrijving","onlineBanking":"Online bankieren","payPal":"PayPal","payPalBilling":"PayPal","wireTransfer":"Bankoverschrijving","alipay":"Alipay","klarnaCredit":"Betaal later in 14 dage","klarnaCreditRecurring":"Betaal later in 14 dage"},"no-NO":{"birthdate":"Fødselsdato","cardInvalid":"Ugyldig kort, vennligst sjekk opplysningene på kortet","cardSecurityCode":"Kortets sikkerhetskode","cardExpired":"Kortet er allerede utløpt","cardNumber":"Kredittkortnummer","cardSecurityCodeInvalid":"Ugyldig kode","cardNumberInvalid":"Du må oppgi et gyldig kredittkortnummer.","cardExpirationDate":"Utløpsdato","cardExpirationMonthInvalid":"Oppgi gyldig utløpsmåned","cardExpirationYearInvalid":"Oppgi gyldig utløpsår","konbiniSelectStore":"","month":"Måned","noBanksAvailable":"Velg en bank eller et banknettverk","noBankSelected":"Velg en bank eller et banknettverk","selectBank":"Velg din bank","year":"År","offlineRefundInsufficientData":"Opplysninger mangler eller feil verdier er angitt.  Prøv på nytt.","processingYourRequest":"Din forespørsel behandles","payNow":"Betal nå","orderTotal":"Totalbeløp for bestillingen","bPay":"BPAY","creditCard":"Kredittkort","konbini":"Papirløs nærbutikkbetaling","directDebit":"Direkte debitering","directDebitGb":"Direkte debitering","onlineBanking":"Nettbank","payPal":"PayPal","payPalBilling":"PayPal","wireTransfer":"Bankoverføring","alipay":"Alipay","klarnaCredit":"Få først. Betal senere.","klarnaCreditRecurring":"Få først. Betal senere."},"pl-PL":{"birthdate":"Data urodzenia","cardInvalid":"Karta jest nieprawidłowa, sprawdź dane karty","cardSecurityCode":"Kod bezpieczeństwa karty","cardExpired":"Ważność karty już wygasła","cardNumber":"Numer karty kredytowej","cardSecurityCodeInvalid":"Nieprawidłowy kod","cardNumberInvalid":"Podaj prawidłowy numer karty kredytowej.","cardExpirationDate":"Data ważności","cardExpirationMonthInvalid":"Wpisz prawidłowy miesiąc ważności","cardExpirationYearInvalid":"Wpisz prawidłowy rok ważności","konbiniSelectStore":"Velg en butikk.","month":"Miesiąc","noBanksAvailable":"Wybierz bank lub sieć banków","noBankSelected":"Wybierz bank lub sieć banków","selectBank":"Wybierz swój bank","year":"Rok","offlineRefundInsufficientData":"Nie wprowadzono wszystkich danych, lub wprowadzono niewłaściwe wartości.  Spróbuj ponownie.","processingYourRequest":"Przetwarzanie Twojego wniosku","payNow":"Zapłać teraz","orderTotal":"Suma zamówienia","bPay":"BPAY","creditCard":"Karta kredytowa","konbini":"Wygodna płatność w sklepie","directDebit":"Polecenie zapłaty","directDebitGb":"Polecenie zapłaty","onlineBanking":"Bankowość online","payPal":"PayPal","payPalBilling":"PayPal","wireTransfer":"Przelew bankowy","alipay":"Alipay"},"pt-BR":{"birthdate":"Aniversário","cardInvalid":"O cartão é inválido, verifique os detalhes sobre o cartão","cardSecurityCode":"Código de segurança do cartão","cardExpired":"O cartão expirou","cardNumber":"Número do cartão de crédito","cardSecurityCodeInvalid":"Código inválido","cardNumberInvalid":"Digite um número de cartão de crédito válido.","cardExpirationDate":"Data de validade","cardExpirationMonthInvalid":"Inserir o mês de validade","cardExpirationYearInvalid":"Inserir o ano de validade","konbiniSelectStore":"Selecione uma loja.","month":"Mês","noBanksAvailable":"Escolha um banco ou rede bancária","noBankSelected":"Escolha um banco ou rede bancária","selectBank":"Selecione seu banco","year":"Ano","offlineRefundInsufficientData":"Faltam informações ou foram submetidos valores incorrectos.  É favor tentar de novo.","processingYourRequest":"Sua solicitação está sendo processada","payNow":"Pagar agora","orderTotal":"Total do pedido","bPay":"BPAY","creditCard":"Cartão de crédito","directDebit":"Débito direto","directDebitGb":"Débito direto","onlineBanking":"Banco online","payPal":"PayPal","payPalBilling":"PayPal","wireTransfer":"Transferência bancária","alipay":"Alipay"},"pt-PT":{"birthdate":"Data de nascimento","cardInvalid":"Cartão inválido, verifique os detalhes do cartão","cardSecurityCode":"Código de Segurança do Cartão","cardExpired":"O cartão já expirou","cardNumber":"Número do cartão de crédito","cardSecurityCodeInvalid":"Código Inválido","cardNumberInvalid":"Introduza um número de cartão de crédito válido.","cardExpirationDate":"Data de validade","cardExpirationMonthInvalid":"Introduza um mês de expiração válido","cardExpirationYearInvalid":"Introduza um ano de expiração válido","konbiniSelectStore":"Selecione uma loja.","month":"Mês","noBanksAvailable":"Escolha um banco ou rede bancária","noBankSelected":"Escolha um banco ou rede bancária","selectBank":"Selecione o seu banco","year":"Ano","offlineRefundInsufficientData":"Faltam informações ou foram submetidos valores incorrectos.  É favor tentar de novo.","processingYourRequest":"A Processar O Seu Pedido","payNow":"Pagar agora","orderTotal":"Total da encomenda","bPay":"BPAY","creditCard":"Cartão de crédito","konbini":"Pagamento numa loja de conveniência sem papel","directDebit":"Débito Direto","directDebitGb":"Débito Direto","onlineBanking":"Banco online","payPal":"PayPal","payPalBilling":"PayPal","wireTransfer":"Transferência bancária","alipay":"Alipay"},"ru-RU":{"birthdate":"Дата рождения","cardInvalid":"Карта недействительна, проверьте реквизиты платежной карты","cardSecurityCode":"Код безопасности карты","cardExpired":"Срок действия карты истек","cardNumber":"Номер кредитной карты","cardSecurityCodeInvalid":"Неверный индекс","cardNumberInvalid":"Пожалуйста, введите действительный номер кредитной карты.","cardExpirationDate":"Дата окончания срока действия","cardExpirationMonthInvalid":"Введите верный месяц истечения срока действия","cardExpirationYearInvalid":"Введите верный год истечения срока действия","konbiniSelectStore":"Выберите магазин.","month":"Месяц","noBanksAvailable":"Пожалуйста, выберите банк или банковскую сеть","noBankSelected":"Пожалуйста, выберите банк или банковскую сеть","selectBank":"Пожалуйста, выберите свой банк","year":"Год","offlineRefundInsufficientData":"Отсутствует необходимая информация или указаны некорректные значения.  Повторите попытку.","processingYourRequest":"Ваш запрос выполняется","payNow":"Оплатить сейчас","orderTotal":"Общая сумма заказа","bPay":"BPAY","creditCard":"Кредитная карта","konbini":"Безбумажные расчеты с магазином","directDebit":"Прямой дебет","directDebitGb":"Прямой дебет","onlineBanking":"Банковские операции онлайн","payPal":"PayPal","payPalBilling":"PayPal","wireTransfer":"Электронный перевод","alipay":"Alipay"},"sk-SK":{"birthdate":"Dátum narodenia","cardInvalid":"Karta je neplatná, skontrolujte údaje karty","cardSecurityCode":"Bezpečnostný kód na karte","cardExpired":"Platnosť karty skončila","cardNumber":"Číslo kreditnej karty","cardSecurityCodeInvalid":"Neplatný kód","cardNumberInvalid":"Uveďte platné číslo kreditnej karty.","cardExpirationDate":"Dátum expirácie","cardExpirationMonthInvalid":"Vložte platný dátum exspirácie","cardExpirationYearInvalid":"Vložte platný rok exspirácie","konbiniSelectStore":"Vyberte obchod.","month":"Mesiac","noBanksAvailable":"Zvoľte banku alebo sieť bánk","noBankSelected":"Zvoľte banku alebo sieť bánk","selectBank":"Vyberte banku","year":"Rok","offlineRefundInsufficientData":"Chýbajúce údaje alebo odoslané nesprávne údaje.  Prosím, skúste to znova.","processingYourRequest":"Prebieha spracovanie vašej žiadosti","payNow":"Zaplatiť","orderTotal":"Objednávka spolu","bPay":"BPAY","creditCard":"Kreditná karta","konbini":"Elektronická platba z večerného obchodu","directDebit":"Bezhotovostná platba","directDebitGb":"Bezhotovostná platba","onlineBanking":"Online banking","payPal":"PayPal","payPalBilling":"PayPal","wireTransfer":"Elektronický prevod","alipay":"Alipay"},"sv-SE":{"birthdate":"Födelsedatum","cardInvalid":"Kortet är ogiltigt, kontrollera kortdetaljerna","cardSecurityCode":"Kortets säkerhetskod","cardExpired":"Giltighetstiden för ditt kort har löpt ut","cardNumber":"Kreditkortsnummer","cardSecurityCodeInvalid":"Ogiltig kod","cardNumberInvalid":"Ange ett giltigt kreditkortsnummer.","cardExpirationDate":"Förfallodatum","cardExpirationMonthInvalid":"Ange giltig utgångsmånad","cardExpirationYearInvalid":"Ange giltigt utgångsår","konbiniSelectStore":"Välj en butik.","month":"Månad","noBanksAvailable":"Välj en bank eller ett banknätverk","noBankSelected":"Välj en bank eller ett banknätverk","selectBank":"Välj din bank","year":"År","offlineRefundInsufficientData":"Det saknas information eller felaktiga belopp har angivits. Försök igen.","processingYourRequest":"Behandlar din förfrågan","payNow":"Betala nu","orderTotal":"Ordersumma","bPay":"BPAY","creditCard":"Kreditkort","konbini":"Papperslös betalning i närbutik","directDebit":"Direktdebitering","directDebitGb":"Direktdebitering","onlineBanking":"Bank online","payPal":"PayPal","payPalBilling":"PayPal","wireTransfer":"Banköverföring","alipay":"Alipay","klarnaCredit":"Få först. Betala sen","klarnaCreditRecurring":"Få först. Betala sen"},"th-TH":{"birthdate":"วันเกิด","cardInvalid":"บัตรไม่ถูกต้อง โปรดตรวจสอบรายละเอียดของบัตร","cardSecurityCode":"รหัสความปลอดภัยบนบัตร (Card Security Code) ","cardExpired":"บัตรหมดอายุแล้ว","cardNumber":"หมายเลขบัตรเครดิต","cardSecurityCodeInvalid":"รหัสไม่ถูกต้อง","cardNumberInvalid":"กรุณาใส่หมายเลขบัตรเครดิตที่ถูกต้อง","cardExpirationDate":"วันหมดอายุ","cardExpirationMonthInvalid":"ใส่เดือนหมดอายุที่ถูกต้อง","cardExpirationYearInvalid":"ใส่ปีหมดอายุที่ถูกต้อง","konbiniSelectStore":"เลือกร้านค้า ","month":"เดือน ","noBanksAvailable":"กรุณาเลือกธนาคารหรือเครือข่ายธนาคาร","noBankSelected":"กรุณาเลือกธนาคารหรือเครือข่ายธนาคาร","selectBank":"กรุณาเลือกธนาคารของคุณ","year":"ปี ","offlineRefundInsufficientData":"ข้อมูลหายไปหรือมีการส่งค่าที่ไม่ถูกต้อง  กรุณาลองอีกครั้ง","processingYourRequest":"กำลังดำเนินการคำร้องของคุณ","payNow":"ชำระเงินทันที","orderTotal":"ยอดรวมที่สั่งซื้อ ","bPay":"BPAY","creditCard":"บัตรเครดิต","konbini":"การชำระเงินที่ร้านสะดวกซื้อแบบไม่ต้องมีใบรับ","directDebit":"เดบิตตรง","directDebitGb":"เดบิตตรง","onlineBanking":"ธนาคารออนไลน์","payPal":"PayPal","payPalBilling":"PayPal","wireTransfer":"การโอนเงินทางอิเล็กทรอนิกส์","alipay":"Alipay"},"tr-TR":{"birthdate":"Doğum Tarihi","cardInvalid":"Kart geçersiz, lütfen kart detaylarını kontrol edin","cardSecurityCode":"Kart Güvenlik Kodu","cardExpired":"Kart süresi dolmuş","cardNumber":"Kredi Kartı Numarası","cardSecurityCodeInvalid":"Geçersiz Kod","cardNumberInvalid":"Lütfen geçerli bir kredi kartı numarası girin.","cardExpirationDate":"Son Kullanma Tarihi","cardExpirationMonthInvalid":"Geçerli sona erme ayını girin","cardExpirationYearInvalid":"Geçerli sona erme yılını girin","konbiniSelectStore":"Bir mağaza seçin.","month":"Ay","noBanksAvailable":"Lütfen bir banka veya banka ağı seçin","noBankSelected":"Lütfen bir banka veya banka ağı seçin","selectBank":"Lütfen bankanızı seçin","year":"Yıl","offlineRefundInsufficientData":"Eksik bilgi var ya da yanlış değerler girildi.  Lütfen tekrar deneyin.","processingYourRequest":"Talebiniz İşlemde","payNow":"Hemen öde","orderTotal":"Sipariş Toplamı","bPay":"BPAY","creditCard":"Kredi Kartı","konbini":"Kağıtsız uygunluk mağaza ödemesi","directDebit":"Doğrudan Borç","directDebitGb":"Doğrudan Borç","onlineBanking":"İnternet Aracılığıyla Bankacılık","payPal":"PayPal","payPalBilling":"PayPal","wireTransfer":"Havale","alipay":"Alipay"},"zh-CN":{"birthdate":"出生日期","cardInvalid":"卡片无效，请检查卡片详情","cardSecurityCode":"信用卡安全代码","cardExpired":"信用卡已过期","cardNumber":"信用卡号*","cardSecurityCodeInvalid":"无效代码","cardNumberInvalid":"请输入一个有效的信用卡号。","cardExpirationDate":"到期日","cardExpirationMonthInvalid":"请输入有效的到期月份","cardExpirationYearInvalid":"请输入有效的到期年份","konbiniSelectStore":"选择商店。","month":"月份","noBanksAvailable":"请选择一家银行或银行网络","noBankSelected":"请选择一家银行或银行网络","selectBank":"请选择您的银行","year":"年份","offlineRefundInsufficientData":"所提交的信息不完整或数据不正确。请重试。","processingYourRequest":"正在处理您的请求","payNow":"立即支付","orderTotal":"订单总金额","bPay":"BPAY","creditCard":"信用卡","directDebit":"借记卡","directDebitGb":"借记卡","onlineBanking":"网上银行","payPal":"PayPal","payPalBilling":"PayPal","wireTransfer":"电汇","alipay":"支付宝"},"zh-HK":{"birthdate":"出生日期","cardInvalid":"信用咭無效，請檢查信用咭資料","cardSecurityCode":"信用卡安全碼：","cardExpired":"信用卡已過期","cardNumber":"信用卡號碼","cardSecurityCodeInvalid":"無效代碼","cardNumberInvalid":"請輸入有效的信用卡號碼。","cardExpirationDate":"到期日","cardExpirationMonthInvalid":"輸入有效的到期月份","cardExpirationYearInvalid":"輸入有效的到期年份","konbiniSelectStore":"選取商店。","month":"月份","noBanksAvailable":"請選擇銀行或銀行網路","noBankSelected":"請選擇銀行或銀行網路","selectBank":"請選擇您的銀行","year":"年","offlineRefundInsufficientData":"所提交的信息不完整或数据不正确。请重试。","processingYourRequest":"正在處理您的請求","payNow":"立即付款","orderTotal":"訂單總計","bPay":"BPAY","creditCard":"信用卡","directDebit":"直接扣款","directDebitGb":"直接扣款","onlineBanking":"線上金融","payPal":"PayPal","payPalBilling":"PayPal","wireTransfer":"電匯","alipay":"支付寶 (Alipay)"},"zh-TW":{"birthdate":"生日","cardInvalid":"信用卡無效，請確認卡片詳細資料","cardSecurityCode":"信用卡安全碼：","cardExpired":"信用卡已過期","cardNumber":"信用卡號碼","cardSecurityCodeInvalid":"無效代碼","cardNumberInvalid":"請輸入有效的信用卡號碼。","cardExpirationDate":"到期日","cardExpirationMonthInvalid":"輸入有效的到期月份","cardExpirationYearInvalid":"輸入有效的到期年份","konbiniSelectStore":"選擇商店。","month":"月份","noBanksAvailable":"請選擇銀行或銀行網路","noBankSelected":"請選擇銀行或銀行網路","selectBank":"請選擇您的銀行","year":"年度","offlineRefundInsufficientData":"所提交的信息不完整或数据不正确。请重试。","processingYourRequest":"正在處理您的請求","payNow":"立即付款","orderTotal":"訂單總計","bPay":"BPAY","creditCard":"信用卡","directDebit":"直接扣款","directDebitGb":"直接扣款","onlineBanking":"線上銀行","payPal":"PayPal","payPalBilling":"PayPal","wireTransfer":"電匯轉帳","alipay":"Alipay（支付寶）"}};
 
 /***/ }),
 
@@ -22047,7 +24022,7 @@ var paymentServiceRequest = function paymentServiceRequest(data, apiKey, payment
       'Authorization': generateAuthHeader(apiKey)
     }
   };
-  var url = paymentApiUrl !== undefined ? paymentApiUrl : "https://api.digitalriver.com/payments/sources"; //eslint-disable-line no-undef
+  var url = paymentApiUrl !== undefined ? paymentApiUrl : "https://api.digitalriverws.com/payments/sources"; //eslint-disable-line no-undef
 
   return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post(url, data, options);
 };
@@ -22221,6 +24196,7 @@ __webpack_require__.r(__webpack_exports__);
 var _app_components_localization_messages__WEBPACK_IMPORTED_MODULE_10___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../app/components/localization/messages */ "./src/app/components/localization/messages.json", 1);
 /* harmony import */ var _create_dropin__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./create-dropin */ "./src/client/create-dropin.js");
 /* harmony import */ var _app_components_creditcard_creditcard__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../app/components/creditcard/creditcard */ "./src/app/components/creditcard/creditcard.js");
+/* harmony import */ var _fetch_payment_methods__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./fetch-payment-methods */ "./src/client/fetch-payment-methods.js");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -22239,7 +24215,8 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 
 
 
-var ComponentTypes = ['cardnumber', 'cardexpiration', 'cardcvv', 'creditcard', 'googlepay', 'applepay', 'onlinebanking', 'koreancard', 'konbini', 'offlinerefund', 'paypal'];
+
+var ComponentTypes = ['cardnumber', 'cardexpiration', 'cardcvv', 'creditcard', 'googlepay', 'applepay', 'onlinebanking', 'koreancard', 'konbini', 'offlinerefund', 'paypal', 'paypalcredit'];
 var DEFAULT_LOCALE = 'en-US';
 
 function localeMessagesContainsClientProvidedLocale(locale) {
@@ -22663,6 +24640,15 @@ DigitalRiver.prototype.retrieveOnlineBankingBanks = function (country, currency)
 function onlineBankingDoesNotHaveRequiredFields(options) {
   return typeof options === 'undefined' || typeof options.onlineBanking === 'undefined' || typeof options.onlineBanking.currency === 'undefined' || typeof options.onlineBanking.country === 'undefined';
 }
+
+DigitalRiver.prototype.retrieveAvailablePaymentMethods = function () {
+  var paymentMethodOptions = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+  var _dataStore$get6 = _dataStore_js__WEBPACK_IMPORTED_MODULE_0__["default"].get(this.key),
+      controller = _dataStore$get6.controller;
+
+  return Object(_fetch_payment_methods__WEBPACK_IMPORTED_MODULE_13__["getPaymentMethods"])(controller.id, paymentMethodOptions.sessionId, paymentMethodOptions.country, paymentMethodOptions.currency);
+};
 /**
  * Creates a payment element
  * @param {string} type Element type
@@ -22675,9 +24661,9 @@ DigitalRiver.prototype.createElement = function (type, options) {
     throw new Error("Invalid element type '".concat(type, "'"));
   }
 
-  var _dataStore$get6 = _dataStore_js__WEBPACK_IMPORTED_MODULE_0__["default"].get(this.key),
-      components = _dataStore$get6.components,
-      controller = _dataStore$get6.controller;
+  var _dataStore$get7 = _dataStore_js__WEBPACK_IMPORTED_MODULE_0__["default"].get(this.key),
+      components = _dataStore$get7.components,
+      controller = _dataStore$get7.controller;
 
   if (components[type]) {
     throw new Error("Failed to create element. Only one element of type '".concat(type, "' allowed per instance."));
@@ -22734,8 +24720,8 @@ function getDetails(entityValue, userLocale) {
 }
 
 DigitalRiver.prototype.retrieveKonbiniStores = function () {
-  var _dataStore$get7 = _dataStore_js__WEBPACK_IMPORTED_MODULE_0__["default"].get(this.key),
-      controller = _dataStore$get7.controller;
+  var _dataStore$get8 = _dataStore_js__WEBPACK_IMPORTED_MODULE_0__["default"].get(this.key),
+      controller = _dataStore$get8.controller;
 
   if (!controller) {
     throw new Error('Cannot get stores without a controller');
@@ -22756,12 +24742,60 @@ DigitalRiver.prototype.retrieveKonbiniStores = function () {
   });
 };
 
+function validateBillingAddressFields(billingAddress) {
+  if (typeof billingAddress.firstName === 'undefined' || billingAddress.firstName.length === 0) {
+    throw Error('Please provide a billingAddress.firstName');
+  }
+
+  if (typeof billingAddress.lastName === 'undefined' || billingAddress.lastName.length === 0) {
+    throw Error('Please provide a billingAddress.lastName');
+  }
+
+  if (typeof billingAddress.email === 'undefined' || billingAddress.email.length === 0) {
+    throw Error('Please provide a billingAddress.email');
+  }
+
+  if (typeof billingAddress.phoneNumber === 'undefined' || billingAddress.phoneNumber.length === 0) {
+    throw Error('Please provide a billingAddress.phoneNumber');
+  }
+
+  if (typeof billingAddress.address === 'undefined' || Object.keys(billingAddress.address).length === 0) {
+    throw Error('Please provide a billingAddress.address');
+  }
+
+  if (typeof billingAddress.address.line1 === 'undefined' || billingAddress.address.line1.length === 0) {
+    throw Error('Please provide a billingAddress.address.line1');
+  }
+
+  if (typeof billingAddress.address.postalCode === 'undefined' || billingAddress.address.postalCode.length === 0) {
+    throw Error('Please provide a billingAddress.address.postalCode');
+  }
+
+  if (typeof billingAddress.address.country === 'undefined' || billingAddress.address.country.length === 0) {
+    throw Error('Please provide a billingAddress.address.country');
+  }
+}
+
 DigitalRiver.prototype.createDropin = function (options) {
+  if (typeof options.sessionId === 'undefined' || options.sessionId.length === 0) {
+    throw Error('Please provide a sessionId');
+  }
+
+  if (typeof options.billingAddress === 'undefined' || Object.keys(options.billingAddress).length === 0) {
+    throw Error('Please provide a billingAddress');
+  }
+
+  validateBillingAddressFields(options.billingAddress);
   var key = this.key;
   var createElement = this.createElement.bind(this);
   var createSource = this.createSource.bind(this);
+
+  var _dataStore$get9 = _dataStore_js__WEBPACK_IMPORTED_MODULE_0__["default"].get(key),
+      controller = _dataStore$get9.controller,
+      instanceOptions = _dataStore$get9.instanceOptions;
+
   return {
-    mount: Object(_create_dropin__WEBPACK_IMPORTED_MODULE_11__["mountDropin"])(key, options, createSource, createElement)
+    mount: Object(_create_dropin__WEBPACK_IMPORTED_MODULE_11__["mountDropin"])(controller, options, createSource, createElement, instanceOptions)
   };
 };
 
@@ -24011,20 +26045,23 @@ function getWarrantyInformation(updatedLocale, businessEntityName) {
 /*!*************************************!*\
   !*** ./src/client/create-dropin.js ***!
   \*************************************/
-/*! exports provided: addStandaloneButtonOptions, getSessionPaymentRequest, mountDropin, handleRedirectSource */
+/*! exports provided: addStandaloneButtonOptions, getSessionPaymentRequest, addSourceDataToOptions, mountDropin, handleRedirectSource */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addStandaloneButtonOptions", function() { return addStandaloneButtonOptions; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getSessionPaymentRequest", function() { return getSessionPaymentRequest; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addSourceDataToOptions", function() { return addSourceDataToOptions; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mountDropin", function() { return mountDropin; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleRedirectSource", function() { return handleRedirectSource; });
-/* harmony import */ var _dataStore__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./dataStore */ "./src/client/dataStore.js");
-/* harmony import */ var _DigitalRiverPaymentRequest__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./DigitalRiverPaymentRequest */ "./src/client/DigitalRiverPaymentRequest.js");
-/* harmony import */ var _fetch_payment_methods__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./fetch-payment-methods */ "./src/client/fetch-payment-methods.js");
-/* harmony import */ var _dropin_events__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./dropin-events */ "./src/client/dropin-events.js");
-/* harmony import */ var _createComponent__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./createComponent */ "./src/client/createComponent.js");
+/* harmony import */ var _DigitalRiverPaymentRequest__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./DigitalRiverPaymentRequest */ "./src/client/DigitalRiverPaymentRequest.js");
+/* harmony import */ var _fetch_payment_methods__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./fetch-payment-methods */ "./src/client/fetch-payment-methods.js");
+/* harmony import */ var _dropin_events__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./dropin-events */ "./src/client/dropin-events.js");
+/* harmony import */ var _createComponent__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./createComponent */ "./src/client/createComponent.js");
+/* harmony import */ var _dropin_window_data__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./dropin-window-data */ "./src/client/dropin-window-data.js");
+/* harmony import */ var _css_class_utils__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./css-class-utils */ "./src/client/css-class-utils.js");
+/* harmony import */ var _app_components_localization_localizated_messages__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../app/components/localization/localizated-messages */ "./src/app/components/localization/localizated-messages.js");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
@@ -24032,128 +26069,194 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-var supportedPaymentMethods = [{
-  name: 'Online Banking',
-  code: 'onlinebanking',
-  type: 'onlineBanking',
-  needsPayButton: true,
-  standaloneButton: false,
-  onlyButton: false
-}, {
-  name: 'Offline Refund',
-  code: 'offlinerefund',
-  type: 'offlineRefund',
-  needsPayButton: true,
-  standaloneButton: false,
-  onlyButton: false
-}, {
-  name: 'Credit Card',
-  code: 'creditcard',
-  type: 'creditCard',
-  needsPayButton: true,
-  standaloneButton: false,
-  onlyButton: false
-}, {
-  name: 'Google Pay',
-  code: 'googlepay',
-  type: 'googlePay',
-  needsPayButton: false,
-  standaloneButton: true,
-  onlyButton: false
-}, {
-  name: 'Apple Pay',
-  code: 'applepay',
-  type: 'applePay',
-  needsPayButton: false,
-  standaloneButton: true,
-  onlyButton: false
-}, {
-  name: 'PayPal',
-  code: 'paypal',
-  type: 'payPal',
-  needsPayButton: false,
-  standaloneButton: true,
-  onlyButton: false
-}, {
-  name: 'Konbini',
-  code: 'konbini',
-  type: 'konbini',
-  needsPayButton: true,
-  standaloneButton: false,
-  onlyButton: false
-}, {
-  name: 'Wire Transfer',
-  code: 'wiretransfer',
-  type: 'wireTransfer',
-  needsPayButton: true,
-  standaloneButton: false,
-  receiver: true,
-  onlyButton: true
-}, {
-  name: 'bPay',
-  code: 'bpay',
-  type: 'bPay',
-  needsPayButton: true,
-  standaloneButton: false,
-  receiver: true,
-  onlyButton: true
-}, {
-  name: 'Alipay',
-  code: 'alipay',
-  type: 'alipay',
-  needsPayButton: true,
-  standaloneButton: false,
-  onlyButton: true
-}, {
-  name: 'Bank Transfer',
-  code: 'banktransfer',
-  type: 'bankTransfer',
-  needsPayButton: true,
-  standaloneButton: false,
-  onlyButton: true
-}, {
-  name: 'Credit Installment',
-  code: 'creditinstallment',
-  type: 'creditInstallment',
-  needsPayButton: true,
-  standaloneButton: false,
-  onlyButton: true
-}, {
-  name: 'Direct Debit',
-  code: 'directdebit',
-  type: 'directDebit',
-  needsPayButton: true,
-  standaloneButton: false,
-  onlyButton: true
-}, {
-  name: 'Payco',
-  code: 'payco',
-  type: 'payco',
-  needsPayButton: true,
-  standaloneButton: false,
-  onlyButton: true
-}, {
-  name: 'Klarna Credit',
-  code: 'klarnacredit',
-  type: 'klarnaCredit',
-  needsPayButton: true,
-  standaloneButton: false,
-  onlyButton: true
-}, {
-  name: 'Klarna Credit Recurring',
-  code: 'klarnacreditrecurring',
-  type: 'klarnaCreditRecurring',
-  needsPayButton: true,
-  standaloneButton: false,
-  onlyButton: true
-}, {
-  name: 'Direct Debit GB',
-  code: 'directdebitgb',
-  type: 'directDebitGb',
-  needsPayButton: true,
-  standaloneButton: false,
-  onlyButton: true
-}];
+
+
+
+function getLocalizedPaymentMethodName(defaultName, paymentMethodType, locale) {
+  var localizedPaymentMethod = Object(_app_components_localization_localizated_messages__WEBPACK_IMPORTED_MODULE_6__["getLocaleMessage"])(locale, paymentMethodType);
+  return typeof localizedPaymentMethod !== 'undefined' ? localizedPaymentMethod : defaultName;
+}
+
+function supportedPaymentMethods(locale) {
+  var supportedPaymentMethods = [{
+    name: 'Online Banking',
+    code: 'onlinebanking',
+    type: 'onlineBanking',
+    needsPayButton: true,
+    standaloneButton: false,
+    onlyButton: false,
+    requiresSessionInformation: true
+  }, {
+    name: 'Offline Refund',
+    code: 'offlinerefund',
+    type: 'offlineRefund',
+    needsPayButton: true,
+    standaloneButton: false,
+    onlyButton: false
+  }, {
+    name: 'Credit Card',
+    code: 'creditcard',
+    type: 'creditCard',
+    needsPayButton: true,
+    standaloneButton: false,
+    onlyButton: false
+  }, {
+    name: 'Google Pay',
+    code: 'googlepay',
+    type: 'googlePay',
+    needsPayButton: false,
+    standaloneButton: true,
+    onlyButton: false
+  }, {
+    name: 'Apple Pay',
+    code: 'applepay',
+    type: 'applePay',
+    needsPayButton: false,
+    standaloneButton: true,
+    onlyButton: false
+  }, {
+    name: 'PayPal',
+    code: 'paypal',
+    type: 'payPal',
+    needsPayButton: false,
+    standaloneButton: true,
+    onlyButton: false,
+    addSourceDataToOptions: true,
+    defaultStyle: getPayPalDefaultStyle()
+  }, {
+    name: 'PayPal Billing',
+    code: 'paypal',
+    type: 'payPalBilling',
+    needsPayButton: false,
+    standaloneButton: true,
+    onlyButton: false,
+    addSourceDataToOptions: true,
+    defaultStyle: getPayPalDefaultStyle()
+  }, {
+    name: 'PayPal Credit',
+    code: 'paypalcredit',
+    type: 'payPalCredit',
+    needsPayButton: false,
+    standaloneButton: true,
+    onlyButton: false,
+    addSourceDataToOptions: true,
+    defaultStyle: getPayPalCreditDefaultStyle()
+  }, {
+    name: 'Konbini',
+    code: 'konbini',
+    type: 'konbini',
+    needsPayButton: true,
+    standaloneButton: false,
+    onlyButton: false
+  }, {
+    name: 'Wire Transfer',
+    code: 'wiretransfer',
+    type: 'wireTransfer',
+    needsPayButton: true,
+    standaloneButton: false,
+    onlyButton: true,
+    justRequiresSource: true
+  }, {
+    name: 'bPay',
+    code: 'bpay',
+    type: 'bPay',
+    needsPayButton: true,
+    standaloneButton: false,
+    onlyButton: true,
+    justRequiresSource: true
+  }, {
+    name: 'Alipay',
+    code: 'alipay',
+    type: 'alipay',
+    needsPayButton: true,
+    standaloneButton: false,
+    onlyButton: true
+  }, {
+    name: 'Bank Transfer',
+    code: 'banktransfer',
+    type: 'bankTransfer',
+    needsPayButton: true,
+    standaloneButton: false,
+    onlyButton: true
+  }, {
+    name: 'Credit Installment',
+    code: 'creditinstallment',
+    type: 'creditInstallment',
+    needsPayButton: true,
+    standaloneButton: false,
+    onlyButton: true
+  }, {
+    name: 'Direct Debit',
+    code: 'directdebit',
+    type: 'directDebit',
+    needsPayButton: true,
+    standaloneButton: false,
+    onlyButton: true
+  }, {
+    name: 'Payco',
+    code: 'payco',
+    type: 'payco',
+    needsPayButton: true,
+    standaloneButton: false,
+    onlyButton: true
+  }, {
+    name: 'Klarna Credit',
+    code: 'klarnacredit',
+    type: 'klarnaCredit',
+    needsPayButton: true,
+    standaloneButton: false,
+    onlyButton: true
+  }, {
+    name: 'Klarna Credit Recurring',
+    code: 'klarnacreditrecurring',
+    type: 'klarnaCreditRecurring',
+    needsPayButton: true,
+    standaloneButton: false,
+    onlyButton: true
+  }, {
+    name: 'Direct Debit GB',
+    code: 'directdebitgb',
+    type: 'directDebitGb',
+    needsPayButton: true,
+    standaloneButton: false,
+    onlyButton: true
+  }, {
+    name: 'Japan COD',
+    code: 'codjapan',
+    type: 'codJapan',
+    needsPayButton: true,
+    standaloneButton: false,
+    onlyButton: true,
+    justRequiresSource: true
+  }];
+  return supportedPaymentMethods.map(function (paymentMethod) {
+    return Object.assign({}, paymentMethod, {
+      name: getLocalizedPaymentMethodName(paymentMethod.name, paymentMethod.type, locale)
+    });
+  });
+}
+
+function getPayPalDefaultStyle() {
+  return {
+    label: 'checkout',
+    size: 'responsive',
+    color: 'gold',
+    shape: 'rect',
+    layout: 'horizontal',
+    fundingicons: 'false',
+    tagline: 'false'
+  };
+}
+
+function getPayPalCreditDefaultStyle() {
+  return {
+    label: 'credit',
+    size: 'responsive',
+    shape: 'rect',
+    layout: 'horizontal',
+    tagline: 'false'
+  };
+}
 
 function paymentMethodNotSupported(paymentMethod) {
   return !paymentMethod;
@@ -24165,13 +26268,13 @@ function runUpdateWith(event, data) {
   }
 }
 
-function addStandaloneButtonOptions(component, options) {
+function addStandaloneButtonOptions(component, options, paymentMethod) {
   component.on('source', function (event) {
     if (typeof event.complete !== 'undefined') {
       event.complete('success');
     }
 
-    Object(_dropin_events__WEBPACK_IMPORTED_MODULE_3__["runClientProvidedCompleteEvents"])(options, event);
+    Object(_dropin_events__WEBPACK_IMPORTED_MODULE_2__["runClientProvidedCompleteEvents"])(options, event);
   });
   component.on('click', function (event) {
     runUpdateWith(event, {});
@@ -24184,20 +26287,23 @@ function addStandaloneButtonOptions(component, options) {
   component.on('shippingoptionchange', function (event) {
     runUpdateWith(event, {});
   });
+  component.on('cancel', function () {
+    Object(_dropin_events__WEBPACK_IMPORTED_MODULE_2__["runClientProvidedCancelEvent"])(options, paymentMethod);
+  });
 }
-function getSessionPaymentRequest(options, sessionInformation, providedStyle) {
+function getSessionPaymentRequest(options, sessionInformation, providedStyle, locale) {
+  var orderTotalLabel = Object(_app_components_localization_localizated_messages__WEBPACK_IMPORTED_MODULE_6__["getLocaleMessage"])(locale, 'orderTotal');
   var style = typeof providedStyle !== 'undefined' ? providedStyle : {
     buttonType: 'plain',
     buttonColor: 'light',
     buttonLanguage: 'en'
   };
-  return new _DigitalRiverPaymentRequest__WEBPACK_IMPORTED_MODULE_1__["default"]({
+  return new _DigitalRiverPaymentRequest__WEBPACK_IMPORTED_MODULE_0__["default"]({
     sessionId: options.sessionId,
     country: sessionInformation.country,
     currency: sessionInformation.currency,
     total: {
-      label: 'Order Total',
-      // TODO Localize
+      label: orderTotalLabel,
       amount: parseFloat(sessionInformation.amount)
     },
     style: style,
@@ -24210,11 +26316,18 @@ function isPaymentRequestUsed(paymentMethod) {
   return paymentMethod.code === 'googlepay' || paymentMethod.code === 'applepay';
 }
 
-function mountDropin(key, options, createSource, createElement) {
-  var _dataStore$get = _dataStore__WEBPACK_IMPORTED_MODULE_0__["default"].get(key),
-      controller = _dataStore$get.controller;
+function addSourceDataToOptions(options, componentOptionsOrPaymentRequest, paymentMethod, controller, availablePaymentMethod, sessionInformation) {
+  if (typeof componentOptionsOrPaymentRequest.style === 'undefined' && typeof paymentMethod.defaultStyle !== 'undefined') {
+    componentOptionsOrPaymentRequest.style = paymentMethod.defaultStyle;
+  }
 
+  componentOptionsOrPaymentRequest.sourceData = createSourceData(options, paymentMethod, controller.id, availablePaymentMethod, sessionInformation);
+  return componentOptionsOrPaymentRequest;
+}
+function mountDropin(controller, options, createSource, createElement, instanceOptions) {
   return function (node) {
+    var locale = instanceOptions.locale;
+
     if (typeof node === 'string') {
       node = document.getElementById(node);
     }
@@ -24227,13 +26340,18 @@ function mountDropin(key, options, createSource, createElement) {
     var accordion = document.createElement('div');
     accordion.id = accordionId;
     node.appendChild(accordion);
-    Object(_dropin_events__WEBPACK_IMPORTED_MODULE_3__["registerRedirectOnComplete"])(controller, options);
-    return Object(_fetch_payment_methods__WEBPACK_IMPORTED_MODULE_2__["getPaymentMethods"])(controller.id, options.sessionId).then(function (paymentMethodResponse) {
+    var redirectWindow = {};
+    Object(_dropin_events__WEBPACK_IMPORTED_MODULE_2__["registerRedirectOnComplete"])(controller, options, redirectWindow);
+    return Object(_fetch_payment_methods__WEBPACK_IMPORTED_MODULE_1__["getPaymentMethods"])(controller.id, options.sessionId).then(function (paymentMethodResponse) {
       var componentsMounted = {};
       var componentsReadyStatus = [];
-      console.error('26');
+
+      if (typeof paymentMethodResponse.paymentMethods === 'undefined') {
+        return Promise.resolve();
+      }
+
       paymentMethodResponse.paymentMethods.forEach(function (availablePaymentMethod) {
-        var paymentMethod = supportedPaymentMethods.find(function (paymentMethod) {
+        var paymentMethod = supportedPaymentMethods(locale).find(function (paymentMethod) {
           return paymentMethod.type === availablePaymentMethod.type;
         });
 
@@ -24242,7 +26360,7 @@ function mountDropin(key, options, createSource, createElement) {
         }
 
         var parent = document.createElement('div');
-        parent.className = 'card';
+        parent.className = 'DR-card';
         accordion.appendChild(parent);
         var bodyId = 'collapse-' + paymentMethod.type + '-' + controller.id;
         var headerId = 'heading-' + paymentMethod.type + '-' + controller.id;
@@ -24255,51 +26373,79 @@ function mountDropin(key, options, createSource, createElement) {
             componentHolder = _createComponentConta.componentHolder;
 
         if (paymentMethod.needsPayButton) {
-          bodyParent.appendChild(createSubmitButton(controller.id, options, createSource, componentsMounted, paymentMethod, submitButtonId, availablePaymentMethod, paymentMethodResponse.sessionInformation));
+          bodyParent.appendChild(createSubmitButton(controller.id, options, createSource, componentsMounted, paymentMethod, submitButtonId, availablePaymentMethod, paymentMethodResponse.sessionInformation, redirectWindow, locale));
         }
 
         if (!paymentMethod.onlyButton) {
           var componentOptionsKey = findOptionsKey(options.paymentMethodConfiguration, paymentMethod);
           var componentOptions = typeof componentOptionsKey !== 'undefined' && typeof options.paymentMethodConfiguration !== 'undefined' && typeof options.paymentMethodConfiguration[componentOptionsKey] !== 'undefined' ? options.paymentMethodConfiguration[componentOptionsKey] : {};
-          var componentOptionsOrPaymentRequest = isPaymentRequestUsed(paymentMethod) ? getSessionPaymentRequest(options, paymentMethodResponse.sessionInformation, componentOptions.style) : componentOptions;
-          var events = Object.assign({}, componentOptions.events);
-          delete componentOptionsOrPaymentRequest.events;
-          var component = createElement(paymentMethod.code, componentOptionsOrPaymentRequest); // TODO What should happen when create fails?
 
-          if (typeof component.canMakePayment !== 'undefined' && !component.canMakePayment()) {
+          try {
+            var componentOptionsOrPaymentRequest = isPaymentRequestUsed(paymentMethod) ? getSessionPaymentRequest(options, paymentMethodResponse.sessionInformation, componentOptions.style, locale) : componentOptions;
+
+            if (paymentMethod.addSourceDataToOptions) {
+              addSourceDataToOptions(options, componentOptionsOrPaymentRequest, paymentMethod, controller, availablePaymentMethod, paymentMethodResponse.sessionInformation);
+            }
+
+            if (paymentMethod.requiresSessionInformation) {
+              componentOptionsOrPaymentRequest[paymentMethod.type] = {
+                country: paymentMethodResponse.sessionInformation.country,
+                currency: paymentMethodResponse.sessionInformation.currency
+              };
+            }
+
+            var events = Object.assign({}, componentOptions.events);
+            delete componentOptionsOrPaymentRequest.events;
+            var component = createElement(paymentMethod.code, componentOptionsOrPaymentRequest);
+
+            if (typeof component.canMakePayment !== 'undefined' && !component.canMakePayment()) {
+              clearComponentFromDOM(parent, headerId, bodyId);
+              return;
+            }
+
+            if (typeof options.onReady !== 'undefined') {
+              addReadyEventToComponents(component, componentsReadyStatus, options.onReady);
+            }
+
+            addClientEventsToComponent(events, component);
+            component.mount(componentHolder.id);
+            componentsMounted[paymentMethod.code] = component;
+
+            if (paymentMethod.standaloneButton) {
+              addStandaloneButtonOptions(component, options, paymentMethod);
+            }
+          } catch (e) {
             clearComponentFromDOM(parent, headerId, bodyId);
-            return;
-          }
-
-          if (typeof options.onReady !== 'undefined') {
-            addReadyEventToComponents(component, componentsReadyStatus, options.onReady);
-          }
-
-          addClientEventsToComponent(events, component);
-          component.mount(componentHolder.id);
-          componentsMounted[paymentMethod.code] = component;
-
-          if (paymentMethod.standaloneButton) {
-            addStandaloneButtonOptions(component, options);
           }
         }
       });
-    });
+    }).then(expandFirstPaymentMethod);
   };
+}
+
+function expandFirstPaymentMethod() {
+  var expandButtons = document.querySelectorAll('.DR-button');
+
+  if (expandButtons.length > 0) {
+    document.querySelectorAll('.DR-button')[0].click();
+  }
 }
 
 function createHeaderDiv(paymentMethod, headerId, bodyId) {
   var headerDiv = document.createElement('div');
-  headerDiv.className = 'card-header';
+  headerDiv.className = 'DR-card-header';
   headerDiv.id = headerId;
   var header = document.createElement('h5');
-  header.className = 'mb-0';
   var headerButton = document.createElement('button');
-  headerButton.className = 'btn btn-link collapsed';
+  headerButton.className = 'DR-button';
   headerButton.innerText = paymentMethod.name;
-  headerButton.setAttribute('data-toggle', 'collapse');
-  headerButton.setAttribute('data-target', '#' + bodyId);
-  headerButton.setAttribute('aria-expanded', 'aria-expanded');
+  headerButton.setAttribute('data-DR-toggle', 'collapse');
+  headerButton.setAttribute('data-DR-target', bodyId);
+  headerButton.setAttribute('aria-expanded', 'false');
+  headerButton.setAttribute('type', 'button');
+  headerButton.addEventListener('click', function (event) {
+    return handleHeaderButtonClick(event);
+  });
   header.appendChild(headerButton);
   headerDiv.appendChild(header);
   return headerDiv;
@@ -24309,20 +26455,18 @@ function createComponentContainer(paymentMethod, parent, bodyId, headerId, compo
   var headerDiv = createHeaderDiv(paymentMethod, headerId, bodyId);
   parent.appendChild(headerDiv);
   var bodyParent = document.createElement('div');
-  bodyParent.className = 'collapse';
+  bodyParent.className = 'DR-collapse';
   bodyParent.id = bodyId;
   bodyParent.setAttribute('aria-labelledby', bodyId);
   bodyParent.setAttribute('data-parent', '#' + accordionId);
   var componentHolder = document.createElement('div');
   componentHolder.id = componentId;
-  componentHolder.style.width = '100%';
 
   if (shouldCreateBody) {
-    // TODO There has to be a better way to do this!
     var cardBody = document.createElement('div');
-    cardBody.className = 'card-body';
+    cardBody.className = 'DR-card-body';
     var row = document.createElement('div');
-    row.className = 'row';
+    row.className = 'DR-row';
     row.appendChild(componentHolder);
     cardBody.appendChild(row);
     bodyParent.appendChild(cardBody);
@@ -24336,7 +26480,7 @@ function createComponentContainer(paymentMethod, parent, bodyId, headerId, compo
 }
 
 function getURL(controllerId, componentId) {
-  return "".concat(Object(_createComponent__WEBPACK_IMPORTED_MODULE_4__["getComponentsBasePath"])(), "/redirect-receiver/redirect-receiver.html?controllerId=").concat(controllerId, "&componentId=").concat(componentId);
+  return "".concat(Object(_createComponent__WEBPACK_IMPORTED_MODULE_3__["getComponentsBasePath"])(), "/redirect-receiver/redirect-receiver.html?controllerId=").concat(controllerId, "&componentId=").concat(componentId);
 }
 
 function getTypeData(controllerId, availablePaymentMethod) {
@@ -24351,29 +26495,41 @@ function getTypeData(controllerId, availablePaymentMethod) {
   }
 }
 
-function createSubmitButton(controllerId, options, createSource, componentsMounted, paymentMethod, submitButtonId, availablePaymentMethod) {
-  var _clientSourceData;
+function createSourceData(options, paymentMethod, controllerId, availablePaymentMethod, sessionInformation) {
+  var _ref;
 
-  var clientSourceData = (_clientSourceData = {
+  return _ref = {
     'owner': options.billingAddress
-  }, _defineProperty(_clientSourceData, paymentMethod.type, getTypeData(controllerId, availablePaymentMethod)), _defineProperty(_clientSourceData, "type", paymentMethod.type), _defineProperty(_clientSourceData, "sessionId", options.sessionId), _clientSourceData);
+  }, _defineProperty(_ref, paymentMethod.type, getTypeData(controllerId, availablePaymentMethod)), _defineProperty(_ref, "type", paymentMethod.type), _defineProperty(_ref, "sessionId", options.sessionId), _defineProperty(_ref, "currency", sessionInformation.currency), _ref;
+}
+
+function createSubmitButton(controllerId, options, createSource, componentsMounted, paymentMethod, submitButtonId, availablePaymentMethod, sessionInformation, redirectWindow, locale) {
+  var sourceData = createSourceData(options, paymentMethod, controllerId, availablePaymentMethod, sessionInformation);
+  var payNowText = Object(_app_components_localization_localizated_messages__WEBPACK_IMPORTED_MODULE_6__["getLocaleMessage"])(locale, 'payNow');
+  var spinnerAltText = Object(_app_components_localization_localizated_messages__WEBPACK_IMPORTED_MODULE_6__["getLocaleMessage"])(locale, 'processingYourRequest');
   var submitButton = document.createElement('button');
   submitButton.id = submitButtonId;
-  submitButton.className = 'btn btn-primary btn-lg btn-block';
+  submitButton.className = 'DR-pay-button';
   submitButton.type = 'submit';
-  submitButton.innerText = 'Pay'; // TODO Future Story: Localize. Configurable?
+  submitButton.innerText = payNowText;
 
-  submitButton.onclick = function () {
-    // TODO Extract this out to be a separate function and bind()
-    if (availablePaymentMethod.flow === 'receiver' && paymentMethod.onlyButton) {
-      createSource(clientSourceData).then(function (response) {
-        Object(_dropin_events__WEBPACK_IMPORTED_MODULE_3__["runClientProvidedCompleteEvents"])(options, response);
+  submitButton.onclick = function (event) {
+    event.preventDefault();
+    event.target.innerHTML = Object(_css_class_utils__WEBPACK_IMPORTED_MODULE_5__["createCssSpinner"])(spinnerAltText);
+
+    if (paymentMethod.justRequiresSource && paymentMethod.onlyButton) {
+      createSource(sourceData).then(function (response) {
+        Object(_dropin_events__WEBPACK_IMPORTED_MODULE_2__["runClientProvidedCompleteEvents"])(options, response);
+        submitButton.innerText = payNowText;
       });
     } else if (availablePaymentMethod.flow === 'redirect') {
-      handleRedirectSource(controllerId, options, paymentMethod, createSource, clientSourceData, componentsMounted, window);
+      handleRedirectSource(controllerId, options, paymentMethod, createSource, sourceData, componentsMounted, window, redirectWindow).then(function () {
+        submitButton.innerText = payNowText;
+      });
     } else {
-      createSource(componentsMounted[paymentMethod.code], clientSourceData).then(function (response) {
-        Object(_dropin_events__WEBPACK_IMPORTED_MODULE_3__["runClientProvidedCompleteEvents"])(options, response);
+      createSource(componentsMounted[paymentMethod.code], sourceData).then(function (response) {
+        Object(_dropin_events__WEBPACK_IMPORTED_MODULE_2__["runClientProvidedCompleteEvents"])(options, response);
+        submitButton.innerText = payNowText;
       });
     }
   };
@@ -24382,6 +26538,10 @@ function createSubmitButton(controllerId, options, createSource, componentsMount
 }
 
 function findOptionsKey(options, paymentMethod) {
+  if (typeof options === 'undefined') {
+    return;
+  }
+
   return Object.keys(options).find(function (option) {
     return option.toLowerCase() === paymentMethod.code;
   });
@@ -24420,18 +26580,64 @@ function clearComponentFromDOM(parent, headerId, bodyId) {
   parent.parentNode.removeChild(parent);
 }
 
-function handleRedirectSource(controllerId, options, paymentMethod, createSource, clientSourceData, componentsMounted, window) {
+function handleRedirectSource(controllerId, options, paymentMethod, createSource, clientSourceData, componentsMounted, window, redirectWindowData) {
   var createSourceFunction = paymentMethod.onlyButton ? createSource(clientSourceData) : createSource(componentsMounted[paymentMethod.code], clientSourceData);
   return createSourceFunction.then(function (response) {
     if (response.source !== null) {
-      window.open(response.source.redirect.redirectUrl, '_blank');
-      Object(_dropin_events__WEBPACK_IMPORTED_MODULE_3__["sendRedirectSourceData"])(controllerId, response.source.id, response.source.clientSecret.split('_')[1]);
+      /*
+      const windowHeight = window.outerHeight - 200;
+      const windowWidth = window.outerWidth - 200;
+      const redirectWindow = window.open(response.source.redirect.redirectUrl, 'redirectPage', "scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=" + windowWidth + ",height=" + windowHeight + ",left=100,top=100");
+      */
+
+      /*const newUrl = response.source.redirect.redirectUrl.replace('https://api.digitalriver.com:443/', 'http://localhost:8080/');
+      console.log('newUrl',newUrl)
+      const redirectWindow = window.open( response.source.redirect.returnUrl.replace('action', 'blah'), '_blank');
+      //redirectWindow.location = response.source.redirect.redirectUrl;*/
+      //const url = response.source.redirect.redirectUrl.replace('https://api.digitalriver.com:443/', 'http://localhost:8080/');
+      //const redirectWindow = window.open(response.source.redirect.redirectUrl.replace('https://api.digitalriver.com:443/', 'http://localhost:8080/'), '_blank');
+      var redirectWindow = Object(_dropin_events__WEBPACK_IMPORTED_MODULE_2__["openLenderRedirect"])(response.source.redirect.redirectUrl); //console.log('setting redirect data', redirectWindow);
+
+      /*redirectWindow.onbeforeunload = function(e) {
+        console.log('onbeforeunload');
+      };*/
+      // TODO Open a window to the receiver, with the source in it or the URL?
+
+      Object(_dropin_window_data__WEBPACK_IMPORTED_MODULE_4__["setRedirectWindowData"])(redirectWindowData, options, paymentMethod, redirectWindow, controllerId);
+      Object(_dropin_events__WEBPACK_IMPORTED_MODULE_2__["sendRedirectSourceData"])(controllerId, response.source.id, response.source.clientSecret.split('_')[1], response.source.redirect.redirectUrl);
+      /* window.addEventListener('message', function(event) {
+         if (event.data && event.data.includes('Hello')) {
+           console.log('I got a message:', event.data);
+         }
+       });*/
     } else {
-      Object(_dropin_events__WEBPACK_IMPORTED_MODULE_3__["runClientProvidedCompleteEvents"])(options, response);
+      console.log('Error from payment service');
+      Object(_dropin_events__WEBPACK_IMPORTED_MODULE_2__["runClientProvidedCompleteEvents"])(options, response);
     }
   }).catch(function (error) {
-    Object(_dropin_events__WEBPACK_IMPORTED_MODULE_3__["runClientProvidedCompleteEvents"])(options, error);
+    console.log('Error ', error.stack);
+    Object(_dropin_events__WEBPACK_IMPORTED_MODULE_2__["runClientProvidedCompleteEvents"])(options, error);
   });
+}
+
+function handleHeaderButtonClick(event) {
+  event.preventDefault();
+  event.stopPropagation();
+  var toggleTarget = document.getElementById(event.target.getAttribute('data-DR-target'));
+  var isExpanded = event.target.getAttribute('aria-expanded');
+
+  if (isExpanded === 'false') {
+    var allTargets = [].slice.call(document.querySelectorAll('[data-DR-toggle]'));
+    allTargets.forEach(function (target) {
+      target.setAttribute('aria-expanded', 'false');
+      document.getElementById(target.getAttribute('data-DR-target')).classList.remove('DR-show');
+    });
+    event.target.setAttribute('aria-expanded', 'true');
+    toggleTarget.classList.add('DR-show');
+  } else {
+    event.target.setAttribute('aria-expanded', 'false');
+    toggleTarget.classList.remove('DR-show');
+  }
 }
 
 /***/ }),
@@ -24521,7 +26727,8 @@ var manifest = {
   'offlinerefund': '/offline-refund/offline-refund.html',
   'konbini': '/konbini/konbini.html',
   'creditcard': '',
-  'paypal': '/paypal/paypal.html'
+  'paypal': '/paypal/paypal.html',
+  'paypalcredit': '/paypal/paypal.html'
 };
 var eventNames = ['blur', 'change', 'focus', 'ready', 'click', 'source', 'shippingaddresschange', 'shippingoptionchange', 'cancel'];
 /**
@@ -24672,7 +26879,7 @@ function mount(node) {
         };
         _dataStore__WEBPACK_IMPORTED_MODULE_4__["default"].set(key, data); // Set base css class & empty class since field is empty
 
-        if (this.type !== 'googlepay' && this.type !== 'applepay' && this.type !== 'paypal' && this.type !== 'offlinerefund') {
+        if (this.type !== 'googlepay' && this.type !== 'applepay' && this.type !== 'paypal' && this.type !== 'paypalcredit' && this.type !== 'offlinerefund') {
           var DRElementClass = data.components[this.type].options.classes.base;
           node.classList.add(DRElementClass);
           var DREmptyClass = data.components[this.type].options.classes.empty;
@@ -25390,7 +27597,7 @@ function createSourceWithAdyen(controllerId, data, clientData) {
 /*!***************************************!*\
   !*** ./src/client/css-class-utils.js ***!
   \***************************************/
-/*! exports provided: getCssClasses, removeClasses, getElementHeight, getActiveClasses, applyActiveClasses, formatStyleCss, setSelectStyles, convertToAlphaColor */
+/*! exports provided: getCssClasses, removeClasses, getElementHeight, getActiveClasses, applyActiveClasses, formatStyleCss, setSelectStyles, convertToAlphaColor, createCssSpinner */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -25403,6 +27610,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "formatStyleCss", function() { return formatStyleCss; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setSelectStyles", function() { return setSelectStyles; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "convertToAlphaColor", function() { return convertToAlphaColor; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createCssSpinner", function() { return createCssSpinner; });
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
@@ -25653,6 +27861,9 @@ function convertToAlphaColor(cssColor, percent) {
   document.body.removeChild(document.getElementById('tempDiv'));
   return rgbaColor;
 }
+function createCssSpinner(altText) {
+  return "<div class=\"DR-spinner\">\n      <span class=\"DR-spinnerText\">".concat(altText, "</span>\n      <div class=\"DR-bounce1\"></div>\n      <div class=\"DR-bounce2\"></div>\n      <div class=\"DR-bounce3\"></div>\n      </div>");
+}
 
 /***/ }),
 
@@ -25715,36 +27926,95 @@ function getAll() {
 /*!*************************************!*\
   !*** ./src/client/dropin-events.js ***!
   \*************************************/
-/*! exports provided: sendRedirectSourceData, registerRedirectOnComplete, runClientProvidedCompleteEvents */
+/*! exports provided: sendRedirectSourceData, openLenderRedirect, registerRedirectOnComplete, runClientProvidedCompleteEvents, createCancelEvent, runClientProvidedCancelEvent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sendRedirectSourceData", function() { return sendRedirectSourceData; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "openLenderRedirect", function() { return openLenderRedirect; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "registerRedirectOnComplete", function() { return registerRedirectOnComplete; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "runClientProvidedCompleteEvents", function() { return runClientProvidedCompleteEvents; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createCancelEvent", function() { return createCancelEvent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "runClientProvidedCancelEvent", function() { return runClientProvidedCancelEvent; });
 /* harmony import */ var _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../post-robot-wrapper */ "./src/post-robot-wrapper.js");
 /* harmony import */ var _createComponent__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./createComponent */ "./src/client/createComponent.js");
 /* harmony import */ var _app_components_config__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../app/components/config */ "./src/app/components/config.js");
+/* harmony import */ var _dropin_window_data__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./dropin-window-data */ "./src/client/dropin-window-data.js");
 
 
 
-function sendRedirectSourceData(controllerId, sourceId, clientSecret) {
+
+
+var prIe = __webpack_require__(/*! post-robot/dist/post-robot.ie */ "./node_modules/post-robot/dist/post-robot.ie.js");
+
+function sendRedirectSourceData(controllerId, sourceId, clientSecret, url) {
   var controllerWindow = Object(_createComponent__WEBPACK_IMPORTED_MODULE_1__["getComponentWindow"])(controllerId);
   return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_0__["send"](controllerWindow, 'storeDropinData', {
     sourceId: sourceId,
-    clientSecret: clientSecret
+    clientSecret: clientSecret,
+    url: url
   }).catch(function () {
     throw new Error('Failed to store data');
   });
 }
-function registerRedirectOnComplete(controller, options) {
-  var controllerWindow = Object(_createComponent__WEBPACK_IMPORTED_MODULE_1__["getComponentWindow"])(controller.id);
-  _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_0__["on"]('redirectComplete', {
-    window: controller.window,
-    domain: _app_components_config__WEBPACK_IMPORTED_MODULE_2__["config"].domain
-  }, function (event) {
+window.addEventListener("message", function (ev) {
+  if (ev.data.message === "openLender") {
+    alert("result: " + ev.data.result);
+    ev.source.close();
+  } else if (ev.data.message === "closeLender") {
+    alert("result: " + ev.data.result);
+    ev.source.close();
+  }
+});
+function openLenderRedirect(url) {
+  var child = window.open(url, "_blank");
+  var leftDomain = false;
+  var interval = setInterval(function () {
+    try {
+      console.log('child', child);
+      console.log(child.document.domain, document.domain);
+
+      if (child.document.domain === document.domain) {
+        if (leftDomain && child.document.readyState === "complete") {
+          // we're here when the child window returned to our domain
+          clearInterval(interval);
+          alert("returned: " + child.document.URL);
+          child.postMessage({
+            message: "requestResult"
+          }, "*");
+        }
+      } else {
+        // this code should never be reached,
+        // as the x-site security check throws
+        // but just in case
+        leftDomain = true;
+      }
+    } catch (e) {
+      console.log(e); // we're here when the child window has been navigated away or closed
+
+      if (child.closed) {
+        clearInterval(interval);
+        alert(e);
+        alert("closed");
+        return;
+      } // navigated to another domain
+
+
+      leftDomain = true;
+    }
+  }, 500);
+  return child;
+}
+function registerRedirectOnComplete(controller, options, redirectWindowData) {
+  var controllerWindow = Object(_createComponent__WEBPACK_IMPORTED_MODULE_1__["getComponentWindow"])(controller.id); // TODO Add path
+  //prIe.bridge.openBridge('http://localhost:8181/components/bridge/bridge.html',  config.domain);
+
+  console.log('config.domain', _app_components_config__WEBPACK_IMPORTED_MODULE_2__["config"].domain);
+  _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_0__["on"]('redirectComplete', function (event) {
+    console.log('redirectComplete');
     var action = event.data.action;
+    Object(_dropin_window_data__WEBPACK_IMPORTED_MODULE_3__["clearRedirectData"])(options, redirectWindowData);
 
     if (action === 'return') {
       return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_0__["send"](controllerWindow, 'runRedirectCompleteSource', {}).then(function (event) {
@@ -25758,10 +28028,112 @@ function runClientProvidedCompleteEvents(options, sourceData) {
   var isSuccess = typeof sourceData.source !== 'undefined' && sourceData.source !== null;
 
   if (options.onSuccess && isSuccess) {
-    options.onSuccess(sourceData.source);
+    options.onSuccess({
+      source: sourceData.source
+    });
   } else if (options.onError && !isSuccess) {
     options.onError(sourceData.error);
   }
+}
+function createCancelEvent(paymentMethod) {
+  return {
+    paymentMethod: paymentMethod.type
+  };
+}
+function runClientProvidedCancelEvent(options, paymentMethod) {
+  if (options.onCancel) {
+    options.onCancel(createCancelEvent(paymentMethod));
+  }
+}
+
+/***/ }),
+
+/***/ "./src/client/dropin-redirects-closed.js":
+/*!***********************************************!*\
+  !*** ./src/client/dropin-redirects-closed.js ***!
+  \***********************************************/
+/*! exports provided: handleClosedWindow */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleClosedWindow", function() { return handleClosedWindow; });
+/* harmony import */ var _dropin_events__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./dropin-events */ "./src/client/dropin-events.js");
+/* harmony import */ var _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../post-robot-wrapper */ "./src/post-robot-wrapper.js");
+/* harmony import */ var _createComponent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./createComponent */ "./src/client/createComponent.js");
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+
+
+function handleClosedWindow(_x, _x2, _x3) {
+  return _handleClosedWindow.apply(this, arguments);
+}
+
+function _handleClosedWindow() {
+  _handleClosedWindow = _asyncToGenerator(
+  /*#__PURE__*/
+  regeneratorRuntime.mark(function _callee(controllerId, paymentMethod, options) {
+    var controllerWindow;
+    return regeneratorRuntime.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            controllerWindow = Object(_createComponent__WEBPACK_IMPORTED_MODULE_2__["getComponentWindow"])(controllerId);
+            return _context.abrupt("return", _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_1__["default"].send(controllerWindow, 'runRedirectCompleteSource', {}).then(function (response) {
+              console.log('response', response);
+
+              if (response.data.source.state === 'pending_redirect') {
+                if (options.onCancel) {
+                  options.onCancel(Object(_dropin_events__WEBPACK_IMPORTED_MODULE_0__["createCancelEvent"])(paymentMethod));
+                }
+              } else {
+                Object(_dropin_events__WEBPACK_IMPORTED_MODULE_0__["runClientProvidedCompleteEvents"])(options, response.data);
+              }
+            }));
+
+          case 2:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee);
+  }));
+  return _handleClosedWindow.apply(this, arguments);
+}
+
+/***/ }),
+
+/***/ "./src/client/dropin-window-data.js":
+/*!******************************************!*\
+  !*** ./src/client/dropin-window-data.js ***!
+  \******************************************/
+/*! exports provided: clearRedirectData, setRedirectWindowData */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "clearRedirectData", function() { return clearRedirectData; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setRedirectWindowData", function() { return setRedirectWindowData; });
+/* harmony import */ var _dropin_redirects_closed__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./dropin-redirects-closed */ "./src/client/dropin-redirects-closed.js");
+
+function clearRedirectData(options, redirectWindowData) {
+  clearInterval(redirectWindowData.timer); //redirectWindowData.window.close();
+}
+function setRedirectWindowData(redirectWindowData, options, paymentMethod, redirectWindow, controllerId) {
+  var timer = setInterval(function () {
+    console.log('is window is closed!', redirectWindowData.window.closed);
+
+    if (redirectWindowData.window.closed) {
+      console.log('window is closed!');
+      clearInterval(timer);
+      Object(_dropin_redirects_closed__WEBPACK_IMPORTED_MODULE_0__["handleClosedWindow"])(controllerId, paymentMethod, options);
+    }
+  }, 1000);
+  redirectWindowData.timer = timer;
+  redirectWindowData.window = redirectWindow;
 }
 
 /***/ }),
@@ -25781,10 +28153,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "processNonCreditCardEvents", function() { return processNonCreditCardEvents; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeEventsForType", function() { return removeEventsForType; });
 /* harmony import */ var _dataStore__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./dataStore */ "./src/client/dataStore.js");
-/* harmony import */ var _createComponent__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./createComponent */ "./src/client/createComponent.js");
-/* harmony import */ var _app_components_config__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../app/components/config */ "./src/app/components/config.js");
-
-
 
 /**
  * Wraps updateWith function in function to validate that it is an object
@@ -25916,23 +28284,6 @@ function applyCSSClassesBasedOnEvent(data, componentType, eventName, publicData)
     }
   }
 }
-
-function renderPayPalIFrameDialog(publicData) {
-  Object(_createComponent__WEBPACK_IMPORTED_MODULE_1__["createOverlayDiv"])('DRPayPal');
-  Object(_createComponent__WEBPACK_IMPORTED_MODULE_1__["updateOverlay"])('DRPayPal', '100%', 'rgba(0,0,0,0.3)');
-  var drMockFrame = document.createElement('iframe');
-  drMockFrame.id = 'DRPayPalFrame';
-  drMockFrame.src = _app_components_config__WEBPACK_IMPORTED_MODULE_2__["config"].paypalRedirectBaseUrl + publicData.sourceId;
-  drMockFrame.height = '300';
-  drMockFrame.width = '300';
-  drMockFrame.style.background = 'white';
-  var overlay = document.getElementById('DRPayPal');
-  overlay.appendChild(drMockFrame);
-}
-
-function removePayPalIFrameDialog() {
-  document.getElementById('DRPayPal').remove();
-}
 /**
  * Processes event and applies correct CSS classes to parent node
  * @param {string} key
@@ -25949,14 +28300,6 @@ function processEvent(key, componentType, eventName, publicData) {
   if (eventName === 'resize') {
     var frame = document.getElementById(publicData.frame.id);
     frame.style.height = publicData.frame.height;
-  }
-
-  if (eventName === 'dialog' && componentType === 'paypal' && publicData.action === 'close') {
-    removePayPalIFrameDialog();
-  }
-
-  if (eventName === 'dialog' && componentType === 'paypal' && publicData.action === 'open') {
-    renderPayPalIFrameDialog(publicData);
   }
 
   if (!isCSSExcludedComponent(componentType)) {
@@ -26010,7 +28353,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../post-robot-wrapper */ "./src/post-robot-wrapper.js");
 
 
-function getPaymentMethods(controllerId, sessionId) {
+function getPaymentMethods(controllerId, sessionId, country, currency) {
   var controllerWindow = Object(_createComponent__WEBPACK_IMPORTED_MODULE_0__["getComponentWindow"])(controllerId);
 
   if (!controllerWindow) {
@@ -26019,7 +28362,9 @@ function getPaymentMethods(controllerId, sessionId) {
 
 
   return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_1__["default"].send(controllerWindow, 'fetchAvailablePaymentMethods', {
-    sessionId: sessionId
+    sessionId: sessionId,
+    country: country,
+    currency: currency
   }).then(function (response) {
     return response.data;
   });

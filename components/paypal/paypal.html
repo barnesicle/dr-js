@@ -11,6 +11,25 @@
         <script src="./paypal.js" ></script>
         <script>
           addInputHtmlToDom();
+
+          const target = document.querySelector('#paypal');
+          const config = { attributes: true, childList: true, characterData: true };
+          // create an observer instance to watch for paypal to load the button and update div heights
+          const observer = new MutationObserver(function(mutations) {
+              mutations.forEach(function(mutation) {
+                  if(mutation.type === 'childList') {
+                      observer.observe(document.querySelector('.paypal-button.paypal-button-context-iframe'), config);
+                  } else if (mutation.type === 'attributes') {
+                      if(mutation.attributeName === 'style') {
+                          const newHeight = mutation.target[mutation.attributeName].height;
+                          resizeIframe(newHeight)
+                      }
+                  }
+              });
+          });
+
+          observer.observe(target, config);
+
         </script>
     </body>
 
