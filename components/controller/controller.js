@@ -20351,7 +20351,7 @@ window.addEventListener('storage', function () {
 });
 function openRedirect(url) {
   console.log('opening window at url', url);
-  var child = window.open('https://stuller.github.io/ieRedirects/clientDomain/checkout.html', "_blank");
+  var child = window.open('https://github.digitalriverws.net/pages/lbarnes/drjs-demo/dropin.html', "_blank");
   var leftDomain = false;
   var interval = setInterval(function () {
     try {
