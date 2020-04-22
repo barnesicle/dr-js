@@ -19497,7 +19497,7 @@ module.exports = __webpack_require__.p + "controller\\controller.html";
 /*!*****************************************************!*\
   !*** ./src/app/components/controller/controller.js ***!
   \*****************************************************/
-/*! exports provided: getComponentTypeFromId, getComponentById, handleCreateSourceEvent, handleRegisterNewComponent, handleUnregisterComponent, handleMountComponent, handleUnmountComponent, handlePayPalEvent, handleComponentEvent, handleClientTrigger, handleOptions, validateAppleMerchant, handleInitialData, getOnlineBankingBanks, handleShowKoreanCardOverlay, handleCreateSourceWithAdyenDetails, handleRetrieveSource, handleUpdateSource, handleCreateRefund, getKonbiniStores, handleAvailablePaymentMethods, handleRedirectComplete, handleStoreDropinData, handleOpenWindow, handleCloseWindow, openLenderRedirect */
+/*! exports provided: getComponentTypeFromId, getComponentById, handleCreateSourceEvent, handleRegisterNewComponent, handleUnregisterComponent, handleMountComponent, handleUnmountComponent, handlePayPalEvent, handleComponentEvent, handleClientTrigger, handleOptions, validateAppleMerchant, handleInitialData, getOnlineBankingBanks, handleShowKoreanCardOverlay, handleCreateSourceWithAdyenDetails, handleRetrieveSource, handleUpdateSource, handleCreateRefund, getKonbiniStores, handleAvailablePaymentMethods, handleRedirectComplete, handleStoreDropinData, handleOpenWindow, handleCloseWindow, openRedirect */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -19527,7 +19527,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleStoreDropinData", function() { return handleStoreDropinData; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleOpenWindow", function() { return handleOpenWindow; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleCloseWindow", function() { return handleCloseWindow; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "openLenderRedirect", function() { return openLenderRedirect; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "openRedirect", function() { return openRedirect; });
 /* harmony import */ var _controller_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./controller.html */ "./src/app/components/controller/controller.html");
 /* harmony import */ var _controller_html__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_controller_html__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../post-robot-wrapper */ "./src/post-robot-wrapper.js");
@@ -20326,7 +20326,7 @@ function handleStoreDropinData(event) {
       clientSecret = _event$data13.clientSecret;
   components['controller'].sourceId = sourceId;
   components['controller'].clientSecret = clientSecret;
-  components['controller'].redirectWindow = openLenderRedirect(event.data.url);
+  components['controller'].redirectWindow = openRedirect(event.data.url);
   console.log('redirectWindow in CONTROLLER', components['controller'].redirectWindow);
   return Promise.resolve();
 }
@@ -20341,8 +20341,9 @@ function handleCloseWindow() {
   delete components['controller'].redirectWindow;
   return Promise.resolve();
 }
-function openLenderRedirect(url) {
-  var child = window.open(url, "_blank");
+function openRedirect(url) {
+  console.log('opening window at url', url);
+  var child = window.open('https://stuller.github.io/ieRedirects/clientDomain/checkout.html', "_blank");
   var leftDomain = false;
   var interval = setInterval(function () {
     try {
@@ -20353,7 +20354,7 @@ function openLenderRedirect(url) {
         if (leftDomain && child.document.readyState === "complete") {
           // we're here when the child window returned to our domain
           clearInterval(interval);
-          alert("returned: " + child.document.URL);
+          console.log("returned: " + child.document.URL);
           child.postMessage({
             message: "requestResult"
           }, "*");
@@ -20369,11 +20370,11 @@ function openLenderRedirect(url) {
 
       if (child.closed) {
         clearInterval(interval);
-        alert(e);
-        alert("closed");
+        console.log('closed');
         return;
-      } // navigated to another domain
+      }
 
+      console.log('catch'); // navigated to another domain
 
       leftDomain = true;
     }
