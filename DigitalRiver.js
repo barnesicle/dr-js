@@ -27968,6 +27968,7 @@ window.addEventListener("message", function (ev) {
   }
 });
 function openLenderRedirect(url) {
+  console.log();
   var child = window.open(url, "_blank");
   var leftDomain = false;
   var interval = setInterval(function () {
