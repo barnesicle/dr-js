@@ -26596,14 +26596,14 @@ function handleRedirectSource(controllerId, options, paymentMethod, createSource
       //redirectWindow.location = response.source.redirect.redirectUrl;*/
       //const url = response.source.redirect.redirectUrl.replace('https://api.digitalriver.com:443/', 'http://localhost:8080/');
       //const redirectWindow = window.open(response.source.redirect.redirectUrl.replace('https://api.digitalriver.com:443/', 'http://localhost:8080/'), '_blank');
-      var redirectWindow = Object(_dropin_events__WEBPACK_IMPORTED_MODULE_2__["openLenderRedirect"])(response.source.redirect.redirectUrl); //console.log('setting redirect data', redirectWindow);
+      //const redirectWindow = openLenderRedirect(response.source.redirect.redirectUrl);
+      //console.log('setting redirect data', redirectWindow);
 
       /*redirectWindow.onbeforeunload = function(e) {
         console.log('onbeforeunload');
       };*/
       // TODO Open a window to the receiver, with the source in it or the URL?
-
-      Object(_dropin_window_data__WEBPACK_IMPORTED_MODULE_4__["setRedirectWindowData"])(redirectWindowData, options, paymentMethod, redirectWindow, controllerId);
+      //setRedirectWindowData(redirectWindowData, options, paymentMethod, redirectWindow, controllerId);
       Object(_dropin_events__WEBPACK_IMPORTED_MODULE_2__["sendRedirectSourceData"])(controllerId, response.source.id, response.source.clientSecret.split('_')[1], response.source.redirect.redirectUrl);
       /* window.addEventListener('message', function(event) {
          if (event.data && event.data.includes('Hello')) {
