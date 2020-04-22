@@ -28014,15 +28014,15 @@ function registerRedirectOnComplete(controller, options, redirectWindowData) {
   console.log('config.domain', _app_components_config__WEBPACK_IMPORTED_MODULE_2__["config"].domain);
   _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_0__["on"]('redirectComplete', function (event) {
     console.log('redirectComplete');
-    var action = event.data.action;
+    var response = event.data.response;
     Object(_dropin_window_data__WEBPACK_IMPORTED_MODULE_3__["clearRedirectData"])(options, redirectWindowData);
-
-    if (action === 'return') {
-      return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_0__["send"](controllerWindow, 'runRedirectCompleteSource', {}).then(function (event) {
-        var response = event.data;
+    runClientProvidedCompleteEvents(options, response);
+    /*if (action === 'return') {
+      return postRobot.send(controllerWindow, 'runRedirectCompleteSource', {}).then((event) => {
+        const response = event.data;
         runClientProvidedCompleteEvents(options, response);
       });
-    }
+    }*/
   });
 }
 function runClientProvidedCompleteEvents(options, sourceData) {

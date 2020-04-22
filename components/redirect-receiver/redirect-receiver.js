@@ -21441,9 +21441,11 @@ if (actionFromQueryString) {
   //console.log('window', window.document.getElementById(componentData.controller.id))
   //console.log('window.parent', window.parent.document.getElementById(componentData.controller.id))
   //console.log('window.opener', window.opener.document.getElementById(componentData.controller.id))
-  var win = window.opener || window.parent;
-  sendAction(window.opener, componentData.componentId, componentData.componentType, actionFromQueryString); //sendAction(window.parent, componentData.componentId, componentData.componentType, actionFromQueryString);
+  var win = window.opener || window.parent; //sendAction(window.opener, componentData.componentId, componentData.componentType, actionFromQueryString);
+  //sendAction(window.parent, componentData.componentId, componentData.componentType, actionFromQueryString);
   // sendAction(window, componentData.componentId, componentData.componentType, actionFromQueryString);
+
+  window.localStorage.setItem('drRedirectAction', actionFromQueryString);
 } //window.parent.postMessage('Hello other window!', '*')
 // TODO What if I redirect to here, THEN open a window from here that is the parent?
 

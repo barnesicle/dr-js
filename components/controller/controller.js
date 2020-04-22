@@ -20340,7 +20340,15 @@ function handleCloseWindow() {
   components['controller'].redirectWindow.close();
   delete components['controller'].redirectWindow;
   return Promise.resolve();
-}
+} // TODO If IE
+
+window.addEventListener('storage', function () {
+  // When local storage changes, dump the list to
+  // the console.
+  console.log(JSON.parse(window.localStorage.getItem('drRedirectAction'))); // TODO Send event to client
+
+  return handleRedirectComplete().send('runRedirectCompleteSource', {});
+});
 function openRedirect(url) {
   console.log('opening window at url', url);
   var child = window.open('https://stuller.github.io/ieRedirects/clientDomain/checkout.html', "_blank");
