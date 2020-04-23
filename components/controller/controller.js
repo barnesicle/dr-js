@@ -20376,22 +20376,28 @@ window.addEventListener('storage', function (event) {
   console.log('event', event.newValue, event.oldValue); // FIXME For some reason IE Edge is firing this twice. newValue is undefined
   // TODO Could make it either value return or cancel
 
-  if (event.key === 'DRRedirectAction' && event.newValue !== null && event.newValue !== 'unknown') {
-    //if (window.localStorage.getItem('DRRedirectAction')) {
-    var action = window.localStorage.getItem('DRRedirectAction');
-    console.log('Storage:', action);
-    console.log('DRRedirectAction');
+  try {
+    if (event.key === 'DRRedirectAction' && event.newValue !== null && event.newValue !== 'unknown') {
+      //if (window.localStorage.getItem('DRRedirectAction')) {
+      var action = window.localStorage.getItem('DRRedirectAction');
+      console.log('Storage:', action);
+      console.log('DRRedirectAction');
 
-    if (Object.keys(components['controller'].redirectWindowData).length > 1) {
-      Object(_client_dropin_window_data__WEBPACK_IMPORTED_MODULE_17__["clearRedirectData"])(components['controller'].redirectWindowData);
-    }
+      if (Object.keys(components['controller'].redirectWindowData).length > 1) {
+        Object(_client_dropin_window_data__WEBPACK_IMPORTED_MODULE_17__["clearRedirectData"])(components['controller'].redirectWindowData);
+      }
 
-    handleRedirectComplete().then(function (response) {
-      return clientEmitter.send('redirectComplete', {
-        response: response,
-        action: action
+      handleRedirectComplete().then(function (response) {
+        return clientEmitter.send('redirectComplete', {
+          response: response,
+          action: action
+        });
+      }).catch(function (error) {
+        console.error('catch', error);
       });
-    });
+    }
+  } catch (e) {
+    console.error(e);
   }
 });
 
