@@ -20394,9 +20394,15 @@ window.addEventListener('storage', function (event) {
         });
       }).catch(function (error) {
         console.error('catch', error);
+        clientEmitter.send('redirectComplete', {
+          action: error.toString()
+        });
       });
     }
   } catch (e) {
+    clientEmitter.send('redirectComplete', {
+      action: e.toString()
+    });
     console.error(e);
   }
 });
