@@ -19497,7 +19497,7 @@ module.exports = __webpack_require__.p + "controller\\controller.html";
 /*!*****************************************************!*\
   !*** ./src/app/components/controller/controller.js ***!
   \*****************************************************/
-/*! exports provided: getComponentTypeFromId, getComponentById, handleCreateSourceEvent, handleRegisterNewComponent, handleUnregisterComponent, handleMountComponent, handleUnmountComponent, handlePayPalEvent, handleComponentEvent, handleClientTrigger, handleOptions, validateAppleMerchant, handleInitialData, getOnlineBankingBanks, handleShowKoreanCardOverlay, handleCreateSourceWithAdyenDetails, handleRetrieveSource, handleUpdateSource, handleCreateRefund, getKonbiniStores, handleAvailablePaymentMethods, handleRedirectComplete, handleStoreDropinData, handleOpenWindow, handleCloseWindow, openRedirect */
+/*! exports provided: getComponentTypeFromId, getComponentById, handleCreateSourceEvent, handleRegisterNewComponent, handleUnregisterComponent, handleMountComponent, handleUnmountComponent, handlePayPalEvent, handleComponentEvent, handleClientTrigger, handleOptions, validateAppleMerchant, handleInitialData, getOnlineBankingBanks, handleShowKoreanCardOverlay, handleCreateSourceWithAdyenDetails, handleRetrieveSource, handleUpdateSource, handleCreateRefund, getKonbiniStores, handleAvailablePaymentMethods, handleRedirectComplete, handleStoreDropinData, handleOpenWindow, handleCloseWindow */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -19527,7 +19527,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleStoreDropinData", function() { return handleStoreDropinData; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleOpenWindow", function() { return handleOpenWindow; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleCloseWindow", function() { return handleCloseWindow; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "openRedirect", function() { return openRedirect; });
 /* harmony import */ var _controller_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./controller.html */ "./src/app/components/controller/controller.html");
 /* harmony import */ var _controller_html__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_controller_html__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../post-robot-wrapper */ "./src/post-robot-wrapper.js");
@@ -19546,9 +19545,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _controller_payment_methods__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./controller-payment-methods */ "./src/app/components/controller/controller-payment-methods.js");
 /* harmony import */ var _controller_konbini__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./controller-konbini */ "./src/app/components/controller/controller-konbini.js");
 /* harmony import */ var _api_key_utils__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../api-key-utils */ "./src/app/components/api-key-utils.js");
+/* harmony import */ var _client_dropin_window_data__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../../../client/dropin-window-data */ "./src/client/dropin-window-data.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 
 
 
@@ -20320,16 +20323,39 @@ function handleRedirectComplete() {
   return Object(_controller_create_source_utils__WEBPACK_IMPORTED_MODULE_9__["retrieveSourceAndHandleResponse"])(sourceId, sourceClientSecret, apiKey);
 }
 clientListener.on('storeDropinData', handleStoreDropinData);
+
+function isIESecurityModeEnabled(redirectWindow) {
+  return redirectWindow === null;
+}
+
 function handleStoreDropinData(event) {
+  console.log('storeDropinData', JSON.stringify(event.data));
   var _event$data13 = event.data,
       sourceId = _event$data13.sourceId,
-      clientSecret = _event$data13.clientSecret;
+      clientSecret = _event$data13.clientSecret,
+      url = _event$data13.url,
+      paymentMethodType = _event$data13.paymentMethodType;
   components['controller'].sourceId = sourceId;
   components['controller'].clientSecret = clientSecret;
-  components['controller'].redirectWindow = openRedirect(event.data.url);
-  console.log('redirectWindow in CONTROLLER', components['controller'].redirectWindow);
+  components['controller'].paymentMethodType = paymentMethodType;
+  var redirectWindow = window.open(url, '_blank');
+  console.log('CONTROLLER redirectWindow', redirectWindow);
+
+  if (!isIESecurityModeEnabled(redirectWindow)) {
+    components['controller'].redirectWindowData = {};
+    Object(_client_dropin_window_data__WEBPACK_IMPORTED_MODULE_17__["setRedirectWindowData"])(components['controller'].redirectWindowData, redirectWindow, sendCancelEvent, paymentMethodType);
+  }
+
   return Promise.resolve();
 }
+
+function sendCancelEvent(paymentMethodType) {
+  return clientEmitter.send('redirectComplete', {
+    action: 'cancel',
+    paymentMethodType: paymentMethodType
+  });
+}
+
 componentListener.on('openRedirectWindow', handleOpenWindow);
 function handleOpenWindow(event) {
   components['controller'].redirectWindow = window.open(event.data.url, '_blank');
@@ -20340,55 +20366,32 @@ function handleCloseWindow() {
   components['controller'].redirectWindow.close();
   delete components['controller'].redirectWindow;
   return Promise.resolve();
-} // TODO If IE
+} // TODO Check for multiple instances. If does not work, have redirect-receiver add the controller id then check here.
+// TODO I could append a unique ID to the URL of the redirect receiver, and store that value in controller. Only send event when they match...
+// TODO Refactor to another file
 
-window.addEventListener('storage', function () {
-  // When local storage changes, dump the list to
-  // the console.
-  console.log(JSON.parse(window.localStorage.getItem('drRedirectAction'))); // TODO Send event to client
+window.addEventListener('storage', function (event) {
+  console.log('event old 1', _typeof(event.oldValue));
+  console.log('event', event.newValue, event.oldValue); // FIXME For some reason IE Edge is firing this twice. newValue is undefined
+  // TODO Could make it either value return or cancel
 
-  return handleRedirectComplete().send('runRedirectCompleteSource', {});
+  if (event.key === 'DRRedirectAction' && event.newValue !== null && event.newValue !== 'unknown') {
+    //if (window.localStorage.getItem('DRRedirectAction')) {
+    var action = window.localStorage.getItem('DRRedirectAction');
+    console.log('Storage:', action);
+    console.log('DRRedirectAction');
+    /*if (Object.keys(components['controller'].redirectWindowData).length > 1) {
+      clearRedirectData(components['controller'].redirectWindowData);
+    }*/
+
+    handleRedirectComplete().then(function (response) {
+      return clientEmitter.send('redirectComplete', {
+        response: response,
+        action: action
+      });
+    });
+  }
 });
-function openRedirect(url) {
-  console.log('opening window at url', url);
-  var child = window.open('https://github.digitalriverws.net/pages/lbarnes/drjs-demo/dropin.html', "_blank");
-  var leftDomain = false;
-  var interval = setInterval(function () {
-    try {
-      console.log('child', child);
-      console.log(child.document.domain, document.domain);
-
-      if (child.document.domain === document.domain) {
-        if (leftDomain && child.document.readyState === "complete") {
-          // we're here when the child window returned to our domain
-          clearInterval(interval);
-          console.log("returned: " + child.document.URL);
-          child.postMessage({
-            message: "requestResult"
-          }, "*");
-        }
-      } else {
-        // this code should never be reached,
-        // as the x-site security check throws
-        // but just in case
-        leftDomain = true;
-      }
-    } catch (e) {
-      console.log(e); // we're here when the child window has been navigated away or closed
-
-      if (child.closed) {
-        clearInterval(interval);
-        console.log('closed');
-        return;
-      }
-
-      console.log('catch'); // navigated to another domain
-
-      leftDomain = true;
-    }
-  }, 500);
-  return child;
-}
 
 /***/ }),
 
@@ -22693,6 +22696,37 @@ function getAll() {
   reset: reset,
   getAll: getAll
 });
+
+/***/ }),
+
+/***/ "./src/client/dropin-window-data.js":
+/*!******************************************!*\
+  !*** ./src/client/dropin-window-data.js ***!
+  \******************************************/
+/*! exports provided: clearRedirectData, setRedirectWindowData */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "clearRedirectData", function() { return clearRedirectData; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setRedirectWindowData", function() { return setRedirectWindowData; });
+function clearRedirectData(redirectWindowData) {
+  clearInterval(redirectWindowData.timer);
+} // TODO Change to handle as it is not setting it anymore
+
+function setRedirectWindowData(redirectWindowData, redirectWindow, sendCancelEvent, paymentMethodType) {
+  var timer = setInterval(function () {
+    console.log('is window is closed!', redirectWindowData.window.closed);
+
+    if (redirectWindowData.window.closed) {
+      console.log('window is closed!');
+      clearInterval(timer);
+      sendCancelEvent(paymentMethodType);
+    }
+  }, 1000);
+  redirectWindowData.timer = timer;
+  redirectWindowData.window = redirectWindow;
+}
 
 /***/ }),
 
