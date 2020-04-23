@@ -20395,13 +20395,13 @@ window.addEventListener('storage', function (event) {
       }).catch(function (error) {
         console.error('catch', error);
         clientEmitter.send('redirectComplete', {
-          action: error.toString()
+          action: error.message.toString()
         });
       });
     }
   } catch (e) {
     clientEmitter.send('redirectComplete', {
-      action: e.toString()
+      action: e.message.toString()
     });
     console.error(e);
   }
