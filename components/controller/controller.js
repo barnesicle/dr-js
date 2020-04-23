@@ -18780,11 +18780,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "config", function() { return config; });
 // Holds any configuration data that changes depending on environment
 var config = {
-  domain: "https://github.digitalriverws.net",
+  domain: "https://barnesicle.github.io",
   // eslint-disable-line no-undef
   paymentServiceUrl: "https://api.digitalriverws.com/payments/sources",
   // eslint-disable-line no-undef
-  basePath: "/pages/lbarnes/drjs-demo" || false,
+  basePath: "/dr-js" || false,
   // eslint-disable-line no-undef
   applePayMerchantId: "merchant.com.test.cert.digitalriver",
   // eslint-disable-line no-undef
@@ -20371,7 +20371,8 @@ function handleCloseWindow() {
 // TODO Refactor to another file
 
 window.addEventListener('storage', function (event) {
-  console.log('event old 1', _typeof(event.oldValue));
+  console.log('event oldValue', _typeof(event.oldValue));
+  console.log('event newValue', _typeof(event.newValue));
   console.log('event', event.newValue, event.oldValue); // FIXME For some reason IE Edge is firing this twice. newValue is undefined
   // TODO Could make it either value return or cancel
 
@@ -20380,9 +20381,10 @@ window.addEventListener('storage', function (event) {
     var action = window.localStorage.getItem('DRRedirectAction');
     console.log('Storage:', action);
     console.log('DRRedirectAction');
-    /*if (Object.keys(components['controller'].redirectWindowData).length > 1) {
-      clearRedirectData(components['controller'].redirectWindowData);
-    }*/
+
+    if (Object.keys(components['controller'].redirectWindowData).length > 1) {
+      Object(_client_dropin_window_data__WEBPACK_IMPORTED_MODULE_17__["clearRedirectData"])(components['controller'].redirectWindowData);
+    }
 
     handleRedirectComplete().then(function (response) {
       return clientEmitter.send('redirectComplete', {
