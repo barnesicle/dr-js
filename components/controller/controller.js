@@ -18780,11 +18780,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "config", function() { return config; });
 // Holds any configuration data that changes depending on environment
 var config = {
-  domain: "https://barnesicle.github.io",
+  domain: "https://github.digitalriverws.net",
   // eslint-disable-line no-undef
   paymentServiceUrl: "https://api.digitalriverws.com/payments/sources",
   // eslint-disable-line no-undef
-  basePath: "/dr-js" || false,
+  basePath: "/pages/lbarnes/drjs-demo" || false,
   // eslint-disable-line no-undef
   applePayMerchantId: "merchant.com.test.cert.digitalriver",
   // eslint-disable-line no-undef
@@ -19519,6 +19519,7 @@ function createHandleStorageEvent(components, clientEmitter, handleRedirectCompl
       console.log('DRRedirectAction');
 
       if (redirectWindowDataWasSet(components['controller'].redirectWindowData)) {
+        console.log('clearing data');
         Object(_client_dropin_window_data__WEBPACK_IMPORTED_MODULE_0__["clearRedirectData"])(components['controller'].redirectWindowData);
       }
 

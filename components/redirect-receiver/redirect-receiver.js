@@ -10284,6 +10284,7 @@ function createHandleStorageEvent(components, clientEmitter, handleRedirectCompl
       console.log('DRRedirectAction');
 
       if (redirectWindowDataWasSet(components['controller'].redirectWindowData)) {
+        console.log('clearing data');
         Object(_client_dropin_window_data__WEBPACK_IMPORTED_MODULE_0__["clearRedirectData"])(components['controller'].redirectWindowData);
       }
 
