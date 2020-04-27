@@ -19511,13 +19511,9 @@ function createHandleStorageEvent(components, clientEmitter, handleRedirectCompl
   return function (event) {
     console.log('event oldValue', _typeof(event.oldValue));
     console.log('event newValue', _typeof(event.newValue));
-    console.log('event', event.newValue, event.oldValue); //if (event.key === 'DRRedirectAction' && event.newValue !== null && event.newValue !== 'unknown') {
+    console.log('event', event.newValue, event.oldValue);
 
     if (event.key === REDIRECT_STORAGE_KEY && isCorrectAction(event.newValue)) {
-      var action = window.localStorage.getItem(REDIRECT_STORAGE_KEY);
-      console.log('Storage:', action);
-      console.log('DRRedirectAction');
-
       if (redirectWindowDataWasSet(components['controller'].redirectWindowData)) {
         console.log('clearing data');
         Object(_client_dropin_window_data__WEBPACK_IMPORTED_MODULE_0__["clearRedirectData"])(components['controller'].redirectWindowData);
