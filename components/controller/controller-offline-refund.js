@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 9);
+/******/ 	return __webpack_require__(__webpack_require__.s = 8);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -12154,11 +12154,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "config", function() { return config; });
 // Holds any configuration data that changes depending on environment
 var config = {
-  domain: "https://barnesicle.github.io",
+  domain: "https://github.digitalriverws.net",
   // eslint-disable-line no-undef
   paymentServiceUrl: "https://api.digitalriverws.com/payments/sources",
   // eslint-disable-line no-undef
-  basePath: "/dr-js" || false,
+  basePath: "/pages/lbarnes/drjs-demo" || false,
   // eslint-disable-line no-undef
   applePayMerchantId: "merchant.com.test.cert.digitalriver",
   // eslint-disable-line no-undef
@@ -12276,7 +12276,7 @@ var generateAuthHeader = function generateAuthHeader(apiKey) {
 
 /***/ }),
 
-/***/ 9:
+/***/ 8:
 /*!******************************************************************************************!*\
   !*** multi @babel/polyfill ./src/app/components/controller/controller-offline-refund.js ***!
   \******************************************************************************************/

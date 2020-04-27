@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 21);
+/******/ 	return __webpack_require__(__webpack_require__.s = 12);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -10247,35 +10247,34 @@ try {
 
 /***/ }),
 
-/***/ "./src/app/components/offline-refund/field-utils.js":
-/*!**********************************************************!*\
-  !*** ./src/app/components/offline-refund/field-utils.js ***!
-  \**********************************************************/
-/*! exports provided: getHeightOffsetByID */
+/***/ "./src/app/components/controller/controller-window-opener.js":
+/*!*******************************************************************!*\
+  !*** ./src/app/components/controller/controller-window-opener.js ***!
+  \*******************************************************************/
+/*! exports provided: openWindow */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getHeightOffsetByID", function() { return getHeightOffsetByID; });
-function getHeightOffsetByID(id) {
-  var element = document.getElementById(id);
-  return element != null ? element.offsetHeight : null;
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "openWindow", function() { return openWindow; });
+function openWindow(url) {
+  return window.open(url, '_blank');
 }
 
 /***/ }),
 
-/***/ 21:
-/*!********************************************************************************!*\
-  !*** multi @babel/polyfill ./src/app/components/offline-refund/field-utils.js ***!
-  \********************************************************************************/
+/***/ 12:
+/*!*****************************************************************************************!*\
+  !*** multi @babel/polyfill ./src/app/components/controller/controller-window-opener.js ***!
+  \*****************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! @babel/polyfill */"./node_modules/@babel/polyfill/lib/index.js");
-module.exports = __webpack_require__(/*! C:\dev\ui-architecture\digitalriverpayments\src\app\components\offline-refund\field-utils.js */"./src/app/components/offline-refund/field-utils.js");
+module.exports = __webpack_require__(/*! C:\dev\ui-architecture\digitalriverpayments\src\app\components\controller\controller-window-opener.js */"./src/app/components/controller/controller-window-opener.js");
 
 
 /***/ })
 
 /******/ })));
-//# sourceMappingURL=field-utils.js.map
+//# sourceMappingURL=controller-window-opener.js.map

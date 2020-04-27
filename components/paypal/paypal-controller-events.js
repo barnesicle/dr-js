@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 23);
+/******/ 	return __webpack_require__(__webpack_require__.s = 24);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -10274,7 +10274,7 @@ function onAuthorizeListener(controllerListener, componentData, onAuthorizeEvent
 
 /***/ }),
 
-/***/ 23:
+/***/ 24:
 /*!*************************************************************************************!*\
   !*** multi @babel/polyfill ./src/app/components/paypal/paypal-controller-events.js ***!
   \*************************************************************************************/

@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 21);
+/******/ 	return __webpack_require__(__webpack_require__.s = 11);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -10247,35 +10247,100 @@ try {
 
 /***/ }),
 
-/***/ "./src/app/components/offline-refund/field-utils.js":
-/*!**********************************************************!*\
-  !*** ./src/app/components/offline-refund/field-utils.js ***!
-  \**********************************************************/
-/*! exports provided: getHeightOffsetByID */
+/***/ "./src/app/components/controller/controller-storage-events.js":
+/*!********************************************************************!*\
+  !*** ./src/app/components/controller/controller-storage-events.js ***!
+  \********************************************************************/
+/*! exports provided: REDIRECT_STORAGE_KEY, createHandleStorageEvent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getHeightOffsetByID", function() { return getHeightOffsetByID; });
-function getHeightOffsetByID(id) {
-  var element = document.getElementById(id);
-  return element != null ? element.offsetHeight : null;
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REDIRECT_STORAGE_KEY", function() { return REDIRECT_STORAGE_KEY; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createHandleStorageEvent", function() { return createHandleStorageEvent; });
+/* harmony import */ var _client_dropin_window_data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../client/dropin-window-data */ "./src/client/dropin-window-data.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+
+var REDIRECT_STORAGE_KEY = 'DRRedirectAction';
+
+function redirectWindowDataWasSet(redirectWindowData) {
+  return typeof redirectWindowData !== 'undefined';
+}
+
+function isCorrectAction(action) {
+  return action === 'return' || action === 'cancel';
+}
+
+function createHandleStorageEvent(components, clientEmitter, handleRedirectComplete) {
+  return function (event) {
+    console.log('event oldValue', _typeof(event.oldValue));
+    console.log('event newValue', _typeof(event.newValue));
+    console.log('event', event.newValue, event.oldValue); //if (event.key === 'DRRedirectAction' && event.newValue !== null && event.newValue !== 'unknown') {
+
+    if (event.key === REDIRECT_STORAGE_KEY && isCorrectAction(event.newValue)) {
+      var action = window.localStorage.getItem(REDIRECT_STORAGE_KEY);
+      console.log('Storage:', action);
+      console.log('DRRedirectAction');
+
+      if (redirectWindowDataWasSet(components['controller'].redirectWindowData)) {
+        Object(_client_dropin_window_data__WEBPACK_IMPORTED_MODULE_0__["clearRedirectData"])(components['controller'].redirectWindowData);
+      }
+
+      return handleRedirectComplete().then(function (response) {
+        return clientEmitter.send('redirectComplete', {
+          response: response,
+          action: action
+        });
+      });
+    }
+  };
 }
 
 /***/ }),
 
-/***/ 21:
-/*!********************************************************************************!*\
-  !*** multi @babel/polyfill ./src/app/components/offline-refund/field-utils.js ***!
-  \********************************************************************************/
+/***/ "./src/client/dropin-window-data.js":
+/*!******************************************!*\
+  !*** ./src/client/dropin-window-data.js ***!
+  \******************************************/
+/*! exports provided: clearRedirectData, setRedirectWindowData */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "clearRedirectData", function() { return clearRedirectData; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setRedirectWindowData", function() { return setRedirectWindowData; });
+function clearRedirectData(redirectWindowData) {
+  clearInterval(redirectWindowData.timer);
+}
+function setRedirectWindowData(redirectWindowData, redirectWindow, sendCancelEvent, paymentMethodType) {
+  var timer = setInterval(function () {
+    console.log('is window is closed!', redirectWindowData.window.closed);
+
+    if (redirectWindowData.window.closed) {
+      console.log('window is closed!');
+      clearInterval(timer);
+      sendCancelEvent(paymentMethodType);
+    }
+  }, 1000);
+  redirectWindowData.timer = timer;
+  redirectWindowData.window = redirectWindow;
+}
+
+/***/ }),
+
+/***/ 11:
+/*!******************************************************************************************!*\
+  !*** multi @babel/polyfill ./src/app/components/controller/controller-storage-events.js ***!
+  \******************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! @babel/polyfill */"./node_modules/@babel/polyfill/lib/index.js");
-module.exports = __webpack_require__(/*! C:\dev\ui-architecture\digitalriverpayments\src\app\components\offline-refund\field-utils.js */"./src/app/components/offline-refund/field-utils.js");
+module.exports = __webpack_require__(/*! C:\dev\ui-architecture\digitalriverpayments\src\app\components\controller\controller-storage-events.js */"./src/app/components/controller/controller-storage-events.js");
 
 
 /***/ })
 
 /******/ })));
-//# sourceMappingURL=field-utils.js.map
+//# sourceMappingURL=controller-storage-events.js.map

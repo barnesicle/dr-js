@@ -10247,29 +10247,14 @@ try {
 
 /***/ }),
 
-/***/ "./src/app/components/bridge/bridge.html":
-/*!***********************************************!*\
-  !*** ./src/app/components/bridge/bridge.html ***!
-  \***********************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "bridge\\bridge.html";
-
-/***/ }),
-
 /***/ "./src/app/components/bridge/bridge.js":
 /*!*********************************************!*\
   !*** ./src/app/components/bridge/bridge.js ***!
   \*********************************************/
 /*! no exports provided */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _bridge_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./bridge.html */ "./src/app/components/bridge/bridge.html");
-/* harmony import */ var _bridge_html__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_bridge_html__WEBPACK_IMPORTED_MODULE_0__);
-
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nError: ENOENT: no such file or directory, open 'C:\\dev\\ui-architecture\\digitalriverpayments\\src\\app\\components\\bridge\\bridge.js'");
 
 /***/ }),
 

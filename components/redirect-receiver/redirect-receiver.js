@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 26);
+/******/ 	return __webpack_require__(__webpack_require__.s = 27);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -10247,6 +10247,58 @@ try {
 
 /***/ }),
 
+/***/ "./src/app/components/controller/controller-storage-events.js":
+/*!********************************************************************!*\
+  !*** ./src/app/components/controller/controller-storage-events.js ***!
+  \********************************************************************/
+/*! exports provided: REDIRECT_STORAGE_KEY, createHandleStorageEvent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REDIRECT_STORAGE_KEY", function() { return REDIRECT_STORAGE_KEY; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createHandleStorageEvent", function() { return createHandleStorageEvent; });
+/* harmony import */ var _client_dropin_window_data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../client/dropin-window-data */ "./src/client/dropin-window-data.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+
+var REDIRECT_STORAGE_KEY = 'DRRedirectAction';
+
+function redirectWindowDataWasSet(redirectWindowData) {
+  return typeof redirectWindowData !== 'undefined';
+}
+
+function isCorrectAction(action) {
+  return action === 'return' || action === 'cancel';
+}
+
+function createHandleStorageEvent(components, clientEmitter, handleRedirectComplete) {
+  return function (event) {
+    console.log('event oldValue', _typeof(event.oldValue));
+    console.log('event newValue', _typeof(event.newValue));
+    console.log('event', event.newValue, event.oldValue); //if (event.key === 'DRRedirectAction' && event.newValue !== null && event.newValue !== 'unknown') {
+
+    if (event.key === REDIRECT_STORAGE_KEY && isCorrectAction(event.newValue)) {
+      var action = window.localStorage.getItem(REDIRECT_STORAGE_KEY);
+      console.log('Storage:', action);
+      console.log('DRRedirectAction');
+
+      if (redirectWindowDataWasSet(components['controller'].redirectWindowData)) {
+        Object(_client_dropin_window_data__WEBPACK_IMPORTED_MODULE_0__["clearRedirectData"])(components['controller'].redirectWindowData);
+      }
+
+      return handleRedirectComplete().then(function (response) {
+        return clientEmitter.send('redirectComplete', {
+          response: response,
+          action: action
+        });
+      });
+    }
+  };
+}
+
+/***/ }),
+
 /***/ "./src/app/components/querystring.js":
 /*!*******************************************!*\
   !*** ./src/app/components/querystring.js ***!
@@ -10351,20 +10403,53 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _redirect_receiver_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./redirect-receiver.html */ "./src/app/components/redirect-receiver/redirect-receiver.html");
 /* harmony import */ var _redirect_receiver_html__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_redirect_receiver_html__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _querystring__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../querystring */ "./src/app/components/querystring.js");
+/* harmony import */ var _controller_controller_storage_events__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../controller/controller-storage-events */ "./src/app/components/controller/controller-storage-events.js");
+
 
 
 var actionFromQueryString = Object(_querystring__WEBPACK_IMPORTED_MODULE_1__["getActionFromQueryString"])();
 
 if (actionFromQueryString) {
-  window.localStorage.setItem('DRRedirectAction', 'unknown');
-  window.localStorage.setItem('DRRedirectAction', actionFromQueryString);
+  // Note Setting to unknown is required because if it is already set, setting to the same value will not fire the storage event.
+  window.localStorage.setItem(_controller_controller_storage_events__WEBPACK_IMPORTED_MODULE_2__["REDIRECT_STORAGE_KEY"], 'unknown');
+  window.localStorage.setItem(_controller_controller_storage_events__WEBPACK_IMPORTED_MODULE_2__["REDIRECT_STORAGE_KEY"], actionFromQueryString);
 }
 
 window.close();
 
 /***/ }),
 
-/***/ 26:
+/***/ "./src/client/dropin-window-data.js":
+/*!******************************************!*\
+  !*** ./src/client/dropin-window-data.js ***!
+  \******************************************/
+/*! exports provided: clearRedirectData, setRedirectWindowData */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "clearRedirectData", function() { return clearRedirectData; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setRedirectWindowData", function() { return setRedirectWindowData; });
+function clearRedirectData(redirectWindowData) {
+  clearInterval(redirectWindowData.timer);
+}
+function setRedirectWindowData(redirectWindowData, redirectWindow, sendCancelEvent, paymentMethodType) {
+  var timer = setInterval(function () {
+    console.log('is window is closed!', redirectWindowData.window.closed);
+
+    if (redirectWindowData.window.closed) {
+      console.log('window is closed!');
+      clearInterval(timer);
+      sendCancelEvent(paymentMethodType);
+    }
+  }, 1000);
+  redirectWindowData.timer = timer;
+  redirectWindowData.window = redirectWindow;
+}
+
+/***/ }),
+
+/***/ 27:
 /*!*****************************************************************************************!*\
   !*** multi @babel/polyfill ./src/app/components/redirect-receiver/redirect-receiver.js ***!
   \*****************************************************************************************/
