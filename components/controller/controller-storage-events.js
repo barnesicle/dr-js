@@ -10291,7 +10291,7 @@ function createHandleStorageEvent(components, clientEmitter, handleRedirectCompl
       return handleRedirectComplete().then(function (response) {
         return clientEmitter.send('redirectComplete', {
           response: response,
-          action: action
+          action: event.newValue
         });
       });
     }
@@ -10324,6 +10324,7 @@ function setRedirectWindowData(redirectWindowData, redirectWindow, sendCancelEve
       sendCancelEvent(paymentMethodType);
     }
   }, 1000);
+  console.log('timer created', timer);
   redirectWindowData.timer = timer;
   redirectWindowData.window = redirectWindow;
 }
