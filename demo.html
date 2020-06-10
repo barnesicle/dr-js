@@ -865,10 +865,6 @@
     digitalRiverPayments = new DigitalRiver(apiKey, options);
     digitalRiverPayments2 = new DigitalRiver(apiKey, options);
 
-    let updatedccNumOptions = {
-      placeholderText: 'Number',
-      style: styles
-    };
     let ccExpirationOptions = {
       placeholderText: 'MM/YY',
       style: styles
@@ -879,6 +875,11 @@
     };
     const offlineOptions = {
       style: styles,
+      classes: {
+        base: 'custom--offline-refund-base',
+        invalid: 'custom--invalid',
+        complete: 'custom--complete',
+      },
       refundToken: 'fb19fceb-a5e7-454d-af1a-017b7bd73a5b'
     };
 

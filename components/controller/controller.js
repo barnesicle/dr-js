@@ -18782,13 +18782,13 @@ __webpack_require__.r(__webpack_exports__);
 var config = {
   domain: "https://barnesicle.github.io",
   // eslint-disable-line no-undef
-  paymentServiceUrl: "https://api.digitalriverws.com/payments/sources",
+  paymentServiceUrl: "https://api.digitalriver.com/payments/sources",
   // eslint-disable-line no-undef
   basePath: "/dr-js" || false,
   // eslint-disable-line no-undef
   applePayMerchantId: "merchant.com.test.cert.digitalriver",
   // eslint-disable-line no-undef
-  applePayMerchantValidationUrl: "https://api.digitalriverws.com/payments/apple-pay/session",
+  applePayMerchantValidationUrl: "https://api.digitalriver.com/payments/apple-pay/session",
   //eslint-disable-line no-undef
   beaconStorageUrlNonProd: "https://beacon-test.driv-analytics.com/capture",
   // eslint-disable-line no-undef
@@ -18798,17 +18798,17 @@ var config = {
   // eslint-disable-line no-undef
   adyenTestUrl: "https://checkoutshopper-test.adyen.com/checkoutshopper/sdk/3.2.0/adyen.js",
   // eslint-disable-line no-undef
-  onlineBankingBanksUrl: "https://api.digitalriverws.com/payments/online-banking/banks",
+  onlineBankingBanksUrl: "https://api.digitalriver.com/payments/online-banking/banks",
   // eslint-disable-line no-undef
   originProdKey: "pub.v2.8115061157590058.aHR0cDovL2xvY2FsaG9zdDo4MDgw.FF9fc99f70OC7jS9Ngmqj8z1H_cmKZMXQo_r0cnPAOg",
   // eslint-disable-line no-undef
   originTestKey: "pub.v2.8115061157590058.aHR0cDovL2xvY2FsaG9zdDo4MDgw.FF9fc99f70OC7jS9Ngmqj8z1H_cmKZMXQo_r0cnPAOg",
   // eslint-disable-line no-undef
-  paymentServiceBaseUrl: "https://api.digitalriverws.com/payments",
+  paymentServiceBaseUrl: "https://api.digitalriver.com/payments",
   // eslint-disable-line no-undef
   paypalRedirectBaseUrl: "https://payments-test.digitalriver.com/redirect/",
   // eslint-disable-line no-undef
-  paymentMethodsUrl: "https://api.digitalriverws.com/payments/payment-methods" // eslint-disable-line no-undef
+  paymentMethodsUrl: "https://api.digitalriver.com/payments/payment-methods" // eslint-disable-line no-undef
 
 };
 
@@ -19494,8 +19494,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REDIRECT_STORAGE_KEY", function() { return REDIRECT_STORAGE_KEY; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createHandleStorageEvent", function() { return createHandleStorageEvent; });
 /* harmony import */ var _client_dropin_window_data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../client/dropin-window-data */ "./src/client/dropin-window-data.js");
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
 
 var REDIRECT_STORAGE_KEY = 'DRRedirectAction';
 
@@ -19503,19 +19501,14 @@ function redirectWindowDataWasSet(redirectWindowData) {
   return typeof redirectWindowData !== 'undefined';
 }
 
-function isCorrectAction(action) {
+function isRedirectAction(action) {
   return action === 'return' || action === 'cancel';
 }
 
 function createHandleStorageEvent(components, clientEmitter, handleRedirectComplete) {
   return function (event) {
-    console.log('event oldValue', _typeof(event.oldValue));
-    console.log('event newValue', _typeof(event.newValue));
-    console.log('event', event.newValue, event.oldValue);
-
-    if (event.key === REDIRECT_STORAGE_KEY && isCorrectAction(event.newValue)) {
+    if (event.key === REDIRECT_STORAGE_KEY && isRedirectAction(event.newValue)) {
       if (redirectWindowDataWasSet(components['controller'].redirectWindowData)) {
-        console.log('clearing data');
         Object(_client_dropin_window_data__WEBPACK_IMPORTED_MODULE_0__["clearRedirectData"])(components['controller'].redirectWindowData);
       }
 
@@ -19640,6 +19633,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
  // Create a postRobot listener/emitter tied to the parent window and domain only
 
 var clientDomain = document.referrer === '' ? 'file://' : Object(_utils__WEBPACK_IMPORTED_MODULE_6__["getParentDomain"])();
+console.log('document.referrer', document.referrer);
+console.log('clientDomain', clientDomain);
 var clientListener = _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_1__["default"].listener({
   window: window.parent,
   domain: clientDomain
@@ -20397,7 +20392,6 @@ function isIESecurityModeEnabled(redirectWindow) {
 }
 
 function handleDropInRedirect(event) {
-  console.log('storeDropinData', JSON.stringify(event.data));
   var _event$data13 = event.data,
       sourceId = _event$data13.sourceId,
       clientSecret = _event$data13.clientSecret,
@@ -20432,9 +20426,7 @@ function handleCloseWindow() {
   components['controller'].redirectWindow.close();
   delete components['controller'].redirectWindow;
   return Promise.resolve();
-} // TODO Check for multiple instances. If does not work, have redirect-receiver add the controller id then check here.
-// TODO I could append a unique ID to the URL of the redirect receiver, and store that value in controller. Only send event when they match...
-
+}
 window.addEventListener('storage', Object(_controller_storage_events__WEBPACK_IMPORTED_MODULE_18__["createHandleStorageEvent"])(components, clientEmitter, handleRedirectComplete));
 
 /***/ }),
@@ -21391,7 +21383,7 @@ var paymentServiceRequest = function paymentServiceRequest(data, apiKey, payment
       'Authorization': generateAuthHeader(apiKey)
     }
   };
-  var url = paymentApiUrl !== undefined ? paymentApiUrl : "https://api.digitalriverws.com/payments/sources"; //eslint-disable-line no-undef
+  var url = paymentApiUrl !== undefined ? paymentApiUrl : "https://api.digitalriver.com/payments/sources"; //eslint-disable-line no-undef
 
   return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post(url, data, options);
 };
@@ -21762,10 +21754,6 @@ function mount(node) {
 
       if (typeof this.options !== 'undefined') {
         //arbitrate custom vs default options
-        if (this.type === 'offlinerefund') {
-          this.options.style.base.height = '200px';
-        }
-
         this.options.classes = Object(_css_class_utils__WEBPACK_IMPORTED_MODULE_7__["getCssClasses"])(this.options.classes);
         var elementHeight = Object(_css_class_utils__WEBPACK_IMPORTED_MODULE_7__["getElementHeight"])(this.options.style); // If we have options, send them and wait for them to be sent before creating the component
 
@@ -21779,11 +21767,14 @@ function mount(node) {
         };
         _dataStore__WEBPACK_IMPORTED_MODULE_4__["default"].set(key, data); // Set base css class & empty class since field is empty
 
-        if (this.type !== 'googlepay' && this.type !== 'applepay' && this.type !== 'paypal' && this.type !== 'paypalcredit' && this.type !== 'offlinerefund') {
+        if (this.type !== 'googlepay' && this.type !== 'applepay' && this.type !== 'paypal' && this.type !== 'paypalcredit') {
           var DRElementClass = data.components[this.type].options.classes.base;
           node.classList.add(DRElementClass);
-          var DREmptyClass = data.components[this.type].options.classes.empty;
-          node.classList.add(DREmptyClass);
+
+          if (this.type !== 'offlinerefund') {
+            var DREmptyClass = data.components[this.type].options.classes.empty;
+            node.classList.add(DREmptyClass);
+          }
         }
       } else {
         // If we don't have any options just create the frame
@@ -22759,15 +22750,11 @@ function clearRedirectData(redirectWindowData) {
 }
 function setRedirectWindowData(redirectWindowData, redirectWindow, sendCancelEvent, paymentMethodType) {
   var timer = setInterval(function () {
-    console.log('is window is closed!', redirectWindowData.window.closed);
-
     if (redirectWindowData.window.closed) {
-      console.log('window is closed!');
       clearInterval(timer);
       sendCancelEvent(paymentMethodType);
     }
   }, 1000);
-  console.log('timer created', timer);
   redirectWindowData.timer = timer;
   redirectWindowData.window = redirectWindow;
 }
@@ -22778,13 +22765,15 @@ function setRedirectWindowData(redirectWindowData, redirectWindow, sendCancelEve
 /*!****************************************!*\
   !*** ./src/client/event-middleware.js ***!
   \****************************************/
-/*! exports provided: wrapUpdateWith, wrapUpdateWithShippingAddress, processEvent, processNonCreditCardEvents, removeEventsForType */
+/*! exports provided: wrapUpdateWith, wrapUpdateWithShippingAddress, handleChangeEvent, applyCSSClassesBasedOnEvent, processEvent, processNonCreditCardEvents, removeEventsForType */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "wrapUpdateWith", function() { return wrapUpdateWith; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "wrapUpdateWithShippingAddress", function() { return wrapUpdateWithShippingAddress; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleChangeEvent", function() { return handleChangeEvent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "applyCSSClassesBasedOnEvent", function() { return applyCSSClassesBasedOnEvent; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "processEvent", function() { return processEvent; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "processNonCreditCardEvents", function() { return processNonCreditCardEvents; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeEventsForType", function() { return removeEventsForType; });
@@ -22882,6 +22871,25 @@ function runListenersBasedOnType(data, key, componentType, eventName, publicData
   });
 }
 
+function handleChangeEvent(publicData, node, cssClasses) {
+  if (publicData.complete === true) {
+    node.classList.add(cssClasses.complete);
+  } else {
+    node.classList.remove(cssClasses.complete);
+  }
+
+  if (publicData.empty === true) {
+    node.classList.add(cssClasses.empty);
+  } else {
+    node.classList.remove(cssClasses.empty);
+  }
+
+  if (publicData.error !== null) {
+    node.classList.add(cssClasses.invalid);
+  } else {
+    node.classList.remove(cssClasses.invalid);
+  }
+}
 function applyCSSClassesBasedOnEvent(data, componentType, eventName, publicData) {
   var node = data.components[componentType].parent;
   var cssClasses = data.components[componentType].options.classes;
@@ -22894,23 +22902,7 @@ function applyCSSClassesBasedOnEvent(data, componentType, eventName, publicData)
     }
 
     if (eventName === 'change' || eventName === 'clear') {
-      if (publicData.complete === true) {
-        node.classList.add(cssClasses.complete);
-      } else {
-        node.classList.remove(cssClasses.complete);
-      }
-
-      if (publicData.empty === true) {
-        node.classList.add(cssClasses.empty);
-      } else {
-        node.classList.remove(cssClasses.empty);
-      }
-
-      if (publicData.error !== null) {
-        node.classList.add(cssClasses.invalid);
-      } else {
-        node.classList.remove(cssClasses.invalid);
-      }
+      handleChangeEvent(publicData, node, cssClasses);
     }
 
     if (eventName === 'autofill') {
@@ -22928,7 +22920,6 @@ function applyCSSClassesBasedOnEvent(data, componentType, eventName, publicData)
  * @param {object} publicData
  */
 
-
 function processEvent(key, componentType, eventName, publicData) {
   var data = _dataStore__WEBPACK_IMPORTED_MODULE_0__["default"].get(key);
   runListenersBasedOnType(data, key, componentType, eventName, publicData);
@@ -22944,7 +22935,7 @@ function processEvent(key, componentType, eventName, publicData) {
 }
 
 function isCSSExcludedComponent(componentType) {
-  return componentType === 'offlinerefund' || componentType === 'paypal';
+  return componentType === 'paypal';
 }
 /**
  * Processes events that are not credit card events

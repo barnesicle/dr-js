@@ -12,6 +12,9 @@
   <!--<script src="//cdn.polyfill.io/v3/polyfill.js?ver=5.1.1" type="text/javascript"></script>-->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+        integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
   <link rel="stylesheet" href="css/DigitalRiver.css" type="text/css"/>
   <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
   <style>
@@ -405,7 +408,6 @@
 
 </div>
 <script src="https://www.paypalobjects.com/api/checkout.js"></script>
-<script src="http://localhost:8080/post-robot.ie.js"></script>
 <script type="text/javascript">
   let digitalRiverPayments;
   let owner = {};
@@ -520,7 +522,7 @@
     */
 
     const options = {
-      sessionId: 'a0dfd128-0d55-4a44-9b02-2c075281b780',
+      sessionId: 'e8aae713-1058-4dc2-a417-52510a043f86', //'a0dfd128-0d55-4a44-9b02-2c075281b780',
       billingAddress: {
         firstName: "Fred",
         lastName: "Flintstone",
@@ -532,23 +534,24 @@
           city: "Minnetonka",
           state: "MN",
           postalCode: "55346",
-          country: "FR"
+          country: "US"
         }
       },
       options: { // Not been used at the moment
-        disableCompliance: true,
-        disabledPaymentMethods: ["klarnaCredit"],
-        enabledPaymentMethods: ["creditCard"]
+        // disableCompliance: true,
+        // disabledPaymentMethods: ["klarnaCredit"],
+        // enabledPaymentMethods: ["creditCard"]
       },
       paymentMethodConfiguration: {
+        style: styles,
         creditCard: {
           // cardNumberPlaceholderText: "Credit Card Number",
           // cardExpirationPlaceholderText: "MM/YY",
           // cardCvvPlaceholderText: "CVV",
-          style: styles,
+          //style: styles,
         },
         onlineBanking: {
-          style: styles,
+          //style: styles,
           placeholderText: "Select a Bank",
         },
         googlePay: {
@@ -566,7 +569,7 @@
           }
         },
         konbini: {
-          style: styles,
+          //style: styles,
         },
         payPal: {
           style: {
@@ -592,8 +595,8 @@
         console.log('onCancel', data);
         responseLog('onCancel ' + JSON.stringify(data, null, '\t'))
       },
-      onReady: function() {
-        responseLog('onReady - Dropin');
+      onReady: function(data) {
+        responseLog('onReady - Dropin ' + JSON.stringify(data, null, '\t'));
         document.getElementById('dropin-loading').innerText = '';
       },
 

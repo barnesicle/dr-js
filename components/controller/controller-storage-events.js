@@ -10259,8 +10259,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REDIRECT_STORAGE_KEY", function() { return REDIRECT_STORAGE_KEY; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createHandleStorageEvent", function() { return createHandleStorageEvent; });
 /* harmony import */ var _client_dropin_window_data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../client/dropin-window-data */ "./src/client/dropin-window-data.js");
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
 
 var REDIRECT_STORAGE_KEY = 'DRRedirectAction';
 
@@ -10268,19 +10266,14 @@ function redirectWindowDataWasSet(redirectWindowData) {
   return typeof redirectWindowData !== 'undefined';
 }
 
-function isCorrectAction(action) {
+function isRedirectAction(action) {
   return action === 'return' || action === 'cancel';
 }
 
 function createHandleStorageEvent(components, clientEmitter, handleRedirectComplete) {
   return function (event) {
-    console.log('event oldValue', _typeof(event.oldValue));
-    console.log('event newValue', _typeof(event.newValue));
-    console.log('event', event.newValue, event.oldValue);
-
-    if (event.key === REDIRECT_STORAGE_KEY && isCorrectAction(event.newValue)) {
+    if (event.key === REDIRECT_STORAGE_KEY && isRedirectAction(event.newValue)) {
       if (redirectWindowDataWasSet(components['controller'].redirectWindowData)) {
-        console.log('clearing data');
         Object(_client_dropin_window_data__WEBPACK_IMPORTED_MODULE_0__["clearRedirectData"])(components['controller'].redirectWindowData);
       }
 
@@ -10312,15 +10305,11 @@ function clearRedirectData(redirectWindowData) {
 }
 function setRedirectWindowData(redirectWindowData, redirectWindow, sendCancelEvent, paymentMethodType) {
   var timer = setInterval(function () {
-    console.log('is window is closed!', redirectWindowData.window.closed);
-
     if (redirectWindowData.window.closed) {
-      console.log('window is closed!');
       clearInterval(timer);
       sendCancelEvent(paymentMethodType);
     }
   }, 1000);
-  console.log('timer created', timer);
   redirectWindowData.timer = timer;
   redirectWindowData.window = redirectWindow;
 }

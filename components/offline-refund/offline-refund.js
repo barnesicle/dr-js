@@ -19381,13 +19381,13 @@ __webpack_require__.r(__webpack_exports__);
 var config = {
   domain: "https://barnesicle.github.io",
   // eslint-disable-line no-undef
-  paymentServiceUrl: "https://api.digitalriverws.com/payments/sources",
+  paymentServiceUrl: "https://api.digitalriver.com/payments/sources",
   // eslint-disable-line no-undef
   basePath: "/dr-js" || false,
   // eslint-disable-line no-undef
   applePayMerchantId: "merchant.com.test.cert.digitalriver",
   // eslint-disable-line no-undef
-  applePayMerchantValidationUrl: "https://api.digitalriverws.com/payments/apple-pay/session",
+  applePayMerchantValidationUrl: "https://api.digitalriver.com/payments/apple-pay/session",
   //eslint-disable-line no-undef
   beaconStorageUrlNonProd: "https://beacon-test.driv-analytics.com/capture",
   // eslint-disable-line no-undef
@@ -19397,17 +19397,17 @@ var config = {
   // eslint-disable-line no-undef
   adyenTestUrl: "https://checkoutshopper-test.adyen.com/checkoutshopper/sdk/3.2.0/adyen.js",
   // eslint-disable-line no-undef
-  onlineBankingBanksUrl: "https://api.digitalriverws.com/payments/online-banking/banks",
+  onlineBankingBanksUrl: "https://api.digitalriver.com/payments/online-banking/banks",
   // eslint-disable-line no-undef
   originProdKey: "pub.v2.8115061157590058.aHR0cDovL2xvY2FsaG9zdDo4MDgw.FF9fc99f70OC7jS9Ngmqj8z1H_cmKZMXQo_r0cnPAOg",
   // eslint-disable-line no-undef
   originTestKey: "pub.v2.8115061157590058.aHR0cDovL2xvY2FsaG9zdDo4MDgw.FF9fc99f70OC7jS9Ngmqj8z1H_cmKZMXQo_r0cnPAOg",
   // eslint-disable-line no-undef
-  paymentServiceBaseUrl: "https://api.digitalriverws.com/payments",
+  paymentServiceBaseUrl: "https://api.digitalriver.com/payments",
   // eslint-disable-line no-undef
   paypalRedirectBaseUrl: "https://payments-test.digitalriver.com/redirect/",
   // eslint-disable-line no-undef
-  paymentMethodsUrl: "https://api.digitalriverws.com/payments/payment-methods" // eslint-disable-line no-undef
+  paymentMethodsUrl: "https://api.digitalriver.com/payments/payment-methods" // eslint-disable-line no-undef
 
 };
 
@@ -20013,12 +20013,13 @@ function createEvent(type) {
 /*!********************************************!*\
   !*** ./src/app/components/input-events.js ***!
   \********************************************/
-/*! exports provided: sendEventData, handleEvent, runEventOnElement */
+/*! exports provided: sendEventData, applyInputStylesToEvent, handleEvent, runEventOnElement */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sendEventData", function() { return sendEventData; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "applyInputStylesToEvent", function() { return applyInputStylesToEvent; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleEvent", function() { return handleEvent; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "runEventOnElement", function() { return runEventOnElement; });
 /* harmony import */ var _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../post-robot-wrapper */ "./src/post-robot-wrapper.js");
@@ -20197,7 +20198,6 @@ function applyInputStylesToEvent(eventData, event) {
  * @param prevState
  * @returns {boolean}
  */
-
 
 function hasPreviousState(prevState) {
   return typeof prevState.empty !== 'undefined';
@@ -20411,7 +20411,7 @@ module.exports = __webpack_require__.p + "offline-refund\\offline-refund.html";
 /*!*************************************************************!*\
   !*** ./src/app/components/offline-refund/offline-refund.js ***!
   \*************************************************************/
-/*! exports provided: setFieldsInDOM, handleOptions, resizeIframe, addInstanceOptions, addFields, setRefundToken, getComponentData, handleNumberChange, getAllValuesFromFields, handleFormSubmit, emitComponentReady, createInputField, createSelect, processRefund */
+/*! exports provided: setFieldsInDOM, handleOptions, resizeIframe, addInstanceOptions, addFields, setRefundToken, getComponentData, handleNumberChange, handleChange, handleSelectChange, getAllValuesFromFields, handleFormSubmit, emitComponentReady, createInputField, createSelect, processRefund */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -20424,6 +20424,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setRefundToken", function() { return setRefundToken; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getComponentData", function() { return getComponentData; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleNumberChange", function() { return handleNumberChange; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleChange", function() { return handleChange; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleSelectChange", function() { return handleSelectChange; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getAllValuesFromFields", function() { return getAllValuesFromFields; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleFormSubmit", function() { return handleFormSubmit; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "emitComponentReady", function() { return emitComponentReady; });
@@ -20444,6 +20446,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _client_createComponent__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../client/createComponent */ "./src/client/createComponent.js");
 /* harmony import */ var _field_utils__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./field-utils */ "./src/app/components/offline-refund/field-utils.js");
 /* harmony import */ var _localization_localizated_messages__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../localization/localizated-messages */ "./src/app/components/localization/localizated-messages.js");
+/* harmony import */ var _options__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../options */ "./src/app/components/options.js");
+
 
 
 
@@ -20495,9 +20499,15 @@ function setFieldsInDOM(data) {
 
     if (field.type === 'select') {
       var select = createSelect(field);
+      Object(_options__WEBPACK_IMPORTED_MODULE_12__["applyOptions"])(select, data.options, {
+        placeholderText: ''
+      });
       inputFieldParent.appendChild(select);
     } else {
       var inputField = createInputField(field);
+      Object(_options__WEBPACK_IMPORTED_MODULE_12__["applyOptions"])(inputField, data.options, {
+        placeholderText: ''
+      });
       inputFieldParent.appendChild(inputField);
     }
 
@@ -20610,7 +20620,26 @@ function getComponentData() {
 function handleNumberChange(event) {
   var initialEventValue = event.target.value;
   event.target.value = Object(_utils_js__WEBPACK_IMPORTED_MODULE_5__["stripLetters"])(initialEventValue);
+  Object(_input_events__WEBPACK_IMPORTED_MODULE_3__["applyInputStylesToEvent"])(generateEventData(event), event);
 }
+function handleChange(event) {
+  Object(_input_events__WEBPACK_IMPORTED_MODULE_3__["applyInputStylesToEvent"])(generateEventData(event), event);
+}
+function handleSelectChange(event) {
+  var data = {
+    empty: event.target.value.length === 0,
+    complete: event.target.value.length !== 0
+  };
+  Object(_input_events__WEBPACK_IMPORTED_MODULE_3__["applyInputStylesToEvent"])(data, event);
+}
+
+function generateEventData(event) {
+  return {
+    empty: event.target.value.length === 0,
+    complete: parseInt(event.target.maxLength, 10) === event.target.value.length
+  };
+}
+
 function getAllValuesFromFields() {
   var data = [];
   var htmlFields = Array.from(document.querySelectorAll('input,select'));
@@ -20665,13 +20694,14 @@ function emitComponentReady() {
 }
 function createInputField(field) {
   var isNumber = typeof field.dataType !== 'undefined' && field.dataType === 'numeric';
-  var validator = isNumber ? handleNumberChange : undefined;
+  var validator = isNumber ? handleNumberChange : handleChange;
   var input = document.createElement('input');
   input.id = field.name;
   input.required = field.mandatory;
   input.type = field.type;
   input.maxLength = field.maxLength;
   input.oninput = validator;
+  input.className = 'base empty';
   return input;
 }
 function createSelect(field) {
@@ -20683,6 +20713,8 @@ function createSelect(field) {
     optionElement.text = option.label;
     selectList.appendChild(optionElement);
   });
+  selectList.className = 'select empty';
+  selectList.onchange = handleSelectChange;
   return selectList;
 }
 
@@ -21664,7 +21696,7 @@ var paymentServiceRequest = function paymentServiceRequest(data, apiKey, payment
       'Authorization': generateAuthHeader(apiKey)
     }
   };
-  var url = paymentApiUrl !== undefined ? paymentApiUrl : "https://api.digitalriverws.com/payments/sources"; //eslint-disable-line no-undef
+  var url = paymentApiUrl !== undefined ? paymentApiUrl : "https://api.digitalriver.com/payments/sources"; //eslint-disable-line no-undef
 
   return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post(url, data, options);
 };
@@ -22035,10 +22067,6 @@ function mount(node) {
 
       if (typeof this.options !== 'undefined') {
         //arbitrate custom vs default options
-        if (this.type === 'offlinerefund') {
-          this.options.style.base.height = '200px';
-        }
-
         this.options.classes = Object(_css_class_utils__WEBPACK_IMPORTED_MODULE_7__["getCssClasses"])(this.options.classes);
         var elementHeight = Object(_css_class_utils__WEBPACK_IMPORTED_MODULE_7__["getElementHeight"])(this.options.style); // If we have options, send them and wait for them to be sent before creating the component
 
@@ -22052,11 +22080,14 @@ function mount(node) {
         };
         _dataStore__WEBPACK_IMPORTED_MODULE_4__["default"].set(key, data); // Set base css class & empty class since field is empty
 
-        if (this.type !== 'googlepay' && this.type !== 'applepay' && this.type !== 'paypal' && this.type !== 'paypalcredit' && this.type !== 'offlinerefund') {
+        if (this.type !== 'googlepay' && this.type !== 'applepay' && this.type !== 'paypal' && this.type !== 'paypalcredit') {
           var DRElementClass = data.components[this.type].options.classes.base;
           node.classList.add(DRElementClass);
-          var DREmptyClass = data.components[this.type].options.classes.empty;
-          node.classList.add(DREmptyClass);
+
+          if (this.type !== 'offlinerefund') {
+            var DREmptyClass = data.components[this.type].options.classes.empty;
+            node.classList.add(DREmptyClass);
+          }
         }
       } else {
         // If we don't have any options just create the frame
@@ -23020,13 +23051,15 @@ function getAll() {
 /*!****************************************!*\
   !*** ./src/client/event-middleware.js ***!
   \****************************************/
-/*! exports provided: wrapUpdateWith, wrapUpdateWithShippingAddress, processEvent, processNonCreditCardEvents, removeEventsForType */
+/*! exports provided: wrapUpdateWith, wrapUpdateWithShippingAddress, handleChangeEvent, applyCSSClassesBasedOnEvent, processEvent, processNonCreditCardEvents, removeEventsForType */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "wrapUpdateWith", function() { return wrapUpdateWith; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "wrapUpdateWithShippingAddress", function() { return wrapUpdateWithShippingAddress; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleChangeEvent", function() { return handleChangeEvent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "applyCSSClassesBasedOnEvent", function() { return applyCSSClassesBasedOnEvent; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "processEvent", function() { return processEvent; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "processNonCreditCardEvents", function() { return processNonCreditCardEvents; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeEventsForType", function() { return removeEventsForType; });
@@ -23124,6 +23157,25 @@ function runListenersBasedOnType(data, key, componentType, eventName, publicData
   });
 }
 
+function handleChangeEvent(publicData, node, cssClasses) {
+  if (publicData.complete === true) {
+    node.classList.add(cssClasses.complete);
+  } else {
+    node.classList.remove(cssClasses.complete);
+  }
+
+  if (publicData.empty === true) {
+    node.classList.add(cssClasses.empty);
+  } else {
+    node.classList.remove(cssClasses.empty);
+  }
+
+  if (publicData.error !== null) {
+    node.classList.add(cssClasses.invalid);
+  } else {
+    node.classList.remove(cssClasses.invalid);
+  }
+}
 function applyCSSClassesBasedOnEvent(data, componentType, eventName, publicData) {
   var node = data.components[componentType].parent;
   var cssClasses = data.components[componentType].options.classes;
@@ -23136,23 +23188,7 @@ function applyCSSClassesBasedOnEvent(data, componentType, eventName, publicData)
     }
 
     if (eventName === 'change' || eventName === 'clear') {
-      if (publicData.complete === true) {
-        node.classList.add(cssClasses.complete);
-      } else {
-        node.classList.remove(cssClasses.complete);
-      }
-
-      if (publicData.empty === true) {
-        node.classList.add(cssClasses.empty);
-      } else {
-        node.classList.remove(cssClasses.empty);
-      }
-
-      if (publicData.error !== null) {
-        node.classList.add(cssClasses.invalid);
-      } else {
-        node.classList.remove(cssClasses.invalid);
-      }
+      handleChangeEvent(publicData, node, cssClasses);
     }
 
     if (eventName === 'autofill') {
@@ -23170,7 +23206,6 @@ function applyCSSClassesBasedOnEvent(data, componentType, eventName, publicData)
  * @param {object} publicData
  */
 
-
 function processEvent(key, componentType, eventName, publicData) {
   var data = _dataStore__WEBPACK_IMPORTED_MODULE_0__["default"].get(key);
   runListenersBasedOnType(data, key, componentType, eventName, publicData);
@@ -23186,7 +23221,7 @@ function processEvent(key, componentType, eventName, publicData) {
 }
 
 function isCSSExcludedComponent(componentType) {
-  return componentType === 'offlinerefund' || componentType === 'paypal';
+  return componentType === 'paypal';
 }
 /**
  * Processes events that are not credit card events
