@@ -7296,13 +7296,13 @@ __webpack_require__.r(__webpack_exports__);
 var config = {
   domain: "https://github.digitalriverws.net",
   // eslint-disable-line no-undef
-  paymentServiceUrl: "http://dispatch-test.digitalriver.com/payments/sources",
+  paymentServiceUrl: "https://dispatch-test.digitalriver.com/payments/sources",
   // eslint-disable-line no-undef
   basePath: "/pages/lbarnes/drjs-demo" || false,
   // eslint-disable-line no-undef
   applePayMerchantId: "merchant.com.test.cert.digitalriver",
   // eslint-disable-line no-undef
-  applePayMerchantValidationUrl: "http://dispatch-test.digitalriver.com/payments/apple-pay/session",
+  applePayMerchantValidationUrl: "https://dispatch-test.digitalriver.com/payments/apple-pay/session",
   //eslint-disable-line no-undef
   beaconStorageUrlNonProd: "https://beacon-test.driv-analytics.com/capture",
   // eslint-disable-line no-undef
@@ -7316,19 +7316,19 @@ var config = {
   // eslint-disable-line no-undef
   adyenProdIntegrity: "sha384-wG2z9zSQo61EIvyXmiFCo+zB3y0ZB4hsrXVcANmpP8HLthjoQJQPBh7tZKJSV8jA",
   // eslint-disable-line no-undef
-  onlineBankingBanksUrl: "http://dispatch-test.digitalriver.com/payments/online-banking/banks",
+  onlineBankingBanksUrl: "https://dispatch-test.digitalriver.com/payments/online-banking/banks",
   // eslint-disable-line no-undef
   originProdKey: "pub.v2.8115061157590058.aHR0cDovL2xvY2FsaG9zdDo4MDgw.FF9fc99f70OC7jS9Ngmqj8z1H_cmKZMXQo_r0cnPAOg",
   // eslint-disable-line no-undef
   originTestKey: "pub.v2.8115061157590058.aHR0cDovL2xvY2FsaG9zdDo4MDgw.FF9fc99f70OC7jS9Ngmqj8z1H_cmKZMXQo_r0cnPAOg",
   // eslint-disable-line no-undef
-  paymentServiceBaseUrl: "http://dispatch-test.digitalriver.com/payments",
+  paymentServiceBaseUrl: "https://dispatch-test.digitalriver.com/payments",
   // eslint-disable-line no-undef
   paypalRedirectBaseUrl: "https://payments-test.digitalriver.com/redirect/",
   // eslint-disable-line no-undef
-  paymentMethodsUrl: "http://dispatch-test.digitalriver.com/payments/payment-methods",
+  paymentMethodsUrl: "https://dispatch-test.digitalriver.com/payments/payment-methods",
   // eslint-disable-line no-undef
-  apiUrl: "http://dispatch-test.digitalriver.com" // eslint-disable-line no-undef
+  apiUrl: "https://dispatch-test.digitalriver.com" // eslint-disable-line no-undef
 
 };
 
@@ -7810,7 +7810,7 @@ var paymentServiceRequest = function paymentServiceRequest(data, apiKey, payment
       'Authorization': generateAuthHeader(apiKey)
     }
   };
-  var url = paymentApiUrl !== undefined ? paymentApiUrl : "http://dispatch-test.digitalriver.com/payments/sources"; //eslint-disable-line no-undef
+  var url = paymentApiUrl !== undefined ? paymentApiUrl : "https://dispatch-test.digitalriver.com/payments/sources"; //eslint-disable-line no-undef
 
   return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post(url, data, options);
 };
