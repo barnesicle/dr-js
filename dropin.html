@@ -8,8 +8,9 @@
   <meta charset="utf-8"/>
   <title>Example Dropin Page</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <script src="//cdn.polyfill.io/v3/polyfill.js?ver=5.1.1" type="text/javascript"></script>
   <script src="//unpkg.com/axios/dist/axios.min.js"></script>
-  <!--<script src="//cdn.polyfill.io/v3/polyfill.js?ver=5.1.1" type="text/javascript"></script>-->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
@@ -163,6 +164,7 @@
     <div class="container">
       <div class="py-5 text-center">
         <h2>Checkout form</h2>
+        <a href="/v1/dropin.html">Click here to generate a referrer</a>
         <span style="color:red" id="message"></span>
         <p class="lead"></p>
       </div>
@@ -279,6 +281,7 @@
                         <option value="DE">DE</option>
                         <option value="KR">KR</option>
                         <option value="JP">JP</option>
+                        <option value="CN">CN</option>
                       </select>
                       <div class="invalid-feedback">
                         Please select a valid country.
@@ -407,7 +410,7 @@
 <div class="footer">
 
 </div>
-<script src="https://www.paypalobjects.com/api/checkout.js"></script>
+<!--<script src="https://www.paypalobjects.com/api/checkout.js"></script>-->
 <script type="text/javascript">
   let digitalRiverPayments;
   let owner = {};
@@ -420,6 +423,7 @@
   let styles = {
     base: {
       color: '#495057',
+      padding: '2px 0 0 6px',
       height: '35px',
       fontSize: '1rem',
       fontFamily: 'apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif',
@@ -475,80 +479,94 @@
     });
   }
 
-  function onLoad() {
-    var isIE = !!window.MSInputMethodContext && !!document.documentMode;
-    //console.log(isIE);
-    if(navigator.userAgent.indexOf('MSIE')!==-1
-            || navigator.appVersion.indexOf('Trident/') > -1){
-      isIE = true;
-      /* Microsoft Internet Explorer detected in. */
+  function getURLParamOrDefault(name, defaultValue) {
+    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+    if (results == null){
+      return defaultValue;
     }
-    if(!isIE) {
-      let urlParams = new URLSearchParams(window.location.search);
+    else {
+      return decodeURI(results[1]) || 0;
+    }
+  }
 
-      if(urlParams.get('sourceId')) {
-        responseLog('Shopper has returned from redirect. <br/> sourceId ' + urlParams.get('sourceId') + ' can now be used for payment');
+  function getUseEnteredBillingAddressParam() {
+    return getURLParamOrDefault('useEnteredBillingAddress','false');
+  }
+
+  function initializeDropin() {
+    const sessionId = getURLParamOrDefault('sessionId', 'c09e1774-4f6d-47da-8617-ba42a87dd5e8');
+
+    const billingAddressCountry = getURLParamOrDefault('billingAddressCountry', "US");
+
+    const billingAddress = getUseEnteredBillingAddressParam() === 'true' ? owner : {
+      firstName: "Fred",
+      lastName: "Flintstone",
+      email: "test@digitalriver.com",
+      phoneNumber: "000-000-0000",
+      address: {
+        line1: "10380 Bren Road West",
+        line2: "Ichikawa-shi",
+        city: "Minnetonka",
+        state: "MN",
+        postalCode: "55346",
+        country: billingAddressCountry
       }
+    };
 
-    }
+    const flow = getURLParamOrDefault('flow', ''); // managePaymentMethods
+    const showSavePaymentAgreement = getURLParamOrDefault('showSavePaymentAgreement', 'false'); // managePaymentMethods
+    const showComplianceSection = getURLParamOrDefault('showComplianceSection', 'true');
+    const showTermsOfSaleDisclosure = getURLParamOrDefault('showTermsOfSaleDisclosure', 'false');
+    const recurringModel = getURLParamOrDefault('recurringModel', undefined);
+    const usage = getURLParamOrDefault('usage', undefined);
+    const disableAutomaticRedirects = getURLParamOrDefault('disableAutomaticRedirects', 'false');
+    const returnUrl = getURLParamOrDefault('returnUrl', undefined);
+    const cancelUrl = getURLParamOrDefault('cancelUrl', undefined);
 
-    const apiKey = 'pk_hc_b230cec5ef7c44a992af0bcf180ccfaf'; // pk_hc_b230cec5ef7c44a992af0bcf180ccfaf
-    // let apiKey = 'pk_test_d6b3712c81c640288142f204a88f3de5'; // NOTE: Use this key for paypal for test mode / to display mock page
-    //let apiKey = 'cc203ec2d74e4002a7e341abd6df6eb5'; // DoDJS15
+    console.log('Session ID', sessionId);
+    console.log('Flow', flow);
+    console.log('showSavePaymentAgreement', showSavePaymentAgreement);
+    console.log('showComplianceSection', showComplianceSection);
+    console.log('recurringModel', recurringModel);
+    console.log('showTermsOfSaleDisclosure', showTermsOfSaleDisclosure);
+    console.log('disableAutomaticRedirects', disableAutomaticRedirects);
+    console.log('billingAddressCountry', billingAddressCountry);
+    console.log('returnUrl', returnUrl);
+    console.log('cancelUrl', cancelUrl);
 
-    const instanceOptions = { 'locale': 'en-US'};
-    digitalRiverPayments = new DigitalRiver(apiKey, instanceOptions);
-
-
-    // *** SESSION IDS
-    // pk_hc_8e3f70c75f314c46855e840ba7a8baab
-    // FR: e40a04e1-3cf8-47a1-acf5-c6eb14c0df8c
-    // US (no country): 8d6df7ce-2a43-4edf-b57c-b5c9bac08515
-    // US: 945c1e32-ee54-401e-a185-ddcf62980113
-    // JP-JPY: 55e7a1d2-19c0-4b8c-8172-baa3e775dc3e
-    // DE-EUR: c8ad8392-3923-4891-a65a-0eb0b8d5ba0c
-
-    // paylive systest key:  pk_hc_b230cec5ef7c44a992af0bcf180ccfaf
-    /*
-    d6deb2b4-347e-431e-9d56-095038e0e338 //US, USD PayPal
-    78c37d07-c20c-4be3-aac9-4438aaa40f27 //DE, EUR PayPal
-    a0dfd128-0d55-4a44-9b02-2c075281b780 //FR, EUR PayPal
-    8d0ad758-d12b-4f32-8b06-a4b76eebeb1a //JP, JPY PayPal
-
-    e8aae713-1058-4dc2-a417-52510a043f86 //US, USD PayPal Billing
-    356a1bb3-baa5-452f-b212-aff85995e379 //DE, EUR PayPal Billing
-    fd7e8221-0c46-45fe-ac8c-d4bc6bb0e26f //FR, EUR PayPal Billing
-    5ee58739-0e23-4a60-af1b-c25f46b6f52d //JP, JPY PayPal Billing
-    */
-
-    const options = {
-      sessionId: 'e8aae713-1058-4dc2-a417-52510a043f86', //'a0dfd128-0d55-4a44-9b02-2c075281b780',
-      billingAddress: {
-        firstName: "Fred",
-        lastName: "Flintstone",
-        email: "test@digitalriver.com",
-        phoneNumber: "000-000-0000",
-        address: {
-          line1: "10380 Bren Road West",
-          line2: "Ichikawa-shi",
-          city: "Minnetonka",
-          state: "MN",
-          postalCode: "55346",
-          country: "US"
+    const configuration = {
+      sessionId: sessionId,
+      billingAddress: billingAddress,
+      options: {
+        flow: flow,
+        recurringModel: recurringModel,
+        showSavePaymentAgreement: showSavePaymentAgreement === 'true',
+        showComplianceSection: showComplianceSection === 'true',
+        usage,
+        showTermsOfSaleDisclosure: showTermsOfSaleDisclosure === 'true',
+        redirect: {
+          returnUrl: returnUrl,
+          cancelUrl: cancelUrl,
+          disableAutomaticRedirects: disableAutomaticRedirects === 'true',
+        },
+        button: {
+          //type: 'custom',
+          //buttonText: 'Pay Right Now!'
         }
       },
-      options: { // Not been used at the moment
-        // disableCompliance: true,
-        // disabledPaymentMethods: ["klarnaCredit"],
-        // enabledPaymentMethods: ["creditCard"]
-      },
       paymentMethodConfiguration: {
+        //enabledPaymentMethods: ['googlePay', 'creditCard'],
+        //disabledPaymentMethods: ['creditCard'],
         style: styles,
+        msts: {
+          enrollmentUrl: 'http://testme.com'
+        },
         creditCard: {
           // cardNumberPlaceholderText: "Credit Card Number",
           // cardExpirationPlaceholderText: "MM/YY",
           // cardCvvPlaceholderText: "CVV",
           //style: styles,
+          mask: true
         },
         onlineBanking: {
           //style: styles,
@@ -595,14 +613,72 @@
         console.log('onCancel', data);
         responseLog('onCancel ' + JSON.stringify(data, null, '\t'))
       },
-      onReady: function(data) {
+      onReady: function (data) {
         responseLog('onReady - Dropin ' + JSON.stringify(data, null, '\t'));
         document.getElementById('dropin-loading').innerText = '';
       },
 
     };
 
-    digitalRiverPayments.createDropin(options).mount('dropin');
+    digitalRiverPayments.createDropin(configuration).mount('dropin');
+  }
+
+  function onLoad() {
+    let isIE = !!window.MSInputMethodContext && !!document.documentMode;
+    //console.log(isIE);
+    if(navigator.userAgent.indexOf('MSIE')!==-1
+            || navigator.appVersion.indexOf('Trident/') > -1){
+      isIE = true;
+      /* Microsoft Internet Explorer detected in. */
+    }
+    if(!isIE) {
+      let urlParams = new URLSearchParams(window.location.search);
+
+      if(urlParams.get('sourceId')) {
+        responseLog('Shopper has returned from redirect. <br/> sourceId ' + urlParams.get('sourceId') + ' can now be used for payment');
+      }
+
+    }
+
+    // pk_hc_b230cec5ef7c44a992af0bcf180ccfaf
+    const apiKey = getURLParamOrDefault('apiKey','pk_hc_b230cec5ef7c44a992af0bcf180ccfaf');
+    // let apiKey = 'pk_test_d6b3712c81c640288142f204a88f3de5'; // NOTE: Use this key for paypal for test mode / to display mock page
+    //let apiKey = 'cc203ec2d74e4002a7e341abd6df6eb5'; // DoDJS15
+
+    const locale = getURLParamOrDefault('locale','en-US');
+    const instanceOptions = { 'locale': locale};
+    digitalRiverPayments = new DigitalRiver(apiKey, instanceOptions);
+
+    // *** SESSION IDS
+    // pk_hc_8e3f70c75f314c46855e840ba7a8baab
+    // FR: e40a04e1-3cf8-47a1-acf5-c6eb14c0df8c
+    // US (no country): 8d6df7ce-2a43-4edf-b57c-b5c9bac08515
+    // US: 945c1e32-ee54-401e-a185-ddcf62980113, d6deb2b4-347e-431e-9d56-095038e0e338
+    // JP-JPY: 55e7a1d2-19c0-4b8c-8172-baa3e775dc3e
+    // DE-EUR: c8ad8392-3923-4891-a65a-0eb0b8d5ba0c
+    // MSTS FR: e808e46a-4f75-4612-90eb-5a508dcfd3d1
+    // MSTS DE: c84bbe3a-b647-442e-a938-6cf5921b5b15
+
+    // paylive systest key:  pk_hc_b230cec5ef7c44a992af0bcf180ccfaf
+    // sessions for paylive systest key:
+    /*
+    c328208b-5ea2-4d21-aa68-7044c36f191d //US, USD (no recurring products), DR Inc entity
+    2088396e-3cfb-4c69-a1e7-657d8669310f //DE, EUR (no recurring products), DR Ireland entity
+    51177514-fbb6-4bd3-ae7e-c19d1dea43bf //FR, EUR (no recurring products), DR Ireland entity
+    8d0ad758-d12b-4f32-8b06-a4b76eebeb1a //JP, JPY PayPal, no entity
+
+    9d0542bf-f68e-4f0b-9b9d-44e77f6014f1 //US, USD (recurring products), DR Inc entity
+    db3d210c-3255-489c-8c9a-1b9a7b7e5c49 //DE, EUR (recurring products), DR Ireland entity
+    aaea255f-8f78-4011-b913-6d37c1daced1 //FR, EUR (recurring products), DR Ireland entity
+    5ee58739-0e23-4a60-af1b-c25f46b6f52d //JP, JPY PayPal Billing, no entity
+
+    71556ae2-d6b3-499c-b879-9e66eb50c2db // FR, EUR, (recurring products), DR Ireland entity billTo FR
+
+    */
+    if (getUseEnteredBillingAddressParam() !== 'true') {
+      document.getElementById('addressLink').click();
+      initializeDropin();
+    }
 
   }
 
@@ -639,6 +715,10 @@
     );
 
     response.innerHTML += 'gathering user\'s address info...<br/>'
+
+    if (getUseEnteredBillingAddressParam() === 'true') {
+      initializeDropin();
+    }
 
   }
 
@@ -762,7 +842,7 @@
   addToCart('5104504200').then(function (sessionId) {
     console.log('session id retrieved.', sessionId)
   }).catch(function (error) {
-    console.error('error getting session', error)
+    console.log('error getting session', error)
   });
 
 </script>

@@ -1,0 +1,112 @@
+(function(e, a) { for(var i in a) e[i] = a[i]; }(window, /******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 25);
+/******/ })
+/************************************************************************/
+/******/ ({
+
+/***/ "./src/app/components/localization/supported-locales.json":
+/*!****************************************************************!*\
+  !*** ./src/app/components/localization/supported-locales.json ***!
+  \****************************************************************/
+/*! exports provided: ar-EG, cs-CZ, da-DK, de-AT, de-CH, de-DE, el-GR, en-AU, en-CA, en-CH, en-GB, en-IE, en-IN, en-MY, en-NL, en-NZ, en-PR, en-SG, en-US, en-ZA, es-AR, es-CL, es-CO, es-EC, es-ES, es-419, es-MX, es-PE, es-VE, fi-FI, fr-BE, fr-CA, fr-CH, fr-FR, hu-HU, it-CH, it-IT, iw-IL, ja-JP, ko-KR, nl-BE, nl-NL, no-NO, pl-PL, pt-BR, pt-PT, ru-RU, sk-SK, sv-SE, th-TH, tr-TR, zh-CN, zh-HK, zh-TW, default */
+/***/ (function(module) {
+
+module.exports = {"ar-EG":{"messageLocale":"ar-EG"},"cs-CZ":{"messageLocale":"cs-CZ"},"da-DK":{"messageLocale":"da-DK"},"de-AT":{"messageLocale":"de-DE"},"de-CH":{"messageLocale":"de-DE"},"de-DE":{"messageLocale":"de-DE"},"el-GR":{"messageLocale":"el-GR"},"en-AU":{"messageLocale":"en-IE"},"en-CA":{"messageLocale":"en-IE"},"en-CH":{"messageLocale":"en-IE"},"en-GB":{"messageLocale":"en-GB"},"en-IE":{"messageLocale":"en-IE"},"en-IN":{"messageLocale":"en-IE"},"en-MY":{"messageLocale":"en-IE"},"en-NL":{"messageLocale":"en-IE"},"en-NZ":{"messageLocale":"en-IE"},"en-PR":{"messageLocale":"en-IE"},"en-SG":{"messageLocale":"en-IE"},"en-US":{"messageLocale":"en-US"},"en-ZA":{"messageLocale":"en-IE"},"es-AR":{"messageLocale":"es-MX"},"es-CL":{"messageLocale":"es-MX"},"es-CO":{"messageLocale":"es-MX"},"es-EC":{"messageLocale":"es-MX"},"es-ES":{"messageLocale":"es-ES"},"es-419":{"messageLocale":"es-MX"},"es-MX":{"messageLocale":"es-MX"},"es-PE":{"messageLocale":"es-MX"},"es-VE":{"messageLocale":"es-MX"},"fi-FI":{"messageLocale":"fi-FI"},"fr-BE":{"messageLocale":"fr-FR"},"fr-CA":{"messageLocale":"fr-CA"},"fr-CH":{"messageLocale":"fr-FR"},"fr-FR":{"messageLocale":"fr-FR"},"hu-HU":{"messageLocale":"hu-HU"},"it-CH":{"messageLocale":"it-IT"},"it-IT":{"messageLocale":"it-IT"},"iw-IL":{"messageLocale":"iw-IL"},"ja-JP":{"messageLocale":"ja-JP"},"ko-KR":{"messageLocale":"ko-KR"},"nl-BE":{"messageLocale":"nl-NL"},"nl-NL":{"messageLocale":"nl-NL"},"no-NO":{"messageLocale":"no-NO"},"pl-PL":{"messageLocale":"pl-PL"},"pt-BR":{"messageLocale":"pt-BR"},"pt-PT":{"messageLocale":"pt-PT"},"ru-RU":{"messageLocale":"ru-RU"},"sk-SK":{"messageLocale":"sk-SK"},"sv-SE":{"messageLocale":"sv-SE"},"th-TH":{"messageLocale":"th-TH"},"tr-TR":{"messageLocale":"tr-TR"},"zh-CN":{"messageLocale":"zh-CN"},"zh-HK":{"messageLocale":"zh-HK"},"zh-TW":{"messageLocale":"zh-TW"}};
+
+/***/ }),
+
+/***/ 25:
+/*!**********************************************************************!*\
+  !*** multi ./src/app/components/localization/supported-locales.json ***!
+  \**********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! C:\dev\ui-architecture\digitalriverpayments\src\app\components\localization\supported-locales.json */"./src/app/components/localization/supported-locales.json");
+
+
+/***/ })
+
+/******/ })));

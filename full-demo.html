@@ -1,0 +1,277 @@
+<!doctype html>
+<html>
+<head>
+    <title>Full DEmo</title>
+    <META http-equiv=Content-Type content="text/html; charset=utf-8">
+    <style>
+        body {
+            font-family: apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif;
+            margin: 4em;
+        }
+        .row {
+            display:flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+        .column {
+            margin: 1em;
+            display:flex;
+            flex-direction:column;
+        }
+        #dropin {
+            width:600px;
+        }
+        #error, .error {color: #b02328}
+        #log {
+            white-space: pre;
+            font-size: .75em;
+            max-height: 800px;
+            overflow-y: scroll;
+            width: 600px;
+        }
+        .setup input, .setup button {
+            width: 300px;
+            padding:2px;
+            margin: 2px;
+        }
+        #enrollmentUrl {
+            width: 100%
+        }
+        .quick {
+            padding: 1em;
+            background-color: #ddd;
+        }
+    </style>
+    <link href="https://js-test.digitalriver.com/PR-599/css/DigitalRiver.css" rel="stylesheet"/>
+
+</head>
+<body>
+<p id="error"></p>
+<hr/>
+<div class="setup">
+    <div class="column">
+        <h1>Setup</h1>
+        <h2>Use this select for quick setup, OR fill in the fields below.</h2>
+        <div class="quick">
+            <select id="localizedSession">
+                <option>Quick Setup</option>
+                <option value="en_US">US Session</option>
+                <option value="en_AU">AU Session</option>
+                <option value="en_GB">GB Session</option>
+                <option value="en_CA">CA (English) Session</option>
+                <option value="fr_CA">CA (French) Session</option>
+                <option value="fr_FR">FR Session</option>
+                <option value="de_DE">DE Session</option>
+                <option value="de_AT">AT Session</option>
+                <option value="es_ES">ES Session</option>
+            </select>
+        </div>
+    </div>
+    <div class="column">
+        <label for="sessionId">Session Id:</label>
+        <input id="sessionId" name="sessionId" type="text" value="c84bbe3a-b647-442e-a938-6cf5921b5b15"/>
+    </div>
+
+    <div class="column">
+        <label for="apiKey">ApiKey:</label>
+        <input id="apiKey" name="apiKey" type="text" value="pk_hc_b230cec5ef7c44a992af0bcf180ccfaf"/>
+    </div>
+
+    <div class="column">
+        <label for="country">Shopper Country:</label>
+        <input id="country" name="country" type="text" value="DE"/>
+    </div>
+
+    <div class="column">
+        <label for="locale">Locale:</label>
+        <input id="locale" name="locale" type="text" value="en-US"/>
+    </div>
+
+    <div class="column">
+        <button id="reset">Restart with these values</button>
+        <button id="refresh">Restart with defaults</button>
+    </div>
+</div>
+
+<hr/>
+<div class="row">
+    <div class="column">
+        <h2>Drop In</h2>
+        <div id="dropin"></div>
+    </div>
+    <div class="column"><h2>Event Log</h2><div id="log"></div></div>
+</div>
+
+
+
+<script src="https://js-test.digitalriver.com/PR-599/DigitalRiver.js"></script>
+<script>
+  var defaultApikey = 'pk_hc_b230cec5ef7c44a992af0bcf180ccfaf';
+  var defaultSessionId = 'c84bbe3a-b647-442e-a938-6cf5921b5b15';
+  var dropin;
+  var defaultLocale = 'en-US';
+  var defaultCountry = 'DE';
+  var defaultEnrollmentUrl = encodeURIComponent('https://msts-german-eur-de-sandbox.b2b.credit/apply?client_reference_id=XXXXXXX&ecommerce_url=https://github.digitalriverws.net/pages/UIArchitecture/DRJS-PR-Testing/PRs/MSTS-37/');
+
+  var apiKey = getURLParamOrDefault('apiKey', defaultApikey);
+  var sessionId = getURLParamOrDefault('sessionId', defaultSessionId);
+  var locale = getURLParamOrDefault('locale', defaultLocale);
+  var country = getURLParamOrDefault('country', defaultCountry)
+  var enrollmentUrl = decodeURIComponent(getURLParamOrDefault('enrollmentUrl', defaultEnrollmentUrl));
+  console.log(defaultEnrollmentUrl)
+  console.log(enrollmentUrl)
+
+  document.getElementById('apiKey').value = apiKey;
+  document.getElementById('sessionId').value = sessionId;
+  document.getElementById('locale').value = locale;
+  document.getElementById('country').value = country;
+  document.getElementById('enrollmentUrl').value = enrollmentUrl;
+
+  var digitalriverpayments = new DigitalRiver(apiKey, {locale: locale});
+
+  document.getElementById('refresh').addEventListener('click', function() {
+    window.location.href = window.location.href.split('?')[0];
+  });
+
+  document.getElementById('reset').addEventListener('click', function() {
+    var newApiKey = document.getElementById('apiKey').value;
+    var newSessionId = document.getElementById('sessionId').value;
+    var newLocale = document.getElementById('locale').value;
+    var newEnrollmentUrl = document.getElementById('enrollmentUrl').value !== '' ? document.getElementById('enrollmentUrl').value : null;
+    var newCountry = document.getElementById('country').value;
+
+    window.location.href = window.location.href.split('?')[0] + '?apiKey=' + newApiKey + '&sessionId=' + newSessionId + '&locale=' + newLocale + '&country=' + newCountry + '&enrollmentUrl=' + encodeURIComponent(newEnrollmentUrl);
+  });
+
+  const config = {
+    sessionId: sessionId,
+    billingAddress: {
+      firstName: 'Sam',
+      lastName: 'Shopper',
+      email: 'sam.shopper@digitalriverjs.com',
+      phoneNumber: '1231231234',
+      address: {
+        line1: 'Neue Mainzer Str. 52-58',
+        line2: '',
+        city: 'Frankfurt',
+        state: '',
+        postalCode: '60311',
+        country: country,
+      }
+    },
+    onSuccess: function (data) {
+      const successMessage = "Success! Now would be a great time for your code to apply the payment source to your shopper or order.\n\n"
+      addContentToLog(successMessage + JSON.stringify(data, null, 4))
+
+
+
+    },
+    onCancel: function (data) {
+      addContentToLog("cancel!\n\n" + JSON.stringify(data, null, 4))
+    },
+    onError: function (data) {
+      addContentToLog("error!\n\n" + JSON.stringify(data, null, 4))
+    },
+    onReady: function (data) {
+      addContentToLog("ready!\n\n" + JSON.stringify(data, null, 4))
+    },
+  }
+
+  try {
+    dropin = digitalriverpayments.createDropin(config).mount('dropin');
+  } catch (error) {
+    addContentToLog('<span class="error">' + error + '</span>')
+  }
+
+  const quickSetupData = {
+    de_DE: {
+      sessionId: '5d004e2f-3e66-4345-a11a-53be477ef185',
+      country: 'DE',
+      locale: 'de',
+    },
+    en_AU: {
+      sessionId: '4284a2af-5fca-4ca6-bdea-b710b2c969e8',
+      country: 'AU',
+      locale: 'en-AU',
+      enrollmentUrl: null
+    },
+    en_CA: {
+      sessionId: '82be89c3-150d-4aa8-b5f8-98cff1f8e3c8',
+      country: 'CA',
+      locale: 'en-CA',
+      enrollmentUrl: null
+    },
+    fr_CA: {
+      sessionId: '5546d302-30b4-4cd0-b357-3c0e99ec2ed1',
+      country: 'CA',
+      locale: 'fr-CA',
+      enrollmentUrl: null
+    },
+    de_AT: {
+      sessionId: '3cb405ca-1679-47e6-bde2-661bdd5d6438',
+      country: 'AT',
+      locale: 'de-AT',
+      enrollmentUrl: null
+    },
+    es_ES: {
+      sessionId: '1250dfca-5fd7-4177-9723-289e640bc109',
+      country: 'ES',
+      locale: 'es-ES',
+      enrollmentUrl: null
+    },
+    fr_FR: {
+      sessionId: '2e88460a-c532-4d9d-8cfd-f7c2c1f4f49e',
+      country: 'FR',
+      locale: 'fr',
+      enrollmentUrl: null
+    },
+    en_GB: {
+      sessionId: '97faa574-d757-44d9-a6b5-b92bb52c7c69',
+      country: 'GB',
+      locale: 'en-GB',
+      enrollmentUrl: null
+    },
+    en_US: {
+      sessionId: '5dfb000c-b0ca-4a48-9ca9-b44452bc89d0',
+      country: 'US',
+      locale: 'en-US',
+      enrollmentUrl: null
+    }
+  }
+
+  document.getElementById('localizedSession').addEventListener('change', function(event) {
+    let locale = event.target.value;
+    const newApiKey = document.getElementById('apiKey').value;
+    const newSessionId = quickSetupData[locale].sessionId;
+    const newLocale = quickSetupData[locale].locale;
+    const newCountry = quickSetupData[locale].country;
+    const newEnrollmentUrl = quickSetupData[locale].enrollmentUrl;
+
+    window.location.href = window.location.href.split('?')[0] + '?apiKey=' + newApiKey + '&sessionId=' + newSessionId + '&locale=' + newLocale + '&country=' + newCountry + '&enrollmentUrl=' + encodeURIComponent(newEnrollmentUrl);
+  });
+
+
+  // helper functions
+  function addContentToLog(content) {
+    const log = document.getElementById('log');
+    let newContent = '\n<hr/>\n' + content + log.innerHTML;
+    log.innerHTML = newContent;
+  }
+
+
+  function getURLParamOrDefault(name, defaultValue) {
+    const results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+    console.log(results)
+    if (results == null){
+      return defaultValue;
+    } else if (results[1] === 'null') {
+      return ''
+    } else {
+      return decodeURI(results[1]) || 0;
+    }
+  }
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8"/>
+    <title>Element Example</title>
+    <style>
+        body {
+            font-family: apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif;
+            margin: 4em;
+        }
+        #log {
+            white-space: pre;
+            font-size: .75em;
+            max-height: 800px;
+            overflow-y: scroll;
+        }
+        .DRElement {
+            border: 1px solid #595959;
+            margin: 1em;
+            width: 200px;
+            padding: .25em;
+        }
+    </style>
+<link href="css/DigitalRiver.css" rel="stylesheet"><script type="text/javascript" src="dropInStyles.js"></script><script type="text/javascript" src="DigitalRiver.js"></script></head>
+<body>
+<h1>Element Example</h1>
+
+<p><label for="testcard">Test credit card number:</label> <input name="testcard" id="testcard" type="text" value="4444222233331111" readonly/></p>
+
+<div id="credit-card-number"></div>
+<div id="credit-card-expiration"></div>
+<div id="credit-card-cvv"></div>
+<button id="handleCreditCard">Submit Payment</button>
+<div id="log"></div>
+<script>
+    window.addEventListener('load', function() {
+        try {
+            var digitalriverpayments = new DigitalRiver('pk_hc_b230cec5ef7c44a992af0bcf180ccfaf');
+
+            var options = {
+                style: {
+                    base: {
+                        fontFamily: 'Arial, Helvetica, sans-serif',
+                        fontSize: '16px',
+                    }
+                }
+            };
+
+            //Create your elements
+            var cardNumber = digitalriverpayments.createElement('cardnumber', options);
+            var cardExpiration = digitalriverpayments.createElement("cardexpiration", options);
+            var cardCVV = digitalriverpayments.createElement("cardcvv", options);
+
+            cardNumber.on('ready', function() {addContentToLog('cardNumber field is ready')});
+            cardExpiration.on('ready', function() {addContentToLog('cardExpiration field is ready')});
+            cardCVV.on('ready', function() {addContentToLog('cardCVV field is ready')});
+
+            cardNumber.on('change', function(event) {addContentToLog(JSON.stringify(event, null, 4))});
+            cardExpiration.on('change', function(event) {addContentToLog(JSON.stringify(event, null, 4))});
+            cardCVV.on('change', function(event) {addContentToLog(JSON.stringify(event, null, 4))});
+
+            document.getElementById('handleCreditCard').addEventListener('click', requestSource);
+
+            //Place the created elements on the page.
+            cardNumber.mount('credit-card-number');
+            cardExpiration.mount('credit-card-expiration');
+            cardCVV.mount('credit-card-cvv');
+        } catch (err) {
+            addContentToLog(err)
+        }
+
+        // helper functions
+        function addContentToLog(content) {
+            var log = document.getElementById('log');
+            log.innerHTML = '\n<hr/>\n' + content + log.innerHTML;
+        }
+
+        function requestSource() {
+            var payload = {
+                "type": "creditCard",
+                "owner": {
+                    firstName: "John",
+                    lastName: "Doe",
+                    email: "john.doe@digitalriver.com",
+                    phoneNumber: "000-000-0000",
+                    address: {
+                        line1: "10380 Bren Road West",
+                        line2: "Suite 123",
+                        city: "Minnetonka",
+                        state: "MN",
+                        postalCode: "55343",
+                        country: "US"
+                    }
+                }
+            };
+
+            digitalriverpayments.createSource(cardCVV, payload).then(function(result) {
+                addContentToLog(JSON.stringify(result, null, 4))
+            }).catch(function(err) {
+                addContentToLog(err)
+            });
+        }
+    })
+
+
+
+
+</script>
+</body>
+</html>
