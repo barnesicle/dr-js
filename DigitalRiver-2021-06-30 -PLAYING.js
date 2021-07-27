@@ -10391,7 +10391,8 @@ function registerComponentWithController(controllerId, component, options) {
     componentType: component.type,
     componentId: component.id,
     options: options
-  }).catch(function () {
+  }).catch(function (error) {
+    console.error('FAILED TO REGISTER COMPONENT', error)
     throw new Error('Unable to register component.');
   });
 }

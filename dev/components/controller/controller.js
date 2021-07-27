@@ -29973,6 +29973,7 @@ function handleRegisterNewComponent(event) {
       componentType = _event$data2.componentType,
       componentId = _event$data2.componentId,
       unsafeOptions = _event$data2.options;
+  console.log('handleRegisterNewComponent', event.data);
 
   if (isComponentRegistered(componentType)) {
     return _babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_3___default().reject("Controller already has component of type '".concat(componentType, "' registered."));
