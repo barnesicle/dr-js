@@ -751,7 +751,6 @@
   let googlePayComponent;
   let applePayComponent;
   let ibpBanksComponent;
-  let offlineRefundComponent;
   let konbiniComponent;
   let paypalComponent;
   let complianceComponent;
@@ -940,15 +939,6 @@
       style: styles,
       mask: true
     };
-    const offlineOptions = {
-      style: styles,
-      classes: {
-        base: 'custom--offline-refund-base',
-        invalid: 'custom--invalid',
-        complete: 'custom--complete',
-      },
-      refundToken: 'fb19fceb-a5e7-454d-af1a-017b7bd73a5b'
-    };
 
 
     googlePayPaymentRequest = digitalRiverPayments.paymentRequest(getDefaultGooglePayData());
@@ -1057,8 +1047,6 @@
       onlineBanking: { currency: 'EUR', country: 'DE' }
     });
 
-    offlineRefundComponent = digitalRiverPayments.createElement('offlinerefund', offlineOptions);
-
     googlePayComponent = digitalRiverPayments.createElement('googlepay', googlePayPaymentRequest);
     applePayComponent = digitalRiverPayments.createElement('applepay', applePayPaymentRequest);
 
@@ -1108,7 +1096,6 @@
     creditCardCvvComponent.mount("cardcvv");
     ibpBanksComponent.mount('ibpbanks');
     konbiniComponent.mount('konbini');
-    offlineRefundComponent.mount('offlinerefund');
     complianceComponent.mount('compliance-details');
     taxIdentifierComponent.mount('tax-identifier');
 
@@ -1436,14 +1423,6 @@
     });
 
     ibpBanksComponent.on('change', function (event) {
-      responseLog(event.elementType + ' change received ' + JSON.stringify(event) + ' for ' + event.elementType);
-    });
-
-    offlineRefundComponent.on('ready', function (event) {
-      responseLog( event.elementType + ' ready received ' + JSON.stringify(event) + ' for ' + event.elementType);
-    });
-
-    offlineRefundComponent.on('change', function (event) {
       responseLog(event.elementType + ' change received ' + JSON.stringify(event) + ' for ' + event.elementType);
     });
 

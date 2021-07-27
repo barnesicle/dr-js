@@ -2550,7 +2550,7 @@ var config = {
   // eslint-disable-line no-undef
   paymentServiceUrl: "https://api.digitalriver.com" + '/payments/sources',
   // eslint-disable-line no-undef
-  basePath: "/pages/lbarnes/drjs-demo" || 0,
+  basePath: "/pages/lbarnes/drjs-demo/dev" || 0,
   // eslint-disable-line no-undef
   applePayMerchantId: "merchant.com.test.cert.digitalriver",
   // eslint-disable-line no-undef
@@ -3942,14 +3942,15 @@ function generateEventData(type, value, eventType, componentData, eventTrigger) 
   }
 
   var validated = validate(componentData, value, type, brand);
-  var isChangeEventForcedErrorToFalse = eventTrigger === 'clear' || eventType === 'change' && eventTrigger !== 'showError' && (_babel_runtime_corejs3_core_js_stable_instance_starts_with__WEBPACK_IMPORTED_MODULE_2___default()(_context = validated.errorType).call(_context, 'incomplete_') || validated.errorType === 'ELEMENT_DATA_REQUIRED');
+  var isRequired = typeof componentData.required !== 'undefined' ? componentData.required === true : true;
+  var isChangeEventForcedErrorToFalse = eventTrigger === 'clear' || isRequired && eventType === 'change' && eventTrigger !== 'showError' && (_babel_runtime_corejs3_core_js_stable_instance_starts_with__WEBPACK_IMPORTED_MODULE_2___default()(_context = validated.errorType).call(_context, 'incomplete_') || validated.errorType === 'ELEMENT_DATA_REQUIRED');
   var isError = isChangeEventForcedErrorToFalse ? false : validated.error;
   var isComplete = isChangeEventForcedErrorToFalse ? false : isError === false; // On Change event - If a value has not been set (no change event has been fired) then return empty as false
 
   var isEmpty = eventType === 'change' && eventTrigger !== 'showError' && typeof previousState.empty === 'undefined' ? false : value.length === 0;
   var errorObject = null;
 
-  if (isError && (value.length > 0 || eventTrigger === 'showError')) {
+  if (isError && isRequired && (value.length > 0 || eventTrigger === 'showError')) {
     // Required errors are ignored.
     var locale = componentData.instanceOptions.locale;
     var localizedMessage = (0,_localization_localized_messages__WEBPACK_IMPORTED_MODULE_7__.getLocaleMessage)(locale, validated.messageCode); // TODO Need to check if locale exists
@@ -4160,7 +4161,9 @@ function runEventOnElement(event, triggerData) {
 
     case 'createSource':
       {
-        var _onChangeEvent = (0,_cross_browser_support__WEBPACK_IMPORTED_MODULE_8__.createEvent)('input'); // Required to force the input event to fire
+        var eventType = triggerData.select === true ? 'change' : 'input';
+
+        var _onChangeEvent = (0,_cross_browser_support__WEBPACK_IMPORTED_MODULE_8__.createEvent)(eventType); // Required to force the input event to fire
 
 
         _onChangeEvent.trigger = 'showError';
@@ -5361,6 +5364,8 @@ function handleMountWithMessage(controllerEmitter, message, componentData, handl
   }).catch(function (error) {
     var _context;
 
+    console.error('MOUNT ERROR', error);
+
     if (error.message && _babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_1___default()(_context = error.message).call(_context, 'No ack for postMessage')) {
       return handleMountWithMessage(controllerEmitter, message, componentData, handleMountData, handleMount, instanceData, emitComponentReady, ++retryPosition);
     }
@@ -6181,6 +6186,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _client_compliance_compliance__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../client/compliance/compliance */ "./src/client/compliance/compliance.js");
 /* harmony import */ var _client_delayedPaymentInstructions_delayedPaymentInstructions__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../client/delayedPaymentInstructions/delayedPaymentInstructions */ "./src/client/delayedPaymentInstructions/delayedPaymentInstructions.js");
 /* harmony import */ var _client_msts_msts__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../client/msts/msts */ "./src/client/msts/msts.js");
+/* harmony import */ var _client_offline_refund_offline_refund__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../client/offline-refund/offline-refund */ "./src/client/offline-refund/offline-refund.js");
+
 
 
 
@@ -6249,9 +6256,11 @@ function config() {
       iframe: '/konbini/konbini.html'
     },
     'offlinerefund': {
-      iframe: '/offline-refund/offline-refund.html',
       ignoreEmptyCssClass: true,
-      ignoreBaseCssClass: true
+      ignoreBaseCssClass: true,
+      create: function create() {
+        return _client_offline_refund_offline_refund__WEBPACK_IMPORTED_MODULE_9__.createOfflineRefund;
+      }
     },
     'paypal': {
       iframe: '/paypal/paypal.html',
@@ -6291,6 +6300,10 @@ function config() {
     },
     'dynamicfield': {
       iframe: '/dynamic-field/dynamic-field.html',
+      canMountMoreThanOne: true
+    },
+    'dynamicselect': {
+      iframe: '/dynamic-select/dynamic-select.html',
       canMountMoreThanOne: true
     }
   };
@@ -6346,8 +6359,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "fieldKey": function() { return /* binding */ fieldKey; }
 /* harmony export */ });
+/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./config */ "./src/app/config.js");
+
 function fieldKey(type, id) {
-  if (type === 'dynamicfield') {
+  if ((0,_config__WEBPACK_IMPORTED_MODULE_0__.canMountMoreThanOne)(type)) {
     return id;
   } else {
     return type;
@@ -12442,7 +12457,7 @@ function processEvent(key, componentType, componentId, eventName, publicData) {
 }
 
 function isCSSExcludedComponent(componentType) {
-  return componentType === 'paypal' || componentType === 'compliance' || componentType === 'taxidentifier';
+  return componentType === 'paypal' || componentType === 'compliance' || componentType === 'taxidentifier' || componentType === 'offlinerefund';
 }
 /**
  * Processes events that are not credit card events
@@ -13160,6 +13175,514 @@ function addHandleGetValue(controllerListener, componentData, elements) {
       poNumber: elements['poNumber'].value,
       notes: elements['notes'].value
     };
+  });
+}
+
+/***/ }),
+
+/***/ "./src/client/offline-refund/offline-refund.js":
+/*!*****************************************************!*\
+  !*** ./src/client/offline-refund/offline-refund.js ***!
+  \*****************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "getElementsState": function() { return /* binding */ getElementsState; },
+/* harmony export */   "createOfflineRefund": function() { return /* binding */ createOfflineRefund; },
+/* harmony export */   "addContainerToDom": function() { return /* binding */ addContainerToDom; },
+/* harmony export */   "addHandleGetValue": function() { return /* binding */ addHandleGetValue; },
+/* harmony export */   "handleOptions": function() { return /* binding */ handleOptions; },
+/* harmony export */   "createElements": function() { return /* binding */ createElements; },
+/* harmony export */   "mountElement": function() { return /* binding */ mountElement; },
+/* harmony export */   "unmountElement": function() { return /* binding */ unmountElement; },
+/* harmony export */   "handleFieldChange": function() { return /* binding */ handleFieldChange; },
+/* harmony export */   "handleFieldBlur": function() { return /* binding */ handleFieldBlur; },
+/* harmony export */   "handleFieldFocus": function() { return /* binding */ handleFieldFocus; },
+/* harmony export */   "handleFieldReady": function() { return /* binding */ handleFieldReady; },
+/* harmony export */   "emitComponentReady": function() { return /* binding */ emitComponentReady; },
+/* harmony export */   "addHandleOptions": function() { return /* binding */ addHandleOptions; },
+/* harmony export */   "handleFormSubmit": function() { return /* binding */ handleFormSubmit; },
+/* harmony export */   "getComponentData": function() { return /* binding */ getComponentData; },
+/* harmony export */   "processRefund": function() { return /* binding */ processRefund; }
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/defineProperty */ "./node_modules/@babel/runtime-corejs3/helpers/esm/defineProperty.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/concat */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/concat.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_map__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/map */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/map.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_map__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_map__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/object/keys */ "./node_modules/@babel/runtime-corejs3/core-js-stable/object/keys.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/for-each */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/for-each.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/object/assign */ "./node_modules/@babel/runtime-corejs3/core-js-stable/object/assign.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/filter */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/filter.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _createComponent__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../createComponent */ "./src/client/createComponent.js");
+/* harmony import */ var _app_components_options__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../app/components/options */ "./src/app/components/options.js");
+/* harmony import */ var _dataStore__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../dataStore */ "./src/client/dataStore.js");
+/* harmony import */ var _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../post-robot-wrapper */ "./src/post-robot-wrapper.js");
+/* harmony import */ var _app_components_config__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../app/components/config */ "./src/app/components/config.js");
+/* harmony import */ var _app_components_input_events__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../app/components/input-events */ "./src/app/components/input-events.js");
+/* harmony import */ var _app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../app/components/localization/localized-messages */ "./src/app/components/localization/localized-messages.js");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var elements = {};
+var fields = [];
+var componentData = {};
+var controllerEmitter;
+var controllerListener;
+var COMPONENT_TYPE = 'offlinerefund';
+function getElementsState() {
+  return elements;
+}
+/**
+ *
+ * @param controllerId
+ * @param key
+ * @param options
+ * @returns {{unmount: unmount, controllerId: (*|null), options: (*|*), destroy: destroy, update: update, id: string, parentNode: null, type: string, mount: mountElement, key: *, on: onEventHandler}}
+ */
+
+function createOfflineRefund(controllerId, key, options) {
+  var id = (0,_createComponent__WEBPACK_IMPORTED_MODULE_7__.generateComponentId)(COMPONENT_TYPE);
+  var component = {
+    id: id,
+    key: key,
+    type: COMPONENT_TYPE,
+    parentNode: null,
+    controllerId: controllerId,
+    mount: mountElement,
+    destroy: destroyElement,
+    on: _createComponent__WEBPACK_IMPORTED_MODULE_7__.onEventHandler,
+    options: (0,_app_components_options__WEBPACK_IMPORTED_MODULE_8__.sanitizeOptionsForType)(options, COMPONENT_TYPE) || {},
+    unmount: unmountElement,
+    update: updateElement,
+    window: Window
+  };
+  componentData = {
+    componentType: COMPONENT_TYPE,
+    componentId: id,
+    controller: {
+      id: controllerId,
+      window: (0,_createComponent__WEBPACK_IMPORTED_MODULE_7__.getComponentWindow)(controllerId)
+    },
+    prevState: {
+      empty: true,
+      complete: false,
+      error: null
+    },
+    options: component.options,
+    key: key
+  };
+  controllerEmitter = _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_10__.default.client({
+    window: componentData.controller.window,
+    domain: _app_components_config__WEBPACK_IMPORTED_MODULE_11__.config.domain
+  });
+  controllerListener = _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_10__.default.listener({
+    window: componentData.controller.window,
+    domain: _app_components_config__WEBPACK_IMPORTED_MODULE_11__.config.domain
+  });
+  addHandleOptions(controllerListener, handleOptions);
+  addHandleGetValue(controllerListener, componentData, elements, fields);
+  return component;
+}
+
+function createDOMContainerUniqueId(controllerId, componentId) {
+  return controllerId + '-' + componentId;
+}
+
+function addContainerToDom(parentId, controllerId, componentId) {
+  var _context, _context2, _context3, _context4, _context5, _context6;
+
+  var uniqueIdForHTML = createDOMContainerUniqueId(controllerId, componentId);
+  var pathToCheckmark = (0,_createComponent__WEBPACK_IMPORTED_MODULE_7__.getComponentsBasePath)() + '/offline-refund';
+
+  var structureHTML = _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_1___default()(_context = _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_1___default()(_context2 = _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_1___default()(_context3 = _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_1___default()(_context4 = _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_1___default()(_context5 = _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_1___default()(_context6 = "<div id=\"".concat(componentId, "\" class=\"main\">\n    <div id=\"")).call(_context6, uniqueIdForHTML, "-offlineRefundForm\">\n      <div id=\"")).call(_context5, uniqueIdForHTML, "-content\" class=\"content\">\n      </div>\n      <div id=\"")).call(_context4, uniqueIdForHTML, "-error\" class=\"DR-offline-refund-error\"></div>\n      <div className=\"buttongroup\">\n        <button id=\"")).call(_context3, uniqueIdForHTML, "-submitButton\" type=\"button\" class=\"DR-offline-refund-button\">Submit</button>\n      </div>\n    </div>\n    <div id=\"")).call(_context2, uniqueIdForHTML, "-success\" style=\"display: none\" class=\"DR-offline-refund-success\">\n      <div>\n        <img src=\"")).call(_context, pathToCheckmark, "/checkmark.svg\" style=\"height: 50px; width: 50px\"/>\n      </div>\n    </div>\n  </div>");
+
+  document.getElementById(parentId).innerHTML += structureHTML;
+  document.getElementById("".concat(uniqueIdForHTML, "-submitButton")).addEventListener('click', handleFormSubmit, false);
+}
+
+function getContainerElement() {
+  return document.getElementById(componentData.componentId);
+}
+
+function alreadyRendered() {
+  return getContainerElement() !== null;
+}
+
+function getError(element) {
+  return element.fieldData.mandatory === true && element.empty === true;
+}
+
+function addHandleGetValue(controllerListener, componentData, elements) {
+  controllerListener.on('getComponentData' + componentData.componentId, function () {
+    var _context7;
+
+    return _babel_runtime_corejs3_core_js_stable_instance_map__WEBPACK_IMPORTED_MODULE_2___default()(_context7 = _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_3___default()(elements)).call(_context7, function (key) {
+      var element = elements[key];
+      return {
+        id: element.component.id,
+        type: element.elementType,
+        error: getError(element)
+      };
+    });
+  });
+}
+
+function addFieldDetailsToState(field, uniqueId) {
+  fields.push({
+    name: field.name,
+    pattern: field.pattern,
+    uniqueId: uniqueId,
+    fieldData: field
+  });
+}
+
+function handleOptions(data) {
+  var parentNodeId = componentData.parentNodeId;
+  var componentId = componentData.componentId;
+  componentData.instanceOptions = data.instanceOptions;
+  componentData.options = data.options;
+  componentData.fields = data.fields;
+  componentData.refundToken = data.options.refundToken;
+  var controllerId = componentData.controller.id;
+  var fields = data.fields;
+
+  if (fields.length === 0) {
+    emitComponentReady();
+    return;
+  }
+
+  if (alreadyRendered()) {
+    destroySubElements();
+    resetData();
+    document.getElementById(parentNodeId).removeChild(document.getElementById(componentId));
+  }
+
+  addContainerToDom(parentNodeId, controllerId, componentId);
+  var contentContainer = document.getElementById(createDOMContainerUniqueId(controllerId, componentId) + '-content');
+
+  _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_4___default()(fields).call(fields, function (field) {
+    var _context8;
+
+    var fieldUniqueId = _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_1___default()(_context8 = "".concat(field.name, "-")).call(_context8, componentId);
+
+    addFieldToDOM(contentContainer, field, componentId, fieldUniqueId);
+    addFieldDetailsToState(field, fieldUniqueId);
+  });
+
+  elements = createElements(controllerId, componentData.key, data.options);
+}
+
+function addFieldToDOM(container, field, componentId, uniqueId) {
+  var row = document.createElement('div');
+  row.className = 'DR-offline-refund-row';
+  var dataParent = document.createElement('div');
+  dataParent.className = 'DR-offline-refund-fields';
+  var displayName = field.mandatory ? field.displayName + '<span class="DR-Required">*</span>' : field.displayName;
+  var nameField = document.createElement('label');
+  nameField.innerHTML = displayName;
+  nameField.className = 'DR-offline-refund-label';
+  var inputFieldParent = document.createElement('div');
+  inputFieldParent.id = uniqueId;
+  inputFieldParent.className = 'DR-offline-refund-parent';
+  var errorMessage = document.createElement('div');
+  errorMessage.className = 'DR-offline-refund-error';
+  errorMessage.id = "".concat(uniqueId, "-error");
+  dataParent.appendChild(nameField);
+  dataParent.appendChild(inputFieldParent);
+  row.appendChild(dataParent);
+  row.appendChild(errorMessage);
+  container.appendChild(row);
+}
+/**
+ *
+ * @param controllerId
+ * @param key
+ * @returns {{cardcvv: {parentId: string, component}, cardnumber: {parentId: string, component}, cardexpiration: {parentId: string, component}}}
+ */
+
+
+function createElements(controllerId, key, options) {
+  var _context9;
+
+  _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_4___default()(fields).call(fields, function (field) {
+    var defaultOptions = {
+      options: {
+        placeholderText: ''
+      },
+      value: '',
+      elementType: field.name,
+      componentType: field.name,
+      sendValue: false,
+      isRequired: field.fieldData.mandatory === true,
+      type: field.fieldData.type === 'numeric' ? 'number' : 'text'
+    };
+
+    if (typeof options.classes !== 'undefined') {
+      defaultOptions.classes = options.classes;
+    }
+
+    if (typeof options.style !== 'undefined') {
+      defaultOptions.style = options.style;
+    }
+
+    if (typeof field.fieldData.options !== 'undefined') {
+      defaultOptions.items = field.fieldData.options;
+    }
+
+    var componentType = field.fieldData.type === 'select' ? 'dynamicselect' : 'dynamicfield';
+    elements[field.name] = {
+      parentId: field.uniqueId,
+      elementType: field.name,
+      options: defaultOptions,
+      focus: false,
+      empty: true,
+      complete: false,
+      ready: false,
+      fieldData: field.fieldData,
+      component: (0,_createComponent__WEBPACK_IMPORTED_MODULE_7__.createComponent)(componentType, controllerId, key, defaultOptions)
+    };
+  });
+
+  var data = _dataStore__WEBPACK_IMPORTED_MODULE_9__.default.get(key);
+
+  _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_4___default()(_context9 = _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_3___default()(elements)).call(_context9, function (key) {
+    var componentData = elements[key];
+    data.components = _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_5___default()({}, data.components, (0,_babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__.default)({}, componentData.component.id, componentData.component.id));
+    var component = componentData.component;
+    (0,_createComponent__WEBPACK_IMPORTED_MODULE_7__.registerComponentWithController)(controllerId, component, componentData.options);
+    component.on('ready', function () {
+      handleFieldReady(componentData.elementType);
+    });
+    component.on('blur', function (details) {
+      handleFieldBlur(componentData.elementType, details);
+    });
+    component.on('focus', function (details) {
+      handleFieldFocus(componentData.elementType, details);
+    });
+    component.on('change', function (details) {
+      handleFieldChange(componentData.elementType, details);
+    });
+  });
+
+  return elements;
+}
+function mountElement(parentNodeId) {
+  var parent = document.getElementById(parentNodeId);
+  componentData.window = window;
+  var data = _dataStore__WEBPACK_IMPORTED_MODULE_9__.default.get(this.key);
+  data.components[this.type] = {
+    'parent': parent,
+    'options': (0,_app_components_options__WEBPACK_IMPORTED_MODULE_8__.sanitizeOptionsForType)(this.options, this.type)
+  };
+  _dataStore__WEBPACK_IMPORTED_MODULE_9__.default.set(this.key, data);
+  this.parentNode = parent;
+  var componentId = this.id;
+  componentData.parentNodeId = parentNodeId;
+  return controllerEmitter.send('mountClientComponent', {
+    componentId: componentData.componentId,
+    componentType: componentData.componentType
+  }).then(function (response) {
+    handleOptions(response.data);
+    mountElements(componentId, elements);
+  });
+}
+
+function mountElements(parentNode, components) {
+  var _context10;
+
+  _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_4___default()(_context10 = _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_3___default()(components)).call(_context10, function (key) {
+    var componentData = components[key];
+    var elementDivId = componentData.parentId;
+    componentData.component.mount(elementDivId);
+  });
+}
+
+function unmountElement() {
+  var _context11;
+
+  _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_4___default()(_context11 = _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_3___default()(elements)).call(_context11, function (elementType) {
+    if (elements[elementType].component.parentNode) {
+      elements[elementType].component.unmount();
+    }
+  });
+
+  _createComponent__WEBPACK_IMPORTED_MODULE_7__.unmount.call(this);
+}
+
+function updateElement(options) {
+  var _context12;
+
+  _createComponent__WEBPACK_IMPORTED_MODULE_7__.update.call(this, options);
+
+  _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_4___default()(_context12 = _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_3___default()(elements)).call(_context12, function (elementType) {
+    elements[elementType].component.update(options);
+  });
+}
+
+function destroySubElements() {
+  var _context13;
+
+  _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_4___default()(_context13 = _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_3___default()(elements)).call(_context13, function (elementType) {
+    elements[elementType].component.destroy();
+  });
+}
+
+function resetData() {
+  elements = {};
+  fields = [];
+}
+
+function destroyElement() {
+  destroySubElements();
+  resetData();
+  return _createComponent__WEBPACK_IMPORTED_MODULE_7__.destroy.call(this);
+}
+
+function updateElementsState(elements, element, details) {
+  elements[element] = _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_5___default()(elements[element], details);
+}
+
+function handleFieldChange(elementType, details) {
+  updateElementsState(elements, elementType, details); //handleOnChangeEvent(elements, elementType, details, componentData);
+}
+function handleFieldBlur(elementType) {
+  updateElementsState(elements, elementType, {
+    focus: false
+  }); //handleOnBlurEvent(elements, elementType, details, componentData);
+}
+function handleFieldFocus(elementType) {
+  updateElementsState(elements, elementType, {
+    focus: true
+  }); //handleOnFocusEvent(elements, elementType, details, componentData);
+}
+function handleFieldReady(elementType) {
+  updateElementsState(elements, elementType, {
+    ready: true
+  });
+  handleReady(elements);
+}
+
+function handleReady(elements) {
+  var _context14;
+
+  var elementsNotReady = _babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_6___default()(_context14 = _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_3___default()(elements)).call(_context14, function (key) {
+    return elements[key].ready !== true;
+  });
+
+  if (elementsNotReady.length === 0 && !componentData.isUpdate) {
+    emitComponentReady();
+  }
+}
+
+function emitComponentReady() {
+  (0,_app_components_input_events__WEBPACK_IMPORTED_MODULE_12__.sendEventData)(componentData.controller, componentData.componentId, componentData.componentType, 'ready', {});
+}
+/**
+ * Adds handleOptions to component
+ * @param controllerListener
+ * @param {Function} handleOptions
+ */
+
+function addHandleOptions(controllerListener, handleOptions) {
+  controllerListener.on('offlineRefundOptions' + componentData.componentId, function (event) {
+    handleOptions(event.data);
+    mountElements(componentData.componentId, elements);
+  });
+}
+function handleFormSubmit(e) {
+  e.preventDefault();
+  var refundToken = getComponentData().refundToken;
+  processRefund(getComponentData().controller.id, refundToken);
+}
+/**
+ * getComponentData returns componentData
+ * @returns {{componentType: string, prevState: {}, controller: {id: (string|*)}, componentId: (string|*)}}
+ */
+
+function getComponentData() {
+  return componentData;
+}
+
+function getMissingDataMessage() {
+  var locale = componentData.instanceOptions.locale;
+  return (0,_app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_13__.getLocaleMessage)(locale, 'offlineRefundInsufficientData');
+}
+
+function getErrorToDisplay(response) {
+  if (typeof response.errors !== 'undefined' && response.errors.length > 0 && response.errors[0].code === 'missing_parameter') {
+    return getMissingDataMessage();
+  } else if (typeof response.errors !== 'undefined' && response.errors.length > 0 && response.errors[0].code === 'unauthorized') {
+    return response.errors[0].message;
+  } else {
+    return getMissingDataMessage();
+  }
+}
+
+function getSubmitButtonInDOM(controllerId, componentId) {
+  return document.getElementById("".concat(createDOMContainerUniqueId(controllerId, componentId), "-submitButton"));
+}
+
+function getFormElement(controllerId, componentId) {
+  return document.getElementById("".concat(createDOMContainerUniqueId(controllerId, componentId), "-offlineRefundForm"));
+}
+
+function getSuccessElement(controllerId, componentId) {
+  return document.getElementById("".concat(createDOMContainerUniqueId(controllerId, componentId), "-success"));
+}
+
+function getErrorElement(controllerId, componentId) {
+  return document.getElementById("".concat(createDOMContainerUniqueId(controllerId, componentId), "-error"));
+}
+
+function processRefund(controllerId, refundToken) {
+  var controllerWindow = (0,_createComponent__WEBPACK_IMPORTED_MODULE_7__.getComponentWindow)(controllerId); // Send message to Controller Frame to call createSource
+
+  _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_10__.default.send(controllerWindow, 'processRefund', {
+    refundToken: refundToken
+  }).then(function () {
+    getFormElement(controllerId, componentData.componentId).style.display = 'none';
+    getSuccessElement(controllerId, componentData.componentId).style.removeProperty('display');
+    var eventData = {
+      complete: true
+    };
+    getSubmitButtonInDOM(controllerId, componentData.componentId).disabled = true;
+    getErrorElement(controllerId, componentData.componentId).innerText = '';
+    (0,_app_components_input_events__WEBPACK_IMPORTED_MODULE_12__.sendEventData)(componentData.controller, componentData.componentId, componentData.componentType, 'change', eventData);
+  }).catch(function (error) {
+    var isMissingData = error.errorCode === 'REQUIRED_FIELDS_NOT_ENTERED';
+
+    if (isMissingData) {
+      getErrorElement(controllerId, componentData.componentId).innerText = getMissingDataMessage() || 'Missing information or incorrect values submitted. Please try again.';
+      var _eventData = {
+        complete: false
+      };
+      (0,_app_components_input_events__WEBPACK_IMPORTED_MODULE_12__.sendEventData)(componentData.controller, componentData.componentId, componentData.componentType, 'change', _eventData);
+      return;
+    }
+
+    getErrorElement(controllerId, componentData.componentId).innerText = getErrorToDisplay(error);
+    var eventData = {
+      complete: false
+    };
+    (0,_app_components_input_events__WEBPACK_IMPORTED_MODULE_12__.sendEventData)(componentData.controller, componentData.componentId, componentData.componentType, 'change', eventData);
   });
 }
 
