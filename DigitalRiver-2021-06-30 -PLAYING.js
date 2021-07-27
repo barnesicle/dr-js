@@ -2550,7 +2550,7 @@ var config = {
   // eslint-disable-line no-undef
   apiUrl: ({"PAYMENT_API_URL":"https://api.digitalriver.com/payments/sources","DOMAIN":"https://js.digitalriver.com","BASE_PATH":"/v1","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).API_URL,
   // eslint-disable-line no-undef
-  componentsVersionId: "/pages/lbarnes/drjs-demo" // eslint-disable-line no-undef
+  componentsVersionId: "/pages/lbarnes/drjs-demo/dev" // eslint-disable-line no-undef
 
 };
 
