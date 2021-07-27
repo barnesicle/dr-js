@@ -159,7 +159,7 @@
     }
 
   </style>
-<link href="css/DigitalRiver.css" rel="stylesheet"><script type="text/javascript" src="dropInStyles.js"></script><script type="text/javascript" src="DigitalRiver.js"></script></head>
+<script defer src="dropInStyles.js"></script><script defer src="DigitalRiver.js"></script><link href="css/DigitalRiver.css" rel="stylesheet"></head>
 
 <body class="bg-light" style="padding-top:50px;">
 <div class="row">
@@ -283,6 +283,8 @@
                         <option value="DE">DE</option>
                         <option value="KR">KR</option>
                         <option value="JP">JP</option>
+                        <option value="NL">NL</option>
+
                       </select>
                       <div class="invalid-feedback">
                         Please select a valid country.
@@ -409,11 +411,6 @@
                   <div class="row">
                     <div id="apple-pay" class="col-md-6 mb-3">
                       <!--apple pay loads here-->
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div id="creditcard">
-                      <!--creditcard element loads here-->
                     </div>
                   </div>
                   <form id="payment-form">
@@ -652,6 +649,25 @@
                 </div>
               </div>
             </div>
+            <div class="card">
+              <div class="card-header" id="headingFive">
+                <h5 class="mb-0">
+                  <button id="ibanLink" class="btn btn-link collapsed" data-toggle="collapse"
+                          data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFour">
+                    IBAN
+                  </button>
+                </h5>
+              </div>
+              <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordion">
+                <div class="card-body">
+                  <div class="row">
+                  </div>
+                  <div id="iban"></div>
+                  <p>example NL IBAN: NL91ABNA0417164300</p>
+                  <button id="createIdealSource" onClick="createIdealSource()">Create iDeal Source with IBAN</button>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="row">
             <div id="source" style="display:none"></div>
@@ -714,13 +730,14 @@
 </div>
 <!--<script src="https://www.paypalobjects.com/api/checkout.js"></script>-->
 <script type="text/javascript">
-  // let apiKey = 'pk_hc_8e3f70c75f314c46855e840ba7a8baab';
+  // let apiKey = 'pk_sys_c2608001bba7477eae22808e1eb138db';
   //let apiKey = 'pk_test_d6b3712c81c640288142f204a88f3de5'; // NOTE: Use this key for paypal for test mode / to display mock page
   //let apiKey = 'cc203ec2d74e4002a7e341abd6df6eb5'; // DoDJS15
   //let apiKey = 'pk_d8013e0122b84103be7b1db903437a46'; //paylive prod key
   //let apiKey = 'pk_hc_b230cec5ef7c44a992af0bcf180ccfaf'; //paylive test key
   //let apiKey = 'pk_test_d6b3712c81c640288142f204a88f3de5'; //headless nonprod
-  let apiKey = 'pk_hc_805a0837ed6a43f5af99caebcddd2b6e'; //test3ds
+  //let apiKey = 'pk_hc_805a0837ed6a43f5af99caebcddd2b6e'; //test3ds
+  let apiKey = 'pk_sys_c2608001bba7477eae22808e1eb138db'; //payservice systest
   let digitalRiverPayments;
   let digitalRiverPayments2;
   let digitalRiverPayments3;
@@ -739,6 +756,7 @@
   let paypalComponent;
   let complianceComponent;
   let taxIdentifierComponent;
+  let ibanComponent;
 
   let googlePayPaymentRequest;
   let googlePayUpdatePaymentRequest;
@@ -748,6 +766,8 @@
   let ccNumComplete = false;
   let ccExpirationComplete = false;
   let ccCVVComplete = false;
+
+  let taxIdentifierComponentData = {};
 
   let styles = {
     base: {
@@ -909,7 +929,7 @@
     const options = { locale: getURLParamOrDefault('locale','en-US'), customerID: 'customer-id-123'};
     digitalRiverPayments = new DigitalRiver(apiKey, options);
     digitalRiverPayments2 = new DigitalRiver(apiKey, options);
-    digitalRiverPayments3 = new DigitalRiver('pk_test_7080969ef67546a8bd47d9537ae5189d', options);
+    digitalRiverPayments3 = new DigitalRiver('pk_test_9ad06f842d02401d8919995225efeb46', options);
 
     let ccExpirationOptions = {
       placeholderText: 'MM/YY',
@@ -917,7 +937,8 @@
     };
     let ccCVVOptions = {
       placeholderText: 'CVV',
-      style: styles
+      style: styles,
+      mask: true
     };
     const offlineOptions = {
       style: styles,
@@ -928,6 +949,7 @@
       },
       refundToken: 'fb19fceb-a5e7-454d-af1a-017b7bd73a5b'
     };
+
 
     googlePayPaymentRequest = digitalRiverPayments.paymentRequest(getDefaultGooglePayData());
 
@@ -1066,10 +1088,19 @@
       },
       taxIdentifier: {
         // "sessionId": "78c37d07-c20c-4be3-aac9-4438aaa40f27", // Has selling entityID : "99b8a047-544e-4ccb-8376-04088b241206",
+        type: getURLParamOrDefault('taxIdentifierType', undefined),
         country: getURLParamOrDefault('country', 'IT'),
-        sellingEntity: 'DR_IRELAND-ENTITY'
+        sellingEntity: getURLParamOrDefault('sellingEntity', 'DR_IRELAND-ENTITY')
       }
     });
+
+    ibanComponent = digitalRiverPayments.createElement('iban', {styles: styles});
+    ibanComponent.mount('iban');
+
+    ibanComponent.on('ready', (data) => {responseLog('iban ready: \n' + JSON.stringify(data));});
+    ibanComponent.on('change', (data) => {responseLog('iban change: \n' + JSON.stringify(data));});
+    ibanComponent.on('blur', (data) => {responseLog('iban blur: \n' + JSON.stringify(data));});
+    ibanComponent.on('focus', (data) => {responseLog('iban focus: \n' + JSON.stringify(data));});
 
     console.log('Calling mount functions');
 
@@ -1451,6 +1482,16 @@
     taxIdentifierComponent.on('change', function (event) {
       console.log('CHANGE', event)
       responseLog(event.elementType + ' change received ' + JSON.stringify(event) + ' for ' + event.elementType);
+      if (event.complete) {
+        taxIdentifierComponentData[event.identifier.type] = {
+          value: event.identifier.value,
+          type: event.identifier.type,
+        }
+        console.log('Tax identifier data', taxIdentifierComponentData)
+      } else {
+        delete taxIdentifierComponentData[event.identifier.type]
+        console.log('Tax identifier data', taxIdentifierComponentData)
+      }
     });
 
 
@@ -1677,6 +1718,30 @@
         document.getElementById("response").innerHTML += "Credit Card Payment response received error: " + JSON.stringify(response, null, '\t');
       } else {
         document.getElementById("response").innerHTML += "Credit Card Payment response: " + "" + JSON.stringify(response.source, null, '\t');
+      }
+    }).catch(function (err)  {
+      console.error('createSource failed:', err);
+    });
+  }
+
+  function createIdealSource() {
+    event.stopPropagation();
+    const payload = {
+      "sessionId": "ec55112b-9eab-4f6e-987f-283cee2d4fa3",
+      "type": "ideal",
+      "owner": owner,
+      "amount": 5,
+      "currency": "EUR",
+      "ideal": {
+        "returnUrl": window.location.href
+      }
+    };
+
+    digitalRiverPayments.createSource(ibanComponent, payload).then( function(response) {
+      if(response.error) {
+        document.getElementById("response").innerHTML += "iDeal Payment response received error: " + JSON.stringify(response, null, '\t');
+      } else {
+        document.getElementById("response").innerHTML += "iDeal Payment response: " + "" + JSON.stringify(response.source, null, '\t');
       }
     }).catch(function (err)  {
       console.error('createSource failed:', err);
@@ -2042,34 +2107,7 @@
 
 
 
-  //creditcard element js
-  const ccOptions = {
-    style: styles,
-    classes: {
-      base: 'cc--base',
-      focus: 'cc--focus',
-      invalid: 'cc--invalid',
-      empty: 'cc--empty',
-      complete: 'cc--complete',
-      webkitAutofill: 'cc--webkit-autofill'
-    }
-  };
-  const drCC = new DigitalRiver(apiKey);
-  const creditcard = drCC.createElement('creditcard', ccOptions);
-  creditcard.on('ready', function(event) {
-    responseLog('creditcard element is ready \n' + JSON.stringify(event))
-  });
-  creditcard.on('focus', function(event) {
-    responseLog('creditcard element is focused \n' + JSON.stringify(event))
-  });
-  creditcard.on('blur', function(event) {
-    responseLog('creditcard element is blurred \n' + JSON.stringify(event))
-  });
-  creditcard.on('change', function(event) {
-    responseLog('creditcard element changed \n' + JSON.stringify(event))
-  });
 
-  creditcard.mount('creditcard');
 </script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

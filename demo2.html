@@ -4,17 +4,18 @@
 <html>
 
 <head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta charset="utf-8"/>
   <title>Client Page</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="//unpkg.com/axios/dist/axios.min.js"></script>
-
+  <script src="//cdn.polyfill.io/v3/polyfill.js?ver=5.1.1" type="text/javascript"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
         integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
   <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <style>
     .xsmall {
       font-size: 60%;
@@ -56,7 +57,7 @@
       border: none;
     }
 
-    .custom--base, .myCustomBase2 {
+    .custom--base, .myCustomBase2, .cc--base {
       border:1px solid #ced4da;
       margin:0 0.2rem;
       border-radius:.25rem;
@@ -69,7 +70,7 @@
       box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
     }
 
-    .custom--focus {
+    .custom--focus, .cc--focus {
       border-color: #80bdff;
       background-color: rgba(128, 189, 255, 0.5);
       outline: 0;
@@ -82,14 +83,14 @@
       box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.31);
     }
 
-    .custom--invalid {
+    .custom--invalid, .cc--invalid {
       border-color: #dc3545;
       background-color: rgba(220, 53, 69, 0.5);
       outline: 0;
       box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.31);
     }
 
-    .DRElement--complete {
+    .DRElement--complete, .cc--complete {
       border-color: #28a745;
       outline: 0;
       box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.31);
@@ -108,7 +109,7 @@
       box-shadow: 0 0 0 0.2rem rgba(219, 69, 24, 0.31);
     }
 
-    .custom--empty {
+    .custom--empty, .cc--empty {
       border-color: #db4518;
       background-color: rgba(219, 69, 24, 0.5);
       outline: 0;
@@ -156,11 +157,11 @@
     .complianceCancellationLink {
       width: 160px;
     }
+
   </style>
- <!--<script type="text/javascript" src="https://js.digitalriver.com/v1/DigitalRiver.js"></script>-->
-  <script type="text/javascript" src="https://barnesicle.github.io/dr-js/DigitalRiver.js"></script>
-  <!--<script type="text/javascript" src="https://storage.googleapis.com/drjs/DigitalRiver.js"></script>-->
-  <!--<script type="text/javascript" src="https://github.digitalriverws.net/pages/lbarnes/drjs-demo/DigitalRiver.js"></script>-->
+<link href="css/DigitalRiver.css" rel="stylesheet">
+  <script type="text/javascript" src="dropInStyles.js"></script>
+  <script type="text/javascript" src="http://localhost:8080/v1/DigitalRiver.js"></script>
 </head>
 
 <body class="bg-light" style="padding-top:50px;">
@@ -413,7 +414,6 @@
                       <!--apple pay loads here-->
                     </div>
                   </div>
-
                   <form id="payment-form">
                     <div class="row" id="creditCardPanel">
                       <div class="col-md-6 mb-3 paymentElement">
@@ -485,11 +485,28 @@
 
                     <div class="row">
                       <div class="col-md-12 mb-3 paymentElement">
+                        <div>
+                          <div id="offlinerefund"></div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-12 mb-3 paymentElement">
                         <div id="ibp">
                           <div id="ibpbanks"></div>
                         </div>
                       </div>
                     </div>
+                    <br /><br /><br />
+                    <div class="row">
+                      <div class="col-md-12 mb-3 paymentElement">
+                          <div>
+                              <div id="konbini"></div>
+                          </div>
+                      </div>
+                    </div>
+
 
                     <hr class="mb-4">
                     <button id="addPaymentButton" class="btn btn-primary btn-lg btn-block" type="submit" onclick="addPayment()">Add Payment
@@ -537,6 +554,10 @@
                       <label for="locale">Locale</label>
                       <select class="custom-select d-block w-100" id="locale" required="">
                         <option value="">Choose...</option>
+                        <option value="es-419">es-419</option>
+                        <option value="de">de</option>
+                        <option value="invalid">invalid</option>
+                        <option value="ar-EG">ar-EG</option>
                         <option value="ar-EG">ar-EG</option>
                         <option value="cs-CZ">cs-CZ</option>
                         <option value="da-DK">da-DK</option>
@@ -607,6 +628,25 @@
                   <button class="btn btn-primary btn-lg btn-block" onclick="complianceData()" type="submit">Get Compliance Details</button>
                   <br/>
                   <div class="row" id="complianceMethod"></div>
+                  <div id="compliance-details"></div>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header" id="headingFour">
+                <h5 class="mb-0">
+                  <button id="taxLink" class="btn btn-link collapsed" data-toggle="collapse"
+                          data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                    Tax Information
+                  </button>
+                  <div class="xsmall" id="taxInfo"></div>
+                </h5>
+              </div>
+              <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+                <div class="card-body">
+                  <div class="row">
+                  </div>
+                  <div id="tax-identifier"></div>
                 </div>
               </div>
             </div>
@@ -619,8 +659,10 @@
             <div class="col-md-12">
               <br/>
               <button id="submitPaymentButton" class="btn btn-primary btn-lg btn-block" onclick="submitCreditCardPayment()">Submit CC Payment</button>
-              <button id="submitPaymentButtonWith3DS" class="btn btn-secondary btn-lg btn-block" onclick="submitCreditCardPaymentWith3DS()">Submit CC Payment with 3DS</button>
+              <button id="submitStoredPaymentButton" class="btn btn-primary btn-lg btn-block" onclick="submitStoredCreditCardPayment()">Submit STORED CC Payment</button>
+              <button id="submitPaymentButtonWith3DS" class="btn btn-secondary btn-lg btn-block" onclick="submitCreditCardPaymentWithSessionId()">Submit CC Payment with 3DS</button>
               <button id="submitIBPPaymentButton" class="btn btn-primary btn-lg btn-block" onclick="submitIbpPayment()">Submit IBP Payment</button>
+              <button id="submitKonbiniPaymentButton" class="btn btn-primary btn-lg btn-block" onclick="submitKonbiniPayment()">Submit Konbini</button>
             </div>
           </div>
         </div>
@@ -654,7 +696,10 @@
     <div>
       <button onclick="destroyField()">Remove Card Number field</button>
       <button onclick="recreateField()">Re-create Card Number field</button>
-      <button onclick="loadItAll()">Load It All</button>
+    </div>
+    <div>
+      <button onclick="retrieveSourceDemo()">Retrieve valid source </button>
+      <button onclick="retrieveBadSourceDemo()">Retrieve invalid source </button>
     </div>
   </div>
 
@@ -665,11 +710,19 @@
 <div class="footer">
 
 </div>
-<script src="https://www.paypalobjects.com/api/checkout.js"></script>
+<!--<script src="https://www.paypalobjects.com/api/checkout.js"></script>-->
 <script type="text/javascript">
-  let apiKey = 'pk_8e3f70c75f314c46855e840ba7a8baab';
+  // let apiKey = 'pk_hc_8e3f70c75f314c46855e840ba7a8baab';
+  //let apiKey = 'pk_test_d6b3712c81c640288142f204a88f3de5'; // NOTE: Use this key for paypal for test mode / to display mock page
   //let apiKey = 'cc203ec2d74e4002a7e341abd6df6eb5'; // DoDJS15
-  //let digitalRiverPayments;
+  //let apiKey = 'pk_d8013e0122b84103be7b1db903437a46'; //paylive prod key
+  //let apiKey = 'pk_hc_b230cec5ef7c44a992af0bcf180ccfaf'; //paylive test key
+  //let apiKey = 'pk_test_d6b3712c81c640288142f204a88f3de5'; //headless nonprod
+  let apiKey = 'pk_hc_805a0837ed6a43f5af99caebcddd2b6e'; //test3ds
+  let digitalRiverPayments;
+  let digitalRiverPayments2;
+  let digitalRiverPayments3;
+
   let owner = {};
   let response = document.getElementById('response');
 
@@ -679,12 +732,16 @@
   let googlePayComponent;
   let applePayComponent;
   let ibpBanksComponent;
+  let offlineRefundComponent;
+  let konbiniComponent;
+  let paypalComponent;
+  let complianceComponent;
+  let taxIdentifierComponent;
 
   let googlePayPaymentRequest;
   let googlePayUpdatePaymentRequest;
 
   let updatedAppleInfo;
-  let paypalSourceId;
 
   let ccNumComplete = false;
   let ccExpirationComplete = false;
@@ -692,6 +749,7 @@
 
   let styles = {
     base: {
+      padding: '0',
       color: '#495057',
       height: '35px',
       fontSize: '1rem',
@@ -726,13 +784,14 @@
       }
     },
     empty: {
-      color: '#db4518',
+      color: '#000000'
+      /*color: '#db4518',
       ':hover': {
         color: '#db4518'
       },
       '::placeholder': {
         color: '#db4518'
-      }
+      }*/
     },
 
   };
@@ -747,7 +806,8 @@
       empty: 'custom--empty',
       complete: 'custom--complete',
       webkitAutofill: 'custom--webkit-autofill'
-    }
+    },
+    mask: true
   };
 
   let sessionClientSecret = ''; // Gets set from API and passed into create source for 3DS
@@ -816,6 +876,17 @@
 
   }
 
+  function getURLParamOrDefault(name, defaultValue) {
+    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+    if (results == null){
+      return defaultValue;
+    }
+    else {
+      return decodeURI(results[1]) || 0;
+    }
+  }
+
+
   function onLoad() {
     var isIE = !!window.MSInputMethodContext && !!document.documentMode;
     //console.log(isIE);
@@ -833,28 +904,28 @@
 
     }
 
+    const options = { locale: getURLParamOrDefault('locale','en-US'), customerID: 'customer-id-123'};
+    digitalRiverPayments = new DigitalRiver(apiKey, options);
+    digitalRiverPayments2 = new DigitalRiver(apiKey, options);
+    digitalRiverPayments3 = new DigitalRiver('pk_test_9ad06f842d02401d8919995225efeb46', options);
 
-
-  }
-
-  window.onload = onLoad;
-
-  function loadItAll() {
-
-    const options = {'locale': 'es-co'};
-    var digitalRiverPayments = new DigitalRiver(apiKey, options);
-
-    let updatedccNumOptions = {
-      placeholderText: 'Number',
-      style: styles
-    };
     let ccExpirationOptions = {
       placeholderText: 'MM/YY',
       style: styles
     };
     let ccCVVOptions = {
       placeholderText: 'CVV',
-      style: styles
+      style: styles,
+      mask: true
+    };
+    const offlineOptions = {
+      style: styles,
+      classes: {
+        base: 'custom--offline-refund-base',
+        invalid: 'custom--invalid',
+        complete: 'custom--complete',
+      },
+      refundToken: 'fb19fceb-a5e7-454d-af1a-017b7bd73a5b'
     };
 
     googlePayPaymentRequest = digitalRiverPayments.paymentRequest(getDefaultGooglePayData());
@@ -960,28 +1031,64 @@
 
     ibpBanksComponent = digitalRiverPayments.createElement('onlinebanking', {
       style: styles,
-      onlineBanking: {currency: 'EUR', country: 'DE'},
-      placeholderText: 'Select a bank'
+      onlineBanking: { currency: 'EUR', country: 'DE' }
     });
+
+    offlineRefundComponent = digitalRiverPayments.createElement('offlinerefund', offlineOptions);
 
     googlePayComponent = digitalRiverPayments.createElement('googlepay', googlePayPaymentRequest);
     applePayComponent = digitalRiverPayments.createElement('applepay', applePayPaymentRequest);
 
+    konbiniComponent = digitalRiverPayments.createElement('konbini', {
+      style: styles,
+    });
+
+    complianceComponent =  digitalRiverPayments.createElement('compliance', {
+      classes: {
+        base: 'DRElement-Compliance'
+      },
+      compliance: {
+        locale: 'en-US',
+        entity: 'DR_INC-ENTITY'
+      }
+    });
+
+    taxIdentifierComponent =  digitalRiverPayments3.createElement('taxidentifier', {
+      style: styles,
+      classes: {
+        base: 'cc--base',
+        focus: 'cc--focus',
+        invalid: 'cc--invalid',
+        empty: 'cc--empty',
+        complete: 'cc--complete',
+        webkitAutofill: 'cc--webkit-autofill'
+      },
+      taxIdentifier: {
+        // "sessionId": "78c37d07-c20c-4be3-aac9-4438aaa40f27", // Has selling entityID : "99b8a047-544e-4ccb-8376-04088b241206",
+        type: getURLParamOrDefault('taxIdentifierType', undefined),
+        country: getURLParamOrDefault('country', 'IT'),
+        sellingEntity: 'DR_IRELAND-ENTITY'
+      }
+    });
 
     console.log('Calling mount functions');
 
     creditCardExpiryComponent.mount("cardexpiration");
     creditCardCvvComponent.mount("cardcvv");
     ibpBanksComponent.mount('ibpbanks');
+    konbiniComponent.mount('konbini');
+    offlineRefundComponent.mount('offlinerefund');
+    complianceComponent.mount('compliance-details');
+    taxIdentifierComponent.mount('tax-identifier');
 
     if (googlePayComponent.canMakePayment()) {
       googlePayComponent.mount("google-pay");
 
-      googlePayComponent.on('ready', function (event) {
+      googlePayComponent.on('ready', function(event) {
         responseLog('googlepay ready received ' + JSON.stringify(event));
       });
 
-      googlePayComponent.on('click', function (details) {
+      googlePayComponent.on('click', function(details) {
         console.log('google pay click')
         responseLog('googlepay click received ' + JSON.stringify(details));
         const updatedDetailsData = {
@@ -994,9 +1101,9 @@
         if (details.updateWith) {
           console.log('updateWith google function')
           mockFetch('https://chrismiller1.free.beeceptor.com/') // Call the fetch function passing the url of the API as a parameter
-                  .then(function (data) {
+                  .then(function(data) {
                     // Your code for handling the data you get from the API
-                    if (details.hasOwnProperty('updateWith')) {
+                    if(details.hasOwnProperty('updateWith')) {
                       details.updateWith(updatedDetailsData)
                     }
                   })
@@ -1056,7 +1163,7 @@
 
       googlePayComponent.on("shippingoptionchange", function (details) {
         responseLog('googlepay shippingoptionchange received ' + JSON.stringify(details));
-        const data = {total: {label: 'Order Total - option change'}};
+        const data = {total : {label: 'Order Total - option change'}};
         data.shippingOptions = [
           {
             id: "ground",
@@ -1071,13 +1178,12 @@
             detail: "Will arrive 1-3 days"
           }
         ];
-        setTimeout(function () {
-          details.updateWith(data)
-        }, 1000);
+        setTimeout(function () {details.updateWith(data)}, 1000);
       });
 
-      googlePayComponent.on('cancel', function (event) {
-        responseLog('googlepay session was canceled ' + JSON.stringify(event));
+      googlePayComponent.on('cancel', function(event) {
+        responseLog('googlepay session was canceled ');
+        responseLog(JSON.stringify(event));
       });
 
     }
@@ -1085,10 +1191,10 @@
     if (applePayComponent.canMakePayment()) {
       applePayComponent.mount("apple-pay");
     } else {
-      document.getElementById('apple-pay').setAttribute('style', 'display:none');
+      document.getElementById('apple-pay').setAttribute('style','display:none');
     }
 
-    applePayComponent.on('shippingaddresschange', function (details) {
+    applePayComponent.on('shippingaddresschange', function(details) {
       responseLog('applepay shipping address was updated');
       responseLog(JSON.stringify(details));
       setTimeout(function () {
@@ -1117,7 +1223,7 @@
           }
         };
         //failure scenario with error block
-        if (details.shippingAddress.address.city === 'Apple Valley') {
+        if(details.shippingAddress.address.city === 'Apple Valley') {
           updatedDetails.status = 'failure';
           updatedDetails.error = {
             message: 'An Error has occurred.  Please try again.',
@@ -1128,22 +1234,21 @@
         }
 
         //failure scenario and error not sent (checking defaults)
-        if (details.shippingAddress.address.city === 'Kaladim') {
+        if(details.shippingAddress.address.city === 'Kaladim') {
           updatedDetails.status = 'failure';
         }
         responseLog('sending info back to DR for Apple');
         responseLog(JSON.stringify(updatedDetails));
         fetch('https://jsonplaceholder.typicode.com/todos/1') // Call the fetch function passing the url of the API as a parameter
-                .then(function () {
+                .then(function() {
                   // Your code for handling the data you get from the API
-                  if (details.hasOwnProperty('updateWith')) {
+                  if(details.hasOwnProperty('updateWith')) {
                     details.updateWith(updatedDetails)
-                  }
-                  ;
+                  };
                 })
       }, 2000);
     });
-    applePayComponent.on('shippingoptionchange', function (details) {
+    applePayComponent.on('shippingoptionchange', function(details) {
       responseLog('applepay shipping option was updated');
       responseLog(JSON.stringify(details));
       setTimeout(function () {
@@ -1168,26 +1273,25 @@
           ]
         };
         fetch('https://jsonplaceholder.typicode.com/todos/1') // Call the fetch function passing the url of the API as a parameter
-                .then(function (data) {
+                .then(function(data) {
                   // Your code for handling the data you get from the API
                   console.log(data);
-                  if (details.hasOwnProperty('updateWith')) {
+                  if(details.hasOwnProperty('updateWith')) {
                     console.log('client sending updated shipping option info')
                     details.updateWith(updatedDetails);
                   }
-                  ;
-                })
+                });
         responseLog('sending info back to DR for Apple');
         responseLog(JSON.stringify(updatedDetails));
       }, 2000);
 
     });
 
-    applePayComponent.on('ready', function (event) {
+    applePayComponent.on('ready', function(event) {
       responseLog('applepay ready received ' + JSON.stringify(event));
     });
 
-    applePayComponent.on('click', function (event) {
+    applePayComponent.on('click', function(event) {
       responseLog('applepay button was clicked');
       responseLog(JSON.stringify(event));
       setTimeout(function () {
@@ -1207,25 +1311,24 @@
           ],
         };
         // Call the fetch function passing the url of the API as a parameter
-        fetch('https://jsonplaceholder.typicode.com/todos/1').then(function (data) {
+        fetch('https://jsonplaceholder.typicode.com/todos/1').then(function(data) {
           // Your code for handling the data you get from the API
           console.log(data);
-          if (event.hasOwnProperty('updateWith')) {
+          if(event.hasOwnProperty('updateWith')) {
             console.log('client sending updated info');
             event.updateWith(updatedDetails);
-          }
-          ;
+          };
         });
         responseLog(JSON.stringify(updatedDetails));
       }, 2000);
     });
 
-    applePayComponent.on('cancel', function (event) {
+    applePayComponent.on('cancel', function(event) {
       responseLog('applepay session was canceled');
       responseLog(JSON.stringify(event));
     });
 
-    applePayComponent.on('source', function (event) {
+    applePayComponent.on('source', function(event) {
       responseLog('applepay source was created');
       responseLog(JSON.stringify(event));
       event.complete('success');
@@ -1233,7 +1336,7 @@
 
     // Credit Card Number Listeners
     // this is demonstrating that the client is receiving the event for now.
-    creditCardEvents(digitalRiverPayments);
+    creditCardEvents();
 
     // Credit Card Expiry Listeners
     creditCardExpiryComponent.on('ready', function (event) {
@@ -1256,6 +1359,10 @@
 
       ccExpirationComplete = event.complete;
       checkFormComplete();
+    });
+
+    creditCardExpiryComponent.on('return', function (event) {
+      responseLog('expiration return received ' + JSON.stringify(event) + ' for ' + event.elementType);
     });
 
     // Cred Card Security Code Listeners
@@ -1281,8 +1388,12 @@
       checkFormComplete();
     });
 
+    creditCardCvvComponent.on('return', function (event) {
+      responseLog('cvv return received ' + JSON.stringify(event) + ' for ' + event.elementType);
+    });
+
     ibpBanksComponent.on('ready', function (event) {
-      responseLog(event.elementType + ' ready received ' + JSON.stringify(event) + ' for ' + event.elementType);
+      responseLog( event.elementType + ' ready received ' + JSON.stringify(event) + ' for ' + event.elementType);
     });
 
     ibpBanksComponent.on('blur', function (event) {
@@ -1297,10 +1408,58 @@
       responseLog(event.elementType + ' change received ' + JSON.stringify(event) + ' for ' + event.elementType);
     });
 
+    offlineRefundComponent.on('ready', function (event) {
+      responseLog( event.elementType + ' ready received ' + JSON.stringify(event) + ' for ' + event.elementType);
+    });
+
+    offlineRefundComponent.on('change', function (event) {
+      responseLog(event.elementType + ' change received ' + JSON.stringify(event) + ' for ' + event.elementType);
+    });
+
+    konbiniComponent.on('ready', function (event) {
+      responseLog( event.elementType + ' ready received ' + JSON.stringify(event) + ' for ' + event.elementType);
+    });
+
+    konbiniComponent.on('blur', function (event) {
+      responseLog(event.elementType + ' blur received ' + JSON.stringify(event) + ' for ' + event.elementType);
+    });
+
+    konbiniComponent.on('focus', function (event) {
+      responseLog(event.elementType + ' focus received ' + JSON.stringify(event) + ' for ' + event.elementType);
+    });
+
+    konbiniComponent.on('change', function (event) {
+      responseLog(event.elementType + ' change received ' + JSON.stringify(event) + ' for ' + event.elementType);
+    });
+
+    complianceComponent.on('ready', function (event) {
+      responseLog( event.elementType + ' ready received ' + JSON.stringify(event) + ' for ' + event.elementType);
+    });
+
+    taxIdentifierComponent.on('ready', function (event) {
+      responseLog( event.elementType + ' ready received ' + JSON.stringify(event) + ' for ' + event.elementType);
+    });
+
+    taxIdentifierComponent.on('blur', function (event) {
+      responseLog(event.elementType + ' blur received ' + JSON.stringify(event) + ' for ' + event.elementType);
+    });
+
+    taxIdentifierComponent.on('focus', function (event) {
+      responseLog(event.elementType + ' focus received ' + JSON.stringify(event) + ' for ' + event.elementType);
+    });
+
+    taxIdentifierComponent.on('change', function (event) {
+      console.log('CHANGE', event)
+      responseLog(event.elementType + ' change received ' + JSON.stringify(event) + ' for ' + event.elementType);
+    });
+
+
     // PayPal Button
     payPalBtn(digitalRiverPayments);
 
   }
+
+  window.onload = onLoad;
 
   function payPalBtn(digitalRiverPayments) {
 
@@ -1341,12 +1500,10 @@
           }
         }
       }
-    }
+    };
 
-    paypal.Button.render({
-      // Configure environment
-      env: 'sandbox',
-      locale: 'en_US',
+
+    paypalComponent = digitalRiverPayments.createElement('paypal', {
       style: {
         label: 'checkout',
         size: 'responsive',
@@ -1355,25 +1512,32 @@
         layout: 'horizontal',
         fundingicons: 'false'
       },
-      // Set up a payment
-      payment: function (data, actions) {
-        return digitalRiverPayments.createSource(paypalSourceData).then(function (result) {
-          responseLog('payPal create source ' + JSON.stringify(result));
-          paypalSourceId = result.source.id;
-          return result.source.payPal.token;
-        });
-      },
-      // Execute the payment
-      onAuthorize: function (data, actions) {
-        let source = {
-          sourceId: paypalSourceId
-        }
-        responseLog('payPal success ' + JSON.stringify(data)+','+ JSON.stringify(source));
-      }
-    }, '#paypal-btn');
+      sourceData: paypalSourceData
+    });
+
+    paypalComponent.mount('paypal-btn');
+
+    paypalComponent.on('ready', function(event) {
+      responseLog('paypal ready received ' + JSON.stringify(event));
+    });
+
+    paypalComponent.on('click', function(event) {
+      responseLog('paypal click ' + JSON.stringify(event));
+    });
+
+    paypalComponent.on('cancel', function(event) {
+      responseLog('paypal cancel ' + JSON.stringify(event));
+    });
+
+    paypalComponent.on('source', function(event) {
+      responseLog('paypal source was created');
+      responseLog(JSON.stringify(event));
+    });
+
+
   }
 
-  function creditCardEvents(digitalRiverPayments) {
+  function creditCardEvents() {
     creditCardNumberComponent = digitalRiverPayments.createElement('cardnumber', ccNumOptions);
     creditCardNumberComponent.mount("cardnumber");
 
@@ -1399,6 +1563,11 @@
       ccNumComplete = event.complete;
       checkFormComplete();
     });
+
+    creditCardNumberComponent.on('return', function (event) {
+      responseLog('ccnum return received ' + JSON.stringify(event) + ' for ' + event.elementType);
+    });
+
   }
 
   function responseLog(msg) {
@@ -1496,14 +1665,62 @@
     // Call CreateSource
     const payload = {
       "type": "creditCard",
-      "usage": "single",
+      //"usage": "single",
       "owner": owner,
-      "amount": 100,
-      "currency": "USD"
+      // "amount": 1.2,
+      // "currency": "EUR",
     };
 
     document.getElementById("response").innerHTML += "Submitting Credit Card payment...please wait<br/>";
     digitalRiverPayments.createSource(creditCardNumberComponent, payload).then( function(response) {
+      if(response.error) {
+        document.getElementById("response").innerHTML += "Credit Card Payment response received error: " + JSON.stringify(response, null, '\t');
+      } else {
+        document.getElementById("response").innerHTML += "Credit Card Payment response: " + "" + JSON.stringify(response.source, null, '\t');
+      }
+    }).catch(function (err)  {
+      console.error('createSource failed:', err);
+    });
+  }
+
+  function submitCreditCardPaymentWithSessionId() {
+    // Call CreateSource
+    const payload = {
+      "type": "creditCard",
+      "usage": "single",
+      "owner": owner,
+      "amount": 100,
+      "currency": "USD",
+      'sessionId': 'dec0f861-7411-44e3-a011-67dd6de0e6ef'
+    };
+
+    document.getElementById("response").innerHTML += "Submitting Credit Card payment...please wait<br/>";
+    digitalRiverPayments.createSource(creditCardNumberComponent, payload).then( function(response) {
+      if(response.error) {
+        document.getElementById("response").innerHTML += "Credit Card Payment response received error: " + JSON.stringify(response, null, '\t');
+      } else {
+        document.getElementById("response").innerHTML += "Credit Card Payment response: " + "" + JSON.stringify(response.source, null, '\t');
+      }
+    }).catch(function (err)  {
+      console.error('createSource failed:', err);
+    });
+  }
+
+  function submitStoredCreditCardPayment() {
+    // Call CreateSource
+    const payload = {
+      "type": "creditCard",
+      "usage": "single",
+      "owner": owner,
+      "amount": 100,
+      "currency": "USD",
+      "mandate": {
+        "terms": "By storing your card..."
+      }
+    };
+
+    document.getElementById("response").innerHTML += "Submitting STORED Credit Card payment...please wait<br/>";
+    digitalRiverPayments.createStoredPayment(creditCardNumberComponent, payload).then( function(response) {
       if(response.error) {
         document.getElementById("response").innerHTML += "Credit Card Payment response received error: " + JSON.stringify(response, null, '\t');
       } else {
@@ -1547,6 +1764,9 @@
         "returnUrl" : window.location.href,
         "cancelUrl" : window.location.href,
 
+      },
+      "creditCard" : {
+
       }
     };
 
@@ -1556,6 +1776,28 @@
         document.getElementById("response").innerHTML += "IBP Payment response received error: " + JSON.stringify(response, null, '\t');
       } else {
         document.getElementById("response").innerHTML += "IBP Payment response: " + "" + JSON.stringify(response.source, null, '\t');
+      }
+    }).catch(function (err) {
+      console.error('createSource failed:', err);
+    });
+  }
+
+  function submitKonbiniPayment() {
+    // Call CreateSource
+    const payload = {
+      "type": "konbini",
+      "usage": "single",
+      "owner": owner,
+      "amount": 100,
+      "currency": "JPY",
+    };
+
+    document.getElementById("response").innerHTML += "Submitting Konbini payment...please wait<br/>";
+    digitalRiverPayments.createSource(konbiniComponent, payload).then( function(response) {
+      if(response.error) {
+        document.getElementById("response").innerHTML += "Konbini response received error: " + JSON.stringify(response, null, '\t');
+      } else {
+        document.getElementById("response").innerHTML += "Konbini response: " + "" + JSON.stringify(response.source, null, '\t');
       }
     }).catch(function (err) {
       console.error('createSource failed:', err);
@@ -1633,7 +1875,7 @@
       } else {
         document.getElementById("response").innerHTML += "Payment response: " + "" + JSON.stringify(response.source, null, '\t');
       }
-    }).catch( function (err) {
+    }).catch(function (err) {
       console.error('createSource failed:', err);
     });
   }
@@ -1649,7 +1891,7 @@
             '<div class="ccIcons"> <i id="VISA" class="fab fa-cc-visa"></i> <i id="MASTERCARD" class="fab fa-cc-mastercard"></i> <i id="AMERICAN_EXPRESS" class="fab fa-cc-amex"></i>' +
             '<i id="DISCOVER" class="fab fa-cc-discover"></i> <i id="JCB" class="fab fa-cc-jcb"></i> <i id="DINERS_CLUB" class="fab fa-cc-diners-club"></i>' +
             ' </div> <div id="cardnumber" class="myCustomClass"></div></div>');
-    creditCardEvents(digitalRiverPayments);
+    creditCardEvents();
   }
 
   function updateFields(obj) {
@@ -1679,7 +1921,7 @@
       responseLog(JSON.stringify(error))
     });
   }
-  
+
   function complianceData() {
     $('#complianceMethod').empty();
     let entity = $('#bEntity').val();
@@ -1782,6 +2024,24 @@
   }).catch(function (error) {
     console.error('error getting session', error)
   });
+
+  const retrieveSourceDemo = function() {
+    digitalRiverPayments.retrieveSource('430d4cdc-0d1e-4c48-9a0a-e1885bd5dda9','430d4cdc-0d1e-4c48-9a0a-e1885bd5dda9_b60db5db-0994-473c-bb02-e3e7c45c6913')
+      .then(function(response) {
+        responseLog(JSON.stringify(response));
+      })
+
+  }
+  const retrieveBadSourceDemo = function() {
+    digitalRiverPayments.retrieveSource('33','430d4cdc-0d1e-4c48-9a0a-e1885bd5dda9_b60db5db-0994-473c-bb02-e3e7c45c6913')
+            .then(function(response) {
+              responseLog(JSON.stringify(response));
+            })
+
+  }
+
+
+
 
 </script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

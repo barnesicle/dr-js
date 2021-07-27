@@ -156,7 +156,7 @@
     }
 
   </style>
-<link href="css/DigitalRiver.css" rel="stylesheet"><script type="text/javascript" src="dropInStyles.js"></script><script type="text/javascript" src="DigitalRiver.js"></script></head>
+<script defer src="dropInStyles.js"></script><script defer src="DigitalRiver.js"></script><link href="css/DigitalRiver.css" rel="stylesheet"></head>
 
 <body class="bg-light" style="padding-top:50px;">
 <div class="row">
@@ -420,6 +420,7 @@
   let ccExpirationComplete = false;
   let ccCVVComplete = false;
 
+
   let styles = {
     base: {
       color: '#495057',
@@ -542,7 +543,7 @@
         recurringModel: recurringModel,
         showSavePaymentAgreement: showSavePaymentAgreement === 'true',
         showComplianceSection: showComplianceSection === 'true',
-        usage,
+        usage: usage,
         showTermsOfSaleDisclosure: showTermsOfSaleDisclosure === 'true',
         redirect: {
           returnUrl: returnUrl,
@@ -641,7 +642,7 @@
     }
 
     // pk_hc_b230cec5ef7c44a992af0bcf180ccfaf
-    const apiKey = getURLParamOrDefault('apiKey','pk_hc_b230cec5ef7c44a992af0bcf180ccfaf');
+    const apiKey = getURLParamOrDefault('apiKey','pk_sys_c2608001bba7477eae22808e1eb138db');
     // let apiKey = 'pk_test_d6b3712c81c640288142f204a88f3de5'; // NOTE: Use this key for paypal for test mode / to display mock page
     //let apiKey = 'cc203ec2d74e4002a7e341abd6df6eb5'; // DoDJS15
 
@@ -650,7 +651,7 @@
     digitalRiverPayments = new DigitalRiver(apiKey, instanceOptions);
 
     // *** SESSION IDS
-    // pk_hc_8e3f70c75f314c46855e840ba7a8baab
+    // pk_sys_c2608001bba7477eae22808e1eb138db
     // FR: e40a04e1-3cf8-47a1-acf5-c6eb14c0df8c
     // US (no country): 8d6df7ce-2a43-4edf-b57c-b5c9bac08515
     // US: 945c1e32-ee54-401e-a185-ddcf62980113, d6deb2b4-347e-431e-9d56-095038e0e338
