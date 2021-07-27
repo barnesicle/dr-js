@@ -5712,6 +5712,8 @@ function handleMountWithMessage(controllerEmitter, message, componentData, handl
     componentId: componentData.componentId,
     componentType: componentData.componentType
   }).then(function (response) {
+    console.log('MOUNTED', componentData.componentType);
+
     if (response.data) {
       handleMountData(response.data);
     }
