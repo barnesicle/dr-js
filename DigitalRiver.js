@@ -2544,39 +2544,39 @@ __webpack_require__.r(__webpack_exports__);
 var config = {
   domain: "https://github.digitalriverws.net",
   // eslint-disable-line no-undef
-  paymentServiceUrl: ({"PAYMENT_API_URL":undefined,"DOMAIN":"https://github.digitalriverws.net","BASE_PATH":"/pages/lbarnes/drjs-demo/dev","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).API_URL + '/payments/sources',
+  paymentServiceUrl: ({"PAYMENT_API_URL":undefined,"DOMAIN":"https://github.digitalriverws.net","BASE_PATH":"/pages/lbarnes/drjs-demo","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).API_URL + '/payments/sources',
   // eslint-disable-line no-undef
-  basePath: "/pages/lbarnes/drjs-demo/dev" || 0,
+  basePath: "/pages/lbarnes/drjs-demo" || 0,
   // eslint-disable-line no-undef
   applePayMerchantId: "merchant.com.test.cert.digitalriver",
   // eslint-disable-line no-undef
-  applePayMerchantValidationUrl: ({"PAYMENT_API_URL":undefined,"DOMAIN":"https://github.digitalriverws.net","BASE_PATH":"/pages/lbarnes/drjs-demo/dev","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).API_URL + '/payments/apple-pay/session',
+  applePayMerchantValidationUrl: ({"PAYMENT_API_URL":undefined,"DOMAIN":"https://github.digitalriverws.net","BASE_PATH":"/pages/lbarnes/drjs-demo","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).API_URL + '/payments/apple-pay/session',
   //eslint-disable-line no-undef
-  beaconStorageUrlNonProd: ({"PAYMENT_API_URL":undefined,"DOMAIN":"https://github.digitalriverws.net","BASE_PATH":"/pages/lbarnes/drjs-demo/dev","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).BEACON_STORAGE_URL_NON_PROD,
+  beaconStorageUrlNonProd: ({"PAYMENT_API_URL":undefined,"DOMAIN":"https://github.digitalriverws.net","BASE_PATH":"/pages/lbarnes/drjs-demo","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).BEACON_STORAGE_URL_NON_PROD,
   // eslint-disable-line no-undef
-  beaconStorageUrlProd: ({"PAYMENT_API_URL":undefined,"DOMAIN":"https://github.digitalriverws.net","BASE_PATH":"/pages/lbarnes/drjs-demo/dev","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).BEACON_STORAGE_URL_PROD,
+  beaconStorageUrlProd: ({"PAYMENT_API_URL":undefined,"DOMAIN":"https://github.digitalriverws.net","BASE_PATH":"/pages/lbarnes/drjs-demo","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).BEACON_STORAGE_URL_PROD,
   // eslint-disable-line no-undef
-  adyenProdUrl: ({"PAYMENT_API_URL":undefined,"DOMAIN":"https://github.digitalriverws.net","BASE_PATH":"/pages/lbarnes/drjs-demo/dev","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).ADYEN_PROD_URL,
+  adyenProdUrl: ({"PAYMENT_API_URL":undefined,"DOMAIN":"https://github.digitalriverws.net","BASE_PATH":"/pages/lbarnes/drjs-demo","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).ADYEN_PROD_URL,
   // eslint-disable-line no-undef
-  adyenTestUrl: ({"PAYMENT_API_URL":undefined,"DOMAIN":"https://github.digitalriverws.net","BASE_PATH":"/pages/lbarnes/drjs-demo/dev","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).ADYEN_TEST_URL,
+  adyenTestUrl: ({"PAYMENT_API_URL":undefined,"DOMAIN":"https://github.digitalriverws.net","BASE_PATH":"/pages/lbarnes/drjs-demo","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).ADYEN_TEST_URL,
   // eslint-disable-line no-undef
-  adyenTestIntegrity: ({"PAYMENT_API_URL":undefined,"DOMAIN":"https://github.digitalriverws.net","BASE_PATH":"/pages/lbarnes/drjs-demo/dev","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).ADYEN_TEST_INTEGRITY,
+  adyenTestIntegrity: ({"PAYMENT_API_URL":undefined,"DOMAIN":"https://github.digitalriverws.net","BASE_PATH":"/pages/lbarnes/drjs-demo","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).ADYEN_TEST_INTEGRITY,
   // eslint-disable-line no-undef
-  adyenProdIntegrity: ({"PAYMENT_API_URL":undefined,"DOMAIN":"https://github.digitalriverws.net","BASE_PATH":"/pages/lbarnes/drjs-demo/dev","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).ADYEN_PROD_INTEGRITY,
+  adyenProdIntegrity: ({"PAYMENT_API_URL":undefined,"DOMAIN":"https://github.digitalriverws.net","BASE_PATH":"/pages/lbarnes/drjs-demo","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).ADYEN_PROD_INTEGRITY,
   // eslint-disable-line no-undef
-  onlineBankingBanksUrl: ({"PAYMENT_API_URL":undefined,"DOMAIN":"https://github.digitalriverws.net","BASE_PATH":"/pages/lbarnes/drjs-demo/dev","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).API_URL + '/payments/online-banking/banks',
+  onlineBankingBanksUrl: ({"PAYMENT_API_URL":undefined,"DOMAIN":"https://github.digitalriverws.net","BASE_PATH":"/pages/lbarnes/drjs-demo","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).API_URL + '/payments/online-banking/banks',
   // eslint-disable-line no-undef
-  originProdKey: ({"PAYMENT_API_URL":undefined,"DOMAIN":"https://github.digitalriverws.net","BASE_PATH":"/pages/lbarnes/drjs-demo/dev","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).ADYEN_PROD_ORIGIN_KEY,
+  originProdKey: ({"PAYMENT_API_URL":undefined,"DOMAIN":"https://github.digitalriverws.net","BASE_PATH":"/pages/lbarnes/drjs-demo","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).ADYEN_PROD_ORIGIN_KEY,
   // eslint-disable-line no-undef
-  originTestKey: ({"PAYMENT_API_URL":undefined,"DOMAIN":"https://github.digitalriverws.net","BASE_PATH":"/pages/lbarnes/drjs-demo/dev","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).ADYEN_TEST_ORIGIN_KEY,
+  originTestKey: ({"PAYMENT_API_URL":undefined,"DOMAIN":"https://github.digitalriverws.net","BASE_PATH":"/pages/lbarnes/drjs-demo","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).ADYEN_TEST_ORIGIN_KEY,
   // eslint-disable-line no-undef
-  paymentServiceBaseUrl: ({"PAYMENT_API_URL":undefined,"DOMAIN":"https://github.digitalriverws.net","BASE_PATH":"/pages/lbarnes/drjs-demo/dev","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).API_URL + '/payments',
+  paymentServiceBaseUrl: ({"PAYMENT_API_URL":undefined,"DOMAIN":"https://github.digitalriverws.net","BASE_PATH":"/pages/lbarnes/drjs-demo","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).API_URL + '/payments',
   // eslint-disable-line no-undef
   paypalRedirectBaseUrl: "https://payments-test.digitalriver.com/redirect/",
   // eslint-disable-line no-undef
-  paymentMethodsUrl: ({"PAYMENT_API_URL":undefined,"DOMAIN":"https://github.digitalriverws.net","BASE_PATH":"/pages/lbarnes/drjs-demo/dev","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).API_URL + '/payments/payment-methods',
+  paymentMethodsUrl: ({"PAYMENT_API_URL":undefined,"DOMAIN":"https://github.digitalriverws.net","BASE_PATH":"/pages/lbarnes/drjs-demo","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).API_URL + '/payments/payment-methods',
   // eslint-disable-line no-undef
-  apiUrl: ({"PAYMENT_API_URL":undefined,"DOMAIN":"https://github.digitalriverws.net","BASE_PATH":"/pages/lbarnes/drjs-demo/dev","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).API_URL,
+  apiUrl: ({"PAYMENT_API_URL":undefined,"DOMAIN":"https://github.digitalriverws.net","BASE_PATH":"/pages/lbarnes/drjs-demo","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).API_URL,
   // eslint-disable-line no-undef
   componentsVersionId: "dev" // eslint-disable-line no-undef
 
@@ -5649,7 +5649,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_index_of__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/index-of */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/index-of.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_index_of__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_index_of__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var cross_domain_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! cross-domain-utils */ "./node_modules/cross-domain-utils/dist/module/index.js");
-/* harmony import */ var cross_domain_utils__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(cross_domain_utils__WEBPACK_IMPORTED_MODULE_3__);
 
 
 
@@ -6465,6 +6464,11 @@ function getTimeZoneOffset() {
 }
 function getJavaEnabled(window) {
   var navigator = getWindowNavigator(window);
+
+  if (typeof navigator.javaEnabled === 'undefined') {
+    return false;
+  }
+
   return navigator.javaEnabled();
 }
 function getHRef(window) {
@@ -10252,21 +10256,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_starts_with__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/starts-with */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/starts-with.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_starts_with__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_starts_with__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! uuid */ "./node_modules/uuid/dist/esm-browser/index.js");
-/* harmony import */ var _createFrame__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./createFrame */ "./src/client/createFrame.js");
-/* harmony import */ var _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../post-robot-wrapper */ "./src/post-robot-wrapper.js");
-/* harmony import */ var cross_domain_utils__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! cross-domain-utils */ "./node_modules/cross-domain-utils/dist/module/index.js");
-/* harmony import */ var cross_domain_utils__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(cross_domain_utils__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var _dataStore__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./dataStore */ "./src/client/dataStore.js");
-/* harmony import */ var _createController__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./createController */ "./src/client/createController.js");
-/* harmony import */ var _event_middleware__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./event-middleware */ "./src/client/event-middleware.js");
-/* harmony import */ var _css_class_utils__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./css-class-utils */ "./src/client/css-class-utils.js");
-/* harmony import */ var _app_components_config__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../app/components/config */ "./src/app/components/config.js");
-/* harmony import */ var _app_components_options__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../app/components/options */ "./src/app/components/options.js");
-/* harmony import */ var _beacon_beacon_client_data__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../beacon/beacon-client-data */ "./src/beacon/beacon-client-data.js");
-/* harmony import */ var _app_components_controller_controller_create_source_utils__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../app/components/controller/controller-create-source-utils */ "./src/app/components/controller/controller-create-source-utils.js");
-/* harmony import */ var _app_key_helper__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../app/key-helper */ "./src/app/key-helper.js");
-/* harmony import */ var _app_config__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ../app/config */ "./src/app/config.js");
+/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! uuid */ "./node_modules/uuid/dist/esm-browser/v4.js");
+/* harmony import */ var _createFrame__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./createFrame */ "./src/client/createFrame.js");
+/* harmony import */ var _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../post-robot-wrapper */ "./src/post-robot-wrapper.js");
+/* harmony import */ var cross_domain_utils__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! cross-domain-utils/dist/module */ "./node_modules/cross-domain-utils/dist/module/index.js");
+/* harmony import */ var _dataStore__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./dataStore */ "./src/client/dataStore.js");
+/* harmony import */ var _createController__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./createController */ "./src/client/createController.js");
+/* harmony import */ var _event_middleware__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./event-middleware */ "./src/client/event-middleware.js");
+/* harmony import */ var _css_class_utils__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./css-class-utils */ "./src/client/css-class-utils.js");
+/* harmony import */ var _app_components_config__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../app/components/config */ "./src/app/components/config.js");
+/* harmony import */ var _app_components_options__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../app/components/options */ "./src/app/components/options.js");
+/* harmony import */ var _beacon_beacon_client_data__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../beacon/beacon-client-data */ "./src/beacon/beacon-client-data.js");
+/* harmony import */ var _app_components_controller_controller_create_source_utils__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../app/components/controller/controller-create-source-utils */ "./src/app/components/controller/controller-create-source-utils.js");
+/* harmony import */ var _app_key_helper__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../app/key-helper */ "./src/app/key-helper.js");
+/* harmony import */ var _app_config__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../app/config */ "./src/app/config.js");
+
 
 
 
@@ -10288,7 +10292,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var MAX_TRIES = 5;
 function getComponentsBasePath() {
-  return _app_components_config__WEBPACK_IMPORTED_MODULE_13__.config.domain + _app_components_config__WEBPACK_IMPORTED_MODULE_13__.config.basePath + '/' + _app_components_config__WEBPACK_IMPORTED_MODULE_13__.config.componentsVersionId + '/components';
+  return _app_components_config__WEBPACK_IMPORTED_MODULE_12__.config.domain + _app_components_config__WEBPACK_IMPORTED_MODULE_12__.config.basePath + '/' + _app_components_config__WEBPACK_IMPORTED_MODULE_12__.config.componentsVersionId + '/components';
 }
 var eventNames = ['blur', 'change', 'focus', 'ready', 'click', 'source', 'shippingaddresschange', 'shippingoptionchange', 'cancel', 'return'];
 /**
@@ -10303,7 +10307,7 @@ function onEventHandler(eventName, eventFunction) {
   }
 
   var key = this.key;
-  var data = _dataStore__WEBPACK_IMPORTED_MODULE_9__.default.get(this.key);
+  var data = _dataStore__WEBPACK_IMPORTED_MODULE_8__.default.get(this.key);
   data.customEvents.push({
     eventType: this.type,
     componentId: this.id,
@@ -10311,7 +10315,7 @@ function onEventHandler(eventName, eventFunction) {
     eventFunction: eventFunction
   }); // Stores the custom function in the data store
 
-  _dataStore__WEBPACK_IMPORTED_MODULE_9__.default.set(key, data);
+  _dataStore__WEBPACK_IMPORTED_MODULE_8__.default.set(key, data);
 }
 /**
  * Triggers component events
@@ -10323,7 +10327,7 @@ function onEventHandler(eventName, eventFunction) {
 
 function triggerEvent(controllerId, id, eventType) {
   return function () {
-    _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_7__.default.send(getComponentWindow(controllerId), 'triggerComponentEvent', {
+    _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_6__.default.send(getComponentWindow(controllerId), 'triggerComponentEvent', {
       componentId: id,
       eventType: eventType
     });
@@ -10337,7 +10341,7 @@ function triggerEvent(controllerId, id, eventType) {
 function unmount() {
   var parentNode = this.parentNode;
   var key = this.key;
-  var data = _dataStore__WEBPACK_IMPORTED_MODULE_9__.default.get(key);
+  var data = _dataStore__WEBPACK_IMPORTED_MODULE_8__.default.get(key);
   var cssClasses;
 
   if (data && data.hasOwnProperty('components')) {
@@ -10351,20 +10355,20 @@ function unmount() {
   }
 
   try {
-    _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_7__.default.send(getComponentWindow(this.controllerId), 'unmountComponent', {
+    _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_6__.default.send(getComponentWindow(this.controllerId), 'unmountComponent', {
       componentId: this.id,
       componentType: this.type
     });
 
     if (document.getElementById(this.id)) {
       parentNode.removeChild(document.getElementById(this.id));
-      (0,_css_class_utils__WEBPACK_IMPORTED_MODULE_12__.removeClasses)(cssClasses, parentNode);
+      (0,_css_class_utils__WEBPACK_IMPORTED_MODULE_11__.removeClasses)(cssClasses, parentNode);
     }
 
     this.parentNode = null; // this.parentNode set to null indicates that there is no parent this component is mounted to
 
     data.components[this.type] = null;
-    _dataStore__WEBPACK_IMPORTED_MODULE_9__.default.set(key, data);
+    _dataStore__WEBPACK_IMPORTED_MODULE_8__.default.set(key, data);
   } catch (err) {
     throw new Error("Failed to unmount component '".concat(this.type, "'."));
   }
@@ -10405,11 +10409,11 @@ function mount(node) {
 
     if (this.type === 'controller') {
       // Controller
-      (0,_createFrame__WEBPACK_IMPORTED_MODULE_6__.createFrame)(this.type, node, getComponentURL(this.type, this.id, this.controllerId), attributes);
+      (0,_createFrame__WEBPACK_IMPORTED_MODULE_5__.createFrame)(this.type, node, getComponentURL(this.type, this.id, this.controllerId), attributes);
     } else {
       // Other Component
       var key = this.key;
-      var data = _dataStore__WEBPACK_IMPORTED_MODULE_9__.default.get(key);
+      var data = _dataStore__WEBPACK_IMPORTED_MODULE_8__.default.get(key);
 
       if (data && data.hasOwnProperty('components')) {
         var _context;
@@ -10425,33 +10429,33 @@ function mount(node) {
 
       if (typeof this.options !== 'undefined') {
         //arbitrate custom vs default options
-        this.options.classes = (0,_css_class_utils__WEBPACK_IMPORTED_MODULE_12__.getCssClasses)(this.options.classes);
-        var elementHeight = (0,_css_class_utils__WEBPACK_IMPORTED_MODULE_12__.getElementHeight)(this.options.style); // If we have options, send them and wait for them to be sent before creating the component
+        this.options.classes = (0,_css_class_utils__WEBPACK_IMPORTED_MODULE_11__.getCssClasses)(this.options.classes);
+        var elementHeight = (0,_css_class_utils__WEBPACK_IMPORTED_MODULE_11__.getElementHeight)(this.options.style); // If we have options, send them and wait for them to be sent before creating the component
 
         if (this.type !== 'applepay' && this.type !== 'compliance') {
-          (0,_createFrame__WEBPACK_IMPORTED_MODULE_6__.createFrame)(this.type, node, getComponentURL(this.type, this.id, this.controllerId), attributes, elementHeight);
+          (0,_createFrame__WEBPACK_IMPORTED_MODULE_5__.createFrame)(this.type, node, getComponentURL(this.type, this.id, this.controllerId), attributes, elementHeight);
         }
 
-        var dataKey = (0,_app_key_helper__WEBPACK_IMPORTED_MODULE_17__.fieldKey)(this.type, this.id);
+        var dataKey = (0,_app_key_helper__WEBPACK_IMPORTED_MODULE_16__.fieldKey)(this.type, this.id);
         data.components[dataKey] = {
           'parent': node,
-          'options': (0,_app_components_options__WEBPACK_IMPORTED_MODULE_14__.sanitizeOptionsForType)(this.options, this.type)
+          'options': (0,_app_components_options__WEBPACK_IMPORTED_MODULE_13__.sanitizeOptionsForType)(this.options, this.type)
         };
-        _dataStore__WEBPACK_IMPORTED_MODULE_9__.default.set(key, data); // Set base css class & empty class since field is empty
+        _dataStore__WEBPACK_IMPORTED_MODULE_8__.default.set(key, data); // Set base css class & empty class since field is empty
 
-        if ((0,_app_config__WEBPACK_IMPORTED_MODULE_18__.shouldAddBaseClass)(this.type)) {
+        if ((0,_app_config__WEBPACK_IMPORTED_MODULE_17__.shouldAddBaseClass)(this.type)) {
           var DRElementClass = data.components[dataKey].options.classes.base;
           node.classList.add(DRElementClass);
         }
 
-        if ((0,_app_config__WEBPACK_IMPORTED_MODULE_18__.shouldAddEmptyClass)(this.type)) {
+        if ((0,_app_config__WEBPACK_IMPORTED_MODULE_17__.shouldAddEmptyClass)(this.type)) {
           var DREmptyClass = data.components[dataKey].options.classes.empty;
           node.classList.add(DREmptyClass);
         }
       } else {
         // If we don't have any options just create the frame
         if (this.type !== 'applepay' && this.type !== 'compliance') {
-          (0,_createFrame__WEBPACK_IMPORTED_MODULE_6__.createFrame)(this.type, node, getComponentURL(this.type, this.id, this.controllerId), attributes);
+          (0,_createFrame__WEBPACK_IMPORTED_MODULE_5__.createFrame)(this.type, node, getComponentURL(this.type, this.id, this.controllerId), attributes);
         }
       }
     }
@@ -10492,11 +10496,11 @@ function destroy() {
   } // Send component Id to the controller, we return a promise but you don't really need to wait?
 
 
-  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_7__.default.send(controllerWindow, 'unregisterComponent', {
+  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_6__.default.send(controllerWindow, 'unregisterComponent', {
     componentId: this.id,
     componentType: this.type
   }).then(function () {
-    (0,_event_middleware__WEBPACK_IMPORTED_MODULE_11__.removeEventsForComponent)(_this.key, _this.id);
+    (0,_event_middleware__WEBPACK_IMPORTED_MODULE_10__.removeEventsForComponent)(_this.key, _this.id);
     modifyThisForDestroy.call(_this);
   });
 }
@@ -10509,7 +10513,7 @@ function destroy() {
  */
 
 function createComponent(type, controllerId, key, options) {
-  if (typeof type !== 'string' || !(0,_app_config__WEBPACK_IMPORTED_MODULE_18__.isValidComponent)(type)) {
+  if (typeof type !== 'string' || !(0,_app_config__WEBPACK_IMPORTED_MODULE_17__.isValidComponent)(type)) {
     throw new Error('createComponent() requires a valid component type');
   }
 
@@ -10524,7 +10528,7 @@ function createComponent(type, controllerId, key, options) {
     mount: mount,
     destroy: destroy,
     on: onEventHandler,
-    options: (0,_app_components_options__WEBPACK_IMPORTED_MODULE_14__.sanitizeOptionsForType)(options, formattedType),
+    options: (0,_app_components_options__WEBPACK_IMPORTED_MODULE_13__.sanitizeOptionsForType)(options, formattedType),
     unmount: unmount,
     blur: triggerEvent(controllerId, id, 'blur'),
     clear: triggerEvent(controllerId, id, 'clear'),
@@ -10576,11 +10580,11 @@ function isChrome() {
 
 
 function getComponentURL(type, id, controllerId) {
-  if (!(0,_app_config__WEBPACK_IMPORTED_MODULE_18__.isValidComponent)(type)) {
+  if (!(0,_app_config__WEBPACK_IMPORTED_MODULE_17__.isValidComponent)(type)) {
     throw new Error('getComponentURL() requires a valid component type');
   }
 
-  var url = getComponentsBasePath() + (0,_app_config__WEBPACK_IMPORTED_MODULE_18__.getIframeSrc)(type) + '?componentId=' + id;
+  var url = getComponentsBasePath() + (0,_app_config__WEBPACK_IMPORTED_MODULE_17__.getIframeSrc)(type) + '?componentId=' + id;
 
   if (type === 'controller') {
     return url;
@@ -10598,7 +10602,7 @@ function generateComponentId(type) {
   if (type === 'td' || type === 'dr3dsecure') {
     return type;
   } else {
-    return type + '-' + (0,uuid__WEBPACK_IMPORTED_MODULE_5__.v4)();
+    return type + '-' + (0,uuid__WEBPACK_IMPORTED_MODULE_18__.default)();
   }
 }
 /**
@@ -10622,23 +10626,39 @@ function findWindow(currentWindow, id) {
   var tries = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
 
   if (tries >= MAX_TRIES) {
-    return (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_8__.getFrameByName)(currentWindow, id);
+    return (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_7__.getFrameByName)(currentWindow, id);
   }
 
-  var foundFrame = (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_8__.getFrameByName)(currentWindow, id);
+  var foundFrame = (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_7__.getFrameByName)(currentWindow, id);
 
   if (typeof foundFrame !== 'undefined') {
     return foundFrame;
   }
 
-  var parentWindow = (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_8__.getParent)(currentWindow);
+  var parentWindow = (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_7__.getParent)(currentWindow);
 
   if (typeof parentWindow === 'undefined') {
-    return foundFrame;
+    //return foundFrame;
+    return getComponentIFrame(id);
   }
 
   return findWindow(parentWindow, id, ++tries);
 }
+/*function safeIndexOf(collection, item) {
+  for (let i = 0; i < collection.length; i++) {
+
+    try {
+      if (collection[i] === item) {
+        return i;
+      }
+    } catch (err) {
+      // pass
+    }
+  }
+
+  return -1;
+}*/
+
 /**
  * Sends a message to the controller so it can track the component by type and id
  * @param {string} controllerId
@@ -10649,13 +10669,28 @@ function findWindow(currentWindow, id) {
 
 function registerComponentWithController(controllerId, component, options) {
   var controllerWindow = getComponentWindow(controllerId);
+  console.log('isWindowClosed', (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_7__.isWindowClosed)(controllerWindow));
+  console.log('getFrames', (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_7__.getFrames)(window));
+  console.log('getFrames controllerWindow', (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_7__.getFrames)(controllerWindow));
+
+  if (!controllerWindow.parent || !controllerWindow.top) {
+    console.log('HERE 1');
+  }
+  /*const iframeIndex = safeIndexOf(controllerWindow, window);
+   if (iframeIndex !== -1) {
+    const frame = iframeFrames[iframeIndex];
+     if (frame && isFrameWindowClosed(frame)) {
+      return true;
+    }
+  }*/
+
 
   if (!controllerWindow) {
     throw new Error("Unable to locate controller '".concat(controllerId, "'"));
   } // Send component Id to the controller, we return a promise but you don't really need to wait?
 
 
-  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_7__.default.send(controllerWindow, 'registerNewComponent', {
+  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_6__.default.send(controllerWindow, 'registerNewComponent', {
     componentType: component.type,
     componentId: component.id,
     options: options
@@ -10679,7 +10714,7 @@ function sendOptions(controllerId, component, unsafeOptions) {
   } // Send component Id to the controller, we return a promise but you don't really need to wait?
 
 
-  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_7__.default.send(controllerWindow, 'sendOptions', {
+  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_6__.default.send(controllerWindow, 'sendOptions', {
     componentType: component.type,
     componentId: component.id,
     unsafeOptions: unsafeOptions
@@ -10703,7 +10738,8 @@ function sendApiKey(controllerId, eventName, data) {
   } // Send component Id to the controller, we return a promise but you don't really need to wait?
 
 
-  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_7__.default.send(controllerWindow, eventName, data).catch(function () {
+  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_6__.default.send(controllerWindow, eventName, data).catch(function (error) {
+    console.error('sending api key', error);
     throw new Error('Sending apiKey error');
   });
 }
@@ -10720,6 +10756,7 @@ function getComponentIFrame(type) {
     var _context4;
 
     if (_babel_runtime_corejs3_core_js_stable_instance_starts_with__WEBPACK_IMPORTED_MODULE_4___default()(_context4 = iFrameWindow[win].id).call(_context4, type)) {
+      console.log('found window with type', type, iFrameWindow[win], iFrameWindow[win].id);
       return iFrameWindow[win];
     }
   }
@@ -10734,7 +10771,7 @@ function createOrExtractBeaconController() {
   var beaconComponent = getComponentIFrame(type);
 
   if (!beaconComponent) {
-    beaconComponent = (0,_createController__WEBPACK_IMPORTED_MODULE_10__.createController)(document.body, type);
+    beaconComponent = (0,_createController__WEBPACK_IMPORTED_MODULE_9__.createController)(document.body, type);
   }
 
   return beaconComponent;
@@ -10765,7 +10802,7 @@ function createOrExtractAdyenController() {
 
   if (!adyenComponent) {
     var adyenDiv = createOverlayDiv('DRPayment3ds');
-    adyenComponent = (0,_createController__WEBPACK_IMPORTED_MODULE_10__.createController)(adyenDiv, type);
+    adyenComponent = (0,_createController__WEBPACK_IMPORTED_MODULE_9__.createController)(adyenDiv, type);
   }
 
   return adyenComponent;
@@ -10777,28 +10814,28 @@ function createOrExtractAdyenController() {
 
 function update(options) {
   var key = this.key;
-  var data = _dataStore__WEBPACK_IMPORTED_MODULE_9__.default.get(key);
-  var el = data.components[(0,_app_key_helper__WEBPACK_IMPORTED_MODULE_17__.fieldKey)(this.type, this.id)].parent;
-  var activeClasses = (0,_css_class_utils__WEBPACK_IMPORTED_MODULE_12__.getActiveClasses)(this.options.classes, el);
-  (0,_css_class_utils__WEBPACK_IMPORTED_MODULE_12__.removeClasses)(data.components[(0,_app_key_helper__WEBPACK_IMPORTED_MODULE_17__.fieldKey)(this.type, this.id)].options.classes, el);
-  var mergedOptions = (0,_app_components_options__WEBPACK_IMPORTED_MODULE_14__.mergeOptions)(data.components[(0,_app_key_helper__WEBPACK_IMPORTED_MODULE_17__.fieldKey)(this.type, this.id)].options, options); // we need to run classes through default/custom arbitration
+  var data = _dataStore__WEBPACK_IMPORTED_MODULE_8__.default.get(key);
+  var el = data.components[(0,_app_key_helper__WEBPACK_IMPORTED_MODULE_16__.fieldKey)(this.type, this.id)].parent;
+  var activeClasses = (0,_css_class_utils__WEBPACK_IMPORTED_MODULE_11__.getActiveClasses)(this.options.classes, el);
+  (0,_css_class_utils__WEBPACK_IMPORTED_MODULE_11__.removeClasses)(data.components[(0,_app_key_helper__WEBPACK_IMPORTED_MODULE_16__.fieldKey)(this.type, this.id)].options.classes, el);
+  var mergedOptions = (0,_app_components_options__WEBPACK_IMPORTED_MODULE_13__.mergeOptions)(data.components[(0,_app_key_helper__WEBPACK_IMPORTED_MODULE_16__.fieldKey)(this.type, this.id)].options, options); // we need to run classes through default/custom arbitration
 
-  mergedOptions.classes = (0,_css_class_utils__WEBPACK_IMPORTED_MODULE_12__.getCssClasses)(mergedOptions.classes);
+  mergedOptions.classes = (0,_css_class_utils__WEBPACK_IMPORTED_MODULE_11__.getCssClasses)(mergedOptions.classes);
   sendOptions(this.controllerId, {
     'type': this.type,
     'id': this.id
   }, mergedOptions);
-  data.components[(0,_app_key_helper__WEBPACK_IMPORTED_MODULE_17__.fieldKey)(this.type, this.id)].options = (0,_app_components_options__WEBPACK_IMPORTED_MODULE_14__.sanitizeOptionsForType)(mergedOptions, this.type);
-  delete data.components[(0,_app_key_helper__WEBPACK_IMPORTED_MODULE_17__.fieldKey)(this.type, this.id)].options.sourceData; // Note: Do not store the sourceData
+  data.components[(0,_app_key_helper__WEBPACK_IMPORTED_MODULE_16__.fieldKey)(this.type, this.id)].options = (0,_app_components_options__WEBPACK_IMPORTED_MODULE_13__.sanitizeOptionsForType)(mergedOptions, this.type);
+  delete data.components[(0,_app_key_helper__WEBPACK_IMPORTED_MODULE_16__.fieldKey)(this.type, this.id)].options.sourceData; // Note: Do not store the sourceData
 
-  _dataStore__WEBPACK_IMPORTED_MODULE_9__.default.set(key, data);
-  this.options = data.components[(0,_app_key_helper__WEBPACK_IMPORTED_MODULE_17__.fieldKey)(this.type, this.id)].options;
+  _dataStore__WEBPACK_IMPORTED_MODULE_8__.default.set(key, data);
+  this.options = data.components[(0,_app_key_helper__WEBPACK_IMPORTED_MODULE_16__.fieldKey)(this.type, this.id)].options;
 
   if (this.type !== 'onlinebanking') {
     //online banking update means changing select options, so we have to set classes back to empty
-    (0,_css_class_utils__WEBPACK_IMPORTED_MODULE_12__.applyActiveClasses)(activeClasses, this.options.classes, el);
+    (0,_css_class_utils__WEBPACK_IMPORTED_MODULE_11__.applyActiveClasses)(activeClasses, this.options.classes, el);
   } else {
-    (0,_css_class_utils__WEBPACK_IMPORTED_MODULE_12__.applyActiveClasses)(['base', 'empty'], this.options.classes, el);
+    (0,_css_class_utils__WEBPACK_IMPORTED_MODULE_11__.applyActiveClasses)(['base', 'empty'], this.options.classes, el);
   }
 }
 /**
@@ -10814,12 +10851,12 @@ function sendInitalize3dSecure(adyenId, apiKey) {
     throw new Error("Unable to locate 3ds '".concat(adyenId, "'"));
   }
 
-  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_7__.default.send(adyenWindow, 'sendInitalize3dSecure', {
+  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_6__.default.send(adyenWindow, 'sendInitalize3dSecure', {
     secureId: adyenId,
     apiKey: apiKey,
-    userLocale: (0,_beacon_beacon_client_data__WEBPACK_IMPORTED_MODULE_15__.getUserLocale)(window)
+    userLocale: (0,_beacon_beacon_client_data__WEBPACK_IMPORTED_MODULE_14__.getUserLocale)(window)
   }).catch(function () {
-    return (0,_app_components_controller_controller_create_source_utils__WEBPACK_IMPORTED_MODULE_16__.chooseCreateSourceCatchMessage)('Unable to configure Adyen.');
+    return (0,_app_components_controller_controller_create_source_utils__WEBPACK_IMPORTED_MODULE_15__.chooseCreateSourceCatchMessage)('Unable to configure Adyen.');
   });
 }
 /**
@@ -10837,14 +10874,14 @@ function sendAdyen3dDetails(adyenId, controllerId, paymentServiceResponse, resol
     throw new Error("Unable to locate 3ds '".concat(adyenId, "'"));
   }
 
-  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_7__.default.send(adyenWindow, 'sendActions', {
+  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_6__.default.send(adyenWindow, 'sendActions', {
     controllerId: controllerId,
     secureId: adyenId,
     resolve: resolve,
     paymentServiceResponse: paymentServiceResponse,
-    clientData: (0,_beacon_beacon_client_data__WEBPACK_IMPORTED_MODULE_15__.collectClientData)(window)
+    clientData: (0,_beacon_beacon_client_data__WEBPACK_IMPORTED_MODULE_14__.collectClientData)(window)
   }).catch(function () {
-    return (0,_app_components_controller_controller_create_source_utils__WEBPACK_IMPORTED_MODULE_16__.chooseCreateSourceCatchMessage)('Unable to configure Adyen.');
+    return (0,_app_components_controller_controller_create_source_utils__WEBPACK_IMPORTED_MODULE_15__.chooseCreateSourceCatchMessage)('Unable to configure Adyen.');
   });
 }
 /**
@@ -10862,14 +10899,14 @@ function sendAdyenAction(adyenId, controllerId, response, resolve) {
     throw new Error("Unable to locate 3ds '".concat(adyenId, "'"));
   }
 
-  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_7__.default.send(adyenWindow, 'sendActions', {
+  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_6__.default.send(adyenWindow, 'sendActions', {
     controllerId: controllerId,
     secureId: adyenId,
     resolve: resolve,
     paymentServiceResponse: response,
-    clientData: (0,_beacon_beacon_client_data__WEBPACK_IMPORTED_MODULE_15__.collectClientData)(window)
+    clientData: (0,_beacon_beacon_client_data__WEBPACK_IMPORTED_MODULE_14__.collectClientData)(window)
   }).catch(function () {
-    return (0,_app_components_controller_controller_create_source_utils__WEBPACK_IMPORTED_MODULE_16__.chooseCreateSourceCatchMessage)('Unable to intialize adyen challenge.');
+    return (0,_app_components_controller_controller_create_source_utils__WEBPACK_IMPORTED_MODULE_15__.chooseCreateSourceCatchMessage)('Unable to intialize adyen challenge.');
   });
 }
 /**
@@ -11468,7 +11505,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_corejs3_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/typeof */ "./node_modules/@babel/runtime-corejs3/helpers/esm/typeof.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/object/assign */ "./node_modules/@babel/runtime-corejs3/core-js-stable/object/assign.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! uuid */ "./node_modules/uuid/dist/esm-browser/index.js");
+/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! uuid */ "./node_modules/uuid/dist/esm-browser/v4.js");
 
 
 
@@ -11491,7 +11528,7 @@ function set(key, data) {
 }
 
 function create(data) {
-  var key = (0,uuid__WEBPACK_IMPORTED_MODULE_2__.v4)();
+  var key = (0,uuid__WEBPACK_IMPORTED_MODULE_2__.default)();
   set(key, data);
   return key;
 }
@@ -20812,40 +20849,103 @@ module.exports = parent;
 
 /***/ }),
 
+/***/ "./node_modules/cross-domain-utils/dist/module/constants.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/cross-domain-utils/dist/module/constants.js ***!
+  \******************************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "PROTOCOL": function() { return /* binding */ PROTOCOL; },
+/* harmony export */   "WILDCARD": function() { return /* binding */ WILDCARD; },
+/* harmony export */   "WINDOW_TYPE": function() { return /* binding */ WINDOW_TYPE; }
+/* harmony export */ });
+var PROTOCOL = {
+  MOCK: 'mock:',
+  FILE: 'file:',
+  ABOUT: 'about:'
+};
+var WILDCARD = '*';
+var WINDOW_TYPE = {
+  IFRAME: 'iframe',
+  POPUP: 'popup'
+};
+
+/***/ }),
+
 /***/ "./node_modules/cross-domain-utils/dist/module/index.js":
 /*!**************************************************************!*\
   !*** ./node_modules/cross-domain-utils/dist/module/index.js ***!
   \**************************************************************/
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "assertSameDomain": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.assertSameDomain; },
+/* harmony export */   "canReadFromWindow": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.canReadFromWindow; },
+/* harmony export */   "closeWindow": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.closeWindow; },
+/* harmony export */   "findChildFrameByName": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.findChildFrameByName; },
+/* harmony export */   "findFrameByName": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.findFrameByName; },
+/* harmony export */   "getActualDomain": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getActualDomain; },
+/* harmony export */   "getAllChildFrames": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getAllChildFrames; },
+/* harmony export */   "getAllFramesInWindow": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getAllFramesInWindow; },
+/* harmony export */   "getAllWindows": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getAllWindows; },
+/* harmony export */   "getAncestor": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getAncestor; },
+/* harmony export */   "getAncestors": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getAncestors; },
+/* harmony export */   "getDistanceFromTop": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getDistanceFromTop; },
+/* harmony export */   "getDomain": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getDomain; },
+/* harmony export */   "getDomainFromUrl": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getDomainFromUrl; },
+/* harmony export */   "getFrameByName": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getFrameByName; },
+/* harmony export */   "getFrameForWindow": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getFrameForWindow; },
+/* harmony export */   "getFrames": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getFrames; },
+/* harmony export */   "getNextOpener": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getNextOpener; },
+/* harmony export */   "getNthParent": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getNthParent; },
+/* harmony export */   "getNthParentFromTop": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getNthParentFromTop; },
+/* harmony export */   "getOpener": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getOpener; },
+/* harmony export */   "getParent": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getParent; },
+/* harmony export */   "getParents": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getParents; },
+/* harmony export */   "getTop": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getTop; },
+/* harmony export */   "getUltimateTop": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getUltimateTop; },
+/* harmony export */   "getUserAgent": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getUserAgent; },
+/* harmony export */   "isAboutProtocol": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isAboutProtocol; },
+/* harmony export */   "isActuallySameDomain": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isActuallySameDomain; },
+/* harmony export */   "isAncestor": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isAncestor; },
+/* harmony export */   "isAncestorParent": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isAncestorParent; },
+/* harmony export */   "isBlankDomain": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isBlankDomain; },
+/* harmony export */   "isBrowser": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isBrowser; },
+/* harmony export */   "isCurrentDomain": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isCurrentDomain; },
+/* harmony export */   "isFileProtocol": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isFileProtocol; },
+/* harmony export */   "isFrameWindowClosed": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isFrameWindowClosed; },
+/* harmony export */   "isFullpage": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isFullpage; },
+/* harmony export */   "isIframe": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isIframe; },
+/* harmony export */   "isMockDomain": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isMockDomain; },
+/* harmony export */   "isOpener": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isOpener; },
+/* harmony export */   "isParent": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isParent; },
+/* harmony export */   "isPopup": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isPopup; },
+/* harmony export */   "isSameDomain": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isSameDomain; },
+/* harmony export */   "isSameTopWindow": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isSameTopWindow; },
+/* harmony export */   "isTop": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isTop; },
+/* harmony export */   "isWindow": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isWindow; },
+/* harmony export */   "isWindowClosed": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isWindowClosed; },
+/* harmony export */   "linkFrameWindow": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.linkFrameWindow; },
+/* harmony export */   "matchDomain": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.matchDomain; },
+/* harmony export */   "normalizeMockUrl": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.normalizeMockUrl; },
+/* harmony export */   "onCloseWindow": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.onCloseWindow; },
+/* harmony export */   "stringifyDomainPattern": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.stringifyDomainPattern; },
+/* harmony export */   "TYPES": function() { return /* reexport safe */ _types__WEBPACK_IMPORTED_MODULE_1__.TYPES; },
+/* harmony export */   "PROTOCOL": function() { return /* reexport safe */ _constants__WEBPACK_IMPORTED_MODULE_2__.PROTOCOL; },
+/* harmony export */   "WILDCARD": function() { return /* reexport safe */ _constants__WEBPACK_IMPORTED_MODULE_2__.WILDCARD; },
+/* harmony export */   "WINDOW_TYPE": function() { return /* reexport safe */ _constants__WEBPACK_IMPORTED_MODULE_2__.WINDOW_TYPE; }
+/* harmony export */ });
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils */ "./node_modules/cross-domain-utils/dist/module/utils.js");
+/* harmony import */ var _types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./types */ "./node_modules/cross-domain-utils/dist/module/types.js");
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./constants */ "./node_modules/cross-domain-utils/dist/module/constants.js");
 
 
-exports.__esModule = true;
 
-var _utils = __webpack_require__(/*! ./utils */ "./node_modules/cross-domain-utils/dist/module/utils.js");
-
-Object.keys(_utils).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _utils[key];
-    }
-  });
-});
-
-var _types = __webpack_require__(/*! ./types */ "./node_modules/cross-domain-utils/dist/module/types.js");
-
-Object.keys(_types).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _types[key];
-    }
-  });
-});
 
 /***/ }),
 
@@ -20853,10 +20953,15 @@ Object.keys(_types).forEach(function (key) {
 /*!**************************************************************!*\
   !*** ./node_modules/cross-domain-utils/dist/module/types.js ***!
   \**************************************************************/
-/***/ (function() {
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "TYPES": function() { return /* binding */ TYPES; }
+/* harmony export */ });
+// export something to force webpack to see this as an ES module
+var TYPES = true;
 
 /***/ }),
 
@@ -20864,21 +20969,20 @@ Object.keys(_types).forEach(function (key) {
 /*!*************************************************************!*\
   !*** ./node_modules/cross-domain-utils/dist/module/util.js ***!
   \*************************************************************/
-/***/ (function(__unused_webpack_module, exports) {
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
-
-exports.__esModule = true;
-exports.isRegex = isRegex;
-exports.noop = noop;
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "isRegex": function() { return /* binding */ isRegex; },
+/* harmony export */   "noop": function() { return /* binding */ noop; }
+/* harmony export */ });
 function isRegex(item) {
-    return Object.prototype.toString.call(item) === '[object RegExp]';
-}
+  // $FlowFixMe method-unbinding
+  return Object.prototype.toString.call(item) === '[object RegExp]';
+} // eslint-disable-next-line no-unused-vars
 
-// eslint-disable-next-line no-unused-vars
-function noop() {
-    // pass
+function noop() {// pass
 }
 
 /***/ }),
@@ -20887,1138 +20991,1093 @@ function noop() {
 /*!**************************************************************!*\
   !*** ./node_modules/cross-domain-utils/dist/module/utils.js ***!
   \**************************************************************/
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
-
-exports.__esModule = true;
-exports.isFileProtocol = isFileProtocol;
-exports.isAboutProtocol = isAboutProtocol;
-exports.getParent = getParent;
-exports.getOpener = getOpener;
-exports.canReadFromWindow = canReadFromWindow;
-exports.getActualDomain = getActualDomain;
-exports.getDomain = getDomain;
-exports.isBlankDomain = isBlankDomain;
-exports.isActuallySameDomain = isActuallySameDomain;
-exports.isSameDomain = isSameDomain;
-exports.getParents = getParents;
-exports.isAncestorParent = isAncestorParent;
-exports.getFrames = getFrames;
-exports.getAllChildFrames = getAllChildFrames;
-exports.getTop = getTop;
-exports.getAllFramesInWindow = getAllFramesInWindow;
-exports.isTop = isTop;
-exports.isFrameWindowClosed = isFrameWindowClosed;
-exports.isWindowClosed = isWindowClosed;
-exports.linkFrameWindow = linkFrameWindow;
-exports.getUserAgent = getUserAgent;
-exports.getFrameByName = getFrameByName;
-exports.findChildFrameByName = findChildFrameByName;
-exports.findFrameByName = findFrameByName;
-exports.isParent = isParent;
-exports.isOpener = isOpener;
-exports.getAncestor = getAncestor;
-exports.getAncestors = getAncestors;
-exports.isAncestor = isAncestor;
-exports.isPopup = isPopup;
-exports.isIframe = isIframe;
-exports.isFullpage = isFullpage;
-exports.getDistanceFromTop = getDistanceFromTop;
-exports.getNthParent = getNthParent;
-exports.getNthParentFromTop = getNthParentFromTop;
-exports.isSameTopWindow = isSameTopWindow;
-exports.matchDomain = matchDomain;
-exports.stringifyDomainPattern = stringifyDomainPattern;
-exports.getDomainFromUrl = getDomainFromUrl;
-exports.onCloseWindow = onCloseWindow;
-exports.isWindow = isWindow;
-
-var _util = __webpack_require__(/*! ./util */ "./node_modules/cross-domain-utils/dist/module/util.js");
-
-var CONSTANTS = {
-    MOCK_PROTOCOL: 'mock:',
-    FILE_PROTOCOL: 'file:',
-    ABOUT_PROTOCOL: 'about:',
-    WILDCARD: '*'
-};
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "isFileProtocol": function() { return /* binding */ isFileProtocol; },
+/* harmony export */   "isAboutProtocol": function() { return /* binding */ isAboutProtocol; },
+/* harmony export */   "getParent": function() { return /* binding */ getParent; },
+/* harmony export */   "getOpener": function() { return /* binding */ getOpener; },
+/* harmony export */   "canReadFromWindow": function() { return /* binding */ canReadFromWindow; },
+/* harmony export */   "getActualDomain": function() { return /* binding */ getActualDomain; },
+/* harmony export */   "getDomain": function() { return /* binding */ getDomain; },
+/* harmony export */   "isBlankDomain": function() { return /* binding */ isBlankDomain; },
+/* harmony export */   "isActuallySameDomain": function() { return /* binding */ isActuallySameDomain; },
+/* harmony export */   "isSameDomain": function() { return /* binding */ isSameDomain; },
+/* harmony export */   "assertSameDomain": function() { return /* binding */ assertSameDomain; },
+/* harmony export */   "getParents": function() { return /* binding */ getParents; },
+/* harmony export */   "isAncestorParent": function() { return /* binding */ isAncestorParent; },
+/* harmony export */   "getFrames": function() { return /* binding */ getFrames; },
+/* harmony export */   "getAllChildFrames": function() { return /* binding */ getAllChildFrames; },
+/* harmony export */   "getTop": function() { return /* binding */ getTop; },
+/* harmony export */   "getNextOpener": function() { return /* binding */ getNextOpener; },
+/* harmony export */   "getUltimateTop": function() { return /* binding */ getUltimateTop; },
+/* harmony export */   "getAllFramesInWindow": function() { return /* binding */ getAllFramesInWindow; },
+/* harmony export */   "getAllWindows": function() { return /* binding */ getAllWindows; },
+/* harmony export */   "isTop": function() { return /* binding */ isTop; },
+/* harmony export */   "isFrameWindowClosed": function() { return /* binding */ isFrameWindowClosed; },
+/* harmony export */   "isWindowClosed": function() { return /* binding */ isWindowClosed; },
+/* harmony export */   "linkFrameWindow": function() { return /* binding */ linkFrameWindow; },
+/* harmony export */   "getUserAgent": function() { return /* binding */ getUserAgent; },
+/* harmony export */   "getFrameByName": function() { return /* binding */ getFrameByName; },
+/* harmony export */   "findChildFrameByName": function() { return /* binding */ findChildFrameByName; },
+/* harmony export */   "findFrameByName": function() { return /* binding */ findFrameByName; },
+/* harmony export */   "isParent": function() { return /* binding */ isParent; },
+/* harmony export */   "isOpener": function() { return /* binding */ isOpener; },
+/* harmony export */   "getAncestor": function() { return /* binding */ getAncestor; },
+/* harmony export */   "getAncestors": function() { return /* binding */ getAncestors; },
+/* harmony export */   "isAncestor": function() { return /* binding */ isAncestor; },
+/* harmony export */   "isPopup": function() { return /* binding */ isPopup; },
+/* harmony export */   "isIframe": function() { return /* binding */ isIframe; },
+/* harmony export */   "isFullpage": function() { return /* binding */ isFullpage; },
+/* harmony export */   "getDistanceFromTop": function() { return /* binding */ getDistanceFromTop; },
+/* harmony export */   "getNthParent": function() { return /* binding */ getNthParent; },
+/* harmony export */   "getNthParentFromTop": function() { return /* binding */ getNthParentFromTop; },
+/* harmony export */   "isSameTopWindow": function() { return /* binding */ isSameTopWindow; },
+/* harmony export */   "matchDomain": function() { return /* binding */ matchDomain; },
+/* harmony export */   "stringifyDomainPattern": function() { return /* binding */ stringifyDomainPattern; },
+/* harmony export */   "getDomainFromUrl": function() { return /* binding */ getDomainFromUrl; },
+/* harmony export */   "onCloseWindow": function() { return /* binding */ onCloseWindow; },
+/* harmony export */   "isWindow": function() { return /* binding */ isWindow; },
+/* harmony export */   "isBrowser": function() { return /* binding */ isBrowser; },
+/* harmony export */   "isCurrentDomain": function() { return /* binding */ isCurrentDomain; },
+/* harmony export */   "isMockDomain": function() { return /* binding */ isMockDomain; },
+/* harmony export */   "normalizeMockUrl": function() { return /* binding */ normalizeMockUrl; },
+/* harmony export */   "closeWindow": function() { return /* binding */ closeWindow; },
+/* harmony export */   "getFrameForWindow": function() { return /* binding */ getFrameForWindow; }
+/* harmony export */ });
+/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./util */ "./node_modules/cross-domain-utils/dist/module/util.js");
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./constants */ "./node_modules/cross-domain-utils/dist/module/constants.js");
 /* eslint max-lines: 0 */
 
+
 var IE_WIN_ACCESS_ERROR = 'Call was rejected by callee.\r\n';
+function isFileProtocol(win) {
+  if (win === void 0) {
+    win = window;
+  }
 
-function isFileProtocol() {
-    var win = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : window;
-
-    return win.location.protocol === CONSTANTS.FILE_PROTOCOL;
+  return win.location.protocol === _constants__WEBPACK_IMPORTED_MODULE_1__.PROTOCOL.FILE;
 }
+function isAboutProtocol(win) {
+  if (win === void 0) {
+    win = window;
+  }
 
-function isAboutProtocol() {
-    var win = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : window;
-
-    return win.location.protocol === CONSTANTS.ABOUT_PROTOCOL;
+  return win.location.protocol === _constants__WEBPACK_IMPORTED_MODULE_1__.PROTOCOL.ABOUT;
 }
-
 function getParent(win) {
+  if (win === void 0) {
+    win = window;
+  }
 
-    if (!win) {
-        return;
-    }
+  if (!win) {
+    return;
+  }
 
-    try {
-        if (win.parent && win.parent !== win) {
-            return win.parent;
-        }
-    } catch (err) {
-        // pass
+  try {
+    if (win.parent && win.parent !== win) {
+      return win.parent;
     }
+  } catch (err) {// pass
+  }
 }
-
 function getOpener(win) {
+  if (win === void 0) {
+    win = window;
+  }
 
-    if (!win) {
-        return;
-    }
+  if (!win) {
+    return;
+  } // Make sure we're not actually an iframe which has had window.open() called on us
 
-    // Make sure we're not actually an iframe which has had window.open() called on us
-    if (getParent(win)) {
-        return;
-    }
 
-    try {
-        return win.opener;
-    } catch (err) {
-        // pass
-    }
+  if (getParent(win)) {
+    return;
+  }
+
+  try {
+    return win.opener;
+  } catch (err) {// pass
+  }
 }
-
 function canReadFromWindow(win) {
-    try {
-        // $FlowFixMe
-        (0, _util.noop)(win && win.location && win.location.href);
-        return true;
-    } catch (err) {
-        // pass
-    }
-
-    return false;
-}
-
-function getActualDomain(win) {
-
-    win = win || window;
-
-    var location = win.location;
-
-    if (!location) {
-        throw new Error('Can not read window location');
-    }
-
-    var protocol = location.protocol;
-
-    if (!protocol) {
-        throw new Error('Can not read window protocol');
-    }
-
-    if (protocol === CONSTANTS.FILE_PROTOCOL) {
-        return CONSTANTS.FILE_PROTOCOL + '//';
-    }
-
-    if (protocol === CONSTANTS.ABOUT_PROTOCOL) {
-
-        var parent = getParent(win);
-        if (parent && canReadFromWindow(win)) {
-            // $FlowFixMe
-            return getActualDomain(parent);
-        }
-
-        return CONSTANTS.ABOUT_PROTOCOL + '//';
-    }
-
-    var host = location.host;
-
-    if (!host) {
-        throw new Error('Can not read window host');
-    }
-
-    return protocol + '//' + host;
-}
-
-function getDomain(win) {
-
-    win = win || window;
-
-    var domain = getActualDomain(win);
-
-    if (domain && win.mockDomain && win.mockDomain.indexOf(CONSTANTS.MOCK_PROTOCOL) === 0) {
-        return win.mockDomain;
-    }
-
-    return domain;
-}
-
-function isBlankDomain(win) {
-    try {
-        if (!win.location.href) {
-            return true;
-        }
-
-        if (win.location.href === 'about:blank') {
-            return true;
-        }
-    } catch (err) {
-        // pass
-    }
-
-    return false;
-}
-
-function isActuallySameDomain(win) {
-
-    try {
-        if (win === window) {
-            return true;
-        }
-    } catch (err) {
-        // pass
-    }
-
-    try {
-        var desc = Object.getOwnPropertyDescriptor(win, 'location');
-
-        if (desc && desc.enumerable === false) {
-            return false;
-        }
-    } catch (err) {
-        // pass
-    }
-
-    try {
-        // $FlowFixMe
-        if (isAboutProtocol(win) && canReadFromWindow(win)) {
-            return true;
-        }
-    } catch (err) {
-        // pass
-    }
-
-    try {
-        // $FlowFixMe
-        if (getActualDomain(win) === getActualDomain(window)) {
-            return true;
-        }
-    } catch (err) {
-        // pass
-    }
-
-    return false;
-}
-
-function isSameDomain(win) {
-
-    if (!isActuallySameDomain(win)) {
-        return false;
-    }
-
-    try {
-
-        if (win === window) {
-            return true;
-        }
-
-        // $FlowFixMe
-        if (isAboutProtocol(win) && canReadFromWindow(win)) {
-            return true;
-        }
-
-        // $FlowFixMe
-        if (getDomain(window) === getDomain(win)) {
-            return true;
-        }
-    } catch (err) {
-        // pass
-    }
-
-    return false;
-}
-
-function getParents(win) {
-
-    var result = [];
-
-    try {
-
-        while (win.parent !== win) {
-            result.push(win.parent);
-            win = win.parent;
-        }
-    } catch (err) {
-        // pass
-    }
-
-    return result;
-}
-
-function isAncestorParent(parent, child) {
-
-    if (!parent || !child) {
-        return false;
-    }
-
-    var childParent = getParent(child);
-
-    if (childParent) {
-        return childParent === parent;
-    }
-
-    if (getParents(child).indexOf(parent) !== -1) {
-        return true;
-    }
-
-    return false;
-}
-
-function getFrames(win) {
-
-    var result = [];
-
-    var frames = void 0;
-
-    try {
-        frames = win.frames;
-    } catch (err) {
-        frames = win;
-    }
-
-    var len = void 0;
-
-    try {
-        len = frames.length;
-    } catch (err) {
-        // pass
-    }
-
-    if (len === 0) {
-        return result;
-    }
-
-    if (len) {
-        for (var i = 0; i < len; i++) {
-
-            var frame = void 0;
-
-            try {
-                frame = frames[i];
-            } catch (err) {
-                continue;
-            }
-
-            result.push(frame);
-        }
-
-        return result;
-    }
-
-    for (var _i = 0; _i < 100; _i++) {
-        var _frame = void 0;
-
-        try {
-            _frame = frames[_i];
-        } catch (err) {
-            return result;
-        }
-
-        if (!_frame) {
-            return result;
-        }
-
-        result.push(_frame);
-    }
-
-    return result;
-}
-
-function getAllChildFrames(win) {
-
-    var result = [];
-
-    for (var _iterator = getFrames(win), _isArray = Array.isArray(_iterator), _i2 = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
-        var _ref;
-
-        if (_isArray) {
-            if (_i2 >= _iterator.length) break;
-            _ref = _iterator[_i2++];
-        } else {
-            _i2 = _iterator.next();
-            if (_i2.done) break;
-            _ref = _i2.value;
-        }
-
-        var frame = _ref;
-
-        result.push(frame);
-
-        for (var _iterator2 = getAllChildFrames(frame), _isArray2 = Array.isArray(_iterator2), _i3 = 0, _iterator2 = _isArray2 ? _iterator2 : _iterator2[Symbol.iterator]();;) {
-            var _ref2;
-
-            if (_isArray2) {
-                if (_i3 >= _iterator2.length) break;
-                _ref2 = _iterator2[_i3++];
-            } else {
-                _i3 = _iterator2.next();
-                if (_i3.done) break;
-                _ref2 = _i3.value;
-            }
-
-            var childFrame = _ref2;
-
-            result.push(childFrame);
-        }
-    }
-
-    return result;
-}
-
-function getTop(win) {
-
-    if (!win) {
-        return;
-    }
-
-    try {
-        if (win.top) {
-            return win.top;
-        }
-    } catch (err) {
-        // pass
-    }
-
-    if (getParent(win) === win) {
-        return win;
-    }
-
-    try {
-        if (isAncestorParent(window, win) && window.top) {
-            return window.top;
-        }
-    } catch (err) {
-        // pass
-    }
-
-    try {
-        if (isAncestorParent(win, window) && window.top) {
-            return window.top;
-        }
-    } catch (err) {
-        // pass
-    }
-
-    for (var _iterator3 = getAllChildFrames(win), _isArray3 = Array.isArray(_iterator3), _i4 = 0, _iterator3 = _isArray3 ? _iterator3 : _iterator3[Symbol.iterator]();;) {
-        var _ref3;
-
-        if (_isArray3) {
-            if (_i4 >= _iterator3.length) break;
-            _ref3 = _iterator3[_i4++];
-        } else {
-            _i4 = _iterator3.next();
-            if (_i4.done) break;
-            _ref3 = _i4.value;
-        }
-
-        var frame = _ref3;
-
-        try {
-            if (frame.top) {
-                return frame.top;
-            }
-        } catch (err) {
-            // pass
-        }
-
-        if (getParent(frame) === frame) {
-            return frame;
-        }
-    }
-}
-
-function getAllFramesInWindow(win) {
-    var top = getTop(win);
+  try {
     // $FlowFixMe
-    return getAllChildFrames(top).concat(top);
+    (0,_util__WEBPACK_IMPORTED_MODULE_0__.noop)(win && win.location && win.location.href);
+    return true;
+  } catch (err) {// pass
+  }
+
+  return false;
 }
+function getActualDomain(win) {
+  if (win === void 0) {
+    win = window;
+  }
 
-function isTop(win) {
-    return win === getTop(win);
+  var location = win.location;
+
+  if (!location) {
+    throw new Error("Can not read window location");
+  }
+
+  var protocol = location.protocol;
+
+  if (!protocol) {
+    throw new Error("Can not read window protocol");
+  }
+
+  if (protocol === _constants__WEBPACK_IMPORTED_MODULE_1__.PROTOCOL.FILE) {
+    return _constants__WEBPACK_IMPORTED_MODULE_1__.PROTOCOL.FILE + "//";
+  }
+
+  if (protocol === _constants__WEBPACK_IMPORTED_MODULE_1__.PROTOCOL.ABOUT) {
+    var parent = getParent(win);
+
+    if (parent && canReadFromWindow(parent)) {
+      // $FlowFixMe
+      return getActualDomain(parent);
+    }
+
+    return _constants__WEBPACK_IMPORTED_MODULE_1__.PROTOCOL.ABOUT + "//";
+  }
+
+  var host = location.host;
+
+  if (!host) {
+    throw new Error("Can not read window host");
+  }
+
+  return protocol + "//" + host;
 }
+function getDomain(win) {
+  if (win === void 0) {
+    win = window;
+  }
 
-function isFrameWindowClosed(frame) {
+  var domain = getActualDomain(win);
 
-    if (!frame.contentWindow) {
-        return true;
+  if (domain && win.mockDomain && win.mockDomain.indexOf(_constants__WEBPACK_IMPORTED_MODULE_1__.PROTOCOL.MOCK) === 0) {
+    return win.mockDomain;
+  }
+
+  return domain;
+}
+function isBlankDomain(win) {
+  try {
+    // $FlowFixMe
+    if (!win.location.href) {
+      return true;
     }
 
-    if (!frame.parentNode) {
-        return true;
+    if (win.location.href === 'about:blank') {
+      return true;
     }
+  } catch (err) {// pass
+  }
 
-    var doc = frame.ownerDocument;
-
-    if (doc && doc.body && !doc.body.contains(frame)) {
-        return true;
+  return false;
+}
+function isActuallySameDomain(win) {
+  try {
+    if (win === window) {
+      return true;
     }
+  } catch (err) {// pass
+  }
 
+  try {
+    var desc = Object.getOwnPropertyDescriptor(win, 'location');
+
+    if (desc && desc.enumerable === false) {
+      return false;
+    }
+  } catch (err) {// pass
+  }
+
+  try {
+    // $FlowFixMe
+    if (isAboutProtocol(win) && canReadFromWindow(win)) {
+      return true;
+    }
+  } catch (err) {// pass
+  }
+
+  try {
+    // $FlowFixMe
+    if (getActualDomain(win) === getActualDomain(window)) {
+      return true;
+    }
+  } catch (err) {// pass
+  }
+
+  return false;
+}
+function isSameDomain(win) {
+  if (!isActuallySameDomain(win)) {
     return false;
+  }
+
+  try {
+    if (win === window) {
+      return true;
+    } // $FlowFixMe
+
+
+    if (isAboutProtocol(win) && canReadFromWindow(win)) {
+      return true;
+    } // $FlowFixMe
+
+
+    if (getDomain(window) === getDomain(win)) {
+      return true;
+    }
+  } catch (err) {// pass
+  }
+
+  return false;
+}
+function assertSameDomain(win) {
+  if (!isSameDomain(win)) {
+    throw new Error("Expected window to be same domain");
+  } // $FlowFixMe
+
+
+  return win;
+}
+function getParents(win) {
+  var result = [];
+
+  try {
+    while (win.parent !== win) {
+      result.push(win.parent);
+      win = win.parent;
+    }
+  } catch (err) {// pass
+  }
+
+  return result;
+}
+function isAncestorParent(parent, child) {
+  if (!parent || !child) {
+    return false;
+  }
+
+  var childParent = getParent(child);
+
+  if (childParent) {
+    return childParent === parent;
+  }
+
+  if (getParents(child).indexOf(parent) !== -1) {
+    return true;
+  }
+
+  return false;
+}
+function getFrames(win) {
+  var result = [];
+  var frames;
+
+  try {
+    frames = win.frames;
+  } catch (err) {
+    frames = win;
+  }
+
+  var len;
+
+  try {
+    len = frames.length;
+  } catch (err) {// pass
+  }
+
+  if (len === 0) {
+    return result;
+  }
+
+  if (len) {
+    for (var i = 0; i < len; i++) {
+      var frame = void 0;
+
+      try {
+        frame = frames[i];
+      } catch (err) {
+        continue;
+      }
+
+      result.push(frame);
+    }
+
+    return result;
+  }
+
+  for (var _i = 0; _i < 100; _i++) {
+    var _frame = void 0;
+
+    try {
+      _frame = frames[_i];
+    } catch (err) {
+      return result;
+    }
+
+    if (!_frame) {
+      return result;
+    }
+
+    result.push(_frame);
+  }
+
+  return result;
+}
+function getAllChildFrames(win) {
+  var result = [];
+
+  for (var _i3 = 0, _getFrames2 = getFrames(win); _i3 < _getFrames2.length; _i3++) {
+    var frame = _getFrames2[_i3];
+    result.push(frame);
+
+    for (var _i5 = 0, _getAllChildFrames2 = getAllChildFrames(frame); _i5 < _getAllChildFrames2.length; _i5++) {
+      var childFrame = _getAllChildFrames2[_i5];
+      result.push(childFrame);
+    }
+  }
+
+  return result;
+}
+function getTop(win) {
+  if (win === void 0) {
+    win = window;
+  }
+
+  try {
+    if (win.top) {
+      return win.top;
+    }
+  } catch (err) {// pass
+  }
+
+  if (getParent(win) === win) {
+    return win;
+  }
+
+  try {
+    if (isAncestorParent(window, win) && window.top) {
+      return window.top;
+    }
+  } catch (err) {// pass
+  }
+
+  try {
+    if (isAncestorParent(win, window) && window.top) {
+      return window.top;
+    }
+  } catch (err) {// pass
+  }
+
+  for (var _i7 = 0, _getAllChildFrames4 = getAllChildFrames(win); _i7 < _getAllChildFrames4.length; _i7++) {
+    var frame = _getAllChildFrames4[_i7];
+
+    try {
+      if (frame.top) {
+        return frame.top;
+      }
+    } catch (err) {// pass
+    }
+
+    if (getParent(frame) === frame) {
+      return frame;
+    }
+  }
+}
+function getNextOpener(win) {
+  if (win === void 0) {
+    win = window;
+  }
+
+  return getOpener(getTop(win) || win);
+}
+function getUltimateTop(win) {
+  if (win === void 0) {
+    win = window;
+  }
+
+  var opener = getNextOpener(win);
+
+  if (opener) {
+    return getUltimateTop(opener);
+  }
+
+  return top;
+}
+function getAllFramesInWindow(win) {
+  var top = getTop(win);
+
+  if (!top) {
+    throw new Error("Can not determine top window");
+  }
+
+  var result = [].concat(getAllChildFrames(top), [top]); // Win may be in shadow dom
+
+  if (result.indexOf(win) === -1) {
+    result = [].concat(result, [win], getAllChildFrames(win));
+  }
+
+  return result;
+}
+function getAllWindows(win) {
+  if (win === void 0) {
+    win = window;
+  }
+
+  var frames = getAllFramesInWindow(win);
+  var opener = getNextOpener(win);
+
+  if (opener) {
+    return [].concat(getAllWindows(opener), frames);
+  } else {
+    return frames;
+  }
+}
+function isTop(win) {
+  return win === getTop(win);
+}
+function isFrameWindowClosed(frame) {
+  if (!frame.contentWindow) {
+    return true;
+  }
+
+  if (!frame.parentNode) {
+    return true;
+  }
+
+  var doc = frame.ownerDocument;
+
+  if (doc && doc.documentElement && !doc.documentElement.contains(frame)) {
+    var parent = frame;
+
+    while (parent.parentNode && parent.parentNode !== parent) {
+      parent = parent.parentNode;
+    } // $FlowFixMe
+
+
+    if (!parent.host || !doc.documentElement.contains(parent.host)) {
+      return true;
+    }
+  }
+
+  return false;
 }
 
 function safeIndexOf(collection, item) {
-    for (var i = 0; i < collection.length; i++) {
-
-        try {
-            if (collection[i] === item) {
-                return i;
-            }
-        } catch (err) {
-            // pass
-        }
+  for (var i = 0; i < collection.length; i++) {
+    try {
+      if (collection[i] === item) {
+        return i;
+      }
+    } catch (err) {// pass
     }
+  }
 
-    return -1;
+  return -1;
 }
 
 var iframeWindows = [];
 var iframeFrames = [];
+function isWindowClosed(win, allowMock) {
+  if (allowMock === void 0) {
+    allowMock = true;
+  }
 
-function isWindowClosed(win) {
-    var allowMock = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+  try {
+    if (win === window) {
+      return false;
+    }
+  } catch (err) {
+    return true;
+  }
 
+  try {
+    if (!win) {
+      return true;
+    }
+  } catch (err) {
+    return true;
+  }
 
+  try {
+    if (win.closed) {
+      return true;
+    }
+  } catch (err) {
+    // I love you so much IE
+    if (err && err.message === IE_WIN_ACCESS_ERROR) {
+      return false;
+    }
+
+    return true;
+  }
+
+  if (allowMock && isSameDomain(win)) {
     try {
-        if (win === window) {
-            return false;
-        }
-    } catch (err) {
+      // $FlowFixMe
+      if (win.mockclosed) {
         return true;
+      }
+    } catch (err) {// pass
     }
+  } // Mobile safari
 
-    try {
-        if (!win) {
-            return true;
-        }
-    } catch (err) {
-        return true;
+
+  try {
+    if (!win.parent || !win.top) {
+      return true;
     }
+  } catch (err) {// pass
+  } // Yes, this actually happens in IE. win === win errors out when the window
+  // is from an iframe, and the iframe was removed from the page.
 
-    try {
-        if (win.closed) {
-            return true;
-        }
-    } catch (err) {
 
-        // I love you so much IE
+  try {
+    (0,_util__WEBPACK_IMPORTED_MODULE_0__.noop)(win === win); // eslint-disable-line no-self-compare
+  } catch (err) {
+    return true;
+  } // IE orphaned frame
 
-        if (err && err.message === IE_WIN_ACCESS_ERROR) {
-            return false;
-        }
 
-        return true;
+  var iframeIndex = safeIndexOf(iframeWindows, win);
+
+  if (iframeIndex !== -1) {
+    var frame = iframeFrames[iframeIndex];
+
+    if (frame && isFrameWindowClosed(frame)) {
+      return true;
     }
+  }
 
-    if (allowMock && isSameDomain(win)) {
-        try {
-            // $FlowFixMe
-            if (win.mockclosed) {
-                return true;
-            }
-        } catch (err) {
-            // pass
-        }
-    }
-
-    // Mobile safari
-
-    try {
-        if (!win.parent || !win.top) {
-            return true;
-        }
-    } catch (err) {}
-    // pass
-
-
-    // Yes, this actually happens in IE. win === win errors out when the window
-    // is from an iframe, and the iframe was removed from the page.
-
-    try {
-        (0, _util.noop)(win === win); // eslint-disable-line no-self-compare
-    } catch (err) {
-        return true;
-    }
-
-    // IE orphaned frame
-
-    var iframeIndex = safeIndexOf(iframeWindows, win);
-
-    if (iframeIndex !== -1) {
-        var frame = iframeFrames[iframeIndex];
-
-        if (frame && isFrameWindowClosed(frame)) {
-            return true;
-        }
-    }
-
-    return false;
+  return false;
 }
 
 function cleanIframes() {
+  for (var i = 0; i < iframeWindows.length; i++) {
+    var closed = false;
 
-    for (var i = 0; i < iframeFrames.length; i++) {
-        if (isFrameWindowClosed(iframeFrames[i])) {
-            iframeFrames.splice(i, 1);
-            iframeWindows.splice(i, 1);
-        }
+    try {
+      closed = iframeWindows[i].closed;
+    } catch (err) {// pass
     }
 
-    for (var _i5 = 0; _i5 < iframeWindows.length; _i5++) {
-        if (isWindowClosed(iframeWindows[_i5])) {
-            iframeFrames.splice(_i5, 1);
-            iframeWindows.splice(_i5, 1);
-        }
+    if (closed) {
+      iframeFrames.splice(i, 1);
+      iframeWindows.splice(i, 1);
     }
+  }
 }
 
 function linkFrameWindow(frame) {
+  cleanIframes();
 
-    cleanIframes();
-
-    if (frame && frame.contentWindow) {
-        try {
-            iframeWindows.push(frame.contentWindow);
-            iframeFrames.push(frame);
-        } catch (err) {
-            // pass
-        }
+  if (frame && frame.contentWindow) {
+    try {
+      iframeWindows.push(frame.contentWindow);
+      iframeFrames.push(frame);
+    } catch (err) {// pass
     }
+  }
 }
-
 function getUserAgent(win) {
-    win = win || window;
-    return win.navigator.mockUserAgent || win.navigator.userAgent;
+  win = win || window;
+  return win.navigator.mockUserAgent || win.navigator.userAgent;
 }
-
 function getFrameByName(win, name) {
+  var winFrames = getFrames(win);
 
-    var winFrames = getFrames(win);
-
-    for (var _iterator4 = winFrames, _isArray4 = Array.isArray(_iterator4), _i6 = 0, _iterator4 = _isArray4 ? _iterator4 : _iterator4[Symbol.iterator]();;) {
-        var _ref4;
-
-        if (_isArray4) {
-            if (_i6 >= _iterator4.length) break;
-            _ref4 = _iterator4[_i6++];
-        } else {
-            _i6 = _iterator4.next();
-            if (_i6.done) break;
-            _ref4 = _i6.value;
-        }
-
-        var childFrame = _ref4;
-
-        try {
-            // $FlowFixMe
-            if (isSameDomain(childFrame) && childFrame.name === name && winFrames.indexOf(childFrame) !== -1) {
-                return childFrame;
-            }
-        } catch (err) {
-            // pass
-        }
-    }
+  for (var _i9 = 0; _i9 < winFrames.length; _i9++) {
+    var childFrame = winFrames[_i9];
 
     try {
-        // $FlowFixMe
-        if (winFrames.indexOf(win.frames[name]) !== -1) {
-            // $FlowFixMe
-            return win.frames[name];
-        }
-    } catch (err) {
-        // pass
+      // $FlowFixMe
+      if (isSameDomain(childFrame) && childFrame.name === name && winFrames.indexOf(childFrame) !== -1) {
+        return childFrame;
+      }
+    } catch (err) {// pass
     }
+  }
 
-    try {
-        if (winFrames.indexOf(win[name]) !== -1) {
-            return win[name];
-        }
-    } catch (err) {
-        // pass
+  try {
+    // $FlowFixMe
+    if (winFrames.indexOf(win.frames[name]) !== -1) {
+      // $FlowFixMe
+      return win.frames[name];
     }
+  } catch (err) {// pass
+  }
+
+  try {
+    if (winFrames.indexOf(win[name]) !== -1) {
+      return win[name];
+    }
+  } catch (err) {// pass
+  }
 }
-
 function findChildFrameByName(win, name) {
+  var frame = getFrameByName(win, name);
 
-    var frame = getFrameByName(win, name);
+  if (frame) {
+    return frame;
+  }
 
-    if (frame) {
-        return frame;
+  for (var _i11 = 0, _getFrames4 = getFrames(win); _i11 < _getFrames4.length; _i11++) {
+    var childFrame = _getFrames4[_i11];
+    var namedFrame = findChildFrameByName(childFrame, name);
+
+    if (namedFrame) {
+      return namedFrame;
     }
-
-    for (var _iterator5 = getFrames(win), _isArray5 = Array.isArray(_iterator5), _i7 = 0, _iterator5 = _isArray5 ? _iterator5 : _iterator5[Symbol.iterator]();;) {
-        var _ref5;
-
-        if (_isArray5) {
-            if (_i7 >= _iterator5.length) break;
-            _ref5 = _iterator5[_i7++];
-        } else {
-            _i7 = _iterator5.next();
-            if (_i7.done) break;
-            _ref5 = _i7.value;
-        }
-
-        var childFrame = _ref5;
-
-        var namedFrame = findChildFrameByName(childFrame, name);
-
-        if (namedFrame) {
-            return namedFrame;
-        }
-    }
+  }
 }
-
 function findFrameByName(win, name) {
+  var frame = getFrameByName(win, name);
 
-    var frame = void 0;
+  if (frame) {
+    return frame;
+  }
 
-    frame = getFrameByName(win, name);
-
-    if (frame) {
-        return frame;
-    }
-
-    var top = getTop(win) || win;
-
-    return findChildFrameByName(top, name);
+  var top = getTop(win) || win;
+  return findChildFrameByName(top, name);
 }
-
 function isParent(win, frame) {
+  var frameParent = getParent(frame);
 
-    var frameParent = getParent(frame);
+  if (frameParent) {
+    return frameParent === win;
+  }
 
-    if (frameParent) {
-        return frameParent === win;
+  for (var _i13 = 0, _getFrames6 = getFrames(win); _i13 < _getFrames6.length; _i13++) {
+    var childFrame = _getFrames6[_i13];
+
+    if (childFrame === frame) {
+      return true;
     }
+  }
 
-    for (var _iterator6 = getFrames(win), _isArray6 = Array.isArray(_iterator6), _i8 = 0, _iterator6 = _isArray6 ? _iterator6 : _iterator6[Symbol.iterator]();;) {
-        var _ref6;
-
-        if (_isArray6) {
-            if (_i8 >= _iterator6.length) break;
-            _ref6 = _iterator6[_i8++];
-        } else {
-            _i8 = _iterator6.next();
-            if (_i8.done) break;
-            _ref6 = _i8.value;
-        }
-
-        var childFrame = _ref6;
-
-        if (childFrame === frame) {
-            return true;
-        }
-    }
-
-    return false;
+  return false;
 }
-
 function isOpener(parent, child) {
-
-    return parent === getOpener(child);
+  return parent === getOpener(child);
 }
-
 function getAncestor(win) {
-    win = win || window;
+  if (win === void 0) {
+    win = window;
+  }
 
-    var opener = getOpener(win);
+  win = win || window;
+  var opener = getOpener(win);
 
-    if (opener) {
-        return opener;
-    }
+  if (opener) {
+    return opener;
+  }
 
-    var parent = getParent(win);
+  var parent = getParent(win);
 
-    if (parent) {
-        return parent;
-    }
+  if (parent) {
+    return parent;
+  }
 }
-
 function getAncestors(win) {
+  var results = [];
+  var ancestor = win;
 
-    var results = [];
+  while (ancestor) {
+    ancestor = getAncestor(ancestor);
 
-    var ancestor = win;
-
-    while (ancestor) {
-        ancestor = getAncestor(ancestor);
-        if (ancestor) {
-            results.push(ancestor);
-        }
+    if (ancestor) {
+      results.push(ancestor);
     }
+  }
 
-    return results;
+  return results;
 }
-
 function isAncestor(parent, child) {
+  var actualParent = getAncestor(child);
 
-    var actualParent = getAncestor(child);
-
-    if (actualParent) {
-        if (actualParent === parent) {
-            return true;
-        }
-
-        return false;
-    }
-
-    if (child === parent) {
-        return false;
-    }
-
-    if (getTop(child) === child) {
-        return false;
-    }
-
-    for (var _iterator7 = getFrames(parent), _isArray7 = Array.isArray(_iterator7), _i9 = 0, _iterator7 = _isArray7 ? _iterator7 : _iterator7[Symbol.iterator]();;) {
-        var _ref7;
-
-        if (_isArray7) {
-            if (_i9 >= _iterator7.length) break;
-            _ref7 = _iterator7[_i9++];
-        } else {
-            _i9 = _iterator7.next();
-            if (_i9.done) break;
-            _ref7 = _i9.value;
-        }
-
-        var frame = _ref7;
-
-        if (frame === child) {
-            return true;
-        }
+  if (actualParent) {
+    if (actualParent === parent) {
+      return true;
     }
 
     return false;
-}
+  }
 
-function isPopup() {
-    return Boolean(getOpener(window));
-}
+  if (child === parent) {
+    return false;
+  }
 
-function isIframe() {
-    return Boolean(getParent(window));
-}
+  if (getTop(child) === child) {
+    return false;
+  }
 
-function isFullpage() {
-    return Boolean(!isIframe() && !isPopup());
+  for (var _i15 = 0, _getFrames8 = getFrames(parent); _i15 < _getFrames8.length; _i15++) {
+    var frame = _getFrames8[_i15];
+
+    if (frame === child) {
+      return true;
+    }
+  }
+
+  return false;
+}
+function isPopup(win) {
+  if (win === void 0) {
+    win = window;
+  }
+
+  return Boolean(getOpener(win));
+}
+function isIframe(win) {
+  if (win === void 0) {
+    win = window;
+  }
+
+  return Boolean(getParent(win));
+}
+function isFullpage(win) {
+  if (win === void 0) {
+    win = window;
+  }
+
+  return Boolean(!isIframe(win) && !isPopup(win));
 }
 
 function anyMatch(collection1, collection2) {
+  for (var _i17 = 0; _i17 < collection1.length; _i17++) {
+    var item1 = collection1[_i17];
 
-    for (var _iterator8 = collection1, _isArray8 = Array.isArray(_iterator8), _i10 = 0, _iterator8 = _isArray8 ? _iterator8 : _iterator8[Symbol.iterator]();;) {
-        var _ref8;
+    for (var _i19 = 0; _i19 < collection2.length; _i19++) {
+      var item2 = collection2[_i19];
 
-        if (_isArray8) {
-            if (_i10 >= _iterator8.length) break;
-            _ref8 = _iterator8[_i10++];
-        } else {
-            _i10 = _iterator8.next();
-            if (_i10.done) break;
-            _ref8 = _i10.value;
-        }
+      if (item1 === item2) {
+        return true;
+      }
+    }
+  }
 
-        var item1 = _ref8;
+  return false;
+}
 
-        for (var _iterator9 = collection2, _isArray9 = Array.isArray(_iterator9), _i11 = 0, _iterator9 = _isArray9 ? _iterator9 : _iterator9[Symbol.iterator]();;) {
-            var _ref9;
+function getDistanceFromTop(win) {
+  if (win === void 0) {
+    win = window;
+  }
 
-            if (_isArray9) {
-                if (_i11 >= _iterator9.length) break;
-                _ref9 = _iterator9[_i11++];
-            } else {
-                _i11 = _iterator9.next();
-                if (_i11.done) break;
-                _ref9 = _i11.value;
-            }
+  var distance = 0;
+  var parent = win;
 
-            var item2 = _ref9;
+  while (parent) {
+    parent = getParent(parent);
 
-            if (item1 === item2) {
-                return true;
-            }
-        }
+    if (parent) {
+      distance += 1;
+    }
+  }
+
+  return distance;
+}
+function getNthParent(win, n) {
+  if (n === void 0) {
+    n = 1;
+  }
+
+  var parent = win;
+
+  for (var i = 0; i < n; i++) {
+    if (!parent) {
+      return;
     }
 
-    return false;
+    parent = getParent(parent);
+  }
+
+  return parent;
 }
+function getNthParentFromTop(win, n) {
+  if (n === void 0) {
+    n = 1;
+  }
 
-function getDistanceFromTop() {
-    var win = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : window;
-
-    var distance = 0;
-    var parent = win;
-
-    while (parent) {
-        parent = getParent(parent);
-        if (parent) {
-            distance += 1;
-        }
-    }
-
-    return distance;
+  return getNthParent(win, getDistanceFromTop(win) - n);
 }
-
-function getNthParent(win) {
-    var n = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
-
-    var parent = win;
-
-    for (var i = 0; i < n; i++) {
-        if (!parent) {
-            return;
-        }
-
-        parent = getParent(parent);
-    }
-
-    return parent;
-}
-
-function getNthParentFromTop(win) {
-    var n = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
-
-    return getNthParent(win, getDistanceFromTop(win) - n);
-}
-
 function isSameTopWindow(win1, win2) {
+  var top1 = getTop(win1) || win1;
+  var top2 = getTop(win2) || win2;
 
-    var top1 = getTop(win1) || win1;
-    var top2 = getTop(win2) || win2;
-
-    try {
-        if (top1 && top2) {
-            if (top1 === top2) {
-                return true;
-            }
-
-            return false;
-        }
-    } catch (err) {
-        // pass
-    }
-
-    var allFrames1 = getAllFramesInWindow(win1);
-    var allFrames2 = getAllFramesInWindow(win2);
-
-    if (anyMatch(allFrames1, allFrames2)) {
+  try {
+    if (top1 && top2) {
+      if (top1 === top2) {
         return true;
+      }
+
+      return false;
     }
+  } catch (err) {// pass
+  }
 
-    var opener1 = getOpener(top1);
-    var opener2 = getOpener(top2);
+  var allFrames1 = getAllFramesInWindow(win1);
+  var allFrames2 = getAllFramesInWindow(win2);
 
-    if (opener1 && anyMatch(getAllFramesInWindow(opener1), allFrames2)) {
-        return false;
-    }
+  if (anyMatch(allFrames1, allFrames2)) {
+    return true;
+  }
 
-    if (opener2 && anyMatch(getAllFramesInWindow(opener2), allFrames1)) {
-        return false;
-    }
+  var opener1 = getOpener(top1);
+  var opener2 = getOpener(top2);
 
+  if (opener1 && anyMatch(getAllFramesInWindow(opener1), allFrames2)) {
     return false;
-}
+  }
 
+  if (opener2 && anyMatch(getAllFramesInWindow(opener2), allFrames1)) {
+    return false;
+  }
+
+  return false;
+}
 function matchDomain(pattern, origin) {
-
-    if (typeof pattern === 'string') {
-
-        if (typeof origin === 'string') {
-            return pattern === CONSTANTS.WILDCARD || origin === pattern;
-        }
-
-        if ((0, _util.isRegex)(origin)) {
-            return false;
-        }
-
-        if (Array.isArray(origin)) {
-            return false;
-        }
+  if (typeof pattern === 'string') {
+    if (typeof origin === 'string') {
+      return pattern === _constants__WEBPACK_IMPORTED_MODULE_1__.WILDCARD || origin === pattern;
     }
 
-    if ((0, _util.isRegex)(pattern)) {
-
-        if ((0, _util.isRegex)(origin)) {
-            return pattern.toString() === origin.toString();
-        }
-
-        if (Array.isArray(origin)) {
-            return false;
-        }
-
-        // $FlowFixMe
-        return Boolean(origin.match(pattern));
+    if ((0,_util__WEBPACK_IMPORTED_MODULE_0__.isRegex)(origin)) {
+      return false;
     }
 
-    if (Array.isArray(pattern)) {
+    if (Array.isArray(origin)) {
+      return false;
+    }
+  }
 
-        if (Array.isArray(origin)) {
-            return JSON.stringify(pattern) === JSON.stringify(origin);
-        }
-
-        if ((0, _util.isRegex)(origin)) {
-            return false;
-        }
-
-        return pattern.some(function (subpattern) {
-            return matchDomain(subpattern, origin);
-        });
+  if ((0,_util__WEBPACK_IMPORTED_MODULE_0__.isRegex)(pattern)) {
+    if ((0,_util__WEBPACK_IMPORTED_MODULE_0__.isRegex)(origin)) {
+      return pattern.toString() === origin.toString();
     }
 
-    return false;
+    if (Array.isArray(origin)) {
+      return false;
+    } // $FlowFixMe
+
+
+    return Boolean(origin.match(pattern));
+  }
+
+  if (Array.isArray(pattern)) {
+    if (Array.isArray(origin)) {
+      return JSON.stringify(pattern) === JSON.stringify(origin);
+    }
+
+    if ((0,_util__WEBPACK_IMPORTED_MODULE_0__.isRegex)(origin)) {
+      return false;
+    }
+
+    return pattern.some(function (subpattern) {
+      return matchDomain(subpattern, origin);
+    });
+  }
+
+  return false;
 }
-
 function stringifyDomainPattern(pattern) {
-    if (Array.isArray(pattern)) {
-        return '(' + pattern.join(' | ') + ')';
-    } else if ((0, _util.isRegex)(pattern)) {
-        return 'RegExp(' + pattern.toString();
-    } else {
-        return pattern.toString();
-    }
+  if (Array.isArray(pattern)) {
+    return "(" + pattern.join(' | ') + ")";
+  } else if ((0,_util__WEBPACK_IMPORTED_MODULE_0__.isRegex)(pattern)) {
+    return "RegExp(" + pattern.toString() + ")";
+  } else {
+    return pattern.toString();
+  }
 }
-
 function getDomainFromUrl(url) {
+  var domain;
 
-    var domain = void 0;
+  if (url.match(/^(https?|mock|file):\/\//)) {
+    domain = url;
+  } else {
+    return getDomain();
+  }
 
-    if (url.match(/^(https?|mock|file):\/\//)) {
-        domain = url;
+  domain = domain.split('/').slice(0, 3).join('/');
+  return domain;
+}
+function onCloseWindow(win, callback, delay, maxtime) {
+  if (delay === void 0) {
+    delay = 1000;
+  }
+
+  if (maxtime === void 0) {
+    maxtime = Infinity;
+  }
+
+  var timeout;
+
+  var check = function check() {
+    if (isWindowClosed(win)) {
+      if (timeout) {
+        clearTimeout(timeout);
+      }
+
+      return callback();
+    }
+
+    if (maxtime <= 0) {
+      clearTimeout(timeout);
     } else {
-        return getDomain();
+      maxtime -= delay;
+      timeout = setTimeout(check, delay);
     }
+  };
 
-    domain = domain.split('/').slice(0, 3).join('/');
+  check();
+  return {
+    cancel: function cancel() {
+      if (timeout) {
+        clearTimeout(timeout);
+      }
+    }
+  };
+} // eslint-disable-next-line complexity
 
-    return domain;
-}
-
-function onCloseWindow(win, callback) {
-    var delay = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1000;
-    var maxtime = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : Infinity;
-
-
-    var timeout = void 0;
-
-    var check = function check() {
-
-        if (isWindowClosed(win)) {
-
-            if (timeout) {
-                clearTimeout(timeout);
-            }
-
-            return callback();
-        }
-
-        if (maxtime <= 0) {
-            clearTimeout(timeout);
-        } else {
-            maxtime -= delay;
-            timeout = setTimeout(check, delay);
-        }
-    };
-
-    check();
-
-    return {
-        cancel: function cancel() {
-            if (timeout) {
-                clearTimeout(timeout);
-            }
-        }
-    };
-}
-
-// eslint-disable-next-line complexity
 function isWindow(obj) {
-
-    try {
-        if (obj === window) {
-            return true;
-        }
-    } catch (err) {
-        if (err && err.message === IE_WIN_ACCESS_ERROR) {
-            return true;
-        }
+  try {
+    if (obj === window) {
+      return true;
     }
-
-    try {
-        if (Object.prototype.toString.call(obj) === '[object Window]') {
-            return true;
-        }
-    } catch (err) {
-        if (err && err.message === IE_WIN_ACCESS_ERROR) {
-            return true;
-        }
+  } catch (err) {
+    if (err && err.message === IE_WIN_ACCESS_ERROR) {
+      return true;
     }
+  }
 
-    try {
-        if (window.Window && obj instanceof window.Window) {
-            return true;
-        }
-    } catch (err) {
-        if (err && err.message === IE_WIN_ACCESS_ERROR) {
-            return true;
-        }
+  try {
+    // $FlowFixMe method-unbinding
+    if (Object.prototype.toString.call(obj) === '[object Window]') {
+      return true;
     }
-
-    try {
-        if (obj && obj.self === obj) {
-            return true;
-        }
-    } catch (err) {
-        if (err && err.message === IE_WIN_ACCESS_ERROR) {
-            return true;
-        }
+  } catch (err) {
+    if (err && err.message === IE_WIN_ACCESS_ERROR) {
+      return true;
     }
+  }
 
-    try {
-        if (obj && obj.parent === obj) {
-            return true;
-        }
-    } catch (err) {
-        if (err && err.message === IE_WIN_ACCESS_ERROR) {
-            return true;
-        }
+  try {
+    if (window.Window && obj instanceof window.Window) {
+      return true;
     }
-
-    try {
-        if (obj && obj.top === obj) {
-            return true;
-        }
-    } catch (err) {
-        if (err && err.message === IE_WIN_ACCESS_ERROR) {
-            return true;
-        }
+  } catch (err) {
+    if (err && err.message === IE_WIN_ACCESS_ERROR) {
+      return true;
     }
+  }
 
-    try {
-        (0, _util.noop)(obj === obj); // eslint-disable-line no-self-compare
-    } catch (err) {
-        return true;
+  try {
+    if (obj && obj.self === obj) {
+      return true;
     }
-
-    try {
-        (0, _util.noop)(obj && obj.__cross_domain_utils_window_check__);
-    } catch (err) {
-        return true;
+  } catch (err) {
+    if (err && err.message === IE_WIN_ACCESS_ERROR) {
+      return true;
     }
+  }
 
+  try {
+    if (obj && obj.parent === obj) {
+      return true;
+    }
+  } catch (err) {
+    if (err && err.message === IE_WIN_ACCESS_ERROR) {
+      return true;
+    }
+  }
+
+  try {
+    if (obj && obj.top === obj) {
+      return true;
+    }
+  } catch (err) {
+    if (err && err.message === IE_WIN_ACCESS_ERROR) {
+      return true;
+    }
+  }
+
+  try {
+    if ((0,_util__WEBPACK_IMPORTED_MODULE_0__.noop)(obj === obj) === '__unlikely_value__') {
+      // eslint-disable-line no-self-compare
+      return false;
+    }
+  } catch (err) {
+    return true;
+  }
+
+  try {
+    if (obj && obj.__cross_domain_utils_window_check__ === '__unlikely_value__') {
+      return false;
+    }
+  } catch (err) {
+    return true;
+  }
+
+  try {
+    if ('postMessage' in obj && 'self' in obj && 'location' in obj) {
+      return true;
+    }
+  } catch (err) {// pass
+  }
+
+  return false;
+}
+function isBrowser() {
+  return typeof window !== 'undefined' && typeof window.location !== 'undefined';
+}
+function isCurrentDomain(domain) {
+  if (!isBrowser()) {
     return false;
+  }
+
+  return getDomain() === domain;
+}
+function isMockDomain(domain) {
+  return domain.indexOf(_constants__WEBPACK_IMPORTED_MODULE_1__.PROTOCOL.MOCK) === 0;
+}
+function normalizeMockUrl(url) {
+  if (!isMockDomain(getDomainFromUrl(url))) {
+    return url;
+  }
+
+  if (!__TEST__) {
+    throw new Error("Mock urls not supported out of test mode");
+  }
+
+  return url.replace(/^mock:\/\/[^/]+/, getActualDomain(window));
+}
+function closeWindow(win) {
+  try {
+    win.close();
+  } catch (err) {// pass
+  }
+}
+function getFrameForWindow(win) {
+  if (isSameDomain(win)) {
+    return assertSameDomain(win).frameElement;
+  }
+
+  for (var _i21 = 0, _document$querySelect2 = document.querySelectorAll('iframe'); _i21 < _document$querySelect2.length; _i21++) {
+    var frame = _document$querySelect2[_i21];
+
+    if (frame && frame.contentWindow && frame.contentWindow === win) {
+      return frame;
+    }
+  }
 }
 
 /***/ }),
@@ -26198,331 +26257,6 @@ try {
 
 /***/ }),
 
-/***/ "./node_modules/uuid/dist/esm-browser/index.js":
-/*!*****************************************************!*\
-  !*** ./node_modules/uuid/dist/esm-browser/index.js ***!
-  \*****************************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "v1": function() { return /* reexport safe */ _v1_js__WEBPACK_IMPORTED_MODULE_0__.default; },
-/* harmony export */   "v3": function() { return /* reexport safe */ _v3_js__WEBPACK_IMPORTED_MODULE_1__.default; },
-/* harmony export */   "v4": function() { return /* reexport safe */ _v4_js__WEBPACK_IMPORTED_MODULE_2__.default; },
-/* harmony export */   "v5": function() { return /* reexport safe */ _v5_js__WEBPACK_IMPORTED_MODULE_3__.default; },
-/* harmony export */   "NIL": function() { return /* reexport safe */ _nil_js__WEBPACK_IMPORTED_MODULE_4__.default; },
-/* harmony export */   "version": function() { return /* reexport safe */ _version_js__WEBPACK_IMPORTED_MODULE_5__.default; },
-/* harmony export */   "validate": function() { return /* reexport safe */ _validate_js__WEBPACK_IMPORTED_MODULE_6__.default; },
-/* harmony export */   "stringify": function() { return /* reexport safe */ _stringify_js__WEBPACK_IMPORTED_MODULE_7__.default; },
-/* harmony export */   "parse": function() { return /* reexport safe */ _parse_js__WEBPACK_IMPORTED_MODULE_8__.default; }
-/* harmony export */ });
-/* harmony import */ var _v1_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./v1.js */ "./node_modules/uuid/dist/esm-browser/v1.js");
-/* harmony import */ var _v3_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./v3.js */ "./node_modules/uuid/dist/esm-browser/v3.js");
-/* harmony import */ var _v4_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./v4.js */ "./node_modules/uuid/dist/esm-browser/v4.js");
-/* harmony import */ var _v5_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./v5.js */ "./node_modules/uuid/dist/esm-browser/v5.js");
-/* harmony import */ var _nil_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./nil.js */ "./node_modules/uuid/dist/esm-browser/nil.js");
-/* harmony import */ var _version_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./version.js */ "./node_modules/uuid/dist/esm-browser/version.js");
-/* harmony import */ var _validate_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./validate.js */ "./node_modules/uuid/dist/esm-browser/validate.js");
-/* harmony import */ var _stringify_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./stringify.js */ "./node_modules/uuid/dist/esm-browser/stringify.js");
-/* harmony import */ var _parse_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./parse.js */ "./node_modules/uuid/dist/esm-browser/parse.js");
-
-
-
-
-
-
-
-
-
-
-/***/ }),
-
-/***/ "./node_modules/uuid/dist/esm-browser/md5.js":
-/*!***************************************************!*\
-  !*** ./node_modules/uuid/dist/esm-browser/md5.js ***!
-  \***************************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/*
- * Browser-compatible JavaScript MD5
- *
- * Modification of JavaScript MD5
- * https://github.com/blueimp/JavaScript-MD5
- *
- * Copyright 2011, Sebastian Tschan
- * https://blueimp.net
- *
- * Licensed under the MIT license:
- * https://opensource.org/licenses/MIT
- *
- * Based on
- * A JavaScript implementation of the RSA Data Security, Inc. MD5 Message
- * Digest Algorithm, as defined in RFC 1321.
- * Version 2.2 Copyright (C) Paul Johnston 1999 - 2009
- * Other contributors: Greg Holt, Andrew Kepert, Ydnar, Lostinet
- * Distributed under the BSD License
- * See http://pajhome.org.uk/crypt/md5 for more info.
- */
-function md5(bytes) {
-  if (typeof bytes === 'string') {
-    var msg = unescape(encodeURIComponent(bytes)); // UTF8 escape
-
-    bytes = new Uint8Array(msg.length);
-
-    for (var i = 0; i < msg.length; ++i) {
-      bytes[i] = msg.charCodeAt(i);
-    }
-  }
-
-  return md5ToHexEncodedArray(wordsToMd5(bytesToWords(bytes), bytes.length * 8));
-}
-/*
- * Convert an array of little-endian words to an array of bytes
- */
-
-
-function md5ToHexEncodedArray(input) {
-  var output = [];
-  var length32 = input.length * 32;
-  var hexTab = '0123456789abcdef';
-
-  for (var i = 0; i < length32; i += 8) {
-    var x = input[i >> 5] >>> i % 32 & 0xff;
-    var hex = parseInt(hexTab.charAt(x >>> 4 & 0x0f) + hexTab.charAt(x & 0x0f), 16);
-    output.push(hex);
-  }
-
-  return output;
-}
-/**
- * Calculate output length with padding and bit length
- */
-
-
-function getOutputLength(inputLength8) {
-  return (inputLength8 + 64 >>> 9 << 4) + 14 + 1;
-}
-/*
- * Calculate the MD5 of an array of little-endian words, and a bit length.
- */
-
-
-function wordsToMd5(x, len) {
-  /* append padding */
-  x[len >> 5] |= 0x80 << len % 32;
-  x[getOutputLength(len) - 1] = len;
-  var a = 1732584193;
-  var b = -271733879;
-  var c = -1732584194;
-  var d = 271733878;
-
-  for (var i = 0; i < x.length; i += 16) {
-    var olda = a;
-    var oldb = b;
-    var oldc = c;
-    var oldd = d;
-    a = md5ff(a, b, c, d, x[i], 7, -680876936);
-    d = md5ff(d, a, b, c, x[i + 1], 12, -389564586);
-    c = md5ff(c, d, a, b, x[i + 2], 17, 606105819);
-    b = md5ff(b, c, d, a, x[i + 3], 22, -1044525330);
-    a = md5ff(a, b, c, d, x[i + 4], 7, -176418897);
-    d = md5ff(d, a, b, c, x[i + 5], 12, 1200080426);
-    c = md5ff(c, d, a, b, x[i + 6], 17, -1473231341);
-    b = md5ff(b, c, d, a, x[i + 7], 22, -45705983);
-    a = md5ff(a, b, c, d, x[i + 8], 7, 1770035416);
-    d = md5ff(d, a, b, c, x[i + 9], 12, -1958414417);
-    c = md5ff(c, d, a, b, x[i + 10], 17, -42063);
-    b = md5ff(b, c, d, a, x[i + 11], 22, -1990404162);
-    a = md5ff(a, b, c, d, x[i + 12], 7, 1804603682);
-    d = md5ff(d, a, b, c, x[i + 13], 12, -40341101);
-    c = md5ff(c, d, a, b, x[i + 14], 17, -1502002290);
-    b = md5ff(b, c, d, a, x[i + 15], 22, 1236535329);
-    a = md5gg(a, b, c, d, x[i + 1], 5, -165796510);
-    d = md5gg(d, a, b, c, x[i + 6], 9, -1069501632);
-    c = md5gg(c, d, a, b, x[i + 11], 14, 643717713);
-    b = md5gg(b, c, d, a, x[i], 20, -373897302);
-    a = md5gg(a, b, c, d, x[i + 5], 5, -701558691);
-    d = md5gg(d, a, b, c, x[i + 10], 9, 38016083);
-    c = md5gg(c, d, a, b, x[i + 15], 14, -660478335);
-    b = md5gg(b, c, d, a, x[i + 4], 20, -405537848);
-    a = md5gg(a, b, c, d, x[i + 9], 5, 568446438);
-    d = md5gg(d, a, b, c, x[i + 14], 9, -1019803690);
-    c = md5gg(c, d, a, b, x[i + 3], 14, -187363961);
-    b = md5gg(b, c, d, a, x[i + 8], 20, 1163531501);
-    a = md5gg(a, b, c, d, x[i + 13], 5, -1444681467);
-    d = md5gg(d, a, b, c, x[i + 2], 9, -51403784);
-    c = md5gg(c, d, a, b, x[i + 7], 14, 1735328473);
-    b = md5gg(b, c, d, a, x[i + 12], 20, -1926607734);
-    a = md5hh(a, b, c, d, x[i + 5], 4, -378558);
-    d = md5hh(d, a, b, c, x[i + 8], 11, -2022574463);
-    c = md5hh(c, d, a, b, x[i + 11], 16, 1839030562);
-    b = md5hh(b, c, d, a, x[i + 14], 23, -35309556);
-    a = md5hh(a, b, c, d, x[i + 1], 4, -1530992060);
-    d = md5hh(d, a, b, c, x[i + 4], 11, 1272893353);
-    c = md5hh(c, d, a, b, x[i + 7], 16, -155497632);
-    b = md5hh(b, c, d, a, x[i + 10], 23, -1094730640);
-    a = md5hh(a, b, c, d, x[i + 13], 4, 681279174);
-    d = md5hh(d, a, b, c, x[i], 11, -358537222);
-    c = md5hh(c, d, a, b, x[i + 3], 16, -722521979);
-    b = md5hh(b, c, d, a, x[i + 6], 23, 76029189);
-    a = md5hh(a, b, c, d, x[i + 9], 4, -640364487);
-    d = md5hh(d, a, b, c, x[i + 12], 11, -421815835);
-    c = md5hh(c, d, a, b, x[i + 15], 16, 530742520);
-    b = md5hh(b, c, d, a, x[i + 2], 23, -995338651);
-    a = md5ii(a, b, c, d, x[i], 6, -198630844);
-    d = md5ii(d, a, b, c, x[i + 7], 10, 1126891415);
-    c = md5ii(c, d, a, b, x[i + 14], 15, -1416354905);
-    b = md5ii(b, c, d, a, x[i + 5], 21, -57434055);
-    a = md5ii(a, b, c, d, x[i + 12], 6, 1700485571);
-    d = md5ii(d, a, b, c, x[i + 3], 10, -1894986606);
-    c = md5ii(c, d, a, b, x[i + 10], 15, -1051523);
-    b = md5ii(b, c, d, a, x[i + 1], 21, -2054922799);
-    a = md5ii(a, b, c, d, x[i + 8], 6, 1873313359);
-    d = md5ii(d, a, b, c, x[i + 15], 10, -30611744);
-    c = md5ii(c, d, a, b, x[i + 6], 15, -1560198380);
-    b = md5ii(b, c, d, a, x[i + 13], 21, 1309151649);
-    a = md5ii(a, b, c, d, x[i + 4], 6, -145523070);
-    d = md5ii(d, a, b, c, x[i + 11], 10, -1120210379);
-    c = md5ii(c, d, a, b, x[i + 2], 15, 718787259);
-    b = md5ii(b, c, d, a, x[i + 9], 21, -343485551);
-    a = safeAdd(a, olda);
-    b = safeAdd(b, oldb);
-    c = safeAdd(c, oldc);
-    d = safeAdd(d, oldd);
-  }
-
-  return [a, b, c, d];
-}
-/*
- * Convert an array bytes to an array of little-endian words
- * Characters >255 have their high-byte silently ignored.
- */
-
-
-function bytesToWords(input) {
-  if (input.length === 0) {
-    return [];
-  }
-
-  var length8 = input.length * 8;
-  var output = new Uint32Array(getOutputLength(length8));
-
-  for (var i = 0; i < length8; i += 8) {
-    output[i >> 5] |= (input[i / 8] & 0xff) << i % 32;
-  }
-
-  return output;
-}
-/*
- * Add integers, wrapping at 2^32. This uses 16-bit operations internally
- * to work around bugs in some JS interpreters.
- */
-
-
-function safeAdd(x, y) {
-  var lsw = (x & 0xffff) + (y & 0xffff);
-  var msw = (x >> 16) + (y >> 16) + (lsw >> 16);
-  return msw << 16 | lsw & 0xffff;
-}
-/*
- * Bitwise rotate a 32-bit number to the left.
- */
-
-
-function bitRotateLeft(num, cnt) {
-  return num << cnt | num >>> 32 - cnt;
-}
-/*
- * These functions implement the four basic operations the algorithm uses.
- */
-
-
-function md5cmn(q, a, b, x, s, t) {
-  return safeAdd(bitRotateLeft(safeAdd(safeAdd(a, q), safeAdd(x, t)), s), b);
-}
-
-function md5ff(a, b, c, d, x, s, t) {
-  return md5cmn(b & c | ~b & d, a, b, x, s, t);
-}
-
-function md5gg(a, b, c, d, x, s, t) {
-  return md5cmn(b & d | c & ~d, a, b, x, s, t);
-}
-
-function md5hh(a, b, c, d, x, s, t) {
-  return md5cmn(b ^ c ^ d, a, b, x, s, t);
-}
-
-function md5ii(a, b, c, d, x, s, t) {
-  return md5cmn(c ^ (b | ~d), a, b, x, s, t);
-}
-
-/* harmony default export */ __webpack_exports__["default"] = (md5);
-
-/***/ }),
-
-/***/ "./node_modules/uuid/dist/esm-browser/nil.js":
-/*!***************************************************!*\
-  !*** ./node_modules/uuid/dist/esm-browser/nil.js ***!
-  \***************************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ('00000000-0000-0000-0000-000000000000');
-
-/***/ }),
-
-/***/ "./node_modules/uuid/dist/esm-browser/parse.js":
-/*!*****************************************************!*\
-  !*** ./node_modules/uuid/dist/esm-browser/parse.js ***!
-  \*****************************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _validate_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./validate.js */ "./node_modules/uuid/dist/esm-browser/validate.js");
-
-
-function parse(uuid) {
-  if (!(0,_validate_js__WEBPACK_IMPORTED_MODULE_0__.default)(uuid)) {
-    throw TypeError('Invalid UUID');
-  }
-
-  var v;
-  var arr = new Uint8Array(16); // Parse ########-....-....-....-............
-
-  arr[0] = (v = parseInt(uuid.slice(0, 8), 16)) >>> 24;
-  arr[1] = v >>> 16 & 0xff;
-  arr[2] = v >>> 8 & 0xff;
-  arr[3] = v & 0xff; // Parse ........-####-....-....-............
-
-  arr[4] = (v = parseInt(uuid.slice(9, 13), 16)) >>> 8;
-  arr[5] = v & 0xff; // Parse ........-....-####-....-............
-
-  arr[6] = (v = parseInt(uuid.slice(14, 18), 16)) >>> 8;
-  arr[7] = v & 0xff; // Parse ........-....-....-####-............
-
-  arr[8] = (v = parseInt(uuid.slice(19, 23), 16)) >>> 8;
-  arr[9] = v & 0xff; // Parse ........-....-....-....-############
-  // (Use "/" to avoid 32-bit truncation when bit-shifting high-order bytes)
-
-  arr[10] = (v = parseInt(uuid.slice(24, 36), 16)) / 0x10000000000 & 0xff;
-  arr[11] = v / 0x100000000 & 0xff;
-  arr[12] = v >>> 24 & 0xff;
-  arr[13] = v >>> 16 & 0xff;
-  arr[14] = v >>> 8 & 0xff;
-  arr[15] = v & 0xff;
-  return arr;
-}
-
-/* harmony default export */ __webpack_exports__["default"] = (parse);
-
-/***/ }),
-
 /***/ "./node_modules/uuid/dist/esm-browser/regex.js":
 /*!*****************************************************!*\
   !*** ./node_modules/uuid/dist/esm-browser/regex.js ***!
@@ -26568,113 +26302,6 @@ function rng() {
 
 /***/ }),
 
-/***/ "./node_modules/uuid/dist/esm-browser/sha1.js":
-/*!****************************************************!*\
-  !*** ./node_modules/uuid/dist/esm-browser/sha1.js ***!
-  \****************************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-// Adapted from Chris Veness' SHA1 code at
-// http://www.movable-type.co.uk/scripts/sha1.html
-function f(s, x, y, z) {
-  switch (s) {
-    case 0:
-      return x & y ^ ~x & z;
-
-    case 1:
-      return x ^ y ^ z;
-
-    case 2:
-      return x & y ^ x & z ^ y & z;
-
-    case 3:
-      return x ^ y ^ z;
-  }
-}
-
-function ROTL(x, n) {
-  return x << n | x >>> 32 - n;
-}
-
-function sha1(bytes) {
-  var K = [0x5a827999, 0x6ed9eba1, 0x8f1bbcdc, 0xca62c1d6];
-  var H = [0x67452301, 0xefcdab89, 0x98badcfe, 0x10325476, 0xc3d2e1f0];
-
-  if (typeof bytes === 'string') {
-    var msg = unescape(encodeURIComponent(bytes)); // UTF8 escape
-
-    bytes = [];
-
-    for (var i = 0; i < msg.length; ++i) {
-      bytes.push(msg.charCodeAt(i));
-    }
-  } else if (!Array.isArray(bytes)) {
-    // Convert Array-like to Array
-    bytes = Array.prototype.slice.call(bytes);
-  }
-
-  bytes.push(0x80);
-  var l = bytes.length / 4 + 2;
-  var N = Math.ceil(l / 16);
-  var M = new Array(N);
-
-  for (var _i = 0; _i < N; ++_i) {
-    var arr = new Uint32Array(16);
-
-    for (var j = 0; j < 16; ++j) {
-      arr[j] = bytes[_i * 64 + j * 4] << 24 | bytes[_i * 64 + j * 4 + 1] << 16 | bytes[_i * 64 + j * 4 + 2] << 8 | bytes[_i * 64 + j * 4 + 3];
-    }
-
-    M[_i] = arr;
-  }
-
-  M[N - 1][14] = (bytes.length - 1) * 8 / Math.pow(2, 32);
-  M[N - 1][14] = Math.floor(M[N - 1][14]);
-  M[N - 1][15] = (bytes.length - 1) * 8 & 0xffffffff;
-
-  for (var _i2 = 0; _i2 < N; ++_i2) {
-    var W = new Uint32Array(80);
-
-    for (var t = 0; t < 16; ++t) {
-      W[t] = M[_i2][t];
-    }
-
-    for (var _t = 16; _t < 80; ++_t) {
-      W[_t] = ROTL(W[_t - 3] ^ W[_t - 8] ^ W[_t - 14] ^ W[_t - 16], 1);
-    }
-
-    var a = H[0];
-    var b = H[1];
-    var c = H[2];
-    var d = H[3];
-    var e = H[4];
-
-    for (var _t2 = 0; _t2 < 80; ++_t2) {
-      var s = Math.floor(_t2 / 20);
-      var T = ROTL(a, 5) + f(s, b, c, d) + e + K[s] + W[_t2] >>> 0;
-      e = d;
-      d = c;
-      c = ROTL(b, 30) >>> 0;
-      b = a;
-      a = T;
-    }
-
-    H[0] = H[0] + a >>> 0;
-    H[1] = H[1] + b >>> 0;
-    H[2] = H[2] + c >>> 0;
-    H[3] = H[3] + d >>> 0;
-    H[4] = H[4] + e >>> 0;
-  }
-
-  return [H[0] >> 24 & 0xff, H[0] >> 16 & 0xff, H[0] >> 8 & 0xff, H[0] & 0xff, H[1] >> 24 & 0xff, H[1] >> 16 & 0xff, H[1] >> 8 & 0xff, H[1] & 0xff, H[2] >> 24 & 0xff, H[2] >> 16 & 0xff, H[2] >> 8 & 0xff, H[2] & 0xff, H[3] >> 24 & 0xff, H[3] >> 16 & 0xff, H[3] >> 8 & 0xff, H[3] & 0xff, H[4] >> 24 & 0xff, H[4] >> 16 & 0xff, H[4] >> 8 & 0xff, H[4] & 0xff];
-}
-
-/* harmony default export */ __webpack_exports__["default"] = (sha1);
-
-/***/ }),
-
 /***/ "./node_modules/uuid/dist/esm-browser/stringify.js":
 /*!*********************************************************!*\
   !*** ./node_modules/uuid/dist/esm-browser/stringify.js ***!
@@ -26717,213 +26344,6 @@ function stringify(arr) {
 
 /***/ }),
 
-/***/ "./node_modules/uuid/dist/esm-browser/v1.js":
-/*!**************************************************!*\
-  !*** ./node_modules/uuid/dist/esm-browser/v1.js ***!
-  \**************************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _rng_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./rng.js */ "./node_modules/uuid/dist/esm-browser/rng.js");
-/* harmony import */ var _stringify_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./stringify.js */ "./node_modules/uuid/dist/esm-browser/stringify.js");
-
- // **`v1()` - Generate time-based UUID**
-//
-// Inspired by https://github.com/LiosK/UUID.js
-// and http://docs.python.org/library/uuid.html
-
-var _nodeId;
-
-var _clockseq; // Previous uuid creation time
-
-
-var _lastMSecs = 0;
-var _lastNSecs = 0; // See https://github.com/uuidjs/uuid for API details
-
-function v1(options, buf, offset) {
-  var i = buf && offset || 0;
-  var b = buf || new Array(16);
-  options = options || {};
-  var node = options.node || _nodeId;
-  var clockseq = options.clockseq !== undefined ? options.clockseq : _clockseq; // node and clockseq need to be initialized to random values if they're not
-  // specified.  We do this lazily to minimize issues related to insufficient
-  // system entropy.  See #189
-
-  if (node == null || clockseq == null) {
-    var seedBytes = options.random || (options.rng || _rng_js__WEBPACK_IMPORTED_MODULE_0__.default)();
-
-    if (node == null) {
-      // Per 4.5, create and 48-bit node id, (47 random bits + multicast bit = 1)
-      node = _nodeId = [seedBytes[0] | 0x01, seedBytes[1], seedBytes[2], seedBytes[3], seedBytes[4], seedBytes[5]];
-    }
-
-    if (clockseq == null) {
-      // Per 4.2.2, randomize (14 bit) clockseq
-      clockseq = _clockseq = (seedBytes[6] << 8 | seedBytes[7]) & 0x3fff;
-    }
-  } // UUID timestamps are 100 nano-second units since the Gregorian epoch,
-  // (1582-10-15 00:00).  JSNumbers aren't precise enough for this, so
-  // time is handled internally as 'msecs' (integer milliseconds) and 'nsecs'
-  // (100-nanoseconds offset from msecs) since unix epoch, 1970-01-01 00:00.
-
-
-  var msecs = options.msecs !== undefined ? options.msecs : Date.now(); // Per 4.2.1.2, use count of uuid's generated during the current clock
-  // cycle to simulate higher resolution clock
-
-  var nsecs = options.nsecs !== undefined ? options.nsecs : _lastNSecs + 1; // Time since last uuid creation (in msecs)
-
-  var dt = msecs - _lastMSecs + (nsecs - _lastNSecs) / 10000; // Per 4.2.1.2, Bump clockseq on clock regression
-
-  if (dt < 0 && options.clockseq === undefined) {
-    clockseq = clockseq + 1 & 0x3fff;
-  } // Reset nsecs if clock regresses (new clockseq) or we've moved onto a new
-  // time interval
-
-
-  if ((dt < 0 || msecs > _lastMSecs) && options.nsecs === undefined) {
-    nsecs = 0;
-  } // Per 4.2.1.2 Throw error if too many uuids are requested
-
-
-  if (nsecs >= 10000) {
-    throw new Error("uuid.v1(): Can't create more than 10M uuids/sec");
-  }
-
-  _lastMSecs = msecs;
-  _lastNSecs = nsecs;
-  _clockseq = clockseq; // Per 4.1.4 - Convert from unix epoch to Gregorian epoch
-
-  msecs += 12219292800000; // `time_low`
-
-  var tl = ((msecs & 0xfffffff) * 10000 + nsecs) % 0x100000000;
-  b[i++] = tl >>> 24 & 0xff;
-  b[i++] = tl >>> 16 & 0xff;
-  b[i++] = tl >>> 8 & 0xff;
-  b[i++] = tl & 0xff; // `time_mid`
-
-  var tmh = msecs / 0x100000000 * 10000 & 0xfffffff;
-  b[i++] = tmh >>> 8 & 0xff;
-  b[i++] = tmh & 0xff; // `time_high_and_version`
-
-  b[i++] = tmh >>> 24 & 0xf | 0x10; // include version
-
-  b[i++] = tmh >>> 16 & 0xff; // `clock_seq_hi_and_reserved` (Per 4.2.2 - include variant)
-
-  b[i++] = clockseq >>> 8 | 0x80; // `clock_seq_low`
-
-  b[i++] = clockseq & 0xff; // `node`
-
-  for (var n = 0; n < 6; ++n) {
-    b[i + n] = node[n];
-  }
-
-  return buf || (0,_stringify_js__WEBPACK_IMPORTED_MODULE_1__.default)(b);
-}
-
-/* harmony default export */ __webpack_exports__["default"] = (v1);
-
-/***/ }),
-
-/***/ "./node_modules/uuid/dist/esm-browser/v3.js":
-/*!**************************************************!*\
-  !*** ./node_modules/uuid/dist/esm-browser/v3.js ***!
-  \**************************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _v35_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./v35.js */ "./node_modules/uuid/dist/esm-browser/v35.js");
-/* harmony import */ var _md5_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./md5.js */ "./node_modules/uuid/dist/esm-browser/md5.js");
-
-
-var v3 = (0,_v35_js__WEBPACK_IMPORTED_MODULE_0__.default)('v3', 0x30, _md5_js__WEBPACK_IMPORTED_MODULE_1__.default);
-/* harmony default export */ __webpack_exports__["default"] = (v3);
-
-/***/ }),
-
-/***/ "./node_modules/uuid/dist/esm-browser/v35.js":
-/*!***************************************************!*\
-  !*** ./node_modules/uuid/dist/esm-browser/v35.js ***!
-  \***************************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "DNS": function() { return /* binding */ DNS; },
-/* harmony export */   "URL": function() { return /* binding */ URL; },
-/* harmony export */   "default": function() { return /* export default binding */ __WEBPACK_DEFAULT_EXPORT__; }
-/* harmony export */ });
-/* harmony import */ var _stringify_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./stringify.js */ "./node_modules/uuid/dist/esm-browser/stringify.js");
-/* harmony import */ var _parse_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./parse.js */ "./node_modules/uuid/dist/esm-browser/parse.js");
-
-
-
-function stringToBytes(str) {
-  str = unescape(encodeURIComponent(str)); // UTF8 escape
-
-  var bytes = [];
-
-  for (var i = 0; i < str.length; ++i) {
-    bytes.push(str.charCodeAt(i));
-  }
-
-  return bytes;
-}
-
-var DNS = '6ba7b810-9dad-11d1-80b4-00c04fd430c8';
-var URL = '6ba7b811-9dad-11d1-80b4-00c04fd430c8';
-/* harmony default export */ function __WEBPACK_DEFAULT_EXPORT__(name, version, hashfunc) {
-  function generateUUID(value, namespace, buf, offset) {
-    if (typeof value === 'string') {
-      value = stringToBytes(value);
-    }
-
-    if (typeof namespace === 'string') {
-      namespace = (0,_parse_js__WEBPACK_IMPORTED_MODULE_1__.default)(namespace);
-    }
-
-    if (namespace.length !== 16) {
-      throw TypeError('Namespace must be array-like (16 iterable integer values, 0-255)');
-    } // Compute hash of namespace and value, Per 4.3
-    // Future: Use spread syntax when supported on all platforms, e.g. `bytes =
-    // hashfunc([...namespace, ... value])`
-
-
-    var bytes = new Uint8Array(16 + value.length);
-    bytes.set(namespace);
-    bytes.set(value, namespace.length);
-    bytes = hashfunc(bytes);
-    bytes[6] = bytes[6] & 0x0f | version;
-    bytes[8] = bytes[8] & 0x3f | 0x80;
-
-    if (buf) {
-      offset = offset || 0;
-
-      for (var i = 0; i < 16; ++i) {
-        buf[offset + i] = bytes[i];
-      }
-
-      return buf;
-    }
-
-    return (0,_stringify_js__WEBPACK_IMPORTED_MODULE_0__.default)(bytes);
-  } // Function#name is not settable on some platforms (#270)
-
-
-  try {
-    generateUUID.name = name; // eslint-disable-next-line no-empty
-  } catch (err) {} // For CommonJS default export support
-
-
-  generateUUID.DNS = DNS;
-  generateUUID.URL = URL;
-  return generateUUID;
-}
-
-/***/ }),
-
 /***/ "./node_modules/uuid/dist/esm-browser/v4.js":
 /*!**************************************************!*\
   !*** ./node_modules/uuid/dist/esm-browser/v4.js ***!
@@ -26961,23 +26381,6 @@ function v4(options, buf, offset) {
 
 /***/ }),
 
-/***/ "./node_modules/uuid/dist/esm-browser/v5.js":
-/*!**************************************************!*\
-  !*** ./node_modules/uuid/dist/esm-browser/v5.js ***!
-  \**************************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _v35_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./v35.js */ "./node_modules/uuid/dist/esm-browser/v35.js");
-/* harmony import */ var _sha1_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./sha1.js */ "./node_modules/uuid/dist/esm-browser/sha1.js");
-
-
-var v5 = (0,_v35_js__WEBPACK_IMPORTED_MODULE_0__.default)('v5', 0x50, _sha1_js__WEBPACK_IMPORTED_MODULE_1__.default);
-/* harmony default export */ __webpack_exports__["default"] = (v5);
-
-/***/ }),
-
 /***/ "./node_modules/uuid/dist/esm-browser/validate.js":
 /*!********************************************************!*\
   !*** ./node_modules/uuid/dist/esm-browser/validate.js ***!
@@ -26994,29 +26397,6 @@ function validate(uuid) {
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (validate);
-
-/***/ }),
-
-/***/ "./node_modules/uuid/dist/esm-browser/version.js":
-/*!*******************************************************!*\
-  !*** ./node_modules/uuid/dist/esm-browser/version.js ***!
-  \*******************************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _validate_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./validate.js */ "./node_modules/uuid/dist/esm-browser/validate.js");
-
-
-function version(uuid) {
-  if (!(0,_validate_js__WEBPACK_IMPORTED_MODULE_0__.default)(uuid)) {
-    throw TypeError('Invalid UUID');
-  }
-
-  return parseInt(uuid.substr(14, 1), 16);
-}
-
-/* harmony default export */ __webpack_exports__["default"] = (version);
 
 /***/ }),
 

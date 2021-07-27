@@ -2514,11 +2514,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 // Holds any configuration data that changes depending on environment
 var config = {
+
   domain: "https://github.digitalriverws.net",
+  componentsVersionId: "/pages/lbarnes/drjs-demo/dev", // eslint-disable-line no-undef
+  basePath: "",
+
+  //domain: "https://js.digitalriver.com",
+
   // eslint-disable-line no-undef
   paymentServiceUrl: "https://api.digitalriver.com/payments/sources",
   // eslint-disable-line no-undef
-  basePath: "",
+  //basePath: "/v1",
   // eslint-disable-line no-undef
   applePayMerchantId: "merchant.com.test.cert.digitalriver",
   // eslint-disable-line no-undef
@@ -2550,7 +2556,7 @@ var config = {
   // eslint-disable-line no-undef
   apiUrl: ({"PAYMENT_API_URL":"https://api.digitalriver.com/payments/sources","DOMAIN":"https://js.digitalriver.com","BASE_PATH":"/v1","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).API_URL,
   // eslint-disable-line no-undef
-  componentsVersionId: "/pages/lbarnes/drjs-demo/dev" // eslint-disable-line no-undef
+  //componentsVersionId: "1.20210719.1608" // eslint-disable-line no-undef
 
 };
 
@@ -10335,14 +10341,21 @@ function findWindow(currentWindow, id) {
   //console.log('document.querySelectorAll(\'iframe\')2', JSON.parse(JSON.stringify(currentWindow.document.querySelectorAll('iframe'))))
   //console.log('document.querySelectorAll(\'iframe\')3', Object.keys(currentWindow.document.querySelectorAll('iframe')))
 
+  console.log('window.frames length', currentWindow.frames.length)
+  console.log('window.frames', currentWindow.frames)
+  console.log('window.frames id', currentWindow.frames[id])
+
   const iframes = currentWindow.document.querySelectorAll('iframe');
   if (iframes.length > 0) {
 
+    console.log('window.frames', currentWindow.frames[0])
+
     for (let i = 0; i < iframes.length; i++) {
-      console.log('iframe found with id', iframes[i].id);
+      console.log('SPECIAL IFRAME found with id', i, iframes[i].id);
       if (iframes[i].id === id) {
-        console.log('found a window...', iframes[i]);
-        return iframes[i];
+        console.log('SPECIAL found a window...', iframes[i]);
+        console.log('SPECIAL found window', id, iframes[i].contentWindow);
+        return iframes[i].contentWindow;
       }
     }
 
@@ -10386,15 +10399,32 @@ function registerComponentWithController(controllerId, component, options) {
     throw new Error("Unable to locate controller '".concat(controllerId, "'"));
   } // Send component Id to the controller, we return a promise but you don't really need to wait?
 
+  //controllerWindow.contentWindow = "test";
+  //controllerWindow.parentNode = "test";
 
-  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_7__.default.send(controllerWindow, 'registerNewComponent', {
+  console.log('SEND TO WINDOW - registerNewComponent', controllerWindow)
+  console.log('SEND TO WINDOW - registerNewComponent - is closed?', controllerWindow.closed)
+  console.log('SEND TO WINDOW - registerNewComponent - Equal', controllerWindow === window)
+
+  console.log('isWindowClosed', (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_8__.isWindowClosed)(controllerWindow));
+  console.log('getFrames', (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_8__.getFrames)());
+
+
+  return controllerWindow.postMessage({
+      componentType: component.type,
+      componentId: component.id,
+      options: options
+    },
+    "https://github.digitalriverws.net");
+
+  /*return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_7__.default.send(controllerWindow, 'registerNewComponent', {
     componentType: component.type,
     componentId: component.id,
     options: options
   }).catch(function (error) {
     console.error('FAILED TO REGISTER COMPONENT', error)
     throw new Error('Unable to register component.');
-  });
+  });*/
 }
 /**
  * Sends options to controller

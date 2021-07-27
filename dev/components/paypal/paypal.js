@@ -2550,7 +2550,7 @@ var config = {
   // eslint-disable-line no-undef
   paymentServiceUrl: "https://api.digitalriver.com" + '/payments/sources',
   // eslint-disable-line no-undef
-  basePath: "/pages/lbarnes/drjs-demo/dev" || 0,
+  basePath: "/pages/lbarnes/drjs-demo" || 0,
   // eslint-disable-line no-undef
   applePayMerchantId: "merchant.com.test.cert.digitalriver",
   // eslint-disable-line no-undef
@@ -5780,7 +5780,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_index_of__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/index-of */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/index-of.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_index_of__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_index_of__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var cross_domain_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! cross-domain-utils */ "./node_modules/cross-domain-utils/dist/module/index.js");
-/* harmony import */ var cross_domain_utils__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(cross_domain_utils__WEBPACK_IMPORTED_MODULE_3__);
 
 
 
@@ -6596,6 +6595,11 @@ function getTimeZoneOffset() {
 }
 function getJavaEnabled(window) {
   var navigator = getWindowNavigator(window);
+
+  if (typeof navigator.javaEnabled === 'undefined') {
+    return false;
+  }
+
   return navigator.javaEnabled();
 }
 function getHRef(window) {
@@ -10386,8 +10390,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! uuid */ "./node_modules/uuid/dist/esm-browser/index.js");
 /* harmony import */ var _createFrame__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./createFrame */ "./src/client/createFrame.js");
 /* harmony import */ var _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../post-robot-wrapper */ "./src/post-robot-wrapper.js");
-/* harmony import */ var cross_domain_utils__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! cross-domain-utils */ "./node_modules/cross-domain-utils/dist/module/index.js");
-/* harmony import */ var cross_domain_utils__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(cross_domain_utils__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var cross_domain_utils__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! cross-domain-utils/dist/module */ "./node_modules/cross-domain-utils/dist/module/index.js");
 /* harmony import */ var _dataStore__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./dataStore */ "./src/client/dataStore.js");
 /* harmony import */ var _createController__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./createController */ "./src/client/createController.js");
 /* harmony import */ var _event_middleware__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./event-middleware */ "./src/client/event-middleware.js");
@@ -10398,6 +10401,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _app_components_controller_controller_create_source_utils__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../app/components/controller/controller-create-source-utils */ "./src/app/components/controller/controller-create-source-utils.js");
 /* harmony import */ var _app_key_helper__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../app/key-helper */ "./src/app/key-helper.js");
 /* harmony import */ var _app_config__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ../app/config */ "./src/app/config.js");
+
 
 
 
@@ -10765,11 +10769,27 @@ function findWindow(currentWindow, id) {
   var parentWindow = (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_8__.getParent)(currentWindow);
 
   if (typeof parentWindow === 'undefined') {
-    return foundFrame;
+    //return foundFrame;
+    return getComponentIFrame(id);
   }
 
   return findWindow(parentWindow, id, ++tries);
 }
+/*function safeIndexOf(collection, item) {
+  for (let i = 0; i < collection.length; i++) {
+
+    try {
+      if (collection[i] === item) {
+        return i;
+      }
+    } catch (err) {
+      // pass
+    }
+  }
+
+  return -1;
+}*/
+
 /**
  * Sends a message to the controller so it can track the component by type and id
  * @param {string} controllerId
@@ -10780,6 +10800,21 @@ function findWindow(currentWindow, id) {
 
 function registerComponentWithController(controllerId, component, options) {
   var controllerWindow = getComponentWindow(controllerId);
+  console.log('isWindowClosed', (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_8__.isWindowClosed)(controllerWindow));
+  console.log('getFrames', (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_8__.getFrames)(window));
+  console.log('getFrames controllerWindow', (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_8__.getFrames)(controllerWindow));
+
+  if (!controllerWindow.parent || !controllerWindow.top) {
+    console.log('HERE 1');
+  }
+  /*const iframeIndex = safeIndexOf(controllerWindow, window);
+   if (iframeIndex !== -1) {
+    const frame = iframeFrames[iframeIndex];
+     if (frame && isFrameWindowClosed(frame)) {
+      return true;
+    }
+  }*/
+
 
   if (!controllerWindow) {
     throw new Error("Unable to locate controller '".concat(controllerId, "'"));
@@ -10834,7 +10869,8 @@ function sendApiKey(controllerId, eventName, data) {
   } // Send component Id to the controller, we return a promise but you don't really need to wait?
 
 
-  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_7__.default.send(controllerWindow, eventName, data).catch(function () {
+  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_7__.default.send(controllerWindow, eventName, data).catch(function (error) {
+    console.error('sending api key', error);
     throw new Error('Sending apiKey error');
   });
 }
@@ -10851,6 +10887,7 @@ function getComponentIFrame(type) {
     var _context4;
 
     if (_babel_runtime_corejs3_core_js_stable_instance_starts_with__WEBPACK_IMPORTED_MODULE_4___default()(_context4 = iFrameWindow[win].id).call(_context4, type)) {
+      console.log('found window with type', type, iFrameWindow[win], iFrameWindow[win].id);
       return iFrameWindow[win];
     }
   }
@@ -20930,40 +20967,103 @@ module.exports = parent;
 
 /***/ }),
 
+/***/ "./node_modules/cross-domain-utils/dist/module/constants.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/cross-domain-utils/dist/module/constants.js ***!
+  \******************************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "PROTOCOL": function() { return /* binding */ PROTOCOL; },
+/* harmony export */   "WILDCARD": function() { return /* binding */ WILDCARD; },
+/* harmony export */   "WINDOW_TYPE": function() { return /* binding */ WINDOW_TYPE; }
+/* harmony export */ });
+var PROTOCOL = {
+  MOCK: 'mock:',
+  FILE: 'file:',
+  ABOUT: 'about:'
+};
+var WILDCARD = '*';
+var WINDOW_TYPE = {
+  IFRAME: 'iframe',
+  POPUP: 'popup'
+};
+
+/***/ }),
+
 /***/ "./node_modules/cross-domain-utils/dist/module/index.js":
 /*!**************************************************************!*\
   !*** ./node_modules/cross-domain-utils/dist/module/index.js ***!
   \**************************************************************/
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "assertSameDomain": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.assertSameDomain; },
+/* harmony export */   "canReadFromWindow": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.canReadFromWindow; },
+/* harmony export */   "closeWindow": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.closeWindow; },
+/* harmony export */   "findChildFrameByName": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.findChildFrameByName; },
+/* harmony export */   "findFrameByName": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.findFrameByName; },
+/* harmony export */   "getActualDomain": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getActualDomain; },
+/* harmony export */   "getAllChildFrames": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getAllChildFrames; },
+/* harmony export */   "getAllFramesInWindow": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getAllFramesInWindow; },
+/* harmony export */   "getAllWindows": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getAllWindows; },
+/* harmony export */   "getAncestor": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getAncestor; },
+/* harmony export */   "getAncestors": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getAncestors; },
+/* harmony export */   "getDistanceFromTop": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getDistanceFromTop; },
+/* harmony export */   "getDomain": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getDomain; },
+/* harmony export */   "getDomainFromUrl": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getDomainFromUrl; },
+/* harmony export */   "getFrameByName": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getFrameByName; },
+/* harmony export */   "getFrameForWindow": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getFrameForWindow; },
+/* harmony export */   "getFrames": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getFrames; },
+/* harmony export */   "getNextOpener": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getNextOpener; },
+/* harmony export */   "getNthParent": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getNthParent; },
+/* harmony export */   "getNthParentFromTop": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getNthParentFromTop; },
+/* harmony export */   "getOpener": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getOpener; },
+/* harmony export */   "getParent": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getParent; },
+/* harmony export */   "getParents": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getParents; },
+/* harmony export */   "getTop": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getTop; },
+/* harmony export */   "getUltimateTop": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getUltimateTop; },
+/* harmony export */   "getUserAgent": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getUserAgent; },
+/* harmony export */   "isAboutProtocol": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isAboutProtocol; },
+/* harmony export */   "isActuallySameDomain": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isActuallySameDomain; },
+/* harmony export */   "isAncestor": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isAncestor; },
+/* harmony export */   "isAncestorParent": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isAncestorParent; },
+/* harmony export */   "isBlankDomain": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isBlankDomain; },
+/* harmony export */   "isBrowser": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isBrowser; },
+/* harmony export */   "isCurrentDomain": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isCurrentDomain; },
+/* harmony export */   "isFileProtocol": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isFileProtocol; },
+/* harmony export */   "isFrameWindowClosed": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isFrameWindowClosed; },
+/* harmony export */   "isFullpage": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isFullpage; },
+/* harmony export */   "isIframe": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isIframe; },
+/* harmony export */   "isMockDomain": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isMockDomain; },
+/* harmony export */   "isOpener": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isOpener; },
+/* harmony export */   "isParent": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isParent; },
+/* harmony export */   "isPopup": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isPopup; },
+/* harmony export */   "isSameDomain": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isSameDomain; },
+/* harmony export */   "isSameTopWindow": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isSameTopWindow; },
+/* harmony export */   "isTop": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isTop; },
+/* harmony export */   "isWindow": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isWindow; },
+/* harmony export */   "isWindowClosed": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isWindowClosed; },
+/* harmony export */   "linkFrameWindow": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.linkFrameWindow; },
+/* harmony export */   "matchDomain": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.matchDomain; },
+/* harmony export */   "normalizeMockUrl": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.normalizeMockUrl; },
+/* harmony export */   "onCloseWindow": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.onCloseWindow; },
+/* harmony export */   "stringifyDomainPattern": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.stringifyDomainPattern; },
+/* harmony export */   "TYPES": function() { return /* reexport safe */ _types__WEBPACK_IMPORTED_MODULE_1__.TYPES; },
+/* harmony export */   "PROTOCOL": function() { return /* reexport safe */ _constants__WEBPACK_IMPORTED_MODULE_2__.PROTOCOL; },
+/* harmony export */   "WILDCARD": function() { return /* reexport safe */ _constants__WEBPACK_IMPORTED_MODULE_2__.WILDCARD; },
+/* harmony export */   "WINDOW_TYPE": function() { return /* reexport safe */ _constants__WEBPACK_IMPORTED_MODULE_2__.WINDOW_TYPE; }
+/* harmony export */ });
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils */ "./node_modules/cross-domain-utils/dist/module/utils.js");
+/* harmony import */ var _types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./types */ "./node_modules/cross-domain-utils/dist/module/types.js");
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./constants */ "./node_modules/cross-domain-utils/dist/module/constants.js");
 
 
-exports.__esModule = true;
 
-var _utils = __webpack_require__(/*! ./utils */ "./node_modules/cross-domain-utils/dist/module/utils.js");
-
-Object.keys(_utils).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _utils[key];
-    }
-  });
-});
-
-var _types = __webpack_require__(/*! ./types */ "./node_modules/cross-domain-utils/dist/module/types.js");
-
-Object.keys(_types).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _types[key];
-    }
-  });
-});
 
 /***/ }),
 
@@ -20971,10 +21071,15 @@ Object.keys(_types).forEach(function (key) {
 /*!**************************************************************!*\
   !*** ./node_modules/cross-domain-utils/dist/module/types.js ***!
   \**************************************************************/
-/***/ (function() {
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "TYPES": function() { return /* binding */ TYPES; }
+/* harmony export */ });
+// export something to force webpack to see this as an ES module
+var TYPES = true;
 
 /***/ }),
 
@@ -20982,21 +21087,20 @@ Object.keys(_types).forEach(function (key) {
 /*!*************************************************************!*\
   !*** ./node_modules/cross-domain-utils/dist/module/util.js ***!
   \*************************************************************/
-/***/ (function(__unused_webpack_module, exports) {
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
-
-exports.__esModule = true;
-exports.isRegex = isRegex;
-exports.noop = noop;
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "isRegex": function() { return /* binding */ isRegex; },
+/* harmony export */   "noop": function() { return /* binding */ noop; }
+/* harmony export */ });
 function isRegex(item) {
-    return Object.prototype.toString.call(item) === '[object RegExp]';
-}
+  // $FlowFixMe method-unbinding
+  return Object.prototype.toString.call(item) === '[object RegExp]';
+} // eslint-disable-next-line no-unused-vars
 
-// eslint-disable-next-line no-unused-vars
-function noop() {
-    // pass
+function noop() {// pass
 }
 
 /***/ }),
@@ -21005,1138 +21109,1093 @@ function noop() {
 /*!**************************************************************!*\
   !*** ./node_modules/cross-domain-utils/dist/module/utils.js ***!
   \**************************************************************/
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
-
-exports.__esModule = true;
-exports.isFileProtocol = isFileProtocol;
-exports.isAboutProtocol = isAboutProtocol;
-exports.getParent = getParent;
-exports.getOpener = getOpener;
-exports.canReadFromWindow = canReadFromWindow;
-exports.getActualDomain = getActualDomain;
-exports.getDomain = getDomain;
-exports.isBlankDomain = isBlankDomain;
-exports.isActuallySameDomain = isActuallySameDomain;
-exports.isSameDomain = isSameDomain;
-exports.getParents = getParents;
-exports.isAncestorParent = isAncestorParent;
-exports.getFrames = getFrames;
-exports.getAllChildFrames = getAllChildFrames;
-exports.getTop = getTop;
-exports.getAllFramesInWindow = getAllFramesInWindow;
-exports.isTop = isTop;
-exports.isFrameWindowClosed = isFrameWindowClosed;
-exports.isWindowClosed = isWindowClosed;
-exports.linkFrameWindow = linkFrameWindow;
-exports.getUserAgent = getUserAgent;
-exports.getFrameByName = getFrameByName;
-exports.findChildFrameByName = findChildFrameByName;
-exports.findFrameByName = findFrameByName;
-exports.isParent = isParent;
-exports.isOpener = isOpener;
-exports.getAncestor = getAncestor;
-exports.getAncestors = getAncestors;
-exports.isAncestor = isAncestor;
-exports.isPopup = isPopup;
-exports.isIframe = isIframe;
-exports.isFullpage = isFullpage;
-exports.getDistanceFromTop = getDistanceFromTop;
-exports.getNthParent = getNthParent;
-exports.getNthParentFromTop = getNthParentFromTop;
-exports.isSameTopWindow = isSameTopWindow;
-exports.matchDomain = matchDomain;
-exports.stringifyDomainPattern = stringifyDomainPattern;
-exports.getDomainFromUrl = getDomainFromUrl;
-exports.onCloseWindow = onCloseWindow;
-exports.isWindow = isWindow;
-
-var _util = __webpack_require__(/*! ./util */ "./node_modules/cross-domain-utils/dist/module/util.js");
-
-var CONSTANTS = {
-    MOCK_PROTOCOL: 'mock:',
-    FILE_PROTOCOL: 'file:',
-    ABOUT_PROTOCOL: 'about:',
-    WILDCARD: '*'
-};
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "isFileProtocol": function() { return /* binding */ isFileProtocol; },
+/* harmony export */   "isAboutProtocol": function() { return /* binding */ isAboutProtocol; },
+/* harmony export */   "getParent": function() { return /* binding */ getParent; },
+/* harmony export */   "getOpener": function() { return /* binding */ getOpener; },
+/* harmony export */   "canReadFromWindow": function() { return /* binding */ canReadFromWindow; },
+/* harmony export */   "getActualDomain": function() { return /* binding */ getActualDomain; },
+/* harmony export */   "getDomain": function() { return /* binding */ getDomain; },
+/* harmony export */   "isBlankDomain": function() { return /* binding */ isBlankDomain; },
+/* harmony export */   "isActuallySameDomain": function() { return /* binding */ isActuallySameDomain; },
+/* harmony export */   "isSameDomain": function() { return /* binding */ isSameDomain; },
+/* harmony export */   "assertSameDomain": function() { return /* binding */ assertSameDomain; },
+/* harmony export */   "getParents": function() { return /* binding */ getParents; },
+/* harmony export */   "isAncestorParent": function() { return /* binding */ isAncestorParent; },
+/* harmony export */   "getFrames": function() { return /* binding */ getFrames; },
+/* harmony export */   "getAllChildFrames": function() { return /* binding */ getAllChildFrames; },
+/* harmony export */   "getTop": function() { return /* binding */ getTop; },
+/* harmony export */   "getNextOpener": function() { return /* binding */ getNextOpener; },
+/* harmony export */   "getUltimateTop": function() { return /* binding */ getUltimateTop; },
+/* harmony export */   "getAllFramesInWindow": function() { return /* binding */ getAllFramesInWindow; },
+/* harmony export */   "getAllWindows": function() { return /* binding */ getAllWindows; },
+/* harmony export */   "isTop": function() { return /* binding */ isTop; },
+/* harmony export */   "isFrameWindowClosed": function() { return /* binding */ isFrameWindowClosed; },
+/* harmony export */   "isWindowClosed": function() { return /* binding */ isWindowClosed; },
+/* harmony export */   "linkFrameWindow": function() { return /* binding */ linkFrameWindow; },
+/* harmony export */   "getUserAgent": function() { return /* binding */ getUserAgent; },
+/* harmony export */   "getFrameByName": function() { return /* binding */ getFrameByName; },
+/* harmony export */   "findChildFrameByName": function() { return /* binding */ findChildFrameByName; },
+/* harmony export */   "findFrameByName": function() { return /* binding */ findFrameByName; },
+/* harmony export */   "isParent": function() { return /* binding */ isParent; },
+/* harmony export */   "isOpener": function() { return /* binding */ isOpener; },
+/* harmony export */   "getAncestor": function() { return /* binding */ getAncestor; },
+/* harmony export */   "getAncestors": function() { return /* binding */ getAncestors; },
+/* harmony export */   "isAncestor": function() { return /* binding */ isAncestor; },
+/* harmony export */   "isPopup": function() { return /* binding */ isPopup; },
+/* harmony export */   "isIframe": function() { return /* binding */ isIframe; },
+/* harmony export */   "isFullpage": function() { return /* binding */ isFullpage; },
+/* harmony export */   "getDistanceFromTop": function() { return /* binding */ getDistanceFromTop; },
+/* harmony export */   "getNthParent": function() { return /* binding */ getNthParent; },
+/* harmony export */   "getNthParentFromTop": function() { return /* binding */ getNthParentFromTop; },
+/* harmony export */   "isSameTopWindow": function() { return /* binding */ isSameTopWindow; },
+/* harmony export */   "matchDomain": function() { return /* binding */ matchDomain; },
+/* harmony export */   "stringifyDomainPattern": function() { return /* binding */ stringifyDomainPattern; },
+/* harmony export */   "getDomainFromUrl": function() { return /* binding */ getDomainFromUrl; },
+/* harmony export */   "onCloseWindow": function() { return /* binding */ onCloseWindow; },
+/* harmony export */   "isWindow": function() { return /* binding */ isWindow; },
+/* harmony export */   "isBrowser": function() { return /* binding */ isBrowser; },
+/* harmony export */   "isCurrentDomain": function() { return /* binding */ isCurrentDomain; },
+/* harmony export */   "isMockDomain": function() { return /* binding */ isMockDomain; },
+/* harmony export */   "normalizeMockUrl": function() { return /* binding */ normalizeMockUrl; },
+/* harmony export */   "closeWindow": function() { return /* binding */ closeWindow; },
+/* harmony export */   "getFrameForWindow": function() { return /* binding */ getFrameForWindow; }
+/* harmony export */ });
+/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./util */ "./node_modules/cross-domain-utils/dist/module/util.js");
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./constants */ "./node_modules/cross-domain-utils/dist/module/constants.js");
 /* eslint max-lines: 0 */
 
+
 var IE_WIN_ACCESS_ERROR = 'Call was rejected by callee.\r\n';
+function isFileProtocol(win) {
+  if (win === void 0) {
+    win = window;
+  }
 
-function isFileProtocol() {
-    var win = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : window;
-
-    return win.location.protocol === CONSTANTS.FILE_PROTOCOL;
+  return win.location.protocol === _constants__WEBPACK_IMPORTED_MODULE_1__.PROTOCOL.FILE;
 }
+function isAboutProtocol(win) {
+  if (win === void 0) {
+    win = window;
+  }
 
-function isAboutProtocol() {
-    var win = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : window;
-
-    return win.location.protocol === CONSTANTS.ABOUT_PROTOCOL;
+  return win.location.protocol === _constants__WEBPACK_IMPORTED_MODULE_1__.PROTOCOL.ABOUT;
 }
-
 function getParent(win) {
+  if (win === void 0) {
+    win = window;
+  }
 
-    if (!win) {
-        return;
-    }
+  if (!win) {
+    return;
+  }
 
-    try {
-        if (win.parent && win.parent !== win) {
-            return win.parent;
-        }
-    } catch (err) {
-        // pass
+  try {
+    if (win.parent && win.parent !== win) {
+      return win.parent;
     }
+  } catch (err) {// pass
+  }
 }
-
 function getOpener(win) {
+  if (win === void 0) {
+    win = window;
+  }
 
-    if (!win) {
-        return;
-    }
+  if (!win) {
+    return;
+  } // Make sure we're not actually an iframe which has had window.open() called on us
 
-    // Make sure we're not actually an iframe which has had window.open() called on us
-    if (getParent(win)) {
-        return;
-    }
 
-    try {
-        return win.opener;
-    } catch (err) {
-        // pass
-    }
+  if (getParent(win)) {
+    return;
+  }
+
+  try {
+    return win.opener;
+  } catch (err) {// pass
+  }
 }
-
 function canReadFromWindow(win) {
-    try {
-        // $FlowFixMe
-        (0, _util.noop)(win && win.location && win.location.href);
-        return true;
-    } catch (err) {
-        // pass
-    }
-
-    return false;
-}
-
-function getActualDomain(win) {
-
-    win = win || window;
-
-    var location = win.location;
-
-    if (!location) {
-        throw new Error('Can not read window location');
-    }
-
-    var protocol = location.protocol;
-
-    if (!protocol) {
-        throw new Error('Can not read window protocol');
-    }
-
-    if (protocol === CONSTANTS.FILE_PROTOCOL) {
-        return CONSTANTS.FILE_PROTOCOL + '//';
-    }
-
-    if (protocol === CONSTANTS.ABOUT_PROTOCOL) {
-
-        var parent = getParent(win);
-        if (parent && canReadFromWindow(win)) {
-            // $FlowFixMe
-            return getActualDomain(parent);
-        }
-
-        return CONSTANTS.ABOUT_PROTOCOL + '//';
-    }
-
-    var host = location.host;
-
-    if (!host) {
-        throw new Error('Can not read window host');
-    }
-
-    return protocol + '//' + host;
-}
-
-function getDomain(win) {
-
-    win = win || window;
-
-    var domain = getActualDomain(win);
-
-    if (domain && win.mockDomain && win.mockDomain.indexOf(CONSTANTS.MOCK_PROTOCOL) === 0) {
-        return win.mockDomain;
-    }
-
-    return domain;
-}
-
-function isBlankDomain(win) {
-    try {
-        if (!win.location.href) {
-            return true;
-        }
-
-        if (win.location.href === 'about:blank') {
-            return true;
-        }
-    } catch (err) {
-        // pass
-    }
-
-    return false;
-}
-
-function isActuallySameDomain(win) {
-
-    try {
-        if (win === window) {
-            return true;
-        }
-    } catch (err) {
-        // pass
-    }
-
-    try {
-        var desc = Object.getOwnPropertyDescriptor(win, 'location');
-
-        if (desc && desc.enumerable === false) {
-            return false;
-        }
-    } catch (err) {
-        // pass
-    }
-
-    try {
-        // $FlowFixMe
-        if (isAboutProtocol(win) && canReadFromWindow(win)) {
-            return true;
-        }
-    } catch (err) {
-        // pass
-    }
-
-    try {
-        // $FlowFixMe
-        if (getActualDomain(win) === getActualDomain(window)) {
-            return true;
-        }
-    } catch (err) {
-        // pass
-    }
-
-    return false;
-}
-
-function isSameDomain(win) {
-
-    if (!isActuallySameDomain(win)) {
-        return false;
-    }
-
-    try {
-
-        if (win === window) {
-            return true;
-        }
-
-        // $FlowFixMe
-        if (isAboutProtocol(win) && canReadFromWindow(win)) {
-            return true;
-        }
-
-        // $FlowFixMe
-        if (getDomain(window) === getDomain(win)) {
-            return true;
-        }
-    } catch (err) {
-        // pass
-    }
-
-    return false;
-}
-
-function getParents(win) {
-
-    var result = [];
-
-    try {
-
-        while (win.parent !== win) {
-            result.push(win.parent);
-            win = win.parent;
-        }
-    } catch (err) {
-        // pass
-    }
-
-    return result;
-}
-
-function isAncestorParent(parent, child) {
-
-    if (!parent || !child) {
-        return false;
-    }
-
-    var childParent = getParent(child);
-
-    if (childParent) {
-        return childParent === parent;
-    }
-
-    if (getParents(child).indexOf(parent) !== -1) {
-        return true;
-    }
-
-    return false;
-}
-
-function getFrames(win) {
-
-    var result = [];
-
-    var frames = void 0;
-
-    try {
-        frames = win.frames;
-    } catch (err) {
-        frames = win;
-    }
-
-    var len = void 0;
-
-    try {
-        len = frames.length;
-    } catch (err) {
-        // pass
-    }
-
-    if (len === 0) {
-        return result;
-    }
-
-    if (len) {
-        for (var i = 0; i < len; i++) {
-
-            var frame = void 0;
-
-            try {
-                frame = frames[i];
-            } catch (err) {
-                continue;
-            }
-
-            result.push(frame);
-        }
-
-        return result;
-    }
-
-    for (var _i = 0; _i < 100; _i++) {
-        var _frame = void 0;
-
-        try {
-            _frame = frames[_i];
-        } catch (err) {
-            return result;
-        }
-
-        if (!_frame) {
-            return result;
-        }
-
-        result.push(_frame);
-    }
-
-    return result;
-}
-
-function getAllChildFrames(win) {
-
-    var result = [];
-
-    for (var _iterator = getFrames(win), _isArray = Array.isArray(_iterator), _i2 = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
-        var _ref;
-
-        if (_isArray) {
-            if (_i2 >= _iterator.length) break;
-            _ref = _iterator[_i2++];
-        } else {
-            _i2 = _iterator.next();
-            if (_i2.done) break;
-            _ref = _i2.value;
-        }
-
-        var frame = _ref;
-
-        result.push(frame);
-
-        for (var _iterator2 = getAllChildFrames(frame), _isArray2 = Array.isArray(_iterator2), _i3 = 0, _iterator2 = _isArray2 ? _iterator2 : _iterator2[Symbol.iterator]();;) {
-            var _ref2;
-
-            if (_isArray2) {
-                if (_i3 >= _iterator2.length) break;
-                _ref2 = _iterator2[_i3++];
-            } else {
-                _i3 = _iterator2.next();
-                if (_i3.done) break;
-                _ref2 = _i3.value;
-            }
-
-            var childFrame = _ref2;
-
-            result.push(childFrame);
-        }
-    }
-
-    return result;
-}
-
-function getTop(win) {
-
-    if (!win) {
-        return;
-    }
-
-    try {
-        if (win.top) {
-            return win.top;
-        }
-    } catch (err) {
-        // pass
-    }
-
-    if (getParent(win) === win) {
-        return win;
-    }
-
-    try {
-        if (isAncestorParent(window, win) && window.top) {
-            return window.top;
-        }
-    } catch (err) {
-        // pass
-    }
-
-    try {
-        if (isAncestorParent(win, window) && window.top) {
-            return window.top;
-        }
-    } catch (err) {
-        // pass
-    }
-
-    for (var _iterator3 = getAllChildFrames(win), _isArray3 = Array.isArray(_iterator3), _i4 = 0, _iterator3 = _isArray3 ? _iterator3 : _iterator3[Symbol.iterator]();;) {
-        var _ref3;
-
-        if (_isArray3) {
-            if (_i4 >= _iterator3.length) break;
-            _ref3 = _iterator3[_i4++];
-        } else {
-            _i4 = _iterator3.next();
-            if (_i4.done) break;
-            _ref3 = _i4.value;
-        }
-
-        var frame = _ref3;
-
-        try {
-            if (frame.top) {
-                return frame.top;
-            }
-        } catch (err) {
-            // pass
-        }
-
-        if (getParent(frame) === frame) {
-            return frame;
-        }
-    }
-}
-
-function getAllFramesInWindow(win) {
-    var top = getTop(win);
+  try {
     // $FlowFixMe
-    return getAllChildFrames(top).concat(top);
+    (0,_util__WEBPACK_IMPORTED_MODULE_0__.noop)(win && win.location && win.location.href);
+    return true;
+  } catch (err) {// pass
+  }
+
+  return false;
 }
+function getActualDomain(win) {
+  if (win === void 0) {
+    win = window;
+  }
 
-function isTop(win) {
-    return win === getTop(win);
+  var location = win.location;
+
+  if (!location) {
+    throw new Error("Can not read window location");
+  }
+
+  var protocol = location.protocol;
+
+  if (!protocol) {
+    throw new Error("Can not read window protocol");
+  }
+
+  if (protocol === _constants__WEBPACK_IMPORTED_MODULE_1__.PROTOCOL.FILE) {
+    return _constants__WEBPACK_IMPORTED_MODULE_1__.PROTOCOL.FILE + "//";
+  }
+
+  if (protocol === _constants__WEBPACK_IMPORTED_MODULE_1__.PROTOCOL.ABOUT) {
+    var parent = getParent(win);
+
+    if (parent && canReadFromWindow(parent)) {
+      // $FlowFixMe
+      return getActualDomain(parent);
+    }
+
+    return _constants__WEBPACK_IMPORTED_MODULE_1__.PROTOCOL.ABOUT + "//";
+  }
+
+  var host = location.host;
+
+  if (!host) {
+    throw new Error("Can not read window host");
+  }
+
+  return protocol + "//" + host;
 }
+function getDomain(win) {
+  if (win === void 0) {
+    win = window;
+  }
 
-function isFrameWindowClosed(frame) {
+  var domain = getActualDomain(win);
 
-    if (!frame.contentWindow) {
-        return true;
+  if (domain && win.mockDomain && win.mockDomain.indexOf(_constants__WEBPACK_IMPORTED_MODULE_1__.PROTOCOL.MOCK) === 0) {
+    return win.mockDomain;
+  }
+
+  return domain;
+}
+function isBlankDomain(win) {
+  try {
+    // $FlowFixMe
+    if (!win.location.href) {
+      return true;
     }
 
-    if (!frame.parentNode) {
-        return true;
+    if (win.location.href === 'about:blank') {
+      return true;
     }
+  } catch (err) {// pass
+  }
 
-    var doc = frame.ownerDocument;
-
-    if (doc && doc.body && !doc.body.contains(frame)) {
-        return true;
+  return false;
+}
+function isActuallySameDomain(win) {
+  try {
+    if (win === window) {
+      return true;
     }
+  } catch (err) {// pass
+  }
 
+  try {
+    var desc = Object.getOwnPropertyDescriptor(win, 'location');
+
+    if (desc && desc.enumerable === false) {
+      return false;
+    }
+  } catch (err) {// pass
+  }
+
+  try {
+    // $FlowFixMe
+    if (isAboutProtocol(win) && canReadFromWindow(win)) {
+      return true;
+    }
+  } catch (err) {// pass
+  }
+
+  try {
+    // $FlowFixMe
+    if (getActualDomain(win) === getActualDomain(window)) {
+      return true;
+    }
+  } catch (err) {// pass
+  }
+
+  return false;
+}
+function isSameDomain(win) {
+  if (!isActuallySameDomain(win)) {
     return false;
+  }
+
+  try {
+    if (win === window) {
+      return true;
+    } // $FlowFixMe
+
+
+    if (isAboutProtocol(win) && canReadFromWindow(win)) {
+      return true;
+    } // $FlowFixMe
+
+
+    if (getDomain(window) === getDomain(win)) {
+      return true;
+    }
+  } catch (err) {// pass
+  }
+
+  return false;
+}
+function assertSameDomain(win) {
+  if (!isSameDomain(win)) {
+    throw new Error("Expected window to be same domain");
+  } // $FlowFixMe
+
+
+  return win;
+}
+function getParents(win) {
+  var result = [];
+
+  try {
+    while (win.parent !== win) {
+      result.push(win.parent);
+      win = win.parent;
+    }
+  } catch (err) {// pass
+  }
+
+  return result;
+}
+function isAncestorParent(parent, child) {
+  if (!parent || !child) {
+    return false;
+  }
+
+  var childParent = getParent(child);
+
+  if (childParent) {
+    return childParent === parent;
+  }
+
+  if (getParents(child).indexOf(parent) !== -1) {
+    return true;
+  }
+
+  return false;
+}
+function getFrames(win) {
+  var result = [];
+  var frames;
+
+  try {
+    frames = win.frames;
+  } catch (err) {
+    frames = win;
+  }
+
+  var len;
+
+  try {
+    len = frames.length;
+  } catch (err) {// pass
+  }
+
+  if (len === 0) {
+    return result;
+  }
+
+  if (len) {
+    for (var i = 0; i < len; i++) {
+      var frame = void 0;
+
+      try {
+        frame = frames[i];
+      } catch (err) {
+        continue;
+      }
+
+      result.push(frame);
+    }
+
+    return result;
+  }
+
+  for (var _i = 0; _i < 100; _i++) {
+    var _frame = void 0;
+
+    try {
+      _frame = frames[_i];
+    } catch (err) {
+      return result;
+    }
+
+    if (!_frame) {
+      return result;
+    }
+
+    result.push(_frame);
+  }
+
+  return result;
+}
+function getAllChildFrames(win) {
+  var result = [];
+
+  for (var _i3 = 0, _getFrames2 = getFrames(win); _i3 < _getFrames2.length; _i3++) {
+    var frame = _getFrames2[_i3];
+    result.push(frame);
+
+    for (var _i5 = 0, _getAllChildFrames2 = getAllChildFrames(frame); _i5 < _getAllChildFrames2.length; _i5++) {
+      var childFrame = _getAllChildFrames2[_i5];
+      result.push(childFrame);
+    }
+  }
+
+  return result;
+}
+function getTop(win) {
+  if (win === void 0) {
+    win = window;
+  }
+
+  try {
+    if (win.top) {
+      return win.top;
+    }
+  } catch (err) {// pass
+  }
+
+  if (getParent(win) === win) {
+    return win;
+  }
+
+  try {
+    if (isAncestorParent(window, win) && window.top) {
+      return window.top;
+    }
+  } catch (err) {// pass
+  }
+
+  try {
+    if (isAncestorParent(win, window) && window.top) {
+      return window.top;
+    }
+  } catch (err) {// pass
+  }
+
+  for (var _i7 = 0, _getAllChildFrames4 = getAllChildFrames(win); _i7 < _getAllChildFrames4.length; _i7++) {
+    var frame = _getAllChildFrames4[_i7];
+
+    try {
+      if (frame.top) {
+        return frame.top;
+      }
+    } catch (err) {// pass
+    }
+
+    if (getParent(frame) === frame) {
+      return frame;
+    }
+  }
+}
+function getNextOpener(win) {
+  if (win === void 0) {
+    win = window;
+  }
+
+  return getOpener(getTop(win) || win);
+}
+function getUltimateTop(win) {
+  if (win === void 0) {
+    win = window;
+  }
+
+  var opener = getNextOpener(win);
+
+  if (opener) {
+    return getUltimateTop(opener);
+  }
+
+  return top;
+}
+function getAllFramesInWindow(win) {
+  var top = getTop(win);
+
+  if (!top) {
+    throw new Error("Can not determine top window");
+  }
+
+  var result = [].concat(getAllChildFrames(top), [top]); // Win may be in shadow dom
+
+  if (result.indexOf(win) === -1) {
+    result = [].concat(result, [win], getAllChildFrames(win));
+  }
+
+  return result;
+}
+function getAllWindows(win) {
+  if (win === void 0) {
+    win = window;
+  }
+
+  var frames = getAllFramesInWindow(win);
+  var opener = getNextOpener(win);
+
+  if (opener) {
+    return [].concat(getAllWindows(opener), frames);
+  } else {
+    return frames;
+  }
+}
+function isTop(win) {
+  return win === getTop(win);
+}
+function isFrameWindowClosed(frame) {
+  if (!frame.contentWindow) {
+    return true;
+  }
+
+  if (!frame.parentNode) {
+    return true;
+  }
+
+  var doc = frame.ownerDocument;
+
+  if (doc && doc.documentElement && !doc.documentElement.contains(frame)) {
+    var parent = frame;
+
+    while (parent.parentNode && parent.parentNode !== parent) {
+      parent = parent.parentNode;
+    } // $FlowFixMe
+
+
+    if (!parent.host || !doc.documentElement.contains(parent.host)) {
+      return true;
+    }
+  }
+
+  return false;
 }
 
 function safeIndexOf(collection, item) {
-    for (var i = 0; i < collection.length; i++) {
-
-        try {
-            if (collection[i] === item) {
-                return i;
-            }
-        } catch (err) {
-            // pass
-        }
+  for (var i = 0; i < collection.length; i++) {
+    try {
+      if (collection[i] === item) {
+        return i;
+      }
+    } catch (err) {// pass
     }
+  }
 
-    return -1;
+  return -1;
 }
 
 var iframeWindows = [];
 var iframeFrames = [];
+function isWindowClosed(win, allowMock) {
+  if (allowMock === void 0) {
+    allowMock = true;
+  }
 
-function isWindowClosed(win) {
-    var allowMock = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+  try {
+    if (win === window) {
+      return false;
+    }
+  } catch (err) {
+    return true;
+  }
 
+  try {
+    if (!win) {
+      return true;
+    }
+  } catch (err) {
+    return true;
+  }
 
+  try {
+    if (win.closed) {
+      return true;
+    }
+  } catch (err) {
+    // I love you so much IE
+    if (err && err.message === IE_WIN_ACCESS_ERROR) {
+      return false;
+    }
+
+    return true;
+  }
+
+  if (allowMock && isSameDomain(win)) {
     try {
-        if (win === window) {
-            return false;
-        }
-    } catch (err) {
+      // $FlowFixMe
+      if (win.mockclosed) {
         return true;
+      }
+    } catch (err) {// pass
     }
+  } // Mobile safari
 
-    try {
-        if (!win) {
-            return true;
-        }
-    } catch (err) {
-        return true;
+
+  try {
+    if (!win.parent || !win.top) {
+      return true;
     }
+  } catch (err) {// pass
+  } // Yes, this actually happens in IE. win === win errors out when the window
+  // is from an iframe, and the iframe was removed from the page.
 
-    try {
-        if (win.closed) {
-            return true;
-        }
-    } catch (err) {
 
-        // I love you so much IE
+  try {
+    (0,_util__WEBPACK_IMPORTED_MODULE_0__.noop)(win === win); // eslint-disable-line no-self-compare
+  } catch (err) {
+    return true;
+  } // IE orphaned frame
 
-        if (err && err.message === IE_WIN_ACCESS_ERROR) {
-            return false;
-        }
 
-        return true;
+  var iframeIndex = safeIndexOf(iframeWindows, win);
+
+  if (iframeIndex !== -1) {
+    var frame = iframeFrames[iframeIndex];
+
+    if (frame && isFrameWindowClosed(frame)) {
+      return true;
     }
+  }
 
-    if (allowMock && isSameDomain(win)) {
-        try {
-            // $FlowFixMe
-            if (win.mockclosed) {
-                return true;
-            }
-        } catch (err) {
-            // pass
-        }
-    }
-
-    // Mobile safari
-
-    try {
-        if (!win.parent || !win.top) {
-            return true;
-        }
-    } catch (err) {}
-    // pass
-
-
-    // Yes, this actually happens in IE. win === win errors out when the window
-    // is from an iframe, and the iframe was removed from the page.
-
-    try {
-        (0, _util.noop)(win === win); // eslint-disable-line no-self-compare
-    } catch (err) {
-        return true;
-    }
-
-    // IE orphaned frame
-
-    var iframeIndex = safeIndexOf(iframeWindows, win);
-
-    if (iframeIndex !== -1) {
-        var frame = iframeFrames[iframeIndex];
-
-        if (frame && isFrameWindowClosed(frame)) {
-            return true;
-        }
-    }
-
-    return false;
+  return false;
 }
 
 function cleanIframes() {
+  for (var i = 0; i < iframeWindows.length; i++) {
+    var closed = false;
 
-    for (var i = 0; i < iframeFrames.length; i++) {
-        if (isFrameWindowClosed(iframeFrames[i])) {
-            iframeFrames.splice(i, 1);
-            iframeWindows.splice(i, 1);
-        }
+    try {
+      closed = iframeWindows[i].closed;
+    } catch (err) {// pass
     }
 
-    for (var _i5 = 0; _i5 < iframeWindows.length; _i5++) {
-        if (isWindowClosed(iframeWindows[_i5])) {
-            iframeFrames.splice(_i5, 1);
-            iframeWindows.splice(_i5, 1);
-        }
+    if (closed) {
+      iframeFrames.splice(i, 1);
+      iframeWindows.splice(i, 1);
     }
+  }
 }
 
 function linkFrameWindow(frame) {
+  cleanIframes();
 
-    cleanIframes();
-
-    if (frame && frame.contentWindow) {
-        try {
-            iframeWindows.push(frame.contentWindow);
-            iframeFrames.push(frame);
-        } catch (err) {
-            // pass
-        }
+  if (frame && frame.contentWindow) {
+    try {
+      iframeWindows.push(frame.contentWindow);
+      iframeFrames.push(frame);
+    } catch (err) {// pass
     }
+  }
 }
-
 function getUserAgent(win) {
-    win = win || window;
-    return win.navigator.mockUserAgent || win.navigator.userAgent;
+  win = win || window;
+  return win.navigator.mockUserAgent || win.navigator.userAgent;
 }
-
 function getFrameByName(win, name) {
+  var winFrames = getFrames(win);
 
-    var winFrames = getFrames(win);
-
-    for (var _iterator4 = winFrames, _isArray4 = Array.isArray(_iterator4), _i6 = 0, _iterator4 = _isArray4 ? _iterator4 : _iterator4[Symbol.iterator]();;) {
-        var _ref4;
-
-        if (_isArray4) {
-            if (_i6 >= _iterator4.length) break;
-            _ref4 = _iterator4[_i6++];
-        } else {
-            _i6 = _iterator4.next();
-            if (_i6.done) break;
-            _ref4 = _i6.value;
-        }
-
-        var childFrame = _ref4;
-
-        try {
-            // $FlowFixMe
-            if (isSameDomain(childFrame) && childFrame.name === name && winFrames.indexOf(childFrame) !== -1) {
-                return childFrame;
-            }
-        } catch (err) {
-            // pass
-        }
-    }
+  for (var _i9 = 0; _i9 < winFrames.length; _i9++) {
+    var childFrame = winFrames[_i9];
 
     try {
-        // $FlowFixMe
-        if (winFrames.indexOf(win.frames[name]) !== -1) {
-            // $FlowFixMe
-            return win.frames[name];
-        }
-    } catch (err) {
-        // pass
+      // $FlowFixMe
+      if (isSameDomain(childFrame) && childFrame.name === name && winFrames.indexOf(childFrame) !== -1) {
+        return childFrame;
+      }
+    } catch (err) {// pass
     }
+  }
 
-    try {
-        if (winFrames.indexOf(win[name]) !== -1) {
-            return win[name];
-        }
-    } catch (err) {
-        // pass
+  try {
+    // $FlowFixMe
+    if (winFrames.indexOf(win.frames[name]) !== -1) {
+      // $FlowFixMe
+      return win.frames[name];
     }
+  } catch (err) {// pass
+  }
+
+  try {
+    if (winFrames.indexOf(win[name]) !== -1) {
+      return win[name];
+    }
+  } catch (err) {// pass
+  }
 }
-
 function findChildFrameByName(win, name) {
+  var frame = getFrameByName(win, name);
 
-    var frame = getFrameByName(win, name);
+  if (frame) {
+    return frame;
+  }
 
-    if (frame) {
-        return frame;
+  for (var _i11 = 0, _getFrames4 = getFrames(win); _i11 < _getFrames4.length; _i11++) {
+    var childFrame = _getFrames4[_i11];
+    var namedFrame = findChildFrameByName(childFrame, name);
+
+    if (namedFrame) {
+      return namedFrame;
     }
-
-    for (var _iterator5 = getFrames(win), _isArray5 = Array.isArray(_iterator5), _i7 = 0, _iterator5 = _isArray5 ? _iterator5 : _iterator5[Symbol.iterator]();;) {
-        var _ref5;
-
-        if (_isArray5) {
-            if (_i7 >= _iterator5.length) break;
-            _ref5 = _iterator5[_i7++];
-        } else {
-            _i7 = _iterator5.next();
-            if (_i7.done) break;
-            _ref5 = _i7.value;
-        }
-
-        var childFrame = _ref5;
-
-        var namedFrame = findChildFrameByName(childFrame, name);
-
-        if (namedFrame) {
-            return namedFrame;
-        }
-    }
+  }
 }
-
 function findFrameByName(win, name) {
+  var frame = getFrameByName(win, name);
 
-    var frame = void 0;
+  if (frame) {
+    return frame;
+  }
 
-    frame = getFrameByName(win, name);
-
-    if (frame) {
-        return frame;
-    }
-
-    var top = getTop(win) || win;
-
-    return findChildFrameByName(top, name);
+  var top = getTop(win) || win;
+  return findChildFrameByName(top, name);
 }
-
 function isParent(win, frame) {
+  var frameParent = getParent(frame);
 
-    var frameParent = getParent(frame);
+  if (frameParent) {
+    return frameParent === win;
+  }
 
-    if (frameParent) {
-        return frameParent === win;
+  for (var _i13 = 0, _getFrames6 = getFrames(win); _i13 < _getFrames6.length; _i13++) {
+    var childFrame = _getFrames6[_i13];
+
+    if (childFrame === frame) {
+      return true;
     }
+  }
 
-    for (var _iterator6 = getFrames(win), _isArray6 = Array.isArray(_iterator6), _i8 = 0, _iterator6 = _isArray6 ? _iterator6 : _iterator6[Symbol.iterator]();;) {
-        var _ref6;
-
-        if (_isArray6) {
-            if (_i8 >= _iterator6.length) break;
-            _ref6 = _iterator6[_i8++];
-        } else {
-            _i8 = _iterator6.next();
-            if (_i8.done) break;
-            _ref6 = _i8.value;
-        }
-
-        var childFrame = _ref6;
-
-        if (childFrame === frame) {
-            return true;
-        }
-    }
-
-    return false;
+  return false;
 }
-
 function isOpener(parent, child) {
-
-    return parent === getOpener(child);
+  return parent === getOpener(child);
 }
-
 function getAncestor(win) {
-    win = win || window;
+  if (win === void 0) {
+    win = window;
+  }
 
-    var opener = getOpener(win);
+  win = win || window;
+  var opener = getOpener(win);
 
-    if (opener) {
-        return opener;
-    }
+  if (opener) {
+    return opener;
+  }
 
-    var parent = getParent(win);
+  var parent = getParent(win);
 
-    if (parent) {
-        return parent;
-    }
+  if (parent) {
+    return parent;
+  }
 }
-
 function getAncestors(win) {
+  var results = [];
+  var ancestor = win;
 
-    var results = [];
+  while (ancestor) {
+    ancestor = getAncestor(ancestor);
 
-    var ancestor = win;
-
-    while (ancestor) {
-        ancestor = getAncestor(ancestor);
-        if (ancestor) {
-            results.push(ancestor);
-        }
+    if (ancestor) {
+      results.push(ancestor);
     }
+  }
 
-    return results;
+  return results;
 }
-
 function isAncestor(parent, child) {
+  var actualParent = getAncestor(child);
 
-    var actualParent = getAncestor(child);
-
-    if (actualParent) {
-        if (actualParent === parent) {
-            return true;
-        }
-
-        return false;
-    }
-
-    if (child === parent) {
-        return false;
-    }
-
-    if (getTop(child) === child) {
-        return false;
-    }
-
-    for (var _iterator7 = getFrames(parent), _isArray7 = Array.isArray(_iterator7), _i9 = 0, _iterator7 = _isArray7 ? _iterator7 : _iterator7[Symbol.iterator]();;) {
-        var _ref7;
-
-        if (_isArray7) {
-            if (_i9 >= _iterator7.length) break;
-            _ref7 = _iterator7[_i9++];
-        } else {
-            _i9 = _iterator7.next();
-            if (_i9.done) break;
-            _ref7 = _i9.value;
-        }
-
-        var frame = _ref7;
-
-        if (frame === child) {
-            return true;
-        }
+  if (actualParent) {
+    if (actualParent === parent) {
+      return true;
     }
 
     return false;
-}
+  }
 
-function isPopup() {
-    return Boolean(getOpener(window));
-}
+  if (child === parent) {
+    return false;
+  }
 
-function isIframe() {
-    return Boolean(getParent(window));
-}
+  if (getTop(child) === child) {
+    return false;
+  }
 
-function isFullpage() {
-    return Boolean(!isIframe() && !isPopup());
+  for (var _i15 = 0, _getFrames8 = getFrames(parent); _i15 < _getFrames8.length; _i15++) {
+    var frame = _getFrames8[_i15];
+
+    if (frame === child) {
+      return true;
+    }
+  }
+
+  return false;
+}
+function isPopup(win) {
+  if (win === void 0) {
+    win = window;
+  }
+
+  return Boolean(getOpener(win));
+}
+function isIframe(win) {
+  if (win === void 0) {
+    win = window;
+  }
+
+  return Boolean(getParent(win));
+}
+function isFullpage(win) {
+  if (win === void 0) {
+    win = window;
+  }
+
+  return Boolean(!isIframe(win) && !isPopup(win));
 }
 
 function anyMatch(collection1, collection2) {
+  for (var _i17 = 0; _i17 < collection1.length; _i17++) {
+    var item1 = collection1[_i17];
 
-    for (var _iterator8 = collection1, _isArray8 = Array.isArray(_iterator8), _i10 = 0, _iterator8 = _isArray8 ? _iterator8 : _iterator8[Symbol.iterator]();;) {
-        var _ref8;
+    for (var _i19 = 0; _i19 < collection2.length; _i19++) {
+      var item2 = collection2[_i19];
 
-        if (_isArray8) {
-            if (_i10 >= _iterator8.length) break;
-            _ref8 = _iterator8[_i10++];
-        } else {
-            _i10 = _iterator8.next();
-            if (_i10.done) break;
-            _ref8 = _i10.value;
-        }
+      if (item1 === item2) {
+        return true;
+      }
+    }
+  }
 
-        var item1 = _ref8;
+  return false;
+}
 
-        for (var _iterator9 = collection2, _isArray9 = Array.isArray(_iterator9), _i11 = 0, _iterator9 = _isArray9 ? _iterator9 : _iterator9[Symbol.iterator]();;) {
-            var _ref9;
+function getDistanceFromTop(win) {
+  if (win === void 0) {
+    win = window;
+  }
 
-            if (_isArray9) {
-                if (_i11 >= _iterator9.length) break;
-                _ref9 = _iterator9[_i11++];
-            } else {
-                _i11 = _iterator9.next();
-                if (_i11.done) break;
-                _ref9 = _i11.value;
-            }
+  var distance = 0;
+  var parent = win;
 
-            var item2 = _ref9;
+  while (parent) {
+    parent = getParent(parent);
 
-            if (item1 === item2) {
-                return true;
-            }
-        }
+    if (parent) {
+      distance += 1;
+    }
+  }
+
+  return distance;
+}
+function getNthParent(win, n) {
+  if (n === void 0) {
+    n = 1;
+  }
+
+  var parent = win;
+
+  for (var i = 0; i < n; i++) {
+    if (!parent) {
+      return;
     }
 
-    return false;
+    parent = getParent(parent);
+  }
+
+  return parent;
 }
+function getNthParentFromTop(win, n) {
+  if (n === void 0) {
+    n = 1;
+  }
 
-function getDistanceFromTop() {
-    var win = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : window;
-
-    var distance = 0;
-    var parent = win;
-
-    while (parent) {
-        parent = getParent(parent);
-        if (parent) {
-            distance += 1;
-        }
-    }
-
-    return distance;
+  return getNthParent(win, getDistanceFromTop(win) - n);
 }
-
-function getNthParent(win) {
-    var n = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
-
-    var parent = win;
-
-    for (var i = 0; i < n; i++) {
-        if (!parent) {
-            return;
-        }
-
-        parent = getParent(parent);
-    }
-
-    return parent;
-}
-
-function getNthParentFromTop(win) {
-    var n = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
-
-    return getNthParent(win, getDistanceFromTop(win) - n);
-}
-
 function isSameTopWindow(win1, win2) {
+  var top1 = getTop(win1) || win1;
+  var top2 = getTop(win2) || win2;
 
-    var top1 = getTop(win1) || win1;
-    var top2 = getTop(win2) || win2;
-
-    try {
-        if (top1 && top2) {
-            if (top1 === top2) {
-                return true;
-            }
-
-            return false;
-        }
-    } catch (err) {
-        // pass
-    }
-
-    var allFrames1 = getAllFramesInWindow(win1);
-    var allFrames2 = getAllFramesInWindow(win2);
-
-    if (anyMatch(allFrames1, allFrames2)) {
+  try {
+    if (top1 && top2) {
+      if (top1 === top2) {
         return true;
+      }
+
+      return false;
     }
+  } catch (err) {// pass
+  }
 
-    var opener1 = getOpener(top1);
-    var opener2 = getOpener(top2);
+  var allFrames1 = getAllFramesInWindow(win1);
+  var allFrames2 = getAllFramesInWindow(win2);
 
-    if (opener1 && anyMatch(getAllFramesInWindow(opener1), allFrames2)) {
-        return false;
-    }
+  if (anyMatch(allFrames1, allFrames2)) {
+    return true;
+  }
 
-    if (opener2 && anyMatch(getAllFramesInWindow(opener2), allFrames1)) {
-        return false;
-    }
+  var opener1 = getOpener(top1);
+  var opener2 = getOpener(top2);
 
+  if (opener1 && anyMatch(getAllFramesInWindow(opener1), allFrames2)) {
     return false;
-}
+  }
 
+  if (opener2 && anyMatch(getAllFramesInWindow(opener2), allFrames1)) {
+    return false;
+  }
+
+  return false;
+}
 function matchDomain(pattern, origin) {
-
-    if (typeof pattern === 'string') {
-
-        if (typeof origin === 'string') {
-            return pattern === CONSTANTS.WILDCARD || origin === pattern;
-        }
-
-        if ((0, _util.isRegex)(origin)) {
-            return false;
-        }
-
-        if (Array.isArray(origin)) {
-            return false;
-        }
+  if (typeof pattern === 'string') {
+    if (typeof origin === 'string') {
+      return pattern === _constants__WEBPACK_IMPORTED_MODULE_1__.WILDCARD || origin === pattern;
     }
 
-    if ((0, _util.isRegex)(pattern)) {
-
-        if ((0, _util.isRegex)(origin)) {
-            return pattern.toString() === origin.toString();
-        }
-
-        if (Array.isArray(origin)) {
-            return false;
-        }
-
-        // $FlowFixMe
-        return Boolean(origin.match(pattern));
+    if ((0,_util__WEBPACK_IMPORTED_MODULE_0__.isRegex)(origin)) {
+      return false;
     }
 
-    if (Array.isArray(pattern)) {
+    if (Array.isArray(origin)) {
+      return false;
+    }
+  }
 
-        if (Array.isArray(origin)) {
-            return JSON.stringify(pattern) === JSON.stringify(origin);
-        }
-
-        if ((0, _util.isRegex)(origin)) {
-            return false;
-        }
-
-        return pattern.some(function (subpattern) {
-            return matchDomain(subpattern, origin);
-        });
+  if ((0,_util__WEBPACK_IMPORTED_MODULE_0__.isRegex)(pattern)) {
+    if ((0,_util__WEBPACK_IMPORTED_MODULE_0__.isRegex)(origin)) {
+      return pattern.toString() === origin.toString();
     }
 
-    return false;
+    if (Array.isArray(origin)) {
+      return false;
+    } // $FlowFixMe
+
+
+    return Boolean(origin.match(pattern));
+  }
+
+  if (Array.isArray(pattern)) {
+    if (Array.isArray(origin)) {
+      return JSON.stringify(pattern) === JSON.stringify(origin);
+    }
+
+    if ((0,_util__WEBPACK_IMPORTED_MODULE_0__.isRegex)(origin)) {
+      return false;
+    }
+
+    return pattern.some(function (subpattern) {
+      return matchDomain(subpattern, origin);
+    });
+  }
+
+  return false;
 }
-
 function stringifyDomainPattern(pattern) {
-    if (Array.isArray(pattern)) {
-        return '(' + pattern.join(' | ') + ')';
-    } else if ((0, _util.isRegex)(pattern)) {
-        return 'RegExp(' + pattern.toString();
-    } else {
-        return pattern.toString();
-    }
+  if (Array.isArray(pattern)) {
+    return "(" + pattern.join(' | ') + ")";
+  } else if ((0,_util__WEBPACK_IMPORTED_MODULE_0__.isRegex)(pattern)) {
+    return "RegExp(" + pattern.toString() + ")";
+  } else {
+    return pattern.toString();
+  }
 }
-
 function getDomainFromUrl(url) {
+  var domain;
 
-    var domain = void 0;
+  if (url.match(/^(https?|mock|file):\/\//)) {
+    domain = url;
+  } else {
+    return getDomain();
+  }
 
-    if (url.match(/^(https?|mock|file):\/\//)) {
-        domain = url;
+  domain = domain.split('/').slice(0, 3).join('/');
+  return domain;
+}
+function onCloseWindow(win, callback, delay, maxtime) {
+  if (delay === void 0) {
+    delay = 1000;
+  }
+
+  if (maxtime === void 0) {
+    maxtime = Infinity;
+  }
+
+  var timeout;
+
+  var check = function check() {
+    if (isWindowClosed(win)) {
+      if (timeout) {
+        clearTimeout(timeout);
+      }
+
+      return callback();
+    }
+
+    if (maxtime <= 0) {
+      clearTimeout(timeout);
     } else {
-        return getDomain();
+      maxtime -= delay;
+      timeout = setTimeout(check, delay);
     }
+  };
 
-    domain = domain.split('/').slice(0, 3).join('/');
+  check();
+  return {
+    cancel: function cancel() {
+      if (timeout) {
+        clearTimeout(timeout);
+      }
+    }
+  };
+} // eslint-disable-next-line complexity
 
-    return domain;
-}
-
-function onCloseWindow(win, callback) {
-    var delay = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1000;
-    var maxtime = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : Infinity;
-
-
-    var timeout = void 0;
-
-    var check = function check() {
-
-        if (isWindowClosed(win)) {
-
-            if (timeout) {
-                clearTimeout(timeout);
-            }
-
-            return callback();
-        }
-
-        if (maxtime <= 0) {
-            clearTimeout(timeout);
-        } else {
-            maxtime -= delay;
-            timeout = setTimeout(check, delay);
-        }
-    };
-
-    check();
-
-    return {
-        cancel: function cancel() {
-            if (timeout) {
-                clearTimeout(timeout);
-            }
-        }
-    };
-}
-
-// eslint-disable-next-line complexity
 function isWindow(obj) {
-
-    try {
-        if (obj === window) {
-            return true;
-        }
-    } catch (err) {
-        if (err && err.message === IE_WIN_ACCESS_ERROR) {
-            return true;
-        }
+  try {
+    if (obj === window) {
+      return true;
     }
-
-    try {
-        if (Object.prototype.toString.call(obj) === '[object Window]') {
-            return true;
-        }
-    } catch (err) {
-        if (err && err.message === IE_WIN_ACCESS_ERROR) {
-            return true;
-        }
+  } catch (err) {
+    if (err && err.message === IE_WIN_ACCESS_ERROR) {
+      return true;
     }
+  }
 
-    try {
-        if (window.Window && obj instanceof window.Window) {
-            return true;
-        }
-    } catch (err) {
-        if (err && err.message === IE_WIN_ACCESS_ERROR) {
-            return true;
-        }
+  try {
+    // $FlowFixMe method-unbinding
+    if (Object.prototype.toString.call(obj) === '[object Window]') {
+      return true;
     }
-
-    try {
-        if (obj && obj.self === obj) {
-            return true;
-        }
-    } catch (err) {
-        if (err && err.message === IE_WIN_ACCESS_ERROR) {
-            return true;
-        }
+  } catch (err) {
+    if (err && err.message === IE_WIN_ACCESS_ERROR) {
+      return true;
     }
+  }
 
-    try {
-        if (obj && obj.parent === obj) {
-            return true;
-        }
-    } catch (err) {
-        if (err && err.message === IE_WIN_ACCESS_ERROR) {
-            return true;
-        }
+  try {
+    if (window.Window && obj instanceof window.Window) {
+      return true;
     }
-
-    try {
-        if (obj && obj.top === obj) {
-            return true;
-        }
-    } catch (err) {
-        if (err && err.message === IE_WIN_ACCESS_ERROR) {
-            return true;
-        }
+  } catch (err) {
+    if (err && err.message === IE_WIN_ACCESS_ERROR) {
+      return true;
     }
+  }
 
-    try {
-        (0, _util.noop)(obj === obj); // eslint-disable-line no-self-compare
-    } catch (err) {
-        return true;
+  try {
+    if (obj && obj.self === obj) {
+      return true;
     }
-
-    try {
-        (0, _util.noop)(obj && obj.__cross_domain_utils_window_check__);
-    } catch (err) {
-        return true;
+  } catch (err) {
+    if (err && err.message === IE_WIN_ACCESS_ERROR) {
+      return true;
     }
+  }
 
+  try {
+    if (obj && obj.parent === obj) {
+      return true;
+    }
+  } catch (err) {
+    if (err && err.message === IE_WIN_ACCESS_ERROR) {
+      return true;
+    }
+  }
+
+  try {
+    if (obj && obj.top === obj) {
+      return true;
+    }
+  } catch (err) {
+    if (err && err.message === IE_WIN_ACCESS_ERROR) {
+      return true;
+    }
+  }
+
+  try {
+    if ((0,_util__WEBPACK_IMPORTED_MODULE_0__.noop)(obj === obj) === '__unlikely_value__') {
+      // eslint-disable-line no-self-compare
+      return false;
+    }
+  } catch (err) {
+    return true;
+  }
+
+  try {
+    if (obj && obj.__cross_domain_utils_window_check__ === '__unlikely_value__') {
+      return false;
+    }
+  } catch (err) {
+    return true;
+  }
+
+  try {
+    if ('postMessage' in obj && 'self' in obj && 'location' in obj) {
+      return true;
+    }
+  } catch (err) {// pass
+  }
+
+  return false;
+}
+function isBrowser() {
+  return typeof window !== 'undefined' && typeof window.location !== 'undefined';
+}
+function isCurrentDomain(domain) {
+  if (!isBrowser()) {
     return false;
+  }
+
+  return getDomain() === domain;
+}
+function isMockDomain(domain) {
+  return domain.indexOf(_constants__WEBPACK_IMPORTED_MODULE_1__.PROTOCOL.MOCK) === 0;
+}
+function normalizeMockUrl(url) {
+  if (!isMockDomain(getDomainFromUrl(url))) {
+    return url;
+  }
+
+  if (!__TEST__) {
+    throw new Error("Mock urls not supported out of test mode");
+  }
+
+  return url.replace(/^mock:\/\/[^/]+/, getActualDomain(window));
+}
+function closeWindow(win) {
+  try {
+    win.close();
+  } catch (err) {// pass
+  }
+}
+function getFrameForWindow(win) {
+  if (isSameDomain(win)) {
+    return assertSameDomain(win).frameElement;
+  }
+
+  for (var _i21 = 0, _document$querySelect2 = document.querySelectorAll('iframe'); _i21 < _document$querySelect2.length; _i21++) {
+    var frame = _document$querySelect2[_i21];
+
+    if (frame && frame.contentWindow && frame.contentWindow === win) {
+      return frame;
+    }
+  }
 }
 
 /***/ }),
