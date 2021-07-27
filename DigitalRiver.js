@@ -5344,6 +5344,7 @@ function handleMountWithMessage(controllerEmitter, message, componentData, handl
     return _babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_0___default().resolve();
   }
 
+  console.log('handleMountWithMessage', componentData.componentType);
   return controllerEmitter.send(message, {
     componentId: componentData.componentId,
     componentType: componentData.componentType
