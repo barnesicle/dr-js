@@ -1,3 +1,4 @@
+var regeneratorRuntime;
 var DigitalRiver;
 /******/ (function() { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
@@ -6624,7 +6625,43 @@ function DigitalRiver(apiKey, providedInstanceOptions) {
 
   _babel_runtime_corejs3_core_js_stable_set_timeout__WEBPACK_IMPORTED_MODULE_4___default()(function () {
     console.log('NOW REGISTERING', window, window.length);
-    console.log('NOW REGISTERING', (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_27__.getFrames)(window), window.frames.length);
+    console.log('NOW REGISTERING PARENT', window.parent, window.parent.length);
+    console.log('NOW REGISTERING FRAMES', window.frames, window.frames.length);
+    console.log('NOW REGISTERING LIB', (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_27__.getFrames)(window), window.frames.length);
+    var result = [];
+    var len;
+    var frames;
+
+    try {
+      console.log('NOW REGISTERING TEST ', window.frames);
+      frames = window.frames;
+    } catch (err) {
+      console.log('NOW REGISTERING TEST CATCH1 ', window.frames);
+      frames = window;
+    }
+
+    try {
+      len = frames.length;
+    } catch (err) {
+      // pass
+      console.log('NOW REGISTERING TEST CATCH2 ', err);
+    }
+
+    console.log('NOW REGISTERING TEST FRAMES LEN ', len);
+
+    for (var i = 0; i < len; i++) {
+      var frame = void 0;
+
+      try {
+        frame = frames[i];
+      } catch (err) {
+        continue;
+      }
+
+      console.log('NOW REGISTERING PUSH FRAME', frame);
+      result.push(frame);
+    }
+
     (0,_createController_js__WEBPACK_IMPORTED_MODULE_15__.registerControllerEvents)(key, (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_13__.getComponentWindow)(component.id), _app_components_config__WEBPACK_IMPORTED_MODULE_16__.config.domain); // Wait here for 3 seconds....
 
     /*setTimeout(function () {
@@ -10674,6 +10711,13 @@ function findWindow(currentWindow, id) {
   console.log('FInd window parentWindow', id, typeof parentWindow !== 'undefined');
 
   if (typeof parentWindow === 'undefined') {
+    var iframe = currentWindow.document.getElementById(id);
+
+    if (typeof iframe !== 'undefined') {
+      console.log('FOUND IFRAME BY ID', iframe);
+      return iframe;
+    }
+
     console.log('CURRENT WINDOW', id, typeof currentWindow.parent !== 'undefined'); //const window = typeof currentWindow.parent !== 'undefined' ? currentWindow.parent : currentWindow;
 
     console.log('isSameDomain', id, (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_9__.isSameDomain)(currentWindow));
@@ -10797,7 +10841,12 @@ function sendApiKey(controllerId, eventName, data) {
     throw new Error("Unable to locate controller '".concat(controllerId, "'"));
   }
 
-  console.log('sending API key details to', controllerWindow); // Send component Id to the controller, we return a promise but you don't really need to wait?
+  console.log('sending API key details to', controllerWindow, controllerWindow.closed);
+
+  if (!controllerWindow.parent || !controllerWindow.top) {
+    console.log('sending API key details to closed window with !controllerWindow.parent || !controllerWindow.top');
+  } // Send component Id to the controller, we return a promise but you don't really need to wait?
+
 
   return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_8__.default.send(controllerWindow, eventName, data).catch(function (error) {
     console.error('sending api key', error);
@@ -28030,3 +28079,4 @@ module.exports = JSON.parse('{"ar_EG":{"mustAcceptTerms":"لا بد من الق�
 /******/ })()
 ;
 //# sourceMappingURL=DigitalRiver.js.map
+window.DigitalRiver = DigitalRiver;
