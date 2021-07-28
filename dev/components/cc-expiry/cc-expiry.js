@@ -10734,11 +10734,12 @@ function findWindow(currentWindow, id) {
   console.log('FInd window getFrames', id, (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_7__.getFrames)(currentWindow));
   console.log('FInd window getFrameByName', id, (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_7__.getFrameByName)(currentWindow, id));
   console.log('parentWindow', id, typeof parentWindow !== 'undefined');
-  /*const foundFrame = getFrameByName(currentWindow, id);
+  var foundFrame = (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_7__.getFrameByName)(currentWindow, id);
+
   if (typeof foundFrame !== 'undefined') {
-    console.log('Found frame by name', foundFrame)
+    console.log('Found frame by name', foundFrame);
     return foundFrame;
-  }*/
+  }
 
   var parentWindow = (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_7__.getParent)(currentWindow);
   console.log('FInd window parentWindow', id, typeof parentWindow !== 'undefined');
