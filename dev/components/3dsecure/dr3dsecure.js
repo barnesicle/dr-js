@@ -11004,6 +11004,7 @@ function findWindow(currentWindow, id) {
   var parentWindow = (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_7__.getParent)(currentWindow);
 
   if (typeof parentWindow === 'undefined') {
+    //const iframes = typeof currentWindow.parent !
     var iframes = currentWindow.document.querySelectorAll('iframe');
 
     if (iframes.length > 0) {

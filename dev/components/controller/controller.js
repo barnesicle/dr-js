@@ -11772,6 +11772,7 @@ function findWindow(currentWindow, id) {
   var parentWindow = (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_7__.getParent)(currentWindow);
 
   if (typeof parentWindow === 'undefined') {
+    //const iframes = typeof currentWindow.parent !
     var iframes = currentWindow.document.querySelectorAll('iframe');
 
     if (iframes.length > 0) {
@@ -29835,11 +29836,9 @@ var clientListener = _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_10__.default.l
 var clientEmitter = _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_10__.default.client({
   window: window.parent,
   domain: clientDomain
-});
-var adyenEmitter = _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_10__.default.client({
-  window: (0,_client_createComponent__WEBPACK_IMPORTED_MODULE_13__.getComponentWindow)('dr3dsecure'),
-  domain: _config__WEBPACK_IMPORTED_MODULE_14__.config.domain
-}); // The component listener receives initialization events from the domain but any window
+}); //const adyenEmitter = postRobot.client({ window: getComponentWindow('dr3dsecure'), domain: config.domain });
+
+var adyenEmitter = null; // The component listener receives initialization events from the domain but any window
 
 var componentListener = _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_10__.default.listener({
   domain: _config__WEBPACK_IMPORTED_MODULE_14__.config.domain
