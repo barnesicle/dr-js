@@ -7654,6 +7654,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _korean_card_utils__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./korean-card-utils */ "./src/client/korean-card-utils.js");
 /* harmony import */ var _app_config__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ../app/config */ "./src/app/config.js");
 /* harmony import */ var _send_handle_next_action__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./send-handle-next-action */ "./src/client/send-handle-next-action.js");
+/* harmony import */ var cross_domain_utils__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! cross-domain-utils */ "./node_modules/cross-domain-utils/dist/module/index.js");
+
 
 
 
@@ -7743,7 +7745,8 @@ function DigitalRiver(apiKey, providedInstanceOptions) {
   var key = this.key;
 
   _babel_runtime_corejs3_core_js_stable_set_timeout__WEBPACK_IMPORTED_MODULE_4___default()(function () {
-    console.log('NOW REGISTERING', window.frames);
+    console.log('NOW REGISTERING', window, window.length);
+    console.log('NOW REGISTERING', (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_27__.getFrames)(window), window.frames.length);
     (0,_createController_js__WEBPACK_IMPORTED_MODULE_15__.registerControllerEvents)(key, (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_13__.getComponentWindow)(component.id), _app_components_config__WEBPACK_IMPORTED_MODULE_16__.config.domain); // Wait here for 3 seconds....
 
     /*setTimeout(function () {
@@ -7764,7 +7767,7 @@ function DigitalRiver(apiKey, providedInstanceOptions) {
 
     (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_13__.sendInitalize3dSecure)(dr3dsecure.id, apiKey);
     (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_13__.updateOverlay)('DRPayment3ds', '0px', '');
-  }, 3000);
+  }, 5000);
 }
 
 function shouldSendCreateSourceBeaconEvent(response) {
