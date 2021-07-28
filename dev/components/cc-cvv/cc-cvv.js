@@ -6653,33 +6653,36 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_corejs3_helpers_typeof__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/typeof */ "./node_modules/@babel/runtime-corejs3/helpers/esm/typeof.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_bind__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/bind */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/bind.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_bind__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_bind__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/promise */ "./node_modules/@babel/runtime-corejs3/core-js-stable/promise.js");
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/includes */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/includes.js");
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/object/assign */ "./node_modules/@babel/runtime-corejs3/core-js-stable/object/assign.js");
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/object/keys */ "./node_modules/@babel/runtime-corejs3/core-js-stable/object/keys.js");
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/for-each */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/for-each.js");
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var _dataStore_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./dataStore.js */ "./src/client/dataStore.js");
-/* harmony import */ var _createSource_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./createSource.js */ "./src/client/createSource.js");
-/* harmony import */ var _complianceData__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./complianceData */ "./src/client/complianceData.js");
-/* harmony import */ var _createComponent_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./createComponent.js */ "./src/client/createComponent.js");
-/* harmony import */ var _app_components_td_td_utils__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../app/components/td/td-utils */ "./src/app/components/td/td-utils.js");
-/* harmony import */ var _createController_js__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./createController.js */ "./src/client/createController.js");
-/* harmony import */ var _app_components_config__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../app/components/config */ "./src/app/components/config.js");
-/* harmony import */ var _DigitalRiverPaymentRequest__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./DigitalRiverPaymentRequest */ "./src/client/DigitalRiverPaymentRequest.js");
-/* harmony import */ var _beacon_beacon_client_data__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../beacon/beacon-client-data */ "./src/beacon/beacon-client-data.js");
-/* harmony import */ var _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ../post-robot-wrapper */ "./src/post-robot-wrapper.js");
-/* harmony import */ var _app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ../app/components/localization/localized-messages */ "./src/app/components/localization/localized-messages.js");
-/* harmony import */ var _create_dropin__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./create-dropin */ "./src/client/create-dropin.js");
-/* harmony import */ var _fetch_payment_methods__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./fetch-payment-methods */ "./src/client/fetch-payment-methods.js");
-/* harmony import */ var _authenticate_source__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./authenticate-source */ "./src/client/authenticate-source.js");
-/* harmony import */ var _korean_card_utils__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./korean-card-utils */ "./src/client/korean-card-utils.js");
-/* harmony import */ var _app_config__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ../app/config */ "./src/app/config.js");
-/* harmony import */ var _send_handle_next_action__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./send-handle-next-action */ "./src/client/send-handle-next-action.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_set_timeout__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/set-timeout */ "./node_modules/@babel/runtime-corejs3/core-js-stable/set-timeout.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_set_timeout__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_set_timeout__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/promise */ "./node_modules/@babel/runtime-corejs3/core-js-stable/promise.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/includes */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/includes.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/object/assign */ "./node_modules/@babel/runtime-corejs3/core-js-stable/object/assign.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/object/keys */ "./node_modules/@babel/runtime-corejs3/core-js-stable/object/keys.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/for-each */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/for-each.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var _dataStore_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./dataStore.js */ "./src/client/dataStore.js");
+/* harmony import */ var _createSource_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./createSource.js */ "./src/client/createSource.js");
+/* harmony import */ var _complianceData__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./complianceData */ "./src/client/complianceData.js");
+/* harmony import */ var _createComponent_js__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./createComponent.js */ "./src/client/createComponent.js");
+/* harmony import */ var _app_components_td_td_utils__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../app/components/td/td-utils */ "./src/app/components/td/td-utils.js");
+/* harmony import */ var _createController_js__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./createController.js */ "./src/client/createController.js");
+/* harmony import */ var _app_components_config__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../app/components/config */ "./src/app/components/config.js");
+/* harmony import */ var _DigitalRiverPaymentRequest__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./DigitalRiverPaymentRequest */ "./src/client/DigitalRiverPaymentRequest.js");
+/* harmony import */ var _beacon_beacon_client_data__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ../beacon/beacon-client-data */ "./src/beacon/beacon-client-data.js");
+/* harmony import */ var _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ../post-robot-wrapper */ "./src/post-robot-wrapper.js");
+/* harmony import */ var _app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ../app/components/localization/localized-messages */ "./src/app/components/localization/localized-messages.js");
+/* harmony import */ var _create_dropin__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./create-dropin */ "./src/client/create-dropin.js");
+/* harmony import */ var _fetch_payment_methods__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./fetch-payment-methods */ "./src/client/fetch-payment-methods.js");
+/* harmony import */ var _authenticate_source__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./authenticate-source */ "./src/client/authenticate-source.js");
+/* harmony import */ var _korean_card_utils__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./korean-card-utils */ "./src/client/korean-card-utils.js");
+/* harmony import */ var _app_config__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ../app/config */ "./src/app/config.js");
+/* harmony import */ var _send_handle_next_action__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./send-handle-next-action */ "./src/client/send-handle-next-action.js");
+
 
 
 
@@ -6719,13 +6722,13 @@ function updateInstanceOptionsWithDefaults(instanceOptions) {
   }
 
   if (localeNotProvided(instanceOptions)) {
-    instanceOptions.locale = _app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_19__.DEFAULT_LOCALE;
+    instanceOptions.locale = _app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_20__.DEFAULT_LOCALE;
   } else if (instanceOptions.locale.length === 2) {
-    instanceOptions.locale = (0,_app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_19__.getLocaleFromLanguage)(instanceOptions.locale);
-  } else if (!(0,_app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_19__.localeMessagesContainsClientProvidedLocale)((0,_app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_19__.forceCasingOfLocale)(instanceOptions))) {
-    instanceOptions.locale = _app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_19__.DEFAULT_LOCALE;
+    instanceOptions.locale = (0,_app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_20__.getLocaleFromLanguage)(instanceOptions.locale);
+  } else if (!(0,_app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_20__.localeMessagesContainsClientProvidedLocale)((0,_app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_20__.forceCasingOfLocale)(instanceOptions))) {
+    instanceOptions.locale = _app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_20__.DEFAULT_LOCALE;
   } else {
-    instanceOptions.locale = (0,_app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_19__.forceCasingOfLocale)(instanceOptions);
+    instanceOptions.locale = (0,_app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_20__.forceCasingOfLocale)(instanceOptions);
   }
 
   if (typeof instanceOptions.customerID === 'undefined') {
@@ -6752,37 +6755,44 @@ function DigitalRiver(apiKey, providedInstanceOptions) {
     getDetails: _babel_runtime_corejs3_core_js_stable_instance_bind__WEBPACK_IMPORTED_MODULE_3___default()(getDetails).call(getDetails, instanceOptions)
   }; // creating controller component
 
-  var component = (0,_createController_js__WEBPACK_IMPORTED_MODULE_14__.createController)(document.body, 'controller'); // creating beacon component
+  var component = (0,_createController_js__WEBPACK_IMPORTED_MODULE_15__.createController)(document.body, 'controller'); // creating beacon component
 
-  var beaconComponent = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_12__.createOrExtractBeaconController)(); // creating 3dsecure component
+  var beaconComponent = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_13__.createOrExtractBeaconController)(); // creating 3dsecure component
 
-  var dr3dsecure = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_12__.createOrExtractAdyenController)();
-  this.key = _dataStore_js__WEBPACK_IMPORTED_MODULE_9__.default.create({
+  var dr3dsecure = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_13__.createOrExtractAdyenController)();
+  this.key = _dataStore_js__WEBPACK_IMPORTED_MODULE_10__.default.create({
     apiKey: apiKey,
     controller: component,
     components: {},
     customEvents: [],
     instanceOptions: instanceOptions
   });
-  (0,_createController_js__WEBPACK_IMPORTED_MODULE_14__.registerControllerEvents)(this.key, (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_12__.getComponentWindow)(component.id), _app_components_config__WEBPACK_IMPORTED_MODULE_15__.config.domain); // Wait here for 3 seconds....
+  console.log('registerControllerEvents', _app_components_config__WEBPACK_IMPORTED_MODULE_16__.config.domain);
+  var key = this.key;
 
-  /*setTimeout(function () {
-   }, 3000);*/
+  _babel_runtime_corejs3_core_js_stable_set_timeout__WEBPACK_IMPORTED_MODULE_4___default()(function () {
+    console.log('NOW REGISTERING');
+    (0,_createController_js__WEBPACK_IMPORTED_MODULE_15__.registerControllerEvents)(key, (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_13__.getComponentWindow)(component.id), _app_components_config__WEBPACK_IMPORTED_MODULE_16__.config.domain); // Wait here for 3 seconds....
 
-  (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_12__.sendApiKey)(component.id, 'sendInitialData', {
-    apiKey: apiKey,
-    browserInfo: (0,_beacon_beacon_client_data__WEBPACK_IMPORTED_MODULE_17__.collectClientData)(window),
-    instanceOptions: instanceOptions,
-    controllerId: component.id
-  });
-  (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_12__.sendApiKey)(beaconComponent.id, 'sendBeaconInitialData', {
-    apiKey: apiKey,
-    customerID: instanceOptions.customerID
-  }).then(function () {
-    return (0,_app_components_td_td_utils__WEBPACK_IMPORTED_MODULE_13__.sendBeaconEventDetails)(beaconComponent.id, 'controller_loaded');
-  });
-  (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_12__.sendInitalize3dSecure)(dr3dsecure.id, apiKey);
-  (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_12__.updateOverlay)('DRPayment3ds', '0px', '');
+    /*setTimeout(function () {
+     }, 3000);*/
+
+    (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_13__.sendApiKey)(component.id, 'sendInitialData', {
+      apiKey: apiKey,
+      browserInfo: (0,_beacon_beacon_client_data__WEBPACK_IMPORTED_MODULE_18__.collectClientData)(window),
+      instanceOptions: instanceOptions,
+      controllerId: component.id
+    });
+    /*sendApiKey(beaconComponent.id, 'sendBeaconInitialData', {
+      apiKey: apiKey,
+      customerID: instanceOptions.customerID
+    }).then(() => {
+      return sendBeaconEventDetails(beaconComponent.id, 'controller_loaded');
+    });*/
+
+    (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_13__.sendInitalize3dSecure)(dr3dsecure.id, apiKey);
+    (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_13__.updateOverlay)('DRPayment3ds', '0px', '');
+  }, 3000);
 }
 
 function shouldSendCreateSourceBeaconEvent(response) {
@@ -6797,14 +6807,14 @@ function shouldSendCreateSourceBeaconEvent(response) {
 
 
 function createSourceForAllPaymentMethods(sourceRequest, componentInstanceOrSourceData) {
-  var _dataStore$get = _dataStore_js__WEBPACK_IMPORTED_MODULE_9__.default.get(this.key),
+  var _dataStore$get = _dataStore_js__WEBPACK_IMPORTED_MODULE_10__.default.get(this.key),
       controller = _dataStore$get.controller;
 
   if (!controller) {
     throw new Error('Cannot create source without a controller');
   }
 
-  var beaconComponent = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_12__.createOrExtractBeaconController)();
+  var beaconComponent = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_13__.createOrExtractBeaconController)();
 
   if (typeof sourceRequest === 'undefined') {
     // In this case the componentInstance is actually the source data
@@ -6812,10 +6822,10 @@ function createSourceForAllPaymentMethods(sourceRequest, componentInstanceOrSour
       throw new Error('Please provide Source creation details to the createSource method.');
     }
 
-    if ((0,_korean_card_utils__WEBPACK_IMPORTED_MODULE_23__.isKoreanCard)(componentInstanceOrSourceData)) {
+    if ((0,_korean_card_utils__WEBPACK_IMPORTED_MODULE_24__.isKoreanCard)(componentInstanceOrSourceData)) {
       var key = this.key;
       var self = this;
-      return (0,_korean_card_utils__WEBPACK_IMPORTED_MODULE_23__.handleKoreanCard)(self, key, componentInstanceOrSourceData, controller, {
+      return (0,_korean_card_utils__WEBPACK_IMPORTED_MODULE_24__.handleKoreanCard)(self, key, componentInstanceOrSourceData, controller, {
         type: ''
       }, beaconComponent, handleCreateSource);
     }
@@ -6830,12 +6840,12 @@ function createSourceForAllPaymentMethods(sourceRequest, componentInstanceOrSour
       throw new Error('Please provide Source creation details to the createSource method');
     }
 
-    if ((0,_korean_card_utils__WEBPACK_IMPORTED_MODULE_23__.isKoreanCard)(sourceRequest)) {
+    if ((0,_korean_card_utils__WEBPACK_IMPORTED_MODULE_24__.isKoreanCard)(sourceRequest)) {
       var _key = this.key;
 
       var _self = this;
 
-      return (0,_korean_card_utils__WEBPACK_IMPORTED_MODULE_23__.handleKoreanCard)(_self, _key, sourceRequest, controller, componentInstanceOrSourceData, beaconComponent, handleCreateSource);
+      return (0,_korean_card_utils__WEBPACK_IMPORTED_MODULE_24__.handleKoreanCard)(_self, _key, sourceRequest, controller, componentInstanceOrSourceData, beaconComponent, handleCreateSource);
     }
 
     return handleCreateSource(controller.id, componentInstanceOrSourceData.type, sourceRequest, beaconComponent);
@@ -6845,21 +6855,21 @@ function createSourceForAllPaymentMethods(sourceRequest, componentInstanceOrSour
 function handleCreateSourceResponse(response, controllerId, beaconComponent) {
   if (typeof response !== 'undefined' && response.source !== null && response.source.state === 'requires_action' && response.source.nextAction !== null) {
     // creating Adyen component
-    var adyenComponent = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_12__.createOrExtractAdyenController)();
+    var adyenComponent = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_13__.createOrExtractAdyenController)();
     var action = response.source.nextAction.action;
 
     if (action !== 'do_3ds_redirect') {
-      (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_12__.updateOverlay)('DRPayment3ds', '100%', 'rgba(0,0,0,0.3)');
+      (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_13__.updateOverlay)('DRPayment3ds', '100%', 'rgba(0,0,0,0.3)');
     }
 
     if (action === 'fingerprint_device' || action === 'challenge_shopper' || action === 'do_3ds_redirect' || action === 'mock_challenge_shopper') {
-      return new (_babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_4___default())(function (resolve) {
-        return (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_12__.sendAdyen3dDetails)(adyenComponent.id, controllerId, response.source, resolve);
+      return new (_babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_5___default())(function (resolve) {
+        return (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_13__.sendAdyen3dDetails)(adyenComponent.id, controllerId, response.source, resolve);
       }).then(function (responseData) {
-        (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_12__.updateOverlay)('DRPayment3ds', '0px', '');
+        (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_13__.updateOverlay)('DRPayment3ds', '0px', '');
 
         if (shouldSendCreateSourceBeaconEvent(responseData)) {
-          (0,_app_components_td_td_utils__WEBPACK_IMPORTED_MODULE_13__.sendBeaconEventDetails)(beaconComponent.id, 'source', response.source.id);
+          (0,_app_components_td_td_utils__WEBPACK_IMPORTED_MODULE_14__.sendBeaconEventDetails)(beaconComponent.id, 'source', response.source.id);
         }
 
         return responseData;
@@ -6867,14 +6877,14 @@ function handleCreateSourceResponse(response, controllerId, beaconComponent) {
     } else {
       // nothing can be done for now
       if (shouldSendCreateSourceBeaconEvent(response)) {
-        (0,_app_components_td_td_utils__WEBPACK_IMPORTED_MODULE_13__.sendBeaconEventDetails)(beaconComponent.id, 'source', response.source.id);
+        (0,_app_components_td_td_utils__WEBPACK_IMPORTED_MODULE_14__.sendBeaconEventDetails)(beaconComponent.id, 'source', response.source.id);
       }
 
       return response;
     }
   } else {
     if (shouldSendCreateSourceBeaconEvent(response)) {
-      (0,_app_components_td_td_utils__WEBPACK_IMPORTED_MODULE_13__.sendBeaconEventDetails)(beaconComponent.id, 'source', response.source.id);
+      (0,_app_components_td_td_utils__WEBPACK_IMPORTED_MODULE_14__.sendBeaconEventDetails)(beaconComponent.id, 'source', response.source.id);
     }
 
     return response;
@@ -6882,7 +6892,7 @@ function handleCreateSourceResponse(response, controllerId, beaconComponent) {
 }
 
 function handleCreateSource(controllerId, componentType, sourceRequest, beaconComponent) {
-  return (0,_createSource_js__WEBPACK_IMPORTED_MODULE_10__.createSource)(controllerId, componentType, sourceRequest).then(function (response) {
+  return (0,_createSource_js__WEBPACK_IMPORTED_MODULE_11__.createSource)(controllerId, componentType, sourceRequest).then(function (response) {
     return handleCreateSourceResponse(response, controllerId, beaconComponent);
   });
 }
@@ -6899,7 +6909,7 @@ DigitalRiver.prototype.createSource = function (componentInstanceOrSourceData, s
 };
 
 function getSecretFromSessionClientSecret(sessionClientSecret) {
-  if (_babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_5___default()(sessionClientSecret).call(sessionClientSecret, '_')) {
+  if (_babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_6___default()(sessionClientSecret).call(sessionClientSecret, '_')) {
     return sessionClientSecret.split('_')[0];
   } else {
     return sessionClientSecret;
@@ -6919,7 +6929,7 @@ DigitalRiver.prototype.createCreditCardSource = function (sessionClientSecret, e
   } // Copy source request so it does not modify the clients request
 
 
-  var updatedSourceRequest = _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_6___default()({}, sourceRequest);
+  var updatedSourceRequest = _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_7___default()({}, sourceRequest);
 
   updatedSourceRequest.sessionId = getSecretFromSessionClientSecret(sessionClientSecret);
 
@@ -6943,14 +6953,14 @@ DigitalRiver.prototype.retrieveSource = function (sourceId, sourceClientSecret) 
     throw new Error('You must provide a sourceId');
   }
 
-  var _dataStore$get2 = _dataStore_js__WEBPACK_IMPORTED_MODULE_9__.default.get(this.key),
+  var _dataStore$get2 = _dataStore_js__WEBPACK_IMPORTED_MODULE_10__.default.get(this.key),
       controller = _dataStore$get2.controller;
 
   if (!controller) {
     throw new Error('Cannot retrieve source without a controller');
   }
 
-  var controllerWindow = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_12__.getComponentWindow)(controller.id);
+  var controllerWindow = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_13__.getComponentWindow)(controller.id);
 
   if (!controllerWindow) {
     throw new Error("Unable to locate controller '".concat(controller.id, "'"));
@@ -6960,7 +6970,7 @@ DigitalRiver.prototype.retrieveSource = function (sourceId, sourceClientSecret) 
     sourceId: sourceId,
     sourceClientSecret: sourceClientSecret.split('_')[1]
   };
-  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_18__.default.send(controllerWindow, 'retrieveSource', data, {
+  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_19__.default.send(controllerWindow, 'retrieveSource', data, {
     timeout: 10000
   }).then(function (response) {
     return response.data;
@@ -6974,7 +6984,7 @@ DigitalRiver.prototype.retrieveSource = function (sourceId, sourceClientSecret) 
 
 
 DigitalRiver.prototype.updateSource = function (cardExpirationElement, sourceData) {
-  var _dataStore$get3 = _dataStore_js__WEBPACK_IMPORTED_MODULE_9__.default.get(this.key),
+  var _dataStore$get3 = _dataStore_js__WEBPACK_IMPORTED_MODULE_10__.default.get(this.key),
       controller = _dataStore$get3.controller,
       instanceOptions = _dataStore$get3.instanceOptions;
 
@@ -6982,7 +6992,7 @@ DigitalRiver.prototype.updateSource = function (cardExpirationElement, sourceDat
     throw new Error('Cannot update source without a controller');
   }
 
-  var controllerWindow = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_12__.getComponentWindow)(controller.id);
+  var controllerWindow = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_13__.getComponentWindow)(controller.id);
 
   if (!controllerWindow) {
     throw new Error("Unable to locate controller '".concat(controller.id, "'"));
@@ -6991,11 +7001,11 @@ DigitalRiver.prototype.updateSource = function (cardExpirationElement, sourceDat
   if (typeof sourceData === 'undefined') {
     // In this case the firstArg (cardExpirationElement) is actually sourceData
     // because client did not provide optional element
-    sourceData = _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_6___default()({}, cardExpirationElement);
+    sourceData = _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_7___default()({}, cardExpirationElement);
     cardExpirationElement = undefined;
   } else {
     if (cardExpirationElement.type !== 'cardexpiration') {
-      return _babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_4___default().resolve({
+      return _babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_5___default().resolve({
         'error': {
           'type': 'bad_request',
           'errors': [{
@@ -7027,7 +7037,7 @@ DigitalRiver.prototype.updateSource = function (cardExpirationElement, sourceDat
   }
 
   if (errors.length > 0) {
-    return _babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_4___default().resolve({
+    return _babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_5___default().resolve({
       'error': {
         'type': 'bad_request',
         'errors': errors
@@ -7041,7 +7051,7 @@ DigitalRiver.prototype.updateSource = function (cardExpirationElement, sourceDat
     cardExpirationElement: cardExpirationElement,
     locale: instanceOptions.locale
   };
-  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_18__.default.send(controllerWindow, 'updateSource', data, {
+  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_19__.default.send(controllerWindow, 'updateSource', data, {
     timeout: 10000
   }).then(function (response) {
     return response.data;
@@ -7049,21 +7059,21 @@ DigitalRiver.prototype.updateSource = function (cardExpirationElement, sourceDat
 };
 
 DigitalRiver.prototype.retrieveOnlineBankingBanks = function (country, currency) {
-  var _dataStore$get4 = _dataStore_js__WEBPACK_IMPORTED_MODULE_9__.default.get(this.key),
+  var _dataStore$get4 = _dataStore_js__WEBPACK_IMPORTED_MODULE_10__.default.get(this.key),
       controller = _dataStore$get4.controller;
 
   if (!controller) {
     throw new Error('Cannot get banks without a controller');
   }
 
-  var controllerWindow = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_12__.getComponentWindow)(controller.id);
+  var controllerWindow = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_13__.getComponentWindow)(controller.id);
 
   if (!controllerWindow) {
     throw new Error("Unable to locate controller '".concat(controller.id, "'"));
   } // Send message to Controller Frame to get banks
 
 
-  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_18__.default.send(controllerWindow, 'getOnlineBankingBanks', {
+  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_19__.default.send(controllerWindow, 'getOnlineBankingBanks', {
     country: country,
     currency: currency
   }, {
@@ -7083,11 +7093,11 @@ function onlineBankingDoesNotHaveRequiredFields(options) {
 DigitalRiver.prototype.retrieveAvailablePaymentMethods = function () {
   var paymentMethodOptions = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
-  var _dataStore$get5 = _dataStore_js__WEBPACK_IMPORTED_MODULE_9__.default.get(this.key),
+  var _dataStore$get5 = _dataStore_js__WEBPACK_IMPORTED_MODULE_10__.default.get(this.key),
       controller = _dataStore$get5.controller,
       instanceOptions = _dataStore$get5.instanceOptions;
 
-  return (0,_fetch_payment_methods__WEBPACK_IMPORTED_MODULE_21__.getPaymentMethods)(controller.id, paymentMethodOptions.sessionId, paymentMethodOptions.country, paymentMethodOptions.currency, instanceOptions.locale);
+  return (0,_fetch_payment_methods__WEBPACK_IMPORTED_MODULE_22__.getPaymentMethods)(controller.id, paymentMethodOptions.sessionId, paymentMethodOptions.country, paymentMethodOptions.currency, instanceOptions.locale);
 };
 /**
  * Authenticates a source and performs 3DS validation if necessary
@@ -7104,29 +7114,29 @@ DigitalRiver.prototype.retrieveAvailablePaymentMethods = function () {
 DigitalRiver.prototype.authenticateSource = function (componentInstanceOrSourceInfo, sourceInfo) {
   var sourceData = typeof sourceInfo === 'undefined' ? componentInstanceOrSourceInfo : sourceInfo;
 
-  var _dataStore$get6 = _dataStore_js__WEBPACK_IMPORTED_MODULE_9__.default.get(this.key),
+  var _dataStore$get6 = _dataStore_js__WEBPACK_IMPORTED_MODULE_10__.default.get(this.key),
       controller = _dataStore$get6.controller;
 
   var sessionId = sourceData.sessionId,
       sourceId = sourceData.sourceId,
       sourceClientSecret = sourceData.sourceClientSecret;
-  return (0,_authenticate_source__WEBPACK_IMPORTED_MODULE_22__.getAuthenticateSource)(controller.id, sessionId, sourceId, sourceClientSecret, componentInstanceOrSourceInfo).then(function (response) {
+  return (0,_authenticate_source__WEBPACK_IMPORTED_MODULE_23__.getAuthenticateSource)(controller.id, sessionId, sourceId, sourceClientSecret, componentInstanceOrSourceInfo).then(function (response) {
     response.requestType = 'authenticateSource';
 
     if (hasRequiresAction(response)) {
       // creating Adyen component
-      var adyenComponent = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_12__.createOrExtractAdyenController)();
+      var adyenComponent = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_13__.createOrExtractAdyenController)();
       var action = response.nextAction.action;
 
       if (action !== 'do_3ds_redirect') {
-        (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_12__.updateOverlay)('DRPayment3ds', '100%', 'rgba(0,0,0,0.3)');
+        (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_13__.updateOverlay)('DRPayment3ds', '100%', 'rgba(0,0,0,0.3)');
       }
 
       if (is3DSAction(action)) {
-        return new (_babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_4___default())(function (resolve) {
-          return (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_12__.sendAdyen3dDetails)(adyenComponent.id, controller.id, response, resolve);
+        return new (_babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_5___default())(function (resolve) {
+          return (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_13__.sendAdyen3dDetails)(adyenComponent.id, controller.id, response, resolve);
         }).then(function (responseData) {
-          (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_12__.updateOverlay)('DRPayment3ds', '0px', '');
+          (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_13__.updateOverlay)('DRPayment3ds', '0px', '');
           return responseData;
         });
       }
@@ -7139,29 +7149,29 @@ DigitalRiver.prototype.authenticateSource = function (componentInstanceOrSourceI
 };
 
 function handle3DSAction(adyenComponent, controller, response) {
-  return new (_babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_4___default())(function (resolve) {
-    return (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_12__.sendAdyen3dDetails)(adyenComponent.id, controller.id, response, resolve);
+  return new (_babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_5___default())(function (resolve) {
+    return (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_13__.sendAdyen3dDetails)(adyenComponent.id, controller.id, response, resolve);
   }).then(function (responseData) {
-    (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_12__.updateOverlay)('DRPayment3ds', '0px', '');
+    (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_13__.updateOverlay)('DRPayment3ds', '0px', '');
     return responseData;
   });
 }
 
 DigitalRiver.prototype.handleNextAction = function (nextActionData) {
-  var _dataStore$get7 = _dataStore_js__WEBPACK_IMPORTED_MODULE_9__.default.get(this.key),
+  var _dataStore$get7 = _dataStore_js__WEBPACK_IMPORTED_MODULE_10__.default.get(this.key),
       controller = _dataStore$get7.controller;
 
-  return (0,_send_handle_next_action__WEBPACK_IMPORTED_MODULE_25__.sendHandleNextAction)(controller.id, nextActionData).then(function (response) {
+  return (0,_send_handle_next_action__WEBPACK_IMPORTED_MODULE_26__.sendHandleNextAction)(controller.id, nextActionData).then(function (response) {
     // TODO Generify
     response.requestType = 'handleNextAction'; // authenticateSource
 
     if (hasRequiresAction(response)) {
       // creating Adyen component
-      var adyenComponent = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_12__.createOrExtractAdyenController)();
+      var adyenComponent = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_13__.createOrExtractAdyenController)();
       var action = response.nextAction.action;
 
       if (action !== 'do_3ds_redirect') {
-        (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_12__.updateOverlay)('DRPayment3ds', '100%', 'rgba(0,0,0,0.3)');
+        (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_13__.updateOverlay)('DRPayment3ds', '100%', 'rgba(0,0,0,0.3)');
       }
 
       if (is3DSAction(action)) {
@@ -7192,11 +7202,11 @@ function hasRequiresAction(response) {
 DigitalRiver.prototype.createElement = function (type, options) {
   var formattedType = type.toLowerCase();
 
-  if (!(0,_app_config__WEBPACK_IMPORTED_MODULE_24__.canClientCreateComponent)(formattedType)) {
+  if (!(0,_app_config__WEBPACK_IMPORTED_MODULE_25__.canClientCreateComponent)(formattedType)) {
     throw new Error("Invalid element type '".concat(type, "'"));
   }
 
-  var _dataStore$get8 = _dataStore_js__WEBPACK_IMPORTED_MODULE_9__.default.get(this.key),
+  var _dataStore$get8 = _dataStore_js__WEBPACK_IMPORTED_MODULE_10__.default.get(this.key),
       components = _dataStore$get8.components,
       controller = _dataStore$get8.controller;
 
@@ -7204,7 +7214,7 @@ DigitalRiver.prototype.createElement = function (type, options) {
     throw new Error("Failed to create element. Only one element of type '".concat(type, "' allowed per instance."));
   }
 
-  if (type === 'googlepay' && !(options instanceof _DigitalRiverPaymentRequest__WEBPACK_IMPORTED_MODULE_16__.default)) {
+  if (type === 'googlepay' && !(options instanceof _DigitalRiverPaymentRequest__WEBPACK_IMPORTED_MODULE_17__.default)) {
     throw new Error('Use paymentRequest() to create options for google.');
   }
 
@@ -7214,20 +7224,20 @@ DigitalRiver.prototype.createElement = function (type, options) {
 
   var component;
 
-  if (options instanceof _DigitalRiverPaymentRequest__WEBPACK_IMPORTED_MODULE_16__.default) {
+  if (options instanceof _DigitalRiverPaymentRequest__WEBPACK_IMPORTED_MODULE_17__.default) {
     options = options.getData();
   }
 
-  if ((0,_app_config__WEBPACK_IMPORTED_MODULE_24__.isClientSideComponent)(formattedType)) {
-    component = (0,_app_config__WEBPACK_IMPORTED_MODULE_24__.getComponentCreate)(formattedType).create(controller.id, this.key, options);
+  if ((0,_app_config__WEBPACK_IMPORTED_MODULE_25__.isClientSideComponent)(formattedType)) {
+    component = (0,_app_config__WEBPACK_IMPORTED_MODULE_25__.getComponentCreate)(formattedType).create(controller.id, this.key, options);
   } else {
-    component = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_12__.createComponent)(formattedType, controller.id, this.key, options);
+    component = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_13__.createComponent)(formattedType, controller.id, this.key, options);
   } // Add component/element id to component map
 
 
-  var data = _dataStore_js__WEBPACK_IMPORTED_MODULE_9__.default.get(component.key);
-  data.components = _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_6___default()({}, data.components, (0,_babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1__.default)({}, formattedType, component.id));
-  (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_12__.registerComponentWithController)(controller.id, component, options);
+  var data = _dataStore_js__WEBPACK_IMPORTED_MODULE_10__.default.get(component.key);
+  data.components = _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_7___default()({}, data.components, (0,_babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1__.default)({}, formattedType, component.id));
+  (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_13__.registerComponentWithController)(controller.id, component, options);
   return component;
 };
 /**
@@ -7237,7 +7247,7 @@ DigitalRiver.prototype.createElement = function (type, options) {
 
 
 DigitalRiver.prototype.paymentRequest = function (data) {
-  return new _DigitalRiverPaymentRequest__WEBPACK_IMPORTED_MODULE_16__.default(data);
+  return new _DigitalRiverPaymentRequest__WEBPACK_IMPORTED_MODULE_17__.default(data);
 };
 
 function getDetails(entityValue, userLocale) {
@@ -7249,25 +7259,25 @@ function getDetails(entityValue, userLocale) {
     userLocale = this.locale;
   }
 
-  return (0,_complianceData__WEBPACK_IMPORTED_MODULE_11__.complianceGetDetails)(entityValue, userLocale);
+  return (0,_complianceData__WEBPACK_IMPORTED_MODULE_12__.complianceGetDetails)(entityValue, userLocale);
 }
 
 DigitalRiver.prototype.retrieveKonbiniStores = function () {
-  var _dataStore$get9 = _dataStore_js__WEBPACK_IMPORTED_MODULE_9__.default.get(this.key),
+  var _dataStore$get9 = _dataStore_js__WEBPACK_IMPORTED_MODULE_10__.default.get(this.key),
       controller = _dataStore$get9.controller;
 
   if (!controller) {
     throw new Error('Cannot get stores without a controller');
   }
 
-  var controllerWindow = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_12__.getComponentWindow)(controller.id);
+  var controllerWindow = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_13__.getComponentWindow)(controller.id);
 
   if (!controllerWindow) {
     throw new Error("Unable to locate controller '".concat(controller.id, "'"));
   } // Send message to Controller Frame to get banks
 
 
-  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_18__.default.send(controllerWindow, 'getKonbiniStores', {}).then(function (response) {
+  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_19__.default.send(controllerWindow, 'getKonbiniStores', {}).then(function (response) {
     // This is a Post Robot Response object so you have to get the data out
     return response.data;
   }).catch(function () {
@@ -7292,7 +7302,7 @@ function validateBillingAddressFields(billingAddress) {
     throw Error('Please provide a billingAddress.phoneNumber');
   }
 
-  if (typeof billingAddress.address === 'undefined' || _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_7___default()(billingAddress.address).length === 0) {
+  if (typeof billingAddress.address === 'undefined' || _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_8___default()(billingAddress.address).length === 0) {
     throw Error('Please provide a billingAddress.address');
   }
 
@@ -7336,8 +7346,8 @@ function validatePaymentMethodConfigurationHasDuplicateEntries(options) {
 
     var enabledPaymentMethods = (0,_babel_runtime_corejs3_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__.default)(options.paymentMethodConfiguration.enabledPaymentMethods);
 
-    _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_8___default()(_context = options.paymentMethodConfiguration.disabledPaymentMethods).call(_context, function (dpm) {
-      if (_babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_5___default()(enabledPaymentMethods).call(enabledPaymentMethods, dpm)) {
+    _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_9___default()(_context = options.paymentMethodConfiguration.disabledPaymentMethods).call(_context, function (dpm) {
+      if (_babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_6___default()(enabledPaymentMethods).call(enabledPaymentMethods, dpm)) {
         throw Error("Payment method ".concat(dpm, " cannot be enabled and disabled."));
       }
     });
@@ -7347,11 +7357,11 @@ function validatePaymentMethodConfigurationHasDuplicateEntries(options) {
 DigitalRiver.prototype.createDropin = function (options) {
   var _context2, _context3;
 
-  if (!(0,_create_dropin__WEBPACK_IMPORTED_MODULE_20__.isManagePaymentMethodsMode)(options) && (typeof options.sessionId === 'undefined' || options.sessionId.length === 0)) {
+  if (!(0,_create_dropin__WEBPACK_IMPORTED_MODULE_21__.isManagePaymentMethodsMode)(options) && (typeof options.sessionId === 'undefined' || options.sessionId.length === 0)) {
     throw Error('Please provide a sessionId');
   }
 
-  if ((typeof options.billingAddress === 'undefined' || _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_7___default()(options.billingAddress).length === 0) && (0,_create_dropin__WEBPACK_IMPORTED_MODULE_20__.isManagePaymentMethodsMode)(options) && (typeof options.sessionId === 'undefined' || options.sessionId.length === 0)) {
+  if ((typeof options.billingAddress === 'undefined' || _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_8___default()(options.billingAddress).length === 0) && (0,_create_dropin__WEBPACK_IMPORTED_MODULE_21__.isManagePaymentMethodsMode)(options) && (typeof options.sessionId === 'undefined' || options.sessionId.length === 0)) {
     throw Error('Please provide a billingAddress');
   }
 
@@ -7366,14 +7376,14 @@ DigitalRiver.prototype.createDropin = function (options) {
 
   var createSource = _babel_runtime_corejs3_core_js_stable_instance_bind__WEBPACK_IMPORTED_MODULE_3___default()(_context3 = this.createSource).call(_context3, this);
 
-  var complianceDetails = _complianceData__WEBPACK_IMPORTED_MODULE_11__.complianceGetDetails;
+  var complianceDetails = _complianceData__WEBPACK_IMPORTED_MODULE_12__.complianceGetDetails;
 
-  var _dataStore$get10 = _dataStore_js__WEBPACK_IMPORTED_MODULE_9__.default.get(key),
+  var _dataStore$get10 = _dataStore_js__WEBPACK_IMPORTED_MODULE_10__.default.get(key),
       controller = _dataStore$get10.controller,
       instanceOptions = _dataStore$get10.instanceOptions;
 
   return {
-    mount: (0,_create_dropin__WEBPACK_IMPORTED_MODULE_20__.mountDropin)(controller, options, createSource, createElement, instanceOptions, complianceDetails)
+    mount: (0,_create_dropin__WEBPACK_IMPORTED_MODULE_21__.mountDropin)(controller, options, createSource, createElement, instanceOptions, complianceDetails)
   };
 };
 
@@ -10797,7 +10807,7 @@ function findWindow(currentWindow, id) {
     return (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_8__.getFrameByName)(currentWindow, id);
   }
 
-  console.log('FInd window getFrames', id, (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_8__.getFrames)(currentWindow));
+  console.log('FInd window getFrames', id, currentWindow.frames.length, (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_8__.getFrames)(currentWindow));
   console.log('FInd window getFrameByName', id, (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_8__.getFrameByName)(currentWindow, id));
   console.log('parentWindow', id, typeof parentWindow !== 'undefined');
   var foundFrame = (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_8__.getFrameByName)(currentWindow, id);
@@ -10861,28 +10871,30 @@ function findWindow(currentWindow, id) {
  */
 
 function registerComponentWithController(controllerId, component, options) {
-  var controllerWindow = getComponentWindow(controllerId);
-  console.log('isWindowClosed', (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_8__.isWindowClosed)(controllerWindow));
-  console.log('getFrames', (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_8__.getFrames)(window));
-  console.log('getFrames controllerWindow', (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_8__.getFrames)(controllerWindow));
-  /*const iframeIndex = safeIndexOf(controllerWindow, window);
-   if (iframeIndex !== -1) {
-    const frame = iframeFrames[iframeIndex];
-     if (frame && isFrameWindowClosed(frame)) {
-      return true;
-    }
-  }*/
-
-  if (!controllerWindow) {
-    throw new Error("Unable to locate controller '".concat(controllerId, "'"));
-  }
-
-  if (!controllerWindow.parent || !controllerWindow.top) {
-    console.log('Window parent and top?', !controllerWindow.parent, !controllerWindow.top);
-  }
+  console.log('Waiting to register', component, controllerId);
 
   _babel_runtime_corejs3_core_js_stable_set_timeout__WEBPACK_IMPORTED_MODULE_4___default()(function () {
-    // Send component Id to the controller, we return a promise but you don't really need to wait?
+    var controllerWindow = getComponentWindow(controllerId);
+    console.log('isWindowClosed', (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_8__.isWindowClosed)(controllerWindow));
+    console.log('getFrames', (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_8__.getFrames)(window));
+    console.log('getFrames controllerWindow', (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_8__.getFrames)(controllerWindow));
+    /*const iframeIndex = safeIndexOf(controllerWindow, window);
+     if (iframeIndex !== -1) {
+      const frame = iframeFrames[iframeIndex];
+       if (frame && isFrameWindowClosed(frame)) {
+        return true;
+      }
+    }*/
+
+    if (!controllerWindow) {
+      throw new Error("Unable to locate controller '".concat(controllerId, "'"));
+    }
+
+    if (!controllerWindow.parent || !controllerWindow.top) {
+      console.log('Window parent and top?', !controllerWindow.parent, !controllerWindow.top, (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_8__.isWindowClosed)(controllerWindow));
+    } // Send component Id to the controller, we return a promise but you don't really need to wait?
+
+
     return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_7__.default.send(controllerWindow, 'registerNewComponent', {
       componentType: component.type,
       componentId: component.id,
