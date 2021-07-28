@@ -10657,8 +10657,8 @@ function findWindow(currentWindow, id) {
     return (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_9__.getFrameByName)(currentWindow, id);
   }
 
-  console.log('FInd window getFrames', id, currentWindow.frames.length, (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_9__.getFrames)(currentWindow));
-  console.log('FInd window getFrameByName', id, (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_9__.getFrameByName)(currentWindow, id));
+  console.log('FInd window getFrames', id, currentWindow.frames.length, currentWindow.frames, (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_9__.getFrames)(currentWindow));
+  console.log('FInd window getFrameByName', id, typeof (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_9__.getFrameByName)(currentWindow, id) !== 'undefined');
   console.log('parentWindow', id, typeof parentWindow !== 'undefined');
   var foundFrame = (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_9__.getFrameByName)(currentWindow, id);
 
