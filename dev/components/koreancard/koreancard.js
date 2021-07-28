@@ -10728,14 +10728,14 @@ function findWindow(currentWindow, id) {
 
   if (tries >= MAX_TRIES) {
     return (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_7__.getFrameByName)(currentWindow, id);
-  }
+  } //console.log('FInd window window.frames', currentWindow.frames)
 
-  console.log('FInd window window.frames', currentWindow.frames);
   /*const foundFrame = getFrameByName(currentWindow, id);
   if (typeof foundFrame !== 'undefined') {
     console.log('Found frame by name', foundFrame)
     return foundFrame;
   }*/
+
 
   var parentWindow = (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_7__.getParent)(currentWindow);
 
@@ -10748,7 +10748,7 @@ function findWindow(currentWindow, id) {
 
         if (iframes[i].id === id) {
           console.log('found a window...', iframes[i]);
-          return iframes[i].contentWindow;
+          return iframes[i].parent;
         }
       }
     }
