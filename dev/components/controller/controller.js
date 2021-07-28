@@ -29940,6 +29940,13 @@ var componentListener = _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_10__.defaul
 var components = {
   controller: {}
 };
+window.addEventListener("message", function (event) {
+  /*if (event.origin != 'http://javascript.info') {
+    // something from an unknown domain, let's ignore it
+    return;
+  }*/
+  console.log('RECEIVED', event.data); // can message back using event.source.postMessage(...)
+});
 var DEFAULT_MAX_RETRIES = 7;
 /**
  * Gets the components type from the id
