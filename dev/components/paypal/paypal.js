@@ -6752,7 +6752,7 @@ function DigitalRiver(apiKey, providedInstanceOptions) {
   var key = this.key;
 
   _babel_runtime_corejs3_core_js_stable_set_timeout__WEBPACK_IMPORTED_MODULE_4___default()(function () {
-    console.log('NOW REGISTERING');
+    console.log('NOW REGISTERING', window.frames);
     (0,_createController_js__WEBPACK_IMPORTED_MODULE_15__.registerControllerEvents)(key, (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_13__.getComponentWindow)(component.id), _app_components_config__WEBPACK_IMPORTED_MODULE_16__.config.domain); // Wait here for 3 seconds....
 
     /*setTimeout(function () {
@@ -10788,7 +10788,7 @@ function findWindow(currentWindow, id) {
     return (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_8__.getFrameByName)(currentWindow, id);
   }
 
-  console.log('FInd window getFrames', id, currentWindow.frames.length, currentWindow.frames, (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_8__.getFrames)(currentWindow));
+  console.log('FInd window getFrames', id, currentWindow.frames.length, (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_8__.getFrames)(currentWindow));
   console.log('FInd window getFrameByName', id, typeof (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_8__.getFrameByName)(currentWindow, id) !== 'undefined');
   console.log('parentWindow', id, typeof parentWindow !== 'undefined');
   var foundFrame = (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_8__.getFrameByName)(currentWindow, id);
@@ -10857,7 +10857,7 @@ function registerComponentWithController(controllerId, component, options) {
   _babel_runtime_corejs3_core_js_stable_set_timeout__WEBPACK_IMPORTED_MODULE_4___default()(function () {
     var controllerWindow = getComponentWindow(controllerId);
     console.log('isWindowClosed', (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_8__.isWindowClosed)(controllerWindow));
-    console.log('getFrames', (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_8__.getFrames)(window));
+    console.log('getFrames', (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_8__.getFrames)(window), window.frames);
     console.log('getFrames controllerWindow', (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_8__.getFrames)(controllerWindow));
     /*const iframeIndex = safeIndexOf(controllerWindow, window);
      if (iframeIndex !== -1) {
