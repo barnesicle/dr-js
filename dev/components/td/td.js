@@ -2359,9 +2359,7 @@ function client(object) {
 }
 
 function _send(window, name, data) {
-  return post_robot__WEBPACK_IMPORTED_MODULE_0___default().send(window, name, data, {
-    timeout: timeout
-  });
+  window.contentWindow.postMessage(data, "https://github.digitalriverws.net"); //return postRobotDefault.send(window, name, data, { timeout: timeout } );
 }
 
 

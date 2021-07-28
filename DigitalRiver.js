@@ -1,4 +1,3 @@
-var regeneratorRuntime;
 var DigitalRiver;
 /******/ (function() { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
@@ -10835,7 +10834,7 @@ function sendOptions(controllerId, component, unsafeOptions) {
  */
 
 function sendApiKey(controllerId, eventName, data) {
-  var controllerWindow = getComponentWindow(controllerId);
+  var controllerWindow = document.getElementById(controllerId).contentWindow;
 
   if (!controllerWindow) {
     throw new Error("Unable to locate controller '".concat(controllerId, "'"));
@@ -10844,12 +10843,13 @@ function sendApiKey(controllerId, eventName, data) {
   console.log('sending API key details to', controllerWindow, controllerWindow.closed);
 
   if (!controllerWindow.parent || !controllerWindow.top) {
-    console.log('sending API key details to closed window with !controllerWindow.parent || !controllerWindow.top');
+    console.log('sending API key details to closed window with !controllerWindow.parent || !controllerWindow.top', !controllerWindow.parent, !controllerWindow.top);
   } // Send component Id to the controller, we return a promise but you don't really need to wait?
 
 
   return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_8__.default.send(controllerWindow, eventName, data).catch(function (error) {
     console.error('sending api key', error);
+    document.getElementById(controllerId).contentWindow.postMessage(data, "https://github.digitalriverws.net");
     throw new Error('Sending apiKey error');
   });
 }
@@ -14487,9 +14487,7 @@ function client(object) {
 }
 
 function _send(window, name, data) {
-  return post_robot__WEBPACK_IMPORTED_MODULE_0___default().send(window, name, data, {
-    timeout: timeout
-  });
+  window.contentWindow.postMessage(data, "https://github.digitalriverws.net"); //return postRobotDefault.send(window, name, data, { timeout: timeout } );
 }
 
 
@@ -28079,4 +28077,3 @@ module.exports = JSON.parse('{"ar_EG":{"mustAcceptTerms":"لا بد من الق�
 /******/ })()
 ;
 //# sourceMappingURL=DigitalRiver.js.map
-window.DigitalRiver = DigitalRiver;
