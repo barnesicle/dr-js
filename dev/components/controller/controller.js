@@ -29914,10 +29914,10 @@ var clientDomain = document.referrer === '' ? 'file://' : (0,_utils__WEBPACK_IMP
 console.log('CONTROLLER client domain', document.referrer, clientDomain, _config__WEBPACK_IMPORTED_MODULE_14__.config.domain); //console.log('CONTROLLER window.parent', window.parent)
 
 var clientListener = _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_10__.default.listener({
-  domain: clientDomain
+  domain: 'https://dr-lb2b-connector.lightning.force.com'
 });
 var clientEmitter = _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_10__.default.client({
-  domain: clientDomain
+  domain: 'https://dr-lb2b-connector.lightning.force.com'
 });
 var adyenEmitter = _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_10__.default.client({
   window: (0,_client_createComponent__WEBPACK_IMPORTED_MODULE_13__.getComponentWindow)('dr3dsecure'),
