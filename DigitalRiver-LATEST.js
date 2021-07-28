@@ -6495,6 +6495,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_corejs3_helpers_typeof__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/typeof */ "./node_modules/@babel/runtime-corejs3/helpers/esm/typeof.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_bind__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/bind */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/bind.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_bind__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_bind__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_set_timeout__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/set-timeout */ "./node_modules/@babel/runtime-corejs3/core-js-stable/set-timeout.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_set_timeout__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_set_timeout__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/promise */ "./node_modules/@babel/runtime-corejs3/core-js-stable/promise.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/includes */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/includes.js");
@@ -6606,7 +6608,8 @@ function DigitalRiver(apiKey, providedInstanceOptions) {
     customEvents: [],
     instanceOptions: instanceOptions
   });
-  (0,_createController_js__WEBPACK_IMPORTED_MODULE_14__.registerControllerEvents)(this.key, (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_12__.getComponentWindow)(component.id), _app_components_config__WEBPACK_IMPORTED_MODULE_15__.config.domain);
+  (0,_createController_js__WEBPACK_IMPORTED_MODULE_14__.registerControllerEvents)(this.key, (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_12__.getComponentWindow)(component.id), _app_components_config__WEBPACK_IMPORTED_MODULE_15__.config.domain); // Wait here for 3 seconds....
+
   (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_12__.sendApiKey)(component.id, 'sendInitialData', {
     apiKey: apiKey,
     browserInfo: (0,_beacon_beacon_client_data__WEBPACK_IMPORTED_MODULE_17__.collectClientData)(window),
@@ -10649,7 +10652,7 @@ function findWindow(currentWindow, id) {
     //window.top = 'top';
     //window.contentWindow.top = 'top';
     console.log('Found window', window, window.contentWindow)
-    return window;
+    return window.contentWindow;
   }
 
   return findWindow(parentWindow, id, ++tries);
@@ -27038,8 +27041,8 @@ function v4(options, buf, offset) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _v35_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./v35.js */ "./node_modules/uuid/dist/esm-browser/v35.js");
-/* harmony import */ var _sha1_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./sha1.js */ "./node_modules/uuid/dist/esm-browser/sha1.js");
+/* harmony import */ var _v35_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./v35.js */ "./node_modules/uuid/dist/esm-browser/v35.js");
+/* harmony import */ var _sha1_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./sha1.js */ "./node_modules/uuid/dist/esm-browser/sha1.js");
 
 
 var v5 = (0,_v35_js__WEBPACK_IMPORTED_MODULE_1__.default)('v5', 0x50, _sha1_js__WEBPACK_IMPORTED_MODULE_0__.default);
