@@ -29945,7 +29945,7 @@ window.addEventListener("message", function (event) {
     // something from an unknown domain, let's ignore it
     return;
   }*/
-  console.log('RECEIVED', event.data); // can message back using event.source.postMessage(...)
+  console.log('controller RECEIVED', event.data); // can message back using event.source.postMessage(...)
 });
 var DEFAULT_MAX_RETRIES = 7;
 /**
