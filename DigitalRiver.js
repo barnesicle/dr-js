@@ -242,16 +242,6 @@ module.exports = __webpack_require__(/*! core-js-pure/stable/promise */ "./node_
 
 /***/ }),
 
-/***/ "./node_modules/@babel/runtime-corejs3/core-js-stable/set-timeout.js":
-/*!***************************************************************************!*\
-  !*** ./node_modules/@babel/runtime-corejs3/core-js-stable/set-timeout.js ***!
-  \***************************************************************************/
-/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
-
-module.exports = __webpack_require__(/*! core-js-pure/stable/set-timeout */ "./node_modules/core-js-pure/stable/set-timeout.js");
-
-/***/ }),
-
 /***/ "./node_modules/@babel/runtime-corejs3/core-js/array/from.js":
 /*!*******************************************************************!*\
   !*** ./node_modules/@babel/runtime-corejs3/core-js/array/from.js ***!
@@ -6503,37 +6493,34 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_corejs3_helpers_typeof__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/typeof */ "./node_modules/@babel/runtime-corejs3/helpers/esm/typeof.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_bind__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/bind */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/bind.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_bind__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_bind__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_set_timeout__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/set-timeout */ "./node_modules/@babel/runtime-corejs3/core-js-stable/set-timeout.js");
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_set_timeout__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_set_timeout__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/promise */ "./node_modules/@babel/runtime-corejs3/core-js-stable/promise.js");
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/includes */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/includes.js");
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/object/assign */ "./node_modules/@babel/runtime-corejs3/core-js-stable/object/assign.js");
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/object/keys */ "./node_modules/@babel/runtime-corejs3/core-js-stable/object/keys.js");
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/for-each */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/for-each.js");
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_9__);
-/* harmony import */ var _dataStore_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./dataStore.js */ "./src/client/dataStore.js");
-/* harmony import */ var _createSource_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./createSource.js */ "./src/client/createSource.js");
-/* harmony import */ var _complianceData__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./complianceData */ "./src/client/complianceData.js");
-/* harmony import */ var _createComponent_js__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./createComponent.js */ "./src/client/createComponent.js");
-/* harmony import */ var _app_components_td_td_utils__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../app/components/td/td-utils */ "./src/app/components/td/td-utils.js");
-/* harmony import */ var _createController_js__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./createController.js */ "./src/client/createController.js");
-/* harmony import */ var _app_components_config__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../app/components/config */ "./src/app/components/config.js");
-/* harmony import */ var _DigitalRiverPaymentRequest__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./DigitalRiverPaymentRequest */ "./src/client/DigitalRiverPaymentRequest.js");
-/* harmony import */ var _beacon_beacon_client_data__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ../beacon/beacon-client-data */ "./src/beacon/beacon-client-data.js");
-/* harmony import */ var _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ../post-robot-wrapper */ "./src/post-robot-wrapper.js");
-/* harmony import */ var _app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ../app/components/localization/localized-messages */ "./src/app/components/localization/localized-messages.js");
-/* harmony import */ var _create_dropin__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./create-dropin */ "./src/client/create-dropin.js");
-/* harmony import */ var _fetch_payment_methods__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./fetch-payment-methods */ "./src/client/fetch-payment-methods.js");
-/* harmony import */ var _authenticate_source__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./authenticate-source */ "./src/client/authenticate-source.js");
-/* harmony import */ var _korean_card_utils__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./korean-card-utils */ "./src/client/korean-card-utils.js");
-/* harmony import */ var _app_config__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ../app/config */ "./src/app/config.js");
-/* harmony import */ var _send_handle_next_action__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./send-handle-next-action */ "./src/client/send-handle-next-action.js");
-/* harmony import */ var cross_domain_utils__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! cross-domain-utils */ "./node_modules/cross-domain-utils/dist/module/index.js");
-
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/promise */ "./node_modules/@babel/runtime-corejs3/core-js-stable/promise.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/includes */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/includes.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/object/assign */ "./node_modules/@babel/runtime-corejs3/core-js-stable/object/assign.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/object/keys */ "./node_modules/@babel/runtime-corejs3/core-js-stable/object/keys.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/for-each */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/for-each.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _dataStore_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./dataStore.js */ "./src/client/dataStore.js");
+/* harmony import */ var _createSource_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./createSource.js */ "./src/client/createSource.js");
+/* harmony import */ var _complianceData__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./complianceData */ "./src/client/complianceData.js");
+/* harmony import */ var _createComponent_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./createComponent.js */ "./src/client/createComponent.js");
+/* harmony import */ var _app_components_td_td_utils__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../app/components/td/td-utils */ "./src/app/components/td/td-utils.js");
+/* harmony import */ var _createController_js__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./createController.js */ "./src/client/createController.js");
+/* harmony import */ var _app_components_config__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../app/components/config */ "./src/app/components/config.js");
+/* harmony import */ var _DigitalRiverPaymentRequest__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./DigitalRiverPaymentRequest */ "./src/client/DigitalRiverPaymentRequest.js");
+/* harmony import */ var _beacon_beacon_client_data__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../beacon/beacon-client-data */ "./src/beacon/beacon-client-data.js");
+/* harmony import */ var _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ../post-robot-wrapper */ "./src/post-robot-wrapper.js");
+/* harmony import */ var _app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ../app/components/localization/localized-messages */ "./src/app/components/localization/localized-messages.js");
+/* harmony import */ var _create_dropin__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./create-dropin */ "./src/client/create-dropin.js");
+/* harmony import */ var _fetch_payment_methods__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./fetch-payment-methods */ "./src/client/fetch-payment-methods.js");
+/* harmony import */ var _authenticate_source__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./authenticate-source */ "./src/client/authenticate-source.js");
+/* harmony import */ var _korean_card_utils__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./korean-card-utils */ "./src/client/korean-card-utils.js");
+/* harmony import */ var _app_config__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ../app/config */ "./src/app/config.js");
+/* harmony import */ var _send_handle_next_action__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./send-handle-next-action */ "./src/client/send-handle-next-action.js");
+/* harmony import */ var cross_domain_utils__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! cross-domain-utils */ "./node_modules/cross-domain-utils/dist/module/index.js");
 
 
 
@@ -6574,13 +6561,13 @@ function updateInstanceOptionsWithDefaults(instanceOptions) {
   }
 
   if (localeNotProvided(instanceOptions)) {
-    instanceOptions.locale = _app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_20__.DEFAULT_LOCALE;
+    instanceOptions.locale = _app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_19__.DEFAULT_LOCALE;
   } else if (instanceOptions.locale.length === 2) {
-    instanceOptions.locale = (0,_app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_20__.getLocaleFromLanguage)(instanceOptions.locale);
-  } else if (!(0,_app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_20__.localeMessagesContainsClientProvidedLocale)((0,_app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_20__.forceCasingOfLocale)(instanceOptions))) {
-    instanceOptions.locale = _app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_20__.DEFAULT_LOCALE;
+    instanceOptions.locale = (0,_app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_19__.getLocaleFromLanguage)(instanceOptions.locale);
+  } else if (!(0,_app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_19__.localeMessagesContainsClientProvidedLocale)((0,_app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_19__.forceCasingOfLocale)(instanceOptions))) {
+    instanceOptions.locale = _app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_19__.DEFAULT_LOCALE;
   } else {
-    instanceOptions.locale = (0,_app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_20__.forceCasingOfLocale)(instanceOptions);
+    instanceOptions.locale = (0,_app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_19__.forceCasingOfLocale)(instanceOptions);
   }
 
   if (typeof instanceOptions.customerID === 'undefined') {
@@ -6607,81 +6594,91 @@ function DigitalRiver(apiKey, providedInstanceOptions) {
     getDetails: _babel_runtime_corejs3_core_js_stable_instance_bind__WEBPACK_IMPORTED_MODULE_3___default()(getDetails).call(getDetails, instanceOptions)
   }; // creating controller component
 
-  var component = (0,_createController_js__WEBPACK_IMPORTED_MODULE_15__.createController)(document.body, 'controller'); // creating beacon component
+  var component = (0,_createController_js__WEBPACK_IMPORTED_MODULE_14__.createController)(document.body, 'controller'); // creating beacon component
 
-  var beaconComponent = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_13__.createOrExtractBeaconController)(); // creating 3dsecure component
+  var beaconComponent = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_12__.createOrExtractBeaconController)(); // creating 3dsecure component
 
-  var dr3dsecure = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_13__.createOrExtractAdyenController)();
-  this.key = _dataStore_js__WEBPACK_IMPORTED_MODULE_10__.default.create({
+  var dr3dsecure = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_12__.createOrExtractAdyenController)();
+  this.key = _dataStore_js__WEBPACK_IMPORTED_MODULE_9__.default.create({
     apiKey: apiKey,
     controller: component,
     components: {},
     customEvents: [],
     instanceOptions: instanceOptions
   });
-  console.log('registerControllerEvents', _app_components_config__WEBPACK_IMPORTED_MODULE_16__.config.domain);
+  console.log('registerControllerEvents', _app_components_config__WEBPACK_IMPORTED_MODULE_15__.config.domain);
   var key = this.key;
-
-  _babel_runtime_corejs3_core_js_stable_set_timeout__WEBPACK_IMPORTED_MODULE_4___default()(function () {
-    console.log('NOW REGISTERING', window, window.length);
-    console.log('NOW REGISTERING PARENT', window.parent, window.parent.length);
-    console.log('NOW REGISTERING FRAMES', window.frames, window.frames.length);
-    console.log('NOW REGISTERING LIB', (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_27__.getFrames)(window), window.frames.length);
-    var result = [];
-    var len;
-    var frames;
-
+  console.log('NOW REGISTERING', window, window.length);
+  console.log('NOW REGISTERING PARENT', window.parent, window.parent.length);
+  console.log('NOW REGISTERING window.frames', window.frames, window.frames.length);
+  console.log('NOW REGISTERING LIB', (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_26__.getFrames)(window), window.frames.length);
+  /*setTimeout(function () {
+     console.log('NOW REGISTERING', window, window.length)
+    console.log('NOW REGISTERING PARENT', window.parent, window.parent.length)
+    console.log('NOW REGISTERING window.frames',  window.frames, window.frames.length)
+    console.log('NOW REGISTERING LIB', getFrames(window), window.frames.length)
+     const result = [];
+    let len;
+    let frames;
     try {
-      console.log('NOW REGISTERING TEST ', window.frames);
+      console.log('NOW REGISTERING window.frames ', window.frames)
       frames = window.frames;
     } catch (err) {
-      console.log('NOW REGISTERING TEST CATCH1 ', window.frames);
+      console.log('NOW REGISTERING window.frames catch ', window.frames)
       frames = window;
     }
-
-    try {
+     try {
       len = frames.length;
     } catch (err) {
       // pass
-      console.log('NOW REGISTERING TEST CATCH2 ', err);
+      console.log('NOW REGISTERING TEST CATCH2 ', err)
     }
-
-    console.log('NOW REGISTERING TEST FRAMES LEN ', len);
-
-    for (var i = 0; i < len; i++) {
-      var frame = void 0;
-
-      try {
+     console.log('NOW REGISTERING TEST FRAMES LEN ', len)
+    for (let i = 0; i < len; i++) {
+       let frame;
+       try {
         frame = frames[i];
       } catch (err) {
         continue;
       }
-
-      console.log('NOW REGISTERING PUSH FRAME', frame);
+       console.log('NOW REGISTERING PUSH FRAME', frame)
       result.push(frame);
     }
-
-    (0,_createController_js__WEBPACK_IMPORTED_MODULE_15__.registerControllerEvents)(key, (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_13__.getComponentWindow)(component.id), _app_components_config__WEBPACK_IMPORTED_MODULE_16__.config.domain); // Wait here for 3 seconds....
-
-    /*setTimeout(function () {
-     }, 3000);*/
-
-    (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_13__.sendApiKey)(component.id, 'sendInitialData', {
+      registerControllerEvents(key, getComponentWindow(component.id), config.domain);
+      // Wait here for 3 seconds....
+     /!*setTimeout(function () {
+     }, 3000);*!/
+      sendApiKey(component.id, 'sendInitialData', {
       apiKey: apiKey,
-      browserInfo: (0,_beacon_beacon_client_data__WEBPACK_IMPORTED_MODULE_18__.collectClientData)(window),
+      browserInfo: collectClientData(window),
       instanceOptions: instanceOptions,
       controllerId: component.id
     });
-    /*sendApiKey(beaconComponent.id, 'sendBeaconInitialData', {
+     /!*sendApiKey(beaconComponent.id, 'sendBeaconInitialData', {
       apiKey: apiKey,
       customerID: instanceOptions.customerID
     }).then(() => {
       return sendBeaconEventDetails(beaconComponent.id, 'controller_loaded');
-    });*/
+    });*!/
+     sendInitalize3dSecure(dr3dsecure.id, apiKey);
+     updateOverlay('DRPayment3ds', '0px', '');
+    }, 5000)*/
 
-    (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_13__.sendInitalize3dSecure)(dr3dsecure.id, apiKey);
-    (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_13__.updateOverlay)('DRPayment3ds', '0px', '');
-  }, 5000);
+  (0,_createController_js__WEBPACK_IMPORTED_MODULE_14__.registerControllerEvents)(key, (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_12__.getComponentWindow)(component.id), _app_components_config__WEBPACK_IMPORTED_MODULE_15__.config.domain);
+  (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_12__.sendApiKey)(component.id, 'sendInitialData', {
+    apiKey: apiKey,
+    browserInfo: (0,_beacon_beacon_client_data__WEBPACK_IMPORTED_MODULE_17__.collectClientData)(window),
+    instanceOptions: instanceOptions,
+    controllerId: component.id
+  });
+  (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_12__.sendApiKey)(beaconComponent.id, 'sendBeaconInitialData', {
+    apiKey: apiKey,
+    customerID: instanceOptions.customerID
+  }).then(function () {
+    return (0,_app_components_td_td_utils__WEBPACK_IMPORTED_MODULE_13__.sendBeaconEventDetails)(beaconComponent.id, 'controller_loaded');
+  });
+  (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_12__.sendInitalize3dSecure)(dr3dsecure.id, apiKey);
+  (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_12__.updateOverlay)('DRPayment3ds', '0px', '');
 }
 
 function shouldSendCreateSourceBeaconEvent(response) {
@@ -6696,14 +6693,14 @@ function shouldSendCreateSourceBeaconEvent(response) {
 
 
 function createSourceForAllPaymentMethods(sourceRequest, componentInstanceOrSourceData) {
-  var _dataStore$get = _dataStore_js__WEBPACK_IMPORTED_MODULE_10__.default.get(this.key),
+  var _dataStore$get = _dataStore_js__WEBPACK_IMPORTED_MODULE_9__.default.get(this.key),
       controller = _dataStore$get.controller;
 
   if (!controller) {
     throw new Error('Cannot create source without a controller');
   }
 
-  var beaconComponent = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_13__.createOrExtractBeaconController)();
+  var beaconComponent = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_12__.createOrExtractBeaconController)();
 
   if (typeof sourceRequest === 'undefined') {
     // In this case the componentInstance is actually the source data
@@ -6711,10 +6708,10 @@ function createSourceForAllPaymentMethods(sourceRequest, componentInstanceOrSour
       throw new Error('Please provide Source creation details to the createSource method.');
     }
 
-    if ((0,_korean_card_utils__WEBPACK_IMPORTED_MODULE_24__.isKoreanCard)(componentInstanceOrSourceData)) {
+    if ((0,_korean_card_utils__WEBPACK_IMPORTED_MODULE_23__.isKoreanCard)(componentInstanceOrSourceData)) {
       var key = this.key;
       var self = this;
-      return (0,_korean_card_utils__WEBPACK_IMPORTED_MODULE_24__.handleKoreanCard)(self, key, componentInstanceOrSourceData, controller, {
+      return (0,_korean_card_utils__WEBPACK_IMPORTED_MODULE_23__.handleKoreanCard)(self, key, componentInstanceOrSourceData, controller, {
         type: ''
       }, beaconComponent, handleCreateSource);
     }
@@ -6729,12 +6726,12 @@ function createSourceForAllPaymentMethods(sourceRequest, componentInstanceOrSour
       throw new Error('Please provide Source creation details to the createSource method');
     }
 
-    if ((0,_korean_card_utils__WEBPACK_IMPORTED_MODULE_24__.isKoreanCard)(sourceRequest)) {
+    if ((0,_korean_card_utils__WEBPACK_IMPORTED_MODULE_23__.isKoreanCard)(sourceRequest)) {
       var _key = this.key;
 
       var _self = this;
 
-      return (0,_korean_card_utils__WEBPACK_IMPORTED_MODULE_24__.handleKoreanCard)(_self, _key, sourceRequest, controller, componentInstanceOrSourceData, beaconComponent, handleCreateSource);
+      return (0,_korean_card_utils__WEBPACK_IMPORTED_MODULE_23__.handleKoreanCard)(_self, _key, sourceRequest, controller, componentInstanceOrSourceData, beaconComponent, handleCreateSource);
     }
 
     return handleCreateSource(controller.id, componentInstanceOrSourceData.type, sourceRequest, beaconComponent);
@@ -6744,21 +6741,21 @@ function createSourceForAllPaymentMethods(sourceRequest, componentInstanceOrSour
 function handleCreateSourceResponse(response, controllerId, beaconComponent) {
   if (typeof response !== 'undefined' && response.source !== null && response.source.state === 'requires_action' && response.source.nextAction !== null) {
     // creating Adyen component
-    var adyenComponent = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_13__.createOrExtractAdyenController)();
+    var adyenComponent = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_12__.createOrExtractAdyenController)();
     var action = response.source.nextAction.action;
 
     if (action !== 'do_3ds_redirect') {
-      (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_13__.updateOverlay)('DRPayment3ds', '100%', 'rgba(0,0,0,0.3)');
+      (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_12__.updateOverlay)('DRPayment3ds', '100%', 'rgba(0,0,0,0.3)');
     }
 
     if (action === 'fingerprint_device' || action === 'challenge_shopper' || action === 'do_3ds_redirect' || action === 'mock_challenge_shopper') {
-      return new (_babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_5___default())(function (resolve) {
-        return (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_13__.sendAdyen3dDetails)(adyenComponent.id, controllerId, response.source, resolve);
+      return new (_babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_4___default())(function (resolve) {
+        return (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_12__.sendAdyen3dDetails)(adyenComponent.id, controllerId, response.source, resolve);
       }).then(function (responseData) {
-        (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_13__.updateOverlay)('DRPayment3ds', '0px', '');
+        (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_12__.updateOverlay)('DRPayment3ds', '0px', '');
 
         if (shouldSendCreateSourceBeaconEvent(responseData)) {
-          (0,_app_components_td_td_utils__WEBPACK_IMPORTED_MODULE_14__.sendBeaconEventDetails)(beaconComponent.id, 'source', response.source.id);
+          (0,_app_components_td_td_utils__WEBPACK_IMPORTED_MODULE_13__.sendBeaconEventDetails)(beaconComponent.id, 'source', response.source.id);
         }
 
         return responseData;
@@ -6766,14 +6763,14 @@ function handleCreateSourceResponse(response, controllerId, beaconComponent) {
     } else {
       // nothing can be done for now
       if (shouldSendCreateSourceBeaconEvent(response)) {
-        (0,_app_components_td_td_utils__WEBPACK_IMPORTED_MODULE_14__.sendBeaconEventDetails)(beaconComponent.id, 'source', response.source.id);
+        (0,_app_components_td_td_utils__WEBPACK_IMPORTED_MODULE_13__.sendBeaconEventDetails)(beaconComponent.id, 'source', response.source.id);
       }
 
       return response;
     }
   } else {
     if (shouldSendCreateSourceBeaconEvent(response)) {
-      (0,_app_components_td_td_utils__WEBPACK_IMPORTED_MODULE_14__.sendBeaconEventDetails)(beaconComponent.id, 'source', response.source.id);
+      (0,_app_components_td_td_utils__WEBPACK_IMPORTED_MODULE_13__.sendBeaconEventDetails)(beaconComponent.id, 'source', response.source.id);
     }
 
     return response;
@@ -6781,7 +6778,7 @@ function handleCreateSourceResponse(response, controllerId, beaconComponent) {
 }
 
 function handleCreateSource(controllerId, componentType, sourceRequest, beaconComponent) {
-  return (0,_createSource_js__WEBPACK_IMPORTED_MODULE_11__.createSource)(controllerId, componentType, sourceRequest).then(function (response) {
+  return (0,_createSource_js__WEBPACK_IMPORTED_MODULE_10__.createSource)(controllerId, componentType, sourceRequest).then(function (response) {
     return handleCreateSourceResponse(response, controllerId, beaconComponent);
   });
 }
@@ -6798,7 +6795,7 @@ DigitalRiver.prototype.createSource = function (componentInstanceOrSourceData, s
 };
 
 function getSecretFromSessionClientSecret(sessionClientSecret) {
-  if (_babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_6___default()(sessionClientSecret).call(sessionClientSecret, '_')) {
+  if (_babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_5___default()(sessionClientSecret).call(sessionClientSecret, '_')) {
     return sessionClientSecret.split('_')[0];
   } else {
     return sessionClientSecret;
@@ -6818,7 +6815,7 @@ DigitalRiver.prototype.createCreditCardSource = function (sessionClientSecret, e
   } // Copy source request so it does not modify the clients request
 
 
-  var updatedSourceRequest = _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_7___default()({}, sourceRequest);
+  var updatedSourceRequest = _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_6___default()({}, sourceRequest);
 
   updatedSourceRequest.sessionId = getSecretFromSessionClientSecret(sessionClientSecret);
 
@@ -6842,14 +6839,14 @@ DigitalRiver.prototype.retrieveSource = function (sourceId, sourceClientSecret) 
     throw new Error('You must provide a sourceId');
   }
 
-  var _dataStore$get2 = _dataStore_js__WEBPACK_IMPORTED_MODULE_10__.default.get(this.key),
+  var _dataStore$get2 = _dataStore_js__WEBPACK_IMPORTED_MODULE_9__.default.get(this.key),
       controller = _dataStore$get2.controller;
 
   if (!controller) {
     throw new Error('Cannot retrieve source without a controller');
   }
 
-  var controllerWindow = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_13__.getComponentWindow)(controller.id);
+  var controllerWindow = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_12__.getComponentWindow)(controller.id);
 
   if (!controllerWindow) {
     throw new Error("Unable to locate controller '".concat(controller.id, "'"));
@@ -6859,7 +6856,7 @@ DigitalRiver.prototype.retrieveSource = function (sourceId, sourceClientSecret) 
     sourceId: sourceId,
     sourceClientSecret: sourceClientSecret.split('_')[1]
   };
-  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_19__.default.send(controllerWindow, 'retrieveSource', data, {
+  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_18__.default.send(controllerWindow, 'retrieveSource', data, {
     timeout: 10000
   }).then(function (response) {
     return response.data;
@@ -6873,7 +6870,7 @@ DigitalRiver.prototype.retrieveSource = function (sourceId, sourceClientSecret) 
 
 
 DigitalRiver.prototype.updateSource = function (cardExpirationElement, sourceData) {
-  var _dataStore$get3 = _dataStore_js__WEBPACK_IMPORTED_MODULE_10__.default.get(this.key),
+  var _dataStore$get3 = _dataStore_js__WEBPACK_IMPORTED_MODULE_9__.default.get(this.key),
       controller = _dataStore$get3.controller,
       instanceOptions = _dataStore$get3.instanceOptions;
 
@@ -6881,7 +6878,7 @@ DigitalRiver.prototype.updateSource = function (cardExpirationElement, sourceDat
     throw new Error('Cannot update source without a controller');
   }
 
-  var controllerWindow = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_13__.getComponentWindow)(controller.id);
+  var controllerWindow = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_12__.getComponentWindow)(controller.id);
 
   if (!controllerWindow) {
     throw new Error("Unable to locate controller '".concat(controller.id, "'"));
@@ -6890,11 +6887,11 @@ DigitalRiver.prototype.updateSource = function (cardExpirationElement, sourceDat
   if (typeof sourceData === 'undefined') {
     // In this case the firstArg (cardExpirationElement) is actually sourceData
     // because client did not provide optional element
-    sourceData = _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_7___default()({}, cardExpirationElement);
+    sourceData = _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_6___default()({}, cardExpirationElement);
     cardExpirationElement = undefined;
   } else {
     if (cardExpirationElement.type !== 'cardexpiration') {
-      return _babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_5___default().resolve({
+      return _babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_4___default().resolve({
         'error': {
           'type': 'bad_request',
           'errors': [{
@@ -6926,7 +6923,7 @@ DigitalRiver.prototype.updateSource = function (cardExpirationElement, sourceDat
   }
 
   if (errors.length > 0) {
-    return _babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_5___default().resolve({
+    return _babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_4___default().resolve({
       'error': {
         'type': 'bad_request',
         'errors': errors
@@ -6940,7 +6937,7 @@ DigitalRiver.prototype.updateSource = function (cardExpirationElement, sourceDat
     cardExpirationElement: cardExpirationElement,
     locale: instanceOptions.locale
   };
-  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_19__.default.send(controllerWindow, 'updateSource', data, {
+  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_18__.default.send(controllerWindow, 'updateSource', data, {
     timeout: 10000
   }).then(function (response) {
     return response.data;
@@ -6948,21 +6945,21 @@ DigitalRiver.prototype.updateSource = function (cardExpirationElement, sourceDat
 };
 
 DigitalRiver.prototype.retrieveOnlineBankingBanks = function (country, currency) {
-  var _dataStore$get4 = _dataStore_js__WEBPACK_IMPORTED_MODULE_10__.default.get(this.key),
+  var _dataStore$get4 = _dataStore_js__WEBPACK_IMPORTED_MODULE_9__.default.get(this.key),
       controller = _dataStore$get4.controller;
 
   if (!controller) {
     throw new Error('Cannot get banks without a controller');
   }
 
-  var controllerWindow = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_13__.getComponentWindow)(controller.id);
+  var controllerWindow = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_12__.getComponentWindow)(controller.id);
 
   if (!controllerWindow) {
     throw new Error("Unable to locate controller '".concat(controller.id, "'"));
   } // Send message to Controller Frame to get banks
 
 
-  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_19__.default.send(controllerWindow, 'getOnlineBankingBanks', {
+  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_18__.default.send(controllerWindow, 'getOnlineBankingBanks', {
     country: country,
     currency: currency
   }, {
@@ -6982,11 +6979,11 @@ function onlineBankingDoesNotHaveRequiredFields(options) {
 DigitalRiver.prototype.retrieveAvailablePaymentMethods = function () {
   var paymentMethodOptions = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
-  var _dataStore$get5 = _dataStore_js__WEBPACK_IMPORTED_MODULE_10__.default.get(this.key),
+  var _dataStore$get5 = _dataStore_js__WEBPACK_IMPORTED_MODULE_9__.default.get(this.key),
       controller = _dataStore$get5.controller,
       instanceOptions = _dataStore$get5.instanceOptions;
 
-  return (0,_fetch_payment_methods__WEBPACK_IMPORTED_MODULE_22__.getPaymentMethods)(controller.id, paymentMethodOptions.sessionId, paymentMethodOptions.country, paymentMethodOptions.currency, instanceOptions.locale);
+  return (0,_fetch_payment_methods__WEBPACK_IMPORTED_MODULE_21__.getPaymentMethods)(controller.id, paymentMethodOptions.sessionId, paymentMethodOptions.country, paymentMethodOptions.currency, instanceOptions.locale);
 };
 /**
  * Authenticates a source and performs 3DS validation if necessary
@@ -7003,29 +7000,29 @@ DigitalRiver.prototype.retrieveAvailablePaymentMethods = function () {
 DigitalRiver.prototype.authenticateSource = function (componentInstanceOrSourceInfo, sourceInfo) {
   var sourceData = typeof sourceInfo === 'undefined' ? componentInstanceOrSourceInfo : sourceInfo;
 
-  var _dataStore$get6 = _dataStore_js__WEBPACK_IMPORTED_MODULE_10__.default.get(this.key),
+  var _dataStore$get6 = _dataStore_js__WEBPACK_IMPORTED_MODULE_9__.default.get(this.key),
       controller = _dataStore$get6.controller;
 
   var sessionId = sourceData.sessionId,
       sourceId = sourceData.sourceId,
       sourceClientSecret = sourceData.sourceClientSecret;
-  return (0,_authenticate_source__WEBPACK_IMPORTED_MODULE_23__.getAuthenticateSource)(controller.id, sessionId, sourceId, sourceClientSecret, componentInstanceOrSourceInfo).then(function (response) {
+  return (0,_authenticate_source__WEBPACK_IMPORTED_MODULE_22__.getAuthenticateSource)(controller.id, sessionId, sourceId, sourceClientSecret, componentInstanceOrSourceInfo).then(function (response) {
     response.requestType = 'authenticateSource';
 
     if (hasRequiresAction(response)) {
       // creating Adyen component
-      var adyenComponent = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_13__.createOrExtractAdyenController)();
+      var adyenComponent = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_12__.createOrExtractAdyenController)();
       var action = response.nextAction.action;
 
       if (action !== 'do_3ds_redirect') {
-        (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_13__.updateOverlay)('DRPayment3ds', '100%', 'rgba(0,0,0,0.3)');
+        (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_12__.updateOverlay)('DRPayment3ds', '100%', 'rgba(0,0,0,0.3)');
       }
 
       if (is3DSAction(action)) {
-        return new (_babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_5___default())(function (resolve) {
-          return (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_13__.sendAdyen3dDetails)(adyenComponent.id, controller.id, response, resolve);
+        return new (_babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_4___default())(function (resolve) {
+          return (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_12__.sendAdyen3dDetails)(adyenComponent.id, controller.id, response, resolve);
         }).then(function (responseData) {
-          (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_13__.updateOverlay)('DRPayment3ds', '0px', '');
+          (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_12__.updateOverlay)('DRPayment3ds', '0px', '');
           return responseData;
         });
       }
@@ -7038,29 +7035,29 @@ DigitalRiver.prototype.authenticateSource = function (componentInstanceOrSourceI
 };
 
 function handle3DSAction(adyenComponent, controller, response) {
-  return new (_babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_5___default())(function (resolve) {
-    return (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_13__.sendAdyen3dDetails)(adyenComponent.id, controller.id, response, resolve);
+  return new (_babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_4___default())(function (resolve) {
+    return (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_12__.sendAdyen3dDetails)(adyenComponent.id, controller.id, response, resolve);
   }).then(function (responseData) {
-    (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_13__.updateOverlay)('DRPayment3ds', '0px', '');
+    (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_12__.updateOverlay)('DRPayment3ds', '0px', '');
     return responseData;
   });
 }
 
 DigitalRiver.prototype.handleNextAction = function (nextActionData) {
-  var _dataStore$get7 = _dataStore_js__WEBPACK_IMPORTED_MODULE_10__.default.get(this.key),
+  var _dataStore$get7 = _dataStore_js__WEBPACK_IMPORTED_MODULE_9__.default.get(this.key),
       controller = _dataStore$get7.controller;
 
-  return (0,_send_handle_next_action__WEBPACK_IMPORTED_MODULE_26__.sendHandleNextAction)(controller.id, nextActionData).then(function (response) {
+  return (0,_send_handle_next_action__WEBPACK_IMPORTED_MODULE_25__.sendHandleNextAction)(controller.id, nextActionData).then(function (response) {
     // TODO Generify
     response.requestType = 'handleNextAction'; // authenticateSource
 
     if (hasRequiresAction(response)) {
       // creating Adyen component
-      var adyenComponent = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_13__.createOrExtractAdyenController)();
+      var adyenComponent = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_12__.createOrExtractAdyenController)();
       var action = response.nextAction.action;
 
       if (action !== 'do_3ds_redirect') {
-        (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_13__.updateOverlay)('DRPayment3ds', '100%', 'rgba(0,0,0,0.3)');
+        (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_12__.updateOverlay)('DRPayment3ds', '100%', 'rgba(0,0,0,0.3)');
       }
 
       if (is3DSAction(action)) {
@@ -7091,11 +7088,11 @@ function hasRequiresAction(response) {
 DigitalRiver.prototype.createElement = function (type, options) {
   var formattedType = type.toLowerCase();
 
-  if (!(0,_app_config__WEBPACK_IMPORTED_MODULE_25__.canClientCreateComponent)(formattedType)) {
+  if (!(0,_app_config__WEBPACK_IMPORTED_MODULE_24__.canClientCreateComponent)(formattedType)) {
     throw new Error("Invalid element type '".concat(type, "'"));
   }
 
-  var _dataStore$get8 = _dataStore_js__WEBPACK_IMPORTED_MODULE_10__.default.get(this.key),
+  var _dataStore$get8 = _dataStore_js__WEBPACK_IMPORTED_MODULE_9__.default.get(this.key),
       components = _dataStore$get8.components,
       controller = _dataStore$get8.controller;
 
@@ -7103,7 +7100,7 @@ DigitalRiver.prototype.createElement = function (type, options) {
     throw new Error("Failed to create element. Only one element of type '".concat(type, "' allowed per instance."));
   }
 
-  if (type === 'googlepay' && !(options instanceof _DigitalRiverPaymentRequest__WEBPACK_IMPORTED_MODULE_17__.default)) {
+  if (type === 'googlepay' && !(options instanceof _DigitalRiverPaymentRequest__WEBPACK_IMPORTED_MODULE_16__.default)) {
     throw new Error('Use paymentRequest() to create options for google.');
   }
 
@@ -7113,20 +7110,20 @@ DigitalRiver.prototype.createElement = function (type, options) {
 
   var component;
 
-  if (options instanceof _DigitalRiverPaymentRequest__WEBPACK_IMPORTED_MODULE_17__.default) {
+  if (options instanceof _DigitalRiverPaymentRequest__WEBPACK_IMPORTED_MODULE_16__.default) {
     options = options.getData();
   }
 
-  if ((0,_app_config__WEBPACK_IMPORTED_MODULE_25__.isClientSideComponent)(formattedType)) {
-    component = (0,_app_config__WEBPACK_IMPORTED_MODULE_25__.getComponentCreate)(formattedType).create(controller.id, this.key, options);
+  if ((0,_app_config__WEBPACK_IMPORTED_MODULE_24__.isClientSideComponent)(formattedType)) {
+    component = (0,_app_config__WEBPACK_IMPORTED_MODULE_24__.getComponentCreate)(formattedType).create(controller.id, this.key, options);
   } else {
-    component = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_13__.createComponent)(formattedType, controller.id, this.key, options);
+    component = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_12__.createComponent)(formattedType, controller.id, this.key, options);
   } // Add component/element id to component map
 
 
-  var data = _dataStore_js__WEBPACK_IMPORTED_MODULE_10__.default.get(component.key);
-  data.components = _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_7___default()({}, data.components, (0,_babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1__.default)({}, formattedType, component.id));
-  (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_13__.registerComponentWithController)(controller.id, component, options);
+  var data = _dataStore_js__WEBPACK_IMPORTED_MODULE_9__.default.get(component.key);
+  data.components = _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_6___default()({}, data.components, (0,_babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1__.default)({}, formattedType, component.id));
+  (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_12__.registerComponentWithController)(controller.id, component, options);
   return component;
 };
 /**
@@ -7136,7 +7133,7 @@ DigitalRiver.prototype.createElement = function (type, options) {
 
 
 DigitalRiver.prototype.paymentRequest = function (data) {
-  return new _DigitalRiverPaymentRequest__WEBPACK_IMPORTED_MODULE_17__.default(data);
+  return new _DigitalRiverPaymentRequest__WEBPACK_IMPORTED_MODULE_16__.default(data);
 };
 
 function getDetails(entityValue, userLocale) {
@@ -7148,25 +7145,25 @@ function getDetails(entityValue, userLocale) {
     userLocale = this.locale;
   }
 
-  return (0,_complianceData__WEBPACK_IMPORTED_MODULE_12__.complianceGetDetails)(entityValue, userLocale);
+  return (0,_complianceData__WEBPACK_IMPORTED_MODULE_11__.complianceGetDetails)(entityValue, userLocale);
 }
 
 DigitalRiver.prototype.retrieveKonbiniStores = function () {
-  var _dataStore$get9 = _dataStore_js__WEBPACK_IMPORTED_MODULE_10__.default.get(this.key),
+  var _dataStore$get9 = _dataStore_js__WEBPACK_IMPORTED_MODULE_9__.default.get(this.key),
       controller = _dataStore$get9.controller;
 
   if (!controller) {
     throw new Error('Cannot get stores without a controller');
   }
 
-  var controllerWindow = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_13__.getComponentWindow)(controller.id);
+  var controllerWindow = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_12__.getComponentWindow)(controller.id);
 
   if (!controllerWindow) {
     throw new Error("Unable to locate controller '".concat(controller.id, "'"));
   } // Send message to Controller Frame to get banks
 
 
-  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_19__.default.send(controllerWindow, 'getKonbiniStores', {}).then(function (response) {
+  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_18__.default.send(controllerWindow, 'getKonbiniStores', {}).then(function (response) {
     // This is a Post Robot Response object so you have to get the data out
     return response.data;
   }).catch(function () {
@@ -7191,7 +7188,7 @@ function validateBillingAddressFields(billingAddress) {
     throw Error('Please provide a billingAddress.phoneNumber');
   }
 
-  if (typeof billingAddress.address === 'undefined' || _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_8___default()(billingAddress.address).length === 0) {
+  if (typeof billingAddress.address === 'undefined' || _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_7___default()(billingAddress.address).length === 0) {
     throw Error('Please provide a billingAddress.address');
   }
 
@@ -7235,8 +7232,8 @@ function validatePaymentMethodConfigurationHasDuplicateEntries(options) {
 
     var enabledPaymentMethods = (0,_babel_runtime_corejs3_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__.default)(options.paymentMethodConfiguration.enabledPaymentMethods);
 
-    _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_9___default()(_context = options.paymentMethodConfiguration.disabledPaymentMethods).call(_context, function (dpm) {
-      if (_babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_6___default()(enabledPaymentMethods).call(enabledPaymentMethods, dpm)) {
+    _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_8___default()(_context = options.paymentMethodConfiguration.disabledPaymentMethods).call(_context, function (dpm) {
+      if (_babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_5___default()(enabledPaymentMethods).call(enabledPaymentMethods, dpm)) {
         throw Error("Payment method ".concat(dpm, " cannot be enabled and disabled."));
       }
     });
@@ -7246,11 +7243,11 @@ function validatePaymentMethodConfigurationHasDuplicateEntries(options) {
 DigitalRiver.prototype.createDropin = function (options) {
   var _context2, _context3;
 
-  if (!(0,_create_dropin__WEBPACK_IMPORTED_MODULE_21__.isManagePaymentMethodsMode)(options) && (typeof options.sessionId === 'undefined' || options.sessionId.length === 0)) {
+  if (!(0,_create_dropin__WEBPACK_IMPORTED_MODULE_20__.isManagePaymentMethodsMode)(options) && (typeof options.sessionId === 'undefined' || options.sessionId.length === 0)) {
     throw Error('Please provide a sessionId');
   }
 
-  if ((typeof options.billingAddress === 'undefined' || _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_8___default()(options.billingAddress).length === 0) && (0,_create_dropin__WEBPACK_IMPORTED_MODULE_21__.isManagePaymentMethodsMode)(options) && (typeof options.sessionId === 'undefined' || options.sessionId.length === 0)) {
+  if ((typeof options.billingAddress === 'undefined' || _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_7___default()(options.billingAddress).length === 0) && (0,_create_dropin__WEBPACK_IMPORTED_MODULE_20__.isManagePaymentMethodsMode)(options) && (typeof options.sessionId === 'undefined' || options.sessionId.length === 0)) {
     throw Error('Please provide a billingAddress');
   }
 
@@ -7265,14 +7262,14 @@ DigitalRiver.prototype.createDropin = function (options) {
 
   var createSource = _babel_runtime_corejs3_core_js_stable_instance_bind__WEBPACK_IMPORTED_MODULE_3___default()(_context3 = this.createSource).call(_context3, this);
 
-  var complianceDetails = _complianceData__WEBPACK_IMPORTED_MODULE_12__.complianceGetDetails;
+  var complianceDetails = _complianceData__WEBPACK_IMPORTED_MODULE_11__.complianceGetDetails;
 
-  var _dataStore$get10 = _dataStore_js__WEBPACK_IMPORTED_MODULE_10__.default.get(key),
+  var _dataStore$get10 = _dataStore_js__WEBPACK_IMPORTED_MODULE_9__.default.get(key),
       controller = _dataStore$get10.controller,
       instanceOptions = _dataStore$get10.instanceOptions;
 
   return {
-    mount: (0,_create_dropin__WEBPACK_IMPORTED_MODULE_21__.mountDropin)(controller, options, createSource, createElement, instanceOptions, complianceDetails)
+    mount: (0,_create_dropin__WEBPACK_IMPORTED_MODULE_20__.mountDropin)(controller, options, createSource, createElement, instanceOptions, complianceDetails)
   };
 };
 
@@ -10317,25 +10314,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/promise */ "./node_modules/@babel/runtime-corejs3/core-js-stable/promise.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_set_timeout__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/set-timeout */ "./node_modules/@babel/runtime-corejs3/core-js-stable/set-timeout.js");
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_set_timeout__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_set_timeout__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_starts_with__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/starts-with */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/starts-with.js");
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_starts_with__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_starts_with__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! uuid */ "./node_modules/uuid/dist/esm-browser/index.js");
-/* harmony import */ var _createFrame__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./createFrame */ "./src/client/createFrame.js");
-/* harmony import */ var _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../post-robot-wrapper */ "./src/post-robot-wrapper.js");
-/* harmony import */ var cross_domain_utils__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! cross-domain-utils/dist/module */ "./node_modules/cross-domain-utils/dist/module/index.js");
-/* harmony import */ var _dataStore__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./dataStore */ "./src/client/dataStore.js");
-/* harmony import */ var _createController__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./createController */ "./src/client/createController.js");
-/* harmony import */ var _event_middleware__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./event-middleware */ "./src/client/event-middleware.js");
-/* harmony import */ var _css_class_utils__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./css-class-utils */ "./src/client/css-class-utils.js");
-/* harmony import */ var _app_components_config__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../app/components/config */ "./src/app/components/config.js");
-/* harmony import */ var _app_components_options__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../app/components/options */ "./src/app/components/options.js");
-/* harmony import */ var _beacon_beacon_client_data__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../beacon/beacon-client-data */ "./src/beacon/beacon-client-data.js");
-/* harmony import */ var _app_components_controller_controller_create_source_utils__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../app/components/controller/controller-create-source-utils */ "./src/app/components/controller/controller-create-source-utils.js");
-/* harmony import */ var _app_key_helper__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ../app/key-helper */ "./src/app/key-helper.js");
-/* harmony import */ var _app_config__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ../app/config */ "./src/app/config.js");
-
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_starts_with__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/starts-with */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/starts-with.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_starts_with__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_starts_with__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! uuid */ "./node_modules/uuid/dist/esm-browser/v4.js");
+/* harmony import */ var _createFrame__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./createFrame */ "./src/client/createFrame.js");
+/* harmony import */ var _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../post-robot-wrapper */ "./src/post-robot-wrapper.js");
+/* harmony import */ var cross_domain_utils__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! cross-domain-utils/dist/module */ "./node_modules/cross-domain-utils/dist/module/index.js");
+/* harmony import */ var _dataStore__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./dataStore */ "./src/client/dataStore.js");
+/* harmony import */ var _createController__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./createController */ "./src/client/createController.js");
+/* harmony import */ var _event_middleware__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./event-middleware */ "./src/client/event-middleware.js");
+/* harmony import */ var _css_class_utils__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./css-class-utils */ "./src/client/css-class-utils.js");
+/* harmony import */ var _app_components_config__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../app/components/config */ "./src/app/components/config.js");
+/* harmony import */ var _app_components_options__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../app/components/options */ "./src/app/components/options.js");
+/* harmony import */ var _beacon_beacon_client_data__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../beacon/beacon-client-data */ "./src/beacon/beacon-client-data.js");
+/* harmony import */ var _app_components_controller_controller_create_source_utils__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../app/components/controller/controller-create-source-utils */ "./src/app/components/controller/controller-create-source-utils.js");
+/* harmony import */ var _app_key_helper__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../app/key-helper */ "./src/app/key-helper.js");
+/* harmony import */ var _app_config__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../app/config */ "./src/app/config.js");
 
 
 
@@ -10358,7 +10352,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var MAX_TRIES = 5;
 function getComponentsBasePath() {
-  return _app_components_config__WEBPACK_IMPORTED_MODULE_14__.config.domain + _app_components_config__WEBPACK_IMPORTED_MODULE_14__.config.basePath + '/' + _app_components_config__WEBPACK_IMPORTED_MODULE_14__.config.componentsVersionId + '/components';
+  return _app_components_config__WEBPACK_IMPORTED_MODULE_12__.config.domain + _app_components_config__WEBPACK_IMPORTED_MODULE_12__.config.basePath + '/' + _app_components_config__WEBPACK_IMPORTED_MODULE_12__.config.componentsVersionId + '/components';
 }
 var eventNames = ['blur', 'change', 'focus', 'ready', 'click', 'source', 'shippingaddresschange', 'shippingoptionchange', 'cancel', 'return'];
 /**
@@ -10373,7 +10367,7 @@ function onEventHandler(eventName, eventFunction) {
   }
 
   var key = this.key;
-  var data = _dataStore__WEBPACK_IMPORTED_MODULE_10__.default.get(this.key);
+  var data = _dataStore__WEBPACK_IMPORTED_MODULE_8__.default.get(this.key);
   data.customEvents.push({
     eventType: this.type,
     componentId: this.id,
@@ -10381,7 +10375,7 @@ function onEventHandler(eventName, eventFunction) {
     eventFunction: eventFunction
   }); // Stores the custom function in the data store
 
-  _dataStore__WEBPACK_IMPORTED_MODULE_10__.default.set(key, data);
+  _dataStore__WEBPACK_IMPORTED_MODULE_8__.default.set(key, data);
 }
 /**
  * Triggers component events
@@ -10393,7 +10387,7 @@ function onEventHandler(eventName, eventFunction) {
 
 function triggerEvent(controllerId, id, eventType) {
   return function () {
-    _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_8__.default.send(getComponentWindow(controllerId), 'triggerComponentEvent', {
+    _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_6__.default.send(getComponentWindow(controllerId), 'triggerComponentEvent', {
       componentId: id,
       eventType: eventType
     });
@@ -10407,7 +10401,7 @@ function triggerEvent(controllerId, id, eventType) {
 function unmount() {
   var parentNode = this.parentNode;
   var key = this.key;
-  var data = _dataStore__WEBPACK_IMPORTED_MODULE_10__.default.get(key);
+  var data = _dataStore__WEBPACK_IMPORTED_MODULE_8__.default.get(key);
   var cssClasses;
 
   if (data && data.hasOwnProperty('components')) {
@@ -10421,20 +10415,20 @@ function unmount() {
   }
 
   try {
-    _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_8__.default.send(getComponentWindow(this.controllerId), 'unmountComponent', {
+    _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_6__.default.send(getComponentWindow(this.controllerId), 'unmountComponent', {
       componentId: this.id,
       componentType: this.type
     });
 
     if (document.getElementById(this.id)) {
       parentNode.removeChild(document.getElementById(this.id));
-      (0,_css_class_utils__WEBPACK_IMPORTED_MODULE_13__.removeClasses)(cssClasses, parentNode);
+      (0,_css_class_utils__WEBPACK_IMPORTED_MODULE_11__.removeClasses)(cssClasses, parentNode);
     }
 
     this.parentNode = null; // this.parentNode set to null indicates that there is no parent this component is mounted to
 
     data.components[this.type] = null;
-    _dataStore__WEBPACK_IMPORTED_MODULE_10__.default.set(key, data);
+    _dataStore__WEBPACK_IMPORTED_MODULE_8__.default.set(key, data);
   } catch (err) {
     throw new Error("Failed to unmount component '".concat(this.type, "'."));
   }
@@ -10475,11 +10469,11 @@ function mount(node) {
 
     if (this.type === 'controller') {
       // Controller
-      (0,_createFrame__WEBPACK_IMPORTED_MODULE_7__.createFrame)(this.type, node, getComponentURL(this.type, this.id, this.controllerId), attributes);
+      (0,_createFrame__WEBPACK_IMPORTED_MODULE_5__.createFrame)(this.type, node, getComponentURL(this.type, this.id, this.controllerId), attributes);
     } else {
       // Other Component
       var key = this.key;
-      var data = _dataStore__WEBPACK_IMPORTED_MODULE_10__.default.get(key);
+      var data = _dataStore__WEBPACK_IMPORTED_MODULE_8__.default.get(key);
 
       if (data && data.hasOwnProperty('components')) {
         var _context;
@@ -10495,33 +10489,33 @@ function mount(node) {
 
       if (typeof this.options !== 'undefined') {
         //arbitrate custom vs default options
-        this.options.classes = (0,_css_class_utils__WEBPACK_IMPORTED_MODULE_13__.getCssClasses)(this.options.classes);
-        var elementHeight = (0,_css_class_utils__WEBPACK_IMPORTED_MODULE_13__.getElementHeight)(this.options.style); // If we have options, send them and wait for them to be sent before creating the component
+        this.options.classes = (0,_css_class_utils__WEBPACK_IMPORTED_MODULE_11__.getCssClasses)(this.options.classes);
+        var elementHeight = (0,_css_class_utils__WEBPACK_IMPORTED_MODULE_11__.getElementHeight)(this.options.style); // If we have options, send them and wait for them to be sent before creating the component
 
         if (this.type !== 'applepay' && this.type !== 'compliance') {
-          (0,_createFrame__WEBPACK_IMPORTED_MODULE_7__.createFrame)(this.type, node, getComponentURL(this.type, this.id, this.controllerId), attributes, elementHeight);
+          (0,_createFrame__WEBPACK_IMPORTED_MODULE_5__.createFrame)(this.type, node, getComponentURL(this.type, this.id, this.controllerId), attributes, elementHeight);
         }
 
-        var dataKey = (0,_app_key_helper__WEBPACK_IMPORTED_MODULE_18__.fieldKey)(this.type, this.id);
+        var dataKey = (0,_app_key_helper__WEBPACK_IMPORTED_MODULE_16__.fieldKey)(this.type, this.id);
         data.components[dataKey] = {
           'parent': node,
-          'options': (0,_app_components_options__WEBPACK_IMPORTED_MODULE_15__.sanitizeOptionsForType)(this.options, this.type)
+          'options': (0,_app_components_options__WEBPACK_IMPORTED_MODULE_13__.sanitizeOptionsForType)(this.options, this.type)
         };
-        _dataStore__WEBPACK_IMPORTED_MODULE_10__.default.set(key, data); // Set base css class & empty class since field is empty
+        _dataStore__WEBPACK_IMPORTED_MODULE_8__.default.set(key, data); // Set base css class & empty class since field is empty
 
-        if ((0,_app_config__WEBPACK_IMPORTED_MODULE_19__.shouldAddBaseClass)(this.type)) {
+        if ((0,_app_config__WEBPACK_IMPORTED_MODULE_17__.shouldAddBaseClass)(this.type)) {
           var DRElementClass = data.components[dataKey].options.classes.base;
           node.classList.add(DRElementClass);
         }
 
-        if ((0,_app_config__WEBPACK_IMPORTED_MODULE_19__.shouldAddEmptyClass)(this.type)) {
+        if ((0,_app_config__WEBPACK_IMPORTED_MODULE_17__.shouldAddEmptyClass)(this.type)) {
           var DREmptyClass = data.components[dataKey].options.classes.empty;
           node.classList.add(DREmptyClass);
         }
       } else {
         // If we don't have any options just create the frame
         if (this.type !== 'applepay' && this.type !== 'compliance') {
-          (0,_createFrame__WEBPACK_IMPORTED_MODULE_7__.createFrame)(this.type, node, getComponentURL(this.type, this.id, this.controllerId), attributes);
+          (0,_createFrame__WEBPACK_IMPORTED_MODULE_5__.createFrame)(this.type, node, getComponentURL(this.type, this.id, this.controllerId), attributes);
         }
       }
     }
@@ -10562,11 +10556,11 @@ function destroy() {
   } // Send component Id to the controller, we return a promise but you don't really need to wait?
 
 
-  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_8__.default.send(controllerWindow, 'unregisterComponent', {
+  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_6__.default.send(controllerWindow, 'unregisterComponent', {
     componentId: this.id,
     componentType: this.type
   }).then(function () {
-    (0,_event_middleware__WEBPACK_IMPORTED_MODULE_12__.removeEventsForComponent)(_this.key, _this.id);
+    (0,_event_middleware__WEBPACK_IMPORTED_MODULE_10__.removeEventsForComponent)(_this.key, _this.id);
     modifyThisForDestroy.call(_this);
   });
 }
@@ -10579,7 +10573,7 @@ function destroy() {
  */
 
 function createComponent(type, controllerId, key, options) {
-  if (typeof type !== 'string' || !(0,_app_config__WEBPACK_IMPORTED_MODULE_19__.isValidComponent)(type)) {
+  if (typeof type !== 'string' || !(0,_app_config__WEBPACK_IMPORTED_MODULE_17__.isValidComponent)(type)) {
     throw new Error('createComponent() requires a valid component type');
   }
 
@@ -10594,7 +10588,7 @@ function createComponent(type, controllerId, key, options) {
     mount: mount,
     destroy: destroy,
     on: onEventHandler,
-    options: (0,_app_components_options__WEBPACK_IMPORTED_MODULE_15__.sanitizeOptionsForType)(options, formattedType),
+    options: (0,_app_components_options__WEBPACK_IMPORTED_MODULE_13__.sanitizeOptionsForType)(options, formattedType),
     unmount: unmount,
     blur: triggerEvent(controllerId, id, 'blur'),
     clear: triggerEvent(controllerId, id, 'clear'),
@@ -10646,11 +10640,11 @@ function isChrome() {
 
 
 function getComponentURL(type, id, controllerId) {
-  if (!(0,_app_config__WEBPACK_IMPORTED_MODULE_19__.isValidComponent)(type)) {
+  if (!(0,_app_config__WEBPACK_IMPORTED_MODULE_17__.isValidComponent)(type)) {
     throw new Error('getComponentURL() requires a valid component type');
   }
 
-  var url = getComponentsBasePath() + (0,_app_config__WEBPACK_IMPORTED_MODULE_19__.getIframeSrc)(type) + '?componentId=' + id;
+  var url = getComponentsBasePath() + (0,_app_config__WEBPACK_IMPORTED_MODULE_17__.getIframeSrc)(type) + '?componentId=' + id;
 
   if (type === 'controller') {
     return url;
@@ -10668,7 +10662,7 @@ function generateComponentId(type) {
   if (type === 'td' || type === 'dr3dsecure') {
     return type;
   } else {
-    return type + '-' + (0,uuid__WEBPACK_IMPORTED_MODULE_6__.v4)();
+    return type + '-' + (0,uuid__WEBPACK_IMPORTED_MODULE_18__.default)();
   }
 }
 /**
@@ -10690,55 +10684,27 @@ function getComponentWindow(id) {
 
 function findWindow(currentWindow, id) {
   var tries = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
-  console.log('START FInd window currentWindow', typeof currentWindow !== 'undefined');
 
   if (tries >= MAX_TRIES) {
-    return (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_9__.getFrameByName)(currentWindow, id);
+    return (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_7__.getFrameByName)(currentWindow, id);
   }
 
-  console.log('FInd window getFrames', id, currentWindow.frames.length, (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_9__.getFrames)(currentWindow));
-  console.log('FInd window getFrameByName', id, typeof (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_9__.getFrameByName)(currentWindow, id) !== 'undefined');
+  console.log('FInd window getFrames', id, currentWindow.frames.length, (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_7__.getFrames)(currentWindow));
+  console.log('FInd window getFrameByName', id, typeof (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_7__.getFrameByName)(currentWindow, id) !== 'undefined');
   console.log('parentWindow', id, typeof parentWindow !== 'undefined');
-  var foundFrame = (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_9__.getFrameByName)(currentWindow, id);
+  var foundFrame = (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_7__.getFrameByName)(currentWindow, id);
 
   if (typeof foundFrame !== 'undefined') {
-    console.log('Found frame by name', foundFrame);
+    console.log('SUCCESS Found frame by name', foundFrame);
     return foundFrame;
   }
 
-  var parentWindow = (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_9__.getParent)(currentWindow);
+  console.log('DID NOT Find frame by name - THIS NEEDS TO FIND IT ', id);
+  var parentWindow = (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_7__.getParent)(currentWindow);
   console.log('FInd window parentWindow', id, typeof parentWindow !== 'undefined');
 
   if (typeof parentWindow === 'undefined') {
-    var iframe = currentWindow.document.getElementById(id);
-
-    if (typeof iframe !== 'undefined') {
-      console.log('FOUND IFRAME BY ID', iframe);
-      return iframe;
-    }
-
-    console.log('CURRENT WINDOW', id, typeof currentWindow.parent !== 'undefined'); //const window = typeof currentWindow.parent !== 'undefined' ? currentWindow.parent : currentWindow;
-
-    console.log('isSameDomain', id, (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_9__.isSameDomain)(currentWindow));
-
-    if ((0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_9__.isSameDomain)(currentWindow)) {
-      var iframes = currentWindow.document.querySelectorAll('iframe');
-
-      if (iframes.length > 0) {
-        for (var i = 0; i < iframes.length; i++) {
-          console.log('iframe found with id', iframes[i].id, iframes[i].name);
-
-          if (iframes[i].id === id) {
-            console.log('found a window...', id, typeof iframes[i].parent !== 'undefined', typeof iframes[i].contentWindow !== 'undefined');
-            return iframes[i];
-          }
-        }
-      }
-    }
-
-    console.warn('DID NOT FOUND IFRAME', id); // TODO wait and try again.... setTimeout
-
-    return findWindow(currentWindow.parent, id, ++tries);
+    return parentWindow;
   }
 
   return findWindow(parentWindow, id, ++tries);
@@ -10767,39 +10733,28 @@ function findWindow(currentWindow, id) {
  */
 
 function registerComponentWithController(controllerId, component, options) {
-  console.log('Waiting to register', component, controllerId);
+  var controllerWindow = getComponentWindow(controllerId);
+  console.log('THIS NEEDS TO BE TRUE: isWindowClosed', (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_7__.isWindowClosed)(controllerWindow));
+  console.log('getFrames', (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_7__.getFrames)(window), window.frames);
+  console.log('getFrames controllerWindow', (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_7__.getFrames)(controllerWindow));
 
-  _babel_runtime_corejs3_core_js_stable_set_timeout__WEBPACK_IMPORTED_MODULE_4___default()(function () {
-    var controllerWindow = getComponentWindow(controllerId);
-    console.log('isWindowClosed', (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_9__.isWindowClosed)(controllerWindow));
-    console.log('getFrames', (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_9__.getFrames)(window), window.frames);
-    console.log('getFrames controllerWindow', (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_9__.getFrames)(controllerWindow));
-    /*const iframeIndex = safeIndexOf(controllerWindow, window);
-     if (iframeIndex !== -1) {
-      const frame = iframeFrames[iframeIndex];
-       if (frame && isFrameWindowClosed(frame)) {
-        return true;
-      }
-    }*/
+  if (!controllerWindow) {
+    throw new Error("Unable to locate controller '".concat(controllerId, "'"));
+  }
 
-    if (!controllerWindow) {
-      throw new Error("Unable to locate controller '".concat(controllerId, "'"));
-    }
-
-    if (!controllerWindow.parent || !controllerWindow.top) {
-      console.log('Window parent and top?', !controllerWindow.parent, !controllerWindow.top, (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_9__.isWindowClosed)(controllerWindow));
-    } // Send component Id to the controller, we return a promise but you don't really need to wait?
+  if (!controllerWindow.parent || !controllerWindow.top) {
+    console.log('Window parent and top?', !controllerWindow.parent, !controllerWindow.top, (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_7__.isWindowClosed)(controllerWindow));
+  } // Send component Id to the controller, we return a promise but you don't really need to wait?
 
 
-    return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_8__.default.send(controllerWindow, 'registerNewComponent', {
-      componentType: component.type,
-      componentId: component.id,
-      options: options
-    }).catch(function (error) {
-      console.error('FAILED TO REGISTER COMPONENT', error);
-      throw new Error('Unable to register component.');
-    });
-  }, 5000);
+  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_6__.default.send(controllerWindow, 'registerNewComponent', {
+    componentType: component.type,
+    componentId: component.id,
+    options: options
+  }).catch(function (error) {
+    console.error('FAILED TO REGISTER COMPONENT', error);
+    throw new Error('Unable to register component.');
+  });
 }
 /**
  * Sends options to controller
@@ -10817,7 +10772,7 @@ function sendOptions(controllerId, component, unsafeOptions) {
   } // Send component Id to the controller, we return a promise but you don't really need to wait?
 
 
-  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_8__.default.send(controllerWindow, 'sendOptions', {
+  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_6__.default.send(controllerWindow, 'sendOptions', {
     componentType: component.type,
     componentId: component.id,
     unsafeOptions: unsafeOptions
@@ -10847,9 +10802,9 @@ function sendApiKey(controllerId, eventName, data) {
   } // Send component Id to the controller, we return a promise but you don't really need to wait?
 
 
-  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_8__.default.send(controllerWindow, eventName, data).catch(function (error) {
-    console.error('sending api key', error);
-    document.getElementById(controllerId).contentWindow.postMessage(data, "https://github.digitalriverws.net");
+  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_6__.default.send(controllerWindow, eventName, data).catch(function (error) {
+    console.error('sending api key', error); //document.getElementById(controllerId).contentWindow.postMessage(data, "https://github.digitalriverws.net")
+
     throw new Error('Sending apiKey error');
   });
 }
@@ -10865,7 +10820,7 @@ function getComponentIFrame(type) {
   for (var win = 0; win < iFrameWindow.length; win++) {
     var _context4;
 
-    if (_babel_runtime_corejs3_core_js_stable_instance_starts_with__WEBPACK_IMPORTED_MODULE_5___default()(_context4 = iFrameWindow[win].id).call(_context4, type)) {
+    if (_babel_runtime_corejs3_core_js_stable_instance_starts_with__WEBPACK_IMPORTED_MODULE_4___default()(_context4 = iFrameWindow[win].id).call(_context4, type)) {
       console.log('found window with type', type, iFrameWindow[win], iFrameWindow[win].id);
       return iFrameWindow[win];
     }
@@ -10881,7 +10836,7 @@ function createOrExtractBeaconController() {
   var beaconComponent = getComponentIFrame(type);
 
   if (!beaconComponent) {
-    beaconComponent = (0,_createController__WEBPACK_IMPORTED_MODULE_11__.createController)(document.body, type);
+    beaconComponent = (0,_createController__WEBPACK_IMPORTED_MODULE_9__.createController)(document.body, type);
   }
 
   return beaconComponent;
@@ -10912,7 +10867,7 @@ function createOrExtractAdyenController() {
 
   if (!adyenComponent) {
     var adyenDiv = createOverlayDiv('DRPayment3ds');
-    adyenComponent = (0,_createController__WEBPACK_IMPORTED_MODULE_11__.createController)(adyenDiv, type);
+    adyenComponent = (0,_createController__WEBPACK_IMPORTED_MODULE_9__.createController)(adyenDiv, type);
   }
 
   return adyenComponent;
@@ -10924,28 +10879,28 @@ function createOrExtractAdyenController() {
 
 function update(options) {
   var key = this.key;
-  var data = _dataStore__WEBPACK_IMPORTED_MODULE_10__.default.get(key);
-  var el = data.components[(0,_app_key_helper__WEBPACK_IMPORTED_MODULE_18__.fieldKey)(this.type, this.id)].parent;
-  var activeClasses = (0,_css_class_utils__WEBPACK_IMPORTED_MODULE_13__.getActiveClasses)(this.options.classes, el);
-  (0,_css_class_utils__WEBPACK_IMPORTED_MODULE_13__.removeClasses)(data.components[(0,_app_key_helper__WEBPACK_IMPORTED_MODULE_18__.fieldKey)(this.type, this.id)].options.classes, el);
-  var mergedOptions = (0,_app_components_options__WEBPACK_IMPORTED_MODULE_15__.mergeOptions)(data.components[(0,_app_key_helper__WEBPACK_IMPORTED_MODULE_18__.fieldKey)(this.type, this.id)].options, options); // we need to run classes through default/custom arbitration
+  var data = _dataStore__WEBPACK_IMPORTED_MODULE_8__.default.get(key);
+  var el = data.components[(0,_app_key_helper__WEBPACK_IMPORTED_MODULE_16__.fieldKey)(this.type, this.id)].parent;
+  var activeClasses = (0,_css_class_utils__WEBPACK_IMPORTED_MODULE_11__.getActiveClasses)(this.options.classes, el);
+  (0,_css_class_utils__WEBPACK_IMPORTED_MODULE_11__.removeClasses)(data.components[(0,_app_key_helper__WEBPACK_IMPORTED_MODULE_16__.fieldKey)(this.type, this.id)].options.classes, el);
+  var mergedOptions = (0,_app_components_options__WEBPACK_IMPORTED_MODULE_13__.mergeOptions)(data.components[(0,_app_key_helper__WEBPACK_IMPORTED_MODULE_16__.fieldKey)(this.type, this.id)].options, options); // we need to run classes through default/custom arbitration
 
-  mergedOptions.classes = (0,_css_class_utils__WEBPACK_IMPORTED_MODULE_13__.getCssClasses)(mergedOptions.classes);
+  mergedOptions.classes = (0,_css_class_utils__WEBPACK_IMPORTED_MODULE_11__.getCssClasses)(mergedOptions.classes);
   sendOptions(this.controllerId, {
     'type': this.type,
     'id': this.id
   }, mergedOptions);
-  data.components[(0,_app_key_helper__WEBPACK_IMPORTED_MODULE_18__.fieldKey)(this.type, this.id)].options = (0,_app_components_options__WEBPACK_IMPORTED_MODULE_15__.sanitizeOptionsForType)(mergedOptions, this.type);
-  delete data.components[(0,_app_key_helper__WEBPACK_IMPORTED_MODULE_18__.fieldKey)(this.type, this.id)].options.sourceData; // Note: Do not store the sourceData
+  data.components[(0,_app_key_helper__WEBPACK_IMPORTED_MODULE_16__.fieldKey)(this.type, this.id)].options = (0,_app_components_options__WEBPACK_IMPORTED_MODULE_13__.sanitizeOptionsForType)(mergedOptions, this.type);
+  delete data.components[(0,_app_key_helper__WEBPACK_IMPORTED_MODULE_16__.fieldKey)(this.type, this.id)].options.sourceData; // Note: Do not store the sourceData
 
-  _dataStore__WEBPACK_IMPORTED_MODULE_10__.default.set(key, data);
-  this.options = data.components[(0,_app_key_helper__WEBPACK_IMPORTED_MODULE_18__.fieldKey)(this.type, this.id)].options;
+  _dataStore__WEBPACK_IMPORTED_MODULE_8__.default.set(key, data);
+  this.options = data.components[(0,_app_key_helper__WEBPACK_IMPORTED_MODULE_16__.fieldKey)(this.type, this.id)].options;
 
   if (this.type !== 'onlinebanking') {
     //online banking update means changing select options, so we have to set classes back to empty
-    (0,_css_class_utils__WEBPACK_IMPORTED_MODULE_13__.applyActiveClasses)(activeClasses, this.options.classes, el);
+    (0,_css_class_utils__WEBPACK_IMPORTED_MODULE_11__.applyActiveClasses)(activeClasses, this.options.classes, el);
   } else {
-    (0,_css_class_utils__WEBPACK_IMPORTED_MODULE_13__.applyActiveClasses)(['base', 'empty'], this.options.classes, el);
+    (0,_css_class_utils__WEBPACK_IMPORTED_MODULE_11__.applyActiveClasses)(['base', 'empty'], this.options.classes, el);
   }
 }
 /**
@@ -10961,12 +10916,12 @@ function sendInitalize3dSecure(adyenId, apiKey) {
     throw new Error("Unable to locate 3ds '".concat(adyenId, "'"));
   }
 
-  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_8__.default.send(adyenWindow, 'sendInitalize3dSecure', {
+  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_6__.default.send(adyenWindow, 'sendInitalize3dSecure', {
     secureId: adyenId,
     apiKey: apiKey,
-    userLocale: (0,_beacon_beacon_client_data__WEBPACK_IMPORTED_MODULE_16__.getUserLocale)(window)
+    userLocale: (0,_beacon_beacon_client_data__WEBPACK_IMPORTED_MODULE_14__.getUserLocale)(window)
   }).catch(function () {
-    return (0,_app_components_controller_controller_create_source_utils__WEBPACK_IMPORTED_MODULE_17__.chooseCreateSourceCatchMessage)('Unable to configure Adyen.');
+    return (0,_app_components_controller_controller_create_source_utils__WEBPACK_IMPORTED_MODULE_15__.chooseCreateSourceCatchMessage)('Unable to configure Adyen.');
   });
 }
 /**
@@ -10984,14 +10939,14 @@ function sendAdyen3dDetails(adyenId, controllerId, paymentServiceResponse, resol
     throw new Error("Unable to locate 3ds '".concat(adyenId, "'"));
   }
 
-  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_8__.default.send(adyenWindow, 'sendActions', {
+  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_6__.default.send(adyenWindow, 'sendActions', {
     controllerId: controllerId,
     secureId: adyenId,
     resolve: resolve,
     paymentServiceResponse: paymentServiceResponse,
-    clientData: (0,_beacon_beacon_client_data__WEBPACK_IMPORTED_MODULE_16__.collectClientData)(window)
+    clientData: (0,_beacon_beacon_client_data__WEBPACK_IMPORTED_MODULE_14__.collectClientData)(window)
   }).catch(function () {
-    return (0,_app_components_controller_controller_create_source_utils__WEBPACK_IMPORTED_MODULE_17__.chooseCreateSourceCatchMessage)('Unable to configure Adyen.');
+    return (0,_app_components_controller_controller_create_source_utils__WEBPACK_IMPORTED_MODULE_15__.chooseCreateSourceCatchMessage)('Unable to configure Adyen.');
   });
 }
 /**
@@ -11009,14 +10964,14 @@ function sendAdyenAction(adyenId, controllerId, response, resolve) {
     throw new Error("Unable to locate 3ds '".concat(adyenId, "'"));
   }
 
-  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_8__.default.send(adyenWindow, 'sendActions', {
+  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_6__.default.send(adyenWindow, 'sendActions', {
     controllerId: controllerId,
     secureId: adyenId,
     resolve: resolve,
     paymentServiceResponse: response,
-    clientData: (0,_beacon_beacon_client_data__WEBPACK_IMPORTED_MODULE_16__.collectClientData)(window)
+    clientData: (0,_beacon_beacon_client_data__WEBPACK_IMPORTED_MODULE_14__.collectClientData)(window)
   }).catch(function () {
-    return (0,_app_components_controller_controller_create_source_utils__WEBPACK_IMPORTED_MODULE_17__.chooseCreateSourceCatchMessage)('Unable to intialize adyen challenge.');
+    return (0,_app_components_controller_controller_create_source_utils__WEBPACK_IMPORTED_MODULE_15__.chooseCreateSourceCatchMessage)('Unable to intialize adyen challenge.');
   });
 }
 /**
@@ -11615,7 +11570,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_corejs3_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/typeof */ "./node_modules/@babel/runtime-corejs3/helpers/esm/typeof.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/object/assign */ "./node_modules/@babel/runtime-corejs3/core-js-stable/object/assign.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! uuid */ "./node_modules/uuid/dist/esm-browser/index.js");
+/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! uuid */ "./node_modules/uuid/dist/esm-browser/v4.js");
 
 
 
@@ -11638,7 +11593,7 @@ function set(key, data) {
 }
 
 function create(data) {
-  var key = (0,uuid__WEBPACK_IMPORTED_MODULE_2__.v4)();
+  var key = (0,uuid__WEBPACK_IMPORTED_MODULE_2__.default)();
   set(key, data);
   return key;
 }
@@ -14467,6 +14422,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var post_robot__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! post-robot */ "./node_modules/post-robot/index.js");
 /* harmony import */ var post_robot__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(post_robot__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var cross_domain_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! cross-domain-utils */ "./node_modules/cross-domain-utils/dist/module/index.js");
+
 
 var timeout = 20000;
 function listener(object) {
@@ -14487,7 +14444,13 @@ function client(object) {
 }
 
 function _send(window, name, data) {
-  window.contentWindow.postMessage(data, "https://github.digitalriverws.net"); //return postRobotDefault.send(window, name, data, { timeout: timeout } );
+  /*if (isWindowClosed(window)) {
+    window.contentWindow.postMessage(data, "https://github.digitalriverws.net");
+    return;
+  }*/
+  return post_robot__WEBPACK_IMPORTED_MODULE_0___default().send(window, name, data, {
+    timeout: timeout
+  });
 }
 
 
@@ -20593,44 +20556,6 @@ for (var COLLECTION_NAME in DOMIterables) {
 
 /***/ }),
 
-/***/ "./node_modules/core-js-pure/modules/web.timers.js":
-/*!*********************************************************!*\
-  !*** ./node_modules/core-js-pure/modules/web.timers.js ***!
-  \*********************************************************/
-/***/ (function(__unused_webpack_module, __unused_webpack_exports, __webpack_require__) {
-
-var $ = __webpack_require__(/*! ../internals/export */ "./node_modules/core-js-pure/internals/export.js");
-var global = __webpack_require__(/*! ../internals/global */ "./node_modules/core-js-pure/internals/global.js");
-var userAgent = __webpack_require__(/*! ../internals/engine-user-agent */ "./node_modules/core-js-pure/internals/engine-user-agent.js");
-
-var slice = [].slice;
-var MSIE = /MSIE .\./.test(userAgent); // <- dirty ie9- check
-
-var wrap = function (scheduler) {
-  return function (handler, timeout /* , ...arguments */) {
-    var boundArgs = arguments.length > 2;
-    var args = boundArgs ? slice.call(arguments, 2) : undefined;
-    return scheduler(boundArgs ? function () {
-      // eslint-disable-next-line no-new-func -- spec requirement
-      (typeof handler == 'function' ? handler : Function(handler)).apply(this, args);
-    } : handler, timeout);
-  };
-};
-
-// ie9- setTimeout & setInterval additional parameters fix
-// https://html.spec.whatwg.org/multipage/timers-and-user-prompts.html#timers
-$({ global: true, bind: true, forced: MSIE }, {
-  // `setTimeout` method
-  // https://html.spec.whatwg.org/multipage/timers-and-user-prompts.html#dom-settimeout
-  setTimeout: wrap(global.setTimeout),
-  // `setInterval` method
-  // https://html.spec.whatwg.org/multipage/timers-and-user-prompts.html#dom-setinterval
-  setInterval: wrap(global.setInterval)
-});
-
-
-/***/ }),
-
 /***/ "./node_modules/core-js-pure/stable/array/from.js":
 /*!********************************************************!*\
   !*** ./node_modules/core-js-pure/stable/array/from.js ***!
@@ -20991,20 +20916,6 @@ module.exports = parent;
 var parent = __webpack_require__(/*! ../../es/promise */ "./node_modules/core-js-pure/es/promise/index.js");
 
 module.exports = parent;
-
-
-/***/ }),
-
-/***/ "./node_modules/core-js-pure/stable/set-timeout.js":
-/*!*********************************************************!*\
-  !*** ./node_modules/core-js-pure/stable/set-timeout.js ***!
-  \*********************************************************/
-/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
-
-__webpack_require__(/*! ../modules/web.timers */ "./node_modules/core-js-pure/modules/web.timers.js");
-var path = __webpack_require__(/*! ../internals/path */ "./node_modules/core-js-pure/internals/path.js");
-
-module.exports = path.setTimeout;
 
 
 /***/ }),
@@ -27072,331 +26983,6 @@ try {
 
 /***/ }),
 
-/***/ "./node_modules/uuid/dist/esm-browser/index.js":
-/*!*****************************************************!*\
-  !*** ./node_modules/uuid/dist/esm-browser/index.js ***!
-  \*****************************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "v1": function() { return /* reexport safe */ _v1_js__WEBPACK_IMPORTED_MODULE_0__.default; },
-/* harmony export */   "v3": function() { return /* reexport safe */ _v3_js__WEBPACK_IMPORTED_MODULE_1__.default; },
-/* harmony export */   "v4": function() { return /* reexport safe */ _v4_js__WEBPACK_IMPORTED_MODULE_2__.default; },
-/* harmony export */   "v5": function() { return /* reexport safe */ _v5_js__WEBPACK_IMPORTED_MODULE_3__.default; },
-/* harmony export */   "NIL": function() { return /* reexport safe */ _nil_js__WEBPACK_IMPORTED_MODULE_4__.default; },
-/* harmony export */   "version": function() { return /* reexport safe */ _version_js__WEBPACK_IMPORTED_MODULE_5__.default; },
-/* harmony export */   "validate": function() { return /* reexport safe */ _validate_js__WEBPACK_IMPORTED_MODULE_6__.default; },
-/* harmony export */   "stringify": function() { return /* reexport safe */ _stringify_js__WEBPACK_IMPORTED_MODULE_7__.default; },
-/* harmony export */   "parse": function() { return /* reexport safe */ _parse_js__WEBPACK_IMPORTED_MODULE_8__.default; }
-/* harmony export */ });
-/* harmony import */ var _v1_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./v1.js */ "./node_modules/uuid/dist/esm-browser/v1.js");
-/* harmony import */ var _v3_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./v3.js */ "./node_modules/uuid/dist/esm-browser/v3.js");
-/* harmony import */ var _v4_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./v4.js */ "./node_modules/uuid/dist/esm-browser/v4.js");
-/* harmony import */ var _v5_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./v5.js */ "./node_modules/uuid/dist/esm-browser/v5.js");
-/* harmony import */ var _nil_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./nil.js */ "./node_modules/uuid/dist/esm-browser/nil.js");
-/* harmony import */ var _version_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./version.js */ "./node_modules/uuid/dist/esm-browser/version.js");
-/* harmony import */ var _validate_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./validate.js */ "./node_modules/uuid/dist/esm-browser/validate.js");
-/* harmony import */ var _stringify_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./stringify.js */ "./node_modules/uuid/dist/esm-browser/stringify.js");
-/* harmony import */ var _parse_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./parse.js */ "./node_modules/uuid/dist/esm-browser/parse.js");
-
-
-
-
-
-
-
-
-
-
-/***/ }),
-
-/***/ "./node_modules/uuid/dist/esm-browser/md5.js":
-/*!***************************************************!*\
-  !*** ./node_modules/uuid/dist/esm-browser/md5.js ***!
-  \***************************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/*
- * Browser-compatible JavaScript MD5
- *
- * Modification of JavaScript MD5
- * https://github.com/blueimp/JavaScript-MD5
- *
- * Copyright 2011, Sebastian Tschan
- * https://blueimp.net
- *
- * Licensed under the MIT license:
- * https://opensource.org/licenses/MIT
- *
- * Based on
- * A JavaScript implementation of the RSA Data Security, Inc. MD5 Message
- * Digest Algorithm, as defined in RFC 1321.
- * Version 2.2 Copyright (C) Paul Johnston 1999 - 2009
- * Other contributors: Greg Holt, Andrew Kepert, Ydnar, Lostinet
- * Distributed under the BSD License
- * See http://pajhome.org.uk/crypt/md5 for more info.
- */
-function md5(bytes) {
-  if (typeof bytes === 'string') {
-    var msg = unescape(encodeURIComponent(bytes)); // UTF8 escape
-
-    bytes = new Uint8Array(msg.length);
-
-    for (var i = 0; i < msg.length; ++i) {
-      bytes[i] = msg.charCodeAt(i);
-    }
-  }
-
-  return md5ToHexEncodedArray(wordsToMd5(bytesToWords(bytes), bytes.length * 8));
-}
-/*
- * Convert an array of little-endian words to an array of bytes
- */
-
-
-function md5ToHexEncodedArray(input) {
-  var output = [];
-  var length32 = input.length * 32;
-  var hexTab = '0123456789abcdef';
-
-  for (var i = 0; i < length32; i += 8) {
-    var x = input[i >> 5] >>> i % 32 & 0xff;
-    var hex = parseInt(hexTab.charAt(x >>> 4 & 0x0f) + hexTab.charAt(x & 0x0f), 16);
-    output.push(hex);
-  }
-
-  return output;
-}
-/**
- * Calculate output length with padding and bit length
- */
-
-
-function getOutputLength(inputLength8) {
-  return (inputLength8 + 64 >>> 9 << 4) + 14 + 1;
-}
-/*
- * Calculate the MD5 of an array of little-endian words, and a bit length.
- */
-
-
-function wordsToMd5(x, len) {
-  /* append padding */
-  x[len >> 5] |= 0x80 << len % 32;
-  x[getOutputLength(len) - 1] = len;
-  var a = 1732584193;
-  var b = -271733879;
-  var c = -1732584194;
-  var d = 271733878;
-
-  for (var i = 0; i < x.length; i += 16) {
-    var olda = a;
-    var oldb = b;
-    var oldc = c;
-    var oldd = d;
-    a = md5ff(a, b, c, d, x[i], 7, -680876936);
-    d = md5ff(d, a, b, c, x[i + 1], 12, -389564586);
-    c = md5ff(c, d, a, b, x[i + 2], 17, 606105819);
-    b = md5ff(b, c, d, a, x[i + 3], 22, -1044525330);
-    a = md5ff(a, b, c, d, x[i + 4], 7, -176418897);
-    d = md5ff(d, a, b, c, x[i + 5], 12, 1200080426);
-    c = md5ff(c, d, a, b, x[i + 6], 17, -1473231341);
-    b = md5ff(b, c, d, a, x[i + 7], 22, -45705983);
-    a = md5ff(a, b, c, d, x[i + 8], 7, 1770035416);
-    d = md5ff(d, a, b, c, x[i + 9], 12, -1958414417);
-    c = md5ff(c, d, a, b, x[i + 10], 17, -42063);
-    b = md5ff(b, c, d, a, x[i + 11], 22, -1990404162);
-    a = md5ff(a, b, c, d, x[i + 12], 7, 1804603682);
-    d = md5ff(d, a, b, c, x[i + 13], 12, -40341101);
-    c = md5ff(c, d, a, b, x[i + 14], 17, -1502002290);
-    b = md5ff(b, c, d, a, x[i + 15], 22, 1236535329);
-    a = md5gg(a, b, c, d, x[i + 1], 5, -165796510);
-    d = md5gg(d, a, b, c, x[i + 6], 9, -1069501632);
-    c = md5gg(c, d, a, b, x[i + 11], 14, 643717713);
-    b = md5gg(b, c, d, a, x[i], 20, -373897302);
-    a = md5gg(a, b, c, d, x[i + 5], 5, -701558691);
-    d = md5gg(d, a, b, c, x[i + 10], 9, 38016083);
-    c = md5gg(c, d, a, b, x[i + 15], 14, -660478335);
-    b = md5gg(b, c, d, a, x[i + 4], 20, -405537848);
-    a = md5gg(a, b, c, d, x[i + 9], 5, 568446438);
-    d = md5gg(d, a, b, c, x[i + 14], 9, -1019803690);
-    c = md5gg(c, d, a, b, x[i + 3], 14, -187363961);
-    b = md5gg(b, c, d, a, x[i + 8], 20, 1163531501);
-    a = md5gg(a, b, c, d, x[i + 13], 5, -1444681467);
-    d = md5gg(d, a, b, c, x[i + 2], 9, -51403784);
-    c = md5gg(c, d, a, b, x[i + 7], 14, 1735328473);
-    b = md5gg(b, c, d, a, x[i + 12], 20, -1926607734);
-    a = md5hh(a, b, c, d, x[i + 5], 4, -378558);
-    d = md5hh(d, a, b, c, x[i + 8], 11, -2022574463);
-    c = md5hh(c, d, a, b, x[i + 11], 16, 1839030562);
-    b = md5hh(b, c, d, a, x[i + 14], 23, -35309556);
-    a = md5hh(a, b, c, d, x[i + 1], 4, -1530992060);
-    d = md5hh(d, a, b, c, x[i + 4], 11, 1272893353);
-    c = md5hh(c, d, a, b, x[i + 7], 16, -155497632);
-    b = md5hh(b, c, d, a, x[i + 10], 23, -1094730640);
-    a = md5hh(a, b, c, d, x[i + 13], 4, 681279174);
-    d = md5hh(d, a, b, c, x[i], 11, -358537222);
-    c = md5hh(c, d, a, b, x[i + 3], 16, -722521979);
-    b = md5hh(b, c, d, a, x[i + 6], 23, 76029189);
-    a = md5hh(a, b, c, d, x[i + 9], 4, -640364487);
-    d = md5hh(d, a, b, c, x[i + 12], 11, -421815835);
-    c = md5hh(c, d, a, b, x[i + 15], 16, 530742520);
-    b = md5hh(b, c, d, a, x[i + 2], 23, -995338651);
-    a = md5ii(a, b, c, d, x[i], 6, -198630844);
-    d = md5ii(d, a, b, c, x[i + 7], 10, 1126891415);
-    c = md5ii(c, d, a, b, x[i + 14], 15, -1416354905);
-    b = md5ii(b, c, d, a, x[i + 5], 21, -57434055);
-    a = md5ii(a, b, c, d, x[i + 12], 6, 1700485571);
-    d = md5ii(d, a, b, c, x[i + 3], 10, -1894986606);
-    c = md5ii(c, d, a, b, x[i + 10], 15, -1051523);
-    b = md5ii(b, c, d, a, x[i + 1], 21, -2054922799);
-    a = md5ii(a, b, c, d, x[i + 8], 6, 1873313359);
-    d = md5ii(d, a, b, c, x[i + 15], 10, -30611744);
-    c = md5ii(c, d, a, b, x[i + 6], 15, -1560198380);
-    b = md5ii(b, c, d, a, x[i + 13], 21, 1309151649);
-    a = md5ii(a, b, c, d, x[i + 4], 6, -145523070);
-    d = md5ii(d, a, b, c, x[i + 11], 10, -1120210379);
-    c = md5ii(c, d, a, b, x[i + 2], 15, 718787259);
-    b = md5ii(b, c, d, a, x[i + 9], 21, -343485551);
-    a = safeAdd(a, olda);
-    b = safeAdd(b, oldb);
-    c = safeAdd(c, oldc);
-    d = safeAdd(d, oldd);
-  }
-
-  return [a, b, c, d];
-}
-/*
- * Convert an array bytes to an array of little-endian words
- * Characters >255 have their high-byte silently ignored.
- */
-
-
-function bytesToWords(input) {
-  if (input.length === 0) {
-    return [];
-  }
-
-  var length8 = input.length * 8;
-  var output = new Uint32Array(getOutputLength(length8));
-
-  for (var i = 0; i < length8; i += 8) {
-    output[i >> 5] |= (input[i / 8] & 0xff) << i % 32;
-  }
-
-  return output;
-}
-/*
- * Add integers, wrapping at 2^32. This uses 16-bit operations internally
- * to work around bugs in some JS interpreters.
- */
-
-
-function safeAdd(x, y) {
-  var lsw = (x & 0xffff) + (y & 0xffff);
-  var msw = (x >> 16) + (y >> 16) + (lsw >> 16);
-  return msw << 16 | lsw & 0xffff;
-}
-/*
- * Bitwise rotate a 32-bit number to the left.
- */
-
-
-function bitRotateLeft(num, cnt) {
-  return num << cnt | num >>> 32 - cnt;
-}
-/*
- * These functions implement the four basic operations the algorithm uses.
- */
-
-
-function md5cmn(q, a, b, x, s, t) {
-  return safeAdd(bitRotateLeft(safeAdd(safeAdd(a, q), safeAdd(x, t)), s), b);
-}
-
-function md5ff(a, b, c, d, x, s, t) {
-  return md5cmn(b & c | ~b & d, a, b, x, s, t);
-}
-
-function md5gg(a, b, c, d, x, s, t) {
-  return md5cmn(b & d | c & ~d, a, b, x, s, t);
-}
-
-function md5hh(a, b, c, d, x, s, t) {
-  return md5cmn(b ^ c ^ d, a, b, x, s, t);
-}
-
-function md5ii(a, b, c, d, x, s, t) {
-  return md5cmn(c ^ (b | ~d), a, b, x, s, t);
-}
-
-/* harmony default export */ __webpack_exports__["default"] = (md5);
-
-/***/ }),
-
-/***/ "./node_modules/uuid/dist/esm-browser/nil.js":
-/*!***************************************************!*\
-  !*** ./node_modules/uuid/dist/esm-browser/nil.js ***!
-  \***************************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ('00000000-0000-0000-0000-000000000000');
-
-/***/ }),
-
-/***/ "./node_modules/uuid/dist/esm-browser/parse.js":
-/*!*****************************************************!*\
-  !*** ./node_modules/uuid/dist/esm-browser/parse.js ***!
-  \*****************************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _validate_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./validate.js */ "./node_modules/uuid/dist/esm-browser/validate.js");
-
-
-function parse(uuid) {
-  if (!(0,_validate_js__WEBPACK_IMPORTED_MODULE_0__.default)(uuid)) {
-    throw TypeError('Invalid UUID');
-  }
-
-  var v;
-  var arr = new Uint8Array(16); // Parse ########-....-....-....-............
-
-  arr[0] = (v = parseInt(uuid.slice(0, 8), 16)) >>> 24;
-  arr[1] = v >>> 16 & 0xff;
-  arr[2] = v >>> 8 & 0xff;
-  arr[3] = v & 0xff; // Parse ........-####-....-....-............
-
-  arr[4] = (v = parseInt(uuid.slice(9, 13), 16)) >>> 8;
-  arr[5] = v & 0xff; // Parse ........-....-####-....-............
-
-  arr[6] = (v = parseInt(uuid.slice(14, 18), 16)) >>> 8;
-  arr[7] = v & 0xff; // Parse ........-....-....-####-............
-
-  arr[8] = (v = parseInt(uuid.slice(19, 23), 16)) >>> 8;
-  arr[9] = v & 0xff; // Parse ........-....-....-....-############
-  // (Use "/" to avoid 32-bit truncation when bit-shifting high-order bytes)
-
-  arr[10] = (v = parseInt(uuid.slice(24, 36), 16)) / 0x10000000000 & 0xff;
-  arr[11] = v / 0x100000000 & 0xff;
-  arr[12] = v >>> 24 & 0xff;
-  arr[13] = v >>> 16 & 0xff;
-  arr[14] = v >>> 8 & 0xff;
-  arr[15] = v & 0xff;
-  return arr;
-}
-
-/* harmony default export */ __webpack_exports__["default"] = (parse);
-
-/***/ }),
-
 /***/ "./node_modules/uuid/dist/esm-browser/regex.js":
 /*!*****************************************************!*\
   !*** ./node_modules/uuid/dist/esm-browser/regex.js ***!
@@ -27442,113 +27028,6 @@ function rng() {
 
 /***/ }),
 
-/***/ "./node_modules/uuid/dist/esm-browser/sha1.js":
-/*!****************************************************!*\
-  !*** ./node_modules/uuid/dist/esm-browser/sha1.js ***!
-  \****************************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-// Adapted from Chris Veness' SHA1 code at
-// http://www.movable-type.co.uk/scripts/sha1.html
-function f(s, x, y, z) {
-  switch (s) {
-    case 0:
-      return x & y ^ ~x & z;
-
-    case 1:
-      return x ^ y ^ z;
-
-    case 2:
-      return x & y ^ x & z ^ y & z;
-
-    case 3:
-      return x ^ y ^ z;
-  }
-}
-
-function ROTL(x, n) {
-  return x << n | x >>> 32 - n;
-}
-
-function sha1(bytes) {
-  var K = [0x5a827999, 0x6ed9eba1, 0x8f1bbcdc, 0xca62c1d6];
-  var H = [0x67452301, 0xefcdab89, 0x98badcfe, 0x10325476, 0xc3d2e1f0];
-
-  if (typeof bytes === 'string') {
-    var msg = unescape(encodeURIComponent(bytes)); // UTF8 escape
-
-    bytes = [];
-
-    for (var i = 0; i < msg.length; ++i) {
-      bytes.push(msg.charCodeAt(i));
-    }
-  } else if (!Array.isArray(bytes)) {
-    // Convert Array-like to Array
-    bytes = Array.prototype.slice.call(bytes);
-  }
-
-  bytes.push(0x80);
-  var l = bytes.length / 4 + 2;
-  var N = Math.ceil(l / 16);
-  var M = new Array(N);
-
-  for (var _i = 0; _i < N; ++_i) {
-    var arr = new Uint32Array(16);
-
-    for (var j = 0; j < 16; ++j) {
-      arr[j] = bytes[_i * 64 + j * 4] << 24 | bytes[_i * 64 + j * 4 + 1] << 16 | bytes[_i * 64 + j * 4 + 2] << 8 | bytes[_i * 64 + j * 4 + 3];
-    }
-
-    M[_i] = arr;
-  }
-
-  M[N - 1][14] = (bytes.length - 1) * 8 / Math.pow(2, 32);
-  M[N - 1][14] = Math.floor(M[N - 1][14]);
-  M[N - 1][15] = (bytes.length - 1) * 8 & 0xffffffff;
-
-  for (var _i2 = 0; _i2 < N; ++_i2) {
-    var W = new Uint32Array(80);
-
-    for (var t = 0; t < 16; ++t) {
-      W[t] = M[_i2][t];
-    }
-
-    for (var _t = 16; _t < 80; ++_t) {
-      W[_t] = ROTL(W[_t - 3] ^ W[_t - 8] ^ W[_t - 14] ^ W[_t - 16], 1);
-    }
-
-    var a = H[0];
-    var b = H[1];
-    var c = H[2];
-    var d = H[3];
-    var e = H[4];
-
-    for (var _t2 = 0; _t2 < 80; ++_t2) {
-      var s = Math.floor(_t2 / 20);
-      var T = ROTL(a, 5) + f(s, b, c, d) + e + K[s] + W[_t2] >>> 0;
-      e = d;
-      d = c;
-      c = ROTL(b, 30) >>> 0;
-      b = a;
-      a = T;
-    }
-
-    H[0] = H[0] + a >>> 0;
-    H[1] = H[1] + b >>> 0;
-    H[2] = H[2] + c >>> 0;
-    H[3] = H[3] + d >>> 0;
-    H[4] = H[4] + e >>> 0;
-  }
-
-  return [H[0] >> 24 & 0xff, H[0] >> 16 & 0xff, H[0] >> 8 & 0xff, H[0] & 0xff, H[1] >> 24 & 0xff, H[1] >> 16 & 0xff, H[1] >> 8 & 0xff, H[1] & 0xff, H[2] >> 24 & 0xff, H[2] >> 16 & 0xff, H[2] >> 8 & 0xff, H[2] & 0xff, H[3] >> 24 & 0xff, H[3] >> 16 & 0xff, H[3] >> 8 & 0xff, H[3] & 0xff, H[4] >> 24 & 0xff, H[4] >> 16 & 0xff, H[4] >> 8 & 0xff, H[4] & 0xff];
-}
-
-/* harmony default export */ __webpack_exports__["default"] = (sha1);
-
-/***/ }),
-
 /***/ "./node_modules/uuid/dist/esm-browser/stringify.js":
 /*!*********************************************************!*\
   !*** ./node_modules/uuid/dist/esm-browser/stringify.js ***!
@@ -27591,213 +27070,6 @@ function stringify(arr) {
 
 /***/ }),
 
-/***/ "./node_modules/uuid/dist/esm-browser/v1.js":
-/*!**************************************************!*\
-  !*** ./node_modules/uuid/dist/esm-browser/v1.js ***!
-  \**************************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _rng_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./rng.js */ "./node_modules/uuid/dist/esm-browser/rng.js");
-/* harmony import */ var _stringify_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./stringify.js */ "./node_modules/uuid/dist/esm-browser/stringify.js");
-
- // **`v1()` - Generate time-based UUID**
-//
-// Inspired by https://github.com/LiosK/UUID.js
-// and http://docs.python.org/library/uuid.html
-
-var _nodeId;
-
-var _clockseq; // Previous uuid creation time
-
-
-var _lastMSecs = 0;
-var _lastNSecs = 0; // See https://github.com/uuidjs/uuid for API details
-
-function v1(options, buf, offset) {
-  var i = buf && offset || 0;
-  var b = buf || new Array(16);
-  options = options || {};
-  var node = options.node || _nodeId;
-  var clockseq = options.clockseq !== undefined ? options.clockseq : _clockseq; // node and clockseq need to be initialized to random values if they're not
-  // specified.  We do this lazily to minimize issues related to insufficient
-  // system entropy.  See #189
-
-  if (node == null || clockseq == null) {
-    var seedBytes = options.random || (options.rng || _rng_js__WEBPACK_IMPORTED_MODULE_0__.default)();
-
-    if (node == null) {
-      // Per 4.5, create and 48-bit node id, (47 random bits + multicast bit = 1)
-      node = _nodeId = [seedBytes[0] | 0x01, seedBytes[1], seedBytes[2], seedBytes[3], seedBytes[4], seedBytes[5]];
-    }
-
-    if (clockseq == null) {
-      // Per 4.2.2, randomize (14 bit) clockseq
-      clockseq = _clockseq = (seedBytes[6] << 8 | seedBytes[7]) & 0x3fff;
-    }
-  } // UUID timestamps are 100 nano-second units since the Gregorian epoch,
-  // (1582-10-15 00:00).  JSNumbers aren't precise enough for this, so
-  // time is handled internally as 'msecs' (integer milliseconds) and 'nsecs'
-  // (100-nanoseconds offset from msecs) since unix epoch, 1970-01-01 00:00.
-
-
-  var msecs = options.msecs !== undefined ? options.msecs : Date.now(); // Per 4.2.1.2, use count of uuid's generated during the current clock
-  // cycle to simulate higher resolution clock
-
-  var nsecs = options.nsecs !== undefined ? options.nsecs : _lastNSecs + 1; // Time since last uuid creation (in msecs)
-
-  var dt = msecs - _lastMSecs + (nsecs - _lastNSecs) / 10000; // Per 4.2.1.2, Bump clockseq on clock regression
-
-  if (dt < 0 && options.clockseq === undefined) {
-    clockseq = clockseq + 1 & 0x3fff;
-  } // Reset nsecs if clock regresses (new clockseq) or we've moved onto a new
-  // time interval
-
-
-  if ((dt < 0 || msecs > _lastMSecs) && options.nsecs === undefined) {
-    nsecs = 0;
-  } // Per 4.2.1.2 Throw error if too many uuids are requested
-
-
-  if (nsecs >= 10000) {
-    throw new Error("uuid.v1(): Can't create more than 10M uuids/sec");
-  }
-
-  _lastMSecs = msecs;
-  _lastNSecs = nsecs;
-  _clockseq = clockseq; // Per 4.1.4 - Convert from unix epoch to Gregorian epoch
-
-  msecs += 12219292800000; // `time_low`
-
-  var tl = ((msecs & 0xfffffff) * 10000 + nsecs) % 0x100000000;
-  b[i++] = tl >>> 24 & 0xff;
-  b[i++] = tl >>> 16 & 0xff;
-  b[i++] = tl >>> 8 & 0xff;
-  b[i++] = tl & 0xff; // `time_mid`
-
-  var tmh = msecs / 0x100000000 * 10000 & 0xfffffff;
-  b[i++] = tmh >>> 8 & 0xff;
-  b[i++] = tmh & 0xff; // `time_high_and_version`
-
-  b[i++] = tmh >>> 24 & 0xf | 0x10; // include version
-
-  b[i++] = tmh >>> 16 & 0xff; // `clock_seq_hi_and_reserved` (Per 4.2.2 - include variant)
-
-  b[i++] = clockseq >>> 8 | 0x80; // `clock_seq_low`
-
-  b[i++] = clockseq & 0xff; // `node`
-
-  for (var n = 0; n < 6; ++n) {
-    b[i + n] = node[n];
-  }
-
-  return buf || (0,_stringify_js__WEBPACK_IMPORTED_MODULE_1__.default)(b);
-}
-
-/* harmony default export */ __webpack_exports__["default"] = (v1);
-
-/***/ }),
-
-/***/ "./node_modules/uuid/dist/esm-browser/v3.js":
-/*!**************************************************!*\
-  !*** ./node_modules/uuid/dist/esm-browser/v3.js ***!
-  \**************************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _v35_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./v35.js */ "./node_modules/uuid/dist/esm-browser/v35.js");
-/* harmony import */ var _md5_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./md5.js */ "./node_modules/uuid/dist/esm-browser/md5.js");
-
-
-var v3 = (0,_v35_js__WEBPACK_IMPORTED_MODULE_0__.default)('v3', 0x30, _md5_js__WEBPACK_IMPORTED_MODULE_1__.default);
-/* harmony default export */ __webpack_exports__["default"] = (v3);
-
-/***/ }),
-
-/***/ "./node_modules/uuid/dist/esm-browser/v35.js":
-/*!***************************************************!*\
-  !*** ./node_modules/uuid/dist/esm-browser/v35.js ***!
-  \***************************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "DNS": function() { return /* binding */ DNS; },
-/* harmony export */   "URL": function() { return /* binding */ URL; },
-/* harmony export */   "default": function() { return /* export default binding */ __WEBPACK_DEFAULT_EXPORT__; }
-/* harmony export */ });
-/* harmony import */ var _stringify_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./stringify.js */ "./node_modules/uuid/dist/esm-browser/stringify.js");
-/* harmony import */ var _parse_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./parse.js */ "./node_modules/uuid/dist/esm-browser/parse.js");
-
-
-
-function stringToBytes(str) {
-  str = unescape(encodeURIComponent(str)); // UTF8 escape
-
-  var bytes = [];
-
-  for (var i = 0; i < str.length; ++i) {
-    bytes.push(str.charCodeAt(i));
-  }
-
-  return bytes;
-}
-
-var DNS = '6ba7b810-9dad-11d1-80b4-00c04fd430c8';
-var URL = '6ba7b811-9dad-11d1-80b4-00c04fd430c8';
-/* harmony default export */ function __WEBPACK_DEFAULT_EXPORT__(name, version, hashfunc) {
-  function generateUUID(value, namespace, buf, offset) {
-    if (typeof value === 'string') {
-      value = stringToBytes(value);
-    }
-
-    if (typeof namespace === 'string') {
-      namespace = (0,_parse_js__WEBPACK_IMPORTED_MODULE_1__.default)(namespace);
-    }
-
-    if (namespace.length !== 16) {
-      throw TypeError('Namespace must be array-like (16 iterable integer values, 0-255)');
-    } // Compute hash of namespace and value, Per 4.3
-    // Future: Use spread syntax when supported on all platforms, e.g. `bytes =
-    // hashfunc([...namespace, ... value])`
-
-
-    var bytes = new Uint8Array(16 + value.length);
-    bytes.set(namespace);
-    bytes.set(value, namespace.length);
-    bytes = hashfunc(bytes);
-    bytes[6] = bytes[6] & 0x0f | version;
-    bytes[8] = bytes[8] & 0x3f | 0x80;
-
-    if (buf) {
-      offset = offset || 0;
-
-      for (var i = 0; i < 16; ++i) {
-        buf[offset + i] = bytes[i];
-      }
-
-      return buf;
-    }
-
-    return (0,_stringify_js__WEBPACK_IMPORTED_MODULE_0__.default)(bytes);
-  } // Function#name is not settable on some platforms (#270)
-
-
-  try {
-    generateUUID.name = name; // eslint-disable-next-line no-empty
-  } catch (err) {} // For CommonJS default export support
-
-
-  generateUUID.DNS = DNS;
-  generateUUID.URL = URL;
-  return generateUUID;
-}
-
-/***/ }),
-
 /***/ "./node_modules/uuid/dist/esm-browser/v4.js":
 /*!**************************************************!*\
   !*** ./node_modules/uuid/dist/esm-browser/v4.js ***!
@@ -27835,23 +27107,6 @@ function v4(options, buf, offset) {
 
 /***/ }),
 
-/***/ "./node_modules/uuid/dist/esm-browser/v5.js":
-/*!**************************************************!*\
-  !*** ./node_modules/uuid/dist/esm-browser/v5.js ***!
-  \**************************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _v35_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./v35.js */ "./node_modules/uuid/dist/esm-browser/v35.js");
-/* harmony import */ var _sha1_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./sha1.js */ "./node_modules/uuid/dist/esm-browser/sha1.js");
-
-
-var v5 = (0,_v35_js__WEBPACK_IMPORTED_MODULE_0__.default)('v5', 0x50, _sha1_js__WEBPACK_IMPORTED_MODULE_1__.default);
-/* harmony default export */ __webpack_exports__["default"] = (v5);
-
-/***/ }),
-
 /***/ "./node_modules/uuid/dist/esm-browser/validate.js":
 /*!********************************************************!*\
   !*** ./node_modules/uuid/dist/esm-browser/validate.js ***!
@@ -27868,29 +27123,6 @@ function validate(uuid) {
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (validate);
-
-/***/ }),
-
-/***/ "./node_modules/uuid/dist/esm-browser/version.js":
-/*!*******************************************************!*\
-  !*** ./node_modules/uuid/dist/esm-browser/version.js ***!
-  \*******************************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _validate_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./validate.js */ "./node_modules/uuid/dist/esm-browser/validate.js");
-
-
-function version(uuid) {
-  if (!(0,_validate_js__WEBPACK_IMPORTED_MODULE_0__.default)(uuid)) {
-    throw TypeError('Invalid UUID');
-  }
-
-  return parseInt(uuid.substr(14, 1), 16);
-}
-
-/* harmony default export */ __webpack_exports__["default"] = (version);
 
 /***/ }),
 

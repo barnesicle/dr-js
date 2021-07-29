@@ -2339,6 +2339,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var post_robot__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! post-robot */ "./node_modules/post-robot/index.js");
 /* harmony import */ var post_robot__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(post_robot__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var cross_domain_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! cross-domain-utils */ "./node_modules/cross-domain-utils/dist/module/index.js");
+
 
 var timeout = 20000;
 function listener(object) {
@@ -2359,7 +2361,13 @@ function client(object) {
 }
 
 function _send(window, name, data) {
-  window.contentWindow.postMessage(data, "https://github.digitalriverws.net"); //return postRobotDefault.send(window, name, data, { timeout: timeout } );
+  /*if (isWindowClosed(window)) {
+    window.contentWindow.postMessage(data, "https://github.digitalriverws.net");
+    return;
+  }*/
+  return post_robot__WEBPACK_IMPORTED_MODULE_0___default().send(window, name, data, {
+    timeout: timeout
+  });
 }
 
 
