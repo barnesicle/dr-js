@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>DR Payment 3d Secure</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="./dr3dsecure.js"></script>
+    <style>
+        body {
+            font-family: Helvetica Neue, Helvetica, Arial;
+            font-size: 14px;
+            color:#333;
+        }
+        h1 {
+            color: white;
+            background-color: #17AEFF;
+            padding: .75em;
+            font-size: 1.5em;
+        }
+        .content {
+            margin:1em;
+        }
+        .modal-content {
+            -webkit-box-shadow: 10px 10px 22px 0px rgba(0,0,0,0.4);
+            -moz-box-shadow: 10px 10px 22px 0px rgba(0,0,0,0.4);
+            box-shadow: 10px 10px 22px 0px rgba(0,0,0,0.4);
+            width: 300px;
+            background-color: #fff;
+            margin: auto;
+            padding-bottom:1em;
+        }
+        #secureOverlay {
+            position: fixed;
+            display: none;
+            width: 100%;
+            height: 100%;
+            background-color: transparent;
+            z-index: 5;
+            cursor: pointer;
+        }
+        #DR3dsecure{
+            height: fit-content;
+            width: fit-content;
+            margin:auto;
+            background-color: #fff;
+        }
+    </style>
+
+</head>
+
+<body>
+<div id="secureOverlay">
+    <div id="DR3dsecure"> </div>
+</div>
+</body>
+
+</html>

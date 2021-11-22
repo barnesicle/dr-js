@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>Konbini</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="konbini.js"></script>
+  <!--this is where custom styles will be loaded-->
+  <style id="customStyles"></style>
+</head>
+
+<body>
+  <script>
+    addInputHtmlToDom();
+    window.onload = function() {
+      document.getElementById('konbini').addEventListener('animationstart', handleAutofill, false);
+    };
+  </script>
+</body>
+</html>

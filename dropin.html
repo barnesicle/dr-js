@@ -211,6 +211,9 @@
               <span>Total (USD)</span>
               <strong id="totalPrice">$914.14</strong>
             </li>
+            <button  id="refresh-dropin" class="btn btn-link" onclick="refreshDropin(event)">
+              Refresh Dropin
+            </button>
           </ul>
         </div>
 
@@ -396,6 +399,7 @@
             <br />
             <div id="dropin-loading">Loading...</div>
             <div id="dropin">
+
             </div>
           </div>
         </div>
@@ -413,6 +417,7 @@
 <!--<script src="https://www.paypalobjects.com/api/checkout.js"></script>-->
 <script type="text/javascript">
   let digitalRiverPayments;
+  let dropinInstance;
   let owner = {};
   let response = document.getElementById('response');
 
@@ -523,6 +528,7 @@
     const disableAutomaticRedirects = getURLParamOrDefault('disableAutomaticRedirects', 'false');
     const returnUrl = getURLParamOrDefault('returnUrl', undefined);
     const cancelUrl = getURLParamOrDefault('cancelUrl', undefined);
+    const useBillingAddress = getURLParamOrDefault('useBillingAddress', 'true');
 
     console.log('Session ID', sessionId);
     console.log('Flow', flow);
@@ -537,7 +543,7 @@
 
     const configuration = {
       sessionId: sessionId,
-      billingAddress: billingAddress,
+      billingAddress: useBillingAddress === 'true' ? billingAddress : undefined,
       options: {
         flow: flow,
         recurringModel: recurringModel,
@@ -553,7 +559,86 @@
         button: {
           //type: 'custom',
           //buttonText: 'Pay Right Now!'
-        }
+        },
+        "storedPaymentMethods": [
+          {
+            "type": "storeCredit",
+            "displayName": "Target Gift Card",
+            "lastFour": "1234",
+            "amount": 521.05,
+            //"iconUrl": "https://ui1.img.digitalrivercontent.net/Storefront/images/paymentMethodLogos/paypal.png",
+            "id": "your_identifier-123"
+          },
+          {
+            "type": "storeCredit",
+            "displayName": "Best Buy Gift Card",
+            "lastFour": "5678",
+            "amount": 20.00,
+            //"iconUrl": "https://ui1.img.digitalrivercontent.net/Storefront/images/paymentMethodLogos/paypal.png",
+            "id": "your_identifier-5678"
+          },
+          {
+            "type": "storeCredit",
+            "displayName": "Luke Gift Card",
+            "lastFour": "5678",
+            "amount": 30.00,
+            //"iconUrl": "https://ui1.img.digitalrivercontent.net/Storefront/images/paymentMethodLogos/paypal.png",
+            "id": "your_identifier-56789"
+          },
+          {
+            "type": "storeCredit",
+            "displayName": "Luke Cool Gift Card",
+            "lastFour": "56789",
+            "amount": 30.01,
+            //"iconUrl": "https://ui1.img.digitalrivercontent.net/Storefront/images/paymentMethodLogos/paypal.png",
+            "id": "your_identifier-5678910"
+          },
+          {
+            "type": "storeCredit",
+            "displayName": "Amazon Gift Card",
+            "lastFour": "4444",
+            "amount": 70.0,
+            //"iconUrl": "https://ui1.img.digitalrivercontent.net/Storefront/images/paymentMethodLogos/paypal.png",
+            "id": "your_identifier-456",
+          },
+          {
+            "type": "creditCard",
+            "brand": "visa",
+            "lastFour": "1234",
+            "id": "your_identifier"
+          },
+          {
+            "type": "creditCard",
+            "brand": "masterCard",
+            "lastFour": "1234",
+            "id": "your_identifier-909"
+          },
+          {
+            "type": "creditCard",
+            "brand": "unknown-cc",
+            "lastFour": "1234",
+            "id": "your_identifier"
+          },
+          {
+            "type": "creditCard",
+            "brand": "mastercard",
+            "lastFour": "1234",
+            "id": "your_identifier-"
+          },
+          {
+            "type": "creditCard",
+            "brand": "dinersclub",
+            "id": "your_identifier-"
+          },
+          {
+            "type": "googlePay",
+            "id": "your_identifier"
+          },
+          {
+            "type": "unknown=payment-method",
+            "id": "your_identifier"
+          },
+        ]
       },
       paymentMethodConfiguration: {
         //enabledPaymentMethods: ['googlePay', 'creditCard'],
@@ -568,10 +653,6 @@
           // cardCvvPlaceholderText: "CVV",
           //style: styles,
           mask: true
-        },
-        onlineBanking: {
-          //style: styles,
-          placeholderText: "Select a Bank",
         },
         googlePay: {
           style: {
@@ -618,10 +699,91 @@
         responseLog('onReady - Dropin ' + JSON.stringify(data, null, '\t'));
         document.getElementById('dropin-loading').innerText = '';
       },
+      onUpdateRequired: function (original) {
+        responseLog('onUpdateRequired - Dropin ' + JSON.stringify(original, null, '\t'));
+        const data = Object.assign({}, original);
+        // Would do an PAI call or something here.
+        const pm = data.storedPaymentMethods.find( spm => spm.id === data.selectedPaymentMethod.id)
+
+        /*pm.added = data.selectedPaymentMethod.action === 'add';
+        original.updateWith(data.storedPaymentMethods)*/
+       /*createSource(data.selectedPaymentMethod).then(async response => { // NOTE: Will only work locally
+          const id = (await response.json()).id;
+          return attachSource(id)
+        }).then(response => {
+          console.log('Attached to source. Adding ', data.selectedPaymentMethod)
+          pm.added = data.selectedPaymentMethod.action === 'add';
+          original.updateWith(data.storedPaymentMethods)
+        });*/
+
+      },
 
     };
 
-    digitalRiverPayments.createDropin(configuration).mount('dropin');
+    dropinInstance = digitalRiverPayments.createDropin(configuration);
+
+    dropinInstance.mount('dropin');
+
+  }
+
+  function attachSource(sourceId) {
+    const secretKey = getURLParamOrDefault('secretKey', '');
+    const sessionId = getURLParamOrDefault('sessionId', 'c09e1774-4f6d-47da-8617-ba42a87dd5e8');
+
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("version", "new");
+    myHeaders.append("Authorization", "Bearer " + secretKey);
+
+    const raw = JSON.stringify({
+      "sourceId": sourceId
+    });
+
+    const requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      body: raw,
+      redirect: 'follow'
+    };
+
+    console.log('Attaching source id to session', sourceId, sessionId)
+
+    // TODO Needs to go on server
+    return fetch(`/payments/clients/gc/channels/paylive/sessions/${sessionId}`, requestOptions)
+            .catch(error => console.log('error', error));
+  }
+
+  function createSource(selectedCredit) {
+    const secretKey = getURLParamOrDefault('secretKey', '');
+    const sessionId = getURLParamOrDefault('sessionId', 'c09e1774-4f6d-47da-8617-ba42a87dd5e8');
+
+    const myHeaders = new Headers();
+    myHeaders.append("Authorization", "Bearer " + secretKey);
+    myHeaders.append("Content-Type", "application/json");
+
+    const raw = JSON.stringify({
+      "sessionId": sessionId,
+      "amount": selectedCredit.amount.toString(),
+      "currency": "USD",
+      "type": "customerCredit",
+      "upstreamId": "custCredit_orderId_1602861339339",
+      "customerCredit": {}
+    });
+
+    const requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      body: raw,
+      redirect: 'follow'
+    };
+
+    return fetch("https://api.digitalriver.com/payments/clients/gc/channels/paylive/sources", requestOptions)
+            .catch(error => console.log('error', error));
+  }
+
+  function refreshDropin() {
+    console.log('Refreshing dropin on click')
+    dropinInstance.refresh();
   }
 
   function onLoad() {

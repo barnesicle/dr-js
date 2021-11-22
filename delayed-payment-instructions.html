@@ -1,0 +1,187 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8"/>
+    <title>Delayed Payment Instructions Demo</title>
+
+    <link rel="stylesheet" href="css/DigitalRiver.css" type="text/css"/>
+    <style>
+        body {
+            font-family: apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif;
+            margin: 4em;
+        }
+        table {
+            border-collapse: collapse;
+            margin: 1em 0
+        }
+        th {
+            color: #aaa;
+        }
+        td,th {
+            text-align:left;
+            border: 1px solid #ddd;
+            padding: .5em;
+        }
+        th {
+            border-top:none;
+        }
+        td:first-of-type, th:first-of-type {
+            border-left: none;
+        }
+        td:last-of-type, th:last-of-type {
+            border-right: none;
+        }
+        #content {
+            display:flex;
+            flex-direction:row;
+            max-width: 1000px;
+        }
+        #taxid, #log {
+            margin: 1em;
+            width:100%;
+        }
+        #log {
+            white-space: pre;
+            font-size: .75em;
+            max-height: 800px;
+            overflow-y: scroll;
+        }
+
+
+
+    </style>
+<script defer src="dropInStyles.js"></script><script defer src="DigitalRiver.js"></script><link href="css/DigitalRiver.css" rel="stylesheet"></head>
+<body>
+<h1>Delayed Payment Instructions Element Example</h1>
+
+<h2>Instructions</h2>
+
+<p>Add url parameters to configure your options for the taxIdentifier element.</p>
+
+<table>
+    <tr>
+        <th>Parameter name</th>
+        <th>Description</th>
+    </tr>
+    <tr>
+        <td>apiKey</td>
+        <td>Defaults to paylive systest key if not provided.</td>
+    </tr>
+    <tr>
+        <td>sourceId</td>
+        <td>Payment source id. Required.</td>
+    </tr>
+    <tr>
+        <td>sourceClientSecret</td>
+        <td>Payment source client secret. Required</td>
+    </tr>
+    <tr>
+        <td>locale</td>
+        <td>Display locale for DR.js. Optional.</td>
+    </tr>
+</table>
+<div id="content">
+    <div id="delayedPaymentInstructions"></div>
+
+    <div id="log"></div>
+</div>
+
+<script>
+
+    const styles = {
+        base: {
+            padding: '0',
+            color: '#495057',
+            height: '35px',
+            fontSize: '1rem',
+            fontFamily: 'apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif',
+            // fontWeight: 'lighter',
+            ':hover': {
+                color: '#137bee',
+            },
+            '::placeholder': {
+                color: '#999'
+            },
+            ':-webkit-autofill': {
+                color: 'purple'
+            },
+            ':focus': {
+                color: 'blue'
+            }
+        },
+        invalid: {
+            color: '#dc3545',
+            ':-webkit-autofill': {
+                color: '#dc3545'
+            }
+        },
+        complete: {
+            color: '#28a745',
+            ':hover': {
+                color:'#28a745',
+            },
+            ':-webkit-autofill': {
+                color: '#28a745'
+            }
+        },
+        empty: {
+            color: '#000000'
+            /*color: '#db4518',
+            ':hover': {
+              color: '#db4518'
+            },
+            '::placeholder': {
+              color: '#db4518'
+            }*/
+        },
+
+    };
+
+    window.addEventListener('load', function() {
+        const apiKey = getURLParamOrDefault('apiKey', 'pk_sys_c2608001bba7477eae22808e1eb138db')
+        const locale = getURLParamOrDefault('locale', 'en-US');
+        const sourceId = getURLParamOrDefault('sourceId', null);
+        const sourceClientSecret = getURLParamOrDefault('sourceClientSecret', null);
+
+        const drJS =  new DigitalRiver(apiKey, {locale: locale});
+
+
+        const options = {
+            sourceId: sourceId,
+            sourceClientSecret: sourceClientSecret
+        };
+
+
+        const delayedPaymentInstructions = drJS.createElement('delayedPaymentInstructions', options);
+
+        delayedPaymentInstructions.mount('delayedPaymentInstructions');
+
+        delayedPaymentInstructions.on('ready', function (event) {
+            addContentToLog( event.elementType + ' ready received \n\n' + JSON.stringify(event, null, 4));
+        });
+
+        // helper functions
+        function addContentToLog(content) {
+            const log = document.getElementById('log');
+            log.innerHTML = '\n<hr/>\n' + content + log.innerHTML;
+        }
+
+        function getURLParamOrDefault(name, defaultValue) {
+            const results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+            if (results == null){
+                return defaultValue;
+            }
+            else {
+                return decodeURI(results[1]) || 0;
+            }
+        }
+
+    })
+
+
+
+
+</script>
+</body>
+</html>

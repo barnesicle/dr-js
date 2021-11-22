@@ -138,9 +138,11 @@
 
     window.addEventListener('load', function() {
 
+        const locale = getURLParamOrDefault('locale', 'en-US');
+        const apiKey = getURLParamOrDefault('apiKey', 'pk_sys_c2608001bba7477eae22808e1eb138db');
         // pk_sys_c2608001bba7477eae22808e1eb138db -> 2dbce751-dce5-4658-8f85-fdf477d03928
 
-        const drJS =  new DigitalRiver('pk_sys_c2608001bba7477eae22808e1eb138db');
+        const drJS =  new DigitalRiver(apiKey, {locale: locale});
 
 
         // Original: pk_hc_b230cec5ef7c44a992af0bcf180ccfaf

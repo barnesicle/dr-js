@@ -1,0 +1,219 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8"/>
+    <title>Tax Identifier Demo</title>
+
+    <link rel="stylesheet" href="css/DigitalRiver.css" type="text/css"/>
+    <style>
+        body {
+            font-family: apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif;
+            margin: 4em;
+        }
+        table {
+            border-collapse: collapse;
+            margin: 1em 0
+        }
+        th {
+            color: #aaa;
+        }
+        td,th {
+            text-align:left;
+            border: 1px solid #ddd;
+            padding: .5em;
+        }
+        th {
+            border-top:none;
+        }
+        td:first-of-type, th:first-of-type {
+            border-left: none;
+        }
+        td:last-of-type, th:last-of-type {
+            border-right: none;
+        }
+        #content {
+            display:flex;
+            flex-direction:row;
+            max-width: 1000px;
+        }
+        #taxid, #log {
+            margin: 1em;
+            width:100%;
+        }
+        #log {
+            white-space: pre;
+            font-size: .75em;
+            max-height: 800px;
+            overflow-y: scroll;
+        }
+
+
+
+    </style>
+<script defer src="dropInStyles.js"></script><script defer src="DigitalRiver.js"></script><link href="css/DigitalRiver.css" rel="stylesheet"></head>
+<body>
+<h1>Tax Identifier Example</h1>
+
+<h2>Instructions</h2>
+
+<p>Add url parameters to configure your options for the taxIdentifier element.</p>
+
+<table>
+    <tr>
+        <th>Parameter name</th>
+        <th>Description</th>
+    </tr>
+    <tr>
+        <td>apiKey</td>
+        <td>Defaults to paylive systest key if not provided.</td>
+    </tr>
+    <tr>
+        <td>sessionId</td>
+        <td>Payment session id. Required if country and sellingEntity are not provided</td>
+    </tr>
+    <tr>
+        <td>country</td>
+        <td>ISO country code. Required if sessionId not provided</td>
+    </tr>
+    <tr>
+        <td>sellingEntity</td>
+        <td>DR entity code for selling entity. Optional if selling entity is not provided. If not provided, a default entity will be selected</td>
+    </tr>
+    <tr>
+        <td>type</td>
+        <td>"business" or "individual". Optional, filters ready event and display.</td>
+    </tr>
+    <tr>
+        <td>locale</td>
+        <td>Display locale for DR.js. Optional.</td>
+    </tr>
+</table>
+<div id="content">
+    <div id="taxid"></div>
+
+    <div id="log"></div>
+</div>
+
+<script>
+
+    const styles = {
+        base: {
+            padding: '0',
+            color: '#495057',
+            height: '35px',
+            fontSize: '1rem',
+            fontFamily: 'apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif',
+            // fontWeight: 'lighter',
+            ':hover': {
+                color: '#137bee',
+            },
+            '::placeholder': {
+                color: '#999'
+            },
+            ':-webkit-autofill': {
+                color: 'purple'
+            },
+            ':focus': {
+                color: 'blue'
+            }
+        },
+        invalid: {
+            color: '#dc3545',
+            ':-webkit-autofill': {
+                color: '#dc3545'
+            }
+        },
+        complete: {
+            color: '#28a745',
+            ':hover': {
+                color:'#28a745',
+            },
+            ':-webkit-autofill': {
+                color: '#28a745'
+            }
+        },
+        empty: {
+            color: '#000000'
+            /*color: '#db4518',
+            ':hover': {
+              color: '#db4518'
+            },
+            '::placeholder': {
+              color: '#db4518'
+            }*/
+        },
+
+    };
+
+    window.addEventListener('load', function() {
+        const apiKey = getURLParamOrDefault('apiKey', 'pk_sys_c2608001bba7477eae22808e1eb138db')
+        const locale = getURLParamOrDefault('locale', 'en-US');
+        const sessionId = getURLParamOrDefault('sessionId', null);
+        const country = getURLParamOrDefault('country', null);
+        const sellingEntity = getURLParamOrDefault('sellingEntity', null);
+        const type = getURLParamOrDefault('sellingEntity', null);
+
+        const drJS =  new DigitalRiver(apiKey, {locale: locale});
+
+
+        const options = {
+            style: styles,
+            classes: {
+                empty: 'DRElement',
+                base: 'custom--offline-refund-base',
+                invalid: 'custom--invalid',
+                complete: 'custom--complete',
+            },
+            taxIdentifier: {}
+        };
+
+        if(sessionId !== null) {
+            options.taxIdentifier.sessionId = sessionId;
+        }
+        if(country !== null) {
+            options.taxIdentifier.country = country;
+        }
+        if(sellingEntity !== null) {
+            options.taxIdentifier.sellingEntity = sellingEntity;
+        }
+        if(type !== null) {
+            options.taxIdentifier.type = type;
+        }
+
+        const taxId = drJS.createElement('taxidentifier', options);
+
+        taxId.mount('taxid');
+
+        taxId.on('ready', function (event) {
+            addContentToLog( event.elementType + ' ready received \n\n' + JSON.stringify(event, null, 4));
+        });
+
+        taxId.on('change', function (event) {
+            addContentToLog(event.elementType + ' change received \n\n ' + JSON.stringify(event, null, 4));
+        });
+
+        // helper functions
+        function addContentToLog(content) {
+            const log = document.getElementById('log');
+            log.innerHTML = '\n<hr/>\n' + content + log.innerHTML;
+        }
+
+        function getURLParamOrDefault(name, defaultValue) {
+            const results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+            if (results == null){
+                return defaultValue;
+            }
+            else {
+                return decodeURI(results[1]) || 0;
+            }
+        }
+
+    })
+
+
+
+
+</script>
+</body>
+</html>

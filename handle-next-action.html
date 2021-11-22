@@ -7,7 +7,35 @@
     <style>
         body {
             font-family: apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif;
-            margin: 4em;
+            margin:0;
+            padding:0;
+        }
+        #content {
+            padding: 4em;
+        }
+        table {
+            border-collapse: collapse;
+            margin: 1em 0
+        }
+        th {
+            color: #aaa;
+        }
+        td,th {
+            text-align:left;
+            border: 1px solid #ddd;
+            padding: .5em;
+        }
+        th {
+            border-top:none;
+        }
+        td:first-of-type, th:first-of-type {
+            border-left: none;
+        }
+        td:last-of-type, th:last-of-type {
+            border-right: none;
+        }
+        #error {
+            color: red;
         }
         #log {
             white-space: pre;
@@ -24,50 +52,79 @@
     </style>
 <script defer src="dropInStyles.js"></script><script defer src="DigitalRiver.js"></script><link href="css/DigitalRiver.css" rel="stylesheet"></head>
 <body>
-<h1>Element Example</h1>
-
-<button id="handleCreditCard" onclick="run()">Submit Payment</button>
-<div id="log"></div>
-<script>
-
-  let digitalRiverPayments;
-
-  window.onload = function () {
-      digitalRiverPayments = new DigitalRiver('pk_sys_4425248745474706a982f27bdaea9b65');
-  }
-
-  function run() {
-
-    const sessionId = getURLParamOrDefault('sessionId', "d6fe7a43-f127-4e56-9f88-1088db788d39");
-
-    digitalRiverPayments.handleNextAction({
-      "action": "sca_required",
-      "data": {
-        "sessionId": sessionId
-      }
-    }).then( data => {
-      addContentToLog(JSON.stringify(data));
-    })
-
-    // helper functions
-    function addContentToLog(content) {
-      const log = document.getElementById('log');
-      log.innerHTML = '\n<hr/>\n' + content + log.innerHTML;
-    }
-
-  }
+<div id="content">
+    <h1>Handle Next Action Example</h1>
+    <h2>Instructions</h2>
+    <p>Add url parameters to configure your options for the handleNextAction function.</p>
+    <p id="error" style="display:none">Please add a sessionId param</p>
+    <table>
+        <tr>
+            <th>Parameter name</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td>apiKey</td>
+            <td>Defaults to paylive systest key if not provided.</td>
+        </tr>
+        <tr>
+            <td>sessionId</td>
+            <td>Payment session id. Required.</td>
+        </tr>
+        <tr>
+            <td>action</td>
+            <td>Action to take. On this page, defaults to "sca_required" if not provided as url param.</td>
+        </tr>
+    </table>
+    <button id="handleCreditCard">Submit Payment</button>
+    <div id="log"></div>
 
 
-  function getURLParamOrDefault(name, defaultValue) {
-    const results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
-    if (results == null){
-      return defaultValue;
-    }
-    else {
-      return decodeURI(results[1]) || 0;
-    }
-  }
+    <script>
 
-</script>
+        let digitalRiverPayments;
+        const apiKey = getURLParamOrDefault('apiKey','pk_sys_4425248745474706a982f27bdaea9b65');
+        const sessionId = getURLParamOrDefault('sessionId', null);
+        const action = getURLParamOrDefault('action', 'sca_required');
+
+        window.onload = function () {
+            digitalRiverPayments = new DigitalRiver(apiKey);
+            document.getElementById('handleCreditCard').addEventListener('click', () => run());
+        };
+
+        function run() {
+            if(sessionId === null) {
+                document.getElementById('error').style.display = "block";
+            } else {
+                const payload = {
+                    "action": action,
+                    "data": {
+                        "sessionId": sessionId
+                    }
+                };
+
+                digitalRiverPayments.handleNextAction(payload).then(function (data) {
+                    addContentToLog(JSON.stringify(data, null, 4));
+                });
+            }
+        }
+
+        // helper functions
+        function addContentToLog(content) {
+            const log = document.getElementById('log');
+            log.innerHTML = '\n<hr/>\n' + content + log.innerHTML;
+        }
+
+        function getURLParamOrDefault(name, defaultValue) {
+            const results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+            if (results == null){
+                return defaultValue;
+            }
+            else {
+                return decodeURI(results[1]) || 0;
+            }
+        }
+
+    </script>
+</div>
 </body>
 </html>

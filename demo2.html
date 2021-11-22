@@ -718,7 +718,7 @@
   //let apiKey = 'pk_d8013e0122b84103be7b1db903437a46'; //paylive prod key
   //let apiKey = 'pk_hc_b230cec5ef7c44a992af0bcf180ccfaf'; //paylive test key
   //let apiKey = 'pk_test_d6b3712c81c640288142f204a88f3de5'; //headless nonprod
-  let apiKey = 'pk_hc_805a0837ed6a43f5af99caebcddd2b6e'; //test3ds
+  let apiKey = 'pk_sys_c2608001bba7477eae22808e1eb138db'; //test3ds
   let digitalRiverPayments;
   let digitalRiverPayments2;
   let digitalRiverPayments3;
@@ -1665,8 +1665,13 @@
     // Call CreateSource
     const payload = {
       "type": "creditCard",
+      "currency":"EUR",
       //"usage": "single",
       "owner": owner,
+      "futureUse":true,
+      "mandate" : {
+        "terms" : 'test terms'
+      }
       // "amount": 1.2,
       // "currency": "EUR",
     };

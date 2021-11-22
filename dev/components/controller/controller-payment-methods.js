@@ -1883,13 +1883,13 @@ __webpack_require__.r(__webpack_exports__);
 var config = {
   domain: "https://github.digitalriverws.net",
   // eslint-disable-line no-undef
-  paymentServiceUrl: "https://api.digitalriver.com" + '/payments/sources',
+  paymentServiceUrl: "https://dispatch-test.digitalriver.com" + '/payments/sources',
   // eslint-disable-line no-undef
   basePath: "/pages/lbarnes/drjs-demo" || 0,
   // eslint-disable-line no-undef
   applePayMerchantId: "merchant.com.test.cert.digitalriver",
   // eslint-disable-line no-undef
-  applePayMerchantValidationUrl: "https://api.digitalriver.com" + '/payments/apple-pay/session',
+  applePayMerchantValidationUrl: "https://dispatch-test.digitalriver.com" + '/payments/apple-pay/session',
   //eslint-disable-line no-undef
   beaconStorageUrlNonProd: "https://beacon-test.driv-analytics.com/capture",
   // eslint-disable-line no-undef
@@ -1903,23 +1903,40 @@ var config = {
   // eslint-disable-line no-undef
   adyenProdIntegrity: "sha384-wG2z9zSQo61EIvyXmiFCo+zB3y0ZB4hsrXVcANmpP8HLthjoQJQPBh7tZKJSV8jA",
   // eslint-disable-line no-undef
-  onlineBankingBanksUrl: "https://api.digitalriver.com" + '/payments/online-banking/banks',
+  onlineBankingBanksUrl: "https://dispatch-test.digitalriver.com" + '/payments/online-banking/banks',
   // eslint-disable-line no-undef
   originProdKey: "pub.v2.8115061157590058.aHR0cDovL2xvY2FsaG9zdDo4MDgw.FF9fc99f70OC7jS9Ngmqj8z1H_cmKZMXQo_r0cnPAOg",
   // eslint-disable-line no-undef
   originTestKey: "pub.v2.8115061157590058.aHR0cDovL2xvY2FsaG9zdDo4MDgw.FF9fc99f70OC7jS9Ngmqj8z1H_cmKZMXQo_r0cnPAOg",
   // eslint-disable-line no-undef
-  paymentServiceBaseUrl: "https://api.digitalriver.com" + '/payments',
+  paymentServiceBaseUrl: "https://dispatch-test.digitalriver.com" + '/payments',
   // eslint-disable-line no-undef
   paypalRedirectBaseUrl: "https://payments-test.digitalriver.com/redirect/",
   // eslint-disable-line no-undef
-  paymentMethodsUrl: "https://api.digitalriver.com" + '/payments/payment-methods',
+  paymentMethodsUrl: "https://dispatch-test.digitalriver.com" + '/payments/payment-methods',
   // eslint-disable-line no-undef
-  apiUrl: "https://api.digitalriver.com",
+  apiUrl: "https://dispatch-test.digitalriver.com",
   // eslint-disable-line no-undef
   componentsVersionId: "dev" // eslint-disable-line no-undef
 
 };
+
+/***/ }),
+
+/***/ "./src/app/components/controller/controller-language.js":
+/*!**************************************************************!*\
+  !*** ./src/app/components/controller/controller-language.js ***!
+  \**************************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "getLanguageFromLocale": function() { return /* binding */ getLanguageFromLocale; }
+/* harmony export */ });
+function getLanguageFromLocale(locale) {
+  return locale.split('-')[0];
+}
 
 /***/ }),
 
@@ -4640,6 +4657,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _payment_service_request__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../payment-service-request */ "./src/app/payment-service-request.js");
 /* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../config */ "./src/app/components/config.js");
+/* harmony import */ var _controller_language__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./controller-language */ "./src/app/components/controller/controller-language.js");
+
 
 
 
@@ -4652,20 +4671,25 @@ __webpack_require__.r(__webpack_exports__);
  * @param country
  * @param locale
  * @param supportsStorage
- * @returns {Promise<T | never>}
+ * @param recurringModel
+ * @param supportsRecurring
+ * @param supportsFreeTrial
+ * @returns {Promise<Array> | * | Promise<T | Array>}
  */
 
-function runGetPaymentMethodsAndHandleResponse(apiKey, sessionId, currency, country, locale, supportsStorage, recurringModel) {
+function runGetPaymentMethodsAndHandleResponse(apiKey, sessionId, currency, country, locale, supportsStorage, recurringModel, supportsRecurring, supportsFreeTrial) {
   var _context;
 
   var sessionIdParam = createParam('sessionId', sessionId);
   var currencyParam = createParam('currency', currency);
   var countryParam = createParam('country', country);
   var localeParam = createParam('locale', locale ? locale.toLowerCase() : null);
-  var languageParam = createParam('language', locale ? locale.split('-')[0] : null);
+  var languageParam = createParam('language', locale ? (0,_controller_language__WEBPACK_IMPORTED_MODULE_4__.getLanguageFromLocale)(locale) : null);
+  var supportsFreeTrialParam = createParam('supportsFreeTrial', supportsFreeTrial);
+  var supportsRecurringParam = createParam('supportsRecurring', supportsRecurring);
   var supportsStorageParam = createParam('supportsStorage', supportsStorage);
   var recurringModelParam = createParam('recurringModel', recurringModel);
-  var paramURL = paramBuilder([sessionIdParam, currencyParam, countryParam, localeParam, supportsStorageParam, recurringModelParam, languageParam]);
+  var paramURL = paramBuilder([sessionIdParam, currencyParam, countryParam, localeParam, supportsFreeTrialParam, supportsRecurringParam, supportsStorageParam, recurringModelParam, languageParam]);
 
   var url = _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_0___default()(_context = "".concat(_config__WEBPACK_IMPORTED_MODULE_3__.config.paymentMethodsUrl)).call(_context, paramURL);
 

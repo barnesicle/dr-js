@@ -1150,6 +1150,7 @@ function determineAccertifySrc(isTestKey) {
   if (isTestKey) {
     return 'https://test.accdab.net/cdn/cs/k6XxYb13nuApU5VQU1wW_ZcAjvk.js';
   } else {
+    // return 'https://test.accdab.net/cdn/cs/k6XxYb13nuApU5VQU1wW_ZcAjvk.js';
     return 'https://prod.accdab.net/cdn/cs/ZavxZnJmrlgzLHRRpRFX63v-wFY.js';
   }
 }
