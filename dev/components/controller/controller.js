@@ -12872,7 +12872,7 @@ function createFrame(type, node, src, attributes, elementHeight, locale, id, nam
 
   if (type === 'googlepay') {
     frame.setAttribute('allowpaymentrequest', 'true');
-    frame.setAttribute('sandbox', 'allow-forms allow-popups allow-scripts allow-top-navigation');
+    frame.setAttribute('sandbox', 'allow-forms allow-popups allow-scripts allow-top-navigation allow-modals');
   }
 
   _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_1___default()(_context = _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_2___default()(attributes)).call(_context, function (key) {
