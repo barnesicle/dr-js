@@ -11,16 +11,6 @@ module.exports = __webpack_require__(/*! core-js-pure/stable/instance/concat */ 
 
 /***/ }),
 
-/***/ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/filter.js":
-/*!*******************************************************************************!*\
-  !*** ./node_modules/@babel/runtime-corejs3/core-js-stable/instance/filter.js ***!
-  \*******************************************************************************/
-/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
-
-module.exports = __webpack_require__(/*! core-js-pure/stable/instance/filter */ "./node_modules/core-js-pure/stable/instance/filter.js");
-
-/***/ }),
-
 /***/ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/starts-with.js":
 /*!************************************************************************************!*\
   !*** ./node_modules/@babel/runtime-corejs3/core-js-stable/instance/starts-with.js ***!
@@ -1868,138 +1858,25 @@ module.exports = {
 
 /***/ }),
 
-/***/ "./src/app/components/config.js":
-/*!**************************************!*\
-  !*** ./src/app/components/config.js ***!
-  \**************************************/
+/***/ "./src/app/components/api-key-utils.js":
+/*!*********************************************!*\
+  !*** ./src/app/components/api-key-utils.js ***!
+  \*********************************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "config": function() { return /* binding */ config; }
-/* harmony export */ });
-// Holds any configuration data that changes depending on environment
-var config = {
-  domain: "https://github.digitalriverws.net",
-  // eslint-disable-line no-undef
-  paymentServiceUrl: "https://api.digitalriver.com" + '/payments/sources',
-  // eslint-disable-line no-undef
-  basePath: "/pages/lbarnes/drjs-demo" || 0,
-  // eslint-disable-line no-undef
-  applePayMerchantId: "merchant.com.test.cert.digitalriver",
-  // eslint-disable-line no-undef
-  applePayMerchantValidationUrl: "https://api.digitalriver.com" + '/payments/apple-pay/session',
-  //eslint-disable-line no-undef
-  beaconStorageUrlNonProd: "https://beacon-test.driv-analytics.com/capture",
-  // eslint-disable-line no-undef
-  beaconStorageUrlProd: "https://beacon.driv-analytics.com/capture",
-  // eslint-disable-line no-undef
-  adyenProdUrl: "https://checkoutshopper-live.adyen.com/checkoutshopper/sdk/3.10.1/adyen.js",
-  // eslint-disable-line no-undef
-  adyenTestUrl: "https://checkoutshopper-test.adyen.com/checkoutshopper/sdk/3.10.1/adyen.js",
-  // eslint-disable-line no-undef
-  adyenTestIntegrity: "sha384-wG2z9zSQo61EIvyXmiFCo+zB3y0ZB4hsrXVcANmpP8HLthjoQJQPBh7tZKJSV8jA",
-  // eslint-disable-line no-undef
-  adyenProdIntegrity: "sha384-wG2z9zSQo61EIvyXmiFCo+zB3y0ZB4hsrXVcANmpP8HLthjoQJQPBh7tZKJSV8jA",
-  // eslint-disable-line no-undef
-  onlineBankingBanksUrl: "https://api.digitalriver.com" + '/payments/online-banking/banks',
-  // eslint-disable-line no-undef
-  originProdKey: "pub.v2.8115061157590058.aHR0cDovL2xvY2FsaG9zdDo4MDgw.FF9fc99f70OC7jS9Ngmqj8z1H_cmKZMXQo_r0cnPAOg",
-  // eslint-disable-line no-undef
-  originTestKey: "pub.v2.8115061157590058.aHR0cDovL2xvY2FsaG9zdDo4MDgw.FF9fc99f70OC7jS9Ngmqj8z1H_cmKZMXQo_r0cnPAOg",
-  // eslint-disable-line no-undef
-  paymentServiceBaseUrl: "https://api.digitalriver.com" + '/payments',
-  // eslint-disable-line no-undef
-  paypalRedirectBaseUrl: "https://payments-test.digitalriver.com/redirect/",
-  // eslint-disable-line no-undef
-  paymentMethodsUrl: "https://api.digitalriver.com" + '/payments/payment-methods',
-  // eslint-disable-line no-undef
-  apiUrl: "https://api.digitalriver.com",
-  // eslint-disable-line no-undef
-  componentsVersionId: "dev" // eslint-disable-line no-undef
-
-};
-
-/***/ }),
-
-/***/ "./src/app/components/controller/controller-language.js":
-/*!**************************************************************!*\
-  !*** ./src/app/components/controller/controller-language.js ***!
-  \**************************************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "getLanguageFromLocale": function() { return /* binding */ getLanguageFromLocale; }
-/* harmony export */ });
-function getLanguageFromLocale(locale) {
-  return locale.split('-')[0];
-}
-
-/***/ }),
-
-/***/ "./src/app/payment-service-request.js":
-/*!********************************************!*\
-  !*** ./src/app/payment-service-request.js ***!
-  \********************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "paymentServiceRequest": function() { return /* binding */ paymentServiceRequest; },
-/* harmony export */   "paymentServiceGetRequest": function() { return /* binding */ paymentServiceGetRequest; }
+/* harmony export */   "isTestApiKey": function() { return /* binding */ isTestApiKey; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_starts_with__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/starts-with */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/starts-with.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_starts_with__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_starts_with__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 
+function isTestApiKey(apiKey) {
+  var _context, _context2, _context3;
 
-
-
-var paymentServiceRequest = function paymentServiceRequest(data, apiKey, paymentApiUrl, applicationHeader) {
-  var options = {
-    maxRedirects: 0,
-    responseType: 'json',
-    timeout: 15000,
-    headers: {
-      'Content-Type': 'application/json',
-      'version': 'new',
-      'Authorization': generateAuthHeader(apiKey),
-      'x-debug-drjs-application': applicationHeader
-    }
-  };
-  var url = paymentApiUrl !== undefined ? paymentApiUrl : undefined; //eslint-disable-line no-undef
-
-  return axios__WEBPACK_IMPORTED_MODULE_1___default().post(url, data, options);
-};
-var paymentServiceGetRequest = function paymentServiceGetRequest(apiKey, paymentApiUrl) {
-  var options = {
-    maxRedirects: 0,
-    responseType: 'json',
-    timeout: 15000,
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': generateAuthHeader(apiKey)
-    }
-  };
-  return axios__WEBPACK_IMPORTED_MODULE_1___default().get(paymentApiUrl, options);
-};
-
-var encodeApiKey = function encodeApiKey(apiKey) {
-  return btoa(apiKey);
-};
-
-var generateAuthHeader = function generateAuthHeader(apiKey) {
-  if (_babel_runtime_corejs3_core_js_stable_instance_starts_with__WEBPACK_IMPORTED_MODULE_0___default()(apiKey).call(apiKey, 'pk_')) {
-    return 'bearer ' + apiKey;
-  } else {
-    return 'basic ' + encodeApiKey(apiKey);
-  }
-};
+  return _babel_runtime_corejs3_core_js_stable_instance_starts_with__WEBPACK_IMPORTED_MODULE_0___default()(_context = apiKey.toLowerCase()).call(_context, 'pk_test_') || _babel_runtime_corejs3_core_js_stable_instance_starts_with__WEBPACK_IMPORTED_MODULE_0___default()(_context2 = apiKey.toLowerCase()).call(_context2, 'pk_hc_') || _babel_runtime_corejs3_core_js_stable_instance_starts_with__WEBPACK_IMPORTED_MODULE_0___default()(_context3 = apiKey.toLowerCase()).call(_context3, 'pk_sys_');
+}
 
 /***/ }),
 
@@ -2017,20 +1894,6 @@ module.exports = entryVirtual('Array').concat;
 
 /***/ }),
 
-/***/ "./node_modules/core-js-pure/es/array/virtual/filter.js":
-/*!**************************************************************!*\
-  !*** ./node_modules/core-js-pure/es/array/virtual/filter.js ***!
-  \**************************************************************/
-/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
-
-__webpack_require__(/*! ../../../modules/es.array.filter */ "./node_modules/core-js-pure/modules/es.array.filter.js");
-var entryVirtual = __webpack_require__(/*! ../../../internals/entry-virtual */ "./node_modules/core-js-pure/internals/entry-virtual.js");
-
-module.exports = entryVirtual('Array').filter;
-
-
-/***/ }),
-
 /***/ "./node_modules/core-js-pure/es/instance/concat.js":
 /*!*********************************************************!*\
   !*** ./node_modules/core-js-pure/es/instance/concat.js ***!
@@ -2044,24 +1907,6 @@ var ArrayPrototype = Array.prototype;
 module.exports = function (it) {
   var own = it.concat;
   return it === ArrayPrototype || (it instanceof Array && own === ArrayPrototype.concat) ? concat : own;
-};
-
-
-/***/ }),
-
-/***/ "./node_modules/core-js-pure/es/instance/filter.js":
-/*!*********************************************************!*\
-  !*** ./node_modules/core-js-pure/es/instance/filter.js ***!
-  \*********************************************************/
-/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
-
-var filter = __webpack_require__(/*! ../array/virtual/filter */ "./node_modules/core-js-pure/es/array/virtual/filter.js");
-
-var ArrayPrototype = Array.prototype;
-
-module.exports = function (it) {
-  var own = it.filter;
-  return it === ArrayPrototype || (it instanceof Array && own === ArrayPrototype.filter) ? filter : own;
 };
 
 
@@ -2127,88 +1972,6 @@ module.exports = function (it) {
   if (!isObject(it)) {
     throw TypeError(String(it) + ' is not an object');
   } return it;
-};
-
-
-/***/ }),
-
-/***/ "./node_modules/core-js-pure/internals/array-iteration.js":
-/*!****************************************************************!*\
-  !*** ./node_modules/core-js-pure/internals/array-iteration.js ***!
-  \****************************************************************/
-/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
-
-var bind = __webpack_require__(/*! ../internals/function-bind-context */ "./node_modules/core-js-pure/internals/function-bind-context.js");
-var IndexedObject = __webpack_require__(/*! ../internals/indexed-object */ "./node_modules/core-js-pure/internals/indexed-object.js");
-var toObject = __webpack_require__(/*! ../internals/to-object */ "./node_modules/core-js-pure/internals/to-object.js");
-var toLength = __webpack_require__(/*! ../internals/to-length */ "./node_modules/core-js-pure/internals/to-length.js");
-var arraySpeciesCreate = __webpack_require__(/*! ../internals/array-species-create */ "./node_modules/core-js-pure/internals/array-species-create.js");
-
-var push = [].push;
-
-// `Array.prototype.{ forEach, map, filter, some, every, find, findIndex, filterOut }` methods implementation
-var createMethod = function (TYPE) {
-  var IS_MAP = TYPE == 1;
-  var IS_FILTER = TYPE == 2;
-  var IS_SOME = TYPE == 3;
-  var IS_EVERY = TYPE == 4;
-  var IS_FIND_INDEX = TYPE == 6;
-  var IS_FILTER_OUT = TYPE == 7;
-  var NO_HOLES = TYPE == 5 || IS_FIND_INDEX;
-  return function ($this, callbackfn, that, specificCreate) {
-    var O = toObject($this);
-    var self = IndexedObject(O);
-    var boundFunction = bind(callbackfn, that, 3);
-    var length = toLength(self.length);
-    var index = 0;
-    var create = specificCreate || arraySpeciesCreate;
-    var target = IS_MAP ? create($this, length) : IS_FILTER || IS_FILTER_OUT ? create($this, 0) : undefined;
-    var value, result;
-    for (;length > index; index++) if (NO_HOLES || index in self) {
-      value = self[index];
-      result = boundFunction(value, index, O);
-      if (TYPE) {
-        if (IS_MAP) target[index] = result; // map
-        else if (result) switch (TYPE) {
-          case 3: return true;              // some
-          case 5: return value;             // find
-          case 6: return index;             // findIndex
-          case 2: push.call(target, value); // filter
-        } else switch (TYPE) {
-          case 4: return false;             // every
-          case 7: push.call(target, value); // filterOut
-        }
-      }
-    }
-    return IS_FIND_INDEX ? -1 : IS_SOME || IS_EVERY ? IS_EVERY : target;
-  };
-};
-
-module.exports = {
-  // `Array.prototype.forEach` method
-  // https://tc39.es/ecma262/#sec-array.prototype.foreach
-  forEach: createMethod(0),
-  // `Array.prototype.map` method
-  // https://tc39.es/ecma262/#sec-array.prototype.map
-  map: createMethod(1),
-  // `Array.prototype.filter` method
-  // https://tc39.es/ecma262/#sec-array.prototype.filter
-  filter: createMethod(2),
-  // `Array.prototype.some` method
-  // https://tc39.es/ecma262/#sec-array.prototype.some
-  some: createMethod(3),
-  // `Array.prototype.every` method
-  // https://tc39.es/ecma262/#sec-array.prototype.every
-  every: createMethod(4),
-  // `Array.prototype.find` method
-  // https://tc39.es/ecma262/#sec-array.prototype.find
-  find: createMethod(5),
-  // `Array.prototype.findIndex` method
-  // https://tc39.es/ecma262/#sec-array.prototype.findIndex
-  findIndex: createMethod(6),
-  // `Array.prototype.filterOut` method
-  // https://github.com/tc39/proposal-array-filtering
-  filterOut: createMethod(7)
 };
 
 
@@ -3268,32 +3031,6 @@ $({ target: 'Array', proto: true, forced: FORCED }, {
 
 /***/ }),
 
-/***/ "./node_modules/core-js-pure/modules/es.array.filter.js":
-/*!**************************************************************!*\
-  !*** ./node_modules/core-js-pure/modules/es.array.filter.js ***!
-  \**************************************************************/
-/***/ (function(__unused_webpack_module, __unused_webpack_exports, __webpack_require__) {
-
-"use strict";
-
-var $ = __webpack_require__(/*! ../internals/export */ "./node_modules/core-js-pure/internals/export.js");
-var $filter = __webpack_require__(/*! ../internals/array-iteration */ "./node_modules/core-js-pure/internals/array-iteration.js").filter;
-var arrayMethodHasSpeciesSupport = __webpack_require__(/*! ../internals/array-method-has-species-support */ "./node_modules/core-js-pure/internals/array-method-has-species-support.js");
-
-var HAS_SPECIES_SUPPORT = arrayMethodHasSpeciesSupport('filter');
-
-// `Array.prototype.filter` method
-// https://tc39.es/ecma262/#sec-array.prototype.filter
-// with adding support of @@species
-$({ target: 'Array', proto: true, forced: !HAS_SPECIES_SUPPORT }, {
-  filter: function filter(callbackfn /* , thisArg */) {
-    return $filter(this, callbackfn, arguments.length > 1 ? arguments[1] : undefined);
-  }
-});
-
-
-/***/ }),
-
 /***/ "./node_modules/core-js-pure/modules/es.string.starts-with.js":
 /*!********************************************************************!*\
   !*** ./node_modules/core-js-pure/modules/es.string.starts-with.js ***!
@@ -3345,19 +3082,6 @@ $({ target: 'String', proto: true, forced: !MDN_POLYFILL_BUG && !CORRECT_IS_REGE
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 var parent = __webpack_require__(/*! ../../es/instance/concat */ "./node_modules/core-js-pure/es/instance/concat.js");
-
-module.exports = parent;
-
-
-/***/ }),
-
-/***/ "./node_modules/core-js-pure/stable/instance/filter.js":
-/*!*************************************************************!*\
-  !*** ./node_modules/core-js-pure/stable/instance/filter.js ***!
-  \*************************************************************/
-/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
-
-var parent = __webpack_require__(/*! ../../es/instance/filter */ "./node_modules/core-js-pure/es/instance/filter.js");
 
 module.exports = parent;
 
@@ -4644,80 +4368,92 @@ var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be in strict mode.
 !function() {
 "use strict";
-/*!*********************************************************************!*\
-  !*** ./src/app/components/controller/controller-payment-methods.js ***!
-  \*********************************************************************/
+/*!**********************************************************!*\
+  !*** ./src/app/components/td/accertify-config-getter.js ***!
+  \**********************************************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "runGetPaymentMethodsAndHandleResponse": function() { return /* binding */ runGetPaymentMethodsAndHandleResponse; }
+/* harmony export */   "getAccertifyConfig": function() { return /* binding */ getAccertifyConfig; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/concat */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/concat.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/filter */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/filter.js");
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _payment_service_request__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../payment-service-request */ "./src/app/payment-service-request.js");
-/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../config */ "./src/app/components/config.js");
-/* harmony import */ var _controller_language__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./controller-language */ "./src/app/components/controller/controller-language.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _api_key_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../api-key-utils */ "./src/app/components/api-key-utils.js");
 
 
 
 
 
 /**
- * Gets the payment methods
- * @param apiKey
- * @param sessionId
- * @param currency
- * @param country
- * @param locale
- * @param supportsStorage
- * @param recurringModel
- * @param supportsRecurring
- * @param supportsFreeTrial
- * @returns {Promise<Array> | * | Promise<T | Array>}
+ *
+ * @param {string} apiKey
+ * @returns {Promise<AxiosResponse<T>>}
  */
 
-function runGetPaymentMethodsAndHandleResponse(apiKey, sessionId, currency, country, locale, supportsStorage, recurringModel, supportsRecurring, supportsFreeTrial) {
-  var _context;
+function getAccertifyConfig(apiKey) {
+  var _context, _context2;
 
-  var sessionIdParam = createParam('sessionId', sessionId);
-  var currencyParam = createParam('currency', currency);
-  var countryParam = createParam('country', country);
-  var localeParam = createParam('locale', locale ? locale.toLowerCase() : null);
-  var languageParam = createParam('language', locale ? (0,_controller_language__WEBPACK_IMPORTED_MODULE_4__.getLanguageFromLocale)(locale) : null);
-  var supportsFreeTrialParam = createParam('supportsFreeTrial', supportsFreeTrial);
-  var supportsRecurringParam = createParam('supportsRecurring', supportsRecurring);
-  var supportsStorageParam = createParam('supportsStorage', supportsStorage);
-  var recurringModelParam = createParam('recurringModel', recurringModel);
-  var paramURL = paramBuilder([sessionIdParam, currencyParam, countryParam, localeParam, supportsFreeTrialParam, supportsRecurringParam, supportsStorageParam, recurringModelParam, languageParam]);
+  var isTestKey = (0,_api_key_utils__WEBPACK_IMPORTED_MODULE_2__.isTestApiKey)(apiKey);
+  var dispatchKey = determineDispatchKey(isTestKey);
+  var dispatchHost = determineDispatchHost(isTestKey);
 
-  var url = _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_0___default()(_context = "".concat(_config__WEBPACK_IMPORTED_MODULE_3__.config.paymentMethodsUrl)).call(_context, paramURL);
+  var accertifyConfigUrl = _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_0___default()(_context = _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_0___default()(_context2 = "https://".concat(dispatchHost, "/cfs-accertify-beacon/")).call(_context2, apiKey, "?apiKey=")).call(_context, dispatchKey);
 
-  return (0,_payment_service_request__WEBPACK_IMPORTED_MODULE_2__.paymentServiceGetRequest)(apiKey, url).then(handleSuccessResponse).catch(handleErrorResponse);
+  var options = {
+    maxRedirects: 0,
+    responseType: 'json',
+    timeout: 15000,
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  };
+  return axios__WEBPACK_IMPORTED_MODULE_1___default().get(accertifyConfigUrl, options);
 }
+/**
+ *
+ * @param {boolean} isTestKey
+ * @returns {string} dispatch key
+ */
+// function determineDispatchKey(isTestKey) {
+//   if (isTestKey) {
+//     return '2797a7a9657642fbb5909a0efe1e28be';
+//   } else {
+//     return '9ee2fdcfa6c7451aa011a21b3b7c4201';
+//   }
+// }
 
-function createParam(name, value) {
-  return value !== null && typeof value !== 'undefined' && (value.length > 0 || typeof value === 'boolean') ? name + '=' + value : '';
+/**
+ *
+ * @returns {string} dispatch key
+ */
+
+function determineDispatchKey() {
+  // for now we are not enabling accertify or checking config for test keys. may change in future. see function above.
+  return '9ee2fdcfa6c7451aa011a21b3b7c4201';
 }
+/**
+ *
+ * @param {boolean} isTestKey
+ * @returns {string} dispatch host
+ */
+// function determineDispatchHost(isTestKey) {
+//   if (isTestKey) {
+//     return 'api-cte-ext.digitalriver.com';
+//   } else {
+//   return 'api.digitalriver.com';
+//   }
+// }
 
-function paramBuilder(params) {
-  var validParams = _babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_1___default()(params).call(params, function (param) {
-    return param.length > 0;
-  });
+/**
+ *
+ * @returns {string} dispatch host
+ */
 
-  if (validParams.length === 0) {
-    return '';
-  } else {
-    return '?' + validParams.join('&');
-  }
-}
 
-function handleSuccessResponse(response) {
-  return response.data;
-}
-
-function handleErrorResponse() {
-  return [];
+function determineDispatchHost() {
+  // for now we are not enabling accertify or checking config for test keys. may change in future. see function above.
+  return 'api.digitalriver.com';
 }
 }();
 var __webpack_export_target__ = self;
@@ -4725,4 +4461,4 @@ for(var i in __webpack_exports__) __webpack_export_target__[i] = __webpack_expor
 if(__webpack_exports__.__esModule) Object.defineProperty(__webpack_export_target__, "__esModule", { value: true });
 /******/ })()
 ;
-//# sourceMappingURL=controller\controller-payment-methods.js.map
+//# sourceMappingURL=td\accertify-config-getter.js.map

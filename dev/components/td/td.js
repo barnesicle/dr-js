@@ -1,6 +1,16 @@
 /******/ (function() { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/concat.js":
+/*!*******************************************************************************!*\
+  !*** ./node_modules/@babel/runtime-corejs3/core-js-stable/instance/concat.js ***!
+  \*******************************************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! core-js-pure/stable/instance/concat */ "./node_modules/core-js-pure/stable/instance/concat.js");
+
+/***/ }),
+
 /***/ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/for-each.js":
 /*!*********************************************************************************!*\
   !*** ./node_modules/@babel/runtime-corejs3/core-js-stable/instance/for-each.js ***!
@@ -1976,9 +1986,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_starts_with__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_starts_with__WEBPACK_IMPORTED_MODULE_0__);
 
 function isTestApiKey(apiKey) {
-  var _context, _context2;
+  var _context, _context2, _context3;
 
-  return _babel_runtime_corejs3_core_js_stable_instance_starts_with__WEBPACK_IMPORTED_MODULE_0___default()(_context = apiKey.toLowerCase()).call(_context, 'pk_test_') || _babel_runtime_corejs3_core_js_stable_instance_starts_with__WEBPACK_IMPORTED_MODULE_0___default()(_context2 = apiKey.toLowerCase()).call(_context2, 'pk_hc_');
+  return _babel_runtime_corejs3_core_js_stable_instance_starts_with__WEBPACK_IMPORTED_MODULE_0___default()(_context = apiKey.toLowerCase()).call(_context, 'pk_test_') || _babel_runtime_corejs3_core_js_stable_instance_starts_with__WEBPACK_IMPORTED_MODULE_0___default()(_context2 = apiKey.toLowerCase()).call(_context2, 'pk_hc_') || _babel_runtime_corejs3_core_js_stable_instance_starts_with__WEBPACK_IMPORTED_MODULE_0___default()(_context3 = apiKey.toLowerCase()).call(_context3, 'pk_sys_');
 }
 
 /***/ }),
@@ -1998,13 +2008,13 @@ __webpack_require__.r(__webpack_exports__);
 var config = {
   domain: "https://github.digitalriverws.net",
   // eslint-disable-line no-undef
-  paymentServiceUrl: "https://dispatch-test.digitalriver.com" + '/payments/sources',
+  paymentServiceUrl: "https://api.digitalriver.com" + '/payments/sources',
   // eslint-disable-line no-undef
   basePath: "/pages/lbarnes/drjs-demo" || 0,
   // eslint-disable-line no-undef
   applePayMerchantId: "merchant.com.test.cert.digitalriver",
   // eslint-disable-line no-undef
-  applePayMerchantValidationUrl: "https://dispatch-test.digitalriver.com" + '/payments/apple-pay/session',
+  applePayMerchantValidationUrl: "https://api.digitalriver.com" + '/payments/apple-pay/session',
   //eslint-disable-line no-undef
   beaconStorageUrlNonProd: "https://beacon-test.driv-analytics.com/capture",
   // eslint-disable-line no-undef
@@ -2018,23 +2028,117 @@ var config = {
   // eslint-disable-line no-undef
   adyenProdIntegrity: "sha384-wG2z9zSQo61EIvyXmiFCo+zB3y0ZB4hsrXVcANmpP8HLthjoQJQPBh7tZKJSV8jA",
   // eslint-disable-line no-undef
-  onlineBankingBanksUrl: "https://dispatch-test.digitalriver.com" + '/payments/online-banking/banks',
+  onlineBankingBanksUrl: "https://api.digitalriver.com" + '/payments/online-banking/banks',
   // eslint-disable-line no-undef
   originProdKey: "pub.v2.8115061157590058.aHR0cDovL2xvY2FsaG9zdDo4MDgw.FF9fc99f70OC7jS9Ngmqj8z1H_cmKZMXQo_r0cnPAOg",
   // eslint-disable-line no-undef
   originTestKey: "pub.v2.8115061157590058.aHR0cDovL2xvY2FsaG9zdDo4MDgw.FF9fc99f70OC7jS9Ngmqj8z1H_cmKZMXQo_r0cnPAOg",
   // eslint-disable-line no-undef
-  paymentServiceBaseUrl: "https://dispatch-test.digitalriver.com" + '/payments',
+  paymentServiceBaseUrl: "https://api.digitalriver.com" + '/payments',
   // eslint-disable-line no-undef
   paypalRedirectBaseUrl: "https://payments-test.digitalriver.com/redirect/",
   // eslint-disable-line no-undef
-  paymentMethodsUrl: "https://dispatch-test.digitalriver.com" + '/payments/payment-methods',
+  paymentMethodsUrl: "https://api.digitalriver.com" + '/payments/payment-methods',
   // eslint-disable-line no-undef
-  apiUrl: "https://dispatch-test.digitalriver.com",
+  apiUrl: "https://api.digitalriver.com",
   // eslint-disable-line no-undef
   componentsVersionId: "dev" // eslint-disable-line no-undef
 
 };
+
+/***/ }),
+
+/***/ "./src/app/components/td/accertify-config-getter.js":
+/*!**********************************************************!*\
+  !*** ./src/app/components/td/accertify-config-getter.js ***!
+  \**********************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "getAccertifyConfig": function() { return /* binding */ getAccertifyConfig; }
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/concat */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/concat.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _api_key_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../api-key-utils */ "./src/app/components/api-key-utils.js");
+
+
+
+
+
+/**
+ *
+ * @param {string} apiKey
+ * @returns {Promise<AxiosResponse<T>>}
+ */
+
+function getAccertifyConfig(apiKey) {
+  var _context, _context2;
+
+  var isTestKey = (0,_api_key_utils__WEBPACK_IMPORTED_MODULE_2__.isTestApiKey)(apiKey);
+  var dispatchKey = determineDispatchKey(isTestKey);
+  var dispatchHost = determineDispatchHost(isTestKey);
+
+  var accertifyConfigUrl = _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_0___default()(_context = _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_0___default()(_context2 = "https://".concat(dispatchHost, "/cfs-accertify-beacon/")).call(_context2, apiKey, "?apiKey=")).call(_context, dispatchKey);
+
+  var options = {
+    maxRedirects: 0,
+    responseType: 'json',
+    timeout: 15000,
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  };
+  return axios__WEBPACK_IMPORTED_MODULE_1___default().get(accertifyConfigUrl, options);
+}
+/**
+ *
+ * @param {boolean} isTestKey
+ * @returns {string} dispatch key
+ */
+// function determineDispatchKey(isTestKey) {
+//   if (isTestKey) {
+//     return '2797a7a9657642fbb5909a0efe1e28be';
+//   } else {
+//     return '9ee2fdcfa6c7451aa011a21b3b7c4201';
+//   }
+// }
+
+/**
+ *
+ * @returns {string} dispatch key
+ */
+
+function determineDispatchKey() {
+  // for now we are not enabling accertify or checking config for test keys. may change in future. see function above.
+  return '9ee2fdcfa6c7451aa011a21b3b7c4201';
+}
+/**
+ *
+ * @param {boolean} isTestKey
+ * @returns {string} dispatch host
+ */
+// function determineDispatchHost(isTestKey) {
+//   if (isTestKey) {
+//     return 'api-cte-ext.digitalriver.com';
+//   } else {
+//   return 'api.digitalriver.com';
+//   }
+// }
+
+/**
+ *
+ * @returns {string} dispatch host
+ */
+
+
+function determineDispatchHost() {
+  // for now we are not enabling accertify or checking config for test keys. may change in future. see function above.
+  return 'api.digitalriver.com';
+}
 
 /***/ }),
 
@@ -2054,13 +2158,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _api_key_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../api-key-utils */ "./src/app/components/api-key-utils.js");
 
 
-function createAccertifyScript(src) {
+function createAccertifyScript(src, dvcf) {
   var script = window.document.createElement('script');
   script.type = 'text/javascript';
   script.src = src;
   script.setAttribute('id', 'bcn');
   script.setAttribute('dvc', 'a');
   script.setAttribute('dvct', '500');
+
+  if (typeof dvcf !== 'undefined') {
+    script.setAttribute('dvcf', dvcf);
+  }
+
   script.async = true;
   return script;
 }
@@ -2069,14 +2178,13 @@ function determineAccertifySrc(isTestKey) {
   if (isTestKey) {
     return 'https://test.accdab.net/cdn/cs/k6XxYb13nuApU5VQU1wW_ZcAjvk.js';
   } else {
-    // return 'https://test.accdab.net/cdn/cs/k6XxYb13nuApU5VQU1wW_ZcAjvk.js';
     return 'https://prod.accdab.net/cdn/cs/ZavxZnJmrlgzLHRRpRFX63v-wFY.js';
   }
 }
 
-function addAccertifyScript(apiKey) {
+function addAccertifyScript(apiKey, dvcf) {
   var isTestKey = (0,_api_key_utils__WEBPACK_IMPORTED_MODULE_0__.isTestApiKey)(apiKey);
-  var script = createAccertifyScript(determineAccertifySrc(isTestKey));
+  var script = createAccertifyScript(determineAccertifySrc(isTestKey), dvcf);
   window.document.body.appendChild(script);
 }
 function isAccertifyLoaded(window) {
@@ -2382,6 +2490,20 @@ function _on(name, data, callback) {
 
 /***/ }),
 
+/***/ "./node_modules/core-js-pure/es/array/virtual/concat.js":
+/*!**************************************************************!*\
+  !*** ./node_modules/core-js-pure/es/array/virtual/concat.js ***!
+  \**************************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+__webpack_require__(/*! ../../../modules/es.array.concat */ "./node_modules/core-js-pure/modules/es.array.concat.js");
+var entryVirtual = __webpack_require__(/*! ../../../internals/entry-virtual */ "./node_modules/core-js-pure/internals/entry-virtual.js");
+
+module.exports = entryVirtual('Array').concat;
+
+
+/***/ }),
+
 /***/ "./node_modules/core-js-pure/es/array/virtual/for-each.js":
 /*!****************************************************************!*\
   !*** ./node_modules/core-js-pure/es/array/virtual/for-each.js ***!
@@ -2406,6 +2528,24 @@ __webpack_require__(/*! ../../../modules/es.array.index-of */ "./node_modules/co
 var entryVirtual = __webpack_require__(/*! ../../../internals/entry-virtual */ "./node_modules/core-js-pure/internals/entry-virtual.js");
 
 module.exports = entryVirtual('Array').indexOf;
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js-pure/es/instance/concat.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/core-js-pure/es/instance/concat.js ***!
+  \*********************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+var concat = __webpack_require__(/*! ../array/virtual/concat */ "./node_modules/core-js-pure/es/array/virtual/concat.js");
+
+var ArrayPrototype = Array.prototype;
+
+module.exports = function (it) {
+  var own = it.concat;
+  return it === ArrayPrototype || (it instanceof Array && own === ArrayPrototype.concat) ? concat : own;
+};
 
 
 /***/ }),
@@ -7233,6 +7373,19 @@ module.exports = parent;
 
 /***/ }),
 
+/***/ "./node_modules/core-js-pure/stable/instance/concat.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/core-js-pure/stable/instance/concat.js ***!
+  \*************************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+var parent = __webpack_require__(/*! ../../es/instance/concat */ "./node_modules/core-js-pure/es/instance/concat.js");
+
+module.exports = parent;
+
+
+/***/ }),
+
 /***/ "./node_modules/core-js-pure/stable/instance/for-each.js":
 /*!***************************************************************!*\
   !*** ./node_modules/core-js-pure/stable/instance/for-each.js ***!
@@ -11658,6 +11811,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _beacon_beacon_sender__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../beacon/beacon-sender */ "./src/beacon/beacon-sender.js");
 /* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../config */ "./src/app/components/config.js");
 /* harmony import */ var _accertify__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./accertify */ "./src/app/components/td/accertify.js");
+/* harmony import */ var _accertify_config_getter__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./accertify-config-getter */ "./src/app/components/td/accertify-config-getter.js");
+/* harmony import */ var _api_key_utils__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../api-key-utils */ "./src/app/components/api-key-utils.js");
+
+
 
 
 
@@ -11816,9 +11973,26 @@ function handleBeaconInitialData(event) {
   }
 
   components['beacon'].apiKey = apiKey;
-  components['beacon'].customerID = customerID;
-  (0,_accertify__WEBPACK_IMPORTED_MODULE_11__.addAccertifyScript)(apiKey);
-  return _babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_4___default().resolve();
+  components['beacon'].customerID = customerID; // for now we are not enabling accertify or checking config for test keys. may change in future
+
+  if ((0,_api_key_utils__WEBPACK_IMPORTED_MODULE_13__.isTestApiKey)(apiKey)) {
+    return _babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_4___default().resolve();
+  }
+
+  return (0,_accertify_config_getter__WEBPACK_IMPORTED_MODULE_12__.getAccertifyConfig)(apiKey).then(function (response) {
+    var _response$data = response.data,
+        enabled = _response$data.enabled,
+        dvcf = _response$data.dvcf;
+
+    if (enabled) {
+      (0,_accertify__WEBPACK_IMPORTED_MODULE_11__.addAccertifyScript)(apiKey, dvcf);
+    }
+
+    return _babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_4___default().resolve();
+  }).catch(function () {
+    (0,_accertify__WEBPACK_IMPORTED_MODULE_11__.addAccertifyScript)(apiKey);
+    return _babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_4___default().resolve();
+  });
 }
 }();
 var __webpack_export_target__ = self;

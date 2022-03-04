@@ -26,9 +26,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_starts_with__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_starts_with__WEBPACK_IMPORTED_MODULE_0__);
 
 function isTestApiKey(apiKey) {
-  var _context, _context2;
+  var _context, _context2, _context3;
 
-  return _babel_runtime_corejs3_core_js_stable_instance_starts_with__WEBPACK_IMPORTED_MODULE_0___default()(_context = apiKey.toLowerCase()).call(_context, 'pk_test_') || _babel_runtime_corejs3_core_js_stable_instance_starts_with__WEBPACK_IMPORTED_MODULE_0___default()(_context2 = apiKey.toLowerCase()).call(_context2, 'pk_hc_');
+  return _babel_runtime_corejs3_core_js_stable_instance_starts_with__WEBPACK_IMPORTED_MODULE_0___default()(_context = apiKey.toLowerCase()).call(_context, 'pk_test_') || _babel_runtime_corejs3_core_js_stable_instance_starts_with__WEBPACK_IMPORTED_MODULE_0___default()(_context2 = apiKey.toLowerCase()).call(_context2, 'pk_hc_') || _babel_runtime_corejs3_core_js_stable_instance_starts_with__WEBPACK_IMPORTED_MODULE_0___default()(_context3 = apiKey.toLowerCase()).call(_context3, 'pk_sys_');
 }
 
 /***/ }),
@@ -1135,13 +1135,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _api_key_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../api-key-utils */ "./src/app/components/api-key-utils.js");
 
 
-function createAccertifyScript(src) {
+function createAccertifyScript(src, dvcf) {
   var script = window.document.createElement('script');
   script.type = 'text/javascript';
   script.src = src;
   script.setAttribute('id', 'bcn');
   script.setAttribute('dvc', 'a');
   script.setAttribute('dvct', '500');
+
+  if (typeof dvcf !== 'undefined') {
+    script.setAttribute('dvcf', dvcf);
+  }
+
   script.async = true;
   return script;
 }
@@ -1150,14 +1155,13 @@ function determineAccertifySrc(isTestKey) {
   if (isTestKey) {
     return 'https://test.accdab.net/cdn/cs/k6XxYb13nuApU5VQU1wW_ZcAjvk.js';
   } else {
-    // return 'https://test.accdab.net/cdn/cs/k6XxYb13nuApU5VQU1wW_ZcAjvk.js';
     return 'https://prod.accdab.net/cdn/cs/ZavxZnJmrlgzLHRRpRFX63v-wFY.js';
   }
 }
 
-function addAccertifyScript(apiKey) {
+function addAccertifyScript(apiKey, dvcf) {
   var isTestKey = (0,_api_key_utils__WEBPACK_IMPORTED_MODULE_0__.isTestApiKey)(apiKey);
-  var script = createAccertifyScript(determineAccertifySrc(isTestKey));
+  var script = createAccertifyScript(determineAccertifySrc(isTestKey), dvcf);
   window.document.body.appendChild(script);
 }
 function isAccertifyLoaded(window) {
