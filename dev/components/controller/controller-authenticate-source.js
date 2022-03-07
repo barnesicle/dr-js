@@ -11406,6 +11406,15 @@ function createComponent(type, controllerId, key, options, nameForAccessibility)
       document.body.appendChild(scriptTag);
     }
   }
+  /*if(type === 'googlePay') {
+    if(typeof window.google === 'undefined' && !document.getElementById('DR-GooglePay')) {
+      const scriptTag = document.createElement('script');
+      scriptTag.id = 'DR-GooglePay';
+      scriptTag.src = 'https://pay.google.com/gp/p/js/pay.js';
+      document.body.appendChild(scriptTag);
+    }
+  }*/
+
 
   return component;
 }
