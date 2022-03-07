@@ -4392,13 +4392,13 @@ __webpack_require__.r(__webpack_exports__);
  */
 
 function getAccertifyConfig(apiKey) {
-  var _context, _context2;
+  var _context;
 
   var isTestKey = (0,_api_key_utils__WEBPACK_IMPORTED_MODULE_2__.isTestApiKey)(apiKey);
   var dispatchKey = determineDispatchKey(isTestKey);
-  var dispatchHost = determineDispatchHost(isTestKey);
+  var dispatchHost = 'api.digitalriver.com';
 
-  var accertifyConfigUrl = _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_0___default()(_context = _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_0___default()(_context2 = "https://".concat(dispatchHost, "/cfs-accertify-beacon/")).call(_context2, apiKey, "?apiKey=")).call(_context, dispatchKey);
+  var accertifyConfigUrl = _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_0___default()(_context = "https://".concat(dispatchHost, "/cfs-accertify-beacon/").concat(apiKey, "?apiKey=")).call(_context, dispatchKey);
 
   var options = {
     maxRedirects: 0,
@@ -4415,45 +4415,13 @@ function getAccertifyConfig(apiKey) {
  * @param {boolean} isTestKey
  * @returns {string} dispatch key
  */
-// function determineDispatchKey(isTestKey) {
-//   if (isTestKey) {
-//     return '2797a7a9657642fbb5909a0efe1e28be';
-//   } else {
-//     return '9ee2fdcfa6c7451aa011a21b3b7c4201';
-//   }
-// }
 
-/**
- *
- * @returns {string} dispatch key
- */
-
-function determineDispatchKey() {
-  // for now we are not enabling accertify or checking config for test keys. may change in future. see function above.
-  return '9ee2fdcfa6c7451aa011a21b3b7c4201';
-}
-/**
- *
- * @param {boolean} isTestKey
- * @returns {string} dispatch host
- */
-// function determineDispatchHost(isTestKey) {
-//   if (isTestKey) {
-//     return 'api-cte-ext.digitalriver.com';
-//   } else {
-//   return 'api.digitalriver.com';
-//   }
-// }
-
-/**
- *
- * @returns {string} dispatch host
- */
-
-
-function determineDispatchHost() {
-  // for now we are not enabling accertify or checking config for test keys. may change in future. see function above.
-  return 'api.digitalriver.com';
+function determineDispatchKey(isTestKey) {
+  if (isTestKey) {
+    return 'pk_test_c62941b1b2d04d37938876b97440d930';
+  } else {
+    return '9ee2fdcfa6c7451aa011a21b3b7c4201';
+  }
 }
 }();
 var __webpack_export_target__ = self;

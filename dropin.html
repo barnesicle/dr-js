@@ -19,6 +19,15 @@
   <link rel="stylesheet" href="css/DigitalRiver.css" type="text/css"/>
   <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
   <style>
+    table {
+      margin: 20px;
+      border-collapse: unset;
+      border-spacing: 0;
+    }
+    td, th {
+      padding: .5em;
+      border: 1px solid deepskyblue;
+    }
     .xsmall {
       font-size: 60%;
       margin: 0 20px;
@@ -160,64 +169,20 @@
 
 <body class="bg-light" style="padding-top:50px;">
 <div class="row">
-  <div class="col-md-8">
+  <div class="col-md-4 col-sm-6">
     <div class="container">
       <div class="py-5 text-center">
-        <h2>Checkout form</h2>
-        <a href="/v1/dropin.html">Click here to generate a referrer</a>
+        <h2>Drop-in</h2>
+
+
+        <button  id="refresh-dropin" class="btn btn-link" onclick="refreshDropin(event)">
+          Refresh Dropin
+        </button>
         <span style="color:red" id="message"></span>
         <p class="lead"></p>
       </div>
       <div class="row">
-        <div class="col-md-4 order-md-2 mb-4">
-          <h4 class="d-flex justify-content-between align-items-center mb-3">
-            <span class="text-muted">Your cart</span>
-            <span class="badge badge-secondary badge-pill" id="cartQuantity">2</span>
-          </h4>
-          <ul class="list-group mb-3" id="cartItems">
-
-            <!-- CART ITEMS GO HERE -->
-
-            <div id="lineItems">
-              <li class="list-group-item d-flex justify-content-between lh-condensed">
-                <div>
-                  <h6 class="my-0">Digital River Internet Security For PC</h6></div>
-                <span class="text-muted">$23.99</span>
-              </li>
-              <li class="list-group-item d-flex justify-content-between lh-condensed">
-                <div>
-                  <h6 class="my-0">Digital River Laptop</h6></div>
-                <span class="text-muted">$849.99</span>
-              </li>
-            </div>
-
-            <li class="list-group-item d-flex justify-content-between" style="margin-top:30px;">
-              <span>Subtotal</span>
-              <strong id="subtotalWithoutDiscount">$873.98</strong>
-            </li>
-            <li class="list-group-item d-flex justify-content-between">
-              <span>Subtotal with Discount</span>
-              <strong id="subtotalWithDiscountPrice">$873.98</strong>
-            </li>
-            <li class="list-group-item d-flex justify-content-between">
-              <span>Shipping</span>
-              <strong id="shippingPrice">$5.00</strong>
-            </li>
-            <li class="list-group-item d-flex justify-content-between">
-              <span>Tax</span>
-              <strong id="taxPrice">$35.16</strong>
-            </li>
-            <li class="list-group-item d-flex justify-content-between">
-              <span>Total (USD)</span>
-              <strong id="totalPrice">$914.14</strong>
-            </li>
-            <button  id="refresh-dropin" class="btn btn-link" onclick="refreshDropin(event)">
-              Refresh Dropin
-            </button>
-          </ul>
-        </div>
-
-        <div class="col-md-8 order-md-1">
+        <div class="col-md-12 order-md-1">
           <div id="accordion">
             <div class="card">
               <div class="card-header" id="headingOne">
@@ -275,17 +240,8 @@
                       <input type="text" class="form-control" id="address2" placeholder="Apartment or suite">
                     </div>
                     <div class="mb-3">
-                      <label for="country">Country</label>
-                      <select class="custom-select d-block w-100" id="country" onchange="updateFields(this)" required="">
-                        <option value="">Choose...</option>
-                        <option value="AU">AU</option>
-                        <option value="US">US</option>
-                        <option value="FR">FR</option>
-                        <option value="DE">DE</option>
-                        <option value="KR">KR</option>
-                        <option value="JP">JP</option>
-                        <option value="CN">CN</option>
-                      </select>
+                      <label for="country">Country (ISO code)</label>
+                      <input type="text" class="form-control" id="country" placeholder="" required="" maxlength="2"/>
                       <div class="invalid-feedback">
                         Please select a valid country.
                       </div>
@@ -300,72 +256,7 @@
                       </div>
                       <div class="col-md-4 mb-3">
                         <label for="state">State</label>
-                        <select class="custom-select d-block w-100" id="state" required="">
-                          <option value="">Choose...</option>
-                          <optgroup label="US States">
-                            <option value="AL">Alabama</option>
-                            <option value="AK">Alaska</option>
-                            <option value="AZ">Arizona</option>
-                            <option value="AR">Arkansas</option>
-                            <option value="CA">California</option>
-                            <option value="CO">Colorado</option>
-                            <option value="CT">Connecticut</option>
-                            <option value="DE">Delaware</option>
-                            <option value="DC">District Of Columbia</option>
-                            <option value="FL">Florida</option>
-                            <option value="GA">Georgia</option>
-                            <option value="HI">Hawaii</option>
-                            <option value="ID">Idaho</option>
-                            <option value="IL">Illinois</option>
-                            <option value="IN">Indiana</option>
-                            <option value="IA">Iowa</option>
-                            <option value="KS">Kansas</option>
-                            <option value="KY">Kentucky</option>
-                            <option value="LA">Louisiana</option>
-                            <option value="ME">Maine</option>
-                            <option value="MD">Maryland</option>
-                            <option value="MA">Massachusetts</option>
-                            <option value="MI">Michigan</option>
-                            <option value="MN">Minnesota</option>
-                            <option value="MS">Mississippi</option>
-                            <option value="MO">Missouri</option>
-                            <option value="MT">Montana</option>
-                            <option value="NE">Nebraska</option>
-                            <option value="NV">Nevada</option>
-                            <option value="NH">New Hampshire</option>
-                            <option value="NJ">New Jersey</option>
-                            <option value="NM">New Mexico</option>
-                            <option value="NY">New York</option>
-                            <option value="NC">North Carolina</option>
-                            <option value="ND">North Dakota</option>
-                            <option value="OH">Ohio</option>
-                            <option value="OK">Oklahoma</option>
-                            <option value="OR">Oregon</option>
-                            <option value="PA">Pennsylvania</option>
-                            <option value="RI">Rhode Island</option>
-                            <option value="SC">South Carolina</option>
-                            <option value="SD">South Dakota</option>
-                            <option value="TN">Tennessee</option>
-                            <option value="TX">Texas</option>
-                            <option value="UT">Utah</option>
-                            <option value="VT">Vermont</option>
-                            <option value="VA">Virginia</option>
-                            <option value="WA">Washington</option>
-                            <option value="WV">West Virginia</option>
-                            <option value="WI">Wisconsin</option>
-                            <option value="WY">Wyoming</option>
-                          </optgroup>
-                          <optgroup label="France States">
-                            <option value="Ile-de-France">Île-de-France</option>
-                          </optgroup>
-                          <optgroup label="Korean States">
-                            <option value="Jeju Do">Jeju Do</option>
-                          </optgroup>
-                          <optgroup label="Japan States">
-                            <option value="Tokyo">Tokyo</option>
-                            <option value="Kyongsangnamdo">Kyongsangnamdo</option>
-                          </optgroup>
-                        </select>
+                        <input type="text" class="form-control" id="state" placeholder="" required=""/>
                         <div class="invalid-feedback">
                           Please provide a valid state.
                         </div>
@@ -407,7 +298,51 @@
     </div>
   </div>
 
-  <div class="col-md-4 console">
+  <div class="col-md-8 col-sm-6 console">
+    <h3>Url params for testing</h3>
+
+    <table>
+      <tr>
+        <th>param</th>
+        <th>description</th>
+        <th>default</th>
+      </tr>
+      <tr>
+        <td>locale</td>
+        <td>used for localization</td>
+        <td>en-US</td>
+      </tr>
+      <tr>
+        <td>sessionId</td>
+        <td>payment sessionId</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>useEnteredBillingAddress</td>
+        <td>applies form billing address</td>
+        <td>false</td>
+      </tr>
+      <tr>
+        <td>flow</td>
+        <td>'checkout' or 'managePaymentMethods'</td>
+        <td>'checkout'</td>
+      </tr>
+      <tr>
+        <td>showSavePaymentAgreement</td>
+        <td>adds save payment checkbox</td>
+        <td>false</td>
+      </tr>
+      <tr>
+        <td>showComplianceSection</td>
+        <td>shows legal footer</td>
+        <td>true</td>
+      </tr>
+      <tr>
+        <td>showTermsOfSaleDisclosure</td>
+        <td>adds terms of sale</td>
+        <td>false</td>
+      </tr>
+    </table>
     <pre id="response"></pre>
   </div>
 </div>
@@ -529,6 +464,7 @@
     const returnUrl = getURLParamOrDefault('returnUrl', undefined);
     const cancelUrl = getURLParamOrDefault('cancelUrl', undefined);
     const useBillingAddress = getURLParamOrDefault('useBillingAddress', 'true');
+    const expandFirstPaymentMethod = getURLParamOrDefault('expandFirstPaymentMethod', 'true') === 'true';
 
     console.log('Session ID', sessionId);
     console.log('Flow', flow);
@@ -648,6 +584,9 @@
 
     };
 
+    if(!expandFirstPaymentMethod) {
+      configuration.options.expandFirstPaymentMethod = false;
+    }
     dropinInstance = digitalRiverPayments.createDropin(configuration);
 
     dropinInstance.mount('dropin');

@@ -1989,17 +1989,23 @@
     });
   }
 
-  function complianceData() {
+  function complianceData(entityInfo) {
     $('#complianceMethod').empty();
     let entity = $('#bEntity').val();
     let locale = $('#locale').val();
-    let result = digitalRiverPayments.Compliance.getDetails(entity, locale);
-    $('#complianceMethod').append('<div><strong style="color:blue;">'+result.disclosure.businessEntity.name+'</strong> '+result.disclosure.resellerDisclosure.localizedText+'</div>');
+    let result = digitalRiverPayments.Compliance.getDetails(typeof entityInfo === 'object' ? entityInfo : entity, locale);
+    if(typeof result.disclosure.resellerDisclosure !== 'undefined') {
+      $('#complianceMethod').append('<div>'+result.disclosure.resellerDisclosure.localizedText+'</div>');
+    }
     $('#complianceMethod').append('<a class="complianceLink" target="_blank" type="button" class="btn btn-info" href='+ result.disclosure.legalNotice.url +'>'+ result.disclosure.legalNotice.localizedText +'</a>');
     $('#complianceMethod').append('<a class="complianceLink" target="_blank" type="button" class="btn btn-info" href='+ result.disclosure.cookiePolicy.url +'>'+ result.disclosure.cookiePolicy.localizedText +'</a>');
     $('#complianceMethod').append('<a class="complianceLink" target="_blank" type="button" class="btn btn-info" href='+ result.disclosure.privacyPolicy.url +'>'+ result.disclosure.privacyPolicy.localizedText +'</a>');
     $('#complianceMethod').append('<a class="complianceLink" target="_blank" type="button" class="btn btn-info" href='+ result.disclosure.termsOfSale.url +'>'+ result.disclosure.termsOfSale.localizedText +'</a>');
     $('#complianceMethod').append('<a class="complianceLink complianceCancellationLink" target="_blank" type="button" class="btn btn-info" href='+ result.disclosure.cancellationRights.url +'>'+ result.disclosure.cancellationRights.localizedText +'</a>');
+    if(typeof entityInfo === 'object') {
+      console.log('Called complianceData() with argument of ', entityInfo);
+      console.log('Result is ', result);
+    }
   }
 
   // TO Get session

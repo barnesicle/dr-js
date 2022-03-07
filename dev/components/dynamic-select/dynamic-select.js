@@ -8681,21 +8681,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "complianceGetDetails": function() { return /* binding */ complianceGetDetails; },
 /* harmony export */   "localizedText": function() { return /* binding */ localizedText; },
 /* harmony export */   "getAutoRenewPlanTerms": function() { return /* binding */ getAutoRenewPlanTerms; },
+/* harmony export */   "stripOutDoublePeriods": function() { return /* binding */ stripOutDoublePeriods; },
 /* harmony export */   "getConfirmDisclosure": function() { return /* binding */ getConfirmDisclosure; },
 /* harmony export */   "getAgreeToTerms": function() { return /* binding */ getAgreeToTerms; },
 /* harmony export */   "getActiveAcceptance": function() { return /* binding */ getActiveAcceptance; }
 /* harmony export */ });
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/keys */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/keys.js");
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/includes */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/includes.js");
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/for-each */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/for-each.js");
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/concat */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/concat.js");
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _json_compliance_json__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../json/compliance.json */ "./src/json/compliance.json");
-/* harmony import */ var _app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../app/components/localization/localized-messages */ "./src/app/components/localization/localized-messages.js");
-/* harmony import */ var _mandate__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./mandate */ "./src/client/mandate.js");
+/* harmony import */ var _babel_runtime_corejs3_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/typeof */ "./node_modules/@babel/runtime-corejs3/helpers/esm/typeof.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/keys */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/keys.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/includes */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/includes.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/for-each */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/for-each.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/concat */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/concat.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _json_compliance_json__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../json/compliance.json */ "./src/json/compliance.json");
+/* harmony import */ var _app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../app/components/localization/localized-messages */ "./src/app/components/localization/localized-messages.js");
+/* harmony import */ var _mandate__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./mandate */ "./src/client/mandate.js");
+
 
 
 
@@ -8706,88 +8709,108 @@ __webpack_require__.r(__webpack_exports__);
 var defaultDRStore = 'https://store.digitalriver.com/store/defaults/';
 var eCommerceProvider = '/eCommerceProvider.';
 var slash = '/';
-var commerceSupportedLocales = _json_compliance_json__WEBPACK_IMPORTED_MODULE_4__.locale;
-function complianceGetDetails(businessEntityId, locale, country) {
-  var fullLocale = locale.length > 2 ? locale : (0,_app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_5__.getLocaleFromLanguage)(locale);
+var commerceSupportedLocales = _json_compliance_json__WEBPACK_IMPORTED_MODULE_5__.locale;
+function complianceGetDetails(entityInfo, locale, country) {
+  var isEntityInfoAnObject = (0,_babel_runtime_corejs3_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__.default)(entityInfo) === 'object';
+  var fullLocale = typeof entityInfo.language !== 'undefined' ? (0,_app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_6__.getLocaleFromLanguage)(entityInfo.language) : locale.length > 2 ? locale : (0,_app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_6__.getLocaleFromLanguage)(locale);
   var updatedLocale = fullLocale.replace('-', '_'); // todo we need to maybe do this es_419 stuff differently
 
   updatedLocale = updatedLocale === 'es_419' ? 'es_MX' : updatedLocale;
-  var businessEntityName = getBusinessEntityNameFromCode(businessEntityId);
-  var businessEntityNameEncoded = encodeURIComponent(businessEntityName);
+  var businessEntityNameEncoded;
+  var businessEntityName = isEntityInfoAnObject ? getBusinessEntityNameFromCode(entityInfo.businessEntityCode) : getBusinessEntityNameFromCode(entityInfo);
+
+  if (typeof businessEntityName !== 'undefined') {
+    businessEntityNameEncoded = encodeURIComponent(businessEntityName);
+  }
 
   if (!checkLocaleSupports(updatedLocale)) {
     throw new Error('Locale is not supported');
   }
 
-  var linkLocale = typeof country === 'undefined' ? updatedLocale : (0,_app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_5__.getLocaleFromCountry)(country).replace('-', '_');
+  var linkLocale = typeof country === 'undefined' || isEntityInfoAnObject ? updatedLocale : (0,_app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_6__.getLocaleFromCountry)(country).replace('-', '_');
   var complianceData = {
     'disclosure': {
-      'businessEntity': {
-        'name': businessEntityName,
-        'id': businessEntityId
-      },
-      'resellerDisclosure': {
-        'localizedText': localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_0___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_4__).RESELLER_DISCLOSURE, updatedLocale, businessEntityName, undefined, undefined, linkLocale),
-        'url': localizedUrl(linkLocale, 'DisplayDRAboutDigitalRiverPage', businessEntityNameEncoded)
-      },
       'termsOfSale': {
-        'localizedText': localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_0___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_4__).TERMS_OF_SALE, updatedLocale, businessEntityName, undefined, undefined, linkLocale),
+        'localizedText': localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_1___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_5__).TERMS_OF_SALE, updatedLocale, businessEntityName, undefined, undefined, linkLocale),
         'url': localizedUrl(linkLocale, 'DisplayDRTermsAndConditionsPage', businessEntityNameEncoded)
       },
       'privacyPolicy': {
-        'localizedText': localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_0___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_4__).PRIVACY_POLICY, updatedLocale, businessEntityName, undefined, undefined, linkLocale),
+        'localizedText': localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_1___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_5__).PRIVACY_POLICY, updatedLocale, businessEntityName, undefined, undefined, linkLocale),
         'url': localizedUrl(linkLocale, 'DisplayDRPrivacyPolicyPage', businessEntityNameEncoded)
       },
       'cookiePolicy': {
-        'localizedText': localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_0___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_4__).COOKIE_POLICY, updatedLocale, businessEntityName, undefined, undefined, linkLocale),
+        'localizedText': localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_1___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_5__).COOKIE_POLICY, updatedLocale, businessEntityName, undefined, undefined, linkLocale),
         'url': localizedUrl(linkLocale, 'DisplayDRCookiesPolicyPage', businessEntityNameEncoded)
       },
       'cancellationRights': {
-        'localizedText': localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_0___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_4__).CANCELLATION_RIGHTS, updatedLocale, businessEntityName, undefined, undefined, linkLocale),
+        'localizedText': localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_1___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_5__).CANCELLATION_RIGHTS, updatedLocale, businessEntityName, undefined, undefined, linkLocale),
         'url': localizedUrl(linkLocale, 'DisplayDRTermsAndConditionsPage', businessEntityNameEncoded, 'cancellationRight')
       },
       'legalNotice': {
-        'localizedText': localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_0___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_4__).LEGAL_NOTICE, updatedLocale, businessEntityName, undefined, undefined, linkLocale),
+        'localizedText': localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_1___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_5__).LEGAL_NOTICE, updatedLocale, businessEntityName, undefined, undefined, linkLocale),
         'url': localizedUrl(linkLocale, 'DisplayDRContactInformationPage', businessEntityNameEncoded)
       },
-      'confirmDisclosure': {
-        'localizedText': localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_0___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_4__).CONFIRM_DISCLOSURE, linkLocale, businessEntityName, undefined, undefined, linkLocale)
-      },
       'autorenewalPlanTerms': {
-        'localizedText': localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_0___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_4__).AUTORENEWAL_PLAN_TERMS, linkLocale, businessEntityName, undefined, undefined, linkLocale)
+        'localizedText': localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_1___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_5__).AUTORENEWAL_PLAN_TERMS, updatedLocale, businessEntityName, undefined, undefined, linkLocale)
       },
       'saveCardMandate': {
-        'localizedText': (0,_mandate__WEBPACK_IMPORTED_MODULE_6__.getSaveCardMandateText)(updatedLocale, businessEntityName)
+        'localizedText': (0,_mandate__WEBPACK_IMPORTED_MODULE_7__.getSaveCardMandateText)(updatedLocale, businessEntityName)
       },
       'idealRecurringAgreement': {
-        'localizedText': localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_0___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_4__).IDEAL_RECURRING_AGREEMENT, linkLocale, businessEntityName, undefined, undefined, linkLocale)
+        'localizedText': localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_1___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_5__).IDEAL_RECURRING_AGREEMENT, updatedLocale, businessEntityName, undefined, undefined, linkLocale)
       }
     }
   };
-  var californiaPrivacyRights = getCaliforniaPrivacyRights(updatedLocale, businessEntityName, linkLocale);
-  var warrantyInformation = getWarrantyInformation(updatedLocale, businessEntityName, linkLocale);
 
-  if (typeof californiaPrivacyRights !== 'undefined') {
-    complianceData.disclosure.californiaPrivacyRights = californiaPrivacyRights;
+  if (typeof businessEntityName !== 'undefined') {
+    complianceData.disclosure.businessEntity = {
+      'name': businessEntityName,
+      'id': isEntityInfoAnObject ? entityInfo.businessEntityCode : entityInfo
+    };
+    complianceData.disclosure.resellerDisclosure = {
+      'localizedText': localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_1___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_5__).RESELLER_DISCLOSURE, updatedLocale, businessEntityName, undefined, undefined, linkLocale),
+      'url': localizedUrl(linkLocale, 'DisplayDRAboutDigitalRiverPage', businessEntityNameEncoded)
+    };
+    complianceData.disclosure.confirmDisclosure = {
+      'localizedText': stripOutDoublePeriods(localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_1___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_5__).CONFIRM_DISCLOSURE, updatedLocale, businessEntityName, undefined, undefined, linkLocale))
+    };
   }
 
-  if (typeof warrantyInformation !== 'undefined') {
-    complianceData.disclosure.warrantyInformation = warrantyInformation;
+  if (!isEntityInfoAnObject || isEntityInfoAnObject && entityInfo.country === 'us') {
+    var californiaPrivacyRights;
+
+    if (!isEntityInfoAnObject) {
+      californiaPrivacyRights = getCaliforniaPrivacyRights(updatedLocale, businessEntityName, linkLocale);
+    } else if (locale === 'en' || locale === 'en-US' || updatedLocale === 'en_IE') {
+      californiaPrivacyRights = getCaliforniaPrivacyRights('en_US', businessEntityName, 'en_US');
+    }
+
+    if (typeof californiaPrivacyRights !== 'undefined') {
+      complianceData.disclosure.californiaPrivacyRights = californiaPrivacyRights;
+    }
+  }
+
+  if (!isEntityInfoAnObject || isEntityInfoAnObject && entityInfo.country === 'it') {
+    var warrantyInformation = getWarrantyInformation(updatedLocale, businessEntityName, linkLocale);
+
+    if (typeof warrantyInformation !== 'undefined') {
+      complianceData.disclosure.warrantyInformation = warrantyInformation;
+    }
   }
 
   return complianceData;
 }
 
 function checkLocaleSupports(locale) {
-  return _babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_1___default()(commerceSupportedLocales).call(commerceSupportedLocales, locale);
+  return _babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_2___default()(commerceSupportedLocales).call(commerceSupportedLocales, locale);
 }
 
 function localizedText(type, locale, businessEntityName, payNowButtonText, createAccountButtonTextClass, linkLocale) {
   var chosenDefaultLinkLocale = typeof linkLocale === 'undefined' ? locale : linkLocale;
   var localizedValue;
 
-  if (locale in _json_compliance_json__WEBPACK_IMPORTED_MODULE_4__.details && type in _json_compliance_json__WEBPACK_IMPORTED_MODULE_4__.details[locale]) {
-    localizedValue = _json_compliance_json__WEBPACK_IMPORTED_MODULE_4__.details[locale][type];
+  if (locale in _json_compliance_json__WEBPACK_IMPORTED_MODULE_5__.details && type in _json_compliance_json__WEBPACK_IMPORTED_MODULE_5__.details[locale]) {
+    localizedValue = _json_compliance_json__WEBPACK_IMPORTED_MODULE_5__.details[locale][type];
   } else {
     localizedValue = '';
   }
@@ -8802,7 +8825,7 @@ function evaluateVars(string, locale, businessEntityName, payButtonText, createA
     privacyPolicyUrl: localizedUrl(linkLocale, 'DisplayDRPrivacyPolicyPage', encodeURIComponent(businessEntityName)),
     resellerDisclosureUrl: localizedUrl(linkLocale, 'DisplayDRAboutDigitalRiverPage', encodeURIComponent(businessEntityName)),
     businessEntityName: businessEntityName,
-    payNow: typeof payButtonText !== 'undefined' ? payButtonText : (0,_app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_5__.getLocaleMessage)(locale.split('_').join('-'), 'payNow'),
+    payNow: typeof payButtonText !== 'undefined' ? payButtonText : (0,_app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_6__.getLocaleMessage)(locale.split('_').join('-'), 'payNow'),
     //TODO refactor so localized messages and compliance data use same format for locale
     createAccountButtonTextClass: createAccountButtonTextClass
   };
@@ -8812,7 +8835,7 @@ function evaluateVars(string, locale, businessEntityName, payButtonText, createA
   var varsToReplace = string.match(varsPattern);
 
   if (varsToReplace !== null) {
-    _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_2___default()(varsToReplace).call(varsToReplace, function (stringVar, index) {
+    _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_3___default()(varsToReplace).call(varsToReplace, function (stringVar, index) {
       string = string.replace(stringVar, replacementRules[replacements[index]]);
     });
   }
@@ -8821,12 +8844,18 @@ function evaluateVars(string, locale, businessEntityName, payButtonText, createA
 }
 
 function localizedUrl(locale, entityType, entityNameEncoded, anchor) {
-  var url = defaultDRStore + locale + slash + entityType + eCommerceProvider + entityNameEncoded;
+  var url;
+
+  if (typeof entityNameEncoded === 'undefined') {
+    url = defaultDRStore + locale + slash + entityType;
+  } else {
+    url = defaultDRStore + locale + slash + entityType + eCommerceProvider + entityNameEncoded;
+  }
 
   if (anchor) {
     var _context;
 
-    url = _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_3___default()(_context = "".concat(url, "#")).call(_context, anchor);
+    url = _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_4___default()(_context = "".concat(url, "#")).call(_context, anchor);
   }
 
   return url;
@@ -8837,7 +8866,7 @@ function getBusinessEntityNameFromCode(entityId) {
 
   var entityName;
 
-  _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_2___default()(_context2 = _json_compliance_json__WEBPACK_IMPORTED_MODULE_4__.entityCode).call(_context2, function (entity) {
+  _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_3___default()(_context2 = _json_compliance_json__WEBPACK_IMPORTED_MODULE_5__.entityCode).call(_context2, function (entity) {
     if (typeof entityId === 'string' && entityId.toUpperCase() === entity.code) {
       entityName = entity.name;
     }
@@ -8848,9 +8877,9 @@ function getBusinessEntityNameFromCode(entityId) {
 
 function getCaliforniaPrivacyRights(updatedLocale, businessEntityName, linkLocale) {
   var californiaPrivacyRights;
-  var californiaPrivacyRightText = localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_0___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_4__).CALIFORNIA_PRIVACY_RIGHTS, updatedLocale, businessEntityName);
+  var californiaPrivacyRightText = localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_1___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_5__).CALIFORNIA_PRIVACY_RIGHTS, updatedLocale, businessEntityName);
 
-  if (californiaPrivacyRightText !== '' && existsForLocale(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_0___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_4__).CALIFORNIA_PRIVACY_RIGHTS, linkLocale, businessEntityName)) {
+  if (californiaPrivacyRightText !== '' && existsForLocale(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_1___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_5__).CALIFORNIA_PRIVACY_RIGHTS, linkLocale, businessEntityName)) {
     californiaPrivacyRights = {
       'localizedText': californiaPrivacyRightText,
       'url': 'https://store.digitalriver.com/store/defaults/en_US/DisplayCCPAPage'
@@ -8866,10 +8895,10 @@ function existsForLocale(key, locale, businessEntityName) {
 
 function getWarrantyInformation(updatedLocale, businessEntityName, linkLocale) {
   var warrantyInformation;
-  var warrantyInformationText = localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_0___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_4__).WARRANTY_INFORMATION, updatedLocale, businessEntityName);
-  var warrantyInformationUrl = localizedUrl(linkLocale, 'DisplayDRTermsAndConditionsPage', encodeURIComponent(businessEntityName), 'warrantyInformation');
+  var warrantyInformationText = localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_1___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_5__).WARRANTY_INFORMATION, updatedLocale, businessEntityName);
+  var warrantyInformationUrl = localizedUrl(linkLocale, 'DisplayDRTermsAndConditionsPage', typeof businessEntityName !== 'undefined' ? encodeURIComponent(businessEntityName) : businessEntityName, 'warrantyInformation');
 
-  if (warrantyInformationText !== '' && existsForLocale(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_0___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_4__).WARRANTY_INFORMATION, linkLocale, businessEntityName)) {
+  if (warrantyInformationText !== '' && existsForLocale(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_1___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_5__).WARRANTY_INFORMATION, linkLocale, businessEntityName)) {
     warrantyInformation = {
       'localizedText': warrantyInformationText,
       'url': warrantyInformationUrl
@@ -8882,21 +8911,24 @@ function getWarrantyInformation(updatedLocale, businessEntityName, linkLocale) {
 function getAutoRenewPlanTerms(locale, businessEntityId) {
   var updatedLocale = locale.replace('-', '_');
   var businessEntityName = getBusinessEntityNameFromCode(businessEntityId);
-  return localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_0___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_4__).AUTORENEWAL_PLAN_TERMS, updatedLocale, businessEntityName);
+  return localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_1___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_5__).AUTORENEWAL_PLAN_TERMS, updatedLocale, businessEntityName);
+}
+function stripOutDoublePeriods(text) {
+  return text.split('..').join('.');
 }
 function getConfirmDisclosure(locale, businessEntityId) {
   var updatedLocale = locale.replace('-', '_');
   var businessEntityName = getBusinessEntityNameFromCode(businessEntityId);
-  return localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_0___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_4__).CONFIRM_DISCLOSURE, updatedLocale, businessEntityName);
+  return stripOutDoublePeriods(localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_1___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_5__).CONFIRM_DISCLOSURE, updatedLocale, businessEntityName));
 }
 function getAgreeToTerms(locale, businessEntityId) {
   var updatedLocale = locale.replace('-', '_');
   var businessEntityName = getBusinessEntityNameFromCode(businessEntityId);
-  return localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_0___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_4__).AGREE_TO_TERMS, updatedLocale, businessEntityName);
+  return localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_1___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_5__).AGREE_TO_TERMS, updatedLocale, businessEntityName);
 }
 function getActiveAcceptance(locale, businessEntityId, paymentMethodType, buttonText, customClasses) {
-  var exactLocaleMatchExists = _json_compliance_json__WEBPACK_IMPORTED_MODULE_4__.details[locale.replace('-', '_')].hasOwnProperty(paymentMethodType + 'ActiveAcceptance');
-  var updatedLocale = exactLocaleMatchExists ? locale.replace('-', '_') : (0,_app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_5__.getMappedLocale)(locale).replace('-', '_');
+  var exactLocaleMatchExists = _json_compliance_json__WEBPACK_IMPORTED_MODULE_5__.details[locale.replace('-', '_')].hasOwnProperty(paymentMethodType + 'ActiveAcceptance');
+  var updatedLocale = exactLocaleMatchExists ? locale.replace('-', '_') : (0,_app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_6__.getMappedLocale)(locale).replace('-', '_');
   var businessEntityName = getBusinessEntityNameFromCode(businessEntityId);
   return localizedText("".concat(paymentMethodType, "ActiveAcceptance"), updatedLocale, businessEntityName, buttonText, customClasses);
 }
@@ -8953,9 +8985,13 @@ function addCompliance(sellingEntityId, locale, parent) {
 
   var legalFooter = document.createElement('div');
   legalFooter.className = 'DR-Legal-Footer';
-  var resellerDisclosure = document.createElement('div');
-  resellerDisclosure.innerHTML = compliance.disclosure.resellerDisclosure.localizedText;
-  legalFooter.appendChild(resellerDisclosure);
+
+  if (typeof compliance.disclosure.resellerDisclosure !== 'undefined') {
+    var resellerDisclosure = document.createElement('div');
+    resellerDisclosure.innerHTML = compliance.disclosure.resellerDisclosure.localizedText;
+    legalFooter.appendChild(resellerDisclosure);
+  }
+
   var legalFooterLinks = document.createElement('div');
   legalFooterLinks.className = 'DR-Legal-Footer-Links';
   createAndAddLink(compliance.disclosure.privacyPolicy, legalFooterLinks);
@@ -9401,6 +9437,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "addStandaloneButtonOptions": function() { return /* binding */ addStandaloneButtonOptions; },
 /* harmony export */   "getSessionPaymentRequest": function() { return /* binding */ getSessionPaymentRequest; },
 /* harmony export */   "addSourceDataToOptions": function() { return /* binding */ addSourceDataToOptions; },
+/* harmony export */   "getExpandFirstPaymentMethodOption": function() { return /* binding */ getExpandFirstPaymentMethodOption; },
 /* harmony export */   "getFlow": function() { return /* binding */ getFlow; },
 /* harmony export */   "getUsage": function() { return /* binding */ getUsage; },
 /* harmony export */   "getSupportStorageForAPICall": function() { return /* binding */ getSupportStorageForAPICall; },
@@ -9598,6 +9635,13 @@ function supportedPaymentMethods(locale) {
     standaloneButton: false,
     onlyButton: true
   }, {
+    name: 'Alipay',
+    code: 'alipay',
+    type: 'alipayCn',
+    needsPayButton: true,
+    standaloneButton: false,
+    onlyButton: true
+  }, {
     name: 'Bank Transfer',
     code: 'banktransfer',
     type: 'bankTransfer',
@@ -9667,6 +9711,29 @@ function supportedPaymentMethods(locale) {
     addSourceDataToOptions: true,
     needsActiveAcceptance: true,
     addApplyNowButton: true
+  }, {
+    name: 'Bancontact',
+    code: 'bancontact',
+    type: 'bancontact',
+    needsPayButton: true,
+    standaloneButton: false,
+    onlyButton: true
+  }, {
+    name: 'Boleto',
+    code: 'boletoBancario',
+    type: 'boletoBancario',
+    needsPayButton: true,
+    standaloneButton: false,
+    onlyButton: true,
+    justRequiresSource: true
+  }, {
+    name: 'iDEAL',
+    code: 'ideal',
+    type: 'ideal',
+    needsPayButton: true,
+    standaloneButton: false,
+    onlyButton: true,
+    requiresSessionInformation: true
   }, {
     name: 'Store Credit',
     code: 'storecredit',
@@ -9803,6 +9870,9 @@ function paymentMethodsReturned(paymentMethodResponse) {
   return typeof paymentMethodResponse.paymentMethods !== 'undefined' && paymentMethodResponse.paymentMethods.length !== 0;
 }
 
+function getExpandFirstPaymentMethodOption(configuration) {
+  return typeof configuration.options !== 'undefined' && typeof configuration.options.expandFirstPaymentMethod !== 'undefined' ? configuration.options.expandFirstPaymentMethod : true;
+}
 function getFlow(configuration) {
   return typeof configuration.options !== 'undefined' && typeof configuration.options.flow !== 'undefined' ? configuration.options.flow : '';
 }
@@ -9959,7 +10029,7 @@ function updateMountedPaymentMethodsWithComponent(paymentMethodResponse, locale,
 function determineIfExist(paymentMethod) {
   if (paymentMethod.type === 'storeCredit') {
     return function (storeCredit) {
-      return storeCredit.type === paymentMethod.type && storeCredit.id === paymentMethod.id && storeCredit.brand === paymentMethod.brand && storeCredit.added === paymentMethod.added;
+      return storeCredit.type === paymentMethod.type && storeCredit.id === paymentMethod.id && storeCredit.brand === paymentMethod.brand && storeCredit.added === paymentMethod.added && storeCredit.willStoreCreditCoverAmountRemainingInSession === paymentMethod.willStoreCreditCoverAmountRemainingInSession;
     };
   } else {
     return function (otherPaymentMethod) {
@@ -9996,13 +10066,17 @@ function getCreditCardBrandName(brand) {
   }).display;
 }
 
+function getShouldBeCoveredId(paymentMethod) {
+  return paymentMethod.willStoreCreditCoverAmountRemainingInSession === true ? '-covered' : '';
+}
+
 function getStoredId(paymentMethod) {
   if (paymentMethod.type === 'creditCard') {
     return '-stored-' + paymentMethod.brand + '-' + paymentMethod.id;
   } else if (paymentMethod.type === 'storeCredit' && paymentMethod.added === true) {
-    return '-stored-added-' + paymentMethod.id;
+    return '-stored-added-' + paymentMethod.id + getShouldBeCoveredId(paymentMethod);
   } else if (paymentMethod.type === 'storeCredit') {
-    return '-stored-' + paymentMethod.type + '-' + paymentMethod.id;
+    return '-stored-' + paymentMethod.type + '-' + paymentMethod.id + getShouldBeCoveredId(paymentMethod);
   } else {
     return '-stored';
   }
@@ -10027,6 +10101,24 @@ function hasStoredPaymentMethod(paymentMethods) {
   }
 }
 
+function shouldCreateSubmitButton(paymentMethod, availablePaymentMethod) {
+  if (availablePaymentMethod.isStored && typeof availablePaymentMethod.added !== 'undefined' && availablePaymentMethod.added === true) {
+    return false;
+  } else if (paymentMethod.needsPayButton || availablePaymentMethod.isStored) {
+    return true;
+  }
+
+  return false;
+}
+
+function shouldAllowToExpand(availablePaymentMethod) {
+  if (availablePaymentMethod.isStored && typeof availablePaymentMethod.added !== 'undefined' && availablePaymentMethod.added === true) {
+    return false;
+  }
+
+  return true;
+}
+
 function mountDropin(controller, configuration, createSource, createElement, instanceOptions, getComplianceDetails, paymentMethodsMounted, isRefreshMode) {
   var originalConfiguration = _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_3___default()({}, configuration);
 
@@ -10049,7 +10141,7 @@ function mountDropin(controller, configuration, createSource, createElement, ins
     var buttonText = getButtonText(configuration, locale);
     var country = typeof configuration.billingAddress !== 'undefined' && typeof configuration.billingAddress.address !== 'undefined' && typeof configuration.billingAddress.address.country !== 'undefined' ? configuration.billingAddress.address.country : null;
     return (0,_fetch_payment_methods__WEBPACK_IMPORTED_MODULE_16__.getPaymentMethods)(controller.id, configuration.sessionId, country, null, locale, getSupportStorageForAPICall(configuration), recurringModel).then(function (paymentMethodResponse) {
-      var _context9, _context12;
+      var _context9, _context14;
 
       var componentsReadyStatus = [];
 
@@ -10071,14 +10163,18 @@ function mountDropin(controller, configuration, createSource, createElement, ins
       paymentMethodResponse.paymentMethods = _babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_5___default()(_context9 = paymentMethodResponse.paymentMethods).call(_context9, function (pm) {
         return configurationAllowsPaymentMethod(pm, configuration);
       });
+      var sessionInformation = paymentMethodResponse.sessionInformation;
 
       if (typeof configuration.options !== 'undefined' && typeof configuration.options.storedPaymentMethods !== 'undefined') {
         var _context10, _context11;
 
         _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_9___default()(_context10 = _babel_runtime_corejs3_core_js_stable_instance_reverse__WEBPACK_IMPORTED_MODULE_12___default()(_context11 = configuration.options.storedPaymentMethods).call(_context11)).call(_context10, function (storedPaymentMethod) {
-          var refreshCallback = function refreshCallback(configurationToOverride) {
-            var updatedConfiguration = _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_3___default()({}, originalConfiguration, configurationToOverride);
+          var _context12, _context13;
 
+          var refreshCallback = function refreshCallback(storedPaymentMethodsToOverride) {
+            var updatedConfiguration = _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_3___default()({}, originalConfiguration);
+
+            updatedConfiguration.options.storedPaymentMethods = storedPaymentMethodsToOverride;
             mountDropin(controller, updatedConfiguration, createSource, createElement, instanceOptions, getComplianceDetails, paymentMethodsMounted, true)();
           };
 
@@ -10098,15 +10194,19 @@ function mountDropin(controller, configuration, createSource, createElement, ins
             iconUrl: storedPaymentMethod.iconUrl,
             refreshCallback: refreshCallback
           });
+
+          _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_9___default()(_context12 = _babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_5___default()(_context13 = paymentMethodResponse.paymentMethods).call(_context13, function (pm) {
+            return pm.isStored === true;
+          })).call(_context12, function (pm) {
+            pm.willStoreCreditCoverAmountRemainingInSession = shouldShowTermsForStoredStoreCredit(pm, configuration, sessionInformation) ? willStoreCreditCoverAmountRemainingInSession(pm, sessionInformation) : null;
+          });
         });
       }
 
-      var sessionInformation = paymentMethodResponse.sessionInformation;
+      _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_9___default()(_context14 = paymentMethodResponse.paymentMethods).call(_context14, function (availablePaymentMethod) {
+        var _context15;
 
-      _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_9___default()(_context12 = paymentMethodResponse.paymentMethods).call(_context12, function (availablePaymentMethod) {
-        var _context13;
-
-        var paymentMethod = _babel_runtime_corejs3_core_js_stable_instance_find__WEBPACK_IMPORTED_MODULE_10___default()(_context13 = supportedPaymentMethods(locale)).call(_context13, function (paymentMethod) {
+        var paymentMethod = _babel_runtime_corejs3_core_js_stable_instance_find__WEBPACK_IMPORTED_MODULE_10___default()(_context15 = supportedPaymentMethods(locale)).call(_context15, function (paymentMethod) {
           return paymentMethod.type === availablePaymentMethod.type;
         });
 
@@ -10183,16 +10283,57 @@ function mountDropin(controller, configuration, createSource, createElement, ins
           document.querySelectorAll("[name=".concat(paymentMethod.type + '-choice-terms', "]"))[0].click();
         }
 
-        if (paymentMethod.needsPayButton || availablePaymentMethod.isStored) {
+        if (paymentMethod.type === 'ideal' && typeof paymentMethodResponse.sessionInformation !== 'undefined' && paymentMethodResponse.sessionInformation.recurring === true) {
+          var componentOptionsKey = findOptionsKey(configuration.paymentMethodConfiguration, paymentMethod);
+          var componentOptions = getComponentOptions(componentOptionsKey, configuration);
+          var complianceInfo = getComplianceData(getComplianceDetails, paymentMethodResponse, locale);
+          var idealMandateText = complianceInfo.disclosure['idealRecurringAgreement'].localizedText;
+          var idealMandate = createMandate(paymentMethod, locale, componentHolder, false, availablePaymentMethod, idealMandateText);
+          bodyParent.appendChild(idealMandate);
+          var idealCheckbox = getMandateCheckboxDOMElement(paymentMethod);
+          var idealIban;
+          var elementContainer = document.createElement('div');
+          elementContainer.id = "".concat(componentHolder.id, "-iban");
+          idealMandate.appendChild(elementContainer);
+          var elementErrorContainer = document.createElement('div');
+          elementErrorContainer.id = 'DR-ideal-iban-error';
+          elementErrorContainer.className = 'DR-error-message';
+          idealMandate.appendChild(elementErrorContainer);
+          idealCheckbox.addEventListener('change', function () {
+            if (idealCheckbox.checked) {
+              idealIban = createElement('iban', componentOptions);
+              idealIban.ibanComplete = false;
+              idealIban.idealMandateText = idealMandateText;
+              idealIban.on('change', function (details) {
+                if (details.complete === true) {
+                  idealIban.ibanComplete = true;
+                }
+              });
+
+              var events = _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_3___default()({}, componentOptions.events);
+
+              addClientEventsToComponent(events, idealIban);
+              idealIban.mount(elementContainer);
+              componentsMounted["".concat(paymentMethod.code, "-iban")] = idealIban;
+            } else {
+              idealIban.destroy();
+              delete componentsMounted["".concat(paymentMethod.code, "-iban")];
+              document.getElementById('DR-ideal-iban-error').innerText = '';
+            }
+          });
+        }
+
+        if (shouldCreateSubmitButton(paymentMethod, availablePaymentMethod)) {
           bodyParent.appendChild(createSubmitButton(controller.id, configuration, createSource, componentsMounted, paymentMethod, submitButtonId, availablePaymentMethod, paymentMethodResponse.sessionInformation, locale, hasPaymentDisclosure));
         }
 
         if (!paymentMethod.onlyButton && !availablePaymentMethod.isStored) {
-          var componentOptionsKey = findOptionsKey(configuration.paymentMethodConfiguration, paymentMethod);
-          var componentOptions = getComponentOptions(componentOptionsKey, configuration);
+          var _componentOptionsKey = findOptionsKey(configuration.paymentMethodConfiguration, paymentMethod);
+
+          var _componentOptions = getComponentOptions(_componentOptionsKey, configuration);
 
           try {
-            var componentOptionsOrPaymentRequest = isPaymentRequestUsed(paymentMethod) ? getSessionPaymentRequest(configuration, paymentMethodResponse.sessionInformation, componentOptions.style, locale) : componentOptions;
+            var componentOptionsOrPaymentRequest = isPaymentRequestUsed(paymentMethod) ? getSessionPaymentRequest(configuration, paymentMethodResponse.sessionInformation, _componentOptions.style, locale) : _componentOptions;
 
             if (paymentMethod.addSourceDataToOptions) {
               addSourceDataToOptions(configuration, componentOptionsOrPaymentRequest, paymentMethod, controller, availablePaymentMethod, paymentMethodResponse.sessionInformation, locale);
@@ -10206,7 +10347,8 @@ function mountDropin(controller, configuration, createSource, createElement, ins
             if (paymentMethod.requiresSessionInformation) {
               componentOptionsOrPaymentRequest[paymentMethod.type] = {
                 country: paymentMethodResponse.sessionInformation.country,
-                currency: paymentMethodResponse.sessionInformation.currency
+                currency: paymentMethodResponse.sessionInformation.currency,
+                recurring: paymentMethodResponse.sessionInformation.recurring
               };
             }
 
@@ -10214,7 +10356,7 @@ function mountDropin(controller, configuration, createSource, createElement, ins
               componentOptionsOrPaymentRequest.style = configuration.paymentMethodConfiguration.style;
             }
 
-            var events = _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_3___default()({}, componentOptions.events);
+            var events = _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_3___default()({}, _componentOptions.events);
 
             delete componentOptionsOrPaymentRequest.events;
             var component = createElement(paymentMethod.code, componentOptionsOrPaymentRequest);
@@ -10293,7 +10435,7 @@ function mountDropin(controller, configuration, createSource, createElement, ins
         handleLegalFooter(paymentMethodResponse, getComplianceDetails, locale, accordion);
       }
     }).then(function () {
-      if (!isRefreshMode) {
+      if (!isRefreshMode && getExpandFirstPaymentMethodOption(configuration)) {
         expandFirstPaymentMethod();
       }
 
@@ -10407,7 +10549,11 @@ function createHeaderDiv(paymentMethod, availablePaymentMethod, headerId, bodyId
   headerButton.className = 'DR-button';
   headerButton.setAttribute('data-DR-toggle', 'collapse');
   headerButton.setAttribute('data-DR-target', bodyId);
-  headerButton.setAttribute('aria-expanded', 'false');
+
+  if (shouldAllowToExpand(availablePaymentMethod)) {
+    headerButton.setAttribute('aria-expanded', 'false');
+  }
+
   headerButton.setAttribute('type', 'button');
   headerButton.setAttribute('aria-controls', bodyId);
   headerButton.addEventListener('click', function (event) {
@@ -10421,11 +10567,11 @@ function createHeaderDiv(paymentMethod, availablePaymentMethod, headerId, bodyId
   if (typeof availablePaymentMethod.brand !== 'undefined') {
     paymentMethodName.innerText = getCreditCardBrandName(availablePaymentMethod.brand) + getLastFour(availablePaymentMethod);
   } else if (typeof availablePaymentMethod.clientDisplayName !== 'undefined') {
-    var _context14, _context15;
+    var _context16, _context17;
 
     var displayName = document.createElement('div');
     displayName.className = 'DR-stored-added';
-    displayName.innerHTML = _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_13___default()(_context14 = _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_13___default()(_context15 = "<div>".concat((0,_dropin_stored_payment_methods__WEBPACK_IMPORTED_MODULE_29__.formatAmountBasedOnCurrency)(availablePaymentMethod.amount, sessionInformation.currency), " ")).call(_context15, availablePaymentMethod.clientDisplayName, " ")).call(_context14, getLastFour(availablePaymentMethod), "</div>");
+    displayName.innerHTML = _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_13___default()(_context16 = _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_13___default()(_context17 = "<div>".concat((0,_dropin_stored_payment_methods__WEBPACK_IMPORTED_MODULE_29__.formatAmountBasedOnCurrency)(availablePaymentMethod.amount, sessionInformation.currency), " ")).call(_context17, availablePaymentMethod.clientDisplayName, " ")).call(_context16, getLastFour(availablePaymentMethod), "</div>");
     displayName.appendChild((0,_dropin_stored_payment_methods__WEBPACK_IMPORTED_MODULE_29__.getAddedButton)(availablePaymentMethod, configuration));
     paymentMethodName.appendChild(displayName);
   } else if (typeof availablePaymentMethod.paymentName !== 'undefined') {
@@ -10449,6 +10595,10 @@ function createHeaderDiv(paymentMethod, availablePaymentMethod, headerId, bodyId
     headerButton.appendChild(image);
   }
 
+  if (!shouldAllowToExpand(availablePaymentMethod)) {
+    headerButton.className += ' DR-logo-button-without-expand';
+  }
+
   headerButton.appendChild(paymentMethodName);
   header.appendChild(headerButton);
   headerDiv.appendChild(header);
@@ -10461,7 +10611,7 @@ function createComponentContainer(paymentMethod, availablePaymentMethod, parent,
   var bodyParent = document.createElement('div');
   bodyParent.className = 'DR-collapse';
   bodyParent.id = bodyId;
-  bodyParent.setAttribute('aria-labelledby', bodyId);
+  bodyParent.setAttribute('aria-labelledby', headerId);
   bodyParent.setAttribute('data-parent', '#' + accordionId);
   var componentHolder = document.createElement('div');
   componentHolder.id = componentId;
@@ -10596,7 +10746,7 @@ function determineMandateCheckboxId(paymentMethod) {
   return 'DR-mandate-checkbox-' + paymentMethod.type;
 }
 
-function createMandate(paymentMethod, locale, componentHolder, isStorageMode, availablePaymentMethod) {
+function createMandate(paymentMethod, locale, componentHolder, isStorageMode, availablePaymentMethod, customTextString) {
   var paymentMethodType = paymentMethod.type;
   var mandateParent = document.createElement('div');
   mandateParent.className = 'DR-mandate DR-mandate-' + paymentMethodType;
@@ -10614,7 +10764,7 @@ function createMandate(paymentMethod, locale, componentHolder, isStorageMode, av
   mandateCheckboxParent.appendChild(mandateCheckbox);
   mandateRow.appendChild(mandateCheckboxParent);
   mandateText.className = 'DR-mandate-content DR-mandate-' + paymentMethodType;
-  mandateText.innerHTML = getMandateValue(locale);
+  mandateText.innerHTML = typeof customTextString !== 'undefined' ? customTextString : getMandateValue(locale);
   mandateRow.appendChild(mandateText);
   mandateParent.appendChild(mandateRow);
   mandateParent.appendChild(mandateError);
@@ -10640,11 +10790,11 @@ function shouldShowTermsForStoredStoreCredit(paymentMethodFromAPI, configuration
 }
 
 function findSelectedTermForPaymentMethod(paymentMethod) {
-  var _context16;
+  var _context18;
 
   var termRadioButtons = document.querySelectorAll("[name=".concat(paymentMethod.type + '-choice-terms', "]"));
 
-  var selectedTermID = _babel_runtime_corejs3_core_js_stable_instance_find__WEBPACK_IMPORTED_MODULE_10___default()(_context16 = (0,_babel_runtime_corejs3_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__.default)(termRadioButtons)).call(_context16, function (rb) {
+  var selectedTermID = _babel_runtime_corejs3_core_js_stable_instance_find__WEBPACK_IMPORTED_MODULE_10___default()(_context18 = (0,_babel_runtime_corejs3_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__.default)(termRadioButtons)).call(_context18, function (rb) {
     return rb.checked === true;
   });
 
@@ -10674,10 +10824,31 @@ function createSubmitButton(controllerId, configuration, createSource, component
     event.preventDefault();
     var sourceData = createSourceData(configuration, paymentMethod, controllerId, paymentMethodFromAPI, sessionInformation, locale);
 
-    if (requireStorageValidation) {
+    if (paymentMethod.type === 'ideal' && sessionInformation.recurring === true) {
       var isChecked = (0,_dropin_checkbox__WEBPACK_IMPORTED_MODULE_30__.getCheckboxValue)(determineMandateCheckboxId(paymentMethodFromAPI));
 
-      if (isChecked === false) {
+      if (isChecked === true) {
+        var idealMandateText = componentsMounted['ideal-iban'].idealMandateText;
+        sourceData.futureUse = true;
+        sourceData.mandate = {
+          terms: idealMandateText
+        };
+        var ibanErrorEl = document.getElementById('DR-ideal-iban-error');
+
+        if (componentsMounted['ideal-iban'].ibanComplete === false) {
+          ibanErrorEl.innerText = (0,_app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_19__.getLocaleMessage)(locale, 'incompleteIban');
+          ibanErrorEl.style.display = 'block';
+        } else {
+          ibanErrorEl.innerText = '';
+          ibanErrorEl.style.display = 'none';
+        }
+      }
+    }
+
+    if (requireStorageValidation) {
+      var _isChecked = (0,_dropin_checkbox__WEBPACK_IMPORTED_MODULE_30__.getCheckboxValue)(determineMandateCheckboxId(paymentMethodFromAPI));
+
+      if (_isChecked === false) {
         (0,_utils__WEBPACK_IMPORTED_MODULE_32__.setElementErrorMessage)('DR-mandate-checkbox-error-' + paymentMethod.type, (0,_mandate__WEBPACK_IMPORTED_MODULE_21__.getMustAcceptTermsText)(locale));
         return;
       } else {
@@ -10686,9 +10857,9 @@ function createSubmitButton(controllerId, configuration, createSource, component
     }
 
     if (showTermsOfSaleDisclosure && !paymentMethodFromAPI.isStored) {
-      var _isChecked = (0,_dropin_checkbox__WEBPACK_IMPORTED_MODULE_30__.getCheckboxValue)((0,_dropin_terms__WEBPACK_IMPORTED_MODULE_26__.determineTermsCheckboxId)(paymentMethodFromAPI));
+      var _isChecked2 = (0,_dropin_checkbox__WEBPACK_IMPORTED_MODULE_30__.getCheckboxValue)((0,_dropin_terms__WEBPACK_IMPORTED_MODULE_26__.determineTermsCheckboxId)(paymentMethodFromAPI));
 
-      if (_isChecked === false) {
+      if (_isChecked2 === false) {
         (0,_utils__WEBPACK_IMPORTED_MODULE_32__.setElementErrorMessage)('DR-terms-checkbox-error-' + paymentMethod.type, (0,_mandate__WEBPACK_IMPORTED_MODULE_21__.getMustAcceptTermsText)(locale));
         return;
       } else {
@@ -10697,9 +10868,9 @@ function createSubmitButton(controllerId, configuration, createSource, component
     }
 
     if (hasPaymentDisclosure) {
-      var _isChecked2 = (0,_dropin_checkbox__WEBPACK_IMPORTED_MODULE_30__.getCheckboxValue)(determinePaymentDisclosureCheckboxId(paymentMethodFromAPI));
+      var _isChecked3 = (0,_dropin_checkbox__WEBPACK_IMPORTED_MODULE_30__.getCheckboxValue)(determinePaymentDisclosureCheckboxId(paymentMethodFromAPI));
 
-      if (_isChecked2 === false) {
+      if (_isChecked3 === false) {
         (0,_utils__WEBPACK_IMPORTED_MODULE_32__.setElementErrorMessage)('DR-payment-disclosure-checkbox-error-' + paymentMethod.type, (0,_mandate__WEBPACK_IMPORTED_MODULE_21__.getMustAcceptTermsText)(locale));
         return;
       } else {
@@ -10711,11 +10882,11 @@ function createSubmitButton(controllerId, configuration, createSource, component
       var showTermsForStoredStoreCredit = shouldShowTermsForStoredStoreCredit(paymentMethodFromAPI, configuration, sessionInformation);
 
       if (showTermsForStoredStoreCredit || showTermsOfSaleDisclosure && !(0,_dropin_stored_payment_methods__WEBPACK_IMPORTED_MODULE_29__.isStoreCredit)(paymentMethodFromAPI.type)) {
-        var _isChecked3 = (0,_dropin_checkbox__WEBPACK_IMPORTED_MODULE_30__.getCheckboxValue)((0,_dropin_terms__WEBPACK_IMPORTED_MODULE_26__.determineTermsCheckboxId)(paymentMethodFromAPI));
+        var _isChecked4 = (0,_dropin_checkbox__WEBPACK_IMPORTED_MODULE_30__.getCheckboxValue)((0,_dropin_terms__WEBPACK_IMPORTED_MODULE_26__.determineTermsCheckboxId)(paymentMethodFromAPI));
 
         var errorContainerId = (0,_dropin_terms__WEBPACK_IMPORTED_MODULE_26__.determineTermsCheckboxErrorId)(paymentMethodFromAPI);
 
-        if (_isChecked3 === false) {
+        if (_isChecked4 === false) {
           (0,_utils__WEBPACK_IMPORTED_MODULE_32__.setElementErrorMessage)(errorContainerId, (0,_mandate__WEBPACK_IMPORTED_MODULE_21__.getMustAcceptTermsText)(locale));
           return;
         } else {
@@ -10770,13 +10941,13 @@ function createSubmitButton(controllerId, configuration, createSource, component
 }
 
 function findOptionsKey(configuration, paymentMethod) {
-  var _context17;
+  var _context19;
 
   if (typeof configuration === 'undefined') {
     return;
   }
 
-  return _babel_runtime_corejs3_core_js_stable_instance_find__WEBPACK_IMPORTED_MODULE_10___default()(_context17 = _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_7___default()(configuration)).call(_context17, function (option) {
+  return _babel_runtime_corejs3_core_js_stable_instance_find__WEBPACK_IMPORTED_MODULE_10___default()(_context19 = _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_7___default()(configuration)).call(_context19, function (option) {
     return option.toLowerCase() === paymentMethod.code;
   });
 }
@@ -10793,18 +10964,18 @@ function addReadyEventToComponents(component, componentsReadyStatus, readyEvent,
 }
 
 function areAllComponentsReady(componentsReadyStatus) {
-  var _context18;
+  var _context20;
 
-  return _babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_5___default()(_context18 = _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_7___default()(componentsReadyStatus)).call(_context18, function (key) {
+  return _babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_5___default()(_context20 = _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_7___default()(componentsReadyStatus)).call(_context20, function (key) {
     return componentsReadyStatus[key] === 'NOT_READY';
   }).length === 0;
 }
 
 function addClientEventsToComponent(events, component) {
   if (typeof events !== 'undefined' && _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_7___default()(events).length > 0) {
-    var _context19;
+    var _context21;
 
-    _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_9___default()(_context19 = _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_7___default()(events)).call(_context19, function (event) {
+    _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_9___default()(_context21 = _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_7___default()(events)).call(_context21, function (event) {
       component.on(event, events[event]);
     });
   }
@@ -10822,7 +10993,9 @@ function handleRedirectSource(controllerId, configuration, paymentMethod, create
   var createSourceFunction = paymentMethod.onlyButton ? createSource(clientSourceData) : createSource(componentsMounted[paymentMethod.code], clientSourceData);
   var redirectDisabled = isRedirectDisabled(configuration);
   var submitButton = getSubmitButtonByPaymentMethodType(paymentMethod.type);
-  var redirectWindow = (0,_app_components_controller_controller_window_opener__WEBPACK_IMPORTED_MODULE_28__.openWindow)('');
+  var redirectWindow = !redirectDisabled ? (0,_app_components_controller_controller_window_opener__WEBPACK_IMPORTED_MODULE_28__.openWindow)('') : {
+    close: function close() {}
+  };
   return createSourceFunction.then(function (response) {
     if (response.source !== null && !redirectDisabled) {
       redirectWindow.location.replace(response.source.redirect.redirectUrl);
@@ -10854,12 +11027,18 @@ function handleHeaderButtonClick(event) {
   var toggleTarget = document.getElementById(determinedTarget.getAttribute('data-DR-target'));
   var isExpanded = determinedTarget.getAttribute('aria-expanded');
 
+  if (isExpanded === null) {
+    return;
+  }
+
   if (isExpanded === 'false') {
     var allTargets = _babel_runtime_corejs3_core_js_stable_instance_slice__WEBPACK_IMPORTED_MODULE_14___default()([]).call(document.querySelectorAll('[data-DR-toggle]'));
 
     _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_9___default()(allTargets).call(allTargets, function (target) {
-      target.setAttribute('aria-expanded', 'false');
-      document.getElementById(target.getAttribute('data-DR-target')).classList.remove('DR-show');
+      if (target.getAttribute('aria-expanded') !== null) {
+        target.setAttribute('aria-expanded', 'false');
+        document.getElementById(target.getAttribute('data-DR-target')).classList.remove('DR-show');
+      }
     });
 
     determinedTarget.setAttribute('aria-expanded', 'true');
@@ -10898,9 +11077,9 @@ function filterLogosByCurrency(logoDetails, currency) {
   }
 
   return _babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_5___default()(logoDetails).call(logoDetails, function (logoDetail) {
-    var _context20;
+    var _context22;
 
-    return _babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_6___default()(_context20 = logoDetail.availableCurrencies).call(_context20, currency);
+    return _babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_6___default()(_context22 = logoDetail.availableCurrencies).call(_context22, currency);
   });
 }
 
@@ -10919,56 +11098,65 @@ function updateButton(button, text, disabled) {
 }
 function getSubmitButtonByPaymentMethodType(paymentMethodType) {
   return document.querySelector(".DR-".concat(paymentMethodType, " .DR-pay-button"));
-} // Note: This is a temporary function until the payment service returns it as part of the response.
-
+}
 function getLogoDetails() {
   var baseUrl = 'https://ui1.img.digitalrivercontent.net/Storefront/images/creditCardLogos/';
   return [{
     code: 'visa',
+    brand: 'visa',
     display: 'Visa',
     url: baseUrl + 'visa.png',
     availableCurrencies: ['AED', 'ARS', 'AUD', 'BHD', 'BRL', 'CAD', 'CHF', 'CLP', 'CNY', 'COP', 'CZK', 'DJF', 'DKK', 'EGP', 'ERN', 'ETB', 'EUR', 'GBP', 'HKD', 'IDR', 'ILS', 'INR', 'JOD', 'JPY', 'KRW', 'KWD', 'LBP', 'MXN', 'MYR', 'NOK', 'NZD', 'OMR', 'PEN', 'PHP', 'PLN', 'QAR', 'RUB', 'SAR', 'SEK', 'SGD', 'THB', 'TRY', 'TWD', 'USD', 'ZAR']
   }, {
     code: 'mastercard',
+    brand: 'masterCard',
     display: 'Master Card',
     url: baseUrl + 'mastercard.png',
     availableCurrencies: ['AED', 'ARS', 'AUD', 'BHD', 'BRL', 'CAD', 'CHF', 'CLP', 'CNY', 'COP', 'CZK', 'DJF', 'DKK', 'EGP', 'ERN', 'ETB', 'EUR', 'GBP', 'HKD', 'IDR', 'ILS', 'INR', 'JOD', 'JPY', 'KRW', 'KWD', 'LBP', 'MXN', 'MYR', 'NOK', 'NZD', 'OMR', 'PEN', 'PHP', 'PLN', 'QAR', 'RUB', 'SAR', 'SEK', 'SGD', 'THB', 'TRY', 'TWD', 'USD', 'ZAR']
   }, {
+    brand: 'discover',
     code: 'discover',
     display: 'Discover',
     url: baseUrl + 'discover.png',
     availableCurrencies: ['EUR', 'GBP', 'USD']
   }, {
     code: 'amex',
-    display: 'Amex',
+    brand: 'americanExpress',
+    display: 'American Express',
     url: baseUrl + 'amex.png',
     availableCurrencies: ['AUD', 'BRL', 'CAD', 'DKK', 'EUR', 'HKD', 'INR', 'JPY', 'MYR', 'MXN', 'NOK', 'NZD', 'PLN', 'GBP', 'SGD', 'SEK', 'CHF', 'TWD', 'USD', 'ZAR']
   }, {
+    brand: 'dinersClub',
     code: 'dinersclub',
     display: 'Diners Club',
     url: baseUrl + 'dinersclub.png',
     availableCurrencies: ['BRL', 'EUR']
   }, {
+    brand: 'jcb',
     code: 'jcb',
     display: 'JCB',
     url: baseUrl + 'jcb.png',
     availableCurrencies: ['USD', 'JPY']
   }, {
     code: 'unionpay',
+    brand: 'unionPay',
     display: 'Union Pay',
     url: baseUrl + 'unionpay.png',
     availableCurrencies: ['EUR', 'HKD', 'USD', 'CNY', 'SGD']
   }, {
+    brand: 'dankort',
     code: 'dankort',
     display: 'Dankort',
     url: baseUrl + 'dankort.png',
     availableCurrencies: ['DKK']
   }, {
+    brand: 'maestro',
     code: 'maestro',
     display: 'Maestro',
     url: baseUrl + 'maestro.png',
     availableCurrencies: ['GBP']
   }, {
+    brand: 'forbrugsforeningen',
     code: 'forbrugsforeningen',
     display: 'Forbrugsforeningen',
     url: baseUrl + 'forbrugsforeningen.png',
@@ -11021,21 +11209,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_starts_with__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/starts-with */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/starts-with.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_starts_with__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_starts_with__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! uuid */ "./node_modules/uuid/dist/esm-browser/index.js");
-/* harmony import */ var _createFrame__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./createFrame */ "./src/client/createFrame.js");
-/* harmony import */ var _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../post-robot-wrapper */ "./src/post-robot-wrapper.js");
-/* harmony import */ var cross_domain_utils__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! cross-domain-utils */ "./node_modules/cross-domain-utils/dist/module/index.js");
-/* harmony import */ var cross_domain_utils__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(cross_domain_utils__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var _dataStore__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./dataStore */ "./src/client/dataStore.js");
-/* harmony import */ var _createController__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./createController */ "./src/client/createController.js");
-/* harmony import */ var _event_middleware__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./event-middleware */ "./src/client/event-middleware.js");
-/* harmony import */ var _css_class_utils__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./css-class-utils */ "./src/client/css-class-utils.js");
-/* harmony import */ var _app_components_config__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../app/components/config */ "./src/app/components/config.js");
-/* harmony import */ var _app_components_options__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../app/components/options */ "./src/app/components/options.js");
-/* harmony import */ var _beacon_beacon_client_data__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../beacon/beacon-client-data */ "./src/beacon/beacon-client-data.js");
-/* harmony import */ var _app_components_controller_controller_create_source_utils__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../app/components/controller/controller-create-source-utils */ "./src/app/components/controller/controller-create-source-utils.js");
-/* harmony import */ var _app_key_helper__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../app/key-helper */ "./src/app/key-helper.js");
-/* harmony import */ var _app_config__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ../app/config */ "./src/app/config.js");
+/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! uuid */ "./node_modules/uuid/dist/esm-browser/v4.js");
+/* harmony import */ var _createFrame__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./createFrame */ "./src/client/createFrame.js");
+/* harmony import */ var _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../post-robot-wrapper */ "./src/post-robot-wrapper.js");
+/* harmony import */ var cross_domain_utils__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! cross-domain-utils */ "./node_modules/cross-domain-utils/dist/module/index.js");
+/* harmony import */ var cross_domain_utils__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(cross_domain_utils__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _dataStore__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./dataStore */ "./src/client/dataStore.js");
+/* harmony import */ var _createController__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./createController */ "./src/client/createController.js");
+/* harmony import */ var _event_middleware__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./event-middleware */ "./src/client/event-middleware.js");
+/* harmony import */ var _css_class_utils__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./css-class-utils */ "./src/client/css-class-utils.js");
+/* harmony import */ var _app_components_config__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../app/components/config */ "./src/app/components/config.js");
+/* harmony import */ var _app_components_options__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../app/components/options */ "./src/app/components/options.js");
+/* harmony import */ var _beacon_beacon_client_data__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../beacon/beacon-client-data */ "./src/beacon/beacon-client-data.js");
+/* harmony import */ var _app_components_controller_controller_create_source_utils__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../app/components/controller/controller-create-source-utils */ "./src/app/components/controller/controller-create-source-utils.js");
+/* harmony import */ var _app_key_helper__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../app/key-helper */ "./src/app/key-helper.js");
+/* harmony import */ var _app_config__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../app/config */ "./src/app/config.js");
 
 
 
@@ -11057,7 +11245,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var MAX_TRIES = 5;
 function getComponentsBasePath() {
-  return _app_components_config__WEBPACK_IMPORTED_MODULE_13__.config.domain + _app_components_config__WEBPACK_IMPORTED_MODULE_13__.config.basePath + '/' + _app_components_config__WEBPACK_IMPORTED_MODULE_13__.config.componentsVersionId + '/components';
+  return _app_components_config__WEBPACK_IMPORTED_MODULE_12__.config.domain + _app_components_config__WEBPACK_IMPORTED_MODULE_12__.config.basePath + '/' + _app_components_config__WEBPACK_IMPORTED_MODULE_12__.config.componentsVersionId + '/components';
 }
 var eventNames = ['blur', 'change', 'focus', 'ready', 'click', 'source', 'shippingaddresschange', 'shippingoptionchange', 'cancel', 'return'];
 /**
@@ -11072,7 +11260,7 @@ function onEventHandler(eventName, eventFunction) {
   }
 
   var key = this.key;
-  var data = _dataStore__WEBPACK_IMPORTED_MODULE_9__.default.get(this.key);
+  var data = _dataStore__WEBPACK_IMPORTED_MODULE_8__.default.get(this.key);
   data.customEvents.push({
     eventType: this.type,
     componentId: this.id,
@@ -11080,7 +11268,7 @@ function onEventHandler(eventName, eventFunction) {
     eventFunction: eventFunction
   }); // Stores the custom function in the data store
 
-  _dataStore__WEBPACK_IMPORTED_MODULE_9__.default.set(key, data);
+  _dataStore__WEBPACK_IMPORTED_MODULE_8__.default.set(key, data);
 }
 /**
  * Triggers component events
@@ -11092,7 +11280,7 @@ function onEventHandler(eventName, eventFunction) {
 
 function triggerEvent(controllerId, id, eventType) {
   return function () {
-    _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_7__.default.send(getComponentWindow(controllerId), 'triggerComponentEvent', {
+    _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_6__.default.send(getComponentWindow(controllerId), 'triggerComponentEvent', {
       componentId: id,
       eventType: eventType
     });
@@ -11106,7 +11294,7 @@ function triggerEvent(controllerId, id, eventType) {
 function unmount() {
   var parentNode = this.parentNode;
   var key = this.key;
-  var data = _dataStore__WEBPACK_IMPORTED_MODULE_9__.default.get(key);
+  var data = _dataStore__WEBPACK_IMPORTED_MODULE_8__.default.get(key);
   var cssClasses;
 
   if (data && data.hasOwnProperty('components')) {
@@ -11120,20 +11308,20 @@ function unmount() {
   }
 
   try {
-    _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_7__.default.send(getComponentWindow(this.controllerId), 'unmountComponent', {
+    _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_6__.default.send(getComponentWindow(this.controllerId), 'unmountComponent', {
       componentId: this.id,
       componentType: this.type
     });
 
     if (document.getElementById(this.id)) {
       parentNode.removeChild(document.getElementById(this.id));
-      (0,_css_class_utils__WEBPACK_IMPORTED_MODULE_12__.removeClasses)(cssClasses, parentNode);
+      (0,_css_class_utils__WEBPACK_IMPORTED_MODULE_11__.removeClasses)(cssClasses, parentNode);
     }
 
     this.parentNode = null; // this.parentNode set to null indicates that there is no parent this component is mounted to
 
     data.components[this.type] = null;
-    _dataStore__WEBPACK_IMPORTED_MODULE_9__.default.set(key, data);
+    _dataStore__WEBPACK_IMPORTED_MODULE_8__.default.set(key, data);
   } catch (err) {
     throw new Error("Failed to unmount component '".concat(this.type, "'."));
   }
@@ -11174,11 +11362,11 @@ function mount(node) {
 
     if (this.type === 'controller') {
       // Controller
-      (0,_createFrame__WEBPACK_IMPORTED_MODULE_6__.createFrame)(this.type, node, getComponentURL(this.type, this.id, this.controllerId), attributes);
+      (0,_createFrame__WEBPACK_IMPORTED_MODULE_5__.createFrame)(this.type, node, getComponentURL(this.type, this.id, this.controllerId), attributes);
     } else {
       // Other Component
       var key = this.key;
-      var data = _dataStore__WEBPACK_IMPORTED_MODULE_9__.default.get(key);
+      var data = _dataStore__WEBPACK_IMPORTED_MODULE_8__.default.get(key);
 
       if (data && data.hasOwnProperty('components')) {
         var _context;
@@ -11194,33 +11382,33 @@ function mount(node) {
 
       if (typeof this.options !== 'undefined') {
         //arbitrate custom vs default options
-        this.options.classes = (0,_css_class_utils__WEBPACK_IMPORTED_MODULE_12__.getCssClasses)(this.options.classes);
-        var elementHeight = (0,_css_class_utils__WEBPACK_IMPORTED_MODULE_12__.getElementHeight)(this.options.style); // If we have options, send them and wait for them to be sent before creating the component
+        this.options.classes = (0,_css_class_utils__WEBPACK_IMPORTED_MODULE_11__.getCssClasses)(this.options.classes);
+        var elementHeight = (0,_css_class_utils__WEBPACK_IMPORTED_MODULE_11__.getElementHeight)(this.options.style); // If we have options, send them and wait for them to be sent before creating the component
 
         if (this.type !== 'applepay' && this.type !== 'compliance') {
-          (0,_createFrame__WEBPACK_IMPORTED_MODULE_6__.createFrame)(this.type, node, getComponentURL(this.type, this.id, this.controllerId), attributes, elementHeight, data.instanceOptions.locale, this.id, this.nameForAccessibility);
+          (0,_createFrame__WEBPACK_IMPORTED_MODULE_5__.createFrame)(this.type, node, getComponentURL(this.type, this.id, this.controllerId), attributes, elementHeight, data.instanceOptions.locale, this.id, this.nameForAccessibility);
         }
 
-        var dataKey = (0,_app_key_helper__WEBPACK_IMPORTED_MODULE_17__.fieldKey)(this.type, this.id);
+        var dataKey = (0,_app_key_helper__WEBPACK_IMPORTED_MODULE_16__.fieldKey)(this.type, this.id);
         data.components[dataKey] = {
           'parent': node,
-          'options': (0,_app_components_options__WEBPACK_IMPORTED_MODULE_14__.sanitizeOptionsForType)(this.options, this.type)
+          'options': (0,_app_components_options__WEBPACK_IMPORTED_MODULE_13__.sanitizeOptionsForType)(this.options, this.type)
         };
-        _dataStore__WEBPACK_IMPORTED_MODULE_9__.default.set(key, data); // Set base css class & empty class since field is empty
+        _dataStore__WEBPACK_IMPORTED_MODULE_8__.default.set(key, data); // Set base css class & empty class since field is empty
 
-        if ((0,_app_config__WEBPACK_IMPORTED_MODULE_18__.shouldAddBaseClass)(this.type)) {
+        if ((0,_app_config__WEBPACK_IMPORTED_MODULE_17__.shouldAddBaseClass)(this.type)) {
           var DRElementClass = data.components[dataKey].options.classes.base;
           node.classList.add(DRElementClass);
         }
 
-        if ((0,_app_config__WEBPACK_IMPORTED_MODULE_18__.shouldAddEmptyClass)(this.type)) {
+        if ((0,_app_config__WEBPACK_IMPORTED_MODULE_17__.shouldAddEmptyClass)(this.type)) {
           var DREmptyClass = data.components[dataKey].options.classes.empty;
           node.classList.add(DREmptyClass);
         }
       } else {
         // If we don't have any options just create the frame
         if (this.type !== 'applepay' && this.type !== 'compliance') {
-          (0,_createFrame__WEBPACK_IMPORTED_MODULE_6__.createFrame)(this.type, node, getComponentURL(this.type, this.id, this.controllerId), attributes);
+          (0,_createFrame__WEBPACK_IMPORTED_MODULE_5__.createFrame)(this.type, node, getComponentURL(this.type, this.id, this.controllerId), attributes);
         }
       }
     }
@@ -11260,11 +11448,11 @@ function destroy() {
     return _babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_3___default().reject("Unable to locate controller '".concat(this.controllerId, "'"));
   }
 
-  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_7__.default.send(controllerWindow, 'unregisterComponent', {
+  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_6__.default.send(controllerWindow, 'unregisterComponent', {
     componentId: this.id,
     componentType: this.type
   }).then(function () {
-    (0,_event_middleware__WEBPACK_IMPORTED_MODULE_11__.removeEventsForComponent)(_this.key, _this.id);
+    (0,_event_middleware__WEBPACK_IMPORTED_MODULE_10__.removeEventsForComponent)(_this.key, _this.id);
     modifyThisForDestroy.call(_this);
   });
 }
@@ -11277,7 +11465,7 @@ function destroy() {
  */
 
 function createComponent(type, controllerId, key, options, nameForAccessibility) {
-  if (typeof type !== 'string' || !(0,_app_config__WEBPACK_IMPORTED_MODULE_18__.isValidComponent)(type)) {
+  if (typeof type !== 'string' || !(0,_app_config__WEBPACK_IMPORTED_MODULE_17__.isValidComponent)(type)) {
     throw new Error('createComponent() requires a valid component type');
   }
 
@@ -11293,7 +11481,7 @@ function createComponent(type, controllerId, key, options, nameForAccessibility)
     mount: mount,
     destroy: destroy,
     on: onEventHandler,
-    options: (0,_app_components_options__WEBPACK_IMPORTED_MODULE_14__.sanitizeOptionsForType)(options, formattedType),
+    options: (0,_app_components_options__WEBPACK_IMPORTED_MODULE_13__.sanitizeOptionsForType)(options, formattedType),
     unmount: unmount,
     blur: triggerEvent(controllerId, id, 'blur'),
     clear: triggerEvent(controllerId, id, 'clear'),
@@ -11323,7 +11511,6 @@ function createComponent(type, controllerId, key, options, nameForAccessibility)
  */
 
 function googlePayCanMakePayment() {
-  // TODO False for IE 11 or less
   return true;
 }
 /**
@@ -11335,11 +11522,11 @@ function googlePayCanMakePayment() {
  */
 
 function getComponentURL(type, id, controllerId) {
-  if (!(0,_app_config__WEBPACK_IMPORTED_MODULE_18__.isValidComponent)(type)) {
+  if (!(0,_app_config__WEBPACK_IMPORTED_MODULE_17__.isValidComponent)(type)) {
     throw new Error('getComponentURL() requires a valid component type');
   }
 
-  var url = getComponentsBasePath() + (0,_app_config__WEBPACK_IMPORTED_MODULE_18__.getIframeSrc)(type) + '?componentId=' + id;
+  var url = getComponentsBasePath() + (0,_app_config__WEBPACK_IMPORTED_MODULE_17__.getIframeSrc)(type) + '?componentId=' + id;
 
   if (type === 'controller') {
     return url;
@@ -11357,7 +11544,7 @@ function generateComponentId(type) {
   if (type === 'td' || type === 'dr3dsecure') {
     return type;
   } else {
-    return type + '-' + (0,uuid__WEBPACK_IMPORTED_MODULE_5__.v4)();
+    return type + '-' + (0,uuid__WEBPACK_IMPORTED_MODULE_18__.default)();
   }
 }
 /**
@@ -11381,16 +11568,16 @@ function findWindow(currentWindow, id) {
   var tries = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
 
   if (tries >= MAX_TRIES) {
-    return (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_8__.getFrameByName)(currentWindow, id);
+    return (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_7__.getFrameByName)(currentWindow, id);
   }
 
-  var foundFrame = (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_8__.getFrameByName)(currentWindow, id);
+  var foundFrame = (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_7__.getFrameByName)(currentWindow, id);
 
   if (typeof foundFrame !== 'undefined') {
     return foundFrame;
   }
 
-  var parentWindow = (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_8__.getParent)(currentWindow);
+  var parentWindow = (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_7__.getParent)(currentWindow);
 
   if (typeof parentWindow === 'undefined') {
     return foundFrame;
@@ -11414,7 +11601,7 @@ function registerComponentWithController(controllerId, component, options) {
   } // Send component Id to the controller, we return a promise but you don't really need to wait?
 
 
-  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_7__.default.send(controllerWindow, 'registerNewComponent', {
+  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_6__.default.send(controllerWindow, 'registerNewComponent', {
     componentType: component.type,
     componentId: component.id,
     options: options
@@ -11438,7 +11625,7 @@ function sendOptions(controllerId, component, unsafeOptions) {
   } // Send component Id to the controller, we return a promise but you don't really need to wait?
 
 
-  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_7__.default.send(controllerWindow, 'sendOptions', {
+  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_6__.default.send(controllerWindow, 'sendOptions', {
     componentType: component.type,
     componentId: component.id,
     unsafeOptions: unsafeOptions
@@ -11462,7 +11649,7 @@ function sendApiKey(controllerId, eventName, data) {
   } // Send component Id to the controller, we return a promise but you don't really need to wait?
 
 
-  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_7__.default.send(controllerWindow, eventName, data).catch(function () {
+  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_6__.default.send(controllerWindow, eventName, data).catch(function () {
     throw new Error('Sending apiKey error');
   });
 }
@@ -11493,7 +11680,7 @@ function createOrExtractBeaconController() {
   var beaconComponent = getComponentIFrame(type);
 
   if (!beaconComponent) {
-    beaconComponent = (0,_createController__WEBPACK_IMPORTED_MODULE_10__.createController)(document.body, type);
+    beaconComponent = (0,_createController__WEBPACK_IMPORTED_MODULE_9__.createController)(document.body, type);
   }
 
   return beaconComponent;
@@ -11525,7 +11712,7 @@ function createOrExtractAdyenController() {
 
   if (!adyenComponent) {
     var adyenDiv = createOverlayDiv('DRPayment3ds');
-    adyenComponent = (0,_createController__WEBPACK_IMPORTED_MODULE_10__.createController)(adyenDiv, type);
+    adyenComponent = (0,_createController__WEBPACK_IMPORTED_MODULE_9__.createController)(adyenDiv, type);
   }
 
   return adyenComponent;
@@ -11537,28 +11724,28 @@ function createOrExtractAdyenController() {
 
 function update(options) {
   var key = this.key;
-  var data = _dataStore__WEBPACK_IMPORTED_MODULE_9__.default.get(key);
-  var el = data.components[(0,_app_key_helper__WEBPACK_IMPORTED_MODULE_17__.fieldKey)(this.type, this.id)].parent;
-  var activeClasses = (0,_css_class_utils__WEBPACK_IMPORTED_MODULE_12__.getActiveClasses)(this.options.classes, el);
-  (0,_css_class_utils__WEBPACK_IMPORTED_MODULE_12__.removeClasses)(data.components[(0,_app_key_helper__WEBPACK_IMPORTED_MODULE_17__.fieldKey)(this.type, this.id)].options.classes, el);
-  var mergedOptions = (0,_app_components_options__WEBPACK_IMPORTED_MODULE_14__.mergeOptions)(data.components[(0,_app_key_helper__WEBPACK_IMPORTED_MODULE_17__.fieldKey)(this.type, this.id)].options, options); // we need to run classes through default/custom arbitration
+  var data = _dataStore__WEBPACK_IMPORTED_MODULE_8__.default.get(key);
+  var el = data.components[(0,_app_key_helper__WEBPACK_IMPORTED_MODULE_16__.fieldKey)(this.type, this.id)].parent;
+  var activeClasses = (0,_css_class_utils__WEBPACK_IMPORTED_MODULE_11__.getActiveClasses)(this.options.classes, el);
+  (0,_css_class_utils__WEBPACK_IMPORTED_MODULE_11__.removeClasses)(data.components[(0,_app_key_helper__WEBPACK_IMPORTED_MODULE_16__.fieldKey)(this.type, this.id)].options.classes, el);
+  var mergedOptions = (0,_app_components_options__WEBPACK_IMPORTED_MODULE_13__.mergeOptions)(data.components[(0,_app_key_helper__WEBPACK_IMPORTED_MODULE_16__.fieldKey)(this.type, this.id)].options, options); // we need to run classes through default/custom arbitration
 
-  mergedOptions.classes = (0,_css_class_utils__WEBPACK_IMPORTED_MODULE_12__.getCssClasses)(mergedOptions.classes);
+  mergedOptions.classes = (0,_css_class_utils__WEBPACK_IMPORTED_MODULE_11__.getCssClasses)(mergedOptions.classes);
   sendOptions(this.controllerId, {
     'type': this.type,
     'id': this.id
   }, mergedOptions);
-  data.components[(0,_app_key_helper__WEBPACK_IMPORTED_MODULE_17__.fieldKey)(this.type, this.id)].options = (0,_app_components_options__WEBPACK_IMPORTED_MODULE_14__.sanitizeOptionsForType)(mergedOptions, this.type);
-  delete data.components[(0,_app_key_helper__WEBPACK_IMPORTED_MODULE_17__.fieldKey)(this.type, this.id)].options.sourceData; // Note: Do not store the sourceData
+  data.components[(0,_app_key_helper__WEBPACK_IMPORTED_MODULE_16__.fieldKey)(this.type, this.id)].options = (0,_app_components_options__WEBPACK_IMPORTED_MODULE_13__.sanitizeOptionsForType)(mergedOptions, this.type);
+  delete data.components[(0,_app_key_helper__WEBPACK_IMPORTED_MODULE_16__.fieldKey)(this.type, this.id)].options.sourceData; // Note: Do not store the sourceData
 
-  _dataStore__WEBPACK_IMPORTED_MODULE_9__.default.set(key, data);
-  this.options = data.components[(0,_app_key_helper__WEBPACK_IMPORTED_MODULE_17__.fieldKey)(this.type, this.id)].options;
+  _dataStore__WEBPACK_IMPORTED_MODULE_8__.default.set(key, data);
+  this.options = data.components[(0,_app_key_helper__WEBPACK_IMPORTED_MODULE_16__.fieldKey)(this.type, this.id)].options;
 
   if (this.type !== 'onlinebanking') {
     //online banking update means changing select options, so we have to set classes back to empty
-    (0,_css_class_utils__WEBPACK_IMPORTED_MODULE_12__.applyActiveClasses)(activeClasses, this.options.classes, el);
+    (0,_css_class_utils__WEBPACK_IMPORTED_MODULE_11__.applyActiveClasses)(activeClasses, this.options.classes, el);
   } else {
-    (0,_css_class_utils__WEBPACK_IMPORTED_MODULE_12__.applyActiveClasses)(['base', 'empty'], this.options.classes, el);
+    (0,_css_class_utils__WEBPACK_IMPORTED_MODULE_11__.applyActiveClasses)(['base', 'empty'], this.options.classes, el);
   }
 }
 /**
@@ -11574,12 +11761,12 @@ function sendInitalize3dSecure(adyenId, apiKey) {
     throw new Error("Unable to locate 3ds '".concat(adyenId, "'"));
   }
 
-  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_7__.default.send(adyenWindow, 'sendInitalize3dSecure', {
+  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_6__.default.send(adyenWindow, 'sendInitalize3dSecure', {
     secureId: adyenId,
     apiKey: apiKey,
-    userLocale: (0,_beacon_beacon_client_data__WEBPACK_IMPORTED_MODULE_15__.getUserLocale)(window)
+    userLocale: (0,_beacon_beacon_client_data__WEBPACK_IMPORTED_MODULE_14__.getUserLocale)(window)
   }).catch(function () {
-    return (0,_app_components_controller_controller_create_source_utils__WEBPACK_IMPORTED_MODULE_16__.chooseCreateSourceCatchMessage)('Unable to configure Adyen.');
+    return (0,_app_components_controller_controller_create_source_utils__WEBPACK_IMPORTED_MODULE_15__.chooseCreateSourceCatchMessage)('Unable to configure Adyen.');
   });
 }
 /**
@@ -11598,15 +11785,15 @@ function sendAdyen3dDetails(adyenId, controllerId, paymentServiceResponse, resol
     throw new Error("Unable to locate 3ds '".concat(adyenId, "'"));
   }
 
-  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_7__.default.send(adyenWindow, 'sendActions', {
+  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_6__.default.send(adyenWindow, 'sendActions', {
     controllerId: controllerId,
     secureId: adyenId,
     resolve: resolve,
     paymentServiceResponse: paymentServiceResponse,
-    clientData: (0,_beacon_beacon_client_data__WEBPACK_IMPORTED_MODULE_15__.collectClientData)(window),
+    clientData: (0,_beacon_beacon_client_data__WEBPACK_IMPORTED_MODULE_14__.collectClientData)(window),
     redirectWindow: redirectWindow
   }).catch(function () {
-    return (0,_app_components_controller_controller_create_source_utils__WEBPACK_IMPORTED_MODULE_16__.chooseCreateSourceCatchMessage)('Unable to configure Adyen.');
+    return (0,_app_components_controller_controller_create_source_utils__WEBPACK_IMPORTED_MODULE_15__.chooseCreateSourceCatchMessage)('Unable to configure Adyen.');
   });
 }
 /**
@@ -11624,14 +11811,14 @@ function sendAdyenAction(adyenId, controllerId, response, resolve) {
     throw new Error("Unable to locate 3ds '".concat(adyenId, "'"));
   }
 
-  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_7__.default.send(adyenWindow, 'sendActions', {
+  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_6__.default.send(adyenWindow, 'sendActions', {
     controllerId: controllerId,
     secureId: adyenId,
     resolve: resolve,
     paymentServiceResponse: response,
-    clientData: (0,_beacon_beacon_client_data__WEBPACK_IMPORTED_MODULE_15__.collectClientData)(window)
+    clientData: (0,_beacon_beacon_client_data__WEBPACK_IMPORTED_MODULE_14__.collectClientData)(window)
   }).catch(function () {
-    return (0,_app_components_controller_controller_create_source_utils__WEBPACK_IMPORTED_MODULE_16__.chooseCreateSourceCatchMessage)('Unable to intialize adyen challenge.');
+    return (0,_app_components_controller_controller_create_source_utils__WEBPACK_IMPORTED_MODULE_15__.chooseCreateSourceCatchMessage)('Unable to intialize adyen challenge.');
   });
 }
 /**
@@ -11814,7 +12001,6 @@ function createFrame(type, node, src, attributes, elementHeight, locale, id, nam
 
   if (type === 'googlepay') {
     frame.setAttribute('allowpaymentrequest', 'true');
-    frame.setAttribute('sandbox', 'allow-forms allow-popups allow-scripts allow-modals allow-same-origin allow-popups-to-escape-sandbox');
   }
 
   _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_1___default()(_context = _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_2___default()(attributes)).call(_context, function (key) {
@@ -12245,7 +12431,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_corejs3_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/typeof */ "./node_modules/@babel/runtime-corejs3/helpers/esm/typeof.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/object/assign */ "./node_modules/@babel/runtime-corejs3/core-js-stable/object/assign.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! uuid */ "./node_modules/uuid/dist/esm-browser/index.js");
+/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! uuid */ "./node_modules/uuid/dist/esm-browser/v4.js");
 
 
 
@@ -12268,7 +12454,7 @@ function set(key, data) {
 }
 
 function create(data) {
-  var key = (0,uuid__WEBPACK_IMPORTED_MODULE_2__.v4)();
+  var key = (0,uuid__WEBPACK_IMPORTED_MODULE_2__.default)();
   set(key, data);
   return key;
 }
@@ -12972,10 +13158,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_find__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_find__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/object/assign */ "./node_modules/@babel/runtime-corejs3/core-js-stable/object/assign.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/filter */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/filter.js");
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _create_dropin__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../create-dropin */ "./src/client/create-dropin.js");
-
+/* harmony import */ var _create_dropin__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../create-dropin */ "./src/client/create-dropin.js");
 
 
 
@@ -12985,7 +13168,7 @@ function getIconImage(paymentMethodResponse, storedPaymentMethod) {
   if (typeof storedPaymentMethod.brand !== 'undefined') {
     var _context;
 
-    return _babel_runtime_corejs3_core_js_stable_instance_find__WEBPACK_IMPORTED_MODULE_0___default()(_context = (0,_create_dropin__WEBPACK_IMPORTED_MODULE_3__.getLogoDetails)()).call(_context, function (logo) {
+    return _babel_runtime_corejs3_core_js_stable_instance_find__WEBPACK_IMPORTED_MODULE_0___default()(_context = (0,_create_dropin__WEBPACK_IMPORTED_MODULE_2__.getLogoDetails)()).call(_context, function (logo) {
       return logo.code.toLowerCase() === storedPaymentMethod.brand.toLowerCase();
     }).url;
   }
@@ -13041,8 +13224,6 @@ function formatAmountBasedOnCurrency(amount, currency) {
   return formatter.format(amount);
 }
 function runOnUpdateRequired(paymentMethodFromAPI, configuration, event) {
-  var _context3;
-
   if (typeof configuration.onUpdateRequired === 'undefined') {
     return;
   }
@@ -13050,20 +13231,13 @@ function runOnUpdateRequired(paymentMethodFromAPI, configuration, event) {
   var paymentMethod = _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_1___default()({}, paymentMethodFromAPI.storedPaymentMethod);
 
   paymentMethod.action = event;
-  var storedPaymentMethodsToUse = configuration.onUpdateRequired({
+  configuration.onUpdateRequired({
     'selectedPaymentMethod': paymentMethod,
-    'storedPaymentMethods': _babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_2___default()(_context3 = configuration.options.storedPaymentMethods).call(_context3, function (spm) {
-      return isStoreCredit(spm.type);
-    })
+    'storedPaymentMethods': configuration.options.storedPaymentMethods,
+    'updateWith': function updateWith(storedPaymentMethodsToUse) {
+      paymentMethodFromAPI.refreshCallback(storedPaymentMethodsToUse);
+    }
   });
-
-  if (typeof storedPaymentMethodsToUse !== 'undefined') {
-    paymentMethodFromAPI.refreshCallback({
-      options: {
-        storedPaymentMethods: storedPaymentMethodsToUse
-      }
-    });
-  }
 }
 function isStoredPaymentMethod(paymentMethod) {
   return paymentMethod.isStored === true;
@@ -13177,7 +13351,7 @@ function createTermsOfSaleNotRecurring(paymentMethodType, locale, sessionInforma
   termsCheckboxParent.className = 'DR-terms-checkbox DR-terms-checkbox-' + paymentMethodType;
   termsCheckboxParent.appendChild(termsCheckbox);
   termsRow.appendChild(termsCheckboxParent);
-  termsText.className = 'DR-terms-content DR-terms-' + paymentMethodType;
+  termsText.className = 'DR-terms-content';
   termsText.innerHTML = getTermsOfSaleDisclosureValue(locale, sessionInformation);
   termsRow.appendChild(termsText);
   termsParent.appendChild(termsRow);
@@ -14752,11 +14926,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_array_is_array__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/array/is-array */ "./node_modules/@babel/runtime-corejs3/core-js-stable/array/is-array.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_array_is_array__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_array_is_array__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/includes */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/includes.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_2__);
+
 
 
 function filterByObjectPropertyValue(dataArray, filterProperty, filterValue) {
   return _babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_0___default()(dataArray).call(dataArray, function (a) {
-    return _babel_runtime_corejs3_core_js_stable_array_is_array__WEBPACK_IMPORTED_MODULE_1___default()(a[filterProperty]) ? a[filterProperty][0] === filterValue : a[filterProperty] === filterValue;
+    var _context;
+
+    return _babel_runtime_corejs3_core_js_stable_array_is_array__WEBPACK_IMPORTED_MODULE_1___default()(a[filterProperty]) ? _babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_2___default()(_context = a[filterProperty]).call(_context, filterValue) : a[filterProperty] === filterValue;
   });
 }
 
@@ -14970,6 +15149,10 @@ function alreadyRendered() {
   return getContainerElement() !== null;
 }
 
+function getFieldKey(field) {
+  return field.name + '-' + field.type;
+}
+
 function addFieldDetailsToState(parsedSchema, localeDataForSchema, type) {
   fields.push({
     name: parsedSchema.title,
@@ -15088,7 +15271,7 @@ function handleOptions(data) {
 }
 
 function addFieldToDOM(customerType, container, fieldType, localeData, componentId) {
-  var _context2, _context3;
+  var _context2, _context3, _context4, _context5;
 
   var row = document.createElement('div');
   row.className = 'DR-row DR-tax-identifier-field';
@@ -15098,11 +15281,11 @@ function addFieldToDOM(customerType, container, fieldType, localeData, component
   nameField.innerHTML = localeData.displayName;
   nameField.className = 'DR-field-label';
   var inputFieldParent = document.createElement('div');
-  inputFieldParent.id = _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_4___default()(_context2 = "".concat(fieldType, "-")).call(_context2, componentId);
+  inputFieldParent.id = _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_4___default()(_context2 = _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_4___default()(_context3 = "".concat(fieldType, "-")).call(_context3, customerType, "-")).call(_context2, componentId);
   inputFieldParent.className = 'DR-field-parent';
   var errorMessage = document.createElement('div');
   errorMessage.className = 'DR-error-message';
-  errorMessage.id = _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_4___default()(_context3 = "".concat(fieldType, "-")).call(_context3, componentId, "-error");
+  errorMessage.id = _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_4___default()(_context4 = _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_4___default()(_context5 = "".concat(fieldType, "-")).call(_context5, customerType, "-")).call(_context4, componentId, "-error");
   dataParent.appendChild(nameField);
   dataParent.appendChild(inputFieldParent);
   row.appendChild(dataParent);
@@ -15118,9 +15301,11 @@ function addFieldToDOM(customerType, container, fieldType, localeData, component
 
 
 function createElements(controllerId, key, options) {
-  var _context4;
+  var _context7;
 
   _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_3___default()(fields).call(fields, function (field) {
+    var _context6;
+
     var defaultOptions = {
       options: {
         placeholderText: ''
@@ -15132,9 +15317,11 @@ function createElements(controllerId, key, options) {
       value: '',
       elementType: field.name,
       componentType: field.name,
-      validationPattern: field.pattern
+      validationPattern: field.pattern,
+      type: field.type
     };
-    var accessibilityName = "taxid-".concat(field.name.toLowerCase());
+
+    var accessibilityName = _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_4___default()(_context6 = "taxid-".concat(field.name.toLowerCase(), "-")).call(_context6, field.type.toLowerCase());
 
     if (typeof options.classes !== 'undefined') {
       defaultOptions.classes = options.classes;
@@ -15144,8 +15331,9 @@ function createElements(controllerId, key, options) {
       defaultOptions.style = options.style;
     }
 
-    elements[field.name] = {
-      parentId: field.name,
+    var fieldKey = getFieldKey(field);
+    elements[fieldKey] = {
+      parentId: fieldKey,
       elementType: field.name,
       options: defaultOptions,
       component: (0,_createComponent__WEBPACK_IMPORTED_MODULE_9__.createComponent)('dynamicfield', controllerId, key, defaultOptions, accessibilityName)
@@ -15154,22 +15342,22 @@ function createElements(controllerId, key, options) {
 
   var data = _dataStore__WEBPACK_IMPORTED_MODULE_11__.default.get(key);
 
-  _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_3___default()(_context4 = _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_5___default()(elements)).call(_context4, function (key) {
+  _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_3___default()(_context7 = _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_5___default()(elements)).call(_context7, function (key) {
     var componentData = elements[key];
     data.components = _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_6___default()({}, data.components, (0,_babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__.default)({}, componentData.component.id, componentData.component.id));
     var component = componentData.component;
     (0,_createComponent__WEBPACK_IMPORTED_MODULE_9__.registerComponentWithController)(controllerId, component, componentData.options);
     component.on('ready', function () {
-      handleFieldReady(componentData.elementType);
+      handleFieldReady(componentData.parentId);
     });
     component.on('blur', function (details) {
-      handleFieldBlur(componentData.elementType, details);
+      handleFieldBlur(componentData.parentId, details);
     });
     component.on('focus', function (details) {
-      handleFieldFocus(componentData.elementType, details);
+      handleFieldFocus(componentData.parentId, details);
     });
     component.on('change', function (details) {
-      handleFieldChange(componentData.elementType, details);
+      handleFieldChange(componentData.parentId, details);
     });
   });
 
@@ -15197,9 +15385,9 @@ function mountElement(parentNodeId) {
 }
 
 function mountElements(parentNode, components) {
-  var _context5;
+  var _context8;
 
-  _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_3___default()(_context5 = _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_5___default()(components)).call(_context5, function (key) {
+  _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_3___default()(_context8 = _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_5___default()(components)).call(_context8, function (key) {
     var componentData = components[key];
     var elementDivId = componentData.parentId + '-' + parentNode;
     componentData.component.mount(elementDivId);
@@ -15207,9 +15395,9 @@ function mountElements(parentNode, components) {
 }
 
 function unmountElement() {
-  var _context6;
+  var _context9;
 
-  _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_3___default()(_context6 = _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_5___default()(elements)).call(_context6, function (elementType) {
+  _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_3___default()(_context9 = _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_5___default()(elements)).call(_context9, function (elementType) {
     if (elements[elementType].component.parentNode) {
       elements[elementType].component.unmount();
     }
@@ -15219,19 +15407,19 @@ function unmountElement() {
 }
 
 function updateElement(options) {
-  var _context7;
+  var _context10;
 
   _createComponent__WEBPACK_IMPORTED_MODULE_9__.update.call(this, options);
 
-  _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_3___default()(_context7 = _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_5___default()(elements)).call(_context7, function (elementType) {
+  _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_3___default()(_context10 = _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_5___default()(elements)).call(_context10, function (elementType) {
     elements[elementType].component.update(options);
   });
 }
 
 function destroySubElements() {
-  var _context8;
+  var _context11;
 
-  _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_3___default()(_context8 = _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_5___default()(elements)).call(_context8, function (elementType) {
+  _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_3___default()(_context11 = _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_5___default()(elements)).call(_context11, function (elementType) {
     elements[elementType].component.destroy();
   });
 }
@@ -15275,44 +15463,46 @@ function handleFieldReady(elementType) {
 }
 
 function setErrorMessages(uniqueId, elements) {
-  var _context9;
+  var _context12;
 
-  _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_3___default()(_context9 = _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_5___default()(elements)).call(_context9, function (elementType) {
-    var _context10, _context11;
+  _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_3___default()(_context12 = _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_5___default()(elements)).call(_context12, function (element) {
+    var _context13, _context14;
 
-    var el = document.getElementById(_babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_4___default()(_context10 = "".concat(elementType, "-")).call(_context10, uniqueId));
+    var el = document.getElementById(_babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_4___default()(_context13 = "".concat(element, "-")).call(_context13, uniqueId));
     var closestParentPurchaseContainer = el.closest('[id$="PurchaseContainer"]');
-    var customerType = _babel_runtime_corejs3_core_js_stable_instance_ends_with__WEBPACK_IMPORTED_MODULE_7___default()(_context11 = closestParentPurchaseContainer.id).call(_context11, 'personalPurchaseContainer') ? 'individual' : 'business';
-    var errorMessageFromCountrySpec = getErrorMessageFromCountrySpec(elementType, customerType);
-    var error = getError(elementType);
+    var customerType = _babel_runtime_corejs3_core_js_stable_instance_ends_with__WEBPACK_IMPORTED_MODULE_7___default()(_context14 = closestParentPurchaseContainer.id).call(_context14, 'personalPurchaseContainer') ? 'individual' : 'business';
+    var errorMessageFromCountrySpec = getErrorMessageFromCountrySpec(elements[element], customerType);
+    var error = getError(element);
 
     if (error) {
-      var _context12;
+      var _context15;
 
-      var parentId = elements[elementType].parentId;
+      var parentId = elements[element].parentId;
       var errorMessage = errorMessageFromCountrySpec === '' ? error.message : errorMessageFromCountrySpec;
-      (0,_utils__WEBPACK_IMPORTED_MODULE_18__.setElementErrorMessage)(_babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_4___default()(_context12 = "".concat(parentId, "-")).call(_context12, uniqueId, "-error"), errorMessage);
+      (0,_utils__WEBPACK_IMPORTED_MODULE_18__.setElementErrorMessage)(_babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_4___default()(_context15 = "".concat(parentId, "-")).call(_context15, uniqueId, "-error"), errorMessage);
     }
   });
 }
 
 function resetErrorMessages(uniqueId, elements) {
-  var _context13;
+  var _context16;
 
-  _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_3___default()(_context13 = _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_5___default()(elements)).call(_context13, function (elementType) {
-    var _context14;
+  _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_3___default()(_context16 = _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_5___default()(elements)).call(_context16, function (elementType) {
+    var _context17;
 
     var parentId = elements[elementType].parentId;
-    (0,_utils__WEBPACK_IMPORTED_MODULE_18__.setElementErrorMessage)(_babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_4___default()(_context14 = "".concat(parentId, "-")).call(_context14, uniqueId, "-error"), '');
+    (0,_utils__WEBPACK_IMPORTED_MODULE_18__.setElementErrorMessage)(_babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_4___default()(_context17 = "".concat(parentId, "-")).call(_context17, uniqueId, "-error"), '');
   });
 }
 
 function handleOnChangeEvent(elements, elementType, eventData, componentData) {
   eventData.identifier = {
     value: elements[elementType].value,
-    type: elementType,
+    type: elements[elementType].elementType,
     customerType: _babel_runtime_corejs3_core_js_stable_instance_find__WEBPACK_IMPORTED_MODULE_8___default()(fields).call(fields, function (f) {
-      return f.name === elementType;
+      var _context18;
+
+      return _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_4___default()(_context18 = "".concat(f.name, "-")).call(_context18, f.type) === elementType;
     }).type
   };
   eventData.elementType = componentData.elementType;
@@ -15336,9 +15526,9 @@ function handleOnFocusEvent(elements, eventType, eventData, componentData) {
 }
 
 function handleReady(elements) {
-  var _context15;
+  var _context19;
 
-  var elementsNotReady = _babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_1___default()(_context15 = _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_5___default()(elements)).call(_context15, function (key) {
+  var elementsNotReady = _babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_1___default()(_context19 = _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_5___default()(elements)).call(_context19, function (key) {
     return elements[key].ready !== true;
   });
 
@@ -15347,9 +15537,9 @@ function handleReady(elements) {
   }
 }
 
-function getErrorMessageFromCountrySpec(type, customerType) {
+function getErrorMessageFromCountrySpec(element, customerType) {
   var errorMessageFromCountrySpec = '';
-  var typeTaxIdentifiers = (0,_tax_identifier_utils__WEBPACK_IMPORTED_MODULE_17__.filterByObjectPropertyValue)(componentData.countrySpec[0].taxIdentifiersInfo, 'type', type);
+  var typeTaxIdentifiers = (0,_tax_identifier_utils__WEBPACK_IMPORTED_MODULE_17__.filterByObjectPropertyValue)(componentData.countrySpec[0].taxIdentifiersInfo, 'type', element.elementType);
   var typeAndCustomerTypeTaxIdentifiers = (0,_tax_identifier_utils__WEBPACK_IMPORTED_MODULE_17__.filterByObjectPropertyValue)(typeTaxIdentifiers, 'customerType', customerType);
 
   if (typeof typeAndCustomerTypeTaxIdentifiers[0].locales !== 'undefined') {
@@ -23575,7 +23765,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(true);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "body {\n    margin:0;\n    padding:0;\n    height:100vh;\n}\ninput, select {\n    border:none;\n    background:transparent;\n    width:100%;\n    height:100%;\n}\ninput:focus {\n    outline:none;\n}\n/* transition and delay are necessary for detecting autofill with js to apply custom classes for autofill */\ninput:-webkit-autofill{\n    -webkit-transition: background-color .1s ease-out;\n    /* delay is necessary - otherwise you will get events every time user rolls\n        over a new option.  you may still get multiple events if user rolls over\n        options slower than you have your delay set\n    */\n    -webkit-transition-delay: .5s !important;\n    background-color: transparent !important;\n    background: transparent;\n\n    -webkit-animation: autofill 0s forwards;\n    animation: autofill 0s forwards;\n}\n\n@keyframes autofill {\n    100% {\n        background: transparent;\n        color: inherit;\n    }\n}\n\n@-webkit-keyframes autofill {\n    100% {\n        background: transparent;\n        color: inherit;\n    }\n}\n\n\n\n.custom-select-container {\n    position: relative;\n    box-sizing: border-box;;\n}\n.custom-select-container * {\n    box-sizing: border-box;\n}\n.custom-select-container.is-disabled {\n    opacity: .333;\n}\n.custom-select-opener {\n    /*background-color: #ccc;*/\n    padding: 0.5em;\n    display:flex;\n    flex-direction: row;\n    align-items: center;\n    justify-content: space-between;\n    cursor: pointer;\n    width: 100%;\n    outline-color: transparent;\n}\n.custom-select-opener::after {\n    content:\"\\A\";\n    width: 0;\n    height: 0;\n    border-left: .5em solid transparent;\n    border-right:.5em solid transparent;\n    border-top: .5em solid currentColor;\n    margin: .5em .25em;\n    float: right;\n}\n.custom-select-container select {\n    visibility: hidden;\n    position: absolute;\n    top: 0;\n    left: 0;\n}\n.custom-select-panel {\n    max-height: 0;\n    overflow: hidden;\n    position: absolute;\n    top: 100%;\n    z-index: 1;\n    width: 100%;\n    cursor: pointer;\n}\n.custom-select-container.is-open .custom-select-panel {\n    /*TODO calc max-height based on number of options*/\n    max-height: 200px;\n    overflow-y: auto\n}\n.custom-select-option {\n    padding: 0.5em;\n}\n.custom-select-option.is-selected::after {\n    content: \"✔\";\n    padding-left: 0.5em;\n}\n.custom-select-optgroup > .custom-select-option {\n    padding-left: 2em;\n}\n.custom-select-optgroup::before {\n    content: attr(data-label);\n    display: block;\n    padding: 0.5em;\n}\n", "",{"version":3,"sources":["webpack://src/app/components/styles/defaults.css"],"names":[],"mappings":"AAAA;IACI,QAAQ;IACR,SAAS;IACT,YAAY;AAChB;AACA;IACI,WAAW;IACX,sBAAsB;IACtB,UAAU;IACV,WAAW;AACf;AACA;IACI,YAAY;AAChB;AACA,2GAA2G;AAC3G;IACI,iDAAiD;IACjD;;;KAGC;IACD,wCAAwC;IACxC,wCAAwC;IACxC,uBAAuB;;IAEvB,uCAAuC;IACvC,+BAA+B;AACnC;;AAEA;IACI;QACI,uBAAuB;QACvB,cAAc;IAClB;AACJ;;AAEA;IACI;QACI,uBAAuB;QACvB,cAAc;IAClB;AACJ;;;;AAIA;IACI,kBAAkB;IAClB,sBAAsB;AAC1B;AACA;IACI,sBAAsB;AAC1B;AACA;IACI,aAAa;AACjB;AACA;IACI,0BAA0B;IAC1B,cAAc;IACd,YAAY;IACZ,mBAAmB;IACnB,mBAAmB;IACnB,8BAA8B;IAC9B,eAAe;IACf,WAAW;IACX,0BAA0B;AAC9B;AACA;IACI,YAAY;IACZ,QAAQ;IACR,SAAS;IACT,mCAAmC;IACnC,mCAAmC;IACnC,mCAAmC;IACnC,kBAAkB;IAClB,YAAY;AAChB;AACA;IACI,kBAAkB;IAClB,kBAAkB;IAClB,MAAM;IACN,OAAO;AACX;AACA;IACI,aAAa;IACb,gBAAgB;IAChB,kBAAkB;IAClB,SAAS;IACT,UAAU;IACV,WAAW;IACX,eAAe;AACnB;AACA;IACI,kDAAkD;IAClD,iBAAiB;IACjB;AACJ;AACA;IACI,cAAc;AAClB;AACA;IACI,YAAY;IACZ,mBAAmB;AACvB;AACA;IACI,iBAAiB;AACrB;AACA;IACI,yBAAyB;IACzB,cAAc;IACd,cAAc;AAClB","sourcesContent":["body {\n    margin:0;\n    padding:0;\n    height:100vh;\n}\ninput, select {\n    border:none;\n    background:transparent;\n    width:100%;\n    height:100%;\n}\ninput:focus {\n    outline:none;\n}\n/* transition and delay are necessary for detecting autofill with js to apply custom classes for autofill */\ninput:-webkit-autofill{\n    -webkit-transition: background-color .1s ease-out;\n    /* delay is necessary - otherwise you will get events every time user rolls\n        over a new option.  you may still get multiple events if user rolls over\n        options slower than you have your delay set\n    */\n    -webkit-transition-delay: .5s !important;\n    background-color: transparent !important;\n    background: transparent;\n\n    -webkit-animation: autofill 0s forwards;\n    animation: autofill 0s forwards;\n}\n\n@keyframes autofill {\n    100% {\n        background: transparent;\n        color: inherit;\n    }\n}\n\n@-webkit-keyframes autofill {\n    100% {\n        background: transparent;\n        color: inherit;\n    }\n}\n\n\n\n.custom-select-container {\n    position: relative;\n    box-sizing: border-box;;\n}\n.custom-select-container * {\n    box-sizing: border-box;\n}\n.custom-select-container.is-disabled {\n    opacity: .333;\n}\n.custom-select-opener {\n    /*background-color: #ccc;*/\n    padding: 0.5em;\n    display:flex;\n    flex-direction: row;\n    align-items: center;\n    justify-content: space-between;\n    cursor: pointer;\n    width: 100%;\n    outline-color: transparent;\n}\n.custom-select-opener::after {\n    content:\"\\A\";\n    width: 0;\n    height: 0;\n    border-left: .5em solid transparent;\n    border-right:.5em solid transparent;\n    border-top: .5em solid currentColor;\n    margin: .5em .25em;\n    float: right;\n}\n.custom-select-container select {\n    visibility: hidden;\n    position: absolute;\n    top: 0;\n    left: 0;\n}\n.custom-select-panel {\n    max-height: 0;\n    overflow: hidden;\n    position: absolute;\n    top: 100%;\n    z-index: 1;\n    width: 100%;\n    cursor: pointer;\n}\n.custom-select-container.is-open .custom-select-panel {\n    /*TODO calc max-height based on number of options*/\n    max-height: 200px;\n    overflow-y: auto\n}\n.custom-select-option {\n    padding: 0.5em;\n}\n.custom-select-option.is-selected::after {\n    content: \"✔\";\n    padding-left: 0.5em;\n}\n.custom-select-optgroup > .custom-select-option {\n    padding-left: 2em;\n}\n.custom-select-optgroup::before {\n    content: attr(data-label);\n    display: block;\n    padding: 0.5em;\n}\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "body {\n    margin:0;\n    padding:0;\n    height:100vh;\n}\ninput, select {\n    border:none;\n    background:transparent;\n    width:100%;\n    height:100%;\n}\ninput:focus {\n    outline:none;\n}\n/* transition and delay are necessary for detecting autofill with js to apply custom classes for autofill */\ninput:-webkit-autofill{\n    -webkit-transition: background-color .1s ease-out;\n    /* delay is necessary - otherwise you will get events every time user rolls\n        over a new option.  you may still get multiple events if user rolls over\n        options slower than you have your delay set\n    */\n    -webkit-transition-delay: .5s !important;\n    background-color: transparent !important;\n    background: transparent;\n\n    -webkit-animation: autofill 0s forwards;\n    animation: autofill 0s forwards;\n}\n\n@keyframes autofill {\n    100% {\n        background: transparent;\n        color: inherit;\n    }\n}\n\n@-webkit-keyframes autofill {\n    100% {\n        background: transparent;\n        color: inherit;\n    }\n}\n\n\n\n.custom-select-container {\n    position: relative;\n    box-sizing: border-box;;\n}\n.custom-select-container * {\n    box-sizing: border-box;\n}\n.custom-select-container.is-disabled {\n    opacity: .333;\n}\n.custom-select-opener {\n    /*background-color: #ccc;*/\n    padding: 0.5em;\n    display:flex;\n    flex-direction: row;\n    align-items: center;\n    justify-content: space-between;\n    cursor: pointer;\n    width: 100%;\n    outline-color: transparent;\n}\n.custom-select-opener::after {\n    content:\"\\A\";\n    width: 0;\n    height: 0;\n    border-left: .5em solid transparent;\n    border-right:.5em solid transparent;\n    border-top: .5em solid currentColor;\n    margin: .5em .25em;\n    float: right;\n}\n.custom-select-container select {\n    visibility: hidden;\n    position: absolute;\n    top: 0;\n    left: 0;\n}\n.custom-select-panel {\n    max-height: 0;\n    overflow: hidden;\n    position: absolute;\n    top: 100%;\n    z-index: 1;\n    width: 100%;\n    cursor: pointer;\n}\n.custom-select-container.is-open .custom-select-panel {\n    /*TODO calc max-height based on number of options*/\n    max-height: 200px;\n    overflow-y: auto\n}\n.custom-select-option {\n    padding: 0.5em;\n}\n.custom-select-option.is-selected::after {\n    content: \"✔\";\n    padding-left: 0.5em;\n    margin: auto 0;\n}\n.custom-select-container {\n    display:flex;\n    flex-direction: row;\n}\n.custom-select-img {\n    width: 100px;\n    margin: auto .5em auto 0;\n}\n.custom-select-text {\n    margin: auto 0;\n}", "",{"version":3,"sources":["webpack://src/app/components/styles/defaults.css"],"names":[],"mappings":"AAAA;IACI,QAAQ;IACR,SAAS;IACT,YAAY;AAChB;AACA;IACI,WAAW;IACX,sBAAsB;IACtB,UAAU;IACV,WAAW;AACf;AACA;IACI,YAAY;AAChB;AACA,2GAA2G;AAC3G;IACI,iDAAiD;IACjD;;;KAGC;IACD,wCAAwC;IACxC,wCAAwC;IACxC,uBAAuB;;IAEvB,uCAAuC;IACvC,+BAA+B;AACnC;;AAEA;IACI;QACI,uBAAuB;QACvB,cAAc;IAClB;AACJ;;AAEA;IACI;QACI,uBAAuB;QACvB,cAAc;IAClB;AACJ;;;;AAIA;IACI,kBAAkB;IAClB,sBAAsB;AAC1B;AACA;IACI,sBAAsB;AAC1B;AACA;IACI,aAAa;AACjB;AACA;IACI,0BAA0B;IAC1B,cAAc;IACd,YAAY;IACZ,mBAAmB;IACnB,mBAAmB;IACnB,8BAA8B;IAC9B,eAAe;IACf,WAAW;IACX,0BAA0B;AAC9B;AACA;IACI,YAAY;IACZ,QAAQ;IACR,SAAS;IACT,mCAAmC;IACnC,mCAAmC;IACnC,mCAAmC;IACnC,kBAAkB;IAClB,YAAY;AAChB;AACA;IACI,kBAAkB;IAClB,kBAAkB;IAClB,MAAM;IACN,OAAO;AACX;AACA;IACI,aAAa;IACb,gBAAgB;IAChB,kBAAkB;IAClB,SAAS;IACT,UAAU;IACV,WAAW;IACX,eAAe;AACnB;AACA;IACI,kDAAkD;IAClD,iBAAiB;IACjB;AACJ;AACA;IACI,cAAc;AAClB;AACA;IACI,YAAY;IACZ,mBAAmB;IACnB,cAAc;AAClB;AACA;IACI,YAAY;IACZ,mBAAmB;AACvB;AACA;IACI,YAAY;IACZ,wBAAwB;AAC5B;AACA;IACI,cAAc;AAClB","sourcesContent":["body {\n    margin:0;\n    padding:0;\n    height:100vh;\n}\ninput, select {\n    border:none;\n    background:transparent;\n    width:100%;\n    height:100%;\n}\ninput:focus {\n    outline:none;\n}\n/* transition and delay are necessary for detecting autofill with js to apply custom classes for autofill */\ninput:-webkit-autofill{\n    -webkit-transition: background-color .1s ease-out;\n    /* delay is necessary - otherwise you will get events every time user rolls\n        over a new option.  you may still get multiple events if user rolls over\n        options slower than you have your delay set\n    */\n    -webkit-transition-delay: .5s !important;\n    background-color: transparent !important;\n    background: transparent;\n\n    -webkit-animation: autofill 0s forwards;\n    animation: autofill 0s forwards;\n}\n\n@keyframes autofill {\n    100% {\n        background: transparent;\n        color: inherit;\n    }\n}\n\n@-webkit-keyframes autofill {\n    100% {\n        background: transparent;\n        color: inherit;\n    }\n}\n\n\n\n.custom-select-container {\n    position: relative;\n    box-sizing: border-box;;\n}\n.custom-select-container * {\n    box-sizing: border-box;\n}\n.custom-select-container.is-disabled {\n    opacity: .333;\n}\n.custom-select-opener {\n    /*background-color: #ccc;*/\n    padding: 0.5em;\n    display:flex;\n    flex-direction: row;\n    align-items: center;\n    justify-content: space-between;\n    cursor: pointer;\n    width: 100%;\n    outline-color: transparent;\n}\n.custom-select-opener::after {\n    content:\"\\A\";\n    width: 0;\n    height: 0;\n    border-left: .5em solid transparent;\n    border-right:.5em solid transparent;\n    border-top: .5em solid currentColor;\n    margin: .5em .25em;\n    float: right;\n}\n.custom-select-container select {\n    visibility: hidden;\n    position: absolute;\n    top: 0;\n    left: 0;\n}\n.custom-select-panel {\n    max-height: 0;\n    overflow: hidden;\n    position: absolute;\n    top: 100%;\n    z-index: 1;\n    width: 100%;\n    cursor: pointer;\n}\n.custom-select-container.is-open .custom-select-panel {\n    /*TODO calc max-height based on number of options*/\n    max-height: 200px;\n    overflow-y: auto\n}\n.custom-select-option {\n    padding: 0.5em;\n}\n.custom-select-option.is-selected::after {\n    content: \"✔\";\n    padding-left: 0.5em;\n    margin: auto 0;\n}\n.custom-select-container {\n    display:flex;\n    flex-direction: row;\n}\n.custom-select-img {\n    width: 100px;\n    margin: auto .5em auto 0;\n}\n.custom-select-text {\n    margin: auto 0;\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ __webpack_exports__["default"] = (___CSS_LOADER_EXPORT___);
 
@@ -30048,331 +30238,6 @@ module.exports = function (list, options) {
 
 /***/ }),
 
-/***/ "./node_modules/uuid/dist/esm-browser/index.js":
-/*!*****************************************************!*\
-  !*** ./node_modules/uuid/dist/esm-browser/index.js ***!
-  \*****************************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "v1": function() { return /* reexport safe */ _v1_js__WEBPACK_IMPORTED_MODULE_0__.default; },
-/* harmony export */   "v3": function() { return /* reexport safe */ _v3_js__WEBPACK_IMPORTED_MODULE_1__.default; },
-/* harmony export */   "v4": function() { return /* reexport safe */ _v4_js__WEBPACK_IMPORTED_MODULE_2__.default; },
-/* harmony export */   "v5": function() { return /* reexport safe */ _v5_js__WEBPACK_IMPORTED_MODULE_3__.default; },
-/* harmony export */   "NIL": function() { return /* reexport safe */ _nil_js__WEBPACK_IMPORTED_MODULE_4__.default; },
-/* harmony export */   "version": function() { return /* reexport safe */ _version_js__WEBPACK_IMPORTED_MODULE_5__.default; },
-/* harmony export */   "validate": function() { return /* reexport safe */ _validate_js__WEBPACK_IMPORTED_MODULE_6__.default; },
-/* harmony export */   "stringify": function() { return /* reexport safe */ _stringify_js__WEBPACK_IMPORTED_MODULE_7__.default; },
-/* harmony export */   "parse": function() { return /* reexport safe */ _parse_js__WEBPACK_IMPORTED_MODULE_8__.default; }
-/* harmony export */ });
-/* harmony import */ var _v1_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./v1.js */ "./node_modules/uuid/dist/esm-browser/v1.js");
-/* harmony import */ var _v3_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./v3.js */ "./node_modules/uuid/dist/esm-browser/v3.js");
-/* harmony import */ var _v4_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./v4.js */ "./node_modules/uuid/dist/esm-browser/v4.js");
-/* harmony import */ var _v5_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./v5.js */ "./node_modules/uuid/dist/esm-browser/v5.js");
-/* harmony import */ var _nil_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./nil.js */ "./node_modules/uuid/dist/esm-browser/nil.js");
-/* harmony import */ var _version_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./version.js */ "./node_modules/uuid/dist/esm-browser/version.js");
-/* harmony import */ var _validate_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./validate.js */ "./node_modules/uuid/dist/esm-browser/validate.js");
-/* harmony import */ var _stringify_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./stringify.js */ "./node_modules/uuid/dist/esm-browser/stringify.js");
-/* harmony import */ var _parse_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./parse.js */ "./node_modules/uuid/dist/esm-browser/parse.js");
-
-
-
-
-
-
-
-
-
-
-/***/ }),
-
-/***/ "./node_modules/uuid/dist/esm-browser/md5.js":
-/*!***************************************************!*\
-  !*** ./node_modules/uuid/dist/esm-browser/md5.js ***!
-  \***************************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/*
- * Browser-compatible JavaScript MD5
- *
- * Modification of JavaScript MD5
- * https://github.com/blueimp/JavaScript-MD5
- *
- * Copyright 2011, Sebastian Tschan
- * https://blueimp.net
- *
- * Licensed under the MIT license:
- * https://opensource.org/licenses/MIT
- *
- * Based on
- * A JavaScript implementation of the RSA Data Security, Inc. MD5 Message
- * Digest Algorithm, as defined in RFC 1321.
- * Version 2.2 Copyright (C) Paul Johnston 1999 - 2009
- * Other contributors: Greg Holt, Andrew Kepert, Ydnar, Lostinet
- * Distributed under the BSD License
- * See http://pajhome.org.uk/crypt/md5 for more info.
- */
-function md5(bytes) {
-  if (typeof bytes === 'string') {
-    var msg = unescape(encodeURIComponent(bytes)); // UTF8 escape
-
-    bytes = new Uint8Array(msg.length);
-
-    for (var i = 0; i < msg.length; ++i) {
-      bytes[i] = msg.charCodeAt(i);
-    }
-  }
-
-  return md5ToHexEncodedArray(wordsToMd5(bytesToWords(bytes), bytes.length * 8));
-}
-/*
- * Convert an array of little-endian words to an array of bytes
- */
-
-
-function md5ToHexEncodedArray(input) {
-  var output = [];
-  var length32 = input.length * 32;
-  var hexTab = '0123456789abcdef';
-
-  for (var i = 0; i < length32; i += 8) {
-    var x = input[i >> 5] >>> i % 32 & 0xff;
-    var hex = parseInt(hexTab.charAt(x >>> 4 & 0x0f) + hexTab.charAt(x & 0x0f), 16);
-    output.push(hex);
-  }
-
-  return output;
-}
-/**
- * Calculate output length with padding and bit length
- */
-
-
-function getOutputLength(inputLength8) {
-  return (inputLength8 + 64 >>> 9 << 4) + 14 + 1;
-}
-/*
- * Calculate the MD5 of an array of little-endian words, and a bit length.
- */
-
-
-function wordsToMd5(x, len) {
-  /* append padding */
-  x[len >> 5] |= 0x80 << len % 32;
-  x[getOutputLength(len) - 1] = len;
-  var a = 1732584193;
-  var b = -271733879;
-  var c = -1732584194;
-  var d = 271733878;
-
-  for (var i = 0; i < x.length; i += 16) {
-    var olda = a;
-    var oldb = b;
-    var oldc = c;
-    var oldd = d;
-    a = md5ff(a, b, c, d, x[i], 7, -680876936);
-    d = md5ff(d, a, b, c, x[i + 1], 12, -389564586);
-    c = md5ff(c, d, a, b, x[i + 2], 17, 606105819);
-    b = md5ff(b, c, d, a, x[i + 3], 22, -1044525330);
-    a = md5ff(a, b, c, d, x[i + 4], 7, -176418897);
-    d = md5ff(d, a, b, c, x[i + 5], 12, 1200080426);
-    c = md5ff(c, d, a, b, x[i + 6], 17, -1473231341);
-    b = md5ff(b, c, d, a, x[i + 7], 22, -45705983);
-    a = md5ff(a, b, c, d, x[i + 8], 7, 1770035416);
-    d = md5ff(d, a, b, c, x[i + 9], 12, -1958414417);
-    c = md5ff(c, d, a, b, x[i + 10], 17, -42063);
-    b = md5ff(b, c, d, a, x[i + 11], 22, -1990404162);
-    a = md5ff(a, b, c, d, x[i + 12], 7, 1804603682);
-    d = md5ff(d, a, b, c, x[i + 13], 12, -40341101);
-    c = md5ff(c, d, a, b, x[i + 14], 17, -1502002290);
-    b = md5ff(b, c, d, a, x[i + 15], 22, 1236535329);
-    a = md5gg(a, b, c, d, x[i + 1], 5, -165796510);
-    d = md5gg(d, a, b, c, x[i + 6], 9, -1069501632);
-    c = md5gg(c, d, a, b, x[i + 11], 14, 643717713);
-    b = md5gg(b, c, d, a, x[i], 20, -373897302);
-    a = md5gg(a, b, c, d, x[i + 5], 5, -701558691);
-    d = md5gg(d, a, b, c, x[i + 10], 9, 38016083);
-    c = md5gg(c, d, a, b, x[i + 15], 14, -660478335);
-    b = md5gg(b, c, d, a, x[i + 4], 20, -405537848);
-    a = md5gg(a, b, c, d, x[i + 9], 5, 568446438);
-    d = md5gg(d, a, b, c, x[i + 14], 9, -1019803690);
-    c = md5gg(c, d, a, b, x[i + 3], 14, -187363961);
-    b = md5gg(b, c, d, a, x[i + 8], 20, 1163531501);
-    a = md5gg(a, b, c, d, x[i + 13], 5, -1444681467);
-    d = md5gg(d, a, b, c, x[i + 2], 9, -51403784);
-    c = md5gg(c, d, a, b, x[i + 7], 14, 1735328473);
-    b = md5gg(b, c, d, a, x[i + 12], 20, -1926607734);
-    a = md5hh(a, b, c, d, x[i + 5], 4, -378558);
-    d = md5hh(d, a, b, c, x[i + 8], 11, -2022574463);
-    c = md5hh(c, d, a, b, x[i + 11], 16, 1839030562);
-    b = md5hh(b, c, d, a, x[i + 14], 23, -35309556);
-    a = md5hh(a, b, c, d, x[i + 1], 4, -1530992060);
-    d = md5hh(d, a, b, c, x[i + 4], 11, 1272893353);
-    c = md5hh(c, d, a, b, x[i + 7], 16, -155497632);
-    b = md5hh(b, c, d, a, x[i + 10], 23, -1094730640);
-    a = md5hh(a, b, c, d, x[i + 13], 4, 681279174);
-    d = md5hh(d, a, b, c, x[i], 11, -358537222);
-    c = md5hh(c, d, a, b, x[i + 3], 16, -722521979);
-    b = md5hh(b, c, d, a, x[i + 6], 23, 76029189);
-    a = md5hh(a, b, c, d, x[i + 9], 4, -640364487);
-    d = md5hh(d, a, b, c, x[i + 12], 11, -421815835);
-    c = md5hh(c, d, a, b, x[i + 15], 16, 530742520);
-    b = md5hh(b, c, d, a, x[i + 2], 23, -995338651);
-    a = md5ii(a, b, c, d, x[i], 6, -198630844);
-    d = md5ii(d, a, b, c, x[i + 7], 10, 1126891415);
-    c = md5ii(c, d, a, b, x[i + 14], 15, -1416354905);
-    b = md5ii(b, c, d, a, x[i + 5], 21, -57434055);
-    a = md5ii(a, b, c, d, x[i + 12], 6, 1700485571);
-    d = md5ii(d, a, b, c, x[i + 3], 10, -1894986606);
-    c = md5ii(c, d, a, b, x[i + 10], 15, -1051523);
-    b = md5ii(b, c, d, a, x[i + 1], 21, -2054922799);
-    a = md5ii(a, b, c, d, x[i + 8], 6, 1873313359);
-    d = md5ii(d, a, b, c, x[i + 15], 10, -30611744);
-    c = md5ii(c, d, a, b, x[i + 6], 15, -1560198380);
-    b = md5ii(b, c, d, a, x[i + 13], 21, 1309151649);
-    a = md5ii(a, b, c, d, x[i + 4], 6, -145523070);
-    d = md5ii(d, a, b, c, x[i + 11], 10, -1120210379);
-    c = md5ii(c, d, a, b, x[i + 2], 15, 718787259);
-    b = md5ii(b, c, d, a, x[i + 9], 21, -343485551);
-    a = safeAdd(a, olda);
-    b = safeAdd(b, oldb);
-    c = safeAdd(c, oldc);
-    d = safeAdd(d, oldd);
-  }
-
-  return [a, b, c, d];
-}
-/*
- * Convert an array bytes to an array of little-endian words
- * Characters >255 have their high-byte silently ignored.
- */
-
-
-function bytesToWords(input) {
-  if (input.length === 0) {
-    return [];
-  }
-
-  var length8 = input.length * 8;
-  var output = new Uint32Array(getOutputLength(length8));
-
-  for (var i = 0; i < length8; i += 8) {
-    output[i >> 5] |= (input[i / 8] & 0xff) << i % 32;
-  }
-
-  return output;
-}
-/*
- * Add integers, wrapping at 2^32. This uses 16-bit operations internally
- * to work around bugs in some JS interpreters.
- */
-
-
-function safeAdd(x, y) {
-  var lsw = (x & 0xffff) + (y & 0xffff);
-  var msw = (x >> 16) + (y >> 16) + (lsw >> 16);
-  return msw << 16 | lsw & 0xffff;
-}
-/*
- * Bitwise rotate a 32-bit number to the left.
- */
-
-
-function bitRotateLeft(num, cnt) {
-  return num << cnt | num >>> 32 - cnt;
-}
-/*
- * These functions implement the four basic operations the algorithm uses.
- */
-
-
-function md5cmn(q, a, b, x, s, t) {
-  return safeAdd(bitRotateLeft(safeAdd(safeAdd(a, q), safeAdd(x, t)), s), b);
-}
-
-function md5ff(a, b, c, d, x, s, t) {
-  return md5cmn(b & c | ~b & d, a, b, x, s, t);
-}
-
-function md5gg(a, b, c, d, x, s, t) {
-  return md5cmn(b & d | c & ~d, a, b, x, s, t);
-}
-
-function md5hh(a, b, c, d, x, s, t) {
-  return md5cmn(b ^ c ^ d, a, b, x, s, t);
-}
-
-function md5ii(a, b, c, d, x, s, t) {
-  return md5cmn(c ^ (b | ~d), a, b, x, s, t);
-}
-
-/* harmony default export */ __webpack_exports__["default"] = (md5);
-
-/***/ }),
-
-/***/ "./node_modules/uuid/dist/esm-browser/nil.js":
-/*!***************************************************!*\
-  !*** ./node_modules/uuid/dist/esm-browser/nil.js ***!
-  \***************************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ('00000000-0000-0000-0000-000000000000');
-
-/***/ }),
-
-/***/ "./node_modules/uuid/dist/esm-browser/parse.js":
-/*!*****************************************************!*\
-  !*** ./node_modules/uuid/dist/esm-browser/parse.js ***!
-  \*****************************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _validate_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./validate.js */ "./node_modules/uuid/dist/esm-browser/validate.js");
-
-
-function parse(uuid) {
-  if (!(0,_validate_js__WEBPACK_IMPORTED_MODULE_0__.default)(uuid)) {
-    throw TypeError('Invalid UUID');
-  }
-
-  var v;
-  var arr = new Uint8Array(16); // Parse ########-....-....-....-............
-
-  arr[0] = (v = parseInt(uuid.slice(0, 8), 16)) >>> 24;
-  arr[1] = v >>> 16 & 0xff;
-  arr[2] = v >>> 8 & 0xff;
-  arr[3] = v & 0xff; // Parse ........-####-....-....-............
-
-  arr[4] = (v = parseInt(uuid.slice(9, 13), 16)) >>> 8;
-  arr[5] = v & 0xff; // Parse ........-....-####-....-............
-
-  arr[6] = (v = parseInt(uuid.slice(14, 18), 16)) >>> 8;
-  arr[7] = v & 0xff; // Parse ........-....-....-####-............
-
-  arr[8] = (v = parseInt(uuid.slice(19, 23), 16)) >>> 8;
-  arr[9] = v & 0xff; // Parse ........-....-....-....-############
-  // (Use "/" to avoid 32-bit truncation when bit-shifting high-order bytes)
-
-  arr[10] = (v = parseInt(uuid.slice(24, 36), 16)) / 0x10000000000 & 0xff;
-  arr[11] = v / 0x100000000 & 0xff;
-  arr[12] = v >>> 24 & 0xff;
-  arr[13] = v >>> 16 & 0xff;
-  arr[14] = v >>> 8 & 0xff;
-  arr[15] = v & 0xff;
-  return arr;
-}
-
-/* harmony default export */ __webpack_exports__["default"] = (parse);
-
-/***/ }),
-
 /***/ "./node_modules/uuid/dist/esm-browser/regex.js":
 /*!*****************************************************!*\
   !*** ./node_modules/uuid/dist/esm-browser/regex.js ***!
@@ -30418,113 +30283,6 @@ function rng() {
 
 /***/ }),
 
-/***/ "./node_modules/uuid/dist/esm-browser/sha1.js":
-/*!****************************************************!*\
-  !*** ./node_modules/uuid/dist/esm-browser/sha1.js ***!
-  \****************************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-// Adapted from Chris Veness' SHA1 code at
-// http://www.movable-type.co.uk/scripts/sha1.html
-function f(s, x, y, z) {
-  switch (s) {
-    case 0:
-      return x & y ^ ~x & z;
-
-    case 1:
-      return x ^ y ^ z;
-
-    case 2:
-      return x & y ^ x & z ^ y & z;
-
-    case 3:
-      return x ^ y ^ z;
-  }
-}
-
-function ROTL(x, n) {
-  return x << n | x >>> 32 - n;
-}
-
-function sha1(bytes) {
-  var K = [0x5a827999, 0x6ed9eba1, 0x8f1bbcdc, 0xca62c1d6];
-  var H = [0x67452301, 0xefcdab89, 0x98badcfe, 0x10325476, 0xc3d2e1f0];
-
-  if (typeof bytes === 'string') {
-    var msg = unescape(encodeURIComponent(bytes)); // UTF8 escape
-
-    bytes = [];
-
-    for (var i = 0; i < msg.length; ++i) {
-      bytes.push(msg.charCodeAt(i));
-    }
-  } else if (!Array.isArray(bytes)) {
-    // Convert Array-like to Array
-    bytes = Array.prototype.slice.call(bytes);
-  }
-
-  bytes.push(0x80);
-  var l = bytes.length / 4 + 2;
-  var N = Math.ceil(l / 16);
-  var M = new Array(N);
-
-  for (var _i = 0; _i < N; ++_i) {
-    var arr = new Uint32Array(16);
-
-    for (var j = 0; j < 16; ++j) {
-      arr[j] = bytes[_i * 64 + j * 4] << 24 | bytes[_i * 64 + j * 4 + 1] << 16 | bytes[_i * 64 + j * 4 + 2] << 8 | bytes[_i * 64 + j * 4 + 3];
-    }
-
-    M[_i] = arr;
-  }
-
-  M[N - 1][14] = (bytes.length - 1) * 8 / Math.pow(2, 32);
-  M[N - 1][14] = Math.floor(M[N - 1][14]);
-  M[N - 1][15] = (bytes.length - 1) * 8 & 0xffffffff;
-
-  for (var _i2 = 0; _i2 < N; ++_i2) {
-    var W = new Uint32Array(80);
-
-    for (var t = 0; t < 16; ++t) {
-      W[t] = M[_i2][t];
-    }
-
-    for (var _t = 16; _t < 80; ++_t) {
-      W[_t] = ROTL(W[_t - 3] ^ W[_t - 8] ^ W[_t - 14] ^ W[_t - 16], 1);
-    }
-
-    var a = H[0];
-    var b = H[1];
-    var c = H[2];
-    var d = H[3];
-    var e = H[4];
-
-    for (var _t2 = 0; _t2 < 80; ++_t2) {
-      var s = Math.floor(_t2 / 20);
-      var T = ROTL(a, 5) + f(s, b, c, d) + e + K[s] + W[_t2] >>> 0;
-      e = d;
-      d = c;
-      c = ROTL(b, 30) >>> 0;
-      b = a;
-      a = T;
-    }
-
-    H[0] = H[0] + a >>> 0;
-    H[1] = H[1] + b >>> 0;
-    H[2] = H[2] + c >>> 0;
-    H[3] = H[3] + d >>> 0;
-    H[4] = H[4] + e >>> 0;
-  }
-
-  return [H[0] >> 24 & 0xff, H[0] >> 16 & 0xff, H[0] >> 8 & 0xff, H[0] & 0xff, H[1] >> 24 & 0xff, H[1] >> 16 & 0xff, H[1] >> 8 & 0xff, H[1] & 0xff, H[2] >> 24 & 0xff, H[2] >> 16 & 0xff, H[2] >> 8 & 0xff, H[2] & 0xff, H[3] >> 24 & 0xff, H[3] >> 16 & 0xff, H[3] >> 8 & 0xff, H[3] & 0xff, H[4] >> 24 & 0xff, H[4] >> 16 & 0xff, H[4] >> 8 & 0xff, H[4] & 0xff];
-}
-
-/* harmony default export */ __webpack_exports__["default"] = (sha1);
-
-/***/ }),
-
 /***/ "./node_modules/uuid/dist/esm-browser/stringify.js":
 /*!*********************************************************!*\
   !*** ./node_modules/uuid/dist/esm-browser/stringify.js ***!
@@ -30567,213 +30325,6 @@ function stringify(arr) {
 
 /***/ }),
 
-/***/ "./node_modules/uuid/dist/esm-browser/v1.js":
-/*!**************************************************!*\
-  !*** ./node_modules/uuid/dist/esm-browser/v1.js ***!
-  \**************************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _rng_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./rng.js */ "./node_modules/uuid/dist/esm-browser/rng.js");
-/* harmony import */ var _stringify_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./stringify.js */ "./node_modules/uuid/dist/esm-browser/stringify.js");
-
- // **`v1()` - Generate time-based UUID**
-//
-// Inspired by https://github.com/LiosK/UUID.js
-// and http://docs.python.org/library/uuid.html
-
-var _nodeId;
-
-var _clockseq; // Previous uuid creation time
-
-
-var _lastMSecs = 0;
-var _lastNSecs = 0; // See https://github.com/uuidjs/uuid for API details
-
-function v1(options, buf, offset) {
-  var i = buf && offset || 0;
-  var b = buf || new Array(16);
-  options = options || {};
-  var node = options.node || _nodeId;
-  var clockseq = options.clockseq !== undefined ? options.clockseq : _clockseq; // node and clockseq need to be initialized to random values if they're not
-  // specified.  We do this lazily to minimize issues related to insufficient
-  // system entropy.  See #189
-
-  if (node == null || clockseq == null) {
-    var seedBytes = options.random || (options.rng || _rng_js__WEBPACK_IMPORTED_MODULE_0__.default)();
-
-    if (node == null) {
-      // Per 4.5, create and 48-bit node id, (47 random bits + multicast bit = 1)
-      node = _nodeId = [seedBytes[0] | 0x01, seedBytes[1], seedBytes[2], seedBytes[3], seedBytes[4], seedBytes[5]];
-    }
-
-    if (clockseq == null) {
-      // Per 4.2.2, randomize (14 bit) clockseq
-      clockseq = _clockseq = (seedBytes[6] << 8 | seedBytes[7]) & 0x3fff;
-    }
-  } // UUID timestamps are 100 nano-second units since the Gregorian epoch,
-  // (1582-10-15 00:00).  JSNumbers aren't precise enough for this, so
-  // time is handled internally as 'msecs' (integer milliseconds) and 'nsecs'
-  // (100-nanoseconds offset from msecs) since unix epoch, 1970-01-01 00:00.
-
-
-  var msecs = options.msecs !== undefined ? options.msecs : Date.now(); // Per 4.2.1.2, use count of uuid's generated during the current clock
-  // cycle to simulate higher resolution clock
-
-  var nsecs = options.nsecs !== undefined ? options.nsecs : _lastNSecs + 1; // Time since last uuid creation (in msecs)
-
-  var dt = msecs - _lastMSecs + (nsecs - _lastNSecs) / 10000; // Per 4.2.1.2, Bump clockseq on clock regression
-
-  if (dt < 0 && options.clockseq === undefined) {
-    clockseq = clockseq + 1 & 0x3fff;
-  } // Reset nsecs if clock regresses (new clockseq) or we've moved onto a new
-  // time interval
-
-
-  if ((dt < 0 || msecs > _lastMSecs) && options.nsecs === undefined) {
-    nsecs = 0;
-  } // Per 4.2.1.2 Throw error if too many uuids are requested
-
-
-  if (nsecs >= 10000) {
-    throw new Error("uuid.v1(): Can't create more than 10M uuids/sec");
-  }
-
-  _lastMSecs = msecs;
-  _lastNSecs = nsecs;
-  _clockseq = clockseq; // Per 4.1.4 - Convert from unix epoch to Gregorian epoch
-
-  msecs += 12219292800000; // `time_low`
-
-  var tl = ((msecs & 0xfffffff) * 10000 + nsecs) % 0x100000000;
-  b[i++] = tl >>> 24 & 0xff;
-  b[i++] = tl >>> 16 & 0xff;
-  b[i++] = tl >>> 8 & 0xff;
-  b[i++] = tl & 0xff; // `time_mid`
-
-  var tmh = msecs / 0x100000000 * 10000 & 0xfffffff;
-  b[i++] = tmh >>> 8 & 0xff;
-  b[i++] = tmh & 0xff; // `time_high_and_version`
-
-  b[i++] = tmh >>> 24 & 0xf | 0x10; // include version
-
-  b[i++] = tmh >>> 16 & 0xff; // `clock_seq_hi_and_reserved` (Per 4.2.2 - include variant)
-
-  b[i++] = clockseq >>> 8 | 0x80; // `clock_seq_low`
-
-  b[i++] = clockseq & 0xff; // `node`
-
-  for (var n = 0; n < 6; ++n) {
-    b[i + n] = node[n];
-  }
-
-  return buf || (0,_stringify_js__WEBPACK_IMPORTED_MODULE_1__.default)(b);
-}
-
-/* harmony default export */ __webpack_exports__["default"] = (v1);
-
-/***/ }),
-
-/***/ "./node_modules/uuid/dist/esm-browser/v3.js":
-/*!**************************************************!*\
-  !*** ./node_modules/uuid/dist/esm-browser/v3.js ***!
-  \**************************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _v35_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./v35.js */ "./node_modules/uuid/dist/esm-browser/v35.js");
-/* harmony import */ var _md5_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./md5.js */ "./node_modules/uuid/dist/esm-browser/md5.js");
-
-
-var v3 = (0,_v35_js__WEBPACK_IMPORTED_MODULE_0__.default)('v3', 0x30, _md5_js__WEBPACK_IMPORTED_MODULE_1__.default);
-/* harmony default export */ __webpack_exports__["default"] = (v3);
-
-/***/ }),
-
-/***/ "./node_modules/uuid/dist/esm-browser/v35.js":
-/*!***************************************************!*\
-  !*** ./node_modules/uuid/dist/esm-browser/v35.js ***!
-  \***************************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "DNS": function() { return /* binding */ DNS; },
-/* harmony export */   "URL": function() { return /* binding */ URL; },
-/* harmony export */   "default": function() { return /* export default binding */ __WEBPACK_DEFAULT_EXPORT__; }
-/* harmony export */ });
-/* harmony import */ var _stringify_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./stringify.js */ "./node_modules/uuid/dist/esm-browser/stringify.js");
-/* harmony import */ var _parse_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./parse.js */ "./node_modules/uuid/dist/esm-browser/parse.js");
-
-
-
-function stringToBytes(str) {
-  str = unescape(encodeURIComponent(str)); // UTF8 escape
-
-  var bytes = [];
-
-  for (var i = 0; i < str.length; ++i) {
-    bytes.push(str.charCodeAt(i));
-  }
-
-  return bytes;
-}
-
-var DNS = '6ba7b810-9dad-11d1-80b4-00c04fd430c8';
-var URL = '6ba7b811-9dad-11d1-80b4-00c04fd430c8';
-/* harmony default export */ function __WEBPACK_DEFAULT_EXPORT__(name, version, hashfunc) {
-  function generateUUID(value, namespace, buf, offset) {
-    if (typeof value === 'string') {
-      value = stringToBytes(value);
-    }
-
-    if (typeof namespace === 'string') {
-      namespace = (0,_parse_js__WEBPACK_IMPORTED_MODULE_1__.default)(namespace);
-    }
-
-    if (namespace.length !== 16) {
-      throw TypeError('Namespace must be array-like (16 iterable integer values, 0-255)');
-    } // Compute hash of namespace and value, Per 4.3
-    // Future: Use spread syntax when supported on all platforms, e.g. `bytes =
-    // hashfunc([...namespace, ... value])`
-
-
-    var bytes = new Uint8Array(16 + value.length);
-    bytes.set(namespace);
-    bytes.set(value, namespace.length);
-    bytes = hashfunc(bytes);
-    bytes[6] = bytes[6] & 0x0f | version;
-    bytes[8] = bytes[8] & 0x3f | 0x80;
-
-    if (buf) {
-      offset = offset || 0;
-
-      for (var i = 0; i < 16; ++i) {
-        buf[offset + i] = bytes[i];
-      }
-
-      return buf;
-    }
-
-    return (0,_stringify_js__WEBPACK_IMPORTED_MODULE_0__.default)(bytes);
-  } // Function#name is not settable on some platforms (#270)
-
-
-  try {
-    generateUUID.name = name; // eslint-disable-next-line no-empty
-  } catch (err) {} // For CommonJS default export support
-
-
-  generateUUID.DNS = DNS;
-  generateUUID.URL = URL;
-  return generateUUID;
-}
-
-/***/ }),
-
 /***/ "./node_modules/uuid/dist/esm-browser/v4.js":
 /*!**************************************************!*\
   !*** ./node_modules/uuid/dist/esm-browser/v4.js ***!
@@ -30811,23 +30362,6 @@ function v4(options, buf, offset) {
 
 /***/ }),
 
-/***/ "./node_modules/uuid/dist/esm-browser/v5.js":
-/*!**************************************************!*\
-  !*** ./node_modules/uuid/dist/esm-browser/v5.js ***!
-  \**************************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _v35_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./v35.js */ "./node_modules/uuid/dist/esm-browser/v35.js");
-/* harmony import */ var _sha1_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./sha1.js */ "./node_modules/uuid/dist/esm-browser/sha1.js");
-
-
-var v5 = (0,_v35_js__WEBPACK_IMPORTED_MODULE_0__.default)('v5', 0x50, _sha1_js__WEBPACK_IMPORTED_MODULE_1__.default);
-/* harmony default export */ __webpack_exports__["default"] = (v5);
-
-/***/ }),
-
 /***/ "./node_modules/uuid/dist/esm-browser/validate.js":
 /*!********************************************************!*\
   !*** ./node_modules/uuid/dist/esm-browser/validate.js ***!
@@ -30844,29 +30378,6 @@ function validate(uuid) {
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (validate);
-
-/***/ }),
-
-/***/ "./node_modules/uuid/dist/esm-browser/version.js":
-/*!*******************************************************!*\
-  !*** ./node_modules/uuid/dist/esm-browser/version.js ***!
-  \*******************************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _validate_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./validate.js */ "./node_modules/uuid/dist/esm-browser/validate.js");
-
-
-function version(uuid) {
-  if (!(0,_validate_js__WEBPACK_IMPORTED_MODULE_0__.default)(uuid)) {
-    throw TypeError('Invalid UUID');
-  }
-
-  return parseInt(uuid.substr(14, 1), 16);
-}
-
-/* harmony default export */ __webpack_exports__["default"] = (version);
 
 /***/ }),
 
@@ -30932,7 +30443,7 @@ module.exports = JSON.parse('{"en-US":{"poNumber":"Purchase Order #","notes":"No
 /***/ (function(module) {
 
 "use strict";
-module.exports = JSON.parse('{"localizedStrings":{"ar_EG":{"businessPurchase":"مشتريات المؤسسات","personalPurchase":"مشتريات الأفراد","purchaseType":"نوع المتسوق:","taxId":"رقم التعريف الضريبي","taxRegistrationNumber":"رقم السجل الضريبي:","valueRequired":"أدخل قيمة صحيحة.","vatNumber":"رقم الإعفاء من ضريبة القيمة المضافة:"},"cs_CZ":{"businessPurchase":"Firemní nákup","personalPurchase":"Soukromý nákup","purchaseType":"Typ zákazníka:","taxId":"Daňové identifikační číslo","taxRegistrationNumber":"Daňové identifikační číslo:","valueRequired":"Vložte platnou hodnotu.","vatNumber":"Číslo výjimky z DPH:"},"da_DK":{"businessPurchase":"Erhvervskøb","personalPurchase":"Privat køb","purchaseType":"Kundetype:","taxId":"Moms-id","taxRegistrationNumber":"Momsregistreringsnummer:","valueRequired":"Indtast en gyldig værdi.","vatNumber":"Momsfritagelsesnummer:"},"de_AT":{"businessPurchase":"Gewerblicher Kauf","personalPurchase":"Persönlicher Einkauf","purchaseType":"Kundentyp:","taxId":"Steuernummer","taxRegistrationNumber":"Steuernummer:","valueRequired":"Geben Sie einen gültigen Wert ein.","vatNumber":"USt-IdNr.:"},"de_CH":{"businessPurchase":"Gewerblicher Kauf","personalPurchase":"Persönlicher Einkauf","purchaseType":"Kundentyp:","taxId":"Steuernummer","taxRegistrationNumber":"Steuernummer:","valueRequired":"Geben Sie einen gültigen Wert ein.","vatNumber":"USt-IdNr.:"},"de_DE":{"businessPurchase":"Gewerblicher Kauf","personalPurchase":"Persönlicher Einkauf","purchaseType":"Kundentyp:","taxId":"Steuernummer","taxRegistrationNumber":"Steuernummer:","valueRequired":"Geben Sie einen gültigen Wert ein.","vatNumber":"USt-IdNr.:"},"el_GR":{"businessPurchase":"Εταιρική αγορά","personalPurchase":"Προσωπική αγορά","purchaseType":"Τύπος αγοραστή:","taxId":"Κωδικός Φόρου","taxRegistrationNumber":"Αριθμός φορολογικού μητρώου:","valueRequired":"Εισαγάγετε μια έγκυρη τιμή.","vatNumber":"Αριθμός Απαλλαγής ΦΠΑ:"},"en_AU":{"businessPurchase":"Business purchase","personalPurchase":"Personal purchase","purchaseType":"Shopper Type:","taxId":"Tax ID","taxRegistrationNumber":"Tax Registration Number:","valueRequired":"Enter a valid value.","vatNumber":"VAT Exemption Number:"},"en_CA":{"businessPurchase":"Business purchase","personalPurchase":"Personal purchase","purchaseType":"Shopper Type:","taxId":"Tax ID","taxRegistrationNumber":"Tax Registration Number:","valueRequired":"Enter a valid value.","vatNumber":"VAT Exemption Number:"},"en_CH":{"businessPurchase":"Business purchase","personalPurchase":"Personal purchase","purchaseType":"Shopper Type:","taxId":"Tax ID","taxRegistrationNumber":"Tax Registration Number:","valueRequired":"Enter a valid value.","vatNumber":"VAT Exemption Number:"},"en_GB":{"businessPurchase":"Business purchase","personalPurchase":"Personal purchase","purchaseType":"Shopper Type:","taxId":"Tax ID","taxRegistrationNumber":"Tax Registration Number:","valueRequired":"Enter a valid value.","vatNumber":"VAT Exemption Number:"},"en_IE":{"businessPurchase":"Business purchase","personalPurchase":"Personal purchase","purchaseType":"Shopper Type:","taxId":"Tax ID","taxRegistrationNumber":"Tax Registration Number:","valueRequired":"Enter a valid value.","vatNumber":"VAT Exemption Number:"},"en_IN":{"businessPurchase":"Business purchase","personalPurchase":"Personal purchase","purchaseType":"Shopper Type:","taxId":"Tax ID","taxRegistrationNumber":"Tax Registration Number:","valueRequired":"Enter a valid value.","vatNumber":"VAT Exemption Number:"},"en_MY":{"taxId":"Tax ID","valueRequired":"Enter a valid value.","vatNumber":"VAT Exemption Number:"},"en_NL":{"businessPurchase":"Business purchase","personalPurchase":"Personal purchase","purchaseType":"Shopper Type:","taxId":"Tax ID","taxRegistrationNumber":"Tax Registration Number:","valueRequired":"Enter a valid value.","vatNumber":"VAT Exemption Number:"},"en_NZ":{"businessPurchase":"Business purchase","personalPurchase":"Personal purchase","purchaseType":"Shopper Type:","taxId":"Tax ID","taxRegistrationNumber":"Tax Registration Number:","valueRequired":"Enter a valid value.","vatNumber":"VAT Exemption Number:"},"en_PR":{"businessPurchase":"Business purchase","personalPurchase":"Personal purchase","purchaseType":"Shopper Type:","taxId":"Tax ID","taxRegistrationNumber":"Tax Registration Number:","valueRequired":"Enter a valid value.","vatNumber":"VAT Exemption Number:"},"en_SG":{"businessPurchase":"Business purchase","personalPurchase":"Personal purchase","purchaseType":"Shopper Type:","taxId":"Tax ID","taxRegistrationNumber":"Tax Registration Number:","valueRequired":"Enter a valid value.","vatNumber":"VAT Exemption Number:"},"en_US":{"businessPurchase":"Business purchase","personalPurchase":"Personal purchase","purchaseType":"Shopper Type:","taxId":"Tax ID","taxRegistrationNumber":"Tax Registration Number:","vatNumber":"VAT Exemption Number:"},"en_ZA":{"businessPurchase":"Business purchase","personalPurchase":"Personal purchase","purchaseType":"Shopper Type:","taxId":"Tax ID","taxRegistrationNumber":"Tax Registration Number:","valueRequired":"Enter a valid value.","vatNumber":"VAT Exemption Number:"},"es_AR":{"businessPurchase":"Compra empresarial","personalPurchase":"Compra personal","purchaseType":"Tipo de comprador:","taxId":"ID de impuesto","taxRegistrationNumber":"Número de identificación fiscal:","valueRequired":"Anote un valor válido.","vatNumber":"Número de exención de IVA:"},"es_CL":{"businessPurchase":"Compra empresarial","personalPurchase":"Compra personal","purchaseType":"Tipo de comprador:","taxId":"ID de impuesto","taxRegistrationNumber":"Número de identificación fiscal:","valueRequired":"Anote un valor válido.","vatNumber":"Número de exención de IVA:"},"es_CO":{"businessPurchase":"Compra empresarial","personalPurchase":"Compra personal","purchaseType":"Tipo de comprador:","taxId":"ID de impuesto","taxRegistrationNumber":"Número de identificación fiscal:","valueRequired":"Anote un valor válido.","vatNumber":"Número de exención de IVA:"},"es_EC":{"businessPurchase":"Compra empresarial","personalPurchase":"Compra personal","purchaseType":"Tipo de comprador:","taxId":"ID de impuesto","taxRegistrationNumber":"Número de identificación fiscal:","valueRequired":"Anote un valor válido.","vatNumber":"Número de exención de IVA:"},"es_ES":{"businessPurchase":"Compra empresarial","personalPurchase":"Compra personal","purchaseType":"Tipo de comprador:","taxId":"ID de impuestos","taxRegistrationNumber":"Número de identificación fiscal:","valueRequired":"Indique un valor válido.","vatNumber":"Número de exención de IVA:"},"es_MX":{"businessPurchase":"Compra empresarial","personalPurchase":"Compra personal","purchaseType":"Tipo de comprador:","taxId":"ID de impuesto","taxRegistrationNumber":"Número de identificación fiscal:","valueRequired":"Anote un valor válido.","vatNumber":"Número de exención de IVA:"},"es_PE":{"businessPurchase":"Compra empresarial","personalPurchase":"Compra personal","purchaseType":"Tipo de comprador:","taxId":"ID de impuesto","taxRegistrationNumber":"Número de identificación fiscal:","valueRequired":"Anote un valor válido.","vatNumber":"Número de exención de IVA:"},"es_VE":{"businessPurchase":"Compra empresarial","personalPurchase":"Compra personal","purchaseType":"Tipo de comprador:","taxId":"ID de impuesto","taxRegistrationNumber":"Número de identificación fiscal:","valueRequired":"Anote un valor válido.","vatNumber":"Número de exención de IVA:"},"fi_FI":{"businessPurchase":"Yritysostos","personalPurchase":"Henkilökohtainen ostos","purchaseType":"Ostajan tyyppi:","taxId":"Veronumero","taxRegistrationNumber":"Verorekisterinumero:","valueRequired":"Syötä oikea arvo.","vatNumber":"ALV vapautusnumero:"},"fr_BE":{"businessPurchase":"Achat professionnel","personalPurchase":"Achat personnel","purchaseType":"Type de client :","taxId":"Identifiant TVA","taxRegistrationNumber":"Numéro d\'identification fiscale :","valueRequired":"Entrez une valeur valide.","vatNumber":"Numéro d\'exonération de la TVA :"},"fr_CA":{"businessPurchase":"Achat à des fins professionnelles","personalPurchase":"Achat personnel","purchaseType":"Type de client :","taxId":"Identifiant TVA","taxRegistrationNumber":"Numéro d’identification fiscale :","valueRequired":"Veuillez entrer une valeur correcte.","vatNumber":"Numéro d\'exonération de la TVA :"},"fr_CH":{"businessPurchase":"Achat professionnel","personalPurchase":"Achat personnel","purchaseType":"Type de client :","taxId":"Identifiant TVA","taxRegistrationNumber":"Numéro d\'identification fiscale :","valueRequired":"Entrez une valeur valide.","vatNumber":"Numéro d\'exonération de la TVA :"},"fr_FR":{"businessPurchase":"Achat professionnel","personalPurchase":"Achat personnel","purchaseType":"Type de client :","taxId":"Identifiant TVA","taxRegistrationNumber":"Numéro d\'identification fiscale :","valueRequired":"Entrez une valeur valide.","vatNumber":"Numéro d\'exonération de la TVA :"},"hu_HU":{"businessPurchase":"Vállalat vásárlása","personalPurchase":"Magánszemély vásárlása","purchaseType":"Vásárló típusa:","taxId":"Adóazonosító","taxRegistrationNumber":"Adószám:","valueRequired":"Adjon meg érvényes értéket.","vatNumber":"Áfamentességi szám:"},"it_CH":{"businessPurchase":"Acquisto professionale","personalPurchase":"Acquisto personale","purchaseType":"Tipo di cliente:","taxId":"Codice fiscale","taxRegistrationNumber":"Partita IVA:","valueRequired":"Immetti un valore valido.","vatNumber":"Codice esenzione IVA:"},"it_IT":{"businessPurchase":"Acquisto professionale","personalPurchase":"Acquisto personale","purchaseType":"Tipo di cliente:","taxId":"Codice fiscale","taxRegistrationNumber":"Partita IVA:","valueRequired":"Immetti un valore valido.","vatNumber":"Codice esenzione IVA:"},"iw_IL":{"businessPurchase":"קנייה עסקית","personalPurchase":"קנייה פרטית","purchaseType":"סוג קונה:","taxId":"קוד מס","taxRegistrationNumber":"מספר עוסק מורשה:","valueRequired":"הזן ערך חוקי.","vatNumber":"מספר אישור פטור ממע\\"מ:"},"ja_JP":{"businessPurchase":"仕事での購入","personalPurchase":"個人での購入","purchaseType":"お客様種別:","taxId":"税金ID","taxRegistrationNumber":"税登録番号:","valueRequired":"有効な値を入力してください。","vatNumber":"付加価値税免税番号:"},"ko_KR":{"businessPurchase":"기업 구매","personalPurchase":"개인 구매","purchaseType":"구매자 유형:","taxId":"세금 ID","taxRegistrationNumber":"과세등록번호:","valueRequired":"유효한 값을 입력해 주십시오.","vatNumber":"VAT 면제 번호:"},"nl_BE":{"businessPurchase":"Zakelijke aankoop","personalPurchase":"Privéaankoop","purchaseType":"Type shopper:","taxId":"Btw-nummer","taxRegistrationNumber":"Btw-registratienummer:","valueRequired":"Voer een geldige waarde in.","vatNumber":"Btw-vrijstellingsnummer:"},"nl_NL":{"businessPurchase":"Zakelijke aankoop","personalPurchase":"Privéaankoop","purchaseType":"Type aankoop:","taxId":"Btw-nummer","taxRegistrationNumber":"Btw-registratienummer:","valueRequired":"Voer een geldige waarde in.","vatNumber":"Btw-vrijstellingsnummer:"},"no_NO":{"businessPurchase":"Bedriftskjøp","personalPurchase":"Privatkjøp","purchaseType":"Shoppertype:","taxId":"Avgiftsnr.","taxRegistrationNumber":"Nummer for avgiftsbetaling:","valueRequired":"Angi en gyldig verdi.","vatNumber":"Org.nr. for fritak av mva.:"},"pl_PL":{"businessPurchase":"Zakup firmowy","personalPurchase":"Zakup prywatny","purchaseType":"Typ kupującego:","taxId":"ID podatku","taxRegistrationNumber":"Numer NIP:","valueRequired":"Wprowadź właściwą wartość.","vatNumber":"Numer zwolnienia od VAT:"},"pt_BR":{"businessPurchase":"Compra comercial","personalPurchase":"Compra pessoal","purchaseType":"Perfil do comprador:","taxId":"CGC/CPF","taxRegistrationNumber":"Número de inscrição no VAT:","valueRequired":"Digite um valor válido.","vatNumber":"Número de isenção fiscal (VAT):"},"pt_PT":{"businessPurchase":"Compra empresarial","personalPurchase":"Compra pessoal","purchaseType":"Tipo de Comprador:","taxId":"NIF","taxRegistrationNumber":"Número de Identificação Fiscal:","valueRequired":"Introduza um valor válido.","vatNumber":"Número de isenção de IVA:"},"ru_RU":{"businessPurchase":"Покупка для юридических лиц","personalPurchase":"Покупка для физических лиц","purchaseType":"Тип покупателя:","taxId":"ИНН","taxRegistrationNumber":"Регистрационный номер налога:","valueRequired":"Введите действительное значение.","vatNumber":"Номер освобождения от НДС:"},"sk_SK":{"businessPurchase":"Firemný nákup","personalPurchase":"Súkromný nákup","purchaseType":"Typ kupujúceho:","taxId":"DIČ:","taxRegistrationNumber":"Daňové registračné číslo:","valueRequired":"Zadajte správny údaj.","vatNumber":"Číslo oslobodenia od DPH:"},"sv_SE":{"businessPurchase":"Företagsköp","personalPurchase":"Privat köp","purchaseType":"Kundtyp:","taxId":"Skatte-ID","taxRegistrationNumber":"Skatteregistreringsnummer:","valueRequired":"Ange ett giltigt värde.","vatNumber":"Momsbefrielsenummer:"},"th_TH":{"businessPurchase":"การจัดซื้อขององค์กร","personalPurchase":"การจัดซื้อส่วนบุคคล","purchaseType":"ประเภทผู้ซื้อ:","taxId":"หมายเลขภาษี","taxRegistrationNumber":"เลขทะเบียนภาษี:","valueRequired":"ใส่ค่าที่ถูกต้อง","vatNumber":"หมายเลขยกเว้นภาษีมูลค่าเพิ่ม :"},"tr_TR":{"businessPurchase":"Kurumsal satın alım","personalPurchase":"Kişisel satın alım","purchaseType":"Müşteri tipi:","taxId":"Vergi Numarası","taxRegistrationNumber":"Vergi Kayıt Numarası:","valueRequired":"Geçerli bir değer girin.","vatNumber":"KDV Muafiyet Numarası:"},"zh_CN":{"businessPurchase":"企业购买","personalPurchase":"个人购买","purchaseType":"顾客类型：","taxId":"税代码","taxRegistrationNumber":"税务登记号：","valueRequired":"请输入有效值。","vatNumber":"增值税免税号："},"zh_HK":{"businessPurchase":"企業購買","personalPurchase":"個人購買","purchaseType":"買家類型：","taxId":"稅收 ID","taxRegistrationNumber":"稅務登記號碼：","valueRequired":"輸入有效值。","vatNumber":"增值稅免除號碼："},"zh_TW":{"businessPurchase":"企業購買","personalPurchase":"個人購買","purchaseType":"購物者類型：","taxId":"稅務號碼","taxRegistrationNumber":"稅籍統一編號：","valueRequired":"請輸入有效的數值。","vatNumber":"VAT 免稅號碼："}},"taxIdSpecificStrings":{"ae":{"en_GB":{"displayName":"VAT Number","helpText":"Please enter your VAT tax registration number which should begin with the number \\"1\\" followed by 14 additional numbers such as 123456789123456."}},"ar":{"en_IE":{"displayName":"CUIT","helpText":"Please enter your CUIT with the accepted format shown below:\\n\\n12-34567890-1"},"en_GB":{"displayName":"CUIT","helpText":"Please enter your CUIT with the accepted format shown below:\\n\\n12-34567890-1"},"en_US":{"displayName":"CUIT","helpText":"Please enter your CUIT with the accepted format shown below:\\n\\n12-34567890-1"},"es_AR":{"displayName":"CUIT","helpText":"Ingrese su CUIT con el formato aceptado que se muestra a continuación:\\n\\n12-34567890-1"}},"at":{"de_AT":{"displayName":"UID-nummer","helpText":"Bitte geben Sie Ihre Umsatzsteuernummer einschließlich des zweistelligen Ländercodes und ohne Interpunktionszeichen oder Leerzeichen ein. Beispiel: ATU12345678."},"en_GB":{"displayName":"VAT Number","helpText":"Please enter your VAT number, including the two-digit country code and without any punctuation marks or spaces. Example: ATU12345678."},"en_IE":{"displayName":"VAT Number","helpText":"Please enter your VAT number, including the two-digit country code and without any punctuation marks or spaces. Example: ATU12345678."},"en_US":{"displayName":"VAT Number","helpText":"Please enter your VAT number, including the two-digit country code and without any punctuation marks or spaces. Example: ATU12345678."}},"au":{"en_AU":{"displayName":"ABN","helpText":"Please enter the ABN of your company without spaces, periods or hyphens.  For example:  ABN12345678901, ABN12345678901234, ARN123456789012 or 12345678901."}},"ca":{"en_CA":{"displayName":"GST ID","helpText":"Please enter your company GST number.  The number should be entered without spaces, periods or hyphens such as 12345678 or 123456789."}},"be":{"fr_BE":{"displayName":"Numéro de TVA","helpText":"Entrez votre numéro de TVA, y compris le code de pays à deux lettres et sans les signes de ponctuation ou les espaces tels que:  BE1234567890 ou BE0123456789."},"nl_BE":{"displayName":"Btw-nummer","helpText":"Vul uw btw-nummer in inclusief de tweeletter landcode en zonder punten of spaties, zoals BE1234567890 of BE0123456789."},"en_GB":{"displayName":"VAT Number","helpText":"Please enter your VAT number including the two-letter country code and without punctuation or spaces such as BE1234567890 or BE0123456789."},"en_IE":{"displayName":"VAT Number","helpText":"Please enter your VAT number including the two-letter country code and without punctuation or spaces such as BE1234567890 or BE0123456789."},"en_US":{"displayName":"VAT Number","helpText":"Please enter your VAT number including the two-letter country code and without punctuation or spaces such as BE1234567890 or BE0123456789."}},"bg":{"en_GB":{"displayName":"VAT Number","helpText":"Please enter your VAT number (DDS) including the two letter country code and without any punctuation marks or spaces such as BG123456789 or BG1234567890."},"en_IE":{"displayName":"VAT Number","helpText":"Please enter your VAT number (DDS) including the two letter country code and without any punctuation marks or spaces such as BG123456789 or BG1234567890."},"en_US":{"displayName":"VAT Number","helpText":"Please enter your VAT number (DDS) including the two letter country code and without any punctuation marks or spaces such as BG123456789 or BG1234567890."}},"bh":{"en_GB":{"displayName":"VAT Number","helpText":"Please enter your VAT registration number which should begin with the number \\"2\\" followed by 14 additional numbers such as 212345678912345."}},"br":{"pt_BR":{"displayName":"CNPJ","helpText":"Digite o número CNPJ da sua empresa. O número deve ter 14 dígitos e ser inserido sem espaços, períodos ou hifens como 12345678901234."},"en_GB":{"displayName":"CNPJ","helpText":"Enter the CNPJ number for your company. The number must be 14 digits long and must be entered without spaces, periods, or hyphens like 12345678901234."},"en_IE":{"displayName":"CNPJ","helpText":"Enter the CNPJ number for your company. The number must be 14 digits long and must be entered without spaces, periods, or hyphens like 12345678901234."},"en_US":{"displayName":"CNPJ","helpText":"Enter the CNPJ number for your company. The number must be 14 digits long and must be entered without spaces, periods, or hyphens like 12345678901234."}},"br_ie":{"pt_BR":{"displayName":"Inscrição Estadual (IE)","helpText":"Por favor, insira a Inscrição Estadual da sua empresa. O número deve ter 8-13 dígitos e ser inserido sem espaços, períodos ou hifens como 12345678, 1234567890123 ou ISENTO. Para encontrar a sua Inscrição Estadual, visite o site SINTEGRA."},"en_GB":{"displayName":"Inscrição Estadual (IE)","helpText":"Please enter your state registration number (IE). The number must be 8-13 digits long and be entered without spaces, periods, or hyphens such as 12345678, 1234567890123 or ISENTO (Exempt).  To find your State Registration, visit the SINTEGRA website. "},"en_IE":{"displayName":"Inscrição Estadual (IE)","helpText":"Please enter your state registration number (IE). The number must be 8-13 digits long and be entered without spaces, periods, or hyphens such as 12345678, 1234567890123 or ISENTO (Exempt).  To find your State Registration, visit the SINTEGRA website. "},"en_US":{"displayName":"Inscrição Estadual (IE)","helpText":"Please enter your state registration number (IE). The number must be 8-13 digits long and be entered without spaces, periods, or hyphens such as 12345678, 1234567890123 or ISENTO (Exempt).  To find your State Registration, visit the SINTEGRA website. "}},"br_natural":{"pt_BR":{"displayName":"CPF","helpText":"Digite seu número CPF individual. O número deve ter 11 dígitos e ser inserido sem espaços, períodos ou hifens como 12345678901."},"en_GB":{"displayName":"CPF","helpText":"Enter your individual CPF number. The number must be 11 digits long and be entered without spaces, periods, or hyphens like 12345678901."},"en_IE":{"displayName":"CPF","helpText":"Enter your individual CPF number. The number must be 11 digits long and be entered without spaces, periods, or hyphens like 12345678901."},"en_US":{"displayName":"CPF","helpText":"Enter your individual CPF number. The number must be 11 digits long and be entered without spaces, periods, or hyphens like 12345678901."}},"by":{"be_BY":{"displayName":"УНП","helpText":"Please enter your Taxpayer Identification Number (УНП).  This number should contain 9 digits and be entered without spaces or other characters such as 123456789."},"en_GB":{"displayName":"UNP","helpText":"Please enter your Taxpayer Identification Number (UNP).  This number should contain 9 digits and be entered without spaces or other characters such as 123456789."},"en_IE":{"displayName":"UNP","helpText":"Please enter your Taxpayer Identification Number (UNP).  This number should contain 9 digits and be entered without spaces or other characters such as 123456789."},"en_US":{"displayName":"UNP","helpText":"Please enter your Taxpayer Identification Number (UNP).  This number should contain 9 digits and be entered without spaces or other characters such as 123456789."}},"ca_cra":{"en_CA":{"displayName":"CRA","helpText":"Please enter your CRA. The code should contain 15-character account number; Nine-digit Business Number (BN) that identifies your business; Two-letter identifier for the program type; Four-digit reference number for the program account "}},"ch":{"de_CH":{"displayName":"MWST","helpText":"Bitte geben Sie Ihre Umsatzsteuernummer ohne Interpunktionszeichen oder Leerzeichen ein. Beispiele: CH123456, 123456, CHE123456, CHE123456HRMWST, CHE123456RCTVA oder CHE123456IVA."},"fr_CH":{"displayName":"Numéro de TVA","helpText":"Entrez votre numéro de TVA, y compris le code de pays à deux lettres et sans les signes de ponctuation ou les espaces tels que: CH123456, 123456, CHE123456, CHE123456HRMWST, CHE123456RCTVA ou CHE123456IVA."},"it_CH":{"displayName":"Partita IVA","helpText":"Inserire il proprio numero di partita IVA senza punteggiatura o spazi, ad es. CH123456, 123456, CHE123456, CHE123456HRMWST, CHE123456RCTVA o CHE123456IVA."},"en_GB":{"displayName":"VAT Number","helpText":"Please enter your VAT Number (MWST/IVA/TVA) including the two-letter country code and without punctuation or spaces such as: CH123456, 123456, CHE123456, CHE123456HRMWST, CHE123456RCTVA or CHE123456IVA."},"en_IE":{"displayName":"VAT Number","helpText":"Please enter your VAT Number (MWST/IVA/TVA) including the two-letter country code and without punctuation or spaces such as: CH123456, 123456, CHE123456, CHE123456HRMWST, CHE123456RCTVA or CHE123456IVA."},"en_US":{"displayName":"VAT Number","helpText":"Please enter your VAT Number (MWST/IVA/TVA) including the two-letter country code and without punctuation or spaces such as: CH123456, 123456, CHE123456, CHE123456HRMWST, CHE123456RCTVA or CHE123456IVA."}},"co":{"es_CO":{"displayName":"RUT","helpText":"Please enter your RUT without punctuation.  This number should contain 6 to 11 numeric characters and be entered without spaces or dashes.  For example, the RUT should appear like 123456."},"en_GB":{"displayName":"RUT","helpText":"Please enter your RUT without punctuation.  This number should contain 6 to 11 numeric characters and be entered without spaces or dashes.  For example, the RUT should appear like 123456."},"en_IE":{"displayName":"RUT","helpText":"Please enter your RUT without punctuation.  This number should contain 6 to 11 numeric characters and be entered without spaces or dashes.  For example, the RUT should appear like 123456."},"en_US":{"displayName":"RUT","helpText":"Please enter your RUT without punctuation.  This number should contain 6 to 11 numeric characters and be entered without spaces or dashes.  For example, the RUT should appear like 123456."}},"co_rut":{"es_CO":{"displayName":"RUT","helpText":"Please enter your RUT. The code should contain 9 numeric characters such as 123456789."}},"cy":{"en_GB":{"displayName":"VAT Number","helpText":"Please enter your VAT number (ΦΠΑ/KDV) including the two-letter country code and excluding any punctuation or spaces, for example CY12345678X."},"el_GR":{"displayName":"ΦΠΑ/KDV","helpText":"Καταχωρίστε τον αριθμό σας ΦΠΑ, συμπεριλαμβάνοντας τον κωδικό χώρας με δύο γράμματα χωρίς να προσθέσετε σημεία στίξης ή κενά, για παράδειγμα CY12345678X."},"en_IE":{"displayName":"VAT Number","helpText":"Please enter your VAT number (ΦΠΑ/KDV) including the two-letter country code and excluding any punctuation or spaces, for example CY12345678X."},"en_US":{"displayName":"VAT Number","helpText":"Please enter your VAT number (ΦΠΑ/KDV) including the two-letter country code and excluding any punctuation or spaces, for example CY12345678X."}},"cz":{"cs_CZ":{"displayName":"DIČ","helpText":"Zadejte své DIČ včetně dvoumístného kódu země a bez interpunkce a mezer, např. CZ12345678, CZ123456789 nebo CZ1234567890."},"en_GB":{"displayName":"VAT Number","helpText":"Please enter your VAT ID (DIČ) including the two-digit country code and without any punctuation or spaces, such as CZ12345678, CZ123456789 or CZ1234567890."},"en_IE":{"displayName":"VAT Number","helpText":"Please enter your VAT ID (DIČ) including the two-digit country code and without any punctuation or spaces, such as CZ12345678, CZ123456789 or CZ1234567890."},"en_US":{"displayName":"VAT Number","helpText":"Please enter your VAT ID (DIČ) including the two-digit country code and without any punctuation or spaces, such as CZ12345678, CZ123456789 or CZ1234567890."}},"de":{"de_DE":{"displayName":"USt-IdNr.","helpText":"Bitte geben Sie Ihre Umsatzsteuernummer einschließlich des zweistelligen Ländercodes und ohne Interpunktionszeichen oder Leerzeichen ein. Beispiel: DE123456789 oder DE12345678901."},"en_GB":{"displayName":"VAT Number","helpText":"Please enter your VAT (Ust-IdNr) number including the two-digit country code but excluding all punctuation marks or spaces. Example: DE123456789 or DE12345678901."},"en_IE":{"displayName":"VAT Number","helpText":"Please enter your VAT (Ust-IdNr) number including the two-digit country code but excluding all punctuation marks or spaces. Example: DE123456789 or DE12345678901."},"en_US":{"displayName":"VAT Number","helpText":"Please enter your VAT (Ust-IdNr) number including the two-digit country code but excluding all punctuation marks or spaces. Example: DE123456789 or DE12345678901."}},"dk":{"da_DK":{"displayName":"CVR-nummer","helpText":"Indtast dit momsnummer med tilhørende tocifrede landekode uden punktummer eller mellemrum, f.eks. DK12345678."},"en_GB":{"displayName":"VAT Number","helpText":"Please enter your VAT (CVR) number with the corresponding two-digit country code and without any punctuation or spaces, eg. DK12345678."},"en_IE":{"displayName":"VAT Number","helpText":"Please enter your VAT (CVR) number with the corresponding two-digit country code and without any punctuation or spaces, eg. DK12345678."},"en_US":{"displayName":"VAT Number","helpText":"Please enter your VAT (CVR) number with the corresponding two-digit country code and without any punctuation or spaces, eg. DK12345678."}},"ee":{"en_GB":{"displayName":"KMKR","helpText":"Please enter your VAT number (KMKR) including the two letter country code and without any punctuation marks or spaces such as EE123456789."},"en_IE":{"displayName":"KMKR","helpText":"Please enter your VAT number (KMKR) including the two letter country code and without any punctuation marks or spaces such as EE123456789."},"en_US":{"displayName":"KMKR","helpText":"Please enter your VAT number (KMKR) including the two letter country code and without any punctuation marks or spaces such as EE123456789."}},"es":{"es_ES":{"displayName":"Número de IVA","helpText":"Introduzca su número de IVA incluido el código de país de dos letras y sin signos de puntuación o espacios como ES123456789 o ESA1234567P."},"en_GB":{"displayName":"VAT Number","helpText":"Please enter your VAT (IVA) Number including the two digit country code and without any punctuation marks or space such as ES123456789 or ESA1234567P."},"en_IE":{"displayName":"VAT Number","helpText":"Please enter your VAT (IVA) Number including the two digit country code and without any punctuation marks or space such as ES123456789 or ESA1234567P."},"en_US":{"displayName":"VAT Number","helpText":"Please enter your VAT (IVA) Number including the two digit country code and without any punctuation marks or space such as ES123456789 or ESA1234567P."}},"fi":{"fi_FI":{"displayName":"ALV-numero","helpText":"Syötä ALV-numerosi sisältäen kaksikirjaimisen maakoodisi, ilman mitään välimerkkejä tai välilyöntejä, esimerkiksi FI12345678."},"en_GB":{"displayName":"VAT Number","helpText":"Please enter your VAT (ALV) number including your 2-letter country code and without any punctuation or spaces, such as FI12345678."},"en_IE":{"displayName":"VAT Number","helpText":"Please enter your VAT (ALV) number including your 2-letter country code and without any punctuation or spaces, such as FI12345678."},"en_US":{"displayName":"VAT Number","helpText":"Please enter your VAT (ALV) number including your 2-letter country code and without any punctuation or spaces, such as FI12345678."}},"fr":{"fr_FR":{"displayName":"Numéro de TVA","helpText":"Entrez votre numéro de TVA, y compris le code de pays à deux lettres et sans les signes de ponctuation ou les espaces tels que: FRXX123456789, FRX1234567890, FR12345678901 ou FR1X123456789."},"en_GB":{"displayName":"VAT Number","helpText":"Please enter your VAT (TVA) number including the two-letter country code but excluding any punctuation or spaces such as: FRXX123456789, FRX1234567890, FR12345678901 or FR1X123456789."},"en_IE":{"displayName":"VAT Number","helpText":"Please enter your VAT (TVA) number including the two-letter country code but excluding any punctuation or spaces such as: FRXX123456789, FRX1234567890, FR12345678901 or FR1X123456789."},"en_US":{"displayName":"VAT Number","helpText":"Please enter your VAT (TVA) number including the two-letter country code but excluding any punctuation or spaces such as: FRXX123456789, FRX1234567890, FR12345678901 or FR1X123456789."}},"gr":{"en_GB":{"displayName":"VAT Number","helpText":"Please enter your VAT/ FPA number including your two-digit country code and excluding all punctuation or spaces, for example EL123456789."},"el_GR":{"displayName":"ΑΦΜ/FPA","helpText":"Καταχωρίστε τον αριθμό σας ΑΦΜ/FPA, συμπεριλαμβάνοντας τον κωδικό χώρας με δύο γράμματα χωρίς να προσθέσετε σημεία στίξης ή κενά, για παράδειγμα EL123456789."},"en_IE":{"displayName":"VAT Number","helpText":"Please enter your VAT/ FPA number including your two-digit country code and excluding all punctuation or spaces, for example EL123456789."},"en_US":{"displayName":"VAT Number","helpText":"Please enter your VAT/ FPA number including your two-digit country code and excluding all punctuation or spaces, for example EL123456789."},"en_HK":{"displayName":"BR","helpText":"Please enter your BR. The code should contain 8 numeric characters such as 12345678."}},"hk_br":{"en_GB":{"displayName":"PDV-ID","helpText":"Please enter your VAT number (PDV ID) including the two letter country code and without any punctuation marks or spaces such as HR12345678901."}},"hr":{"en_IE":{"displayName":"PDV-ID","helpText":"Please enter your VAT number (PDV ID) including the two letter country code and without any punctuation marks or spaces such as HR12345678901."},"en_US":{"displayName":"PDV-ID","helpText":"Please enter your VAT number (PDV ID) including the two letter country code and without any punctuation marks or spaces such as HR12345678901."}},"hu":{"en_GB":{"displayName":"VAT Number","helpText":"Please enter your VAT ID (ANUM/AFA) including the two-letter country code and excluding all punctuation marks or spaces, such as HU12345678 or HU12345678901."},"hu_HU":{"displayName":"ANUM/AFA","helpText":"Kérjük, adja meg az adószámát a kétbetűs országkóddal együtt és írásjelek, valamint szóközök nélkül, például HU12345678 vagy HU12345678901."},"en_IE":{"displayName":"VAT Number","helpText":"Please enter your VAT ID (ANUM/AFA) including the two-letter country code and excluding all punctuation marks or spaces, such as HU12345678 or HU12345678901."},"en_US":{"displayName":"VAT Number","helpText":"Please enter your VAT ID (ANUM/AFA) including the two-letter country code and excluding all punctuation marks or spaces, such as HU12345678 or HU12345678901."}},"id":{"en_ID":{"displayName":"NPWP","helpText":"Please enter your NPWP without punctuation . The code should contain 15 numeric characters such as 123456789123456."}},"id_npwp":{"en_ID":{"displayName":"NPWP","helpText":"Please enter your NPWP. The code should contain 15 numeric characters such as 12.345.678.9-123.456"}},"ie":{"en_IE":{"displayName":"VAT Number","helpText":"Please enter your VAT number including the two letter country code and without any punctuation marks or spaces such as IE1234567A,  IE123456A or IE1234567AB.  "}},"in":{"en_IN":{"displayName":"GSTIN","helpText":"Please enter your company GST number.  The number should include your two digit state code followed by thirteen alphanumeric characters without spaces, periods or hyphens such as 37AAAAA0000A1Z0."}},"is":{"en_GB":{"displayName":"VSK","helpText":"Please enter your VAT number (VSK) without any punctuation or spaces such as 12345, 123456, VSK12345 or VSK123456."}},"it":{"en_GB":{"displayName":"VAT Number","helpText":"Please enter your VAT number including the two-digit country code and without punctuation or spaces, eg. IT12345678901."},"en_IE":{"displayName":"VAT Number","helpText":"Please enter your VAT number including the two-digit country code and without punctuation or spaces, eg. IT12345678901."},"it_IT":{"displayName":"Partita IVA","helpText":"Inserire il proprio numero di partita IVA includendo il codice paese di due lettere, senza punteggiatura o spazi, ad es. IT12345678901."},"en_US":{"displayName":"VAT Number","helpText":"Please enter your VAT number including the two-digit country code and without punctuation or spaces, eg. IT12345678901."}},"it_cf":{"en_GB":{"displayName":"Codice Fiscal","helpText":"Please enter your Fiscal Code (Codice Fiscal).  The code should contain 16 alphanumeric characters such as ABCDEF51G61H129I."},"en_IE":{"displayName":"Codice Fiscal","helpText":"Please enter your Fiscal Code (Codice Fiscal).  The code should contain 16 alphanumeric characters such as ABCDEF51G61H129I."},"it_IT":{"displayName":"Codice Fiscale ","helpText":"Inserire il proprio codice fiscale. Il codice deve contenere 16 caratteri alfanumerici, ad es. ABCDEF51G61H129I."},"en_US":{"displayName":"Codice Fiscal","helpText":"Please enter your Fiscal Code (Codice Fiscal).  The code should contain 16 alphanumeric characters such as ABCDEF51G61H129I."}},"it_natural":{"en_GB":{"displayName":"VAT Number","helpText":"Please enter your personal VAT number (IVA) including the two letter country code and without any punctuation or spaces, eg. IT12345678901."},"en_IE":{"displayName":"VAT Number","helpText":"Please enter your personal VAT number (IVA) including the two letter country code and without any punctuation or spaces, eg. IT12345678901."},"it_IT":{"displayName":"Partita IVA","helpText":"Inserire il proprio numero di partita IVA includendo il codice paese di due lettere, senza punteggiatura o spazi, ad es. IT12345678901."},"en_US":{"displayName":"VAT Number","helpText":"Please enter your personal VAT number (IVA) including the two letter country code and without any punctuation or spaces, eg. IT12345678901."}},"jp_offshore":{"en_GB":{"displayName":"TIN","helpText":"Please enter your company tax number. The number should be 5, 8, or 13 digits in length and be entered without punctuation or spaces such as 1234567890123."},"en_IE":{"displayName":"TIN","helpText":"Please enter your company tax number. The number should be 5, 8, or 13 digits in length and be entered without punctuation or spaces such as 1234567890123."},"ja_JP":{"displayName":"法人番号 (TIN)","helpText":"御社の企業租税番号を入力してください。番号は、5、8、または13桁の長さである必要があり、スペースやピリオド、ハイフンなどを含めずに入力します（1234567890123）。"},"en_US":{"displayName":"TIN","helpText":"Please enter your company tax number. The number should be 5, 8, or 13 digits in length and be entered without punctuation or spaces such as 1234567890123."}},"jp_tin":{"ja_JP":{"displayName":"TIN","helpText":"insert translation"}},"kr_offshore":{"en_GB":{"displayName":"TIN","helpText":"Please enter your company tax number.  The number should be a 10-digit number and be entered without any punctuation or spaces such as 1234567890."},"en_IE":{"displayName":"TIN","helpText":"Please enter your company tax number.  The number should be a 10-digit number and be entered without any punctuation or spaces such as 1234567890."},"ko_KR":{"displayName":"세금 식별 번호 (TIN)","helpText":"법인 납세자 번호를 입력하십시오. 법인 납세자 번호는 공백, 마침표 또는 하이픈이 없는 10자리 숫자여야 합니다(예: 1234567890)."},"en_US":{"displayName":"TIN","helpText":"Please enter your company tax number.  The number should be a 10-digit number and be entered without any punctuation or spaces such as 1234567890."}},"lt":{"en_GB":{"displayName":"PVM kodas","helpText":"Please enter your VAT number (PVM) including the two letter country code and without any punctuation marks or spaces such as LT123456789 or LT123456789012."}},"lu":{"en_GB":{"displayName":"No. TVA","helpText":"Please enter your VAT number (TVA) including the two letter country code and without any punctuation marks or spaces such as LU12345678."}},"lv":{"en_GB":{"displayName":"PVN","helpText":"Please enter your VAT number (PVN) including the two letter country code and without any punctuation marks or spaces such as LV12345678901."}},"mt":{"en_GB":{"displayName":"Vat No.","helpText":"Please enter your VAT number including the two letter country code and without any punctuation marks or spaces such as MT12345678."}},"mx":{"en_GB":{"displayName":"RFC","helpText":"Please enter your RFC without punctuation. The code should contain 12 characters; the first 3 characters are alpha, the following 6 characters are numerical and the last 3 characters are alpha."},"en_IE":{"displayName":"RFC","helpText":"Please enter your RFC without punctuation. The code should contain 12 characters; the first 3 characters are alpha, the following 6 characters are numerical and the last 3 characters are alpha."},"es_MX":{"displayName":"RFC","helpText":"Please enter your RFC without punctuation. The code should contain 12 characters;first 3 characters are alpha, the following 6 characters are numerical, last 3 characters are alpha. The code should contain 12 numeric characters such as ABC123456ABC"},"en_US":{"displayName":"RFC","helpText":"Please enter your RFC without punctuation. The code should contain 12 characters; the first 3 characters are alpha, the following 6 characters are numerical and the last 3 characters are alpha."}},"mx_natural":{"en_GB":{"displayName":"RFC","helpText":"Please enter your RFC without punctuation. The code should contain 12 characters; the first 3 characters are alpha, the following 6 characters are numerical and the last 3 characters are alpha."},"en_IE":{"displayName":"RFC","helpText":"Please enter your RFC without punctuation. The code should contain 12 characters; the first 3 characters are alpha, the following 6 characters are numerical and the last 3 characters are alpha."},"es_MX":{"displayName":"RFC","helpText":"Please enter your RFC without punctuation. The code should contain 12 characters;first 3 characters are alpha, the following 6 characters are numerical, last 3 characters are alpha. The code should contain 12 numeric characters such as ABC123456ABC"},"en_US":{"displayName":"RFC","helpText":"Please enter your RFC without punctuation. The code should contain 12 characters; the first 3 characters are alpha, the following 6 characters are numerical and the last 3 characters are alpha."}},"mx_rfc":{"es_MX":{"displayName":"RFC","helpText":"Please enter your NIF. The code should contain 12 characters; first 3 characters are alpha numerical, following 6 characters are numerical, last 3 characters are alpha numerical"}},"my":{"en_IE":{"displayName":"VAT Number","helpText":"Please enter your VAT Number.  This number should contain 1 alpha character followed by 14 numeric characters and be entered without spaces or dashes.  For example, the VAT Number should appear like A12345678901234."}},"nl":{"en_GB":{"displayName":"VAT Number","helpText":"Please enter your VAT number including the two letter country code and without any punctuation marks or spaces such as NL123456789B01."},"en_IE":{"displayName":"VAT Number","helpText":"Please enter your VAT number including the two letter country code and without any punctuation marks or spaces such as NL123456789B01."},"en_NL":{"displayName":"VAT Number","helpText":"Please enter your VAT number including the two letter country code and without any punctuation marks or spaces such as NL123456789B01."},"nl_NL":{"displayName":"Btw-nummer","helpText":"Vul uw btw-nummer in inclusief de tweeletter landcode en zonder punten of spaties, zoals NL123456789B01."},"en_US":{"displayName":"VAT Number","helpText":"Please enter your VAT number including the two letter country code and without any punctuation marks or spaces such as NL123456789B01."}},"no":{"en_GB":{"displayName":"VAT Number","helpText":"Please enter your VAT Number (MVA) with your two letter country code and without any punctuation or spaces such as NO123456789MVA or 123456789MVA."},"en_IE":{"displayName":"VAT Number","helpText":"Please enter your VAT Number (MVA) with your two letter country code and without any punctuation or spaces such as NO123456789MVA or 123456789MVA."},"no_NO":{"displayName":"MVA","helpText":"Vennligst skriv inn mva-nummeret ditt uten tegnsetting eller mellomrom, for eksempel NO123456789MVA eller 123456789MVA."},"en_US":{"displayName":"VAT Number","helpText":"Please enter your VAT Number (MVA) with your two letter country code and without any punctuation or spaces such as NO123456789MVA or 123456789MVA."}},"nz":{"en_NZ":{"displayName":"GST ID","helpText":"Please enter your company GST number.  The number should be entered without spaces, periods or hyphens such as 12345678 or 123456789."}},"ph":{"en_PH":{"displayName":"TIN","helpText":"Please enter your TIN without punctuation. The code should contain 12 numeric characters such as 123456789."}},"ph_tin":{"ar_AE":{"displayName":"TIN","helpText":"CHANGE LOCAL"}},"pl":{"en_GB":{"displayName":"VAT Number","helpText":"Please enter your VAT (NIP) number containing the two-letter country code and without characters or spaces, eg PL1234567890."},"en_IE":{"displayName":"VAT Number","helpText":"Please enter your VAT (NIP) number containing the two-letter country code and without characters or spaces, eg PL1234567890."},"pl_PL":{"displayName":"NIP","helpText":"Wpisz numer NIP zawierający dwuliterowy kod kraju bez znaków i spacji, np. PL1234567890."},"en_US":{"displayName":"VAT Number","helpText":"Please enter your VAT (NIP) number containing the two-letter country code and without characters or spaces, eg PL1234567890."}},"pt":{"en_GB":{"displayName":"VAT Number","helpText":"Please enter your VAT (NIF) number including the two-letter country code and without any punctuation marks or spaces, for example PT123456789."},"en_IE":{"displayName":"VAT Number","helpText":"Please enter your VAT (NIF) number including the two-letter country code and without any punctuation marks or spaces, for example PT123456789."},"pt_PT":{"displayName":"Número NIF","helpText":"Digite seu número de IVA, incluindo o código de país de duas letras e sem marcas de pontuação ou espaços, como por exemplo PT123456789."},"en_US":{"displayName":"VAT Number","helpText":"Please enter your VAT (NIF) number including the two-letter country code and without any punctuation marks or spaces, for example PT123456789."}},"pt_nif":{"en_GB":{"displayName":"NIF","helpText":"Please enter your NIF. The code should contain 9 numeric characters such as 123456789."},"en_IE":{"displayName":"NIF","helpText":"Please enter your NIF. The code should contain 9 numeric characters such as 123456789."},"pt_PT":{"displayName":"NIF","helpText":"Por favor, insira o seu NIF. Deverá conter somente 9 caracteres numéricos (ex.: 123456789)."},"en_US":{"displayName":"NIF","helpText":"Please enter your NIF. The code should contain 9 numeric characters such as 123456789."}},"ro":{"en_GB":{"displayName":"TVA","helpText":"Please enter your VAT (TVA) number including the two letter country code and without any punctuation marks or spaces such as RO12, RO123456 or RO1234567890."}},"ru":{"en_GB":{"displayName":"INN","helpText":"Please enter your Taxpayer Identification Number (INN).  This number should contain 10 digits and be entered without spaces or other characters such as 1234567890."},"en_IE":{"displayName":"INN","helpText":"Please enter your Taxpayer Identification Number (INN).  This number should contain 10 digits and be entered without spaces or other characters such as 1234567890."},"ru_RU":{"displayName":"ИНН","helpText":"Пожалуйста введите Идентификационный номер налогоплательщика - ИНН вашей компании. Этон номер содержит 10 цифр, его нужно ввести без пробелов или других символов, например 1234567890."},"en_US":{"displayName":"INN","helpText":"Please enter your Taxpayer Identification Number (INN).  This number should contain 10 digits and be entered without spaces or other characters such as 1234567890."}},"ru_natural":{"en_GB":{"displayName":"INN","helpText":"Please enter your Taxpayer Identification Number (INN).  This number should contain 12 digits and be entered without spaces or other characters such as 123456789012."},"en_IE":{"displayName":"INN","helpText":"Please enter your Taxpayer Identification Number (INN).  This number should contain 12 digits and be entered without spaces or other characters such as 123456789012."},"ru_RU":{"displayName":"ИНН","helpText":"Пожалуйста введите Идентификационный номер налогоплательщика - ИНН. Этот номер состоит из 12 цифр, и не должен содержать пробелов или других символов, например 123456789012. "},"en_US":{"displayName":"INN","helpText":"Please enter your Taxpayer Identification Number (INN).  This number should contain 12 digits and be entered without spaces or other characters such as 123456789012."}},"sa":{"en_GB":{"displayName":"VAT Number","helpText":"Please enter your VAT registration number which should begin with the number \\"3\\" followed by 14 additional numbers such as 323456789012345."}},"se":{"en_GB":{"displayName":"VAT Number","helpText":"Please enter your VAT Number (Momsnr.) including the two letter country code and without any punctuation marks or spaces such as SE123456789012."},"en_IE":{"displayName":"VAT Number","helpText":"Please enter your VAT Number (Momsnr.) including the two letter country code and without any punctuation marks or spaces such as SE123456789012."},"sv_SE":{"displayName":"Momsnr.","helpText":"Ange momsregistreringsnummer inklusive landskod (två bokstäver) utan skiljetecken eller mellanslag, som SE123456789012."},"en_US":{"displayName":"VAT Number","helpText":"Please enter your VAT Number (Momsnr.) including the two letter country code and without any punctuation marks or spaces such as SE123456789012."}},"sg":{"en_IE":{"displayName":"VAT Number","helpText":"Please enter your VAT Number.  This number should contain 9 to 10 alpha numeric characters and be entered without spaces or dashes.  For example, the VAT Number should appear like AB1234567A."}},"si":{"en_GB":{"displayName":"ID za DDV","helpText":"Please enter your VAT number (DDV) including the two letter country code and without any punctuation marks or spaces such as SI12345678."}},"sk":{"en_GB":{"displayName":"VAT Number","helpText":"Please enter your VAT number (IČ DPH) including the two-digit country code and without any punctuation or spaces such as SK1234567890 or SK123456789."},"en_IE":{"displayName":"VAT Number","helpText":"Please enter your VAT number (IČ DPH) including the two-digit country code and without any punctuation or spaces such as SK1234567890 or SK123456789."},"sk_SK":{"displayName":"IČ DPH","helpText":"Zadajte svoje DIČ vrátane dvojmiestneho kódu krajiny a bez interpunkcie a medzier, napr. SK1234567890 alebo SK123456789."},"en_US":{"displayName":"VAT Number","helpText":"Please enter your VAT number (IČ DPH) including the two-digit country code and without any punctuation or spaces such as SK1234567890 or SK123456789."}},"th":{"en_GB":{"displayName":"VAT Number","helpText":"Please enter your VAT without punctuation. The code should contain 12 numeric characters such as 123456789012 or 13 numeric characters such as 1234567890123."},"en_IE":{"displayName":"VAT Number","helpText":"Please enter your VAT without punctuation. The code should contain 12 numeric characters such as 123456789012 or 13 numeric characters such as 1234567890123."},"th_TH":{"displayName":"VAT Number","helpText":"Please enter your VAT without punctuation. The code should contain 12 numeric characters such as 123456789012 or 13 numeric characters such as 1234567890123."},"en_US":{"displayName":"VAT Number","helpText":"Please enter your VAT without punctuation. The code should contain 12 numeric characters such as 123456789012 or 13 numeric characters such as 1234567890123."}},"tr":{"en_GB":{"displayName":"VKN","helpText":"Please enter your VKN which should be a 10 digits and be entered without any punctuation or spaces such as 1234567890."},"en_IE":{"displayName":"VKN","helpText":"Please enter your VKN which should be a 10 digits and be entered without any punctuation or spaces such as 1234567890."},"tr_TR":{"displayName":"VKN","helpText":"Lütfen Vergi Kimlik Numaranızı girin. Vergi Kimlik Numarası 10 haneli olmalı ve herhangi bir noktalama işareti veya boşluk bulundurmamalıdır 1234567890 gibi."},"en_US":{"displayName":"VKN","helpText":"Please enter your VKN which should be a 10 digits and be entered without any punctuation or spaces such as 1234567890."}},"tw":{"en_GB":{"displayName":"UBN/TIN ","helpText":"Please enter your company\'s Uniform Business Number (UBN/TIN). The number should be 8-digits and be entered without any spaces, periods or hyphens, such as 12345678."},"en_IE":{"displayName":"UBN/TIN ","helpText":"Please enter your company\'s Uniform Business Number (UBN/TIN). The number should be 8-digits and be entered without any spaces, periods or hyphens, such as 12345678."},"zh_TW":{"displayName":"統一編號","helpText":"請輸入您的公司統一編號，共八位數字，如12345678。"},"en_US":{"displayName":"UBN/TIN ","helpText":"Please enter your company\'s Uniform Business Number (UBN/TIN). The number should be 8-digits and be entered without any spaces, periods or hyphens, such as 12345678."}},"tw_offshore":{"en_GB":{"displayName":"UBN/TIN","helpText":"Please enter your company\'s Uniform Business Number (UBN/TIN). The number should be 8-digits and be entered without any spaces, periods or hyphens, such as 12345678."},"en_IE":{"displayName":"UBN/TIN","helpText":"Please enter your company\'s Uniform Business Number (UBN/TIN). The number should be 8-digits and be entered without any spaces, periods or hyphens, such as 12345678."},"zh_TW":{"displayName":"統一編號","helpText":"請輸入您的公司統一編號，共八位數字，如12345678。"},"en_US":{"displayName":"UBN/TIN","helpText":"Please enter your company\'s Uniform Business Number (UBN/TIN). The number should be 8-digits and be entered without any spaces, periods or hyphens, such as 12345678."}},"uk":{"en_GB":{"displayName":"VAT Number","helpText":"Please enter your VAT number including the two letter country code and without any punctuation marks or spaces such as GB123456789 or GB123456789012."}},"us_ein":{"ar_AE":{"displayName":"EIN","helpText":"Please enter your EIN. The code should contain 9 numeric characters such as 12-3456789"},"en_US":{"displayName":"EIN","helpText":"Please enter your EIN. The code should contain 9 numeric characters such as 12-3456789"}},"za":{"en_GB":{"displayName":"VAT Number","helpText":"Please enter your VAT Number.  This number should contain 10 digits and be entered without spaces or other characters such as 1234567890."}}},"countriesWithTaxIdentifierSchemas":{"AE":["DR_IRELAND-ENTITY"],"AT":["DR_IRELAND-ENTITY"],"AU":["DR_IRELAND-ENTITY"],"CA":["DR_IRELAND-ENTITY"],"BE":["DR_IRELAND-ENTITY"],"BG":["DR_IRELAND-ENTITY"],"BH":["DR_IRELAND-ENTITY"],"BR":["DR_BRAZIL-ENTITY","DR_BRAZIL2-ENTITY"],"BY":["DR_IRELAND-ENTITY"],"CH":["DR_IRELAND-ENTITY"],"CL":["DR_IRELAND-ENTITY","DR_IRELAND-ENTITY"],"CO":["DR_IRELAND-ENTITY"],"CY":["DR_IRELAND-ENTITY"],"CZ":["DR_IRELAND-ENTITY"],"DE":["DR_IRELAND-ENTITY"],"DK":["DR_IRELAND-ENTITY"],"EE":["DR_IRELAND-ENTITY"],"ES":["DR_IRELAND-ENTITY"],"FI":["DR_IRELAND-ENTITY"],"FR":["DR_IRELAND-ENTITY"],"GB":["DR_UK-ENTITY","DR_IRELAND-ENTITY"],"GR":["DR_IRELAND-ENTITY"],"HR":["DR_IRELAND-ENTITY"],"HU":["DR_IRELAND-ENTITY"],"ID":["DR_IRELAND-ENTITY"],"IE":["DR_IRELAND-ENTITY"],"IM":["DR_IRELAND-ENTITY"],"IN":["DR_INDIA-ENTITY","DR_IRELAND-ENTITY"],"IS":["DR_IRELAND-ENTITY"],"IT":["DR_IRELAND-ENTITY"],"JP":["DR_IRELAND-ENTITY"],"KR":["DR_IRELAND-ENTITY"],"LT":["DR_IRELAND-ENTITY"],"LU":["DR_IRELAND-ENTITY"],"LV":["DR_IRELAND-ENTITY"],"MC":["DR_IRELAND-ENTITY"],"MT":["DR_IRELAND-ENTITY"],"MX":["DR_IRELAND-ENTITY"],"MY":["DR_IRELAND-ENTITY"],"NL":["DR_IRELAND-ENTITY"],"NO":["DR_IRELAND-ENTITY"],"NZ":["DR_IRELAND-ENTITY"],"PH":["DR_IRELAND-ENTITY"],"PL":["DR_IRELAND-ENTITY"],"PT":["DR_IRELAND-ENTITY","DR_IRELAND-ENTITY"],"RO":["DR_IRELAND-ENTITY"],"RU":["DR_IRELAND-ENTITY","DR_IRELAND-ENTITY"],"SA":["DR_IRELAND-ENTITY"],"SE":["DR_IRELAND-ENTITY"],"SG":["DR_IRELAND-ENTITY"],"SI":["DR_IRELAND-ENTITY"],"SK":["DR_IRELAND-ENTITY"],"TH":["DR_IRELAND-ENTITY"],"TR":["DR_IRELAND-ENTITY"],"TW":["DR_IRELAND-ENTITY"],"ZA":["DR_IRELAND-ENTITY"]}}');
+module.exports = JSON.parse('{"localizedStrings":{"ar_EG":{"businessPurchase":"مشتريات المؤسسات","personalPurchase":"مشتريات الأفراد","purchaseType":"نوع المتسوق:","taxId":"رقم التعريف الضريبي","taxRegistrationNumber":"رقم السجل الضريبي:","valueRequired":"أدخل قيمة صحيحة.","vatNumber":"رقم الإعفاء من ضريبة القيمة المضافة:"},"cs_CZ":{"businessPurchase":"Firemní nákup","personalPurchase":"Soukromý nákup","purchaseType":"Typ zákazníka:","taxId":"Daňové identifikační číslo","taxRegistrationNumber":"Daňové identifikační číslo:","valueRequired":"Vložte platnou hodnotu.","vatNumber":"Číslo výjimky z DPH:"},"da_DK":{"businessPurchase":"Erhvervskøb","personalPurchase":"Privat køb","purchaseType":"Kundetype:","taxId":"Moms-id","taxRegistrationNumber":"Momsregistreringsnummer:","valueRequired":"Indtast en gyldig værdi.","vatNumber":"Momsfritagelsesnummer:"},"de_AT":{"businessPurchase":"Gewerblicher Kauf","personalPurchase":"Persönlicher Einkauf","purchaseType":"Kundentyp:","taxId":"Steuernummer","taxRegistrationNumber":"Steuernummer:","valueRequired":"Geben Sie einen gültigen Wert ein.","vatNumber":"USt-IdNr.:"},"de_CH":{"businessPurchase":"Gewerblicher Kauf","personalPurchase":"Persönlicher Einkauf","purchaseType":"Kundentyp:","taxId":"Steuernummer","taxRegistrationNumber":"Steuernummer:","valueRequired":"Geben Sie einen gültigen Wert ein.","vatNumber":"USt-IdNr.:"},"de_DE":{"businessPurchase":"Gewerblicher Kauf","personalPurchase":"Persönlicher Einkauf","purchaseType":"Kundentyp:","taxId":"Steuernummer","taxRegistrationNumber":"Steuernummer:","valueRequired":"Geben Sie einen gültigen Wert ein.","vatNumber":"USt-IdNr.:"},"el_GR":{"businessPurchase":"Εταιρική αγορά","personalPurchase":"Προσωπική αγορά","purchaseType":"Τύπος αγοραστή:","taxId":"Κωδικός Φόρου","taxRegistrationNumber":"Αριθμός φορολογικού μητρώου:","valueRequired":"Εισαγάγετε μια έγκυρη τιμή.","vatNumber":"Αριθμός Απαλλαγής ΦΠΑ:"},"en_AU":{"businessPurchase":"Business purchase","personalPurchase":"Personal purchase","purchaseType":"Shopper Type:","taxId":"Tax ID","taxRegistrationNumber":"Tax Registration Number:","valueRequired":"Enter a valid value.","vatNumber":"VAT Exemption Number:"},"en_CA":{"businessPurchase":"Business purchase","personalPurchase":"Personal purchase","purchaseType":"Shopper Type:","taxId":"Tax ID","taxRegistrationNumber":"Tax Registration Number:","valueRequired":"Enter a valid value.","vatNumber":"VAT Exemption Number:"},"en_CH":{"businessPurchase":"Business purchase","personalPurchase":"Personal purchase","purchaseType":"Shopper Type:","taxId":"Tax ID","taxRegistrationNumber":"Tax Registration Number:","valueRequired":"Enter a valid value.","vatNumber":"VAT Exemption Number:"},"en_GB":{"businessPurchase":"Business purchase","personalPurchase":"Personal purchase","purchaseType":"Shopper Type:","taxId":"Tax ID","taxRegistrationNumber":"Tax Registration Number:","valueRequired":"Enter a valid value.","vatNumber":"VAT Exemption Number:"},"en_IE":{"businessPurchase":"Business purchase","personalPurchase":"Personal purchase","purchaseType":"Shopper Type:","taxId":"Tax ID","taxRegistrationNumber":"Tax Registration Number:","valueRequired":"Enter a valid value.","vatNumber":"VAT Exemption Number:"},"en_IN":{"businessPurchase":"Business purchase","personalPurchase":"Personal purchase","purchaseType":"Shopper Type:","taxId":"Tax ID","taxRegistrationNumber":"Tax Registration Number:","valueRequired":"Enter a valid value.","vatNumber":"VAT Exemption Number:"},"en_MY":{"taxId":"Tax ID","valueRequired":"Enter a valid value.","vatNumber":"VAT Exemption Number:"},"en_NL":{"businessPurchase":"Business purchase","personalPurchase":"Personal purchase","purchaseType":"Shopper Type:","taxId":"Tax ID","taxRegistrationNumber":"Tax Registration Number:","valueRequired":"Enter a valid value.","vatNumber":"VAT Exemption Number:"},"en_NZ":{"businessPurchase":"Business purchase","personalPurchase":"Personal purchase","purchaseType":"Shopper Type:","taxId":"Tax ID","taxRegistrationNumber":"Tax Registration Number:","valueRequired":"Enter a valid value.","vatNumber":"VAT Exemption Number:"},"en_PR":{"businessPurchase":"Business purchase","personalPurchase":"Personal purchase","purchaseType":"Shopper Type:","taxId":"Tax ID","taxRegistrationNumber":"Tax Registration Number:","valueRequired":"Enter a valid value.","vatNumber":"VAT Exemption Number:"},"en_SG":{"businessPurchase":"Business purchase","personalPurchase":"Personal purchase","purchaseType":"Shopper Type:","taxId":"Tax ID","taxRegistrationNumber":"Tax Registration Number:","valueRequired":"Enter a valid value.","vatNumber":"VAT Exemption Number:"},"en_US":{"businessPurchase":"Business purchase","personalPurchase":"Personal purchase","purchaseType":"Shopper Type:","taxId":"Tax ID","taxRegistrationNumber":"Tax Registration Number:","vatNumber":"VAT Exemption Number:"},"en_ZA":{"businessPurchase":"Business purchase","personalPurchase":"Personal purchase","purchaseType":"Shopper Type:","taxId":"Tax ID","taxRegistrationNumber":"Tax Registration Number:","valueRequired":"Enter a valid value.","vatNumber":"VAT Exemption Number:"},"es_AR":{"businessPurchase":"Compra empresarial","personalPurchase":"Compra personal","purchaseType":"Tipo de comprador:","taxId":"ID de impuesto","taxRegistrationNumber":"Número de identificación fiscal:","valueRequired":"Anote un valor válido.","vatNumber":"Número de exención de IVA:"},"es_CL":{"businessPurchase":"Compra empresarial","personalPurchase":"Compra personal","purchaseType":"Tipo de comprador:","taxId":"ID de impuesto","taxRegistrationNumber":"Número de identificación fiscal:","valueRequired":"Anote un valor válido.","vatNumber":"Número de exención de IVA:"},"es_CO":{"businessPurchase":"Compra empresarial","personalPurchase":"Compra personal","purchaseType":"Tipo de comprador:","taxId":"ID de impuesto","taxRegistrationNumber":"Número de identificación fiscal:","valueRequired":"Anote un valor válido.","vatNumber":"Número de exención de IVA:"},"es_EC":{"businessPurchase":"Compra empresarial","personalPurchase":"Compra personal","purchaseType":"Tipo de comprador:","taxId":"ID de impuesto","taxRegistrationNumber":"Número de identificación fiscal:","valueRequired":"Anote un valor válido.","vatNumber":"Número de exención de IVA:"},"es_ES":{"businessPurchase":"Compra empresarial","personalPurchase":"Compra personal","purchaseType":"Tipo de comprador:","taxId":"ID de impuestos","taxRegistrationNumber":"Número de identificación fiscal:","valueRequired":"Indique un valor válido.","vatNumber":"Número de exención de IVA:"},"es_MX":{"businessPurchase":"Compra empresarial","personalPurchase":"Compra personal","purchaseType":"Tipo de comprador:","taxId":"ID de impuesto","taxRegistrationNumber":"Número de identificación fiscal:","valueRequired":"Anote un valor válido.","vatNumber":"Número de exención de IVA:"},"es_PE":{"businessPurchase":"Compra empresarial","personalPurchase":"Compra personal","purchaseType":"Tipo de comprador:","taxId":"ID de impuesto","taxRegistrationNumber":"Número de identificación fiscal:","valueRequired":"Anote un valor válido.","vatNumber":"Número de exención de IVA:"},"es_VE":{"businessPurchase":"Compra empresarial","personalPurchase":"Compra personal","purchaseType":"Tipo de comprador:","taxId":"ID de impuesto","taxRegistrationNumber":"Número de identificación fiscal:","valueRequired":"Anote un valor válido.","vatNumber":"Número de exención de IVA:"},"fi_FI":{"businessPurchase":"Yritysostos","personalPurchase":"Henkilökohtainen ostos","purchaseType":"Ostajan tyyppi:","taxId":"Veronumero","taxRegistrationNumber":"Verorekisterinumero:","valueRequired":"Syötä oikea arvo.","vatNumber":"ALV vapautusnumero:"},"fr_BE":{"businessPurchase":"Achat professionnel","personalPurchase":"Achat personnel","purchaseType":"Type de client :","taxId":"Identifiant TVA","taxRegistrationNumber":"Numéro d\'identification fiscale :","valueRequired":"Entrez une valeur valide.","vatNumber":"Numéro d\'exonération de la TVA :"},"fr_CA":{"businessPurchase":"Achat à des fins professionnelles","personalPurchase":"Achat personnel","purchaseType":"Type de client :","taxId":"Identifiant TVA","taxRegistrationNumber":"Numéro d’identification fiscale :","valueRequired":"Veuillez entrer une valeur correcte.","vatNumber":"Numéro d\'exonération de la TVA :"},"fr_CH":{"businessPurchase":"Achat professionnel","personalPurchase":"Achat personnel","purchaseType":"Type de client :","taxId":"Identifiant TVA","taxRegistrationNumber":"Numéro d\'identification fiscale :","valueRequired":"Entrez une valeur valide.","vatNumber":"Numéro d\'exonération de la TVA :"},"fr_FR":{"businessPurchase":"Achat professionnel","personalPurchase":"Achat personnel","purchaseType":"Type de client :","taxId":"Identifiant TVA","taxRegistrationNumber":"Numéro d\'identification fiscale :","valueRequired":"Entrez une valeur valide.","vatNumber":"Numéro d\'exonération de la TVA :"},"hu_HU":{"businessPurchase":"Vállalat vásárlása","personalPurchase":"Magánszemély vásárlása","purchaseType":"Vásárló típusa:","taxId":"Adóazonosító","taxRegistrationNumber":"Adószám:","valueRequired":"Adjon meg érvényes értéket.","vatNumber":"Áfamentességi szám:"},"it_CH":{"businessPurchase":"Acquisto professionale","personalPurchase":"Acquisto personale","purchaseType":"Tipo di cliente:","taxId":"Codice fiscale","taxRegistrationNumber":"Partita IVA:","valueRequired":"Immetti un valore valido.","vatNumber":"Codice esenzione IVA:"},"it_IT":{"businessPurchase":"Acquisto professionale","personalPurchase":"Acquisto personale","purchaseType":"Tipo di cliente:","taxId":"Codice fiscale","taxRegistrationNumber":"Partita IVA:","valueRequired":"Immetti un valore valido.","vatNumber":"Codice esenzione IVA:"},"iw_IL":{"businessPurchase":"קנייה עסקית","personalPurchase":"קנייה פרטית","purchaseType":"סוג קונה:","taxId":"קוד מס","taxRegistrationNumber":"מספר עוסק מורשה:","valueRequired":"הזן ערך חוקי.","vatNumber":"מספר אישור פטור ממע\\"מ:"},"ja_JP":{"businessPurchase":"仕事での購入","personalPurchase":"個人での購入","purchaseType":"お客様種別:","taxId":"税金ID","taxRegistrationNumber":"税登録番号:","valueRequired":"有効な値を入力してください。","vatNumber":"付加価値税免税番号:"},"ko_KR":{"businessPurchase":"기업 구매","personalPurchase":"개인 구매","purchaseType":"구매자 유형:","taxId":"세금 ID","taxRegistrationNumber":"과세등록번호:","valueRequired":"유효한 값을 입력해 주십시오.","vatNumber":"VAT 면제 번호:"},"nl_BE":{"businessPurchase":"Zakelijke aankoop","personalPurchase":"Privéaankoop","purchaseType":"Type shopper:","taxId":"Btw-nummer","taxRegistrationNumber":"Btw-registratienummer:","valueRequired":"Voer een geldige waarde in.","vatNumber":"Btw-vrijstellingsnummer:"},"nl_NL":{"businessPurchase":"Zakelijke aankoop","personalPurchase":"Privéaankoop","purchaseType":"Type aankoop:","taxId":"Btw-nummer","taxRegistrationNumber":"Btw-registratienummer:","valueRequired":"Voer een geldige waarde in.","vatNumber":"Btw-vrijstellingsnummer:"},"no_NO":{"businessPurchase":"Bedriftskjøp","personalPurchase":"Privatkjøp","purchaseType":"Shoppertype:","taxId":"Avgiftsnr.","taxRegistrationNumber":"Nummer for avgiftsbetaling:","valueRequired":"Angi en gyldig verdi.","vatNumber":"Org.nr. for fritak av mva.:"},"pl_PL":{"businessPurchase":"Zakup firmowy","personalPurchase":"Zakup prywatny","purchaseType":"Typ kupującego:","taxId":"ID podatku","taxRegistrationNumber":"Numer NIP:","valueRequired":"Wprowadź właściwą wartość.","vatNumber":"Numer zwolnienia od VAT:"},"pt_BR":{"businessPurchase":"Compra comercial","personalPurchase":"Compra pessoal","purchaseType":"Perfil do comprador:","taxId":"CGC/CPF","taxRegistrationNumber":"Número de inscrição no VAT:","valueRequired":"Digite um valor válido.","vatNumber":"Número de isenção fiscal (VAT):"},"pt_PT":{"businessPurchase":"Compra empresarial","personalPurchase":"Compra pessoal","purchaseType":"Tipo de Comprador:","taxId":"NIF","taxRegistrationNumber":"Número de Identificação Fiscal:","valueRequired":"Introduza um valor válido.","vatNumber":"Número de isenção de IVA:"},"ru_RU":{"businessPurchase":"Покупка для юридических лиц","personalPurchase":"Покупка для физических лиц","purchaseType":"Тип покупателя:","taxId":"ИНН","taxRegistrationNumber":"Регистрационный номер налога:","valueRequired":"Введите действительное значение.","vatNumber":"Номер освобождения от НДС:"},"sk_SK":{"businessPurchase":"Firemný nákup","personalPurchase":"Súkromný nákup","purchaseType":"Typ kupujúceho:","taxId":"DIČ:","taxRegistrationNumber":"Daňové registračné číslo:","valueRequired":"Zadajte správny údaj.","vatNumber":"Číslo oslobodenia od DPH:"},"sv_SE":{"businessPurchase":"Företagsköp","personalPurchase":"Privat köp","purchaseType":"Kundtyp:","taxId":"Skatte-ID","taxRegistrationNumber":"Skatteregistreringsnummer:","valueRequired":"Ange ett giltigt värde.","vatNumber":"Momsbefrielsenummer:"},"th_TH":{"businessPurchase":"การจัดซื้อขององค์กร","personalPurchase":"การจัดซื้อส่วนบุคคล","purchaseType":"ประเภทผู้ซื้อ:","taxId":"หมายเลขภาษี","taxRegistrationNumber":"เลขทะเบียนภาษี:","valueRequired":"ใส่ค่าที่ถูกต้อง","vatNumber":"หมายเลขยกเว้นภาษีมูลค่าเพิ่ม :"},"tr_TR":{"businessPurchase":"Kurumsal satın alım","personalPurchase":"Kişisel satın alım","purchaseType":"Müşteri tipi:","taxId":"Vergi Numarası","taxRegistrationNumber":"Vergi Kayıt Numarası:","valueRequired":"Geçerli bir değer girin.","vatNumber":"KDV Muafiyet Numarası:"},"zh_CN":{"businessPurchase":"企业购买","personalPurchase":"个人购买","purchaseType":"顾客类型：","taxId":"税代码","taxRegistrationNumber":"税务登记号：","valueRequired":"请输入有效值。","vatNumber":"增值税免税号："},"zh_HK":{"businessPurchase":"企業購買","personalPurchase":"個人購買","purchaseType":"買家類型：","taxId":"稅收 ID","taxRegistrationNumber":"稅務登記號碼：","valueRequired":"輸入有效值。","vatNumber":"增值稅免除號碼："},"zh_TW":{"businessPurchase":"企業購買","personalPurchase":"個人購買","purchaseType":"購物者類型：","taxId":"稅務號碼","taxRegistrationNumber":"稅籍統一編號：","valueRequired":"請輸入有效的數值。","vatNumber":"VAT 免稅號碼："}},"taxIdSpecificStrings":{"ae":{"en_GB":{"displayName":"VAT Number","helpText":"Please enter your VAT tax registration number which should begin with the number \\"1\\" followed by 14 additional numbers such as 123456789123456."}},"ar":{"en_IE":{"displayName":"CUIT","helpText":"Please enter your CUIT with the accepted format shown below:\\n\\n12-34567890-1"},"en_GB":{"displayName":"CUIT","helpText":"Please enter your CUIT with the accepted format shown below:\\n\\n12-34567890-1"},"en_US":{"displayName":"CUIT","helpText":"Please enter your CUIT with the accepted format shown below:\\n\\n12-34567890-1"},"es_AR":{"displayName":"CUIT","helpText":"Ingrese su CUIT con el formato aceptado que se muestra a continuación:\\n\\n12-34567890-1"}},"at":{"de_AT":{"displayName":"UID-nummer","helpText":"Bitte geben Sie Ihre Umsatzsteuernummer einschließlich des zweistelligen Ländercodes und ohne Interpunktionszeichen oder Leerzeichen ein. Beispiel: ATU12345678."},"en_GB":{"displayName":"VAT Number","helpText":"Please enter your VAT number, including the two-digit country code and without any punctuation marks or spaces. Example: ATU12345678."},"en_IE":{"displayName":"VAT Number","helpText":"Please enter your VAT number, including the two-digit country code and without any punctuation marks or spaces. Example: ATU12345678."},"en_US":{"displayName":"VAT Number","helpText":"Please enter your VAT number, including the two-digit country code and without any punctuation marks or spaces. Example: ATU12345678."}},"au":{"en_AU":{"displayName":"ABN","helpText":"Please enter the ABN of your company without spaces, periods or hyphens.  For example:  ABN12345678901, ABN12345678901234, ARN123456789012 or 12345678901."}},"ca":{"en_CA":{"displayName":"GST ID","helpText":"Please enter your company GST number.  The number should be entered without spaces, periods or hyphens such as 12345678 or 123456789."}},"be":{"fr_BE":{"displayName":"Numéro de TVA","helpText":"Entrez votre numéro de TVA, y compris le code de pays à deux lettres et sans les signes de ponctuation ou les espaces tels que:  BE1234567890 ou BE0123456789."},"nl_BE":{"displayName":"Btw-nummer","helpText":"Vul uw btw-nummer in inclusief de tweeletter landcode en zonder punten of spaties, zoals BE1234567890 of BE0123456789."},"en_GB":{"displayName":"VAT Number","helpText":"Please enter your VAT number including the two-letter country code and without punctuation or spaces such as BE1234567890 or BE0123456789."},"en_IE":{"displayName":"VAT Number","helpText":"Please enter your VAT number including the two-letter country code and without punctuation or spaces such as BE1234567890 or BE0123456789."},"en_US":{"displayName":"VAT Number","helpText":"Please enter your VAT number including the two-letter country code and without punctuation or spaces such as BE1234567890 or BE0123456789."}},"bg":{"en_GB":{"displayName":"VAT Number","helpText":"Please enter your VAT number (DDS) including the two letter country code and without any punctuation marks or spaces such as BG123456789 or BG1234567890."},"en_IE":{"displayName":"VAT Number","helpText":"Please enter your VAT number (DDS) including the two letter country code and without any punctuation marks or spaces such as BG123456789 or BG1234567890."},"en_US":{"displayName":"VAT Number","helpText":"Please enter your VAT number (DDS) including the two letter country code and without any punctuation marks or spaces such as BG123456789 or BG1234567890."}},"bh":{"en_GB":{"displayName":"VAT Number","helpText":"Please enter your VAT registration number which should begin with the number \\"2\\" followed by 14 additional numbers such as 212345678912345."}},"br":{"pt_BR":{"displayName":"CNPJ","helpText":"Digite o número CNPJ da sua empresa. O número deve ter 14 dígitos e ser inserido sem espaços, períodos ou hifens como 12345678901234."},"en_GB":{"displayName":"CNPJ","helpText":"Enter the CNPJ number for your company. The number must be 14 digits long and must be entered without spaces, periods, or hyphens like 12345678901234."},"en_IE":{"displayName":"CNPJ","helpText":"Enter the CNPJ number for your company. The number must be 14 digits long and must be entered without spaces, periods, or hyphens like 12345678901234."},"en_US":{"displayName":"CNPJ","helpText":"Enter the CNPJ number for your company. The number must be 14 digits long and must be entered without spaces, periods, or hyphens like 12345678901234."}},"br_ie":{"pt_BR":{"displayName":"Inscrição Estadual (IE)","helpText":"Por favor, insira a Inscrição Estadual da sua empresa. O número deve ter 8-13 dígitos e ser inserido sem espaços, períodos ou hifens como 12345678, 1234567890123 ou ISENTO. Para encontrar a sua Inscrição Estadual, visite o site SINTEGRA."},"en_GB":{"displayName":"Inscrição Estadual (IE)","helpText":"Please enter your state registration number (IE). The number must be 8-13 digits long and be entered without spaces, periods, or hyphens such as 12345678, 1234567890123 or ISENTO (Exempt).  To find your State Registration, visit the SINTEGRA website. "},"en_IE":{"displayName":"Inscrição Estadual (IE)","helpText":"Please enter your state registration number (IE). The number must be 8-13 digits long and be entered without spaces, periods, or hyphens such as 12345678, 1234567890123 or ISENTO (Exempt).  To find your State Registration, visit the SINTEGRA website. "},"en_US":{"displayName":"Inscrição Estadual (IE)","helpText":"Please enter your state registration number (IE). The number must be 8-13 digits long and be entered without spaces, periods, or hyphens such as 12345678, 1234567890123 or ISENTO (Exempt).  To find your State Registration, visit the SINTEGRA website. "}},"br_natural":{"pt_BR":{"displayName":"CPF","helpText":"Digite seu número CPF individual. O número deve ter 11 dígitos e ser inserido sem espaços, períodos ou hifens como 12345678901."},"en_GB":{"displayName":"CPF","helpText":"Enter your individual CPF number. The number must be 11 digits long and be entered without spaces, periods, or hyphens like 12345678901."},"en_IE":{"displayName":"CPF","helpText":"Enter your individual CPF number. The number must be 11 digits long and be entered without spaces, periods, or hyphens like 12345678901."},"en_US":{"displayName":"CPF","helpText":"Enter your individual CPF number. The number must be 11 digits long and be entered without spaces, periods, or hyphens like 12345678901."}},"by":{"be_BY":{"displayName":"УНП","helpText":"Please enter your Taxpayer Identification Number (УНП).  This number should contain 9 digits and be entered without spaces or other characters such as 123456789."},"en_GB":{"displayName":"UNP","helpText":"Please enter your Taxpayer Identification Number (UNP).  This number should contain 9 digits and be entered without spaces or other characters such as 123456789."},"en_IE":{"displayName":"UNP","helpText":"Please enter your Taxpayer Identification Number (UNP).  This number should contain 9 digits and be entered without spaces or other characters such as 123456789."},"en_US":{"displayName":"UNP","helpText":"Please enter your Taxpayer Identification Number (UNP).  This number should contain 9 digits and be entered without spaces or other characters such as 123456789."}},"ca_cra":{"en_CA":{"displayName":"CRA","helpText":"Please enter your CRA. The code should contain 15-character account number; Nine-digit Business Number (BN) that identifies your business; Two-letter identifier for the program type; Four-digit reference number for the program account "}},"ch":{"de_CH":{"displayName":"MWST","helpText":"Bitte geben Sie Ihre Umsatzsteuernummer ohne Interpunktionszeichen oder Leerzeichen ein. Beispiele: CH123456, 123456, CHE123456, CHE123456HRMWST, CHE123456RCTVA oder CHE123456IVA."},"fr_CH":{"displayName":"Numéro de TVA","helpText":"Entrez votre numéro de TVA, y compris le code de pays à deux lettres et sans les signes de ponctuation ou les espaces tels que: CH123456, 123456, CHE123456, CHE123456HRMWST, CHE123456RCTVA ou CHE123456IVA."},"it_CH":{"displayName":"Partita IVA","helpText":"Inserire il proprio numero di partita IVA senza punteggiatura o spazi, ad es. CH123456, 123456, CHE123456, CHE123456HRMWST, CHE123456RCTVA o CHE123456IVA."},"en_GB":{"displayName":"VAT Number","helpText":"Please enter your VAT Number (MWST/IVA/TVA) including the two-letter country code and without punctuation or spaces such as: CH123456, 123456, CHE123456, CHE123456HRMWST, CHE123456RCTVA or CHE123456IVA."},"en_IE":{"displayName":"VAT Number","helpText":"Please enter your VAT Number (MWST/IVA/TVA) including the two-letter country code and without punctuation or spaces such as: CH123456, 123456, CHE123456, CHE123456HRMWST, CHE123456RCTVA or CHE123456IVA."},"en_US":{"displayName":"VAT Number","helpText":"Please enter your VAT Number (MWST/IVA/TVA) including the two-letter country code and without punctuation or spaces such as: CH123456, 123456, CHE123456, CHE123456HRMWST, CHE123456RCTVA or CHE123456IVA."}},"cl":{"en_IE":{"displayName":"RUT","helpText":"Please enter your RUT."},"en_GB":{"displayName":"RUT","helpText":"Please enter your RUT."},"en_US":{"displayName":"RUT","helpText":"Please enter your RUT."},"es_CL":{"displayName":"RUT","helpText":"Ingrese su RUT."}},"co":{"es_CO":{"displayName":"RUT","helpText":"Please enter your RUT without punctuation.  This number should contain 6 to 11 numeric characters and be entered without spaces or dashes.  For example, the RUT should appear like 123456."},"en_GB":{"displayName":"RUT","helpText":"Please enter your RUT without punctuation.  This number should contain 6 to 11 numeric characters and be entered without spaces or dashes.  For example, the RUT should appear like 123456."},"en_IE":{"displayName":"RUT","helpText":"Please enter your RUT without punctuation.  This number should contain 6 to 11 numeric characters and be entered without spaces or dashes.  For example, the RUT should appear like 123456."},"en_US":{"displayName":"RUT","helpText":"Please enter your RUT without punctuation.  This number should contain 6 to 11 numeric characters and be entered without spaces or dashes.  For example, the RUT should appear like 123456."}},"co_rut":{"es_CO":{"displayName":"RUT","helpText":"Please enter your RUT. The code should contain 9 numeric characters such as 123456789."}},"cy":{"en_GB":{"displayName":"VAT Number","helpText":"Please enter your VAT number (ΦΠΑ/KDV) including the two-letter country code and excluding any punctuation or spaces, for example CY12345678X."},"el_GR":{"displayName":"ΦΠΑ/KDV","helpText":"Καταχωρίστε τον αριθμό σας ΦΠΑ, συμπεριλαμβάνοντας τον κωδικό χώρας με δύο γράμματα χωρίς να προσθέσετε σημεία στίξης ή κενά, για παράδειγμα CY12345678X."},"en_IE":{"displayName":"VAT Number","helpText":"Please enter your VAT number (ΦΠΑ/KDV) including the two-letter country code and excluding any punctuation or spaces, for example CY12345678X."},"en_US":{"displayName":"VAT Number","helpText":"Please enter your VAT number (ΦΠΑ/KDV) including the two-letter country code and excluding any punctuation or spaces, for example CY12345678X."}},"cz":{"cs_CZ":{"displayName":"DIČ","helpText":"Zadejte své DIČ včetně dvoumístného kódu země a bez interpunkce a mezer, např. CZ12345678, CZ123456789 nebo CZ1234567890."},"en_GB":{"displayName":"VAT Number","helpText":"Please enter your VAT ID (DIČ) including the two-digit country code and without any punctuation or spaces, such as CZ12345678, CZ123456789 or CZ1234567890."},"en_IE":{"displayName":"VAT Number","helpText":"Please enter your VAT ID (DIČ) including the two-digit country code and without any punctuation or spaces, such as CZ12345678, CZ123456789 or CZ1234567890."},"en_US":{"displayName":"VAT Number","helpText":"Please enter your VAT ID (DIČ) including the two-digit country code and without any punctuation or spaces, such as CZ12345678, CZ123456789 or CZ1234567890."}},"de":{"de_DE":{"displayName":"USt-IdNr.","helpText":"Bitte geben Sie Ihre Umsatzsteuernummer einschließlich des zweistelligen Ländercodes und ohne Interpunktionszeichen oder Leerzeichen ein. Beispiel: DE123456789 oder DE12345678901."},"en_GB":{"displayName":"VAT Number","helpText":"Please enter your VAT (Ust-IdNr) number including the two-digit country code but excluding all punctuation marks or spaces. Example: DE123456789 or DE12345678901."},"en_IE":{"displayName":"VAT Number","helpText":"Please enter your VAT (Ust-IdNr) number including the two-digit country code but excluding all punctuation marks or spaces. Example: DE123456789 or DE12345678901."},"en_US":{"displayName":"VAT Number","helpText":"Please enter your VAT (Ust-IdNr) number including the two-digit country code but excluding all punctuation marks or spaces. Example: DE123456789 or DE12345678901."}},"dk":{"da_DK":{"displayName":"CVR-nummer","helpText":"Indtast dit momsnummer med tilhørende tocifrede landekode uden punktummer eller mellemrum, f.eks. DK12345678."},"en_GB":{"displayName":"VAT Number","helpText":"Please enter your VAT (CVR) number with the corresponding two-digit country code and without any punctuation or spaces, eg. DK12345678."},"en_IE":{"displayName":"VAT Number","helpText":"Please enter your VAT (CVR) number with the corresponding two-digit country code and without any punctuation or spaces, eg. DK12345678."},"en_US":{"displayName":"VAT Number","helpText":"Please enter your VAT (CVR) number with the corresponding two-digit country code and without any punctuation or spaces, eg. DK12345678."}},"ee":{"en_GB":{"displayName":"KMKR","helpText":"Please enter your VAT number (KMKR) including the two letter country code and without any punctuation marks or spaces such as EE123456789."},"en_IE":{"displayName":"KMKR","helpText":"Please enter your VAT number (KMKR) including the two letter country code and without any punctuation marks or spaces such as EE123456789."},"en_US":{"displayName":"KMKR","helpText":"Please enter your VAT number (KMKR) including the two letter country code and without any punctuation marks or spaces such as EE123456789."}},"es":{"es_ES":{"displayName":"Número de IVA","helpText":"Introduzca su número de IVA incluido el código de país de dos letras y sin signos de puntuación o espacios como ES123456789 o ESA1234567P."},"en_GB":{"displayName":"VAT Number","helpText":"Please enter your VAT (IVA) Number including the two digit country code and without any punctuation marks or space such as ES123456789 or ESA1234567P."},"en_IE":{"displayName":"VAT Number","helpText":"Please enter your VAT (IVA) Number including the two digit country code and without any punctuation marks or space such as ES123456789 or ESA1234567P."},"en_US":{"displayName":"VAT Number","helpText":"Please enter your VAT (IVA) Number including the two digit country code and without any punctuation marks or space such as ES123456789 or ESA1234567P."}},"fi":{"fi_FI":{"displayName":"ALV-numero","helpText":"Syötä ALV-numerosi sisältäen kaksikirjaimisen maakoodisi, ilman mitään välimerkkejä tai välilyöntejä, esimerkiksi FI12345678."},"en_GB":{"displayName":"VAT Number","helpText":"Please enter your VAT (ALV) number including your 2-letter country code and without any punctuation or spaces, such as FI12345678."},"en_IE":{"displayName":"VAT Number","helpText":"Please enter your VAT (ALV) number including your 2-letter country code and without any punctuation or spaces, such as FI12345678."},"en_US":{"displayName":"VAT Number","helpText":"Please enter your VAT (ALV) number including your 2-letter country code and without any punctuation or spaces, such as FI12345678."}},"fr":{"fr_FR":{"displayName":"Numéro de TVA","helpText":"Entrez votre numéro de TVA, y compris le code de pays à deux lettres et sans les signes de ponctuation ou les espaces tels que: FRXX123456789, FRX1234567890, FR12345678901 ou FR1X123456789."},"en_GB":{"displayName":"VAT Number","helpText":"Please enter your VAT (TVA) number including the two-letter country code but excluding any punctuation or spaces such as: FRXX123456789, FRX1234567890, FR12345678901 or FR1X123456789."},"en_IE":{"displayName":"VAT Number","helpText":"Please enter your VAT (TVA) number including the two-letter country code but excluding any punctuation or spaces such as: FRXX123456789, FRX1234567890, FR12345678901 or FR1X123456789."},"en_US":{"displayName":"VAT Number","helpText":"Please enter your VAT (TVA) number including the two-letter country code but excluding any punctuation or spaces such as: FRXX123456789, FRX1234567890, FR12345678901 or FR1X123456789."}},"gr":{"en_GB":{"displayName":"VAT Number","helpText":"Please enter your VAT/ FPA number including your two-digit country code and excluding all punctuation or spaces, for example EL123456789."},"el_GR":{"displayName":"ΑΦΜ/FPA","helpText":"Καταχωρίστε τον αριθμό σας ΑΦΜ/FPA, συμπεριλαμβάνοντας τον κωδικό χώρας με δύο γράμματα χωρίς να προσθέσετε σημεία στίξης ή κενά, για παράδειγμα EL123456789."},"en_IE":{"displayName":"VAT Number","helpText":"Please enter your VAT/ FPA number including your two-digit country code and excluding all punctuation or spaces, for example EL123456789."},"en_US":{"displayName":"VAT Number","helpText":"Please enter your VAT/ FPA number including your two-digit country code and excluding all punctuation or spaces, for example EL123456789."},"en_HK":{"displayName":"BR","helpText":"Please enter your BR. The code should contain 8 numeric characters such as 12345678."}},"hk_br":{"en_GB":{"displayName":"PDV-ID","helpText":"Please enter your VAT number (PDV ID) including the two letter country code and without any punctuation marks or spaces such as HR12345678901."}},"hr":{"en_IE":{"displayName":"PDV-ID","helpText":"Please enter your VAT number (PDV ID) including the two letter country code and without any punctuation marks or spaces such as HR12345678901."},"en_US":{"displayName":"PDV-ID","helpText":"Please enter your VAT number (PDV ID) including the two letter country code and without any punctuation marks or spaces such as HR12345678901."}},"hu":{"en_GB":{"displayName":"VAT Number","helpText":"Please enter your VAT ID (ANUM/AFA) including the two-letter country code and excluding all punctuation marks or spaces, such as HU12345678 or HU12345678901."},"hu_HU":{"displayName":"ANUM/AFA","helpText":"Kérjük, adja meg az adószámát a kétbetűs országkóddal együtt és írásjelek, valamint szóközök nélkül, például HU12345678 vagy HU12345678901."},"en_IE":{"displayName":"VAT Number","helpText":"Please enter your VAT ID (ANUM/AFA) including the two-letter country code and excluding all punctuation marks or spaces, such as HU12345678 or HU12345678901."},"en_US":{"displayName":"VAT Number","helpText":"Please enter your VAT ID (ANUM/AFA) including the two-letter country code and excluding all punctuation marks or spaces, such as HU12345678 or HU12345678901."}},"id":{"en_ID":{"displayName":"NPWP","helpText":"Please enter your NPWP without punctuation . The code should contain 15 numeric characters such as 123456789123456."}},"id_npwp":{"en_ID":{"displayName":"NPWP","helpText":"Please enter your NPWP. The code should contain 15 numeric characters such as 12.345.678.9-123.456"}},"ie":{"en_IE":{"displayName":"VAT Number","helpText":"Please enter your VAT number including the two letter country code and without any punctuation marks or spaces such as IE1234567A,  IE123456A or IE1234567AB.  "}},"in":{"en_IN":{"displayName":"GSTIN","helpText":"Please enter your company GST number.  The number should include your two digit state code followed by thirteen alphanumeric characters without spaces, periods or hyphens such as 37AAAAA0000A1Z0."}},"is":{"en_GB":{"displayName":"VSK","helpText":"Please enter your VAT number (VSK) without any punctuation or spaces such as 12345, 123456, VSK12345 or VSK123456."}},"it":{"en_GB":{"displayName":"VAT Number","helpText":"Please enter your VAT number including the two-digit country code and without punctuation or spaces, eg. IT12345678901."},"en_IE":{"displayName":"VAT Number","helpText":"Please enter your VAT number including the two-digit country code and without punctuation or spaces, eg. IT12345678901."},"it_IT":{"displayName":"Partita IVA","helpText":"Inserire il proprio numero di partita IVA includendo il codice paese di due lettere, senza punteggiatura o spazi, ad es. IT12345678901."},"en_US":{"displayName":"VAT Number","helpText":"Please enter your VAT number including the two-digit country code and without punctuation or spaces, eg. IT12345678901."}},"it_cf":{"en_GB":{"displayName":"Codice Fiscal","helpText":"Please enter your Fiscal Code (Codice Fiscal).  The code should contain 16 alphanumeric characters such as ABCDEF51G61H129I."},"en_IE":{"displayName":"Codice Fiscal","helpText":"Please enter your Fiscal Code (Codice Fiscal).  The code should contain 16 alphanumeric characters such as ABCDEF51G61H129I."},"it_IT":{"displayName":"Codice Fiscale ","helpText":"Inserire il proprio codice fiscale. Il codice deve contenere 16 caratteri alfanumerici, ad es. ABCDEF51G61H129I."},"en_US":{"displayName":"Codice Fiscal","helpText":"Please enter your Fiscal Code (Codice Fiscal).  The code should contain 16 alphanumeric characters such as ABCDEF51G61H129I."}},"it_natural":{"en_GB":{"displayName":"VAT Number","helpText":"Please enter your personal VAT number (IVA) including the two letter country code and without any punctuation or spaces, eg. IT12345678901."},"en_IE":{"displayName":"VAT Number","helpText":"Please enter your personal VAT number (IVA) including the two letter country code and without any punctuation or spaces, eg. IT12345678901."},"it_IT":{"displayName":"Partita IVA","helpText":"Inserire il proprio numero di partita IVA includendo il codice paese di due lettere, senza punteggiatura o spazi, ad es. IT12345678901."},"en_US":{"displayName":"VAT Number","helpText":"Please enter your personal VAT number (IVA) including the two letter country code and without any punctuation or spaces, eg. IT12345678901."}},"jp_offshore":{"en_GB":{"displayName":"TIN","helpText":"Please enter your company tax number. The number should be 5, 8, or 13 digits in length and be entered without punctuation or spaces such as 1234567890123."},"en_IE":{"displayName":"TIN","helpText":"Please enter your company tax number. The number should be 5, 8, or 13 digits in length and be entered without punctuation or spaces such as 1234567890123."},"ja_JP":{"displayName":"法人番号 (TIN)","helpText":"御社の企業租税番号を入力してください。番号は、5、8、または13桁の長さである必要があり、スペースやピリオド、ハイフンなどを含めずに入力します（1234567890123）。"},"en_US":{"displayName":"TIN","helpText":"Please enter your company tax number. The number should be 5, 8, or 13 digits in length and be entered without punctuation or spaces such as 1234567890123."}},"jp_tin":{"ja_JP":{"displayName":"TIN","helpText":"insert translation"}},"kr_offshore":{"en_GB":{"displayName":"TIN","helpText":"Please enter your company tax number.  The number should be a 10-digit number and be entered without any punctuation or spaces such as 1234567890."},"en_IE":{"displayName":"TIN","helpText":"Please enter your company tax number.  The number should be a 10-digit number and be entered without any punctuation or spaces such as 1234567890."},"ko_KR":{"displayName":"세금 식별 번호 (TIN)","helpText":"법인 납세자 번호를 입력하십시오. 법인 납세자 번호는 공백, 마침표 또는 하이픈이 없는 10자리 숫자여야 합니다(예: 1234567890)."},"en_US":{"displayName":"TIN","helpText":"Please enter your company tax number.  The number should be a 10-digit number and be entered without any punctuation or spaces such as 1234567890."}},"lt":{"en_GB":{"displayName":"PVM kodas","helpText":"Please enter your VAT number (PVM) including the two letter country code and without any punctuation marks or spaces such as LT123456789 or LT123456789012."}},"lu":{"en_GB":{"displayName":"No. TVA","helpText":"Please enter your VAT number (TVA) including the two letter country code and without any punctuation marks or spaces such as LU12345678."}},"lv":{"en_GB":{"displayName":"PVN","helpText":"Please enter your VAT number (PVN) including the two letter country code and without any punctuation marks or spaces such as LV12345678901."}},"mt":{"en_GB":{"displayName":"Vat No.","helpText":"Please enter your VAT number including the two letter country code and without any punctuation marks or spaces such as MT12345678."}},"mx":{"en_GB":{"displayName":"RFC","helpText":"Please enter your RFC without punctuation. The code should contain 12 characters; the first 3 characters are alpha, the following 6 characters are numerical and the last 3 characters are alpha."},"en_IE":{"displayName":"RFC","helpText":"Please enter your RFC without punctuation. The code should contain 12 characters; the first 3 characters are alpha, the following 6 characters are numerical and the last 3 characters are alpha."},"es_MX":{"displayName":"RFC","helpText":"Please enter your RFC without punctuation. The code should contain 12 characters;first 3 characters are alpha, the following 6 characters are numerical, last 3 characters are alpha. The code should contain 12 numeric characters such as ABC123456ABC"},"en_US":{"displayName":"RFC","helpText":"Please enter your RFC without punctuation. The code should contain 12 characters; the first 3 characters are alpha, the following 6 characters are numerical and the last 3 characters are alpha."}},"mx_natural":{"en_GB":{"displayName":"RFC","helpText":"Please enter your RFC without punctuation. The code should contain 12 characters; the first 3 characters are alpha, the following 6 characters are numerical and the last 3 characters are alpha."},"en_IE":{"displayName":"RFC","helpText":"Please enter your RFC without punctuation. The code should contain 12 characters; the first 3 characters are alpha, the following 6 characters are numerical and the last 3 characters are alpha."},"es_MX":{"displayName":"RFC","helpText":"Please enter your RFC without punctuation. The code should contain 12 characters;first 3 characters are alpha, the following 6 characters are numerical, last 3 characters are alpha. The code should contain 12 numeric characters such as ABC123456ABC"},"en_US":{"displayName":"RFC","helpText":"Please enter your RFC without punctuation. The code should contain 12 characters; the first 3 characters are alpha, the following 6 characters are numerical and the last 3 characters are alpha."}},"mx_rfc":{"es_MX":{"displayName":"RFC","helpText":"Please enter your NIF. The code should contain 12 characters; first 3 characters are alpha numerical, following 6 characters are numerical, last 3 characters are alpha numerical"}},"my":{"en_IE":{"displayName":"VAT Number","helpText":"Please enter your VAT Number.  This number should contain 1 alpha character followed by 14 numeric characters and be entered without spaces or dashes.  For example, the VAT Number should appear like A12345678901234."}},"nl":{"en_GB":{"displayName":"VAT Number","helpText":"Please enter your VAT number including the two letter country code and without any punctuation marks or spaces such as NL123456789B01."},"en_IE":{"displayName":"VAT Number","helpText":"Please enter your VAT number including the two letter country code and without any punctuation marks or spaces such as NL123456789B01."},"en_NL":{"displayName":"VAT Number","helpText":"Please enter your VAT number including the two letter country code and without any punctuation marks or spaces such as NL123456789B01."},"nl_NL":{"displayName":"Btw-nummer","helpText":"Vul uw btw-nummer in inclusief de tweeletter landcode en zonder punten of spaties, zoals NL123456789B01."},"en_US":{"displayName":"VAT Number","helpText":"Please enter your VAT number including the two letter country code and without any punctuation marks or spaces such as NL123456789B01."}},"no":{"en_GB":{"displayName":"VAT Number","helpText":"Please enter your VAT Number (MVA) with your two letter country code and without any punctuation or spaces such as NO123456789MVA or 123456789MVA."},"en_IE":{"displayName":"VAT Number","helpText":"Please enter your VAT Number (MVA) with your two letter country code and without any punctuation or spaces such as NO123456789MVA or 123456789MVA."},"no_NO":{"displayName":"MVA","helpText":"Vennligst skriv inn mva-nummeret ditt uten tegnsetting eller mellomrom, for eksempel NO123456789MVA eller 123456789MVA."},"en_US":{"displayName":"VAT Number","helpText":"Please enter your VAT Number (MVA) with your two letter country code and without any punctuation or spaces such as NO123456789MVA or 123456789MVA."}},"nz":{"en_NZ":{"displayName":"GST ID","helpText":"Please enter your company GST number.  The number should be entered without spaces, periods or hyphens such as 12345678 or 123456789."}},"ph":{"en_PH":{"displayName":"TIN","helpText":"Please enter your TIN without punctuation. The code should contain 12 numeric characters such as 123456789."}},"ph_tin":{"ar_AE":{"displayName":"TIN","helpText":"CHANGE LOCAL"}},"pl":{"en_GB":{"displayName":"VAT Number","helpText":"Please enter your VAT (NIP) number containing the two-letter country code and without characters or spaces, eg PL1234567890."},"en_IE":{"displayName":"VAT Number","helpText":"Please enter your VAT (NIP) number containing the two-letter country code and without characters or spaces, eg PL1234567890."},"pl_PL":{"displayName":"NIP","helpText":"Wpisz numer NIP zawierający dwuliterowy kod kraju bez znaków i spacji, np. PL1234567890."},"en_US":{"displayName":"VAT Number","helpText":"Please enter your VAT (NIP) number containing the two-letter country code and without characters or spaces, eg PL1234567890."}},"pt":{"en_GB":{"displayName":"VAT Number","helpText":"Please enter your VAT (NIF) number including the two-letter country code and without any punctuation marks or spaces, for example PT123456789."},"en_IE":{"displayName":"VAT Number","helpText":"Please enter your VAT (NIF) number including the two-letter country code and without any punctuation marks or spaces, for example PT123456789."},"pt_PT":{"displayName":"Número NIF","helpText":"Digite seu número de IVA, incluindo o código de país de duas letras e sem marcas de pontuação ou espaços, como por exemplo PT123456789."},"en_US":{"displayName":"VAT Number","helpText":"Please enter your VAT (NIF) number including the two-letter country code and without any punctuation marks or spaces, for example PT123456789."}},"pt_nif":{"en_GB":{"displayName":"NIF","helpText":"Please enter your NIF. The code should contain 9 numeric characters such as 123456789."},"en_IE":{"displayName":"NIF","helpText":"Please enter your NIF. The code should contain 9 numeric characters such as 123456789."},"pt_PT":{"displayName":"NIF","helpText":"Por favor, insira o seu NIF. Deverá conter somente 9 caracteres numéricos (ex.: 123456789)."},"en_US":{"displayName":"NIF","helpText":"Please enter your NIF. The code should contain 9 numeric characters such as 123456789."}},"ro":{"en_GB":{"displayName":"TVA","helpText":"Please enter your VAT (TVA) number including the two letter country code and without any punctuation marks or spaces such as RO12, RO123456 or RO1234567890."}},"ru":{"en_GB":{"displayName":"INN","helpText":"Please enter your Taxpayer Identification Number (INN).  This number should contain 10 digits and be entered without spaces or other characters such as 1234567890."},"en_IE":{"displayName":"INN","helpText":"Please enter your Taxpayer Identification Number (INN).  This number should contain 10 digits and be entered without spaces or other characters such as 1234567890."},"ru_RU":{"displayName":"ИНН","helpText":"Пожалуйста введите Идентификационный номер налогоплательщика - ИНН вашей компании. Этон номер содержит 10 цифр, его нужно ввести без пробелов или других символов, например 1234567890."},"en_US":{"displayName":"INN","helpText":"Please enter your Taxpayer Identification Number (INN).  This number should contain 10 digits and be entered without spaces or other characters such as 1234567890."}},"ru_natural":{"en_GB":{"displayName":"INN","helpText":"Please enter your Taxpayer Identification Number (INN).  This number should contain 12 digits and be entered without spaces or other characters such as 123456789012."},"en_IE":{"displayName":"INN","helpText":"Please enter your Taxpayer Identification Number (INN).  This number should contain 12 digits and be entered without spaces or other characters such as 123456789012."},"ru_RU":{"displayName":"ИНН","helpText":"Пожалуйста введите Идентификационный номер налогоплательщика - ИНН. Этот номер состоит из 12 цифр, и не должен содержать пробелов или других символов, например 123456789012. "},"en_US":{"displayName":"INN","helpText":"Please enter your Taxpayer Identification Number (INN).  This number should contain 12 digits and be entered without spaces or other characters such as 123456789012."}},"sa":{"en_GB":{"displayName":"VAT Number","helpText":"Please enter your VAT registration number which should begin with the number \\"3\\" followed by 14 additional numbers such as 323456789012345."}},"se":{"en_GB":{"displayName":"VAT Number","helpText":"Please enter your VAT Number (Momsnr.) including the two letter country code and without any punctuation marks or spaces such as SE123456789012."},"en_IE":{"displayName":"VAT Number","helpText":"Please enter your VAT Number (Momsnr.) including the two letter country code and without any punctuation marks or spaces such as SE123456789012."},"sv_SE":{"displayName":"Momsnr.","helpText":"Ange momsregistreringsnummer inklusive landskod (två bokstäver) utan skiljetecken eller mellanslag, som SE123456789012."},"en_US":{"displayName":"VAT Number","helpText":"Please enter your VAT Number (Momsnr.) including the two letter country code and without any punctuation marks or spaces such as SE123456789012."}},"sg":{"en_IE":{"displayName":"VAT Number","helpText":"Please enter your VAT Number.  This number should contain 9 to 10 alpha numeric characters and be entered without spaces or dashes.  For example, the VAT Number should appear like AB1234567A."}},"si":{"en_GB":{"displayName":"ID za DDV","helpText":"Please enter your VAT number (DDV) including the two letter country code and without any punctuation marks or spaces such as SI12345678."}},"sk":{"en_GB":{"displayName":"VAT Number","helpText":"Please enter your VAT number (IČ DPH) including the two-digit country code and without any punctuation or spaces such as SK1234567890 or SK123456789."},"en_IE":{"displayName":"VAT Number","helpText":"Please enter your VAT number (IČ DPH) including the two-digit country code and without any punctuation or spaces such as SK1234567890 or SK123456789."},"sk_SK":{"displayName":"IČ DPH","helpText":"Zadajte svoje DIČ vrátane dvojmiestneho kódu krajiny a bez interpunkcie a medzier, napr. SK1234567890 alebo SK123456789."},"en_US":{"displayName":"VAT Number","helpText":"Please enter your VAT number (IČ DPH) including the two-digit country code and without any punctuation or spaces such as SK1234567890 or SK123456789."}},"th":{"en_GB":{"displayName":"VAT Number","helpText":"Please enter your VAT without punctuation. The code should contain 12 numeric characters such as 123456789012 or 13 numeric characters such as 1234567890123."},"en_IE":{"displayName":"VAT Number","helpText":"Please enter your VAT without punctuation. The code should contain 12 numeric characters such as 123456789012 or 13 numeric characters such as 1234567890123."},"th_TH":{"displayName":"VAT Number","helpText":"Please enter your VAT without punctuation. The code should contain 12 numeric characters such as 123456789012 or 13 numeric characters such as 1234567890123."},"en_US":{"displayName":"VAT Number","helpText":"Please enter your VAT without punctuation. The code should contain 12 numeric characters such as 123456789012 or 13 numeric characters such as 1234567890123."}},"tr":{"en_GB":{"displayName":"VKN","helpText":"Please enter your VKN which should be a 10 digits and be entered without any punctuation or spaces such as 1234567890."},"en_IE":{"displayName":"VKN","helpText":"Please enter your VKN which should be a 10 digits and be entered without any punctuation or spaces such as 1234567890."},"tr_TR":{"displayName":"VKN","helpText":"Lütfen Vergi Kimlik Numaranızı girin. Vergi Kimlik Numarası 10 haneli olmalı ve herhangi bir noktalama işareti veya boşluk bulundurmamalıdır 1234567890 gibi."},"en_US":{"displayName":"VKN","helpText":"Please enter your VKN which should be a 10 digits and be entered without any punctuation or spaces such as 1234567890."}},"tw":{"en_GB":{"displayName":"UBN/TIN ","helpText":"Please enter your company\'s Uniform Business Number (UBN/TIN). The number should be 8-digits and be entered without any spaces, periods or hyphens, such as 12345678."},"en_IE":{"displayName":"UBN/TIN ","helpText":"Please enter your company\'s Uniform Business Number (UBN/TIN). The number should be 8-digits and be entered without any spaces, periods or hyphens, such as 12345678."},"zh_TW":{"displayName":"統一編號","helpText":"請輸入您的公司統一編號，共八位數字，如12345678。"},"en_US":{"displayName":"UBN/TIN ","helpText":"Please enter your company\'s Uniform Business Number (UBN/TIN). The number should be 8-digits and be entered without any spaces, periods or hyphens, such as 12345678."}},"tw_offshore":{"en_GB":{"displayName":"UBN/TIN","helpText":"Please enter your company\'s Uniform Business Number (UBN/TIN). The number should be 8-digits and be entered without any spaces, periods or hyphens, such as 12345678."},"en_IE":{"displayName":"UBN/TIN","helpText":"Please enter your company\'s Uniform Business Number (UBN/TIN). The number should be 8-digits and be entered without any spaces, periods or hyphens, such as 12345678."},"zh_TW":{"displayName":"統一編號","helpText":"請輸入您的公司統一編號，共八位數字，如12345678。"},"en_US":{"displayName":"UBN/TIN","helpText":"Please enter your company\'s Uniform Business Number (UBN/TIN). The number should be 8-digits and be entered without any spaces, periods or hyphens, such as 12345678."}},"uk":{"en_GB":{"displayName":"VAT Number","helpText":"Please enter your VAT number including the two letter country code and without any punctuation marks or spaces such as GB123456789 or GB123456789012."}},"us_ein":{"ar_AE":{"displayName":"EIN","helpText":"Please enter your EIN. The code should contain 9 numeric characters such as 12-3456789"},"en_US":{"displayName":"EIN","helpText":"Please enter your EIN. The code should contain 9 numeric characters such as 12-3456789"}},"za":{"en_GB":{"displayName":"VAT Number","helpText":"Please enter your VAT Number.  This number should contain 10 digits and be entered without spaces or other characters such as 1234567890."}}},"countriesWithTaxIdentifierSchemas":{"AE":["DR_IRELAND-ENTITY"],"AT":["DR_IRELAND-ENTITY"],"AU":["DR_IRELAND-ENTITY"],"CA":["DR_IRELAND-ENTITY"],"BE":["DR_IRELAND-ENTITY"],"BG":["DR_IRELAND-ENTITY"],"BH":["DR_IRELAND-ENTITY"],"BR":["DR_BRAZIL-ENTITY","DR_BRAZIL2-ENTITY"],"BY":["DR_IRELAND-ENTITY"],"CH":["DR_IRELAND-ENTITY"],"CL":["DR_IRELAND-ENTITY","DR_IRELAND-ENTITY"],"CO":["DR_IRELAND-ENTITY"],"CY":["DR_IRELAND-ENTITY"],"CZ":["DR_IRELAND-ENTITY"],"DE":["DR_IRELAND-ENTITY"],"DK":["DR_IRELAND-ENTITY"],"EE":["DR_IRELAND-ENTITY"],"ES":["DR_IRELAND-ENTITY"],"FI":["DR_IRELAND-ENTITY"],"FR":["DR_IRELAND-ENTITY"],"GB":["DR_UK-ENTITY","DR_IRELAND-ENTITY"],"GR":["DR_IRELAND-ENTITY"],"HR":["DR_IRELAND-ENTITY"],"HU":["DR_IRELAND-ENTITY"],"ID":["DR_IRELAND-ENTITY"],"IE":["DR_IRELAND-ENTITY"],"IM":["DR_IRELAND-ENTITY"],"IN":["DR_INDIA-ENTITY","DR_IRELAND-ENTITY"],"IS":["DR_IRELAND-ENTITY"],"IT":["DR_IRELAND-ENTITY"],"JP":["DR_IRELAND-ENTITY"],"KR":["DR_IRELAND-ENTITY"],"LT":["DR_IRELAND-ENTITY"],"LU":["DR_IRELAND-ENTITY"],"LV":["DR_IRELAND-ENTITY"],"MC":["DR_IRELAND-ENTITY"],"MT":["DR_IRELAND-ENTITY"],"MX":["DR_IRELAND-ENTITY"],"MY":["DR_IRELAND-ENTITY"],"NL":["DR_IRELAND-ENTITY"],"NO":["DR_IRELAND-ENTITY"],"NZ":["DR_IRELAND-ENTITY"],"PH":["DR_IRELAND-ENTITY"],"PL":["DR_IRELAND-ENTITY"],"PT":["DR_IRELAND-ENTITY","DR_IRELAND-ENTITY"],"RO":["DR_IRELAND-ENTITY"],"RU":["DR_IRELAND-ENTITY","DR_IRELAND-ENTITY"],"SA":["DR_IRELAND-ENTITY"],"SE":["DR_IRELAND-ENTITY"],"SG":["DR_IRELAND-ENTITY"],"SI":["DR_IRELAND-ENTITY"],"SK":["DR_IRELAND-ENTITY"],"TH":["DR_IRELAND-ENTITY"],"TR":["DR_IRELAND-ENTITY"],"TW":["DR_IRELAND-ENTITY"],"ZA":["DR_IRELAND-ENTITY"]}}');
 
 /***/ }),
 
