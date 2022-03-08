@@ -1901,11 +1901,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 // Holds any configuration data that changes depending on environment
 var config = {
-  domain: "https://storage.googleapis.com",
+  domain: "https://github.digitalriverws.net",
   // eslint-disable-line no-undef
   paymentServiceUrl: "https://api.digitalriver.com" + '/payments/sources',
   // eslint-disable-line no-undef
-  basePath: "/drjs" || 0,
+  basePath: "/pages/lbarnes/drjs-demo" || 0,
   // eslint-disable-line no-undef
   applePayMerchantId: "merchant.com.test.cert.digitalriver",
   // eslint-disable-line no-undef
