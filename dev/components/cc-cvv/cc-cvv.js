@@ -2655,11 +2655,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 // Holds any configuration data that changes depending on environment
 var config = {
-  domain: "https://github.digitalriverws.net",
+  domain: "https://storage.googleapis.com",
   // eslint-disable-line no-undef
   paymentServiceUrl: "https://api.digitalriver.com" + '/payments/sources',
   // eslint-disable-line no-undef
-  basePath: "/pages/lbarnes/drjs-demo" || 0,
+  basePath: "/drjs" || 0,
   // eslint-disable-line no-undef
   applePayMerchantId: "merchant.com.test.cert.digitalriver",
   // eslint-disable-line no-undef
@@ -5536,6 +5536,8 @@ function handleMountWithMessage(controllerEmitter, message, componentData, handl
   }).catch(function (error) {
     var _context;
 
+    console.error(error);
+
     if (error.message && _babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_1___default()(_context = error.message).call(_context, 'No ack for postMessage')) {
       return handleMountWithMessage(controllerEmitter, message, componentData, handleMountData, handleMount, instanceData, emitComponentReady, ++retryPosition);
     }
@@ -6357,6 +6359,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _client_delayedPaymentInstructions_delayedPaymentInstructions__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../client/delayedPaymentInstructions/delayedPaymentInstructions */ "./src/client/delayedPaymentInstructions/delayedPaymentInstructions.js");
 /* harmony import */ var _client_msts_msts__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../client/msts/msts */ "./src/client/msts/msts.js");
 /* harmony import */ var _client_offline_refund_offline_refund__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../client/offline-refund/offline-refund */ "./src/client/offline-refund/offline-refund.js");
+/* harmony import */ var _client_google_pay_google_pay__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../client/google-pay/google-pay */ "./src/client/google-pay/google-pay.js");
+
 
 
 
@@ -6402,9 +6406,12 @@ function config() {
       }
     },
     'googlepay': {
-      iframe: '/google-pay/google-pay.html',
+      //iframe: '/google-pay/google-pay.html',
       ignoreEmptyCssClass: true,
-      ignoreBaseCssClass: true
+      ignoreBaseCssClass: true,
+      create: function create() {
+        return (0,_client_google_pay_google_pay__WEBPACK_IMPORTED_MODULE_10__.createGooglePay)().createGooglePayComponent;
+      }
     },
     'iban': {
       iframe: '/iban/iban.html'
@@ -11435,7 +11442,7 @@ function mount(node) {
         this.options.classes = (0,_css_class_utils__WEBPACK_IMPORTED_MODULE_11__.getCssClasses)(this.options.classes);
         var elementHeight = (0,_css_class_utils__WEBPACK_IMPORTED_MODULE_11__.getElementHeight)(this.options.style); // If we have options, send them and wait for them to be sent before creating the component
 
-        if (this.type !== 'applepay' && this.type !== 'compliance') {
+        if (this.type !== 'googlepay' && this.type !== 'applepay' && this.type !== 'compliance') {
           (0,_createFrame__WEBPACK_IMPORTED_MODULE_5__.createFrame)(this.type, node, getComponentURL(this.type, this.id, this.controllerId), attributes, elementHeight, data.instanceOptions.locale, this.id, this.nameForAccessibility);
         }
 
@@ -11552,24 +11559,34 @@ function createComponent(type, controllerId, key, options, nameForAccessibility)
       document.body.appendChild(scriptTag);
     }
   }
-  /*if(type === 'googlePay') {
-    if(typeof window.google === 'undefined' && !document.getElementById('DR-GooglePay')) {
-      const scriptTag = document.createElement('script');
-      scriptTag.id = 'DR-GooglePay';
-      scriptTag.src = 'https://pay.google.com/gp/p/js/pay.js';
-      document.body.appendChild(scriptTag);
-    }
-  }*/
 
+  if (type === 'googlepay' && typeof window.google === 'undefined' && !document.getElementById('DR-GooglePay')) {
+    var _scriptTag = document.createElement('script');
+
+    _scriptTag.id = 'DR-GooglePay';
+    _scriptTag.src = 'https://pay.google.com/gp/p/js/pay.js';
+    document.body.appendChild(_scriptTag);
+  }
 
   return component;
+}
+
+function isIE11OrLess() {
+  var _context2, _context3;
+
+  return _babel_runtime_corejs3_core_js_stable_instance_index_of__WEBPACK_IMPORTED_MODULE_0___default()(_context2 = navigator.userAgent).call(_context2, 'MSIE') !== -1 || _babel_runtime_corejs3_core_js_stable_instance_index_of__WEBPACK_IMPORTED_MODULE_0___default()(_context3 = navigator.appVersion).call(_context3, 'Trident/') > -1;
 }
 /**
  * Returns true if browser/device can support google pay
  * @returns {boolean|*}
  */
 
+
 function googlePayCanMakePayment() {
+  if (isIE11OrLess()) {
+    return false;
+  }
+
   return true;
 }
 /**
@@ -11722,9 +11739,9 @@ function getComponentIFrame(type) {
   var iFrameWindow = document.getElementsByTagName('iframe');
 
   for (var win = 0; win < iFrameWindow.length; win++) {
-    var _context2;
+    var _context4;
 
-    if (_babel_runtime_corejs3_core_js_stable_instance_starts_with__WEBPACK_IMPORTED_MODULE_4___default()(_context2 = iFrameWindow[win].id).call(_context2, type)) {
+    if (_babel_runtime_corejs3_core_js_stable_instance_starts_with__WEBPACK_IMPORTED_MODULE_4___default()(_context4 = iFrameWindow[win].id).call(_context4, type)) {
       return iFrameWindow[win];
     }
   }
@@ -13753,6 +13770,468 @@ function getPaymentMethods(controllerId, sessionId, country, currency, locale, s
   }).then(function (response) {
     return response.data;
   });
+}
+
+/***/ }),
+
+/***/ "./src/client/google-pay/google-pay.js":
+/*!*********************************************!*\
+  !*** ./src/client/google-pay/google-pay.js ***!
+  \*********************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "paymentApiTriggerEvent": function() { return /* binding */ paymentApiTriggerEvent; },
+/* harmony export */   "getElement": function() { return /* binding */ getElement; },
+/* harmony export */   "createGooglePay": function() { return /* binding */ createGooglePay; }
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/asyncToGenerator */ "./node_modules/@babel/runtime-corejs3/helpers/esm/asyncToGenerator.js");
+/* harmony import */ var _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/regenerator */ "./node_modules/@babel/runtime-corejs3/regenerator/index.js");
+/* harmony import */ var _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_json_stringify__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/json/stringify */ "./node_modules/@babel/runtime-corejs3/core-js-stable/json/stringify.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_json_stringify__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_json_stringify__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/object/assign */ "./node_modules/@babel/runtime-corejs3/core-js-stable/object/assign.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/promise */ "./node_modules/@babel/runtime-corejs3/core-js-stable/promise.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_bind__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/bind */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/bind.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_bind__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_bind__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/includes */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/includes.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../post-robot-wrapper */ "./src/post-robot-wrapper.js");
+/* harmony import */ var _createComponent__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../createComponent */ "./src/client/createComponent.js");
+/* harmony import */ var _app_components_options__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../app/components/options */ "./src/app/components/options.js");
+/* harmony import */ var _app_components_config__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../app/components/config */ "./src/app/components/config.js");
+/* harmony import */ var _app_components_payment_events__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../app/components/payment-events */ "./src/app/components/payment-events.js");
+/* harmony import */ var _app_components_payment_api_events__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../app/components/payment-api-events */ "./src/app/components/payment-api-events.js");
+/* harmony import */ var _app_components_create_initial_data__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../app/components/create-initial-data */ "./src/app/components/create-initial-data.js");
+/* harmony import */ var _app_components_payment_component_data__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../app/components/payment-component-data */ "./src/app/components/payment-component-data.js");
+/* harmony import */ var _app_components_payment_api__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../../app/components/payment-api */ "./src/app/components/payment-api.js");
+
+
+
+
+
+
+
+
+
+ //import './google-pay.html';
+
+
+
+
+
+
+
+var COMPONENT_TYPE = 'googlepay';
+/**
+ * Runs appropriate handler for event type
+ * @param {string} type - event type
+ */
+
+function paymentApiTriggerEvent(type) {
+  switch (type) {
+    case 'show':
+      {
+        getElement().getElementsByTagName('button')[0].click();
+        return;
+      }
+  }
+}
+/**
+ * returns element with id of buyButton
+ * @returns {HTMLElement}
+ */
+
+function getElement() {
+  return document.getElementById('container');
+}
+function createGooglePay() {
+  var componentData;
+  var controllerListener;
+  var controllerEmitter;
+  var paymentOptions = null;
+  var instanceData;
+  var allowedCardNetworks = ['AMEX', 'DISCOVER', 'INTERAC', 'JCB', 'MASTERCARD', 'VISA'];
+  var allowedCardAuthMethods = ['PAN_ONLY']; // Not supporting 'CRYPTOGRAM_3DS' at the moment
+
+  function getGoogleShippingAddressParameters() {
+    return {
+      phoneNumberRequired: true
+    };
+  }
+
+  function addHandleOptions(controllerListener, handleOptions) {
+    controllerListener.on('googlePayOptions' + componentData.componentId, function (event) {
+      var componentData = event.data.componentData;
+      handleOptions(componentData);
+    });
+  }
+  /*mountComponent(controllerEmitter, componentData, handleOptions, emitComponentReady, undefined, instanceData);
+  addHandleOptions(controllerListener, handleOptions);
+  addTriggerEvent(controllerListener, paymentApiTriggerEvent, instanceData);*/
+
+
+  var MERCHANT_ID = 'BCR2DN4T7CR25OJG';
+  var MERCHANT_NAME = 'Digital River';
+  var PUBLIC_KEY_NON_PROD = 'BLYc//KM/lJq6nN1EOVx+dnrdSvZSWb+LDpw4hdQ1JEwqG8M4YKN7QFHV/co1RMexRu09nxa4YMAk0RNLqtUwtg=';
+  var PUBLIC_KEY_PROD = 'BJzm/YGu+Cj1kGqyspm028M6+dYNSKjzwSfX2ppfwTRXebSSa56aKhUD/Q6e4liE6Darec5/E+zO6BwLyW2wNQg=';
+
+  function determinePublicKey(isTestEnv) {
+    if (isTestEnv) {
+      return PUBLIC_KEY_NON_PROD;
+    } else {
+      return PUBLIC_KEY_PROD;
+    }
+  }
+  /**
+   * Returns payment options
+   * @returns {object}
+   */
+
+
+  function getPaymentOptions() {
+    return paymentOptions;
+  }
+  /**
+   * Applies options to google pay element
+   * @param {object} data
+   */
+
+
+  function handleOptions(data) {
+    var isStyleEqual = paymentOptions === null ? false : isObjectShallowEqual(data.options.style, paymentOptions.style);
+    setOptions(data.options);
+    addInstanceOptions(data.instanceOptions);
+    /* if (!isStyleEqual) {
+       onGooglePayLoaded();
+     }*/
+
+    var script = document.createElement('script');
+    script.src = 'https://pay.google.com/gp/p/js/pay.js';
+
+    script.onload = function () {
+      //  TODO Only add when does not exist
+      console.log('LOADED');
+
+      if (!isStyleEqual) {
+        onGooglePayLoaded();
+      }
+    };
+
+    document.getElementById('container').appendChild(script);
+  }
+
+  function isObjectShallowEqual(o1, o2) {
+    return _babel_runtime_corejs3_core_js_stable_json_stringify__WEBPACK_IMPORTED_MODULE_2___default()(o1) === _babel_runtime_corejs3_core_js_stable_json_stringify__WEBPACK_IMPORTED_MODULE_2___default()(o2);
+  }
+  /**
+   * Stores the instance options in the component state
+   * @param instanceOptions
+   */
+
+
+  function addInstanceOptions(instanceOptions) {
+    componentData.instanceOptions = instanceOptions;
+  }
+
+  function getInstanceData() {
+    return componentData.instanceOptions;
+  }
+  /*
+  Sanitizes options and puts amount in correct format and then assigns them to paymentOptions
+   */
+
+
+  function setOptions(unsafeOptions) {
+    var options = (0,_app_components_options__WEBPACK_IMPORTED_MODULE_9__.sanitizeOptionsForGoogleApplePay)(unsafeOptions);
+    options.total.amount = options.total.amount.toString();
+    paymentOptions = options;
+  }
+
+  function getGoogleIsReadyToPayRequest() {
+    return _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_3___default()({}, baseRequest, {
+      allowedPaymentMethods: [baseCardPaymentMethod]
+    });
+  }
+  /**
+   * Initialize Google PaymentsClient after Google-hosted JavaScript has loaded
+   *
+   * Display a Google Pay payment button after confirmation of the viewer's
+   * ability to pay.
+   */
+
+
+  function onGooglePayLoaded() {
+    var paymentsClient = getGooglePaymentsClient();
+    return paymentsClient.isReadyToPay(getGoogleIsReadyToPayRequest()).then(function (response) {
+      if (response.result) {
+        addGooglePayButton();
+      }
+    }).catch(function (err) {
+      // show error in developer console for debugging
+      console.error(err);
+    });
+  }
+  /**
+   * Add a Google Pay purchase button alongside an existing checkout button
+   *
+   * @see {@link https://developers.google.com/pay/api/web/reference/request-objects#ButtonOptions|Button options}
+   * @see {@link https://developers.google.com/pay/api/web/guides/brand-guidelines|Google Pay brand guidelines}
+   */
+
+
+  function addGooglePayButton() {
+    if (getElement().childNodes.length > 0) {
+      getElement().innerHTML = '';
+    }
+
+    var paymentsClient = getGooglePaymentsClient();
+    var color = paymentOptions.style.buttonColor === 'dark' ? 'black' : 'white';
+    var type = paymentOptions.style.buttonType === 'plain' ? 'plain' : 'buy';
+    var buttonOptions = {
+      onClick: onGooglePaymentButtonClicked,
+      buttonSizeMode: 'fill',
+      buttonType: type,
+      buttonColor: color
+    };
+
+    if (paymentOptions.style.buttonLanguage) {
+      buttonOptions.buttonLocale = paymentOptions.style.buttonLanguage;
+    }
+
+    var button = paymentsClient.createButton(buttonOptions);
+    document.getElementById('container').appendChild(button);
+  }
+
+  var baseRequest = {
+    apiVersion: 2,
+    apiVersionMinor: 0
+  };
+
+  function getTokenSpecification(isTestKey) {
+    return {
+      'type': 'DIRECT',
+      'parameters': {
+        'protocolVersion': 'ECv2',
+        'publicKey': determinePublicKey(isTestKey)
+      }
+    };
+  }
+
+  var baseCardPaymentMethod = {
+    type: 'CARD',
+    parameters: {
+      allowedAuthMethods: allowedCardAuthMethods,
+      allowedCardNetworks: allowedCardNetworks,
+      billingAddressRequired: true,
+      billingAddressParameters: {
+        format: 'FULL',
+        phoneNumberRequired: true
+      } //assuranceDetailsRequired: true,
+      //allowPrepaidCards: true
+
+    }
+  };
+
+  function isRequestShippingMode() {
+    return getPaymentOptions().requestShipping === true;
+  }
+
+  function getCardPaymentMethod(isTestApiKey) {
+    return _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_3___default()({}, baseCardPaymentMethod, {
+      tokenizationSpecification: getTokenSpecification(isTestApiKey)
+    });
+  }
+
+  function getGooglePaymentDataRequest() {
+    var paymentDataRequest = _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_3___default()({}, baseRequest);
+
+    paymentDataRequest.allowedPaymentMethods = [getCardPaymentMethod(getInstanceData().isTestApiKey)];
+    paymentDataRequest.transactionInfo = (0,_app_components_payment_api_events__WEBPACK_IMPORTED_MODULE_12__.getGoogleTransactionInfo)(getPaymentOptions());
+    paymentDataRequest.merchantInfo = {
+      merchantName: MERCHANT_NAME,
+      merchantId: MERCHANT_ID
+    };
+    paymentDataRequest.emailRequired = true;
+
+    if (isRequestShippingMode()) {
+      paymentDataRequest.shippingAddressRequired = true;
+      paymentDataRequest.shippingOptionRequired = true;
+      paymentDataRequest.callbackIntents = ['SHIPPING_ADDRESS', 'SHIPPING_OPTION', 'PAYMENT_AUTHORIZATION'];
+      paymentDataRequest.shippingAddressParameters = getGoogleShippingAddressParameters();
+    } else {
+      paymentDataRequest.shippingAddressRequired = false;
+      paymentDataRequest.shippingOptionRequired = false;
+      paymentDataRequest.callbackIntents = ['PAYMENT_AUTHORIZATION'];
+    }
+
+    return paymentDataRequest;
+  }
+  /**
+   * Show Google Pay payment sheet when Google Pay payment button is clicked
+   *
+   */
+
+
+  function onGooglePaymentButtonClicked() {
+    return _onGooglePaymentButtonClicked.apply(this, arguments);
+  }
+
+  function _onGooglePaymentButtonClicked() {
+    _onGooglePaymentButtonClicked = (0,_babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__.default)( /*#__PURE__*/_babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee() {
+      var paymentDataRequest, paymentsClient;
+      return _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              _context2.next = 2;
+              return (0,_app_components_payment_api__WEBPACK_IMPORTED_MODULE_15__.processClickEvent)(instanceData, _app_components_payment_api_events__WEBPACK_IMPORTED_MODULE_12__.sendClickEvent);
+
+            case 2:
+              paymentDataRequest = getGooglePaymentDataRequest();
+              paymentDataRequest.transactionInfo = (0,_app_components_payment_api_events__WEBPACK_IMPORTED_MODULE_12__.getGoogleTransactionInfo)(getPaymentOptions());
+              paymentsClient = getGooglePaymentsClient();
+              return _context2.abrupt("return", paymentsClient.loadPaymentData(paymentDataRequest).catch(function (err) {
+                var _context;
+
+                if (err.message && _babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_6___default()(_context = err.message).call(_context, 'User closed the Payment Request UI') || err.statusCode && err.statusCode === 'CANCELED') {
+                  (0,_app_components_payment_api_events__WEBPACK_IMPORTED_MODULE_12__.emitComponentCancelled)(componentData);
+                }
+              }));
+
+            case 6:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee);
+    }));
+    return _onGooglePaymentButtonClicked.apply(this, arguments);
+  }
+
+  function generateClientConfig() {
+    var environment = getInstanceData().isTestApiKey ? 'TEST' : 'PRODUCTION';
+
+    if (isRequestShippingMode()) {
+      return {
+        environment: environment,
+        paymentDataCallbacks: {
+          onPaymentDataChanged: onPaymentDataChanged,
+          onPaymentAuthorized: onPaymentAuthorized
+        }
+      };
+    } else {
+      return {
+        environment: environment,
+        paymentDataCallbacks: {
+          onPaymentAuthorized: onPaymentAuthorized
+        }
+      };
+    }
+  }
+
+  function onPaymentAuthorized(paymentData) {
+    return (0,_app_components_payment_api_events__WEBPACK_IMPORTED_MODULE_12__.onPayButtonClick)(instanceData, paymentData);
+  }
+
+  function getGooglePaymentsClient() {
+    if (typeof instanceData.paymentsClient === 'undefined') {
+      // eslint-disable-next-line no-undef
+      instanceData.paymentsClient = new google.payments.api.PaymentsClient(generateClientConfig());
+    }
+
+    return instanceData.paymentsClient;
+  }
+
+  function onPaymentDataChanged(intermediatePaymentData) {
+    return new (_babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_4___default())(function (resolve) {
+      var shippingAddress = intermediatePaymentData.shippingAddress;
+      var paymentDataRequestUpdate = {};
+
+      if (intermediatePaymentData.callbackTrigger === 'INITIALIZE') {
+        paymentDataRequestUpdate.newShippingOptionParameters = (0,_app_components_payment_api_events__WEBPACK_IMPORTED_MODULE_12__.getGoogleDefaultShippingOptions)(getPaymentOptions());
+      } else if (intermediatePaymentData.callbackTrigger === 'SHIPPING_ADDRESS') {
+        var selectedShippingOptionId = (0,_app_components_payment_api_events__WEBPACK_IMPORTED_MODULE_12__.getGoogleDefaultShippingOptions)(getPaymentOptions()).defaultSelectedOptionId;
+        (0,_app_components_payment_api_events__WEBPACK_IMPORTED_MODULE_12__.sendShippingAddressChangeEvent)(shippingAddress, selectedShippingOptionId, resolve, instanceData);
+        return;
+      } else if (intermediatePaymentData.callbackTrigger === 'SHIPPING_OPTION') {
+        var _selectedShippingOptionId = intermediatePaymentData.shippingOptionData.id;
+        (0,_app_components_payment_api_events__WEBPACK_IMPORTED_MODULE_12__.sendShippingOptionChangeEvent)(_selectedShippingOptionId, resolve, instanceData);
+        return;
+      }
+
+      resolve(paymentDataRequestUpdate);
+    });
+  }
+  /**
+   * Mounts component
+   * @param node - string or html element where component should be mounted
+   */
+
+
+  function mountGooglePay(node) {
+    instanceData.parentNode = node;
+    console.log('node', node);
+    var container = document.createElement('div');
+    container.id = 'container';
+    document.getElementById(node).appendChild(container);
+
+    var applePayMount = _babel_runtime_corejs3_core_js_stable_instance_bind__WEBPACK_IMPORTED_MODULE_5___default()(_createComponent__WEBPACK_IMPORTED_MODULE_8__.mount).call(_createComponent__WEBPACK_IMPORTED_MODULE_8__.mount, this);
+
+    applePayMount(node);
+    return (0,_app_components_payment_events__WEBPACK_IMPORTED_MODULE_11__.mountComponentFromClient)(instanceData.controllerEmitter, instanceData.componentData, handleOptions, _app_components_payment_api_events__WEBPACK_IMPORTED_MODULE_12__.emitComponentReady, undefined, instanceData);
+  }
+
+  function createGooglePayComponent(controllerId, key, options) {
+    var id = (0,_createComponent__WEBPACK_IMPORTED_MODULE_8__.generateComponentId)(COMPONENT_TYPE);
+    var component = {
+      id: id,
+      key: key,
+      type: COMPONENT_TYPE,
+      parentNode: null,
+      controllerId: controllerId,
+      canMakePayment: _createComponent__WEBPACK_IMPORTED_MODULE_8__.googlePayCanMakePayment,
+      mount: mountGooglePay,
+      //destroy: destroy,
+      on: _createComponent__WEBPACK_IMPORTED_MODULE_8__.onEventHandler,
+      options: (0,_app_components_options__WEBPACK_IMPORTED_MODULE_9__.sanitizeOptionsForGoogleApplePay)(options) //show: onApplePayButtonClick,
+      //unmount: unmount,
+      //update: handleUpdate
+
+    };
+    componentData = (0,_app_components_payment_component_data__WEBPACK_IMPORTED_MODULE_14__.generateComponentData)(COMPONENT_TYPE, id, controllerId);
+    componentData.key = key;
+    controllerListener = _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_7__.default.listener({
+      window: componentData.controller.window,
+      domain: _app_components_config__WEBPACK_IMPORTED_MODULE_10__.config.domain
+    });
+    controllerEmitter = _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_7__.default.client({
+      window: componentData.controller.window,
+      domain: _app_components_config__WEBPACK_IMPORTED_MODULE_10__.config.domain
+    });
+    instanceData = (0,_app_components_create_initial_data__WEBPACK_IMPORTED_MODULE_13__.generateInstanceData)(controllerEmitter, componentData, getPaymentOptions, getElement, setOptions);
+    instanceData.waitBeforeShow = true;
+    instanceData.options = component.options;
+    addHandleOptions(controllerListener, handleOptions);
+    return component;
+  }
+
+  return {
+    createGooglePayComponent: createGooglePayComponent,
+    setOptions: setOptions,
+    getElement: getElement,
+    getPaymentOptions: getPaymentOptions,
+    //handleUpdate: handleUpdate,
+    //handleCancel: handleCancel,
+    handleOptions: handleOptions,
+    mount: mountGooglePay,
+    onGooglePaymentButtonClicked: onGooglePaymentButtonClicked,
+    getInstanceData: getInstanceData
+  };
 }
 
 /***/ }),
