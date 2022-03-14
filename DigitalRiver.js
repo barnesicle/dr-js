@@ -11481,7 +11481,7 @@ function createComponent(type, controllerId, key, options, nameForAccessibility)
 */
 
 function googlePayCanMakePayment() {
-  return !!window.PaymentRequest && isChrome();
+  return true;
 }
 /**
  * Returns true if browser is Chrome
