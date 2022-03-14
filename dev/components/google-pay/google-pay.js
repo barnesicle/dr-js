@@ -2658,12 +2658,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "config": function() { return /* binding */ config; }
 /* harmony export */ });
 // Holds any configuration data that changes depending on environment
+"https://api.digitalriver.com" = 'http://mjoshi-gpupgrade-7.c141.drcloud.zone:8080/clients/gc/channels/paylive'; // 'http://mjoshi-gpupgrade-7.c141.drcloud.zone:8080/clients/gc/channels/paylive/sessions
+
 var config = {
-  domain: "http://localhost:8080",
+  domain: "https://github.digitalriverws.net",
   // eslint-disable-line no-undef
-  paymentServiceUrl: "https://api.digitalriver.com" + '/payments/sources',
+  paymentServiceUrl: "https://api.digitalriver.com" + '/sources',
   // eslint-disable-line no-undef
-  basePath: "/v1" || 0,
+  basePath: "/pages/lbarnes/drjs-demo" || 0,
   // eslint-disable-line no-undef
   applePayMerchantId: "merchant.com.test.cert.digitalriver",
   // eslint-disable-line no-undef
@@ -2691,7 +2693,7 @@ var config = {
   // eslint-disable-line no-undef
   paypalRedirectBaseUrl: "https://payments-test.digitalriver.com/redirect/",
   // eslint-disable-line no-undef
-  paymentMethodsUrl: "https://api.digitalriver.com" + '/payments/payment-methods',
+  paymentMethodsUrl: "https://api.digitalriver.com" + '/payment-methods',
   // eslint-disable-line no-undef
   apiUrl: "https://api.digitalriver.com",
   // eslint-disable-line no-undef
@@ -3905,6 +3907,29 @@ function sendCreateSourceRequest(controllerEmitter, componentData, responseData,
 
 /***/ }),
 
+/***/ "./src/app/components/google-pay/translations.js":
+/*!*******************************************************!*\
+  !*** ./src/app/components/google-pay/translations.js ***!
+  \*******************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "getGeneralErrorMessageByLocale": function() { return /* binding */ getGeneralErrorMessageByLocale; }
+/* harmony export */ });
+/* harmony import */ var _google_pay_translations_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./google-pay-translations.json */ "./src/app/components/google-pay/google-pay-translations.json");
+
+function getGeneralErrorMessageByLocale(locale) {
+  if (typeof _google_pay_translations_json__WEBPACK_IMPORTED_MODULE_0__[locale] === 'undefined') {
+    return _google_pay_translations_json__WEBPACK_IMPORTED_MODULE_0__.en_US.GENERAL_ERROR;
+  }
+
+  return _google_pay_translations_json__WEBPACK_IMPORTED_MODULE_0__[locale].GENERAL_ERROR;
+}
+
+/***/ }),
+
 /***/ "./src/app/components/input-events.js":
 /*!********************************************!*\
   !*** ./src/app/components/input-events.js ***!
@@ -4673,17 +4698,18 @@ function mergeOptions(options, newOptions) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "paymentApiTriggerEvent": function() { return /* binding */ paymentApiTriggerEvent; },
 /* harmony export */   "emitComponentReady": function() { return /* binding */ emitComponentReady; },
 /* harmony export */   "emitComponentCancelled": function() { return /* binding */ emitComponentCancelled; },
 /* harmony export */   "createCompleteFunction": function() { return /* binding */ createCompleteFunction; },
 /* harmony export */   "processPayment": function() { return /* binding */ processPayment; },
 /* harmony export */   "sendShippingAddressChangeEvent": function() { return /* binding */ sendShippingAddressChangeEvent; },
 /* harmony export */   "sendShippingOptionChangeEvent": function() { return /* binding */ sendShippingOptionChangeEvent; },
-/* harmony export */   "styleAndCreatePaymentRequest": function() { return /* binding */ styleAndCreatePaymentRequest; },
 /* harmony export */   "sendClickEvent": function() { return /* binding */ sendClickEvent; },
 /* harmony export */   "waitForClientUpdateWithFunction": function() { return /* binding */ waitForClientUpdateWithFunction; },
-/* harmony export */   "onPayButtonClick": function() { return /* binding */ onPayButtonClick; }
+/* harmony export */   "onPayButtonClick": function() { return /* binding */ onPayButtonClick; },
+/* harmony export */   "createDisplayItems": function() { return /* binding */ createDisplayItems; },
+/* harmony export */   "getGoogleTransactionInfo": function() { return /* binding */ getGoogleTransactionInfo; },
+/* harmony export */   "getGoogleDefaultShippingOptions": function() { return /* binding */ getGoogleDefaultShippingOptions; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/asyncToGenerator */ "./node_modules/@babel/runtime-corejs3/helpers/esm/asyncToGenerator.js");
 /* harmony import */ var _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/regenerator */ "./node_modules/@babel/runtime-corejs3/regenerator/index.js");
@@ -4692,12 +4718,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/object/assign */ "./node_modules/@babel/runtime-corejs3/core-js-stable/object/assign.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_find__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/find */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/find.js");
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_find__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_find__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _input_events__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./input-events */ "./src/app/components/input-events.js");
-/* harmony import */ var _payment_api__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./payment-api */ "./src/app/components/payment-api.js");
-/* harmony import */ var _options__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./options */ "./src/app/components/options.js");
-/* harmony import */ var _google_apple_pay_events__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./google-apple-pay-events */ "./src/app/components/google-apple-pay-events.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/object/keys */ "./node_modules/@babel/runtime-corejs3/core-js-stable/object/keys.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_find__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/find */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/find.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_find__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_find__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_array_is_array__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/array/is-array */ "./node_modules/@babel/runtime-corejs3/core-js-stable/array/is-array.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_array_is_array__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_array_is_array__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/filter */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/filter.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _input_events__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./input-events */ "./src/app/components/input-events.js");
+/* harmony import */ var _payment_api__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./payment-api */ "./src/app/components/payment-api.js");
+/* harmony import */ var _options__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./options */ "./src/app/components/options.js");
+/* harmony import */ var _google_apple_pay_events__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./google-apple-pay-events */ "./src/app/components/google-apple-pay-events.js");
 
 
 
@@ -4707,29 +4739,16 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-/**
- * Runs appropriate handler for event type
- * @param {string} type - event type
- * @param {object} instanceData
- */
 
-function paymentApiTriggerEvent(type, instanceData) {
-  switch (type) {
-    case 'show':
-      {
-        onPayButtonClick(instanceData); // componentData, paymentOptions, getElement, setOptions
 
-        return;
-      }
-  }
-}
+
 /**
  * Emits component ready event
  * @param {object} componentData
  */
 
 function emitComponentReady(componentData) {
-  (0,_input_events__WEBPACK_IMPORTED_MODULE_5__.handleEvent)(componentData, 'ready');
+  (0,_input_events__WEBPACK_IMPORTED_MODULE_8__.handleEvent)(componentData, 'ready');
 }
 /**
  * Emits component cancelled event
@@ -4737,7 +4756,7 @@ function emitComponentReady(componentData) {
  */
 
 function emitComponentCancelled(componentData) {
-  (0,_input_events__WEBPACK_IMPORTED_MODULE_5__.handleEvent)(componentData, 'cancel');
+  (0,_input_events__WEBPACK_IMPORTED_MODULE_8__.handleEvent)(componentData, 'cancel');
 }
 /**
  * Returns complete function for payment source request
@@ -4747,15 +4766,13 @@ function emitComponentCancelled(componentData) {
  */
 
 function createCompleteFunction(resolve, paymentRequestResponseData) {
-  var complete = function complete(status) {
+  return function (status) {
     resolve({
       instrumentResponse: paymentRequestResponseData,
       status: status
     });
     return status;
   };
-
-  return complete;
 }
 /**
  * Takes PaymentRequest API payment response and sends it to DR Payment Service
@@ -4766,10 +4783,15 @@ function createCompleteFunction(resolve, paymentRequestResponseData) {
 
 function processPayment(paymentRequestData, resolve, instanceData) {
   var complete = createCompleteFunction(resolve, paymentRequestData);
-  var paymentServiceRequest = (0,_payment_api__WEBPACK_IMPORTED_MODULE_6__.paymentRequestApiResponseToPaymentServiceRequest)(paymentRequestData, instanceData.getPaymentOptions());
+  var paymentServiceRequest = (0,_payment_api__WEBPACK_IMPORTED_MODULE_9__.paymentRequestApiResponseToPaymentServiceRequest)(paymentRequestData, instanceData.getPaymentOptions());
 
   if (typeof instanceData.getPaymentOptions().billingAddress !== 'undefined') {
+    paymentServiceRequest.sessionId = instanceData.getPaymentOptions().sessionId;
+    delete paymentServiceRequest.amount;
     paymentServiceRequest.owner = instanceData.getPaymentOptions().billingAddress;
+    paymentRequestData.details = {
+      billingAddress: instanceData.getPaymentOptions().billingAddress
+    };
   }
 
   if (typeof instanceData.getPaymentOptions().sessionId !== 'undefined') {
@@ -4777,7 +4799,7 @@ function processPayment(paymentRequestData, resolve, instanceData) {
   } // Send payment / credit card data to controller to call payment service
 
 
-  (0,_google_apple_pay_events__WEBPACK_IMPORTED_MODULE_8__.sendCreateSourceRequest)(instanceData.controllerEmitter, instanceData.componentData, paymentRequestData, paymentServiceRequest, _payment_api__WEBPACK_IMPORTED_MODULE_6__.toSourceEventData, complete);
+  (0,_google_apple_pay_events__WEBPACK_IMPORTED_MODULE_11__.sendCreateSourceRequest)(instanceData.controllerEmitter, instanceData.componentData, paymentRequestData, paymentServiceRequest, _payment_api__WEBPACK_IMPORTED_MODULE_9__.toSourceEventData, complete);
 }
 /**
  * Sends shipping address change event to client
@@ -4791,7 +4813,7 @@ function processPayment(paymentRequestData, resolve, instanceData) {
 function sendShippingAddressChangeEvent(googleShippingAddress, selectedShippingOption, resolve, instanceData) {
   var _context;
 
-  var shippingAddress = (0,_payment_api__WEBPACK_IMPORTED_MODULE_6__.convertPaymentRequestApiShippingAddressForEvent)(googleShippingAddress);
+  var shippingAddress = (0,_payment_api__WEBPACK_IMPORTED_MODULE_9__.convertPaymentRequestApiShippingAddressForEvent)(googleShippingAddress);
   var paymentOptions = instanceData.getPaymentOptions(); // set the previously selected one as selected in the data
 
   _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_2___default()(_context = paymentOptions.shippingOptions).call(_context, function (shippingOption) {
@@ -4802,12 +4824,10 @@ function sendShippingAddressChangeEvent(googleShippingAddress, selectedShippingO
     var errorData = {};
 
     if (clientPassedInData.status === 'failure') {
-      errorData = (0,_payment_api__WEBPACK_IMPORTED_MODULE_6__.convertClientShippingAddressErrorsForPaymentRequestUpdateEvent)(clientPassedInData.error);
-      errorData.shippingOptions = [];
-      delete clientPassedInData[clientPassedInData.error];
+      errorData = (0,_payment_api__WEBPACK_IMPORTED_MODULE_9__.convertClientShippingAddressErrorsForPaymentRequestUpdateEvent)(clientPassedInData.error, instanceData);
     }
 
-    var mergedDataWithoutErrors = (0,_options__WEBPACK_IMPORTED_MODULE_7__.mergeOptions)(paymentOptions, clientPassedInData);
+    var mergedDataWithoutErrors = (0,_options__WEBPACK_IMPORTED_MODULE_10__.mergeOptions)(paymentOptions, clientPassedInData);
 
     if (clientPassedInData.status === 'success') {
       delete mergedDataWithoutErrors['error'];
@@ -4817,9 +4837,22 @@ function sendShippingAddressChangeEvent(googleShippingAddress, selectedShippingO
 
     var mergedData = _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_3___default()({}, mergedDataWithoutErrors, errorData);
 
-    var shippingOptions = (0,_payment_api__WEBPACK_IMPORTED_MODULE_6__.updateShippingOptionsSelectedAttribute)(mergedData);
-    var detailsData = (0,_payment_api__WEBPACK_IMPORTED_MODULE_6__.getDetailsFromOptions)(shippingOptions);
-    resolve(detailsData);
+    var newPaymentOptions = (0,_payment_api__WEBPACK_IMPORTED_MODULE_9__.updateShippingOptionsSelectedAttribute)(mergedData);
+    var detailsData = getGoogleTransactionInfo(newPaymentOptions);
+
+    if (_babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_4___default()(errorData).length > 0) {
+      resolve({
+        error: errorData.error,
+        newTransactionInfo: detailsData,
+        newShippingOptionParameters: getGoogleDefaultShippingOptions(mergedData)
+      });
+    } else {
+      resolve({
+        newTransactionInfo: detailsData,
+        newShippingOptionParameters: getGoogleDefaultShippingOptions(mergedData)
+      });
+    }
+
     return detailsData;
   };
 
@@ -4827,7 +4860,7 @@ function sendShippingAddressChangeEvent(googleShippingAddress, selectedShippingO
     shippingAddress: shippingAddress,
     updateWith: updateWith
   };
-  (0,_input_events__WEBPACK_IMPORTED_MODULE_5__.sendEventData)(instanceData.componentData.controller, instanceData.componentData.componentId, instanceData.componentData.componentType, 'shippingaddresschange', eventData);
+  (0,_input_events__WEBPACK_IMPORTED_MODULE_8__.sendEventData)(instanceData.componentData.controller, instanceData.componentData.componentId, instanceData.componentData.componentType, 'shippingaddresschange', eventData);
   return eventData;
 }
 /**
@@ -4850,17 +4883,20 @@ function sendShippingOptionChangeEvent(selectedShippingOption, resolve, instance
       shippingOption.selected = shippingOption.id === selectedShippingOption;
     });
 
-    var data = (0,_options__WEBPACK_IMPORTED_MODULE_7__.mergeOptions)(paymentOptions, clientPassedInData);
+    var data = (0,_options__WEBPACK_IMPORTED_MODULE_10__.mergeOptions)(paymentOptions, clientPassedInData);
     instanceData.setOptions(data);
-    var updatedDetails = (0,_payment_api__WEBPACK_IMPORTED_MODULE_6__.updateShippingOptionsSelectedAttribute)(data);
-    var detailsData = (0,_payment_api__WEBPACK_IMPORTED_MODULE_6__.getDetailsFromOptions)(updatedDetails);
-    resolve(detailsData);
+    var updatedDetails = (0,_payment_api__WEBPACK_IMPORTED_MODULE_9__.updateShippingOptionsSelectedAttribute)(data);
+    var detailsData = getGoogleTransactionInfo(updatedDetails);
+    resolve({
+      newTransactionInfo: detailsData,
+      newShippingOptionParameters: getGoogleDefaultShippingOptions(data)
+    });
     return detailsData;
   };
 
   var paymentOptions = instanceData.getPaymentOptions(); // If there are shippingOptions, find the selected shipping option
 
-  var foundShippingOption = paymentOptions.shippingOptions && _babel_runtime_corejs3_core_js_stable_instance_find__WEBPACK_IMPORTED_MODULE_4___default()(_context3 = paymentOptions.shippingOptions).call(_context3, function (shippingOption) {
+  var foundShippingOption = paymentOptions.shippingOptions && _babel_runtime_corejs3_core_js_stable_instance_find__WEBPACK_IMPORTED_MODULE_5___default()(_context3 = paymentOptions.shippingOptions).call(_context3, function (shippingOption) {
     return shippingOption.id === selectedShippingOption;
   });
 
@@ -4868,28 +4904,8 @@ function sendShippingOptionChangeEvent(selectedShippingOption, resolve, instance
     shippingOption: foundShippingOption,
     updateWith: updateWith
   };
-  (0,_input_events__WEBPACK_IMPORTED_MODULE_5__.sendEventData)(instanceData.componentData.controller, instanceData.componentData.componentId, instanceData.componentData.componentType, 'shippingoptionchange', eventData);
+  (0,_input_events__WEBPACK_IMPORTED_MODULE_8__.sendEventData)(instanceData.componentData.controller, instanceData.componentData.componentId, instanceData.componentData.componentType, 'shippingoptionchange', eventData);
   return eventData;
-}
-/**
- * Styles payment button and adds click event listener
- * @param {object} instanceData
- */
-
-function styleAndCreatePaymentRequest(instanceData) {
-  if (window.PaymentRequest) {
-    (0,_payment_api__WEBPACK_IMPORTED_MODULE_6__.initPaymentRequest)(instanceData);
-    var payButton = instanceData.getElement();
-    payButton.setAttribute('style', 'display: inline; width: calc(100% - 2px); cursor: pointer'); //calc to make sure shadow does not get cut off
-
-    payButton.addEventListener('click', function () {
-      return onPayButtonClick(instanceData);
-    });
-  } else {
-    // eslint-disable-next-line no-console
-    console.error('This browser does not support web payments');
-    return null;
-  }
 }
 /**
  * Sends click event to client
@@ -4901,21 +4917,21 @@ function styleAndCreatePaymentRequest(instanceData) {
 function sendClickEvent(instanceData, resolve) {
   if (waitForClientUpdateWithFunction(instanceData.getPaymentOptions())) {
     var updateWith = function updateWith(clientPassedInData) {
-      var data = (0,_options__WEBPACK_IMPORTED_MODULE_7__.mergeOptions)(instanceData.getPaymentOptions(), clientPassedInData);
+      var data = (0,_options__WEBPACK_IMPORTED_MODULE_10__.mergeOptions)(instanceData.getPaymentOptions(), clientPassedInData);
       instanceData.setOptions(data);
-      resolve((0,_payment_api__WEBPACK_IMPORTED_MODULE_6__.getDetailsFromOptions)(instanceData.getPaymentOptions()));
+      resolve((0,_payment_api__WEBPACK_IMPORTED_MODULE_9__.getDetailsFromOptions)(instanceData.getPaymentOptions()));
       return data;
     };
 
     var result = {
       updateWith: updateWith
     };
-    (0,_input_events__WEBPACK_IMPORTED_MODULE_5__.sendEventData)(instanceData.componentData.controller, instanceData.componentData.componentId, instanceData.componentData.componentType, 'click', result);
+    (0,_input_events__WEBPACK_IMPORTED_MODULE_8__.sendEventData)(instanceData.componentData.controller, instanceData.componentData.componentId, instanceData.componentData.componentType, 'click', result);
     return result;
   } else {
-    resolve((0,_payment_api__WEBPACK_IMPORTED_MODULE_6__.getDetailsFromOptions)(instanceData.getPaymentOptions()));
+    resolve((0,_payment_api__WEBPACK_IMPORTED_MODULE_9__.getDetailsFromOptions)(instanceData.getPaymentOptions()));
     var _result = {};
-    (0,_input_events__WEBPACK_IMPORTED_MODULE_5__.sendEventData)(instanceData.componentData.controller, instanceData.componentData.componentId, instanceData.componentData.componentType, 'click', _result);
+    (0,_input_events__WEBPACK_IMPORTED_MODULE_8__.sendEventData)(instanceData.componentData.controller, instanceData.componentData.componentId, instanceData.componentData.componentType, 'click', _result);
     return _result;
   }
 }
@@ -4934,37 +4950,73 @@ function waitForClientUpdateWithFunction(paymentOptions) {
  * @returns {Promise<any|never>}
  */
 
-function onPayButtonClick(_x) {
+function onPayButtonClick(_x, _x2) {
   return _onPayButtonClick.apply(this, arguments);
 }
 
 function _onPayButtonClick() {
-  _onPayButtonClick = (0,_babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__.default)( /*#__PURE__*/_babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee(instanceData) {
-    var request;
-    return _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee$(_context4) {
+  _onPayButtonClick = (0,_babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__.default)( /*#__PURE__*/_babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee(instanceData, paymentData) {
+    return _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee$(_context6) {
       while (1) {
-        switch (_context4.prev = _context4.next) {
+        switch (_context6.prev = _context6.next) {
           case 0:
-            if (!instanceData.waitBeforeShow) {
-              _context4.next = 3;
-              break;
-            }
+            return _context6.abrupt("return", (0,_payment_api__WEBPACK_IMPORTED_MODULE_9__.onBuyClicked)(processPayment, emitComponentCancelled, sendClickEvent, instanceData, paymentData));
 
-            _context4.next = 3;
-            return (0,_payment_api__WEBPACK_IMPORTED_MODULE_6__.processClickEvent)(instanceData, sendClickEvent);
-
-          case 3:
-            request = (0,_payment_api__WEBPACK_IMPORTED_MODULE_6__.initPaymentRequest)(instanceData);
-            return _context4.abrupt("return", (0,_payment_api__WEBPACK_IMPORTED_MODULE_6__.onBuyClicked)(request, processPayment, emitComponentCancelled, sendClickEvent, instanceData));
-
-          case 5:
+          case 1:
           case "end":
-            return _context4.stop();
+            return _context6.stop();
         }
       }
     }, _callee);
   }));
   return _onPayButtonClick.apply(this, arguments);
+}
+
+function createDisplayItems(paymentOptions) {
+  if (paymentOptions.displayItems && _babel_runtime_corejs3_core_js_stable_array_is_array__WEBPACK_IMPORTED_MODULE_6___default()(paymentOptions.displayItems)) {
+    var _context4;
+
+    var displayItems = [];
+
+    _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_2___default()(_context4 = paymentOptions.displayItems).call(_context4, function (displayItem, index) {
+      displayItems[index] = {
+        label: displayItem.label,
+        type: 'LINE_ITEM',
+        price: displayItem.amount.toString(),
+        status: displayItem.isPending === true ? 'PENDING' : 'FINAL'
+      };
+    });
+
+    return displayItems;
+  }
+
+  return undefined;
+}
+function getGoogleTransactionInfo(paymentOptions) {
+  return {
+    displayItems: createDisplayItems(paymentOptions),
+    countryCode: paymentOptions.country.toUpperCase(),
+    currencyCode: paymentOptions.currency,
+    totalPriceStatus: paymentOptions.total.isPending === true ? 'ESTIMATED' : 'FINAL',
+    totalPrice: paymentOptions.total.amount.toString(),
+    totalPriceLabel: paymentOptions.total.label
+  };
+}
+function getGoogleDefaultShippingOptions(paymentOptions) {
+  var _context5;
+
+  if (typeof paymentOptions.shippingOptions === 'undefined' || paymentOptions.shippingOptions.length === 0) {
+    return [];
+  }
+
+  var defaultSelected = _babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_7___default()(_context5 = paymentOptions.shippingOptions).call(_context5, function (so) {
+    return so.selected === true;
+  });
+
+  return {
+    defaultSelectedOptionId: defaultSelected.length > 0 ? defaultSelected[0].id : paymentOptions.shippingOptions[0].id,
+    shippingOptions: (0,_payment_api__WEBPACK_IMPORTED_MODULE_9__.convertShippingOptions)(paymentOptions.shippingOptions)
+  };
 }
 
 /***/ }),
@@ -4978,7 +5030,6 @@ function _onPayButtonClick() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "createRequest": function() { return /* binding */ createRequest; },
 /* harmony export */   "onBuyClicked": function() { return /* binding */ onBuyClicked; },
 /* harmony export */   "completePaymentWithSuccess": function() { return /* binding */ completePaymentWithSuccess; },
 /* harmony export */   "completePaymentWithFailure": function() { return /* binding */ completePaymentWithFailure; },
@@ -4990,7 +5041,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "convertShippingOptions": function() { return /* binding */ convertShippingOptions; },
 /* harmony export */   "convertDisplayOptions": function() { return /* binding */ convertDisplayOptions; },
 /* harmony export */   "getDetailsFromOptions": function() { return /* binding */ getDetailsFromOptions; },
-/* harmony export */   "initPaymentRequest": function() { return /* binding */ initPaymentRequest; },
 /* harmony export */   "shippingAddressChange": function() { return /* binding */ shippingAddressChange; },
 /* harmony export */   "shippingOptionChange": function() { return /* binding */ shippingOptionChange; },
 /* harmony export */   "convertClientShippingAddressErrorsForPaymentRequestUpdateEvent": function() { return /* binding */ convertClientShippingAddressErrorsForPaymentRequestUpdateEvent; },
@@ -4998,17 +5048,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/promise */ "./node_modules/@babel/runtime-corejs3/core-js-stable/promise.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/includes */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/includes.js");
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_parse_int__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/parse-int */ "./node_modules/@babel/runtime-corejs3/core-js-stable/parse-int.js");
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_parse_int__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_parse_int__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_parse_float__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/parse-float */ "./node_modules/@babel/runtime-corejs3/core-js-stable/parse-float.js");
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_parse_float__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_parse_float__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_array_is_array__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/array/is-array */ "./node_modules/@babel/runtime-corejs3/core-js-stable/array/is-array.js");
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_array_is_array__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_array_is_array__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/for-each */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/for-each.js");
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var parse_full_name__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! parse-full-name */ "./node_modules/parse-full-name/index.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_parse_float__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/parse-float */ "./node_modules/@babel/runtime-corejs3/core-js-stable/parse-float.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_parse_float__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_parse_float__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_array_is_array__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/array/is-array */ "./node_modules/@babel/runtime-corejs3/core-js-stable/array/is-array.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_array_is_array__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_array_is_array__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_map__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/map */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/map.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_map__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_map__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/for-each */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/for-each.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var parse_full_name__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! parse-full-name */ "./node_modules/parse-full-name/index.js");
+/* harmony import */ var _google_pay_translations__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./google-pay/translations */ "./src/app/components/google-pay/translations.js");
 
 
 
@@ -5016,45 +5065,33 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-/**
- * Returns a new payment request
- * @param {object} supportedInstruments
- * @param {object} details
- * @param {object} options
- * @returns {PaymentRequest}
- */
-
-function createRequest(supportedInstruments, details, options) {
-  return new PaymentRequest(supportedInstruments, details, options);
-}
 /**
  * Processes and completes payment source request
- * @param {object} request
  * @param {Function} processPayment
  * @param {Function} sendOnCancelEvent
  * @param {Function} sendClickEvent
  * @param {object} instanceData
+ * @param {object} paymentData
  * @returns {Promise<any | never>}
  */
 
-function onBuyClicked(request, processPayment, sendOnCancelEvent, sendClickEvent, instanceData) {
-  // Note: This prevents the case where the payment added support for this and waitBeforeShow was true, it would run twice.
-  var show = instanceData.waitBeforeShow ? request.show() : request.show(processClickEvent(instanceData, sendClickEvent));
-  return show.then(function (instrumentResponse) {
-    return new (_babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_0___default())(function (resolve) {
-      processPayment(instrumentResponse, resolve, instanceData);
-    });
-  }).then(function (data) {
-    if (data.status === 'success') {
-      completePaymentWithSuccess(data.instrumentResponse);
+function onBuyClicked(processPayment, sendOnCancelEvent, sendClickEvent, instanceData, paymentData) {
+  return new (_babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_0___default())(function (resolve) {
+    processPayment(paymentData, resolve, instanceData);
+  }).then(function (response) {
+    if (response.status === 'failure') {
+      return {
+        transactionState: 'ERROR',
+        error: {
+          intent: 'PAYMENT_AUTHORIZATION',
+          message: (0,_google_pay_translations__WEBPACK_IMPORTED_MODULE_6__.getGeneralErrorMessageByLocale)(instanceData.locale),
+          reason: 'PAYMENT_DATA_INVALID'
+        }
+      };
     } else {
-      completePaymentWithFailure(data.instrumentResponse);
-    }
-  }).catch(function (err) {
-    var _context;
-
-    if (err.message && (_babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_1___default()(_context = err.message).call(_context, 'User closed the Payment Request') || err.message === 'Request cancelled' || err.message === 'The operation was aborted.')) {
-      sendOnCancelEvent(instanceData.componentData);
+      return {
+        transactionState: 'SUCCESS'
+      };
     }
   });
 }
@@ -5093,7 +5130,7 @@ function processClickEvent(instanceData, sendClickEvent) {
  */
 
 function splitName(name) {
-  var pastedName = (0,parse_full_name__WEBPACK_IMPORTED_MODULE_6__.parseFullName)(name);
+  var pastedName = (0,parse_full_name__WEBPACK_IMPORTED_MODULE_5__.parseFullName)(name);
   return {
     firstName: pastedName.first,
     lastName: pastedName.last
@@ -5107,37 +5144,35 @@ function splitName(name) {
  */
 
 function paymentRequestApiResponseToPaymentServiceRequest(googleResponseData, paymentOptions) {
-  var name = splitName(googleResponseData.details.billingAddress.recipient);
   var agreementData = paymentOptions.agreementData;
   var hasAgreementDataBeenProvided = typeof agreementData !== 'undefined' && agreementData !== null;
   var useMandate = hasAgreementDataBeenProvided && agreementData.useMandate === true;
   var mandate = useMandate ? agreementData.mandate : undefined;
   var futureUse = useMandate ? agreementData.futureUse : undefined;
+  var billingAddress = googleResponseData.paymentMethodData.info.billingAddress;
+  var name = splitName(billingAddress.name);
   return {
     'type': 'googlePay',
     'owner': {
       'firstName': name.firstName,
       'lastName': name.lastName,
-      'email': googleResponseData.payerEmail,
-      'phoneNumber': googleResponseData.details.billingAddress.phone,
+      'email': googleResponseData.email,
+      'phoneNumber': billingAddress.phoneNumber,
       'address': {
-        'line1': googleResponseData.details.billingAddress.addressLine.length >= 1 ? googleResponseData.details.billingAddress.addressLine[0] : '',
-        'line2': googleResponseData.details.billingAddress.addressLine.length >= 2 ? googleResponseData.details.billingAddress.addressLine[1] : '',
-        'city': googleResponseData.details.billingAddress.city,
-        'state': googleResponseData.details.billingAddress.region,
-        'country': googleResponseData.details.billingAddress.country,
-        'postalCode': googleResponseData.details.billingAddress.postalCode
+        'line1': billingAddress.address1,
+        'line2': billingAddress.address2,
+        'city': billingAddress.locality,
+        'state': billingAddress.administrativeArea,
+        'country': billingAddress.countryCode,
+        'postalCode': billingAddress.postalCode
       }
     },
     'futureUse': futureUse,
     'mandate': mandate,
     'googlePay': {
-      'number': googleResponseData.details.cardNumber,
-      'expirationMonth': _babel_runtime_corejs3_core_js_stable_parse_int__WEBPACK_IMPORTED_MODULE_2___default()(googleResponseData.details.expiryMonth, 10),
-      'expirationYear': _babel_runtime_corejs3_core_js_stable_parse_int__WEBPACK_IMPORTED_MODULE_2___default()(googleResponseData.details.expiryYear, 10),
-      'cvv': googleResponseData.details.cardSecurityCode
+      'token': googleResponseData
     },
-    'amount': _babel_runtime_corejs3_core_js_stable_parse_float__WEBPACK_IMPORTED_MODULE_3___default()(paymentOptions.total.amount),
+    'amount': _babel_runtime_corejs3_core_js_stable_parse_float__WEBPACK_IMPORTED_MODULE_1___default()(paymentOptions.total.amount),
     'currency': paymentOptions.currency
   };
 }
@@ -5149,19 +5184,19 @@ function paymentRequestApiResponseToPaymentServiceRequest(googleResponseData, pa
  */
 
 function convertPaymentRequestApiShippingAddressForEvent(shippingAddress, payerEmail) {
-  var name = splitName(shippingAddress.recipient);
+  var name = splitName(shippingAddress.name);
   return {
-    name: shippingAddress.recipient,
+    name: typeof shippingAddress.name !== 'undefined' ? shippingAddress.name : '',
     firstName: name.firstName,
     lastName: name.lastName,
-    phone: shippingAddress.phone,
+    phone: typeof shippingAddress.phoneNumber !== 'undefined' ? shippingAddress.phoneNumber : '',
     email: payerEmail,
     address: {
-      line1: shippingAddress.addressLine.length >= 1 ? shippingAddress.addressLine[0] : '',
-      line2: shippingAddress.addressLine.length >= 2 ? shippingAddress.addressLine[1] : '',
-      city: shippingAddress.city,
-      state: shippingAddress.region,
-      country: shippingAddress.country,
+      line1: shippingAddress.address1 ? shippingAddress.address1 : '',
+      line2: shippingAddress.address2 ? shippingAddress.address2 : '',
+      city: shippingAddress.locality,
+      state: shippingAddress.administrativeArea,
+      country: shippingAddress.countryCode,
       postalCode: shippingAddress.postalCode
     }
   };
@@ -5175,27 +5210,27 @@ function convertPaymentRequestApiShippingAddressForEvent(shippingAddress, payerE
  */
 
 function toSourceEventData(paymentRequestBillingData, paymentSource, complete) {
-  var googleBillingAddress = paymentRequestBillingData.details.billingAddress;
+  var googleBillingAddress = paymentRequestBillingData.paymentMethodData.info.billingAddress;
   var billingAddress = {
     address: {
-      line1: googleBillingAddress.addressLine && googleBillingAddress.addressLine.length > 0 ? googleBillingAddress.addressLine[0] : '',
-      line2: googleBillingAddress.addressLine && googleBillingAddress.addressLine.length >= 2 ? googleBillingAddress.addressLine[1] : '',
-      city: googleBillingAddress.city || '',
+      line1: googleBillingAddress.address1,
+      line2: googleBillingAddress.address2,
+      city: googleBillingAddress.locality || '',
       postalCode: googleBillingAddress.postalCode || '',
-      state: googleBillingAddress.region || '',
-      country: googleBillingAddress.country ? googleBillingAddress.country.toUpperCase() : ''
+      state: googleBillingAddress.administrativeArea || '',
+      country: googleBillingAddress.countryCode ? googleBillingAddress.countryCode.toUpperCase() : ''
     },
-    name: paymentRequestBillingData.shippingAddress ? paymentRequestBillingData.shippingAddress.recipient : '',
+    name: googleBillingAddress.name,
     firstName: paymentSource.source && paymentSource.source.owner ? paymentSource.source.owner.firstName : '',
     lastName: paymentSource.source && paymentSource.source.owner ? paymentSource.source.owner.lastName : '',
-    phone: paymentRequestBillingData.details.billingAddress.phone,
+    phone: paymentSource.source && paymentSource.source.owner ? paymentSource.source.owner.phoneNumber : '',
     email: null
   };
-  var shippingAddress = paymentRequestBillingData.shippingAddress ? convertPaymentRequestApiShippingAddressForEvent(paymentRequestBillingData.shippingAddress, paymentRequestBillingData.payerEmail) : null;
+  var shippingAddress = paymentRequestBillingData.shippingAddress ? convertPaymentRequestApiShippingAddressForEvent(paymentRequestBillingData.shippingAddress, paymentRequestBillingData.email) : null;
   var contactInformation = {
-    name: paymentRequestBillingData.payerName,
-    phone: paymentRequestBillingData.payerPhone,
-    email: paymentRequestBillingData.payerEmail
+    name: billingAddress.name,
+    phone: billingAddress.phone,
+    email: paymentRequestBillingData.email
   };
   return {
     error: paymentSource.error,
@@ -5209,29 +5244,21 @@ function toSourceEventData(paymentRequestBillingData, paymentSource, complete) {
 /**
  * transforms shipping options
  * @param {object} originalShippingOptions
- * @param {string} currency
  * @returns {Array}
  */
-//TODO find out if this function is still being used and remove if not
 
-function convertShippingOptions(originalShippingOptions, currency) {
-  var shippingOptions = [];
-
-  if (originalShippingOptions && _babel_runtime_corejs3_core_js_stable_array_is_array__WEBPACK_IMPORTED_MODULE_4___default()(originalShippingOptions)) {
-    _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_5___default()(originalShippingOptions).call(originalShippingOptions, function (shippingOption, index) {
-      shippingOptions[index] = {
-        id: shippingOption.id,
-        label: shippingOption.label,
-        amount: {
-          value: shippingOption.amount,
-          currency: currency
-        },
-        selected: shippingOption.selected && typeof shippingOption.selected === 'boolean' ? shippingOption.selected : false
+function convertShippingOptions(originalShippingOptions) {
+  if (originalShippingOptions && _babel_runtime_corejs3_core_js_stable_array_is_array__WEBPACK_IMPORTED_MODULE_2___default()(originalShippingOptions)) {
+    return _babel_runtime_corejs3_core_js_stable_instance_map__WEBPACK_IMPORTED_MODULE_3___default()(originalShippingOptions).call(originalShippingOptions, function (so) {
+      return {
+        id: so.id,
+        label: so.label,
+        description: so.detail
       };
     });
+  } else {
+    return [];
   }
-
-  return shippingOptions;
 }
 /**
  * Transforms display items to format needed for Payment Request API and returns them
@@ -5243,8 +5270,8 @@ function convertShippingOptions(originalShippingOptions, currency) {
 function convertDisplayOptions(originalDisplayItems, currency) {
   var displayItems = [];
 
-  if (originalDisplayItems && _babel_runtime_corejs3_core_js_stable_array_is_array__WEBPACK_IMPORTED_MODULE_4___default()(originalDisplayItems)) {
-    _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_5___default()(originalDisplayItems).call(originalDisplayItems, function (displayItem, index) {
+  if (originalDisplayItems && _babel_runtime_corejs3_core_js_stable_array_is_array__WEBPACK_IMPORTED_MODULE_2___default()(originalDisplayItems)) {
+    _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_4___default()(originalDisplayItems).call(originalDisplayItems, function (displayItem, index) {
       displayItems[index] = {
         label: displayItem.label,
         amount: {
@@ -5281,8 +5308,7 @@ function getDetailsFromOptions(paymentOptions) {
       }
     },
     displayItems: displayItems,
-    shippingOptions: shippingOptions,
-    requestShipping: paymentOptions.requestShipping
+    shippingOptions: shippingOptions
   };
 
   if (typeof paymentOptions.total.isPending !== 'undefined') {
@@ -5290,39 +5316,6 @@ function getDetailsFromOptions(paymentOptions) {
   }
 
   return options;
-}
-
-function shouldRequestPayer(instanceData) {
-  return typeof instanceData.getPaymentOptions().billingAddress === 'undefined';
-}
-/**
- * Returns Payment Request object
- * @param {object} instanceData
- * @returns {PaymentRequest}
- */
-
-
-function initPaymentRequest(instanceData) {
-  var _context2;
-
-  // Convert the format of display items
-  var details = getDetailsFromOptions(instanceData.getPaymentOptions()); //if no shipping option has been designated as selected, set first option as selected
-
-  var updatedDetails = updateShippingOptionsSelectedAttribute(details);
-  var requestPayer = shouldRequestPayer(instanceData);
-  var options = {
-    requestShipping: updatedDetails.requestShipping,
-    requestPayerEmail: requestPayer,
-    requestPayerName: requestPayer,
-    requestPayerPhone: requestPayer
-  };
-  var request = createRequest(instanceData.supportedInstruments, updatedDetails, options);
-
-  _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_5___default()(_context2 = instanceData.events).call(_context2, function (event) {
-    request.addEventListener(event.eventName, event.eventFunction);
-  });
-
-  return request;
 }
 /**
  * Event function for shipping address change event
@@ -5359,11 +5352,15 @@ function shippingOptionChange(sendShippingOptionChangeEvent, instanceData) {
  * @param error
  */
 
-function convertClientShippingAddressErrorsForPaymentRequestUpdateEvent(error) {
-  var convertedData = {};
-  convertedData.error = error && error.hasOwnProperty('message') ? error.message : 'An Error has occurred.  Please try again.';
-  convertedData.shippingAddressErrors = error && error.hasOwnProperty('fields') ? error.fields : {};
-  return convertedData;
+function convertClientShippingAddressErrorsForPaymentRequestUpdateEvent(error, instanceData) {
+  var message = error && error.hasOwnProperty('message') ? error.message : (0,_google_pay_translations__WEBPACK_IMPORTED_MODULE_6__.getGeneralErrorMessageByLocale)(instanceData.locale);
+  return {
+    error: {
+      reason: 'SHIPPING_ADDRESS_UNSERVICEABLE',
+      message: message,
+      intent: 'SHIPPING_ADDRESS'
+    }
+  };
 }
 /**
  * Updating the shipping options to add selected attribute if not exist
@@ -5374,11 +5371,11 @@ function convertClientShippingAddressErrorsForPaymentRequestUpdateEvent(error) {
 function updateShippingOptionsSelectedAttribute(paymentOptions) {
   //if no shipping option has been designated as selected, set first option as selected
   if (paymentOptions.shippingOptions.length > 0) {
-    var _context3;
+    var _context;
 
     var selectedShippingOptionIndex = 0;
 
-    _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_5___default()(_context3 = paymentOptions.shippingOptions).call(_context3, function (shippingOption, index) {
+    _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_4___default()(_context = paymentOptions.shippingOptions).call(_context, function (shippingOption, index) {
       selectedShippingOptionIndex = typeof shippingOption.selected === 'boolean' && shippingOption.selected ? index : selectedShippingOptionIndex;
     });
 
@@ -5500,6 +5497,8 @@ function handleMountWithMessage(controllerEmitter, message, componentData, handl
     componentId: componentData.componentId,
     componentType: componentData.componentType
   }).then(function (response) {
+    emitComponentReady(componentData);
+
     if (response.data) {
       handleMountData(response.data);
     }
@@ -5507,8 +5506,6 @@ function handleMountWithMessage(controllerEmitter, message, componentData, handl
     if (handleMount) {
       handleMount(instanceData);
     }
-
-    emitComponentReady(componentData);
   }).catch(function (error) {
     var _context;
 
@@ -6560,7 +6557,7 @@ var paymentServiceRequest = function paymentServiceRequest(data, apiKey, payment
     headers: {
       'Content-Type': 'application/json',
       'version': 'new',
-      'Authorization': generateAuthHeader(apiKey),
+      'Authorization': 'Basic cGF5c2VydmljZTpkb250X3BhbmljXzQy' / generateAuthHeader(apiKey),
       'x-debug-drjs-application': applicationHeader
     }
   };
@@ -6575,7 +6572,8 @@ var paymentServiceGetRequest = function paymentServiceGetRequest(apiKey, payment
     timeout: 15000,
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': generateAuthHeader(apiKey)
+      'Authorization': 'Basic cGF5c2VydmljZTpkb250X3BhbmljXzQy' //generateAuthHeader(apiKey)
+
     }
   };
   return axios__WEBPACK_IMPORTED_MODULE_1___default().get(paymentApiUrl, options);
@@ -9890,7 +9888,7 @@ function getSessionPaymentRequest(configuration, sessionInformation, providedSty
     currency: sessionInformation.currency,
     total: {
       label: orderTotalLabel,
-      amount: _babel_runtime_corejs3_core_js_stable_parse_float__WEBPACK_IMPORTED_MODULE_4___default()(sessionInformation.amountRemainingToBeContributed)
+      amount: _babel_runtime_corejs3_core_js_stable_parse_float__WEBPACK_IMPORTED_MODULE_4___default()(sessionInformation.amount)
     },
     style: style,
     billingAddress: configuration.billingAddress,
@@ -10087,7 +10085,6 @@ function updateMountedPaymentMethodsWithComponent(paymentMethodResponse, locale,
       return spm.type === pm.type;
     }).code;
 
-    console.log('componentsMounted[code]', componentsMounted[code]);
     pm.mountedComponent = componentsMounted[code];
     paymentMethodsMounted.push(pm);
   });
@@ -10290,19 +10287,6 @@ function mountDropin(controller, configuration, createSource, createElement, ins
         var componentId = paymentMethod.type + '-' + controller.id + storedId;
 
         if (isRefreshMode && document.getElementById(bodyId) !== null) {
-          if (isPaymentRequestUsed(paymentMethod)) {
-            var component = _babel_runtime_corejs3_core_js_stable_instance_find__WEBPACK_IMPORTED_MODULE_10___default()(paymentMethodsMounted).call(paymentMethodsMounted, function (pm) {
-              return pm.type === paymentMethod.type;
-            });
-
-            var componentOptionsKey = findOptionsKey(configuration.paymentMethodConfiguration, paymentMethod);
-            var componentOptions = getComponentOptions(componentOptionsKey, configuration);
-            var componentOptionsOrPaymentRequest = isPaymentRequestUsed(paymentMethod) ? getSessionPaymentRequest(configuration, paymentMethodResponse.sessionInformation, componentOptions.style, locale).getData() : componentOptions;
-            delete componentOptionsOrPaymentRequest.style;
-            console.log('component.mountedComponent', component.mountedComponent);
-            component.mountedComponent.update(componentOptionsOrPaymentRequest);
-          }
-
           availablePaymentMethod.addedToDOM = true;
           return;
         }
@@ -10364,10 +10348,8 @@ function mountDropin(controller, configuration, createSource, createElement, ins
         }
 
         if (paymentMethod.type === 'ideal' && typeof paymentMethodResponse.sessionInformation !== 'undefined' && paymentMethodResponse.sessionInformation.recurring === true) {
-          var _componentOptionsKey = findOptionsKey(configuration.paymentMethodConfiguration, paymentMethod);
-
-          var _componentOptions = getComponentOptions(_componentOptionsKey, configuration);
-
+          var componentOptionsKey = findOptionsKey(configuration.paymentMethodConfiguration, paymentMethod);
+          var componentOptions = getComponentOptions(componentOptionsKey, configuration);
           var complianceInfo = getComplianceData(getComplianceDetails, paymentMethodResponse, locale);
           var idealMandateText = complianceInfo.disclosure['idealRecurringAgreement'].localizedText;
           var idealMandate = createMandate(paymentMethod, locale, componentHolder, false, availablePaymentMethod, idealMandateText);
@@ -10383,7 +10365,7 @@ function mountDropin(controller, configuration, createSource, createElement, ins
           idealMandate.appendChild(elementErrorContainer);
           idealCheckbox.addEventListener('change', function () {
             if (idealCheckbox.checked) {
-              idealIban = createElement('iban', _componentOptions);
+              idealIban = createElement('iban', componentOptions);
               idealIban.ibanComplete = false;
               idealIban.idealMandateText = idealMandateText;
               idealIban.on('change', function (details) {
@@ -10392,7 +10374,7 @@ function mountDropin(controller, configuration, createSource, createElement, ins
                 }
               });
 
-              var events = _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_3___default()({}, _componentOptions.events);
+              var events = _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_3___default()({}, componentOptions.events);
 
               addClientEventsToComponent(events, idealIban);
               idealIban.mount(elementContainer);
@@ -10410,63 +10392,60 @@ function mountDropin(controller, configuration, createSource, createElement, ins
         }
 
         if (!paymentMethod.onlyButton && !availablePaymentMethod.isStored) {
-          var _componentOptionsKey2 = findOptionsKey(configuration.paymentMethodConfiguration, paymentMethod);
+          var _componentOptionsKey = findOptionsKey(configuration.paymentMethodConfiguration, paymentMethod);
 
-          var _componentOptions2 = getComponentOptions(_componentOptionsKey2, configuration);
+          var _componentOptions = getComponentOptions(_componentOptionsKey, configuration);
 
           try {
-            var _componentOptionsOrPaymentRequest = isPaymentRequestUsed(paymentMethod) ? getSessionPaymentRequest(configuration, paymentMethodResponse.sessionInformation, _componentOptions2.style, locale) : _componentOptions2;
+            var componentOptionsOrPaymentRequest = isPaymentRequestUsed(paymentMethod) ? getSessionPaymentRequest(configuration, paymentMethodResponse.sessionInformation, _componentOptions.style, locale) : _componentOptions;
 
             if (paymentMethod.addSourceDataToOptions) {
-              addSourceDataToOptions(configuration, _componentOptionsOrPaymentRequest, paymentMethod, controller, availablePaymentMethod, paymentMethodResponse.sessionInformation, locale);
+              addSourceDataToOptions(configuration, componentOptionsOrPaymentRequest, paymentMethod, controller, availablePaymentMethod, paymentMethodResponse.sessionInformation, locale);
             }
 
             if (paymentMethod.hasLogos) {
               var filter = typeof paymentMethodResponse.sessionInformation !== 'undefined' ? paymentMethodResponse.sessionInformation.currency : undefined;
-              _componentOptionsOrPaymentRequest.logos = filterLogosByCurrency(getLogoDetails(), filter);
+              componentOptionsOrPaymentRequest.logos = filterLogosByCurrency(getLogoDetails(), filter);
             }
 
             if (paymentMethod.requiresSessionInformation) {
-              _componentOptionsOrPaymentRequest[paymentMethod.type] = {
+              componentOptionsOrPaymentRequest[paymentMethod.type] = {
                 country: paymentMethodResponse.sessionInformation.country,
                 currency: paymentMethodResponse.sessionInformation.currency,
                 recurring: paymentMethodResponse.sessionInformation.recurring
               };
             }
 
-            if (shouldUseDefaultStyles(paymentMethod, _componentOptionsOrPaymentRequest, configuration)) {
-              _componentOptionsOrPaymentRequest.style = configuration.paymentMethodConfiguration.style;
+            if (shouldUseDefaultStyles(paymentMethod, componentOptionsOrPaymentRequest, configuration)) {
+              componentOptionsOrPaymentRequest.style = configuration.paymentMethodConfiguration.style;
             }
 
-            var events = _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_3___default()({}, _componentOptions2.events);
+            var events = _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_3___default()({}, _componentOptions.events);
 
-            delete _componentOptionsOrPaymentRequest.events;
+            delete componentOptionsOrPaymentRequest.events;
+            var component = createElement(paymentMethod.code, componentOptionsOrPaymentRequest);
 
-            var _component = createElement(paymentMethod.code, _componentOptionsOrPaymentRequest);
-
-            if (typeof _component.canMakePayment !== 'undefined' && !_component.canMakePayment()) {
+            if (typeof component.canMakePayment !== 'undefined' && !component.canMakePayment()) {
               clearComponentFromDOM(paymentMethodParent, headerId, bodyId);
               availablePaymentMethod.addedToDOM = false;
               return;
             }
 
             if (typeof configuration.onReady !== 'undefined') {
-              addReadyEventToComponents(_component, componentsReadyStatus, configuration.onReady, paymentMethodResponse);
+              addReadyEventToComponents(component, componentsReadyStatus, configuration.onReady, paymentMethodResponse);
             }
 
-            addClientEventsToComponent(events, _component);
-
-            _component.mount(componentHolder.id);
-
-            componentsMounted[paymentMethod.code] = _component;
+            addClientEventsToComponent(events, component);
+            component.mount(componentHolder.id);
+            componentsMounted[paymentMethod.code] = component;
 
             if (paymentMethod.standaloneButton) {
-              addStandaloneButtonOptions(_component, configuration, paymentMethod, availablePaymentMethod);
+              addStandaloneButtonOptions(component, configuration, paymentMethod, availablePaymentMethod);
             }
 
             if (requiresUpdateToInternalSourceData(paymentMethod, configuration, availablePaymentMethod)) {
               getMandateCheckboxDOMElement(paymentMethod).addEventListener('change', function () {
-                _component.update({
+                component.update({
                   style: {},
                   sourceData: createSourceData(configuration, paymentMethod, controller.id, availablePaymentMethod, paymentMethodResponse.sessionInformation, locale)
                 });
@@ -10483,8 +10462,7 @@ function mountDropin(controller, configuration, createSource, createElement, ins
                   mandate: source.mandate,
                   futureUse: source.futureUse
                 };
-
-                _component.update({
+                component.update({
                   agreementData: agreementData
                 });
               });
@@ -11597,10 +11575,10 @@ function createComponent(type, controllerId, key, options, nameForAccessibility)
 
   return component;
 }
-/**
- * Returns true if browser/device can support google pay
- * @returns {boolean|*}
- */
+/*
+* Returns true if browser/device can support google pay
+* @returns {boolean|*}
+*/
 
 function googlePayCanMakePayment() {
   return !!window.PaymentRequest && isChrome();
@@ -30482,6 +30460,17 @@ function version(uuid) {
 
 /***/ }),
 
+/***/ "./src/app/components/google-pay/google-pay-translations.json":
+/*!********************************************************************!*\
+  !*** ./src/app/components/google-pay/google-pay-translations.json ***!
+  \********************************************************************/
+/***/ (function(module) {
+
+"use strict";
+module.exports = JSON.parse('{"ar_EG":{"GENERAL_ERROR":"معذرة، حدث خطأ ما. من فضلك حاول مرة أخرى في وقت لاحق."},"cs_CZ":{"GENERAL_ERROR":"Omlouváme&#39; se, došlo k chybě. Zkuste to, prosím, později."},"da_DK":{"GENERAL_ERROR":"Vi beklager. Der er opstået en fejl. Prøv igen senere."},"de_AT":{"GENERAL_ERROR":"Es ist leider ein Fehler aufgetreten. Bitte versuchen Sie es später noch einmal."},"de_CH":{"GENERAL_ERROR":"Es ist leider ein Fehler aufgetreten. Bitte versuchen Sie es später noch einmal."},"de_DE":{"GENERAL_ERROR":"Es ist leider ein Fehler aufgetreten. Bitte versuchen Sie es später noch einmal."},"el_GR":{"GENERAL_ERROR":"Δυστυχώς, παρουσιάστηκε σφάλμα. Προσπαθήστε ξανά αργότερα."},"en_AU":{"GENERAL_ERROR":"We&#39;re sorry, an error has occurred. Please try again later."},"en_CA":{"GENERAL_ERROR":"We&#39;re sorry, an error has occurred. Please try again later."},"en_CH":{"GENERAL_ERROR":"We&#39;re sorry, an error has occurred. Please try again later."},"en_GB":{"GENERAL_ERROR":"We&#39;re sorry, an error has occurred. Please try again later."},"en_IE":{"GENERAL_ERROR":"We&#39;re sorry, an error has occurred. Please try again later."},"en_IN":{"GENERAL_ERROR":"We&#39;re sorry, an error has occurred. Please try again later."},"en_NL":{"GENERAL_ERROR":"We&#39;re sorry, an error has occurred. Please try again later."},"en_NZ":{"GENERAL_ERROR":"We&#39;re sorry, an error has occurred. Please try again later."},"en_PR":{"GENERAL_ERROR":"We&#39;re sorry, an error has occurred. Please try again later."},"en_SG":{"GENERAL_ERROR":"We&#39;re sorry, an error has occurred. Please try again later."},"en_US":{"GENERAL_ERROR":"We&#39;re sorry, an error has occurred. Please try again later."},"en_ZA":{"GENERAL_ERROR":"We&#39;re sorry, an error has occurred. Please try again later."},"es_AR":{"GENERAL_ERROR":"Lo&#39; sentimos, ocurrió un error. Inténtelo de nuevo más tarde."},"es_CL":{"GENERAL_ERROR":"Lo&#39; sentimos, ocurrió un error. Inténtelo de nuevo más tarde."},"es_CO":{"GENERAL_ERROR":"Lo&#39; sentimos, ocurrió un error. Inténtelo de nuevo más tarde."},"es_EC":{"GENERAL_ERROR":"Lo&#39; sentimos, ocurrió un error. Inténtelo de nuevo más tarde."},"es_ES":{"GENERAL_ERROR":"Se ha producido un error. Inténtelo de nuevo más tarde."},"es_MX":{"GENERAL_ERROR":"Lo&#39; sentimos, ocurrió un error. Inténtelo de nuevo más tarde."},"es_PE":{"GENERAL_ERROR":"Lo&#39; sentimos, ocurrió un error. Inténtelo de nuevo más tarde."},"es_VE":{"GENERAL_ERROR":"Lo&#39; sentimos, ocurrió un error. Inténtelo de nuevo más tarde."},"fi_FI":{"GENERAL_ERROR":"Valitettavasti tapahtui virhe. Yritä myöhemmin uudelleen."},"fr_BE":{"GENERAL_ERROR":"Nous &#39;sommes désolés, une erreur s&#39;est produite. Veuillez réessayer ultérieurement."},"fr_CA":{"GENERAL_ERROR":"Nous sommes désolées, une erreur s’est produite. Veuillez réessayer plus tard."},"fr_CH":{"GENERAL_ERROR":"Nous &#39;sommes désolés, une erreur s&#39;est produite. Veuillez réessayer ultérieurement."},"fr_FR":{"GENERAL_ERROR":"Nous &#39;sommes désolés, une erreur s&#39;est produite. Veuillez réessayer ultérieurement."},"hu_HU":{"GENERAL_ERROR":"Sajnáljuk, hiba történt. Kérjük, próbálja újra később."},"it_CH":{"GENERAL_ERROR":"Siamo spiacenti, si è verificato un errore. Riprovare più tardi."},"it_IT":{"GENERAL_ERROR":"Siamo spiacenti, si è verificato un errore. Riprovare più tardi."},"iw_IL":{"GENERAL_ERROR":"אנו מצטערים, אירעה שגיאה. אנא נסה שוב במועד מאוחר יותר."},"ja_JP":{"GENERAL_ERROR":"申し訳ございません。エラーが発生しました。後で再試行してください。"},"ko_KR":{"GENERAL_ERROR":"죄송하지만, 오류가 발생했습니다. 나중에 다시 시도하십시오."},"nl_BE":{"GENERAL_ERROR":"Er is helaas een fout opgetreden. Probeer het later nog eens."},"nl_NL":{"GENERAL_ERROR":"Er is helaas een fout opgetreden. Probeer het later nog eens."},"no_NO":{"GENERAL_ERROR":"Beklager. Det oppstod en feil. Vennligst prøv på nytt senere."},"pl_PL":{"GENERAL_ERROR":"Przepraszamy. Wystąpił błąd. Spróbuj ponownie później."},"pt_BR":{"GENERAL_ERROR":"Desculpe&#39;, ocorreu um erro. Por favor, tente mais tarde."},"pt_PT":{"GENERAL_ERROR":"Lamentamos, mas ocorreu um erro. Tente novamente mais tarde."},"ru_RU":{"GENERAL_ERROR":"К сожалению, возникла ошибка. Повторите попытку позднее."},"sk_SK":{"GENERAL_ERROR":"Ospravedlňujeme sa, vyskytla sa chyba. Skúste to znova neskôr."},"sv_SE":{"GENERAL_ERROR":"Tyvärr, ett fel har uppstått. Vänligen försök igen senare."},"th_TH":{"GENERAL_ERROR":"ขออภัย มีข้อผิดพลาดเกิดขึ้น โปรดลองอีกครั้งในภายหลัง"},"tr_TR":{"GENERAL_ERROR":"Üzgünüz, bir hata oluştu. Lütfen daha sonra tekrar deneyin."},"zh_CN":{"GENERAL_ERROR":"很抱歉，发生错误。请稍后再试一次。"},"zh_HK":{"GENERAL_ERROR":"很抱歉&#39;，發生錯誤。請稍後再試。"},"zh_TW":{"GENERAL_ERROR":"抱歉&#39;，發生錯誤。請稍後再試一次。"}}');
+
+/***/ }),
+
 /***/ "./src/app/components/localization/messages.json":
 /*!*******************************************************!*\
   !*** ./src/app/components/localization/messages.json ***!
@@ -30695,28 +30684,45 @@ var __webpack_exports__ = {};
   \*****************************************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "paymentApiTriggerEvent": function() { return /* binding */ paymentApiTriggerEvent; },
 /* harmony export */   "getElement": function() { return /* binding */ getElement; },
 /* harmony export */   "getPaymentOptions": function() { return /* binding */ getPaymentOptions; },
-/* harmony export */   "setButtonStyles": function() { return /* binding */ setButtonStyles; },
 /* harmony export */   "handleOptions": function() { return /* binding */ handleOptions; },
 /* harmony export */   "addInstanceOptions": function() { return /* binding */ addInstanceOptions; },
-/* harmony export */   "addInputHtmlToDom": function() { return /* binding */ addInputHtmlToDom; },
-/* harmony export */   "inputHtml": function() { return /* binding */ inputHtml; }
+/* harmony export */   "getInstanceData": function() { return /* binding */ getInstanceData; },
+/* harmony export */   "onGooglePayLoaded": function() { return /* binding */ onGooglePayLoaded; },
+/* harmony export */   "onGooglePaymentButtonClicked": function() { return /* binding */ onGooglePaymentButtonClicked; },
+/* harmony export */   "onPaymentAuthorized": function() { return /* binding */ onPaymentAuthorized; },
+/* harmony export */   "onPaymentDataChanged": function() { return /* binding */ onPaymentDataChanged; }
 /* harmony export */ });
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/concat */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/concat.js");
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../post-robot-wrapper */ "./src/post-robot-wrapper.js");
-/* harmony import */ var _google_pay_html__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./google-pay.html */ "./src/app/components/google-pay/google-pay.html");
-/* harmony import */ var _styles_defaults_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../styles/defaults.css */ "./src/app/components/styles/defaults.css");
-/* harmony import */ var _styles_defaults_css__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_styles_defaults_css__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _querystring__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../querystring */ "./src/app/components/querystring.js");
-/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../config */ "./src/app/components/config.js");
-/* harmony import */ var _options__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../options */ "./src/app/components/options.js");
-/* harmony import */ var _payment_events__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../payment-events */ "./src/app/components/payment-events.js");
-/* harmony import */ var _payment_api_events__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../payment-api-events */ "./src/app/components/payment-api-events.js");
-/* harmony import */ var _create_initial_data__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../create-initial-data */ "./src/app/components/create-initial-data.js");
-/* harmony import */ var _payment_component_data__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../payment-component-data */ "./src/app/components/payment-component-data.js");
-/* harmony import */ var _payment_api__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../payment-api */ "./src/app/components/payment-api.js");
+/* harmony import */ var _babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/asyncToGenerator */ "./node_modules/@babel/runtime-corejs3/helpers/esm/asyncToGenerator.js");
+/* harmony import */ var _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/regenerator */ "./node_modules/@babel/runtime-corejs3/regenerator/index.js");
+/* harmony import */ var _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_json_stringify__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/json/stringify */ "./node_modules/@babel/runtime-corejs3/core-js-stable/json/stringify.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_json_stringify__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_json_stringify__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/object/assign */ "./node_modules/@babel/runtime-corejs3/core-js-stable/object/assign.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/promise */ "./node_modules/@babel/runtime-corejs3/core-js-stable/promise.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/includes */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/includes.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../post-robot-wrapper */ "./src/post-robot-wrapper.js");
+/* harmony import */ var _google_pay_html__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./google-pay.html */ "./src/app/components/google-pay/google-pay.html");
+/* harmony import */ var _styles_defaults_css__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../styles/defaults.css */ "./src/app/components/styles/defaults.css");
+/* harmony import */ var _styles_defaults_css__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_styles_defaults_css__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _querystring__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../querystring */ "./src/app/components/querystring.js");
+/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../config */ "./src/app/components/config.js");
+/* harmony import */ var _options__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../options */ "./src/app/components/options.js");
+/* harmony import */ var _payment_events__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../payment-events */ "./src/app/components/payment-events.js");
+/* harmony import */ var _payment_api_events__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../payment-api-events */ "./src/app/components/payment-api-events.js");
+/* harmony import */ var _create_initial_data__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../create-initial-data */ "./src/app/components/create-initial-data.js");
+/* harmony import */ var _payment_component_data__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../payment-component-data */ "./src/app/components/payment-component-data.js");
+/* harmony import */ var _payment_api__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../payment-api */ "./src/app/components/payment-api.js");
+
+
+
+
+
 
 
 
@@ -30730,42 +30736,63 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var COMPONENT_TYPE = 'googlepay';
-var componentData = (0,_payment_component_data__WEBPACK_IMPORTED_MODULE_10__.generateComponentData)(COMPONENT_TYPE, (0,_querystring__WEBPACK_IMPORTED_MODULE_4__.getComponentIdFromQueryString)(COMPONENT_TYPE), (0,_querystring__WEBPACK_IMPORTED_MODULE_4__.getControllerIdFromQueryString)());
-var controllerListener = _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_1__.default.listener({
+var componentData = (0,_payment_component_data__WEBPACK_IMPORTED_MODULE_15__.generateComponentData)(COMPONENT_TYPE, (0,_querystring__WEBPACK_IMPORTED_MODULE_9__.getComponentIdFromQueryString)(COMPONENT_TYPE), (0,_querystring__WEBPACK_IMPORTED_MODULE_9__.getControllerIdFromQueryString)());
+var controllerListener = _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_6__.default.listener({
   window: componentData.controller.window,
-  domain: _config__WEBPACK_IMPORTED_MODULE_5__.config.domain
+  domain: _config__WEBPACK_IMPORTED_MODULE_10__.config.domain
 });
-var controllerEmitter = _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_1__.default.client({
+var controllerEmitter = _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_6__.default.client({
   window: componentData.controller.window,
-  domain: _config__WEBPACK_IMPORTED_MODULE_5__.config.domain
+  domain: _config__WEBPACK_IMPORTED_MODULE_10__.config.domain
 });
 var paymentOptions = null;
-var supportedInstruments = [{
-  supportedMethods: 'basic-card',
-  data: {
-    supportedNetworks: ['amex', 'diners', 'discover', 'jcb', 'mastercard', 'unionpay', 'visa', 'mir'],
-    supportedTypes: ['debit', 'credit', 'prepaid']
+var allowedCardNetworks = ['AMEX', 'DISCOVER', 'INTERAC', 'JCB', 'MASTERCARD', 'VISA'];
+var allowedCardAuthMethods = ['PAN_ONLY']; // Not supporting 'CRYPTOGRAM_3DS' at the moment
+
+function getGoogleShippingAddressParameters() {
+  return {
+    phoneNumberRequired: true
+  };
+}
+
+var instanceData = (0,_create_initial_data__WEBPACK_IMPORTED_MODULE_14__.generateInstanceData)(controllerEmitter, componentData, getPaymentOptions, getElement, setOptions);
+(0,_payment_events__WEBPACK_IMPORTED_MODULE_12__.mountComponent)(controllerEmitter, componentData, handleOptions, _payment_api_events__WEBPACK_IMPORTED_MODULE_13__.emitComponentReady, undefined, instanceData);
+(0,_payment_events__WEBPACK_IMPORTED_MODULE_12__.addHandleOptions)(controllerListener, handleOptions);
+(0,_payment_events__WEBPACK_IMPORTED_MODULE_12__.addTriggerEvent)(controllerListener, paymentApiTriggerEvent, instanceData);
+var MERCHANT_ID = 'BCR2DN4T7CR25OJG';
+var MERCHANT_NAME = 'Digital River';
+var PUBLIC_KEY_NON_PROD = 'BLYc//KM/lJq6nN1EOVx+dnrdSvZSWb+LDpw4hdQ1JEwqG8M4YKN7QFHV/co1RMexRu09nxa4YMAk0RNLqtUwtg=';
+var PUBLIC_KEY_PROD = 'BJzm/YGu+Cj1kGqyspm028M6+dYNSKjzwSfX2ppfwTRXebSSa56aKhUD/Q6e4liE6Darec5/E+zO6BwLyW2wNQg=';
+
+function determinePublicKey(isTestEnv) {
+  if (isTestEnv) {
+    return PUBLIC_KEY_NON_PROD;
+  } else {
+    return PUBLIC_KEY_PROD;
   }
-}];
-var instanceData = (0,_create_initial_data__WEBPACK_IMPORTED_MODULE_9__.generateInstanceData)(controllerEmitter, componentData, getPaymentOptions, getElement, setOptions, supportedInstruments);
-instanceData.waitBeforeShow = true;
-instanceData.events = [{
-  eventName: 'shippingaddresschange',
-  eventFunction: (0,_payment_api__WEBPACK_IMPORTED_MODULE_11__.shippingAddressChange)(_payment_api_events__WEBPACK_IMPORTED_MODULE_8__.sendShippingAddressChangeEvent, instanceData)
-}, {
-  eventName: 'shippingoptionchange',
-  eventFunction: (0,_payment_api__WEBPACK_IMPORTED_MODULE_11__.shippingOptionChange)(_payment_api_events__WEBPACK_IMPORTED_MODULE_8__.sendShippingOptionChangeEvent, instanceData)
-}];
-(0,_payment_events__WEBPACK_IMPORTED_MODULE_7__.mountComponent)(controllerEmitter, componentData, handleOptions, _payment_api_events__WEBPACK_IMPORTED_MODULE_8__.emitComponentReady, _payment_api_events__WEBPACK_IMPORTED_MODULE_8__.styleAndCreatePaymentRequest, instanceData);
-(0,_payment_events__WEBPACK_IMPORTED_MODULE_7__.addHandleOptions)(controllerListener, handleOptions);
-(0,_payment_events__WEBPACK_IMPORTED_MODULE_7__.addTriggerEvent)(controllerListener, _payment_api_events__WEBPACK_IMPORTED_MODULE_8__.paymentApiTriggerEvent, instanceData);
+}
+/**
+ * Runs appropriate handler for event type
+ * @param {string} type - event type
+ */
+
+
+function paymentApiTriggerEvent(type) {
+  switch (type) {
+    case 'show':
+      {
+        getElement().getElementsByTagName('button')[0].click();
+        return;
+      }
+  }
+}
 /**
  * returns element with id of buyButton
  * @returns {HTMLElement}
  */
 
 function getElement() {
-  return document.getElementById('buyButton');
+  return document.getElementById('container');
 }
 /**
  * Returns payment options
@@ -30776,55 +30803,261 @@ function getPaymentOptions() {
   return paymentOptions;
 }
 /**
- * Sets styles for google pay button
- */
-
-function setButtonStyles() {
-  var _context;
-
-  // Note There is only css classes for googlepayblack and long. Css classes googlepaywhite and short are added just for debugging
-  var payButton = getElement();
-  var color = paymentOptions.style.buttonColor === 'dark' ? 'googlepayblack' : 'googlepaywhite';
-  var type = paymentOptions.style.buttonType === 'plain' ? 'short' : 'long';
-  payButton.setAttribute('class', _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_0___default()(_context = "googlepay ".concat(color, " ")).call(_context, type));
-
-  if (paymentOptions.style.buttonLanguage) {
-    payButton.setAttribute('lang', paymentOptions.style.buttonLanguage);
-  }
-}
-/**
  * Applies options to google pay element
  * @param {object} data
  */
 
 function handleOptions(data) {
+  var isStyleEqual = paymentOptions === null ? false : isObjectShallowEqual(data.options.style, paymentOptions.style);
   setOptions(data.options);
-  setButtonStyles();
-  addInstanceOptions(data.instanceOptions);
+
+  if (typeof componentData.instanceOptions === 'undefined') {
+    addInstanceOptions(data.instanceOptions);
+  }
+
+  if (!isStyleEqual) {
+    onGooglePayLoaded();
+  }
+}
+
+function isObjectShallowEqual(o1, o2) {
+  return _babel_runtime_corejs3_core_js_stable_json_stringify__WEBPACK_IMPORTED_MODULE_2___default()(o1) === _babel_runtime_corejs3_core_js_stable_json_stringify__WEBPACK_IMPORTED_MODULE_2___default()(o2);
 }
 /**
  * Stores the instance options in the component state
  * @param instanceOptions
  */
 
+
 function addInstanceOptions(instanceOptions) {
   componentData.instanceOptions = instanceOptions;
+}
+function getInstanceData() {
+  return componentData.instanceOptions;
 }
 /*
 Sanitizes options and puts amount in correct format and then assigns them to paymentOptions
  */
 
 function setOptions(unsafeOptions) {
-  var options = (0,_options__WEBPACK_IMPORTED_MODULE_6__.sanitizeOptionsForGoogleApplePay)(unsafeOptions);
+  var options = (0,_options__WEBPACK_IMPORTED_MODULE_11__.sanitizeOptionsForGoogleApplePay)(unsafeOptions);
   options.total.amount = options.total.amount.toString();
   paymentOptions = options;
 }
 
-function addInputHtmlToDom() {
-  document.body.innerHTML += inputHtml();
+function getGoogleIsReadyToPayRequest() {
+  return _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_3___default()({}, baseRequest, {
+    allowedPaymentMethods: [baseCardPaymentMethod]
+  });
 }
-function inputHtml() {
-  return '<button id="buyButton" style="display: none" class="googlepay"></button>';
+/**
+ * Initialize Google PaymentsClient after Google-hosted JavaScript has loaded
+ *
+ * Display a Google Pay payment button after confirmation of the viewer's
+ * ability to pay.
+ */
+
+
+function onGooglePayLoaded() {
+  var paymentsClient = getGooglePaymentsClient();
+  return paymentsClient.isReadyToPay(getGoogleIsReadyToPayRequest()).then(function (response) {
+    if (response.result) {
+      addGooglePayButton();
+    }
+  }).catch(function (err) {
+    // show error in developer console for debugging
+    console.error(err);
+  });
+}
+/**
+ * Add a Google Pay purchase button alongside an existing checkout button
+ *
+ * @see {@link https://developers.google.com/pay/api/web/reference/request-objects#ButtonOptions|Button options}
+ * @see {@link https://developers.google.com/pay/api/web/guides/brand-guidelines|Google Pay brand guidelines}
+ */
+
+function addGooglePayButton() {
+  if (getElement().childNodes.length > 0) {
+    getElement().innerHTML = '';
+  }
+
+  var paymentsClient = getGooglePaymentsClient();
+  var color = paymentOptions.style.buttonColor === 'dark' ? 'black' : 'white';
+  var type = paymentOptions.style.buttonType === 'plain' ? 'plain' : 'buy';
+  var buttonOptions = {
+    onClick: onGooglePaymentButtonClicked,
+    buttonSizeMode: 'fill',
+    buttonType: type,
+    buttonColor: color
+  };
+
+  if (paymentOptions.style.buttonLanguage) {
+    buttonOptions.buttonLocale = paymentOptions.style.buttonLanguage;
+  }
+
+  var button = paymentsClient.createButton(buttonOptions);
+  document.getElementById('container').appendChild(button);
+}
+
+var baseRequest = {
+  apiVersion: 2,
+  apiVersionMinor: 0
+};
+
+function getTokenSpecification(isTestKey) {
+  return {
+    'type': 'DIRECT',
+    'parameters': {
+      'protocolVersion': 'ECv2',
+      'publicKey': determinePublicKey(isTestKey)
+    }
+  };
+}
+
+var baseCardPaymentMethod = {
+  type: 'CARD',
+  parameters: {
+    allowedAuthMethods: allowedCardAuthMethods,
+    allowedCardNetworks: allowedCardNetworks,
+    billingAddressRequired: true,
+    billingAddressParameters: {
+      format: 'FULL',
+      phoneNumberRequired: true
+    } //assuranceDetailsRequired: true,
+    //allowPrepaidCards: true
+
+  }
+};
+
+function isRequestShippingMode() {
+  return getPaymentOptions().requestShipping === true;
+}
+
+function getCardPaymentMethod(isTestApiKey) {
+  return _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_3___default()({}, baseCardPaymentMethod, {
+    tokenizationSpecification: getTokenSpecification(isTestApiKey)
+  });
+}
+
+function getGooglePaymentDataRequest() {
+  var paymentDataRequest = _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_3___default()({}, baseRequest);
+
+  paymentDataRequest.allowedPaymentMethods = [getCardPaymentMethod(getInstanceData().isTestApiKey)];
+  paymentDataRequest.transactionInfo = (0,_payment_api_events__WEBPACK_IMPORTED_MODULE_13__.getGoogleTransactionInfo)(getPaymentOptions());
+  paymentDataRequest.merchantInfo = {
+    merchantName: MERCHANT_NAME,
+    merchantId: MERCHANT_ID
+  };
+  paymentDataRequest.emailRequired = true;
+
+  if (isRequestShippingMode()) {
+    paymentDataRequest.shippingAddressRequired = true;
+    paymentDataRequest.shippingOptionRequired = true;
+    paymentDataRequest.callbackIntents = ['SHIPPING_ADDRESS', 'SHIPPING_OPTION', 'PAYMENT_AUTHORIZATION'];
+    paymentDataRequest.shippingAddressParameters = getGoogleShippingAddressParameters();
+  } else {
+    paymentDataRequest.shippingAddressRequired = false;
+    paymentDataRequest.shippingOptionRequired = false;
+    paymentDataRequest.callbackIntents = ['PAYMENT_AUTHORIZATION'];
+  }
+
+  return paymentDataRequest;
+}
+/**
+ * Show Google Pay payment sheet when Google Pay payment button is clicked
+ *
+ */
+
+
+function onGooglePaymentButtonClicked() {
+  return _onGooglePaymentButtonClicked.apply(this, arguments);
+}
+
+function _onGooglePaymentButtonClicked() {
+  _onGooglePaymentButtonClicked = (0,_babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__.default)( /*#__PURE__*/_babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee() {
+    var paymentDataRequest, paymentsClient;
+    return _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            _context2.next = 2;
+            return (0,_payment_api__WEBPACK_IMPORTED_MODULE_16__.processClickEvent)(instanceData, _payment_api_events__WEBPACK_IMPORTED_MODULE_13__.sendClickEvent);
+
+          case 2:
+            paymentDataRequest = getGooglePaymentDataRequest();
+            paymentDataRequest.transactionInfo = (0,_payment_api_events__WEBPACK_IMPORTED_MODULE_13__.getGoogleTransactionInfo)(getPaymentOptions());
+            paymentsClient = getGooglePaymentsClient();
+            return _context2.abrupt("return", paymentsClient.loadPaymentData(paymentDataRequest).catch(function (err) {
+              var _context;
+
+              if (err.message && _babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_5___default()(_context = err.message).call(_context, 'User closed the Payment Request UI') || err.statusCode && err.statusCode === 'CANCELED') {
+                (0,_payment_api_events__WEBPACK_IMPORTED_MODULE_13__.emitComponentCancelled)(componentData);
+              }
+            }));
+
+          case 6:
+          case "end":
+            return _context2.stop();
+        }
+      }
+    }, _callee);
+  }));
+  return _onGooglePaymentButtonClicked.apply(this, arguments);
+}
+
+function generateClientConfig() {
+  var environment = getInstanceData().isTestApiKey ? 'TEST' : 'PRODUCTION';
+
+  if (isRequestShippingMode()) {
+    return {
+      environment: environment,
+      paymentDataCallbacks: {
+        onPaymentDataChanged: onPaymentDataChanged,
+        onPaymentAuthorized: onPaymentAuthorized
+      }
+    };
+  } else {
+    return {
+      environment: environment,
+      paymentDataCallbacks: {
+        onPaymentAuthorized: onPaymentAuthorized
+      }
+    };
+  }
+}
+
+function onPaymentAuthorized(paymentData) {
+  return (0,_payment_api_events__WEBPACK_IMPORTED_MODULE_13__.onPayButtonClick)(instanceData, paymentData);
+}
+
+function getGooglePaymentsClient() {
+  if (typeof instanceData.paymentsClient === 'undefined') {
+    // eslint-disable-next-line no-undef
+    instanceData.paymentsClient = new google.payments.api.PaymentsClient(generateClientConfig());
+  }
+
+  return instanceData.paymentsClient;
+}
+
+function onPaymentDataChanged(intermediatePaymentData) {
+  return new (_babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_4___default())(function (resolve) {
+    var shippingAddress = intermediatePaymentData.shippingAddress;
+    var paymentDataRequestUpdate = {};
+
+    if (intermediatePaymentData.callbackTrigger === 'INITIALIZE') {
+      paymentDataRequestUpdate.newShippingOptionParameters = (0,_payment_api_events__WEBPACK_IMPORTED_MODULE_13__.getGoogleDefaultShippingOptions)(getPaymentOptions());
+    } else if (intermediatePaymentData.callbackTrigger === 'SHIPPING_ADDRESS') {
+      var selectedShippingOptionId = (0,_payment_api_events__WEBPACK_IMPORTED_MODULE_13__.getGoogleDefaultShippingOptions)(getPaymentOptions()).defaultSelectedOptionId;
+      (0,_payment_api_events__WEBPACK_IMPORTED_MODULE_13__.sendShippingAddressChangeEvent)(shippingAddress, selectedShippingOptionId, resolve, instanceData);
+      return;
+    } else if (intermediatePaymentData.callbackTrigger === 'SHIPPING_OPTION') {
+      var _selectedShippingOptionId = intermediatePaymentData.shippingOptionData.id;
+      (0,_payment_api_events__WEBPACK_IMPORTED_MODULE_13__.sendShippingOptionChangeEvent)(_selectedShippingOptionId, resolve, instanceData);
+      return;
+    }
+
+    resolve(paymentDataRequestUpdate);
+  });
 }
 }();
 var __webpack_export_target__ = self;
