@@ -2654,12 +2654,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "config": function() { return /* binding */ config; }
 /* harmony export */ });
 // Holds any configuration data that changes depending on environment
-({"PAYMENT_API_URL":undefined,"DOMAIN":"https://github.digitalriverws.net","BASE_PATH":"/pages/lbarnes/drjs-demo","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).API_URL = 'http://mjoshi-gpupgrade-7.c141.drcloud.zone:8080/clients/gc/channels/paylive'; // 'http://mjoshi-gpupgrade-7.c141.drcloud.zone:8080/clients/gc/channels/paylive/sessions
-
+// 'http://mjoshi-gpupgrade-7.c141.drcloud.zone:8080/clients/gc/channels/paylive/sessions
 var config = {
   domain: "https://github.digitalriverws.net",
   // eslint-disable-line no-undef
-  paymentServiceUrl: ({"PAYMENT_API_URL":undefined,"DOMAIN":"https://github.digitalriverws.net","BASE_PATH":"/pages/lbarnes/drjs-demo","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).API_URL + '/sources',
+  paymentServiceUrl: 'http://mjoshi-gpupgrade-7.c141.drcloud.zone:8080/clients/gc/channels/paylive/sources',
   // eslint-disable-line no-undef
   basePath: "/pages/lbarnes/drjs-demo" || 0,
   // eslint-disable-line no-undef
@@ -2689,7 +2688,7 @@ var config = {
   // eslint-disable-line no-undef
   paypalRedirectBaseUrl: "https://payments-test.digitalriver.com/redirect/",
   // eslint-disable-line no-undef
-  paymentMethodsUrl: ({"PAYMENT_API_URL":undefined,"DOMAIN":"https://github.digitalriverws.net","BASE_PATH":"/pages/lbarnes/drjs-demo","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).API_URL + '/payment-methods',
+  paymentMethodsUrl: 'http://mjoshi-gpupgrade-7.c141.drcloud.zone:8080/clients/gc/channels/paylive/payment-methods',
   // eslint-disable-line no-undef
   apiUrl: ({"PAYMENT_API_URL":undefined,"DOMAIN":"https://github.digitalriverws.net","BASE_PATH":"/pages/lbarnes/drjs-demo","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).API_URL,
   // eslint-disable-line no-undef
@@ -6457,7 +6456,8 @@ var paymentServiceRequest = function paymentServiceRequest(data, apiKey, payment
     headers: {
       'Content-Type': 'application/json',
       'version': 'new',
-      'Authorization': 'Basic cGF5c2VydmljZTpkb250X3BhbmljXzQy' / generateAuthHeader(apiKey),
+      'Authorization': 'Basic cGF5c2VydmljZTpkb250X3BhbmljXzQy',
+      //generateAuthHeader(apiKey),
       'x-debug-drjs-application': applicationHeader
     }
   };
