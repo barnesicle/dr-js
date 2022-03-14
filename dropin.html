@@ -495,7 +495,39 @@
         button: {
           //type: 'custom',
           //buttonText: 'Pay Right Now!'
-        }
+        },
+        storedPaymentMethods: [
+          {
+            id: "1",
+            type: "creditCard",
+            brand: "americanExpress",
+            lastFour: "1111"
+          },
+          {
+            id: "2",
+            type: "creditCard",
+            brand: "visa",
+            lastFour: "4444"
+          },
+          {
+            id: "3",
+            type: "creditCard",
+            brand: "MasterCard",
+            lastFour: "4444"
+          },
+          {
+            id: '12',
+            type: 'storeCredit',
+            amount: 50,
+            displayName: 'Target'
+          },
+          {
+            id: '123',
+            type: 'storeCredit',
+            amount: 100,
+            displayName: 'Target'
+          }
+        ]
       },
       paymentMethodConfiguration: {
         //enabledPaymentMethods: ['googlePay', 'creditCard'],
@@ -557,14 +589,65 @@
         document.getElementById('dropin-loading').innerText = '';
       },
       onUpdateRequired: function (original) {
+        console.log('onUpdateRequired', original)
         responseLog('onUpdateRequired - Dropin ' + JSON.stringify(original, null, '\t'));
         const data = Object.assign({}, original);
         // Would do an PAI call or something here.
         const pm = data.storedPaymentMethods.find( spm => spm.id === data.selectedPaymentMethod.id)
         pm.added = data.selectedPaymentMethod.action === 'add';
 
+        if (data.selectedPaymentMethod.action === 'add') {
+
+          fetch('/payments/clients/gc/channels/paylive/sources', {
+            method: 'POST',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              "amount": original.selectedPaymentMethod.amount,
+              "currency": "AUD",
+              "type": "customerCredit",
+              "upstreamId": "purchase_order_1602861339339",
+              "customerCredit": {}
+            })
+          }).then((source) => {
+
+            // TODO Call a server and attach source to session. e.g https://api.digitalriver.com/payments/clients/gc/channels/paylive/sessions/{{session_id}}
+            return fetch('/payments/clients/gc/channels/paylive/sessions/' + sessionId, {
+              method: 'POST',
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                "sourceId": source.id
+              })
+            }).then((session) => {
+              original.updateWith([
+                {
+                  "type": "storeCredit", // New
+                  "displayName": "Target Gift Card",
+                  "lastFour": "1234",
+                  "amount": 30,
+                  "id": "your_identifier-new1"
+                },
+                {
+                  "type": "storeCredit", // New
+                  "displayName": "Target Gift Card",
+                  "lastFour": "12345",
+                  "amount": 50,
+                  "id": "your_identifier-new2"
+                }
+              ])
+            })
+
+          });
+
+        }
+
         //return data.storedPaymentMethods;
-        return [
+        /*return [
           {
             "type": "creditCard",
             "brand": "visa",
@@ -578,9 +661,9 @@
             "amount": 999.05,
             "id": "your_identifier-new"
           }
-        ]
+        ]*/
 
-      },
+      }
 
     };
 

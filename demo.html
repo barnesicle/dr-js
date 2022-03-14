@@ -876,12 +876,13 @@
         detail: "Will arrive tomorrow morning"
       }
     ];
+
     return {
-      country: "US",
+      country: "us",
       currency: "USD",
       total: {
         label: "Order Total",
-        amount: 150.20,
+        amount: 6.20,
         isPending: true
       },
       displayItems: lineItems,
@@ -1085,10 +1086,10 @@
     ibanComponent = digitalRiverPayments.createElement('iban', {styles: styles});
     ibanComponent.mount('iban');
 
-    ibanComponent.on('ready', function (data) {responseLog('iban ready: \n' + JSON.stringify(data));});
-    ibanComponent.on('change', function (data) {responseLog('iban change: \n' + JSON.stringify(data));});
-    ibanComponent.on('blur', function (data) {responseLog('iban blur: \n' + JSON.stringify(data));});
-    ibanComponent.on('focus', function (data) {responseLog('iban focus: \n' + JSON.stringify(data));});
+    ibanComponent.on('ready', (data) => {responseLog('iban ready: \n' + JSON.stringify(data));});
+    ibanComponent.on('change', (data) => {responseLog('iban change: \n' + JSON.stringify(data));});
+    ibanComponent.on('blur', (data) => {responseLog('iban blur: \n' + JSON.stringify(data));});
+    ibanComponent.on('focus', (data) => {responseLog('iban focus: \n' + JSON.stringify(data));});
 
     console.log('Calling mount functions');
 
@@ -1118,7 +1119,7 @@
 
         if (details.updateWith) {
           console.log('updateWith google function')
-          mockFetch()
+          mockFetch('https://chrismiller1.free.beeceptor.com/') // Call the fetch function passing the url of the API as a parameter
                   .then(function(data) {
                     // Your code for handling the data you get from the API
                     if(details.hasOwnProperty('updateWith')) {
@@ -1129,48 +1130,15 @@
       });
 
       googlePayComponent.on("source", function (data) {
-        responseLog('googlepay source received ' + JSON.stringify(data, null, '\t'));
-
-        if (data.shippingAddress.address.country === 'BR') {
-          data.complete('failure');
-        } else {
-          data.complete('success');
-        }
-
+        responseLog('googlepay source received ' + JSON.stringify(data));
+        data.complete('success');
       });
 
       googlePayComponent.on("shippingaddresschange", function (details) {
-        responseLog('googlepay shippingaddresschange received ' + JSON.stringify(details, null, '\t'));
+        responseLog('googlepay shippingaddresschange received ' + JSON.stringify(details));
 
         const data = {};
-        if (details.shippingAddress.address.country === 'AU') { // Error!
-          data.total = {label: 'Order Total - address change - error'};
-          data.status = 'failure';
-          data.error = {
-            message: "You can not ship down under.",
-          };
-          data.shippingOptions = [
-            {
-              id: "ground",
-              label: "Standard Shipping FROM ERROR",
-              amount: 5,
-              detail: "Will arrive in a few days"
-            },
-            {
-              id: "priority-mail-shipping",
-              label: "Priority Mail Shipping FROM ERROR",
-              amount: 10,
-              detail: "Will arrive 1-3 days",
-              selected: true
-            },
-            {
-              id: "overnight-shipping",
-              label: "Overnight Shipping FROM ERROR",
-              amount: 25,
-              detail: "Will arrive tomorrow morning"
-            }
-          ];
-        } else {
+        if (details.shippingAddress.address.country === 'US') {
           data.total = {label: 'Order Total - address change - success'};
           data.shippingOptions = [
             {
@@ -1193,6 +1161,16 @@
             }
           ];
           data.status = 'success';
+        } else { // Error!
+          data.total = {label: 'Order Total - address change - error'};
+          data.status = 'failure';
+          data.error = {
+            message: "You can only ship to a US address.",
+            fields: {
+              country: 'Invalid country',
+              city: 'Woops. Bad city'
+            }
+          };
         }
 
         if (details.updateWith) {

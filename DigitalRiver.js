@@ -2571,7 +2571,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "getIframeTitle": function() { return /* binding */ getIframeTitle; },
 /* harmony export */   "getAriaLabel": function() { return /* binding */ getAriaLabel; },
 /* harmony export */   "setAriaInvalid": function() { return /* binding */ setAriaInvalid; },
-/* harmony export */   "setAriaLabel": function() { return /* binding */ setAriaLabel; }
+/* harmony export */   "setAriaLabel": function() { return /* binding */ setAriaLabel; },
+/* harmony export */   "setLabelText": function() { return /* binding */ setLabelText; }
 /* harmony export */ });
 /* harmony import */ var _localization_localized_messages__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./localization/localized-messages */ "./src/app/components/localization/localized-messages.js");
 /* harmony import */ var _json_accessibility_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../json/accessibility.json */ "./src/json/accessibility.json");
@@ -2635,6 +2636,9 @@ function setAriaLabel(el, locale, componentType) {
   var ariaLabel = getAriaLabel(locale, componentType);
   el.setAttribute('aria-label', ariaLabel);
 }
+function setLabelText(el, locale, componentType) {
+  el.innerText = getAriaLabel(locale, componentType);
+}
 
 /***/ }),
 
@@ -2651,41 +2655,41 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 // Holds any configuration data that changes depending on environment
 var config = {
-  domain: "https://github.digitalriverws.net",
+  domain: "http://localhost:8080",
   // eslint-disable-line no-undef
-  paymentServiceUrl: ({"PAYMENT_API_URL":undefined,"DOMAIN":"https://github.digitalriverws.net","BASE_PATH":"/pages/lbarnes/drjs-demo","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).API_URL + '/payments/sources',
+  paymentServiceUrl: ({"PAYMENT_API_URL":undefined,"DOMAIN":"http://localhost:8080","BASE_PATH":"/v1","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).API_URL + '/payments/sources',
   // eslint-disable-line no-undef
-  basePath: "/pages/lbarnes/drjs-demo" || 0,
+  basePath: "/v1" || 0,
   // eslint-disable-line no-undef
   applePayMerchantId: "merchant.com.test.cert.digitalriver",
   // eslint-disable-line no-undef
-  applePayMerchantValidationUrl: ({"PAYMENT_API_URL":undefined,"DOMAIN":"https://github.digitalriverws.net","BASE_PATH":"/pages/lbarnes/drjs-demo","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).API_URL + '/payments/apple-pay/session',
+  applePayMerchantValidationUrl: ({"PAYMENT_API_URL":undefined,"DOMAIN":"http://localhost:8080","BASE_PATH":"/v1","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).API_URL + '/payments/apple-pay/session',
   //eslint-disable-line no-undef
-  beaconStorageUrlNonProd: ({"PAYMENT_API_URL":undefined,"DOMAIN":"https://github.digitalriverws.net","BASE_PATH":"/pages/lbarnes/drjs-demo","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).BEACON_STORAGE_URL_NON_PROD,
+  beaconStorageUrlNonProd: ({"PAYMENT_API_URL":undefined,"DOMAIN":"http://localhost:8080","BASE_PATH":"/v1","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).BEACON_STORAGE_URL_NON_PROD,
   // eslint-disable-line no-undef
-  beaconStorageUrlProd: ({"PAYMENT_API_URL":undefined,"DOMAIN":"https://github.digitalriverws.net","BASE_PATH":"/pages/lbarnes/drjs-demo","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).BEACON_STORAGE_URL_PROD,
+  beaconStorageUrlProd: ({"PAYMENT_API_URL":undefined,"DOMAIN":"http://localhost:8080","BASE_PATH":"/v1","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).BEACON_STORAGE_URL_PROD,
   // eslint-disable-line no-undef
-  adyenProdUrl: ({"PAYMENT_API_URL":undefined,"DOMAIN":"https://github.digitalriverws.net","BASE_PATH":"/pages/lbarnes/drjs-demo","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).ADYEN_PROD_URL,
+  adyenProdUrl: ({"PAYMENT_API_URL":undefined,"DOMAIN":"http://localhost:8080","BASE_PATH":"/v1","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).ADYEN_PROD_URL,
   // eslint-disable-line no-undef
-  adyenTestUrl: ({"PAYMENT_API_URL":undefined,"DOMAIN":"https://github.digitalriverws.net","BASE_PATH":"/pages/lbarnes/drjs-demo","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).ADYEN_TEST_URL,
+  adyenTestUrl: ({"PAYMENT_API_URL":undefined,"DOMAIN":"http://localhost:8080","BASE_PATH":"/v1","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).ADYEN_TEST_URL,
   // eslint-disable-line no-undef
-  adyenTestIntegrity: ({"PAYMENT_API_URL":undefined,"DOMAIN":"https://github.digitalriverws.net","BASE_PATH":"/pages/lbarnes/drjs-demo","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).ADYEN_TEST_INTEGRITY,
+  adyenTestIntegrity: ({"PAYMENT_API_URL":undefined,"DOMAIN":"http://localhost:8080","BASE_PATH":"/v1","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).ADYEN_TEST_INTEGRITY,
   // eslint-disable-line no-undef
-  adyenProdIntegrity: ({"PAYMENT_API_URL":undefined,"DOMAIN":"https://github.digitalriverws.net","BASE_PATH":"/pages/lbarnes/drjs-demo","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).ADYEN_PROD_INTEGRITY,
+  adyenProdIntegrity: ({"PAYMENT_API_URL":undefined,"DOMAIN":"http://localhost:8080","BASE_PATH":"/v1","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).ADYEN_PROD_INTEGRITY,
   // eslint-disable-line no-undef
-  onlineBankingBanksUrl: ({"PAYMENT_API_URL":undefined,"DOMAIN":"https://github.digitalriverws.net","BASE_PATH":"/pages/lbarnes/drjs-demo","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).API_URL + '/payments/online-banking/banks',
+  onlineBankingBanksUrl: ({"PAYMENT_API_URL":undefined,"DOMAIN":"http://localhost:8080","BASE_PATH":"/v1","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).API_URL + '/payments/online-banking/banks',
   // eslint-disable-line no-undef
-  originProdKey: ({"PAYMENT_API_URL":undefined,"DOMAIN":"https://github.digitalriverws.net","BASE_PATH":"/pages/lbarnes/drjs-demo","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).ADYEN_PROD_ORIGIN_KEY,
+  originProdKey: ({"PAYMENT_API_URL":undefined,"DOMAIN":"http://localhost:8080","BASE_PATH":"/v1","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).ADYEN_PROD_ORIGIN_KEY,
   // eslint-disable-line no-undef
-  originTestKey: ({"PAYMENT_API_URL":undefined,"DOMAIN":"https://github.digitalriverws.net","BASE_PATH":"/pages/lbarnes/drjs-demo","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).ADYEN_TEST_ORIGIN_KEY,
+  originTestKey: ({"PAYMENT_API_URL":undefined,"DOMAIN":"http://localhost:8080","BASE_PATH":"/v1","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).ADYEN_TEST_ORIGIN_KEY,
   // eslint-disable-line no-undef
-  paymentServiceBaseUrl: ({"PAYMENT_API_URL":undefined,"DOMAIN":"https://github.digitalriverws.net","BASE_PATH":"/pages/lbarnes/drjs-demo","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).API_URL + '/payments',
+  paymentServiceBaseUrl: ({"PAYMENT_API_URL":undefined,"DOMAIN":"http://localhost:8080","BASE_PATH":"/v1","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).API_URL + '/payments',
   // eslint-disable-line no-undef
   paypalRedirectBaseUrl: "https://payments-test.digitalriver.com/redirect/",
   // eslint-disable-line no-undef
-  paymentMethodsUrl: ({"PAYMENT_API_URL":undefined,"DOMAIN":"https://github.digitalriverws.net","BASE_PATH":"/pages/lbarnes/drjs-demo","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).API_URL + '/payments/payment-methods',
+  paymentMethodsUrl: ({"PAYMENT_API_URL":undefined,"DOMAIN":"http://localhost:8080","BASE_PATH":"/v1","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).API_URL + '/payments/payment-methods',
   // eslint-disable-line no-undef
-  apiUrl: ({"PAYMENT_API_URL":undefined,"DOMAIN":"https://github.digitalriverws.net","BASE_PATH":"/pages/lbarnes/drjs-demo","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).API_URL,
+  apiUrl: ({"PAYMENT_API_URL":undefined,"DOMAIN":"http://localhost:8080","BASE_PATH":"/v1","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).API_URL,
   // eslint-disable-line no-undef
   componentsVersionId: "dev" // eslint-disable-line no-undef
 
@@ -3429,37 +3433,39 @@ function buildLogosDiv(logos) {
   var logoImages = _babel_runtime_corejs3_core_js_stable_instance_map__WEBPACK_IMPORTED_MODULE_1___default()(logos).call(logos, function (logo) {
     var _context, _context2;
 
-    return _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_2___default()(_context = _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_2___default()(_context2 = "<img class=\"DR-Card-Brand\" id=\"DR-Card-Brand-".concat(logo.code, "\" src=\"")).call(_context2, logo.url, "\" alt=\"")).call(_context, logo.code, "\" />");
+    return _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_2___default()(_context = _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_2___default()(_context2 = "<img class=\"DR-Card-Brand\" id=\"DR-Card-Brand-".concat(logo.code, "\" src=\"")).call(_context2, logo.url, "\" alt=\"")).call(_context, logo.code, "\" aria-current=\"false\"/>");
   });
 
   return '<div class="DR-Card-Brands">' + logoImages.join('') + '</div>';
 }
 
-function removeSelectedCSSClass() {
+function removeSelectedAttributes() {
   var _context3;
 
   var brandImages = document.querySelectorAll('.DR-Card-Brand');
 
   _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_3___default()(_context3 = _babel_runtime_corejs3_core_js_stable_array_from__WEBPACK_IMPORTED_MODULE_4___default()(brandImages)).call(_context3, function (brandImage) {
     brandImage.classList.remove('DR-Card-Brand-Selected');
+    brandImage.setAttribute('aria-current', 'false');
   });
 }
 
-function setSelectedCSSClassOnBrand(brandCode) {
+function setSelectedAttributes(brandCode) {
   if (brandCode.toLowerCase() !== 'unknown') {
     document.getElementById("DR-Card-Brand-".concat(brandCode)).classList.add('DR-Card-Brand-Selected');
+    document.getElementById("DR-Card-Brand-".concat(brandCode)).setAttribute('aria-current', 'true');
   }
 }
 
 function setSelectedBrand(brandCode) {
-  removeSelectedCSSClass();
-  setSelectedCSSClassOnBrand(brandCode);
+  removeSelectedAttributes();
+  setSelectedAttributes(brandCode);
 }
 
 function createDom(parentNodeId, uniqueId, locale, logos) {
   var _context4, _context5, _context6, _context7, _context8, _context9, _context10, _context11, _context12, _context13;
 
-  document.getElementById(parentNodeId).innerHTML = _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_2___default()(_context4 = _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_2___default()(_context5 = _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_2___default()(_context6 = _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_2___default()(_context7 = _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_2___default()(_context8 = _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_2___default()(_context9 = _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_2___default()(_context10 = _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_2___default()(_context11 = _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_2___default()(_context12 = _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_2___default()(_context13 = "<div id=\"".concat(uniqueId, "\" class=\"DR-flex-column\">\n        ")).call(_context13, typeof logos !== 'undefined' ? buildLogosDiv(logos) : '', "\n        <label>")).call(_context12, (0,_localization_localized_messages__WEBPACK_IMPORTED_MODULE_14__.getLocaleMessage)(locale, 'cardNumber') || 'Card Number', "</label>\n        <div id=\"DRCardNumber-")).call(_context11, uniqueId, "\" class=\"DR-card-number\"></div>\n        <div id=\"DRCardNumber-")).call(_context10, uniqueId, "-error\" class=\"DR-error-message\"></div>\n        <div class=\"DR-flex-row\">\n          <div class=\"DR-flex-column DR-width-half DR-card-expiration\">\n            <label>")).call(_context9, (0,_localization_localized_messages__WEBPACK_IMPORTED_MODULE_14__.getLocaleMessage)(locale, 'cardExpirationDate') || 'Expiration Date', "</label>\n            <div id=\"DRCardExpiration-")).call(_context8, uniqueId, "\"></div>\n            <div id=\"DRCardExpiration-")).call(_context7, uniqueId, "-error\" class=\"DR-error-message\"></div>\n          </div>\n          <div class=\"DR-flex-column DR-width-half DR-card-cvv\">\n            <label>")).call(_context6, (0,_localization_localized_messages__WEBPACK_IMPORTED_MODULE_14__.getLocaleMessage)(locale, 'cardSecurityCode') || 'Card Security Code', "</label>\n            <div id=\"DRCardCvv-")).call(_context5, uniqueId, "\"></div>\n            <div id=\"DRCardCvv-")).call(_context4, uniqueId, "-error\" class=\"DR-error-message\"></div>\n          </div>\n        </div>\n    </div>");
+  document.getElementById(parentNodeId).innerHTML = _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_2___default()(_context4 = _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_2___default()(_context5 = _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_2___default()(_context6 = _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_2___default()(_context7 = _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_2___default()(_context8 = _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_2___default()(_context9 = _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_2___default()(_context10 = _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_2___default()(_context11 = _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_2___default()(_context12 = _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_2___default()(_context13 = "<div id=\"".concat(uniqueId, "\" class=\"DR-flex-column\">\n        ")).call(_context13, typeof logos !== 'undefined' ? buildLogosDiv(logos) : '', "\n        <label aria-hidden=\"true\">")).call(_context12, (0,_localization_localized_messages__WEBPACK_IMPORTED_MODULE_14__.getLocaleMessage)(locale, 'cardNumber') || 'Card Number', "</label>\n        <div id=\"DRCardNumber-")).call(_context11, uniqueId, "\" class=\"DR-card-number\"></div>\n        <div id=\"DRCardNumber-")).call(_context10, uniqueId, "-error\" class=\"DR-error-message\" aria-hidden=\"true\"></div>\n        <div class=\"DR-flex-row\">\n          <div class=\"DR-flex-column DR-width-half DR-card-expiration\">\n            <label aria-hidden=\"true\">")).call(_context9, (0,_localization_localized_messages__WEBPACK_IMPORTED_MODULE_14__.getLocaleMessage)(locale, 'cardExpirationDate') || 'Expiration Date', "</label>\n            <div id=\"DRCardExpiration-")).call(_context8, uniqueId, "\"></div>\n            <div id=\"DRCardExpiration-")).call(_context7, uniqueId, "-error\" class=\"DR-error-message\" aria-hidden=\"true\"></div>\n          </div>\n          <div class=\"DR-flex-column DR-width-half DR-card-cvv\">\n            <label aria-hidden=\"true\">")).call(_context6, (0,_localization_localized_messages__WEBPACK_IMPORTED_MODULE_14__.getLocaleMessage)(locale, 'cardSecurityCode') || 'Card Security Code', "</label>\n            <div id=\"DRCardCvv-")).call(_context5, uniqueId, "\"></div>\n            <div id=\"DRCardCvv-")).call(_context4, uniqueId, "-error\" class=\"DR-error-message\" aria-hidden=\"true\"></div>\n          </div>\n        </div>\n    </div>");
 }
 /**
  *
@@ -3895,29 +3901,6 @@ function sendCreateSourceRequest(controllerEmitter, componentData, responseData,
 
 /***/ }),
 
-/***/ "./src/app/components/google-pay/translations.js":
-/*!*******************************************************!*\
-  !*** ./src/app/components/google-pay/translations.js ***!
-  \*******************************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "getGeneralErrorMessageByLocale": function() { return /* binding */ getGeneralErrorMessageByLocale; }
-/* harmony export */ });
-/* harmony import */ var _google_pay_translations_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./google-pay-translations.json */ "./src/app/components/google-pay/google-pay-translations.json");
-
-function getGeneralErrorMessageByLocale(locale) {
-  if (typeof _google_pay_translations_json__WEBPACK_IMPORTED_MODULE_0__[locale] === 'undefined') {
-    return _google_pay_translations_json__WEBPACK_IMPORTED_MODULE_0__.en_US.GENERAL_ERROR;
-  }
-
-  return _google_pay_translations_json__WEBPACK_IMPORTED_MODULE_0__[locale].GENERAL_ERROR;
-}
-
-/***/ }),
-
 /***/ "./src/app/components/input-events.js":
 /*!********************************************!*\
   !*** ./src/app/components/input-events.js ***!
@@ -3930,6 +3913,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "sendEventData": function() { return /* binding */ sendEventData; },
 /* harmony export */   "applyInputStylesToEvent": function() { return /* binding */ applyInputStylesToEvent; },
 /* harmony export */   "applyInputAriaInvalidIndicatorToEvent": function() { return /* binding */ applyInputAriaInvalidIndicatorToEvent; },
+/* harmony export */   "applyErrorMessageToEvent": function() { return /* binding */ applyErrorMessageToEvent; },
 /* harmony export */   "handleEvent": function() { return /* binding */ handleEvent; },
 /* harmony export */   "handleReturnKeyEvent": function() { return /* binding */ handleReturnKeyEvent; },
 /* harmony export */   "runEventOnElement": function() { return /* binding */ runEventOnElement; }
@@ -4153,6 +4137,19 @@ function applyInputAriaInvalidIndicatorToEvent(eventData, event) {
   eventData.error ? (0,_accessibility__WEBPACK_IMPORTED_MODULE_10__.setAriaInvalid)(element, true) : (0,_accessibility__WEBPACK_IMPORTED_MODULE_10__.setAriaInvalid)(element, false);
 }
 /**
+ * Applies appropriate error msg to input error element based on event data
+ * @param {object} eventData
+ * @param {Event} event
+ */
+
+function applyErrorMessageToEvent(eventData, event) {
+  var element = document.getElementById("".concat(event.target.id, "-error"));
+
+  if (element) {
+    eventData.error ? element.innerHTML = eventData.error.message : element.innerHTML = '';
+  }
+}
+/**
  * Returns true if previous state of an input element was not empty
  * @param prevState
  * @returns {boolean}
@@ -4202,6 +4199,7 @@ function handleEvent(componentData, eventType, event, overrideValue) {
     eventData = generateEventData(componentData.componentType, removedWhiteSpaces, eventType, componentData, event.trigger);
     applyInputStylesToEvent(eventData, event);
     applyInputAriaInvalidIndicatorToEvent(eventData, event);
+    applyErrorMessageToEvent(eventData, event);
   }
 
   if (event && event.hasOwnProperty('trigger') && event.trigger === 'clear') {
@@ -4671,18 +4669,17 @@ function mergeOptions(options, newOptions) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "paymentApiTriggerEvent": function() { return /* binding */ paymentApiTriggerEvent; },
 /* harmony export */   "emitComponentReady": function() { return /* binding */ emitComponentReady; },
 /* harmony export */   "emitComponentCancelled": function() { return /* binding */ emitComponentCancelled; },
 /* harmony export */   "createCompleteFunction": function() { return /* binding */ createCompleteFunction; },
 /* harmony export */   "processPayment": function() { return /* binding */ processPayment; },
 /* harmony export */   "sendShippingAddressChangeEvent": function() { return /* binding */ sendShippingAddressChangeEvent; },
 /* harmony export */   "sendShippingOptionChangeEvent": function() { return /* binding */ sendShippingOptionChangeEvent; },
+/* harmony export */   "styleAndCreatePaymentRequest": function() { return /* binding */ styleAndCreatePaymentRequest; },
 /* harmony export */   "sendClickEvent": function() { return /* binding */ sendClickEvent; },
 /* harmony export */   "waitForClientUpdateWithFunction": function() { return /* binding */ waitForClientUpdateWithFunction; },
-/* harmony export */   "onPayButtonClick": function() { return /* binding */ onPayButtonClick; },
-/* harmony export */   "createDisplayItems": function() { return /* binding */ createDisplayItems; },
-/* harmony export */   "getGoogleTransactionInfo": function() { return /* binding */ getGoogleTransactionInfo; },
-/* harmony export */   "getGoogleDefaultShippingOptions": function() { return /* binding */ getGoogleDefaultShippingOptions; }
+/* harmony export */   "onPayButtonClick": function() { return /* binding */ onPayButtonClick; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/asyncToGenerator */ "./node_modules/@babel/runtime-corejs3/helpers/esm/asyncToGenerator.js");
 /* harmony import */ var _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/regenerator */ "./node_modules/@babel/runtime-corejs3/regenerator/index.js");
@@ -4691,21 +4688,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/object/assign */ "./node_modules/@babel/runtime-corejs3/core-js-stable/object/assign.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/object/keys */ "./node_modules/@babel/runtime-corejs3/core-js-stable/object/keys.js");
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_find__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/find */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/find.js");
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_find__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_find__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_array_is_array__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/array/is-array */ "./node_modules/@babel/runtime-corejs3/core-js-stable/array/is-array.js");
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_array_is_array__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_array_is_array__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/filter */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/filter.js");
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var _input_events__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./input-events */ "./src/app/components/input-events.js");
-/* harmony import */ var _payment_api__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./payment-api */ "./src/app/components/payment-api.js");
-/* harmony import */ var _options__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./options */ "./src/app/components/options.js");
-/* harmony import */ var _google_apple_pay_events__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./google-apple-pay-events */ "./src/app/components/google-apple-pay-events.js");
-
-
-
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_find__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/find */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/find.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_find__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_find__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _input_events__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./input-events */ "./src/app/components/input-events.js");
+/* harmony import */ var _payment_api__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./payment-api */ "./src/app/components/payment-api.js");
+/* harmony import */ var _options__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./options */ "./src/app/components/options.js");
+/* harmony import */ var _google_apple_pay_events__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./google-apple-pay-events */ "./src/app/components/google-apple-pay-events.js");
 
 
 
@@ -4716,12 +4704,28 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /**
+ * Runs appropriate handler for event type
+ * @param {string} type - event type
+ * @param {object} instanceData
+ */
+
+function paymentApiTriggerEvent(type, instanceData) {
+  switch (type) {
+    case 'show':
+      {
+        onPayButtonClick(instanceData); // componentData, paymentOptions, getElement, setOptions
+
+        return;
+      }
+  }
+}
+/**
  * Emits component ready event
  * @param {object} componentData
  */
 
 function emitComponentReady(componentData) {
-  (0,_input_events__WEBPACK_IMPORTED_MODULE_8__.handleEvent)(componentData, 'ready');
+  (0,_input_events__WEBPACK_IMPORTED_MODULE_5__.handleEvent)(componentData, 'ready');
 }
 /**
  * Emits component cancelled event
@@ -4729,7 +4733,7 @@ function emitComponentReady(componentData) {
  */
 
 function emitComponentCancelled(componentData) {
-  (0,_input_events__WEBPACK_IMPORTED_MODULE_8__.handleEvent)(componentData, 'cancel');
+  (0,_input_events__WEBPACK_IMPORTED_MODULE_5__.handleEvent)(componentData, 'cancel');
 }
 /**
  * Returns complete function for payment source request
@@ -4739,13 +4743,15 @@ function emitComponentCancelled(componentData) {
  */
 
 function createCompleteFunction(resolve, paymentRequestResponseData) {
-  return function (status) {
+  var complete = function complete(status) {
     resolve({
       instrumentResponse: paymentRequestResponseData,
       status: status
     });
     return status;
   };
+
+  return complete;
 }
 /**
  * Takes PaymentRequest API payment response and sends it to DR Payment Service
@@ -4756,15 +4762,10 @@ function createCompleteFunction(resolve, paymentRequestResponseData) {
 
 function processPayment(paymentRequestData, resolve, instanceData) {
   var complete = createCompleteFunction(resolve, paymentRequestData);
-  var paymentServiceRequest = (0,_payment_api__WEBPACK_IMPORTED_MODULE_9__.paymentRequestApiResponseToPaymentServiceRequest)(paymentRequestData, instanceData.getPaymentOptions());
+  var paymentServiceRequest = (0,_payment_api__WEBPACK_IMPORTED_MODULE_6__.paymentRequestApiResponseToPaymentServiceRequest)(paymentRequestData, instanceData.getPaymentOptions());
 
   if (typeof instanceData.getPaymentOptions().billingAddress !== 'undefined') {
-    paymentServiceRequest.sessionId = instanceData.getPaymentOptions().sessionId;
-    delete paymentServiceRequest.amount;
     paymentServiceRequest.owner = instanceData.getPaymentOptions().billingAddress;
-    paymentRequestData.details = {
-      billingAddress: instanceData.getPaymentOptions().billingAddress
-    };
   }
 
   if (typeof instanceData.getPaymentOptions().sessionId !== 'undefined') {
@@ -4772,7 +4773,7 @@ function processPayment(paymentRequestData, resolve, instanceData) {
   } // Send payment / credit card data to controller to call payment service
 
 
-  (0,_google_apple_pay_events__WEBPACK_IMPORTED_MODULE_11__.sendCreateSourceRequest)(instanceData.controllerEmitter, instanceData.componentData, paymentRequestData, paymentServiceRequest, _payment_api__WEBPACK_IMPORTED_MODULE_9__.toSourceEventData, complete);
+  (0,_google_apple_pay_events__WEBPACK_IMPORTED_MODULE_8__.sendCreateSourceRequest)(instanceData.controllerEmitter, instanceData.componentData, paymentRequestData, paymentServiceRequest, _payment_api__WEBPACK_IMPORTED_MODULE_6__.toSourceEventData, complete);
 }
 /**
  * Sends shipping address change event to client
@@ -4786,7 +4787,7 @@ function processPayment(paymentRequestData, resolve, instanceData) {
 function sendShippingAddressChangeEvent(googleShippingAddress, selectedShippingOption, resolve, instanceData) {
   var _context;
 
-  var shippingAddress = (0,_payment_api__WEBPACK_IMPORTED_MODULE_9__.convertPaymentRequestApiShippingAddressForEvent)(googleShippingAddress);
+  var shippingAddress = (0,_payment_api__WEBPACK_IMPORTED_MODULE_6__.convertPaymentRequestApiShippingAddressForEvent)(googleShippingAddress);
   var paymentOptions = instanceData.getPaymentOptions(); // set the previously selected one as selected in the data
 
   _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_2___default()(_context = paymentOptions.shippingOptions).call(_context, function (shippingOption) {
@@ -4797,10 +4798,12 @@ function sendShippingAddressChangeEvent(googleShippingAddress, selectedShippingO
     var errorData = {};
 
     if (clientPassedInData.status === 'failure') {
-      errorData = (0,_payment_api__WEBPACK_IMPORTED_MODULE_9__.convertClientShippingAddressErrorsForPaymentRequestUpdateEvent)(clientPassedInData.error, instanceData);
+      errorData = (0,_payment_api__WEBPACK_IMPORTED_MODULE_6__.convertClientShippingAddressErrorsForPaymentRequestUpdateEvent)(clientPassedInData.error);
+      errorData.shippingOptions = [];
+      delete clientPassedInData[clientPassedInData.error];
     }
 
-    var mergedDataWithoutErrors = (0,_options__WEBPACK_IMPORTED_MODULE_10__.mergeOptions)(paymentOptions, clientPassedInData);
+    var mergedDataWithoutErrors = (0,_options__WEBPACK_IMPORTED_MODULE_7__.mergeOptions)(paymentOptions, clientPassedInData);
 
     if (clientPassedInData.status === 'success') {
       delete mergedDataWithoutErrors['error'];
@@ -4810,22 +4813,9 @@ function sendShippingAddressChangeEvent(googleShippingAddress, selectedShippingO
 
     var mergedData = _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_3___default()({}, mergedDataWithoutErrors, errorData);
 
-    var newPaymentOptions = (0,_payment_api__WEBPACK_IMPORTED_MODULE_9__.updateShippingOptionsSelectedAttribute)(mergedData);
-    var detailsData = getGoogleTransactionInfo(newPaymentOptions);
-
-    if (_babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_4___default()(errorData).length > 0) {
-      resolve({
-        error: errorData.error,
-        newTransactionInfo: detailsData,
-        newShippingOptionParameters: getGoogleDefaultShippingOptions(mergedData)
-      });
-    } else {
-      resolve({
-        newTransactionInfo: detailsData,
-        newShippingOptionParameters: getGoogleDefaultShippingOptions(mergedData)
-      });
-    }
-
+    var shippingOptions = (0,_payment_api__WEBPACK_IMPORTED_MODULE_6__.updateShippingOptionsSelectedAttribute)(mergedData);
+    var detailsData = (0,_payment_api__WEBPACK_IMPORTED_MODULE_6__.getDetailsFromOptions)(shippingOptions);
+    resolve(detailsData);
     return detailsData;
   };
 
@@ -4833,7 +4823,7 @@ function sendShippingAddressChangeEvent(googleShippingAddress, selectedShippingO
     shippingAddress: shippingAddress,
     updateWith: updateWith
   };
-  (0,_input_events__WEBPACK_IMPORTED_MODULE_8__.sendEventData)(instanceData.componentData.controller, instanceData.componentData.componentId, instanceData.componentData.componentType, 'shippingaddresschange', eventData);
+  (0,_input_events__WEBPACK_IMPORTED_MODULE_5__.sendEventData)(instanceData.componentData.controller, instanceData.componentData.componentId, instanceData.componentData.componentType, 'shippingaddresschange', eventData);
   return eventData;
 }
 /**
@@ -4856,20 +4846,17 @@ function sendShippingOptionChangeEvent(selectedShippingOption, resolve, instance
       shippingOption.selected = shippingOption.id === selectedShippingOption;
     });
 
-    var data = (0,_options__WEBPACK_IMPORTED_MODULE_10__.mergeOptions)(paymentOptions, clientPassedInData);
+    var data = (0,_options__WEBPACK_IMPORTED_MODULE_7__.mergeOptions)(paymentOptions, clientPassedInData);
     instanceData.setOptions(data);
-    var updatedDetails = (0,_payment_api__WEBPACK_IMPORTED_MODULE_9__.updateShippingOptionsSelectedAttribute)(data);
-    var detailsData = getGoogleTransactionInfo(updatedDetails);
-    resolve({
-      newTransactionInfo: detailsData,
-      newShippingOptionParameters: getGoogleDefaultShippingOptions(data)
-    });
+    var updatedDetails = (0,_payment_api__WEBPACK_IMPORTED_MODULE_6__.updateShippingOptionsSelectedAttribute)(data);
+    var detailsData = (0,_payment_api__WEBPACK_IMPORTED_MODULE_6__.getDetailsFromOptions)(updatedDetails);
+    resolve(detailsData);
     return detailsData;
   };
 
   var paymentOptions = instanceData.getPaymentOptions(); // If there are shippingOptions, find the selected shipping option
 
-  var foundShippingOption = paymentOptions.shippingOptions && _babel_runtime_corejs3_core_js_stable_instance_find__WEBPACK_IMPORTED_MODULE_5___default()(_context3 = paymentOptions.shippingOptions).call(_context3, function (shippingOption) {
+  var foundShippingOption = paymentOptions.shippingOptions && _babel_runtime_corejs3_core_js_stable_instance_find__WEBPACK_IMPORTED_MODULE_4___default()(_context3 = paymentOptions.shippingOptions).call(_context3, function (shippingOption) {
     return shippingOption.id === selectedShippingOption;
   });
 
@@ -4877,8 +4864,28 @@ function sendShippingOptionChangeEvent(selectedShippingOption, resolve, instance
     shippingOption: foundShippingOption,
     updateWith: updateWith
   };
-  (0,_input_events__WEBPACK_IMPORTED_MODULE_8__.sendEventData)(instanceData.componentData.controller, instanceData.componentData.componentId, instanceData.componentData.componentType, 'shippingoptionchange', eventData);
+  (0,_input_events__WEBPACK_IMPORTED_MODULE_5__.sendEventData)(instanceData.componentData.controller, instanceData.componentData.componentId, instanceData.componentData.componentType, 'shippingoptionchange', eventData);
   return eventData;
+}
+/**
+ * Styles payment button and adds click event listener
+ * @param {object} instanceData
+ */
+
+function styleAndCreatePaymentRequest(instanceData) {
+  if (window.PaymentRequest) {
+    (0,_payment_api__WEBPACK_IMPORTED_MODULE_6__.initPaymentRequest)(instanceData);
+    var payButton = instanceData.getElement();
+    payButton.setAttribute('style', 'display: inline; width: calc(100% - 2px); cursor: pointer'); //calc to make sure shadow does not get cut off
+
+    payButton.addEventListener('click', function () {
+      return onPayButtonClick(instanceData);
+    });
+  } else {
+    // eslint-disable-next-line no-console
+    console.error('This browser does not support web payments');
+    return null;
+  }
 }
 /**
  * Sends click event to client
@@ -4890,21 +4897,21 @@ function sendShippingOptionChangeEvent(selectedShippingOption, resolve, instance
 function sendClickEvent(instanceData, resolve) {
   if (waitForClientUpdateWithFunction(instanceData.getPaymentOptions())) {
     var updateWith = function updateWith(clientPassedInData) {
-      var data = (0,_options__WEBPACK_IMPORTED_MODULE_10__.mergeOptions)(instanceData.getPaymentOptions(), clientPassedInData);
+      var data = (0,_options__WEBPACK_IMPORTED_MODULE_7__.mergeOptions)(instanceData.getPaymentOptions(), clientPassedInData);
       instanceData.setOptions(data);
-      resolve((0,_payment_api__WEBPACK_IMPORTED_MODULE_9__.getDetailsFromOptions)(instanceData.getPaymentOptions()));
+      resolve((0,_payment_api__WEBPACK_IMPORTED_MODULE_6__.getDetailsFromOptions)(instanceData.getPaymentOptions()));
       return data;
     };
 
     var result = {
       updateWith: updateWith
     };
-    (0,_input_events__WEBPACK_IMPORTED_MODULE_8__.sendEventData)(instanceData.componentData.controller, instanceData.componentData.componentId, instanceData.componentData.componentType, 'click', result);
+    (0,_input_events__WEBPACK_IMPORTED_MODULE_5__.sendEventData)(instanceData.componentData.controller, instanceData.componentData.componentId, instanceData.componentData.componentType, 'click', result);
     return result;
   } else {
-    resolve((0,_payment_api__WEBPACK_IMPORTED_MODULE_9__.getDetailsFromOptions)(instanceData.getPaymentOptions()));
+    resolve((0,_payment_api__WEBPACK_IMPORTED_MODULE_6__.getDetailsFromOptions)(instanceData.getPaymentOptions()));
     var _result = {};
-    (0,_input_events__WEBPACK_IMPORTED_MODULE_8__.sendEventData)(instanceData.componentData.controller, instanceData.componentData.componentId, instanceData.componentData.componentType, 'click', _result);
+    (0,_input_events__WEBPACK_IMPORTED_MODULE_5__.sendEventData)(instanceData.componentData.controller, instanceData.componentData.componentId, instanceData.componentData.componentType, 'click', _result);
     return _result;
   }
 }
@@ -4923,73 +4930,37 @@ function waitForClientUpdateWithFunction(paymentOptions) {
  * @returns {Promise<any|never>}
  */
 
-function onPayButtonClick(_x, _x2) {
+function onPayButtonClick(_x) {
   return _onPayButtonClick.apply(this, arguments);
 }
 
 function _onPayButtonClick() {
-  _onPayButtonClick = (0,_babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__.default)( /*#__PURE__*/_babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee(instanceData, paymentData) {
-    return _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee$(_context6) {
+  _onPayButtonClick = (0,_babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__.default)( /*#__PURE__*/_babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee(instanceData) {
+    var request;
+    return _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee$(_context4) {
       while (1) {
-        switch (_context6.prev = _context6.next) {
+        switch (_context4.prev = _context4.next) {
           case 0:
-            return _context6.abrupt("return", (0,_payment_api__WEBPACK_IMPORTED_MODULE_9__.onBuyClicked)(processPayment, emitComponentCancelled, sendClickEvent, instanceData, paymentData));
+            if (!instanceData.waitBeforeShow) {
+              _context4.next = 3;
+              break;
+            }
 
-          case 1:
+            _context4.next = 3;
+            return (0,_payment_api__WEBPACK_IMPORTED_MODULE_6__.processClickEvent)(instanceData, sendClickEvent);
+
+          case 3:
+            request = (0,_payment_api__WEBPACK_IMPORTED_MODULE_6__.initPaymentRequest)(instanceData);
+            return _context4.abrupt("return", (0,_payment_api__WEBPACK_IMPORTED_MODULE_6__.onBuyClicked)(request, processPayment, emitComponentCancelled, sendClickEvent, instanceData));
+
+          case 5:
           case "end":
-            return _context6.stop();
+            return _context4.stop();
         }
       }
     }, _callee);
   }));
   return _onPayButtonClick.apply(this, arguments);
-}
-
-function createDisplayItems(paymentOptions) {
-  if (paymentOptions.displayItems && _babel_runtime_corejs3_core_js_stable_array_is_array__WEBPACK_IMPORTED_MODULE_6___default()(paymentOptions.displayItems)) {
-    var _context4;
-
-    var displayItems = [];
-
-    _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_2___default()(_context4 = paymentOptions.displayItems).call(_context4, function (displayItem, index) {
-      displayItems[index] = {
-        label: displayItem.label,
-        type: 'LINE_ITEM',
-        price: displayItem.amount.toString(),
-        status: displayItem.isPending === true ? 'PENDING' : 'FINAL'
-      };
-    });
-
-    return displayItems;
-  }
-
-  return undefined;
-}
-function getGoogleTransactionInfo(paymentOptions) {
-  return {
-    displayItems: createDisplayItems(paymentOptions),
-    countryCode: paymentOptions.country.toUpperCase(),
-    currencyCode: paymentOptions.currency,
-    totalPriceStatus: paymentOptions.total.isPending === true ? 'ESTIMATED' : 'FINAL',
-    totalPrice: paymentOptions.total.amount,
-    totalPriceLabel: paymentOptions.total.label
-  };
-}
-function getGoogleDefaultShippingOptions(paymentOptions) {
-  var _context5;
-
-  if (typeof paymentOptions.shippingOptions === 'undefined' || paymentOptions.shippingOptions.length === 0) {
-    return [];
-  }
-
-  var defaultSelected = _babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_7___default()(_context5 = paymentOptions.shippingOptions).call(_context5, function (so) {
-    return so.selected === true;
-  });
-
-  return {
-    defaultSelectedOptionId: defaultSelected.length > 0 ? defaultSelected[0].id : paymentOptions.shippingOptions[0].id,
-    shippingOptions: (0,_payment_api__WEBPACK_IMPORTED_MODULE_9__.convertShippingOptions)(paymentOptions.shippingOptions)
-  };
 }
 
 /***/ }),
@@ -5003,6 +4974,7 @@ function getGoogleDefaultShippingOptions(paymentOptions) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "createRequest": function() { return /* binding */ createRequest; },
 /* harmony export */   "onBuyClicked": function() { return /* binding */ onBuyClicked; },
 /* harmony export */   "completePaymentWithSuccess": function() { return /* binding */ completePaymentWithSuccess; },
 /* harmony export */   "completePaymentWithFailure": function() { return /* binding */ completePaymentWithFailure; },
@@ -5014,6 +4986,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "convertShippingOptions": function() { return /* binding */ convertShippingOptions; },
 /* harmony export */   "convertDisplayOptions": function() { return /* binding */ convertDisplayOptions; },
 /* harmony export */   "getDetailsFromOptions": function() { return /* binding */ getDetailsFromOptions; },
+/* harmony export */   "initPaymentRequest": function() { return /* binding */ initPaymentRequest; },
 /* harmony export */   "shippingAddressChange": function() { return /* binding */ shippingAddressChange; },
 /* harmony export */   "shippingOptionChange": function() { return /* binding */ shippingOptionChange; },
 /* harmony export */   "convertClientShippingAddressErrorsForPaymentRequestUpdateEvent": function() { return /* binding */ convertClientShippingAddressErrorsForPaymentRequestUpdateEvent; },
@@ -5021,16 +4994,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/promise */ "./node_modules/@babel/runtime-corejs3/core-js-stable/promise.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_parse_float__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/parse-float */ "./node_modules/@babel/runtime-corejs3/core-js-stable/parse-float.js");
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_parse_float__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_parse_float__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_array_is_array__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/array/is-array */ "./node_modules/@babel/runtime-corejs3/core-js-stable/array/is-array.js");
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_array_is_array__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_array_is_array__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_map__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/map */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/map.js");
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_map__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_map__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/for-each */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/for-each.js");
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var parse_full_name__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! parse-full-name */ "./node_modules/parse-full-name/index.js");
-/* harmony import */ var _google_pay_translations__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./google-pay/translations */ "./src/app/components/google-pay/translations.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/includes */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/includes.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_parse_int__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/parse-int */ "./node_modules/@babel/runtime-corejs3/core-js-stable/parse-int.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_parse_int__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_parse_int__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_parse_float__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/parse-float */ "./node_modules/@babel/runtime-corejs3/core-js-stable/parse-float.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_parse_float__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_parse_float__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_array_is_array__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/array/is-array */ "./node_modules/@babel/runtime-corejs3/core-js-stable/array/is-array.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_array_is_array__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_array_is_array__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/for-each */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/for-each.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var parse_full_name__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! parse-full-name */ "./node_modules/parse-full-name/index.js");
 
 
 
@@ -5039,32 +5013,44 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /**
+ * Returns a new payment request
+ * @param {object} supportedInstruments
+ * @param {object} details
+ * @param {object} options
+ * @returns {PaymentRequest}
+ */
+
+function createRequest(supportedInstruments, details, options) {
+  return new PaymentRequest(supportedInstruments, details, options);
+}
+/**
  * Processes and completes payment source request
+ * @param {object} request
  * @param {Function} processPayment
  * @param {Function} sendOnCancelEvent
  * @param {Function} sendClickEvent
  * @param {object} instanceData
- * @param {object} paymentData
  * @returns {Promise<any | never>}
  */
 
-function onBuyClicked(processPayment, sendOnCancelEvent, sendClickEvent, instanceData, paymentData) {
-  return new (_babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_0___default())(function (resolve) {
-    processPayment(paymentData, resolve, instanceData);
-  }).then(function (response) {
-    if (response.status === 'failure') {
-      return {
-        transactionState: 'ERROR',
-        error: {
-          intent: 'PAYMENT_AUTHORIZATION',
-          message: (0,_google_pay_translations__WEBPACK_IMPORTED_MODULE_6__.getGeneralErrorMessageByLocale)(instanceData.locale),
-          reason: 'PAYMENT_DATA_INVALID'
-        }
-      };
+function onBuyClicked(request, processPayment, sendOnCancelEvent, sendClickEvent, instanceData) {
+  // Note: This prevents the case where the payment added support for this and waitBeforeShow was true, it would run twice.
+  var show = instanceData.waitBeforeShow ? request.show() : request.show(processClickEvent(instanceData, sendClickEvent));
+  return show.then(function (instrumentResponse) {
+    return new (_babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_0___default())(function (resolve) {
+      processPayment(instrumentResponse, resolve, instanceData);
+    });
+  }).then(function (data) {
+    if (data.status === 'success') {
+      completePaymentWithSuccess(data.instrumentResponse);
     } else {
-      return {
-        transactionState: 'SUCCESS'
-      };
+      completePaymentWithFailure(data.instrumentResponse);
+    }
+  }).catch(function (err) {
+    var _context;
+
+    if (err.message && (_babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_1___default()(_context = err.message).call(_context, 'User closed the Payment Request') || err.message === 'Request cancelled' || err.message === 'The operation was aborted.')) {
+      sendOnCancelEvent(instanceData.componentData);
     }
   });
 }
@@ -5103,7 +5089,7 @@ function processClickEvent(instanceData, sendClickEvent) {
  */
 
 function splitName(name) {
-  var pastedName = (0,parse_full_name__WEBPACK_IMPORTED_MODULE_5__.parseFullName)(name);
+  var pastedName = (0,parse_full_name__WEBPACK_IMPORTED_MODULE_6__.parseFullName)(name);
   return {
     firstName: pastedName.first,
     lastName: pastedName.last
@@ -5117,35 +5103,37 @@ function splitName(name) {
  */
 
 function paymentRequestApiResponseToPaymentServiceRequest(googleResponseData, paymentOptions) {
+  var name = splitName(googleResponseData.details.billingAddress.recipient);
   var agreementData = paymentOptions.agreementData;
   var hasAgreementDataBeenProvided = typeof agreementData !== 'undefined' && agreementData !== null;
   var useMandate = hasAgreementDataBeenProvided && agreementData.useMandate === true;
   var mandate = useMandate ? agreementData.mandate : undefined;
   var futureUse = useMandate ? agreementData.futureUse : undefined;
-  var billingAddress = googleResponseData.paymentMethodData.info.billingAddress;
-  var name = splitName(billingAddress.name);
   return {
     'type': 'googlePay',
     'owner': {
       'firstName': name.firstName,
       'lastName': name.lastName,
-      'email': googleResponseData.email,
-      'phoneNumber': billingAddress.phoneNumber,
+      'email': googleResponseData.payerEmail,
+      'phoneNumber': googleResponseData.details.billingAddress.phone,
       'address': {
-        'line1': billingAddress.address1,
-        'line2': billingAddress.address2,
-        'city': billingAddress.locality,
-        'state': billingAddress.administrativeArea,
-        'country': billingAddress.countryCode,
-        'postalCode': billingAddress.postalCode
+        'line1': googleResponseData.details.billingAddress.addressLine.length >= 1 ? googleResponseData.details.billingAddress.addressLine[0] : '',
+        'line2': googleResponseData.details.billingAddress.addressLine.length >= 2 ? googleResponseData.details.billingAddress.addressLine[1] : '',
+        'city': googleResponseData.details.billingAddress.city,
+        'state': googleResponseData.details.billingAddress.region,
+        'country': googleResponseData.details.billingAddress.country,
+        'postalCode': googleResponseData.details.billingAddress.postalCode
       }
     },
     'futureUse': futureUse,
     'mandate': mandate,
     'googlePay': {
-      'token': googleResponseData
+      'number': googleResponseData.details.cardNumber,
+      'expirationMonth': _babel_runtime_corejs3_core_js_stable_parse_int__WEBPACK_IMPORTED_MODULE_2___default()(googleResponseData.details.expiryMonth, 10),
+      'expirationYear': _babel_runtime_corejs3_core_js_stable_parse_int__WEBPACK_IMPORTED_MODULE_2___default()(googleResponseData.details.expiryYear, 10),
+      'cvv': googleResponseData.details.cardSecurityCode
     },
-    'amount': _babel_runtime_corejs3_core_js_stable_parse_float__WEBPACK_IMPORTED_MODULE_1___default()(paymentOptions.total.amount),
+    'amount': _babel_runtime_corejs3_core_js_stable_parse_float__WEBPACK_IMPORTED_MODULE_3___default()(paymentOptions.total.amount),
     'currency': paymentOptions.currency
   };
 }
@@ -5157,19 +5145,19 @@ function paymentRequestApiResponseToPaymentServiceRequest(googleResponseData, pa
  */
 
 function convertPaymentRequestApiShippingAddressForEvent(shippingAddress, payerEmail) {
-  var name = splitName(shippingAddress.name);
+  var name = splitName(shippingAddress.recipient);
   return {
-    name: typeof shippingAddress.name !== 'undefined' ? shippingAddress.name : '',
+    name: shippingAddress.recipient,
     firstName: name.firstName,
     lastName: name.lastName,
-    phone: typeof shippingAddress.phoneNumber !== 'undefined' ? shippingAddress.phoneNumber : '',
+    phone: shippingAddress.phone,
     email: payerEmail,
     address: {
-      line1: shippingAddress.address1 ? shippingAddress.address1 : '',
-      line2: shippingAddress.address2 ? shippingAddress.address2 : '',
-      city: shippingAddress.locality,
-      state: shippingAddress.administrativeArea,
-      country: shippingAddress.countryCode,
+      line1: shippingAddress.addressLine.length >= 1 ? shippingAddress.addressLine[0] : '',
+      line2: shippingAddress.addressLine.length >= 2 ? shippingAddress.addressLine[1] : '',
+      city: shippingAddress.city,
+      state: shippingAddress.region,
+      country: shippingAddress.country,
       postalCode: shippingAddress.postalCode
     }
   };
@@ -5183,27 +5171,27 @@ function convertPaymentRequestApiShippingAddressForEvent(shippingAddress, payerE
  */
 
 function toSourceEventData(paymentRequestBillingData, paymentSource, complete) {
-  var googleBillingAddress = paymentRequestBillingData.paymentMethodData.info.billingAddress;
+  var googleBillingAddress = paymentRequestBillingData.details.billingAddress;
   var billingAddress = {
     address: {
-      line1: googleBillingAddress.address1,
-      line2: googleBillingAddress.address2,
-      city: googleBillingAddress.locality || '',
+      line1: googleBillingAddress.addressLine && googleBillingAddress.addressLine.length > 0 ? googleBillingAddress.addressLine[0] : '',
+      line2: googleBillingAddress.addressLine && googleBillingAddress.addressLine.length >= 2 ? googleBillingAddress.addressLine[1] : '',
+      city: googleBillingAddress.city || '',
       postalCode: googleBillingAddress.postalCode || '',
-      state: googleBillingAddress.administrativeArea || '',
-      country: googleBillingAddress.countryCode ? googleBillingAddress.countryCode.toUpperCase() : ''
+      state: googleBillingAddress.region || '',
+      country: googleBillingAddress.country ? googleBillingAddress.country.toUpperCase() : ''
     },
-    name: googleBillingAddress.name,
+    name: paymentRequestBillingData.shippingAddress ? paymentRequestBillingData.shippingAddress.recipient : '',
     firstName: paymentSource.source && paymentSource.source.owner ? paymentSource.source.owner.firstName : '',
     lastName: paymentSource.source && paymentSource.source.owner ? paymentSource.source.owner.lastName : '',
-    phone: paymentSource.source && paymentSource.source.owner ? paymentSource.source.owner.phoneNumber : '',
+    phone: paymentRequestBillingData.details.billingAddress.phone,
     email: null
   };
-  var shippingAddress = paymentRequestBillingData.shippingAddress ? convertPaymentRequestApiShippingAddressForEvent(paymentRequestBillingData.shippingAddress, paymentRequestBillingData.email) : null;
+  var shippingAddress = paymentRequestBillingData.shippingAddress ? convertPaymentRequestApiShippingAddressForEvent(paymentRequestBillingData.shippingAddress, paymentRequestBillingData.payerEmail) : null;
   var contactInformation = {
-    name: billingAddress.name,
-    phone: billingAddress.phone,
-    email: paymentRequestBillingData.email
+    name: paymentRequestBillingData.payerName,
+    phone: paymentRequestBillingData.payerPhone,
+    email: paymentRequestBillingData.payerEmail
   };
   return {
     error: paymentSource.error,
@@ -5217,21 +5205,29 @@ function toSourceEventData(paymentRequestBillingData, paymentSource, complete) {
 /**
  * transforms shipping options
  * @param {object} originalShippingOptions
+ * @param {string} currency
  * @returns {Array}
  */
+//TODO find out if this function is still being used and remove if not
 
-function convertShippingOptions(originalShippingOptions) {
-  if (originalShippingOptions && _babel_runtime_corejs3_core_js_stable_array_is_array__WEBPACK_IMPORTED_MODULE_2___default()(originalShippingOptions)) {
-    return _babel_runtime_corejs3_core_js_stable_instance_map__WEBPACK_IMPORTED_MODULE_3___default()(originalShippingOptions).call(originalShippingOptions, function (so) {
-      return {
-        id: so.id,
-        label: so.label,
-        description: so.detail
+function convertShippingOptions(originalShippingOptions, currency) {
+  var shippingOptions = [];
+
+  if (originalShippingOptions && _babel_runtime_corejs3_core_js_stable_array_is_array__WEBPACK_IMPORTED_MODULE_4___default()(originalShippingOptions)) {
+    _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_5___default()(originalShippingOptions).call(originalShippingOptions, function (shippingOption, index) {
+      shippingOptions[index] = {
+        id: shippingOption.id,
+        label: shippingOption.label,
+        amount: {
+          value: shippingOption.amount,
+          currency: currency
+        },
+        selected: shippingOption.selected && typeof shippingOption.selected === 'boolean' ? shippingOption.selected : false
       };
     });
-  } else {
-    return [];
   }
+
+  return shippingOptions;
 }
 /**
  * Transforms display items to format needed for Payment Request API and returns them
@@ -5243,8 +5239,8 @@ function convertShippingOptions(originalShippingOptions) {
 function convertDisplayOptions(originalDisplayItems, currency) {
   var displayItems = [];
 
-  if (originalDisplayItems && _babel_runtime_corejs3_core_js_stable_array_is_array__WEBPACK_IMPORTED_MODULE_2___default()(originalDisplayItems)) {
-    _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_4___default()(originalDisplayItems).call(originalDisplayItems, function (displayItem, index) {
+  if (originalDisplayItems && _babel_runtime_corejs3_core_js_stable_array_is_array__WEBPACK_IMPORTED_MODULE_4___default()(originalDisplayItems)) {
+    _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_5___default()(originalDisplayItems).call(originalDisplayItems, function (displayItem, index) {
       displayItems[index] = {
         label: displayItem.label,
         amount: {
@@ -5281,7 +5277,8 @@ function getDetailsFromOptions(paymentOptions) {
       }
     },
     displayItems: displayItems,
-    shippingOptions: shippingOptions
+    shippingOptions: shippingOptions,
+    requestShipping: paymentOptions.requestShipping
   };
 
   if (typeof paymentOptions.total.isPending !== 'undefined') {
@@ -5289,6 +5286,39 @@ function getDetailsFromOptions(paymentOptions) {
   }
 
   return options;
+}
+
+function shouldRequestPayer(instanceData) {
+  return typeof instanceData.getPaymentOptions().billingAddress === 'undefined';
+}
+/**
+ * Returns Payment Request object
+ * @param {object} instanceData
+ * @returns {PaymentRequest}
+ */
+
+
+function initPaymentRequest(instanceData) {
+  var _context2;
+
+  // Convert the format of display items
+  var details = getDetailsFromOptions(instanceData.getPaymentOptions()); //if no shipping option has been designated as selected, set first option as selected
+
+  var updatedDetails = updateShippingOptionsSelectedAttribute(details);
+  var requestPayer = shouldRequestPayer(instanceData);
+  var options = {
+    requestShipping: updatedDetails.requestShipping,
+    requestPayerEmail: requestPayer,
+    requestPayerName: requestPayer,
+    requestPayerPhone: requestPayer
+  };
+  var request = createRequest(instanceData.supportedInstruments, updatedDetails, options);
+
+  _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_5___default()(_context2 = instanceData.events).call(_context2, function (event) {
+    request.addEventListener(event.eventName, event.eventFunction);
+  });
+
+  return request;
 }
 /**
  * Event function for shipping address change event
@@ -5325,15 +5355,11 @@ function shippingOptionChange(sendShippingOptionChangeEvent, instanceData) {
  * @param error
  */
 
-function convertClientShippingAddressErrorsForPaymentRequestUpdateEvent(error, instanceData) {
-  var message = error && error.hasOwnProperty('message') ? error.message : (0,_google_pay_translations__WEBPACK_IMPORTED_MODULE_6__.getGeneralErrorMessageByLocale)(instanceData.locale);
-  return {
-    error: {
-      reason: 'SHIPPING_ADDRESS_UNSERVICEABLE',
-      message: message,
-      intent: 'SHIPPING_ADDRESS'
-    }
-  };
+function convertClientShippingAddressErrorsForPaymentRequestUpdateEvent(error) {
+  var convertedData = {};
+  convertedData.error = error && error.hasOwnProperty('message') ? error.message : 'An Error has occurred.  Please try again.';
+  convertedData.shippingAddressErrors = error && error.hasOwnProperty('fields') ? error.fields : {};
+  return convertedData;
 }
 /**
  * Updating the shipping options to add selected attribute if not exist
@@ -5344,11 +5370,11 @@ function convertClientShippingAddressErrorsForPaymentRequestUpdateEvent(error, i
 function updateShippingOptionsSelectedAttribute(paymentOptions) {
   //if no shipping option has been designated as selected, set first option as selected
   if (paymentOptions.shippingOptions.length > 0) {
-    var _context;
+    var _context3;
 
     var selectedShippingOptionIndex = 0;
 
-    _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_4___default()(_context = paymentOptions.shippingOptions).call(_context, function (shippingOption, index) {
+    _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_5___default()(_context3 = paymentOptions.shippingOptions).call(_context3, function (shippingOption, index) {
       selectedShippingOptionIndex = typeof shippingOption.selected === 'boolean' && shippingOption.selected ? index : selectedShippingOptionIndex;
     });
 
@@ -5470,8 +5496,6 @@ function handleMountWithMessage(controllerEmitter, message, componentData, handl
     componentId: componentData.componentId,
     componentType: componentData.componentType
   }).then(function (response) {
-    emitComponentReady(componentData);
-
     if (response.data) {
       handleMountData(response.data);
     }
@@ -5479,10 +5503,10 @@ function handleMountWithMessage(controllerEmitter, message, componentData, handl
     if (handleMount) {
       handleMount(instanceData);
     }
+
+    emitComponentReady(componentData);
   }).catch(function (error) {
     var _context;
-
-    console.error(error);
 
     if (error.message && _babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_1___default()(_context = error.message).call(_context, 'No ack for postMessage')) {
       return handleMountWithMessage(controllerEmitter, message, componentData, handleMountData, handleMount, instanceData, emitComponentReady, ++retryPosition);
@@ -6209,8 +6233,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _client_delayedPaymentInstructions_delayedPaymentInstructions__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../client/delayedPaymentInstructions/delayedPaymentInstructions */ "./src/client/delayedPaymentInstructions/delayedPaymentInstructions.js");
 /* harmony import */ var _client_msts_msts__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../client/msts/msts */ "./src/client/msts/msts.js");
 /* harmony import */ var _client_offline_refund_offline_refund__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../client/offline-refund/offline-refund */ "./src/client/offline-refund/offline-refund.js");
-/* harmony import */ var _client_google_pay_google_pay__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../client/google-pay/google-pay */ "./src/client/google-pay/google-pay.js");
-
 
 
 
@@ -6256,12 +6278,9 @@ function config() {
       }
     },
     'googlepay': {
-      //iframe: '/google-pay/google-pay.html',
+      iframe: '/google-pay/google-pay.html',
       ignoreEmptyCssClass: true,
-      ignoreBaseCssClass: true,
-      create: function create() {
-        return (0,_client_google_pay_google_pay__WEBPACK_IMPORTED_MODULE_10__.createGooglePay)().createGooglePayComponent;
-      }
+      ignoreBaseCssClass: true
     },
     'iban': {
       iframe: '/iban/iban.html'
@@ -7224,7 +7243,7 @@ function getDetails(entityValue, userLocale) {
     userLocale = this.locale;
   }
 
-  return (0,_complianceData__WEBPACK_IMPORTED_MODULE_13__.complianceGetDetails)(entityValue, userLocale);
+  return (0,_complianceData__WEBPACK_IMPORTED_MODULE_13__.complianceGetDetails)(entityValue, userLocale, undefined, false);
 }
 
 DigitalRiver.prototype.retrieveKonbiniStores = function () {
@@ -7256,7 +7275,7 @@ function removeUnsupportedPaymentMethods(storedPaymentMethods) {
   var allowedPaymentMethodsTypes = ['payPal', 'creditCard', 'storeCredit'];
 
   var allowedBrands = _babel_runtime_corejs3_core_js_stable_instance_map__WEBPACK_IMPORTED_MODULE_7___default()(_context = (0,_create_dropin__WEBPACK_IMPORTED_MODULE_22__.getLogoDetails)()).call(_context, function (logoDetails) {
-    return logoDetails.code;
+    return logoDetails.brand.toLowerCase();
   });
 
   return _babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_8___default()(_context2 = _babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_8___default()(_context3 = _babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_8___default()(storedPaymentMethods).call(storedPaymentMethods, function (pm) {
@@ -7280,7 +7299,7 @@ function removeUnsupportedPaymentMethods(storedPaymentMethods) {
       return false;
     }
   })).call(_context2, function (pm) {
-    if (pm.type === 'creditCard' && !_babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_4___default()(allowedBrands).call(allowedBrands, pm.brand)) {
+    if (pm.type === 'creditCard' && !_babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_4___default()(allowedBrands).call(allowedBrands, pm.brand.toLowerCase())) {
       console.warn('An unsupported stored credit card brand has been provided', pm.brand);
       return false;
     } else {
@@ -8594,17 +8613,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "getActiveAcceptance": function() { return /* binding */ getActiveAcceptance; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/typeof */ "./node_modules/@babel/runtime-corejs3/helpers/esm/typeof.js");
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/keys */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/keys.js");
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/includes */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/includes.js");
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/for-each */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/for-each.js");
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/concat */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/concat.js");
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _json_compliance_json__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../json/compliance.json */ "./src/json/compliance.json");
-/* harmony import */ var _app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../app/components/localization/localized-messages */ "./src/app/components/localization/localized-messages.js");
-/* harmony import */ var _mandate__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./mandate */ "./src/client/mandate.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_index_of__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/index-of */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/index-of.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_index_of__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_index_of__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/keys */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/keys.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/includes */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/includes.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/for-each */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/for-each.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/concat */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/concat.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _json_compliance_json__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../json/compliance.json */ "./src/json/compliance.json");
+/* harmony import */ var _app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../app/components/localization/localized-messages */ "./src/app/components/localization/localized-messages.js");
+/* harmony import */ var _mandate__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./mandate */ "./src/client/mandate.js");
+
 
 
 
@@ -8616,10 +8638,10 @@ __webpack_require__.r(__webpack_exports__);
 var defaultDRStore = 'https://store.digitalriver.com/store/defaults/';
 var eCommerceProvider = '/eCommerceProvider.';
 var slash = '/';
-var commerceSupportedLocales = _json_compliance_json__WEBPACK_IMPORTED_MODULE_5__.locale;
-function complianceGetDetails(entityInfo, locale, country) {
+var commerceSupportedLocales = _json_compliance_json__WEBPACK_IMPORTED_MODULE_6__.locale;
+function complianceGetDetails(entityInfo, locale, country, restrictByCountry) {
   var isEntityInfoAnObject = (0,_babel_runtime_corejs3_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__.default)(entityInfo) === 'object';
-  var fullLocale = typeof entityInfo.language !== 'undefined' ? (0,_app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_6__.getLocaleFromLanguage)(entityInfo.language) : locale.length > 2 ? locale : (0,_app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_6__.getLocaleFromLanguage)(locale);
+  var fullLocale = typeof entityInfo.language !== 'undefined' ? (0,_app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_7__.getLocaleFromLanguage)(entityInfo.language) : locale.length > 2 ? locale : (0,_app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_7__.getLocaleFromLanguage)(locale);
   var updatedLocale = fullLocale.replace('-', '_'); // todo we need to maybe do this es_419 stuff differently
 
   updatedLocale = updatedLocale === 'es_419' ? 'es_MX' : updatedLocale;
@@ -8634,37 +8656,40 @@ function complianceGetDetails(entityInfo, locale, country) {
     throw new Error('Locale is not supported');
   }
 
-  var linkLocale = typeof country === 'undefined' || isEntityInfoAnObject ? updatedLocale : (0,_app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_6__.getLocaleFromCountry)(country).replace('-', '_');
+  var linkLocale = typeof country === 'undefined' || isEntityInfoAnObject ? updatedLocale : (0,_app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_7__.getLocaleFromCountry)(country).replace('-', '_');
+  var showCancellationRightsCountries = ['de', 'dk', 'es', 'fi', 'fr', 'gb', 'ie', 'it', 'nl', 'no', 'pt', 'se'];
+  var showCancellationRights = false;
+
+  if (typeof country !== 'undefined' && _babel_runtime_corejs3_core_js_stable_instance_index_of__WEBPACK_IMPORTED_MODULE_1___default()(showCancellationRightsCountries).call(showCancellationRightsCountries, country.toLowerCase()) !== -1 || !restrictByCountry) {
+    showCancellationRights = true;
+  }
+
   var complianceData = {
     'disclosure': {
       'termsOfSale': {
-        'localizedText': localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_1___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_5__).TERMS_OF_SALE, updatedLocale, businessEntityName, undefined, undefined, linkLocale),
+        'localizedText': localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_2___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_6__).TERMS_OF_SALE, updatedLocale, businessEntityName, undefined, undefined, linkLocale),
         'url': localizedUrl(linkLocale, 'DisplayDRTermsAndConditionsPage', businessEntityNameEncoded)
       },
       'privacyPolicy': {
-        'localizedText': localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_1___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_5__).PRIVACY_POLICY, updatedLocale, businessEntityName, undefined, undefined, linkLocale),
+        'localizedText': localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_2___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_6__).PRIVACY_POLICY, updatedLocale, businessEntityName, undefined, undefined, linkLocale),
         'url': localizedUrl(linkLocale, 'DisplayDRPrivacyPolicyPage', businessEntityNameEncoded)
       },
       'cookiePolicy': {
-        'localizedText': localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_1___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_5__).COOKIE_POLICY, updatedLocale, businessEntityName, undefined, undefined, linkLocale),
+        'localizedText': localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_2___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_6__).COOKIE_POLICY, updatedLocale, businessEntityName, undefined, undefined, linkLocale),
         'url': localizedUrl(linkLocale, 'DisplayDRCookiesPolicyPage', businessEntityNameEncoded)
       },
-      'cancellationRights': {
-        'localizedText': localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_1___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_5__).CANCELLATION_RIGHTS, updatedLocale, businessEntityName, undefined, undefined, linkLocale),
-        'url': localizedUrl(linkLocale, 'DisplayDRTermsAndConditionsPage', businessEntityNameEncoded, 'cancellationRight')
-      },
       'legalNotice': {
-        'localizedText': localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_1___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_5__).LEGAL_NOTICE, updatedLocale, businessEntityName, undefined, undefined, linkLocale),
+        'localizedText': localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_2___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_6__).LEGAL_NOTICE, updatedLocale, businessEntityName, undefined, undefined, linkLocale),
         'url': localizedUrl(linkLocale, 'DisplayDRContactInformationPage', businessEntityNameEncoded)
       },
       'autorenewalPlanTerms': {
-        'localizedText': localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_1___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_5__).AUTORENEWAL_PLAN_TERMS, updatedLocale, businessEntityName, undefined, undefined, linkLocale)
+        'localizedText': localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_2___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_6__).AUTORENEWAL_PLAN_TERMS, updatedLocale, businessEntityName, undefined, undefined, linkLocale)
       },
       'saveCardMandate': {
-        'localizedText': (0,_mandate__WEBPACK_IMPORTED_MODULE_7__.getSaveCardMandateText)(updatedLocale, businessEntityName)
+        'localizedText': (0,_mandate__WEBPACK_IMPORTED_MODULE_8__.getSaveCardMandateText)(updatedLocale, businessEntityName)
       },
       'idealRecurringAgreement': {
-        'localizedText': localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_1___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_5__).IDEAL_RECURRING_AGREEMENT, updatedLocale, businessEntityName, undefined, undefined, linkLocale)
+        'localizedText': localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_2___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_6__).IDEAL_RECURRING_AGREEMENT, updatedLocale, businessEntityName, undefined, undefined, linkLocale)
       }
     }
   };
@@ -8675,11 +8700,11 @@ function complianceGetDetails(entityInfo, locale, country) {
       'id': isEntityInfoAnObject ? entityInfo.businessEntityCode : entityInfo
     };
     complianceData.disclosure.resellerDisclosure = {
-      'localizedText': localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_1___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_5__).RESELLER_DISCLOSURE, updatedLocale, businessEntityName, undefined, undefined, linkLocale),
+      'localizedText': localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_2___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_6__).RESELLER_DISCLOSURE, updatedLocale, businessEntityName, undefined, undefined, linkLocale),
       'url': localizedUrl(linkLocale, 'DisplayDRAboutDigitalRiverPage', businessEntityNameEncoded)
     };
     complianceData.disclosure.confirmDisclosure = {
-      'localizedText': stripOutDoublePeriods(localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_1___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_5__).CONFIRM_DISCLOSURE, updatedLocale, businessEntityName, undefined, undefined, linkLocale))
+      'localizedText': stripOutDoublePeriods(localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_2___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_6__).CONFIRM_DISCLOSURE, updatedLocale, businessEntityName, undefined, undefined, linkLocale))
     };
   }
 
@@ -8705,19 +8730,27 @@ function complianceGetDetails(entityInfo, locale, country) {
     }
   }
 
+  if (showCancellationRights) {
+    var cancellationRights = getCancellationRights(updatedLocale, businessEntityName, linkLocale, businessEntityNameEncoded);
+
+    if (typeof cancellationRights !== 'undefined') {
+      complianceData.disclosure.cancellationRights = cancellationRights;
+    }
+  }
+
   return complianceData;
 }
 
 function checkLocaleSupports(locale) {
-  return _babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_2___default()(commerceSupportedLocales).call(commerceSupportedLocales, locale);
+  return _babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_3___default()(commerceSupportedLocales).call(commerceSupportedLocales, locale);
 }
 
 function localizedText(type, locale, businessEntityName, payNowButtonText, createAccountButtonTextClass, linkLocale) {
   var chosenDefaultLinkLocale = typeof linkLocale === 'undefined' ? locale : linkLocale;
   var localizedValue;
 
-  if (locale in _json_compliance_json__WEBPACK_IMPORTED_MODULE_5__.details && type in _json_compliance_json__WEBPACK_IMPORTED_MODULE_5__.details[locale]) {
-    localizedValue = _json_compliance_json__WEBPACK_IMPORTED_MODULE_5__.details[locale][type];
+  if (locale in _json_compliance_json__WEBPACK_IMPORTED_MODULE_6__.details && type in _json_compliance_json__WEBPACK_IMPORTED_MODULE_6__.details[locale]) {
+    localizedValue = _json_compliance_json__WEBPACK_IMPORTED_MODULE_6__.details[locale][type];
   } else {
     localizedValue = '';
   }
@@ -8732,7 +8765,7 @@ function evaluateVars(string, locale, businessEntityName, payButtonText, createA
     privacyPolicyUrl: localizedUrl(linkLocale, 'DisplayDRPrivacyPolicyPage', encodeURIComponent(businessEntityName)),
     resellerDisclosureUrl: localizedUrl(linkLocale, 'DisplayDRAboutDigitalRiverPage', encodeURIComponent(businessEntityName)),
     businessEntityName: businessEntityName,
-    payNow: typeof payButtonText !== 'undefined' ? payButtonText : (0,_app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_6__.getLocaleMessage)(locale.split('_').join('-'), 'payNow'),
+    payNow: typeof payButtonText !== 'undefined' ? payButtonText : (0,_app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_7__.getLocaleMessage)(locale.split('_').join('-'), 'payNow'),
     //TODO refactor so localized messages and compliance data use same format for locale
     createAccountButtonTextClass: createAccountButtonTextClass
   };
@@ -8742,7 +8775,7 @@ function evaluateVars(string, locale, businessEntityName, payButtonText, createA
   var varsToReplace = string.match(varsPattern);
 
   if (varsToReplace !== null) {
-    _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_3___default()(varsToReplace).call(varsToReplace, function (stringVar, index) {
+    _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_4___default()(varsToReplace).call(varsToReplace, function (stringVar, index) {
       string = string.replace(stringVar, replacementRules[replacements[index]]);
     });
   }
@@ -8762,7 +8795,7 @@ function localizedUrl(locale, entityType, entityNameEncoded, anchor) {
   if (anchor) {
     var _context;
 
-    url = _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_4___default()(_context = "".concat(url, "#")).call(_context, anchor);
+    url = _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_5___default()(_context = "".concat(url, "#")).call(_context, anchor);
   }
 
   return url;
@@ -8773,7 +8806,7 @@ function getBusinessEntityNameFromCode(entityId) {
 
   var entityName;
 
-  _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_3___default()(_context2 = _json_compliance_json__WEBPACK_IMPORTED_MODULE_5__.entityCode).call(_context2, function (entity) {
+  _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_4___default()(_context2 = _json_compliance_json__WEBPACK_IMPORTED_MODULE_6__.entityCode).call(_context2, function (entity) {
     if (typeof entityId === 'string' && entityId.toUpperCase() === entity.code) {
       entityName = entity.name;
     }
@@ -8784,9 +8817,9 @@ function getBusinessEntityNameFromCode(entityId) {
 
 function getCaliforniaPrivacyRights(updatedLocale, businessEntityName, linkLocale) {
   var californiaPrivacyRights;
-  var californiaPrivacyRightText = localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_1___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_5__).CALIFORNIA_PRIVACY_RIGHTS, updatedLocale, businessEntityName);
+  var californiaPrivacyRightText = localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_2___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_6__).CALIFORNIA_PRIVACY_RIGHTS, updatedLocale, businessEntityName);
 
-  if (californiaPrivacyRightText !== '' && existsForLocale(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_1___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_5__).CALIFORNIA_PRIVACY_RIGHTS, linkLocale, businessEntityName)) {
+  if (californiaPrivacyRightText !== '' && existsForLocale(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_2___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_6__).CALIFORNIA_PRIVACY_RIGHTS, linkLocale, businessEntityName)) {
     californiaPrivacyRights = {
       'localizedText': californiaPrivacyRightText,
       'url': 'https://store.digitalriver.com/store/defaults/en_US/DisplayCCPAPage'
@@ -8796,16 +8829,30 @@ function getCaliforniaPrivacyRights(updatedLocale, businessEntityName, linkLocal
   return californiaPrivacyRights;
 }
 
+function getCancellationRights(updatedLocale, businessEntityName, linkLocale, businessEntityNameEncoded) {
+  var cancellationRights;
+  var cancellationRightsText = localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_2___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_6__).CANCELLATION_RIGHTS, updatedLocale, businessEntityName, undefined, undefined, linkLocale);
+
+  if (cancellationRightsText !== '' && existsForLocale(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_2___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_6__).CANCELLATION_RIGHTS, linkLocale, businessEntityName)) {
+    cancellationRights = {
+      'localizedText': cancellationRightsText,
+      'url': localizedUrl(linkLocale, 'DisplayDRTermsAndConditionsPage', businessEntityNameEncoded, 'cancellationRight')
+    };
+  }
+
+  return cancellationRights;
+}
+
 function existsForLocale(key, locale, businessEntityName) {
   return localizedText(key, locale, businessEntityName).length > 0;
 }
 
 function getWarrantyInformation(updatedLocale, businessEntityName, linkLocale) {
   var warrantyInformation;
-  var warrantyInformationText = localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_1___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_5__).WARRANTY_INFORMATION, updatedLocale, businessEntityName);
+  var warrantyInformationText = localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_2___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_6__).WARRANTY_INFORMATION, updatedLocale, businessEntityName);
   var warrantyInformationUrl = localizedUrl(linkLocale, 'DisplayDRTermsAndConditionsPage', typeof businessEntityName !== 'undefined' ? encodeURIComponent(businessEntityName) : businessEntityName, 'warrantyInformation');
 
-  if (warrantyInformationText !== '' && existsForLocale(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_1___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_5__).WARRANTY_INFORMATION, linkLocale, businessEntityName)) {
+  if (warrantyInformationText !== '' && existsForLocale(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_2___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_6__).WARRANTY_INFORMATION, linkLocale, businessEntityName)) {
     warrantyInformation = {
       'localizedText': warrantyInformationText,
       'url': warrantyInformationUrl
@@ -8818,7 +8865,7 @@ function getWarrantyInformation(updatedLocale, businessEntityName, linkLocale) {
 function getAutoRenewPlanTerms(locale, businessEntityId) {
   var updatedLocale = locale.replace('-', '_');
   var businessEntityName = getBusinessEntityNameFromCode(businessEntityId);
-  return localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_1___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_5__).AUTORENEWAL_PLAN_TERMS, updatedLocale, businessEntityName);
+  return localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_2___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_6__).AUTORENEWAL_PLAN_TERMS, updatedLocale, businessEntityName);
 }
 function stripOutDoublePeriods(text) {
   return text.split('..').join('.');
@@ -8826,16 +8873,16 @@ function stripOutDoublePeriods(text) {
 function getConfirmDisclosure(locale, businessEntityId) {
   var updatedLocale = locale.replace('-', '_');
   var businessEntityName = getBusinessEntityNameFromCode(businessEntityId);
-  return stripOutDoublePeriods(localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_1___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_5__).CONFIRM_DISCLOSURE, updatedLocale, businessEntityName));
+  return stripOutDoublePeriods(localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_2___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_6__).CONFIRM_DISCLOSURE, updatedLocale, businessEntityName));
 }
 function getAgreeToTerms(locale, businessEntityId) {
   var updatedLocale = locale.replace('-', '_');
   var businessEntityName = getBusinessEntityNameFromCode(businessEntityId);
-  return localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_1___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_5__).AGREE_TO_TERMS, updatedLocale, businessEntityName);
+  return localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_2___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_6__).AGREE_TO_TERMS, updatedLocale, businessEntityName);
 }
 function getActiveAcceptance(locale, businessEntityId, paymentMethodType, buttonText, customClasses) {
-  var exactLocaleMatchExists = _json_compliance_json__WEBPACK_IMPORTED_MODULE_5__.details[locale.replace('-', '_')].hasOwnProperty(paymentMethodType + 'ActiveAcceptance');
-  var updatedLocale = exactLocaleMatchExists ? locale.replace('-', '_') : (0,_app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_6__.getMappedLocale)(locale).replace('-', '_');
+  var exactLocaleMatchExists = _json_compliance_json__WEBPACK_IMPORTED_MODULE_6__.details[locale.replace('-', '_')].hasOwnProperty(paymentMethodType + 'ActiveAcceptance');
+  var updatedLocale = exactLocaleMatchExists ? locale.replace('-', '_') : (0,_app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_7__.getMappedLocale)(locale).replace('-', '_');
   var businessEntityName = getBusinessEntityNameFromCode(businessEntityId);
   return localizedText("".concat(paymentMethodType, "ActiveAcceptance"), updatedLocale, businessEntityName, buttonText, customClasses);
 }
@@ -8853,17 +8900,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "createCompliance": function() { return /* binding */ createCompliance; }
 /* harmony export */ });
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_bind__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/bind */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/bind.js");
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_bind__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_bind__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _app_components_config__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../app/components/config */ "./src/app/components/config.js");
-/* harmony import */ var _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../post-robot-wrapper */ "./src/post-robot-wrapper.js");
-/* harmony import */ var _createComponent__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../createComponent */ "./src/client/createComponent.js");
-/* harmony import */ var _app_components_options__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../app/components/options */ "./src/app/components/options.js");
-/* harmony import */ var _app_components_payment_events__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../app/components/payment-events */ "./src/app/components/payment-events.js");
-/* harmony import */ var _app_components_create_initial_data__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../app/components/create-initial-data */ "./src/app/components/create-initial-data.js");
-/* harmony import */ var _app_components_payment_component_data__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../app/components/payment-component-data */ "./src/app/components/payment-component-data.js");
-/* harmony import */ var _complianceData__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../complianceData */ "./src/client/complianceData.js");
-/* harmony import */ var _app_components_input_events__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../app/components/input-events */ "./src/app/components/input-events.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/concat */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/concat.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_bind__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/bind */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/bind.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_bind__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_bind__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _app_components_config__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../app/components/config */ "./src/app/components/config.js");
+/* harmony import */ var _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../post-robot-wrapper */ "./src/post-robot-wrapper.js");
+/* harmony import */ var _createComponent__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../createComponent */ "./src/client/createComponent.js");
+/* harmony import */ var _app_components_options__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../app/components/options */ "./src/app/components/options.js");
+/* harmony import */ var _app_components_payment_events__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../app/components/payment-events */ "./src/app/components/payment-events.js");
+/* harmony import */ var _app_components_create_initial_data__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../app/components/create-initial-data */ "./src/app/components/create-initial-data.js");
+/* harmony import */ var _app_components_payment_component_data__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../app/components/payment-component-data */ "./src/app/components/payment-component-data.js");
+/* harmony import */ var _complianceData__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../complianceData */ "./src/client/complianceData.js");
+/* harmony import */ var _app_components_input_events__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../app/components/input-events */ "./src/app/components/input-events.js");
+
 
 
 
@@ -8877,7 +8927,7 @@ __webpack_require__.r(__webpack_exports__);
 
 function getComplianceData(sellingEntityId, locale) {
   try {
-    return (0,_complianceData__WEBPACK_IMPORTED_MODULE_8__.complianceGetDetails)(sellingEntityId, locale);
+    return (0,_complianceData__WEBPACK_IMPORTED_MODULE_9__.complianceGetDetails)(sellingEntityId, locale, undefined, true);
   } catch (e) {
     return undefined;
   }
@@ -8888,6 +8938,12 @@ function addCompliance(sellingEntityId, locale, parent) {
 
   if (typeof compliance === 'undefined' || typeof compliance.disclosure === 'undefined') {
     return;
+  }
+
+  var entity = 'Digital River';
+
+  if (typeof compliance.disclosure.businessEntity !== 'undefined' && typeof compliance.disclosure.businessEntity.name !== 'undefined') {
+    entity = compliance.disclosure.businessEntity.name;
   }
 
   var legalFooter = document.createElement('div');
@@ -8901,18 +8957,20 @@ function addCompliance(sellingEntityId, locale, parent) {
 
   var legalFooterLinks = document.createElement('div');
   legalFooterLinks.className = 'DR-Legal-Footer-Links';
-  createAndAddLink(compliance.disclosure.privacyPolicy, legalFooterLinks);
-  createAndAddLink(compliance.disclosure.termsOfSale, legalFooterLinks);
-  createAndAddLink(compliance.disclosure.californiaPrivacyRights, legalFooterLinks);
-  createAndAddLink(compliance.disclosure.cookiePolicy, legalFooterLinks);
-  createAndAddLink(compliance.disclosure.cancellationRights, legalFooterLinks);
-  createAndAddLink(compliance.disclosure.legalNotice, legalFooterLinks);
-  createAndAddLink(compliance.disclosure.warrantyInformation, legalFooterLinks);
+  createAndAddLink(compliance.disclosure.privacyPolicy, legalFooterLinks, entity);
+  createAndAddLink(compliance.disclosure.termsOfSale, legalFooterLinks, entity);
+  createAndAddLink(compliance.disclosure.californiaPrivacyRights, legalFooterLinks, entity);
+  createAndAddLink(compliance.disclosure.cookiePolicy, legalFooterLinks, entity);
+  createAndAddLink(compliance.disclosure.cancellationRights, legalFooterLinks, entity);
+  createAndAddLink(compliance.disclosure.legalNotice, legalFooterLinks, entity);
+  createAndAddLink(compliance.disclosure.warrantyInformation, legalFooterLinks, entity);
   legalFooter.appendChild(legalFooterLinks);
   parent.appendChild(legalFooter);
 }
 
-function createAndAddLink(legalLink, legalFooterLinks) {
+function createAndAddLink(legalLink, legalFooterLinks, entity) {
+  var _context;
+
   if (typeof legalLink === 'undefined') {
     return;
   }
@@ -8927,6 +8985,7 @@ function createAndAddLink(legalLink, legalFooterLinks) {
   link.href = legalLink.url;
   link.innerText = legalLink.localizedText;
   link.target = '_blank';
+  link.setAttribute('aria-label', _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_0___default()(_context = "".concat(entity, " - ")).call(_context, legalLink.localizedText));
   linkContainer.appendChild(link);
   legalFooterLinks.appendChild(linkContainer);
 }
@@ -8956,7 +9015,7 @@ function createCompliance() {
   }
 
   function onReady() {
-    (0,_app_components_input_events__WEBPACK_IMPORTED_MODULE_9__.sendEventData)(componentData.controller, componentData.componentId, componentData.componentType, 'ready', {}, {});
+    (0,_app_components_input_events__WEBPACK_IMPORTED_MODULE_10__.sendEventData)(componentData.controller, componentData.componentId, componentData.componentType, 'ready', {}, {});
   }
 
   function handleOptions(data) {
@@ -8988,9 +9047,9 @@ function createCompliance() {
   function mountCompliance(node) {
     instanceData.parentNode = node;
 
-    _babel_runtime_corejs3_core_js_stable_instance_bind__WEBPACK_IMPORTED_MODULE_0___default()(_createComponent__WEBPACK_IMPORTED_MODULE_3__.mount).call(_createComponent__WEBPACK_IMPORTED_MODULE_3__.mount, this)(node);
+    _babel_runtime_corejs3_core_js_stable_instance_bind__WEBPACK_IMPORTED_MODULE_1___default()(_createComponent__WEBPACK_IMPORTED_MODULE_4__.mount).call(_createComponent__WEBPACK_IMPORTED_MODULE_4__.mount, this)(node);
 
-    return (0,_app_components_payment_events__WEBPACK_IMPORTED_MODULE_5__.mountComponentFromClient)(instanceData.controllerEmitter, instanceData.componentData, handleOptions, onReady, undefined, instanceData);
+    return (0,_app_components_payment_events__WEBPACK_IMPORTED_MODULE_6__.mountComponentFromClient)(instanceData.controllerEmitter, instanceData.componentData, handleOptions, onReady, undefined, instanceData);
   }
   /**
    * Sanitizes options, stores them in variable, changes amount to string
@@ -8999,7 +9058,7 @@ function createCompliance() {
 
 
   function setOptions(unsafeOptions) {
-    instanceData.options = (0,_app_components_options__WEBPACK_IMPORTED_MODULE_4__.sanitizeOptions)(unsafeOptions);
+    instanceData.options = (0,_app_components_options__WEBPACK_IMPORTED_MODULE_5__.sanitizeOptions)(unsafeOptions);
   }
   /**
    * applies updated options sent by the client
@@ -9008,14 +9067,14 @@ function createCompliance() {
 
 
   function handleUpdate(options) {
-    var complianceUpdate = _babel_runtime_corejs3_core_js_stable_instance_bind__WEBPACK_IMPORTED_MODULE_0___default()(_createComponent__WEBPACK_IMPORTED_MODULE_3__.update).call(_createComponent__WEBPACK_IMPORTED_MODULE_3__.update, this);
+    var complianceUpdate = _babel_runtime_corejs3_core_js_stable_instance_bind__WEBPACK_IMPORTED_MODULE_1___default()(_createComponent__WEBPACK_IMPORTED_MODULE_4__.update).call(_createComponent__WEBPACK_IMPORTED_MODULE_4__.update, this);
 
     complianceUpdate(options);
   }
 
   function createComponent(controllerId, key, options) {
     var type = 'compliance';
-    var id = (0,_createComponent__WEBPACK_IMPORTED_MODULE_3__.generateComponentId)(type);
+    var id = (0,_createComponent__WEBPACK_IMPORTED_MODULE_4__.generateComponentId)(type);
     var component = {
       id: id,
       key: key,
@@ -9023,24 +9082,24 @@ function createCompliance() {
       parentNode: null,
       controllerId: controllerId,
       mount: mountCompliance,
-      destroy: _createComponent__WEBPACK_IMPORTED_MODULE_3__.destroy,
-      on: _createComponent__WEBPACK_IMPORTED_MODULE_3__.onEventHandler,
-      options: (0,_app_components_options__WEBPACK_IMPORTED_MODULE_4__.sanitizeOptions)(options),
+      destroy: _createComponent__WEBPACK_IMPORTED_MODULE_4__.destroy,
+      on: _createComponent__WEBPACK_IMPORTED_MODULE_4__.onEventHandler,
+      options: (0,_app_components_options__WEBPACK_IMPORTED_MODULE_5__.sanitizeOptions)(options),
       // Other method
-      unmount: _createComponent__WEBPACK_IMPORTED_MODULE_3__.unmount,
+      unmount: _createComponent__WEBPACK_IMPORTED_MODULE_4__.unmount,
       update: handleUpdate
     };
-    componentData = (0,_app_components_payment_component_data__WEBPACK_IMPORTED_MODULE_7__.generateComponentData)(type, id, controllerId);
+    componentData = (0,_app_components_payment_component_data__WEBPACK_IMPORTED_MODULE_8__.generateComponentData)(type, id, controllerId);
     componentData.key = key;
-    controllerListener = _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_2__.default.listener({
+    controllerListener = _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_3__.default.listener({
       window: componentData.controller.window,
-      domain: _app_components_config__WEBPACK_IMPORTED_MODULE_1__.config.domain
+      domain: _app_components_config__WEBPACK_IMPORTED_MODULE_2__.config.domain
     });
-    controllerEmitter = _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_2__.default.client({
+    controllerEmitter = _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_3__.default.client({
       window: componentData.controller.window,
-      domain: _app_components_config__WEBPACK_IMPORTED_MODULE_1__.config.domain
+      domain: _app_components_config__WEBPACK_IMPORTED_MODULE_2__.config.domain
     });
-    instanceData = (0,_app_components_create_initial_data__WEBPACK_IMPORTED_MODULE_6__.generateInstanceData)(controllerEmitter, componentData, undefined, setOptions, supportedInstruments);
+    instanceData = (0,_app_components_create_initial_data__WEBPACK_IMPORTED_MODULE_7__.generateInstanceData)(controllerEmitter, componentData, undefined, setOptions, supportedInstruments);
     instanceData.options = component.options;
     addHandleOptions(controllerListener, handleOptions);
     return component;
@@ -9731,7 +9790,7 @@ function getSessionPaymentRequest(configuration, sessionInformation, providedSty
     currency: sessionInformation.currency,
     total: {
       label: orderTotalLabel,
-      amount: _babel_runtime_corejs3_core_js_stable_parse_float__WEBPACK_IMPORTED_MODULE_4___default()(sessionInformation.amount)
+      amount: _babel_runtime_corejs3_core_js_stable_parse_float__WEBPACK_IMPORTED_MODULE_4___default()(sessionInformation.amountRemainingToBeContributed)
     },
     style: style,
     billingAddress: configuration.billingAddress,
@@ -9928,6 +9987,7 @@ function updateMountedPaymentMethodsWithComponent(paymentMethodResponse, locale,
       return spm.type === pm.type;
     }).code;
 
+    console.log('componentsMounted[code]', componentsMounted[code]);
     pm.mountedComponent = componentsMounted[code];
     paymentMethodsMounted.push(pm);
   });
@@ -9969,7 +10029,7 @@ function getCreditCardBrandName(brand) {
   var _context8;
 
   return _babel_runtime_corejs3_core_js_stable_instance_find__WEBPACK_IMPORTED_MODULE_10___default()(_context8 = getLogoDetails()).call(_context8, function (logo) {
-    return logo.code.toLowerCase() === brand.toLowerCase();
+    return logo.brand.toLowerCase() === brand.toLowerCase();
   }).display;
 }
 
@@ -10130,6 +10190,19 @@ function mountDropin(controller, configuration, createSource, createElement, ins
         var componentId = paymentMethod.type + '-' + controller.id + storedId;
 
         if (isRefreshMode && document.getElementById(bodyId) !== null) {
+          if (isPaymentRequestUsed(paymentMethod)) {
+            var component = _babel_runtime_corejs3_core_js_stable_instance_find__WEBPACK_IMPORTED_MODULE_10___default()(paymentMethodsMounted).call(paymentMethodsMounted, function (pm) {
+              return pm.type === paymentMethod.type;
+            });
+
+            var componentOptionsKey = findOptionsKey(configuration.paymentMethodConfiguration, paymentMethod);
+            var componentOptions = getComponentOptions(componentOptionsKey, configuration);
+            var componentOptionsOrPaymentRequest = isPaymentRequestUsed(paymentMethod) ? getSessionPaymentRequest(configuration, paymentMethodResponse.sessionInformation, componentOptions.style, locale).getData() : componentOptions;
+            delete componentOptionsOrPaymentRequest.style;
+            console.log('component.mountedComponent', component.mountedComponent);
+            component.mountedComponent.update(componentOptionsOrPaymentRequest);
+          }
+
           availablePaymentMethod.addedToDOM = true;
           return;
         }
@@ -10191,8 +10264,10 @@ function mountDropin(controller, configuration, createSource, createElement, ins
         }
 
         if (paymentMethod.type === 'ideal' && typeof paymentMethodResponse.sessionInformation !== 'undefined' && paymentMethodResponse.sessionInformation.recurring === true) {
-          var componentOptionsKey = findOptionsKey(configuration.paymentMethodConfiguration, paymentMethod);
-          var componentOptions = getComponentOptions(componentOptionsKey, configuration);
+          var _componentOptionsKey = findOptionsKey(configuration.paymentMethodConfiguration, paymentMethod);
+
+          var _componentOptions = getComponentOptions(_componentOptionsKey, configuration);
+
           var complianceInfo = getComplianceData(getComplianceDetails, paymentMethodResponse, locale);
           var idealMandateText = complianceInfo.disclosure['idealRecurringAgreement'].localizedText;
           var idealMandate = createMandate(paymentMethod, locale, componentHolder, false, availablePaymentMethod, idealMandateText);
@@ -10208,7 +10283,7 @@ function mountDropin(controller, configuration, createSource, createElement, ins
           idealMandate.appendChild(elementErrorContainer);
           idealCheckbox.addEventListener('change', function () {
             if (idealCheckbox.checked) {
-              idealIban = createElement('iban', componentOptions);
+              idealIban = createElement('iban', _componentOptions);
               idealIban.ibanComplete = false;
               idealIban.idealMandateText = idealMandateText;
               idealIban.on('change', function (details) {
@@ -10217,7 +10292,7 @@ function mountDropin(controller, configuration, createSource, createElement, ins
                 }
               });
 
-              var events = _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_3___default()({}, componentOptions.events);
+              var events = _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_3___default()({}, _componentOptions.events);
 
               addClientEventsToComponent(events, idealIban);
               idealIban.mount(elementContainer);
@@ -10235,60 +10310,63 @@ function mountDropin(controller, configuration, createSource, createElement, ins
         }
 
         if (!paymentMethod.onlyButton && !availablePaymentMethod.isStored) {
-          var _componentOptionsKey = findOptionsKey(configuration.paymentMethodConfiguration, paymentMethod);
+          var _componentOptionsKey2 = findOptionsKey(configuration.paymentMethodConfiguration, paymentMethod);
 
-          var _componentOptions = getComponentOptions(_componentOptionsKey, configuration);
+          var _componentOptions2 = getComponentOptions(_componentOptionsKey2, configuration);
 
           try {
-            var componentOptionsOrPaymentRequest = isPaymentRequestUsed(paymentMethod) ? getSessionPaymentRequest(configuration, paymentMethodResponse.sessionInformation, _componentOptions.style, locale) : _componentOptions;
+            var _componentOptionsOrPaymentRequest = isPaymentRequestUsed(paymentMethod) ? getSessionPaymentRequest(configuration, paymentMethodResponse.sessionInformation, _componentOptions2.style, locale) : _componentOptions2;
 
             if (paymentMethod.addSourceDataToOptions) {
-              addSourceDataToOptions(configuration, componentOptionsOrPaymentRequest, paymentMethod, controller, availablePaymentMethod, paymentMethodResponse.sessionInformation, locale);
+              addSourceDataToOptions(configuration, _componentOptionsOrPaymentRequest, paymentMethod, controller, availablePaymentMethod, paymentMethodResponse.sessionInformation, locale);
             }
 
             if (paymentMethod.hasLogos) {
               var filter = typeof paymentMethodResponse.sessionInformation !== 'undefined' ? paymentMethodResponse.sessionInformation.currency : undefined;
-              componentOptionsOrPaymentRequest.logos = filterLogosByCurrency(getLogoDetails(), filter);
+              _componentOptionsOrPaymentRequest.logos = filterLogosByCurrency(getLogoDetails(), filter);
             }
 
             if (paymentMethod.requiresSessionInformation) {
-              componentOptionsOrPaymentRequest[paymentMethod.type] = {
+              _componentOptionsOrPaymentRequest[paymentMethod.type] = {
                 country: paymentMethodResponse.sessionInformation.country,
                 currency: paymentMethodResponse.sessionInformation.currency,
                 recurring: paymentMethodResponse.sessionInformation.recurring
               };
             }
 
-            if (shouldUseDefaultStyles(paymentMethod, componentOptionsOrPaymentRequest, configuration)) {
-              componentOptionsOrPaymentRequest.style = configuration.paymentMethodConfiguration.style;
+            if (shouldUseDefaultStyles(paymentMethod, _componentOptionsOrPaymentRequest, configuration)) {
+              _componentOptionsOrPaymentRequest.style = configuration.paymentMethodConfiguration.style;
             }
 
-            var events = _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_3___default()({}, _componentOptions.events);
+            var events = _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_3___default()({}, _componentOptions2.events);
 
-            delete componentOptionsOrPaymentRequest.events;
-            var component = createElement(paymentMethod.code, componentOptionsOrPaymentRequest);
+            delete _componentOptionsOrPaymentRequest.events;
 
-            if (typeof component.canMakePayment !== 'undefined' && !component.canMakePayment()) {
+            var _component = createElement(paymentMethod.code, _componentOptionsOrPaymentRequest);
+
+            if (typeof _component.canMakePayment !== 'undefined' && !_component.canMakePayment()) {
               clearComponentFromDOM(paymentMethodParent, headerId, bodyId);
               availablePaymentMethod.addedToDOM = false;
               return;
             }
 
             if (typeof configuration.onReady !== 'undefined') {
-              addReadyEventToComponents(component, componentsReadyStatus, configuration.onReady, paymentMethodResponse);
+              addReadyEventToComponents(_component, componentsReadyStatus, configuration.onReady, paymentMethodResponse);
             }
 
-            addClientEventsToComponent(events, component);
-            component.mount(componentHolder.id);
-            componentsMounted[paymentMethod.code] = component;
+            addClientEventsToComponent(events, _component);
+
+            _component.mount(componentHolder.id);
+
+            componentsMounted[paymentMethod.code] = _component;
 
             if (paymentMethod.standaloneButton) {
-              addStandaloneButtonOptions(component, configuration, paymentMethod, availablePaymentMethod);
+              addStandaloneButtonOptions(_component, configuration, paymentMethod, availablePaymentMethod);
             }
 
             if (requiresUpdateToInternalSourceData(paymentMethod, configuration, availablePaymentMethod)) {
               getMandateCheckboxDOMElement(paymentMethod).addEventListener('change', function () {
-                component.update({
+                _component.update({
                   style: {},
                   sourceData: createSourceData(configuration, paymentMethod, controller.id, availablePaymentMethod, paymentMethodResponse.sessionInformation, locale)
                 });
@@ -10305,7 +10383,8 @@ function mountDropin(controller, configuration, createSource, createElement, ins
                   mandate: source.mandate,
                   futureUse: source.futureUse
                 };
-                component.update({
+
+                _component.update({
                   agreementData: agreementData
                 });
               });
@@ -10353,7 +10432,7 @@ function mountDropin(controller, configuration, createSource, createElement, ins
 
 function getComplianceData(getComplianceDetails, paymentMethodResponse, locale) {
   try {
-    return getComplianceDetails(paymentMethodResponse.sessionInformation.sellingEntityId, locale, paymentMethodResponse.sessionInformation.country);
+    return getComplianceDetails(paymentMethodResponse.sessionInformation.sellingEntityId, locale, paymentMethodResponse.sessionInformation.country, true);
   } catch (e) {
     return undefined;
   }
@@ -10393,6 +10472,7 @@ function handleLegalFooter(paymentMethodResponse, getComplianceDetails, locale, 
       return;
     }
 
+    var entity = compliance.disclosure.businessEntity.name;
     var legalFooter = document.createElement('div');
     legalFooter.className = 'DR-Legal-Footer';
 
@@ -10404,19 +10484,21 @@ function handleLegalFooter(paymentMethodResponse, getComplianceDetails, locale, 
 
     var legalFooterLinks = document.createElement('div');
     legalFooterLinks.className = 'DR-Legal-Footer-Links';
-    createAndAddLink(compliance.disclosure.privacyPolicy, legalFooterLinks);
-    createAndAddLink(compliance.disclosure.termsOfSale, legalFooterLinks);
-    createAndAddLink(compliance.disclosure.californiaPrivacyRights, legalFooterLinks);
-    createAndAddLink(compliance.disclosure.cookiePolicy, legalFooterLinks);
-    createAndAddLink(compliance.disclosure.cancellationRights, legalFooterLinks);
-    createAndAddLink(compliance.disclosure.legalNotice, legalFooterLinks);
-    createAndAddLink(compliance.disclosure.warrantyInformation, legalFooterLinks);
+    createAndAddLink(compliance.disclosure.privacyPolicy, legalFooterLinks, entity);
+    createAndAddLink(compliance.disclosure.termsOfSale, legalFooterLinks, entity);
+    createAndAddLink(compliance.disclosure.californiaPrivacyRights, legalFooterLinks, entity);
+    createAndAddLink(compliance.disclosure.cookiePolicy, legalFooterLinks, entity);
+    createAndAddLink(compliance.disclosure.cancellationRights, legalFooterLinks, entity);
+    createAndAddLink(compliance.disclosure.legalNotice, legalFooterLinks, entity);
+    createAndAddLink(compliance.disclosure.warrantyInformation, legalFooterLinks, entity);
     legalFooter.appendChild(legalFooterLinks);
     accordion.appendChild(legalFooter);
   }
 }
 
-function createAndAddLink(legalLink, legalFooterLinks) {
+function createAndAddLink(legalLink, legalFooterLinks, entity) {
+  var _context16;
+
   if (typeof legalLink === 'undefined') {
     return;
   }
@@ -10427,6 +10509,7 @@ function createAndAddLink(legalLink, legalFooterLinks) {
   link.href = legalLink.url;
   link.innerText = legalLink.localizedText;
   link.target = '_blank';
+  link.setAttribute('aria-label', _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_13___default()(_context16 = "".concat(entity, " - ")).call(_context16, legalLink.localizedText));
   linkContainer.appendChild(link);
   legalFooterLinks.appendChild(linkContainer);
 }
@@ -10474,11 +10557,11 @@ function createHeaderDiv(paymentMethod, availablePaymentMethod, headerId, bodyId
   if (typeof availablePaymentMethod.brand !== 'undefined') {
     paymentMethodName.innerText = getCreditCardBrandName(availablePaymentMethod.brand) + getLastFour(availablePaymentMethod);
   } else if (typeof availablePaymentMethod.clientDisplayName !== 'undefined') {
-    var _context16, _context17;
+    var _context17, _context18;
 
     var displayName = document.createElement('div');
     displayName.className = 'DR-stored-added';
-    displayName.innerHTML = _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_13___default()(_context16 = _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_13___default()(_context17 = "<div>".concat((0,_dropin_stored_payment_methods__WEBPACK_IMPORTED_MODULE_29__.formatAmountBasedOnCurrency)(availablePaymentMethod.amount, sessionInformation.currency), " ")).call(_context17, availablePaymentMethod.clientDisplayName, " ")).call(_context16, getLastFour(availablePaymentMethod), "</div>");
+    displayName.innerHTML = _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_13___default()(_context17 = _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_13___default()(_context18 = "<div>".concat((0,_dropin_stored_payment_methods__WEBPACK_IMPORTED_MODULE_29__.formatAmountBasedOnCurrency)(availablePaymentMethod.amount, sessionInformation.currency), " ")).call(_context18, availablePaymentMethod.clientDisplayName, " ")).call(_context17, getLastFour(availablePaymentMethod), "</div>");
     displayName.appendChild((0,_dropin_stored_payment_methods__WEBPACK_IMPORTED_MODULE_29__.getAddedButton)(availablePaymentMethod, configuration));
     paymentMethodName.appendChild(displayName);
   } else if (typeof availablePaymentMethod.paymentName !== 'undefined') {
@@ -10496,8 +10579,10 @@ function createHeaderDiv(paymentMethod, availablePaymentMethod, headerId, bodyId
     headerButton.className = headerButton.className + ' DR-logo-button';
     var image = document.createElement('img');
     image.src = selectedLogoURL;
-    image.alt = paymentMethod.name;
+    image.alt = ''; // intentionally empty so screenreaders will ignore
+
     image.className = 'DR-payment-method-logo';
+    image.setAttribute('role', 'presentation');
     paymentMethodName.className = paymentMethodName.className + ' DR-payment-method-name-with-image';
     headerButton.appendChild(image);
   }
@@ -10697,11 +10782,11 @@ function shouldShowTermsForStoredStoreCredit(paymentMethodFromAPI, configuration
 }
 
 function findSelectedTermForPaymentMethod(paymentMethod) {
-  var _context18;
+  var _context19;
 
   var termRadioButtons = document.querySelectorAll("[name=".concat(paymentMethod.type + '-choice-terms', "]"));
 
-  var selectedTermID = _babel_runtime_corejs3_core_js_stable_instance_find__WEBPACK_IMPORTED_MODULE_10___default()(_context18 = (0,_babel_runtime_corejs3_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__.default)(termRadioButtons)).call(_context18, function (rb) {
+  var selectedTermID = _babel_runtime_corejs3_core_js_stable_instance_find__WEBPACK_IMPORTED_MODULE_10___default()(_context19 = (0,_babel_runtime_corejs3_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__.default)(termRadioButtons)).call(_context19, function (rb) {
     return rb.checked === true;
   });
 
@@ -10848,13 +10933,13 @@ function createSubmitButton(controllerId, configuration, createSource, component
 }
 
 function findOptionsKey(configuration, paymentMethod) {
-  var _context19;
+  var _context20;
 
   if (typeof configuration === 'undefined') {
     return;
   }
 
-  return _babel_runtime_corejs3_core_js_stable_instance_find__WEBPACK_IMPORTED_MODULE_10___default()(_context19 = _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_7___default()(configuration)).call(_context19, function (option) {
+  return _babel_runtime_corejs3_core_js_stable_instance_find__WEBPACK_IMPORTED_MODULE_10___default()(_context20 = _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_7___default()(configuration)).call(_context20, function (option) {
     return option.toLowerCase() === paymentMethod.code;
   });
 }
@@ -10871,18 +10956,18 @@ function addReadyEventToComponents(component, componentsReadyStatus, readyEvent,
 }
 
 function areAllComponentsReady(componentsReadyStatus) {
-  var _context20;
+  var _context21;
 
-  return _babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_5___default()(_context20 = _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_7___default()(componentsReadyStatus)).call(_context20, function (key) {
+  return _babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_5___default()(_context21 = _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_7___default()(componentsReadyStatus)).call(_context21, function (key) {
     return componentsReadyStatus[key] === 'NOT_READY';
   }).length === 0;
 }
 
 function addClientEventsToComponent(events, component) {
   if (typeof events !== 'undefined' && _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_7___default()(events).length > 0) {
-    var _context21;
+    var _context22;
 
-    _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_9___default()(_context21 = _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_7___default()(events)).call(_context21, function (event) {
+    _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_9___default()(_context22 = _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_7___default()(events)).call(_context22, function (event) {
       component.on(event, events[event]);
     });
   }
@@ -10984,9 +11069,9 @@ function filterLogosByCurrency(logoDetails, currency) {
   }
 
   return _babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_5___default()(logoDetails).call(logoDetails, function (logoDetail) {
-    var _context22;
+    var _context23;
 
-    return _babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_6___default()(_context22 = logoDetail.availableCurrencies).call(_context22, currency);
+    return _babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_6___default()(_context23 = logoDetail.availableCurrencies).call(_context23, currency);
   });
 }
 
@@ -11292,7 +11377,7 @@ function mount(node) {
         this.options.classes = (0,_css_class_utils__WEBPACK_IMPORTED_MODULE_11__.getCssClasses)(this.options.classes);
         var elementHeight = (0,_css_class_utils__WEBPACK_IMPORTED_MODULE_11__.getElementHeight)(this.options.style); // If we have options, send them and wait for them to be sent before creating the component
 
-        if (this.type !== 'googlepay' && this.type !== 'applepay' && this.type !== 'compliance') {
+        if (this.type !== 'applepay' && this.type !== 'compliance') {
           (0,_createFrame__WEBPACK_IMPORTED_MODULE_5__.createFrame)(this.type, node, getComponentURL(this.type, this.id, this.controllerId), attributes, elementHeight, data.instanceOptions.locale, this.id, this.nameForAccessibility);
         }
 
@@ -11410,34 +11495,25 @@ function createComponent(type, controllerId, key, options, nameForAccessibility)
     }
   }
 
-  if (type === 'googlepay' && typeof window.google === 'undefined' && !document.getElementById('DR-GooglePay')) {
-    var _scriptTag = document.createElement('script');
-
-    _scriptTag.id = 'DR-GooglePay';
-    _scriptTag.src = 'https://pay.google.com/gp/p/js/pay.js';
-    document.body.appendChild(_scriptTag);
-  }
-
   return component;
-}
-
-function isIE11OrLess() {
-  var _context2, _context3;
-
-  return _babel_runtime_corejs3_core_js_stable_instance_index_of__WEBPACK_IMPORTED_MODULE_0___default()(_context2 = navigator.userAgent).call(_context2, 'MSIE') !== -1 || _babel_runtime_corejs3_core_js_stable_instance_index_of__WEBPACK_IMPORTED_MODULE_0___default()(_context3 = navigator.appVersion).call(_context3, 'Trident/') > -1;
 }
 /**
  * Returns true if browser/device can support google pay
  * @returns {boolean|*}
  */
 
-
 function googlePayCanMakePayment() {
-  if (isIE11OrLess()) {
-    return false;
-  }
+  return !!window.PaymentRequest && isChrome();
+}
+/**
+ * Returns true if browser is Chrome
+ * @returns {boolean}
+ */
 
-  return true;
+function isChrome() {
+  var _context2, _context3;
+
+  return _babel_runtime_corejs3_core_js_stable_instance_index_of__WEBPACK_IMPORTED_MODULE_0___default()(_context2 = navigator.userAgent.toLowerCase()).call(_context2, 'chrome') > -1 && _babel_runtime_corejs3_core_js_stable_instance_index_of__WEBPACK_IMPORTED_MODULE_0___default()(_context3 = navigator.vendor.toLowerCase()).call(_context3, 'google') > -1;
 }
 /**
  * Returns component url
@@ -11446,6 +11522,7 @@ function googlePayCanMakePayment() {
  * @param {string} controllerId
  * @returns {string} component url
  */
+
 
 function getComponentURL(type, id, controllerId) {
   if (!(0,_app_config__WEBPACK_IMPORTED_MODULE_17__.isValidComponent)(type)) {
@@ -11899,7 +11976,8 @@ function createFrame(type, node, src, attributes, elementHeight, locale, id, nam
       width: '0',
       height: '0',
       frameBorder: '0',
-      style: 'display: block'
+      style: 'display: block',
+      'aria-hidden': 'true'
     });
   } else if (type === 'dr3dsecure') {
     attributes = _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_0___default()(attributes, {
@@ -13095,7 +13173,7 @@ function getIconImage(paymentMethodResponse, storedPaymentMethod) {
     var _context;
 
     return _babel_runtime_corejs3_core_js_stable_instance_find__WEBPACK_IMPORTED_MODULE_0___default()(_context = (0,_create_dropin__WEBPACK_IMPORTED_MODULE_2__.getLogoDetails)()).call(_context, function (logo) {
-      return logo.code.toLowerCase() === storedPaymentMethod.brand.toLowerCase();
+      return logo.brand.toLowerCase() === storedPaymentMethod.brand.toLowerCase();
     }).url;
   }
 
@@ -13620,470 +13698,6 @@ function getPaymentMethods(controllerId, sessionId, country, currency, locale, s
   }).then(function (response) {
     return response.data;
   });
-}
-
-/***/ }),
-
-/***/ "./src/client/google-pay/google-pay.js":
-/*!*********************************************!*\
-  !*** ./src/client/google-pay/google-pay.js ***!
-  \*********************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "paymentApiTriggerEvent": function() { return /* binding */ paymentApiTriggerEvent; },
-/* harmony export */   "getElement": function() { return /* binding */ getElement; },
-/* harmony export */   "createGooglePay": function() { return /* binding */ createGooglePay; }
-/* harmony export */ });
-/* harmony import */ var _babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/asyncToGenerator */ "./node_modules/@babel/runtime-corejs3/helpers/esm/asyncToGenerator.js");
-/* harmony import */ var _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/regenerator */ "./node_modules/@babel/runtime-corejs3/regenerator/index.js");
-/* harmony import */ var _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_json_stringify__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/json/stringify */ "./node_modules/@babel/runtime-corejs3/core-js-stable/json/stringify.js");
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_json_stringify__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_json_stringify__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/object/assign */ "./node_modules/@babel/runtime-corejs3/core-js-stable/object/assign.js");
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/promise */ "./node_modules/@babel/runtime-corejs3/core-js-stable/promise.js");
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_bind__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/bind */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/bind.js");
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_bind__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_bind__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/includes */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/includes.js");
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../post-robot-wrapper */ "./src/post-robot-wrapper.js");
-/* harmony import */ var _createComponent__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../createComponent */ "./src/client/createComponent.js");
-/* harmony import */ var _app_components_options__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../app/components/options */ "./src/app/components/options.js");
-/* harmony import */ var _app_components_config__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../app/components/config */ "./src/app/components/config.js");
-/* harmony import */ var _app_components_payment_events__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../app/components/payment-events */ "./src/app/components/payment-events.js");
-/* harmony import */ var _app_components_payment_api_events__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../app/components/payment-api-events */ "./src/app/components/payment-api-events.js");
-/* harmony import */ var _app_components_create_initial_data__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../app/components/create-initial-data */ "./src/app/components/create-initial-data.js");
-/* harmony import */ var _app_components_payment_component_data__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../app/components/payment-component-data */ "./src/app/components/payment-component-data.js");
-/* harmony import */ var _app_components_payment_api__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../../app/components/payment-api */ "./src/app/components/payment-api.js");
-
-
-
-
-
-
-
-
-
- //import './google-pay.html';
-
-
-
-
-
-
-
-var COMPONENT_TYPE = 'googlepay';
-/**
- * Runs appropriate handler for event type
- * @param {string} type - event type
- */
-
-function paymentApiTriggerEvent(type) {
-  switch (type) {
-    case 'show':
-      {
-        getElement().getElementsByTagName('button')[0].click();
-        return;
-      }
-  }
-}
-/**
- * returns element with id of buyButton
- * @returns {HTMLElement}
- */
-
-function getElement() {
-  return document.getElementById('container');
-}
-function createGooglePay() {
-  var componentData;
-  var controllerListener;
-  var controllerEmitter;
-  var paymentOptions = null;
-  var instanceData;
-  var allowedCardNetworks = ['AMEX', 'DISCOVER', 'INTERAC', 'JCB', 'MASTERCARD', 'VISA'];
-  var allowedCardAuthMethods = ['PAN_ONLY']; // Not supporting 'CRYPTOGRAM_3DS' at the moment
-
-  function getGoogleShippingAddressParameters() {
-    return {
-      phoneNumberRequired: true
-    };
-  }
-
-  function addHandleOptions(controllerListener, handleOptions) {
-    controllerListener.on('googlePayOptions' + componentData.componentId, function (event) {
-      var componentData = event.data.componentData;
-      handleOptions(componentData);
-    });
-  }
-  /*mountComponent(controllerEmitter, componentData, handleOptions, emitComponentReady, undefined, instanceData);
-  addHandleOptions(controllerListener, handleOptions);
-  addTriggerEvent(controllerListener, paymentApiTriggerEvent, instanceData);*/
-
-
-  var MERCHANT_ID = 'BCR2DN4T7CR25OJG';
-  var MERCHANT_NAME = 'Digital River';
-  var PUBLIC_KEY_NON_PROD = 'BLYc//KM/lJq6nN1EOVx+dnrdSvZSWb+LDpw4hdQ1JEwqG8M4YKN7QFHV/co1RMexRu09nxa4YMAk0RNLqtUwtg=';
-  var PUBLIC_KEY_PROD = 'BJzm/YGu+Cj1kGqyspm028M6+dYNSKjzwSfX2ppfwTRXebSSa56aKhUD/Q6e4liE6Darec5/E+zO6BwLyW2wNQg=';
-
-  function determinePublicKey(isTestEnv) {
-    if (isTestEnv) {
-      return PUBLIC_KEY_NON_PROD;
-    } else {
-      return PUBLIC_KEY_PROD;
-    }
-  }
-  /**
-   * Returns payment options
-   * @returns {object}
-   */
-
-
-  function getPaymentOptions() {
-    return paymentOptions;
-  }
-  /**
-   * Applies options to google pay element
-   * @param {object} data
-   */
-
-
-  function handleOptions(data) {
-    var isStyleEqual = paymentOptions === null ? false : isObjectShallowEqual(data.options.style, paymentOptions.style);
-    setOptions(data.options);
-    addInstanceOptions(data.instanceOptions);
-    /* if (!isStyleEqual) {
-       onGooglePayLoaded();
-     }*/
-
-    var script = document.createElement('script');
-    script.src = 'https://pay.google.com/gp/p/js/pay.js';
-
-    script.onload = function () {
-      //  TODO Only add when does not exist
-      console.log('LOADED');
-
-      if (!isStyleEqual) {
-        onGooglePayLoaded();
-      }
-
-      console.log('ADDED BUTTON');
-    };
-
-    document.getElementById('container').appendChild(script);
-  }
-
-  function isObjectShallowEqual(o1, o2) {
-    return _babel_runtime_corejs3_core_js_stable_json_stringify__WEBPACK_IMPORTED_MODULE_2___default()(o1) === _babel_runtime_corejs3_core_js_stable_json_stringify__WEBPACK_IMPORTED_MODULE_2___default()(o2);
-  }
-  /**
-   * Stores the instance options in the component state
-   * @param instanceOptions
-   */
-
-
-  function addInstanceOptions(instanceOptions) {
-    componentData.instanceOptions = instanceOptions;
-  }
-
-  function getInstanceData() {
-    return componentData.instanceOptions;
-  }
-  /*
-  Sanitizes options and puts amount in correct format and then assigns them to paymentOptions
-   */
-
-
-  function setOptions(unsafeOptions) {
-    var options = (0,_app_components_options__WEBPACK_IMPORTED_MODULE_9__.sanitizeOptionsForGoogleApplePay)(unsafeOptions);
-    options.total.amount = options.total.amount.toString();
-    paymentOptions = options;
-  }
-
-  function getGoogleIsReadyToPayRequest() {
-    return _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_3___default()({}, baseRequest, {
-      allowedPaymentMethods: [baseCardPaymentMethod]
-    });
-  }
-  /**
-   * Initialize Google PaymentsClient after Google-hosted JavaScript has loaded
-   *
-   * Display a Google Pay payment button after confirmation of the viewer's
-   * ability to pay.
-   */
-
-
-  function onGooglePayLoaded() {
-    var paymentsClient = getGooglePaymentsClient();
-    return paymentsClient.isReadyToPay(getGoogleIsReadyToPayRequest()).then(function (response) {
-      if (response.result) {
-        addGooglePayButton();
-      }
-    }).catch(function (err) {
-      // show error in developer console for debugging
-      console.error(err);
-    });
-  }
-  /**
-   * Add a Google Pay purchase button alongside an existing checkout button
-   *
-   * @see {@link https://developers.google.com/pay/api/web/reference/request-objects#ButtonOptions|Button options}
-   * @see {@link https://developers.google.com/pay/api/web/guides/brand-guidelines|Google Pay brand guidelines}
-   */
-
-
-  function addGooglePayButton() {
-    if (getElement().childNodes.length > 0) {
-      getElement().innerHTML = '';
-    }
-
-    var paymentsClient = getGooglePaymentsClient();
-    var color = paymentOptions.style.buttonColor === 'dark' ? 'black' : 'white';
-    var type = paymentOptions.style.buttonType === 'plain' ? 'plain' : 'buy';
-    var buttonOptions = {
-      onClick: onGooglePaymentButtonClicked,
-      buttonSizeMode: 'fill',
-      buttonType: type,
-      buttonColor: color
-    };
-
-    if (paymentOptions.style.buttonLanguage) {
-      buttonOptions.buttonLocale = paymentOptions.style.buttonLanguage;
-    }
-
-    var button = paymentsClient.createButton(buttonOptions);
-    document.getElementById('container').appendChild(button);
-  }
-
-  var baseRequest = {
-    apiVersion: 2,
-    apiVersionMinor: 0
-  };
-
-  function getTokenSpecification(isTestKey) {
-    return {
-      'type': 'DIRECT',
-      'parameters': {
-        'protocolVersion': 'ECv2',
-        'publicKey': determinePublicKey(isTestKey)
-      }
-    };
-  }
-
-  var baseCardPaymentMethod = {
-    type: 'CARD',
-    parameters: {
-      allowedAuthMethods: allowedCardAuthMethods,
-      allowedCardNetworks: allowedCardNetworks,
-      billingAddressRequired: true,
-      billingAddressParameters: {
-        format: 'FULL',
-        phoneNumberRequired: true
-      } //assuranceDetailsRequired: true,
-      //allowPrepaidCards: true
-
-    }
-  };
-
-  function isRequestShippingMode() {
-    return getPaymentOptions().requestShipping === true;
-  }
-
-  function getCardPaymentMethod(isTestApiKey) {
-    return _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_3___default()({}, baseCardPaymentMethod, {
-      tokenizationSpecification: getTokenSpecification(isTestApiKey)
-    });
-  }
-
-  function getGooglePaymentDataRequest() {
-    var paymentDataRequest = _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_3___default()({}, baseRequest);
-
-    paymentDataRequest.allowedPaymentMethods = [getCardPaymentMethod(getInstanceData().isTestApiKey)];
-    paymentDataRequest.transactionInfo = (0,_app_components_payment_api_events__WEBPACK_IMPORTED_MODULE_12__.getGoogleTransactionInfo)(getPaymentOptions());
-    paymentDataRequest.merchantInfo = {
-      merchantName: MERCHANT_NAME,
-      merchantId: MERCHANT_ID
-    };
-    paymentDataRequest.emailRequired = true;
-
-    if (isRequestShippingMode()) {
-      paymentDataRequest.shippingAddressRequired = true;
-      paymentDataRequest.shippingOptionRequired = true;
-      paymentDataRequest.callbackIntents = ['SHIPPING_ADDRESS', 'SHIPPING_OPTION', 'PAYMENT_AUTHORIZATION'];
-      paymentDataRequest.shippingAddressParameters = getGoogleShippingAddressParameters();
-    } else {
-      paymentDataRequest.shippingAddressRequired = false;
-      paymentDataRequest.shippingOptionRequired = false;
-      paymentDataRequest.callbackIntents = ['PAYMENT_AUTHORIZATION'];
-    }
-
-    return paymentDataRequest;
-  }
-  /**
-   * Show Google Pay payment sheet when Google Pay payment button is clicked
-   *
-   */
-
-
-  function onGooglePaymentButtonClicked() {
-    return _onGooglePaymentButtonClicked.apply(this, arguments);
-  }
-
-  function _onGooglePaymentButtonClicked() {
-    _onGooglePaymentButtonClicked = (0,_babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__.default)( /*#__PURE__*/_babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee() {
-      var paymentDataRequest, paymentsClient;
-      return _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee$(_context2) {
-        while (1) {
-          switch (_context2.prev = _context2.next) {
-            case 0:
-              _context2.next = 2;
-              return (0,_app_components_payment_api__WEBPACK_IMPORTED_MODULE_15__.processClickEvent)(instanceData, _app_components_payment_api_events__WEBPACK_IMPORTED_MODULE_12__.sendClickEvent);
-
-            case 2:
-              paymentDataRequest = getGooglePaymentDataRequest();
-              paymentDataRequest.transactionInfo = (0,_app_components_payment_api_events__WEBPACK_IMPORTED_MODULE_12__.getGoogleTransactionInfo)(getPaymentOptions());
-              paymentsClient = getGooglePaymentsClient();
-              return _context2.abrupt("return", paymentsClient.loadPaymentData(paymentDataRequest).catch(function (err) {
-                var _context;
-
-                if (err.message && _babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_6___default()(_context = err.message).call(_context, 'User closed the Payment Request UI') || err.statusCode && err.statusCode === 'CANCELED') {
-                  (0,_app_components_payment_api_events__WEBPACK_IMPORTED_MODULE_12__.emitComponentCancelled)(componentData);
-                }
-              }));
-
-            case 6:
-            case "end":
-              return _context2.stop();
-          }
-        }
-      }, _callee);
-    }));
-    return _onGooglePaymentButtonClicked.apply(this, arguments);
-  }
-
-  function generateClientConfig() {
-    var environment = getInstanceData().isTestApiKey ? 'TEST' : 'PRODUCTION';
-
-    if (isRequestShippingMode()) {
-      return {
-        environment: environment,
-        paymentDataCallbacks: {
-          onPaymentDataChanged: onPaymentDataChanged,
-          onPaymentAuthorized: onPaymentAuthorized
-        }
-      };
-    } else {
-      return {
-        environment: environment,
-        paymentDataCallbacks: {
-          onPaymentAuthorized: onPaymentAuthorized
-        }
-      };
-    }
-  }
-
-  function onPaymentAuthorized(paymentData) {
-    return (0,_app_components_payment_api_events__WEBPACK_IMPORTED_MODULE_12__.onPayButtonClick)(instanceData, paymentData);
-  }
-
-  function getGooglePaymentsClient() {
-    if (typeof instanceData.paymentsClient === 'undefined') {
-      // eslint-disable-next-line no-undef
-      instanceData.paymentsClient = new google.payments.api.PaymentsClient(generateClientConfig());
-    }
-
-    return instanceData.paymentsClient;
-  }
-
-  function onPaymentDataChanged(intermediatePaymentData) {
-    return new (_babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_4___default())(function (resolve) {
-      var shippingAddress = intermediatePaymentData.shippingAddress;
-      var paymentDataRequestUpdate = {};
-
-      if (intermediatePaymentData.callbackTrigger === 'INITIALIZE') {
-        paymentDataRequestUpdate.newShippingOptionParameters = (0,_app_components_payment_api_events__WEBPACK_IMPORTED_MODULE_12__.getGoogleDefaultShippingOptions)(getPaymentOptions());
-      } else if (intermediatePaymentData.callbackTrigger === 'SHIPPING_ADDRESS') {
-        var selectedShippingOptionId = (0,_app_components_payment_api_events__WEBPACK_IMPORTED_MODULE_12__.getGoogleDefaultShippingOptions)(getPaymentOptions()).defaultSelectedOptionId;
-        (0,_app_components_payment_api_events__WEBPACK_IMPORTED_MODULE_12__.sendShippingAddressChangeEvent)(shippingAddress, selectedShippingOptionId, resolve, instanceData);
-        return;
-      } else if (intermediatePaymentData.callbackTrigger === 'SHIPPING_OPTION') {
-        var _selectedShippingOptionId = intermediatePaymentData.shippingOptionData.id;
-        (0,_app_components_payment_api_events__WEBPACK_IMPORTED_MODULE_12__.sendShippingOptionChangeEvent)(_selectedShippingOptionId, resolve, instanceData);
-        return;
-      }
-
-      resolve(paymentDataRequestUpdate);
-    });
-  }
-  /**
-   * Mounts component
-   * @param node - string or html element where component should be mounted
-   */
-
-
-  function mountGooglePay(node) {
-    instanceData.parentNode = node;
-    console.log('node', node);
-    var container = document.createElement('div');
-    container.id = 'container';
-    document.getElementById(node).appendChild(container);
-
-    var applePayMount = _babel_runtime_corejs3_core_js_stable_instance_bind__WEBPACK_IMPORTED_MODULE_5___default()(_createComponent__WEBPACK_IMPORTED_MODULE_8__.mount).call(_createComponent__WEBPACK_IMPORTED_MODULE_8__.mount, this);
-
-    applePayMount(node);
-    return (0,_app_components_payment_events__WEBPACK_IMPORTED_MODULE_11__.mountComponentFromClient)(instanceData.controllerEmitter, instanceData.componentData, handleOptions, _app_components_payment_api_events__WEBPACK_IMPORTED_MODULE_12__.emitComponentReady, undefined, instanceData);
-  }
-
-  function createGooglePayComponent(controllerId, key, options) {
-    var id = (0,_createComponent__WEBPACK_IMPORTED_MODULE_8__.generateComponentId)(COMPONENT_TYPE);
-    var component = {
-      id: id,
-      key: key,
-      type: COMPONENT_TYPE,
-      parentNode: null,
-      controllerId: controllerId,
-      canMakePayment: _createComponent__WEBPACK_IMPORTED_MODULE_8__.googlePayCanMakePayment,
-      mount: mountGooglePay,
-      //destroy: destroy,
-      on: _createComponent__WEBPACK_IMPORTED_MODULE_8__.onEventHandler,
-      options: (0,_app_components_options__WEBPACK_IMPORTED_MODULE_9__.sanitizeOptionsForGoogleApplePay)(options) //show: onApplePayButtonClick,
-      //unmount: unmount,
-      //update: handleUpdate
-
-    };
-    componentData = (0,_app_components_payment_component_data__WEBPACK_IMPORTED_MODULE_14__.generateComponentData)(COMPONENT_TYPE, id, controllerId);
-    componentData.key = key;
-    controllerListener = _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_7__.default.listener({
-      window: componentData.controller.window,
-      domain: _app_components_config__WEBPACK_IMPORTED_MODULE_10__.config.domain
-    });
-    controllerEmitter = _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_7__.default.client({
-      window: componentData.controller.window,
-      domain: _app_components_config__WEBPACK_IMPORTED_MODULE_10__.config.domain
-    });
-    instanceData = (0,_app_components_create_initial_data__WEBPACK_IMPORTED_MODULE_13__.generateInstanceData)(controllerEmitter, componentData, getPaymentOptions, getElement, setOptions);
-    instanceData.waitBeforeShow = true;
-    instanceData.options = component.options;
-    addHandleOptions(controllerListener, handleOptions);
-    return component;
-  }
-
-  return {
-    createGooglePayComponent: createGooglePayComponent,
-    setOptions: setOptions,
-    getElement: getElement,
-    getPaymentOptions: getPaymentOptions,
-    //handleUpdate: handleUpdate,
-    //handleCancel: handleCancel,
-    handleOptions: handleOptions,
-    mount: mountGooglePay,
-    onGooglePaymentButtonClicked: onGooglePaymentButtonClicked,
-    getInstanceData: getInstanceData
-  };
 }
 
 /***/ }),
@@ -28469,17 +28083,6 @@ function validate(uuid) {
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (validate);
-
-/***/ }),
-
-/***/ "./src/app/components/google-pay/google-pay-translations.json":
-/*!********************************************************************!*\
-  !*** ./src/app/components/google-pay/google-pay-translations.json ***!
-  \********************************************************************/
-/***/ (function(module) {
-
-"use strict";
-module.exports = JSON.parse('{"ar_EG":{"GENERAL_ERROR":"معذرة، حدث خطأ ما. من فضلك حاول مرة أخرى في وقت لاحق."},"cs_CZ":{"GENERAL_ERROR":"Omlouváme&#39; se, došlo k chybě. Zkuste to, prosím, později."},"da_DK":{"GENERAL_ERROR":"Vi beklager. Der er opstået en fejl. Prøv igen senere."},"de_AT":{"GENERAL_ERROR":"Es ist leider ein Fehler aufgetreten. Bitte versuchen Sie es später noch einmal."},"de_CH":{"GENERAL_ERROR":"Es ist leider ein Fehler aufgetreten. Bitte versuchen Sie es später noch einmal."},"de_DE":{"GENERAL_ERROR":"Es ist leider ein Fehler aufgetreten. Bitte versuchen Sie es später noch einmal."},"el_GR":{"GENERAL_ERROR":"Δυστυχώς, παρουσιάστηκε σφάλμα. Προσπαθήστε ξανά αργότερα."},"en_AU":{"GENERAL_ERROR":"We&#39;re sorry, an error has occurred. Please try again later."},"en_CA":{"GENERAL_ERROR":"We&#39;re sorry, an error has occurred. Please try again later."},"en_CH":{"GENERAL_ERROR":"We&#39;re sorry, an error has occurred. Please try again later."},"en_GB":{"GENERAL_ERROR":"We&#39;re sorry, an error has occurred. Please try again later."},"en_IE":{"GENERAL_ERROR":"We&#39;re sorry, an error has occurred. Please try again later."},"en_IN":{"GENERAL_ERROR":"We&#39;re sorry, an error has occurred. Please try again later."},"en_NL":{"GENERAL_ERROR":"We&#39;re sorry, an error has occurred. Please try again later."},"en_NZ":{"GENERAL_ERROR":"We&#39;re sorry, an error has occurred. Please try again later."},"en_PR":{"GENERAL_ERROR":"We&#39;re sorry, an error has occurred. Please try again later."},"en_SG":{"GENERAL_ERROR":"We&#39;re sorry, an error has occurred. Please try again later."},"en_US":{"GENERAL_ERROR":"We&#39;re sorry, an error has occurred. Please try again later."},"en_ZA":{"GENERAL_ERROR":"We&#39;re sorry, an error has occurred. Please try again later."},"es_AR":{"GENERAL_ERROR":"Lo&#39; sentimos, ocurrió un error. Inténtelo de nuevo más tarde."},"es_CL":{"GENERAL_ERROR":"Lo&#39; sentimos, ocurrió un error. Inténtelo de nuevo más tarde."},"es_CO":{"GENERAL_ERROR":"Lo&#39; sentimos, ocurrió un error. Inténtelo de nuevo más tarde."},"es_EC":{"GENERAL_ERROR":"Lo&#39; sentimos, ocurrió un error. Inténtelo de nuevo más tarde."},"es_ES":{"GENERAL_ERROR":"Se ha producido un error. Inténtelo de nuevo más tarde."},"es_MX":{"GENERAL_ERROR":"Lo&#39; sentimos, ocurrió un error. Inténtelo de nuevo más tarde."},"es_PE":{"GENERAL_ERROR":"Lo&#39; sentimos, ocurrió un error. Inténtelo de nuevo más tarde."},"es_VE":{"GENERAL_ERROR":"Lo&#39; sentimos, ocurrió un error. Inténtelo de nuevo más tarde."},"fi_FI":{"GENERAL_ERROR":"Valitettavasti tapahtui virhe. Yritä myöhemmin uudelleen."},"fr_BE":{"GENERAL_ERROR":"Nous &#39;sommes désolés, une erreur s&#39;est produite. Veuillez réessayer ultérieurement."},"fr_CA":{"GENERAL_ERROR":"Nous sommes désolées, une erreur s’est produite. Veuillez réessayer plus tard."},"fr_CH":{"GENERAL_ERROR":"Nous &#39;sommes désolés, une erreur s&#39;est produite. Veuillez réessayer ultérieurement."},"fr_FR":{"GENERAL_ERROR":"Nous &#39;sommes désolés, une erreur s&#39;est produite. Veuillez réessayer ultérieurement."},"hu_HU":{"GENERAL_ERROR":"Sajnáljuk, hiba történt. Kérjük, próbálja újra később."},"it_CH":{"GENERAL_ERROR":"Siamo spiacenti, si è verificato un errore. Riprovare più tardi."},"it_IT":{"GENERAL_ERROR":"Siamo spiacenti, si è verificato un errore. Riprovare più tardi."},"iw_IL":{"GENERAL_ERROR":"אנו מצטערים, אירעה שגיאה. אנא נסה שוב במועד מאוחר יותר."},"ja_JP":{"GENERAL_ERROR":"申し訳ございません。エラーが発生しました。後で再試行してください。"},"ko_KR":{"GENERAL_ERROR":"죄송하지만, 오류가 발생했습니다. 나중에 다시 시도하십시오."},"nl_BE":{"GENERAL_ERROR":"Er is helaas een fout opgetreden. Probeer het later nog eens."},"nl_NL":{"GENERAL_ERROR":"Er is helaas een fout opgetreden. Probeer het later nog eens."},"no_NO":{"GENERAL_ERROR":"Beklager. Det oppstod en feil. Vennligst prøv på nytt senere."},"pl_PL":{"GENERAL_ERROR":"Przepraszamy. Wystąpił błąd. Spróbuj ponownie później."},"pt_BR":{"GENERAL_ERROR":"Desculpe&#39;, ocorreu um erro. Por favor, tente mais tarde."},"pt_PT":{"GENERAL_ERROR":"Lamentamos, mas ocorreu um erro. Tente novamente mais tarde."},"ru_RU":{"GENERAL_ERROR":"К сожалению, возникла ошибка. Повторите попытку позднее."},"sk_SK":{"GENERAL_ERROR":"Ospravedlňujeme sa, vyskytla sa chyba. Skúste to znova neskôr."},"sv_SE":{"GENERAL_ERROR":"Tyvärr, ett fel har uppstått. Vänligen försök igen senare."},"th_TH":{"GENERAL_ERROR":"ขออภัย มีข้อผิดพลาดเกิดขึ้น โปรดลองอีกครั้งในภายหลัง"},"tr_TR":{"GENERAL_ERROR":"Üzgünüz, bir hata oluştu. Lütfen daha sonra tekrar deneyin."},"zh_CN":{"GENERAL_ERROR":"很抱歉，发生错误。请稍后再试一次。"},"zh_HK":{"GENERAL_ERROR":"很抱歉&#39;，發生錯誤。請稍後再試。"},"zh_TW":{"GENERAL_ERROR":"抱歉&#39;，發生錯誤。請稍後再試一次。"}}');
 
 /***/ }),
 

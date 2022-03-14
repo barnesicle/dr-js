@@ -159,7 +159,7 @@
     }
 
   </style>
-<script defer src="dropInStyles.js"></script><script defer src="https://github.digitalriverws.net/pages/lbarnes/drjs-demo/DigitalRiver.js"></script><link href="css/DigitalRiver.css" rel="stylesheet"></head>
+<script defer src="dropInStyles.js"></script><script defer src="https://js-test.digitalriver.com/PR-783/DigitalRiver.js"></script><link href="css/DigitalRiver.css" rel="stylesheet"></head>
 
 <body class="bg-light" style="padding-top:50px;">
 <div class="row">
@@ -1204,7 +1204,7 @@
 
       googlePayComponent.on("shippingoptionchange", function (details) {
         responseLog('googlepay shippingoptionchange received ' + JSON.stringify(details));
-        const data = {total : {label: 'Order Total - option change'}};
+        const data = {total : {label: 'Order Total - option change', amount: 14.1}};
         data.shippingOptions = [
           {
             id: "ground",
