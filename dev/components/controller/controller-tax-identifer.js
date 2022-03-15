@@ -1870,11 +1870,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "config": function() { return /* binding */ config; }
 /* harmony export */ });
 // Holds any configuration data that changes depending on environment
-// 'http://mjoshi-gpupgrade-7.c141.drcloud.zone:8080/clients/gc/channels/paylive/sessions
 var config = {
   domain: "https://github.digitalriverws.net",
   // eslint-disable-line no-undef
-  paymentServiceUrl: 'http://mjoshi-gpupgrade-7.c141.drcloud.zone:8080/clients/gc/channels/paylive/sources',
+  paymentServiceUrl: "https://api.digitalriver.com" + '/payments/sources',
   // eslint-disable-line no-undef
   basePath: "/pages/lbarnes/drjs-demo" || 0,
   // eslint-disable-line no-undef
@@ -1904,7 +1903,7 @@ var config = {
   // eslint-disable-line no-undef
   paypalRedirectBaseUrl: "https://payments-test.digitalriver.com/redirect/",
   // eslint-disable-line no-undef
-  paymentMethodsUrl: 'http://mjoshi-gpupgrade-7.c141.drcloud.zone:8080/clients/gc/channels/paylive/payment-methods',
+  paymentMethodsUrl: "https://api.digitalriver.com" + '/payments/payment-methods',
   // eslint-disable-line no-undef
   apiUrl: "https://api.digitalriver.com",
   // eslint-disable-line no-undef
@@ -1942,8 +1941,7 @@ var paymentServiceRequest = function paymentServiceRequest(data, apiKey, payment
     headers: {
       'Content-Type': 'application/json',
       'version': 'new',
-      'Authorization': 'Basic cGF5c2VydmljZTpkb250X3BhbmljXzQy',
-      //generateAuthHeader(apiKey),
+      'Authorization': generateAuthHeader(apiKey),
       'x-debug-drjs-application': applicationHeader
     }
   };
@@ -1958,8 +1956,7 @@ var paymentServiceGetRequest = function paymentServiceGetRequest(apiKey, payment
     timeout: 15000,
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': 'Basic cGF5c2VydmljZTpkb250X3BhbmljXzQy' //generateAuthHeader(apiKey)
-
+      'Authorization': generateAuthHeader(apiKey)
     }
   };
   return axios__WEBPACK_IMPORTED_MODULE_1___default().get(paymentApiUrl, options);
