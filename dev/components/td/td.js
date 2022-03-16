@@ -2009,7 +2009,7 @@ __webpack_require__.r(__webpack_exports__);
 var config = {
   domain: "https://github.digitalriverws.net",
   // eslint-disable-line no-undef
-  paymentServiceUrl: 'https://payments-util.c141.drcloud.zone:9017/clients/gc/channels/paylive/sources',
+  paymentServiceUrl: 'https://mjoshi-gpupgrade-7.c141.drcloud.zone:8443/clients/gc/channels/paylive/sources',
   // eslint-disable-line no-undef
   basePath: "/pages/lbarnes/drjs-demo" || 0,
   // eslint-disable-line no-undef
@@ -2039,7 +2039,7 @@ var config = {
   // eslint-disable-line no-undef
   paypalRedirectBaseUrl: "https://payments-test.digitalriver.com/redirect/",
   // eslint-disable-line no-undef
-  paymentMethodsUrl: 'https://payments-util.c141.drcloud.zone:9017/clients/gc/channels/paylive/payment-methods',
+  paymentMethodsUrl: 'https://mjoshi-gpupgrade-7.c141.drcloud.zone:8443/clients/gc/channels/paylive/payment-methods',
   // eslint-disable-line no-undef
   apiUrl: "https://api.digitalriver.com",
   // eslint-disable-line no-undef
@@ -12140,11 +12140,11 @@ function v1(options, buf, offset) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _v35_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./v35.js */ "./node_modules/uuid/dist/esm-browser/v35.js");
-/* harmony import */ var _md5_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./md5.js */ "./node_modules/uuid/dist/esm-browser/md5.js");
+/* harmony import */ var _v35_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./v35.js */ "./node_modules/uuid/dist/esm-browser/v35.js");
+/* harmony import */ var _md5_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./md5.js */ "./node_modules/uuid/dist/esm-browser/md5.js");
 
 
-var v3 = (0,_v35_js__WEBPACK_IMPORTED_MODULE_1__.default)('v3', 0x30, _md5_js__WEBPACK_IMPORTED_MODULE_0__.default);
+var v3 = (0,_v35_js__WEBPACK_IMPORTED_MODULE_0__.default)('v3', 0x30, _md5_js__WEBPACK_IMPORTED_MODULE_1__.default);
 /* harmony default export */ __webpack_exports__["default"] = (v3);
 
 /***/ }),
@@ -12276,11 +12276,11 @@ function v4(options, buf, offset) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _v35_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./v35.js */ "./node_modules/uuid/dist/esm-browser/v35.js");
-/* harmony import */ var _sha1_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./sha1.js */ "./node_modules/uuid/dist/esm-browser/sha1.js");
+/* harmony import */ var _v35_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./v35.js */ "./node_modules/uuid/dist/esm-browser/v35.js");
+/* harmony import */ var _sha1_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./sha1.js */ "./node_modules/uuid/dist/esm-browser/sha1.js");
 
 
-var v5 = (0,_v35_js__WEBPACK_IMPORTED_MODULE_1__.default)('v5', 0x50, _sha1_js__WEBPACK_IMPORTED_MODULE_0__.default);
+var v5 = (0,_v35_js__WEBPACK_IMPORTED_MODULE_0__.default)('v5', 0x50, _sha1_js__WEBPACK_IMPORTED_MODULE_1__.default);
 /* harmony default export */ __webpack_exports__["default"] = (v5);
 
 /***/ }),

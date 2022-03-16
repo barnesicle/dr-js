@@ -2658,7 +2658,7 @@ __webpack_require__.r(__webpack_exports__);
 var config = {
   domain: "https://github.digitalriverws.net",
   // eslint-disable-line no-undef
-  paymentServiceUrl: 'https://payments-util.c141.drcloud.zone:9017/clients/gc/channels/paylive/sources',
+  paymentServiceUrl: 'https://mjoshi-gpupgrade-7.c141.drcloud.zone:8443/clients/gc/channels/paylive/sources',
   // eslint-disable-line no-undef
   basePath: "/pages/lbarnes/drjs-demo" || 0,
   // eslint-disable-line no-undef
@@ -2688,7 +2688,7 @@ var config = {
   // eslint-disable-line no-undef
   paypalRedirectBaseUrl: "https://payments-test.digitalriver.com/redirect/",
   // eslint-disable-line no-undef
-  paymentMethodsUrl: 'https://payments-util.c141.drcloud.zone:9017/clients/gc/channels/paylive/payment-methods',
+  paymentMethodsUrl: 'https://mjoshi-gpupgrade-7.c141.drcloud.zone:8443/clients/gc/channels/paylive/payment-methods',
   // eslint-disable-line no-undef
   apiUrl: ({"PAYMENT_API_URL":undefined,"DOMAIN":"https://github.digitalriverws.net","BASE_PATH":"/pages/lbarnes/drjs-demo","APPLE_PAY_MERCHANT_ID":"merchant.com.test.cert.digitalriver"}).API_URL,
   // eslint-disable-line no-undef
@@ -28448,8 +28448,8 @@ function stringify(arr) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _rng_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./rng.js */ "./node_modules/uuid/dist/esm-browser/rng.js");
-/* harmony import */ var _stringify_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./stringify.js */ "./node_modules/uuid/dist/esm-browser/stringify.js");
+/* harmony import */ var _rng_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./rng.js */ "./node_modules/uuid/dist/esm-browser/rng.js");
+/* harmony import */ var _stringify_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./stringify.js */ "./node_modules/uuid/dist/esm-browser/stringify.js");
 
  // **`v1()` - Generate time-based UUID**
 //
@@ -28474,7 +28474,7 @@ function v1(options, buf, offset) {
   // system entropy.  See #189
 
   if (node == null || clockseq == null) {
-    var seedBytes = options.random || (options.rng || _rng_js__WEBPACK_IMPORTED_MODULE_0__.default)();
+    var seedBytes = options.random || (options.rng || _rng_js__WEBPACK_IMPORTED_MODULE_1__.default)();
 
     if (node == null) {
       // Per 4.5, create and 48-bit node id, (47 random bits + multicast bit = 1)
@@ -28541,7 +28541,7 @@ function v1(options, buf, offset) {
     b[i + n] = node[n];
   }
 
-  return buf || (0,_stringify_js__WEBPACK_IMPORTED_MODULE_1__.default)(b);
+  return buf || (0,_stringify_js__WEBPACK_IMPORTED_MODULE_0__.default)(b);
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (v1);

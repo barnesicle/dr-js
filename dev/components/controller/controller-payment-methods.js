@@ -1884,7 +1884,7 @@ __webpack_require__.r(__webpack_exports__);
 var config = {
   domain: "https://github.digitalriverws.net",
   // eslint-disable-line no-undef
-  paymentServiceUrl: 'https://payments-util.c141.drcloud.zone:9017/clients/gc/channels/paylive/sources',
+  paymentServiceUrl: 'https://mjoshi-gpupgrade-7.c141.drcloud.zone:8443/clients/gc/channels/paylive/sources',
   // eslint-disable-line no-undef
   basePath: "/pages/lbarnes/drjs-demo" || 0,
   // eslint-disable-line no-undef
@@ -1914,7 +1914,7 @@ var config = {
   // eslint-disable-line no-undef
   paypalRedirectBaseUrl: "https://payments-test.digitalriver.com/redirect/",
   // eslint-disable-line no-undef
-  paymentMethodsUrl: 'https://payments-util.c141.drcloud.zone:9017/clients/gc/channels/paylive/payment-methods',
+  paymentMethodsUrl: 'https://mjoshi-gpupgrade-7.c141.drcloud.zone:8443/clients/gc/channels/paylive/payment-methods',
   // eslint-disable-line no-undef
   apiUrl: "https://api.digitalriver.com",
   // eslint-disable-line no-undef
