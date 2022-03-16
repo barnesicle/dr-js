@@ -6598,11 +6598,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var agent = new https.Agent({
-  rejectUnauthorized: false,
-  requestCert: false,
-  agent: false
-});
 var paymentServiceRequest = function paymentServiceRequest(data, apiKey, paymentApiUrl, applicationHeader) {
   var options = {
     maxRedirects: 0,
@@ -6614,8 +6609,7 @@ var paymentServiceRequest = function paymentServiceRequest(data, apiKey, payment
       'Authorization': 'Basic cGF5c2VydmljZTpkb250X3BhbmljXzQy',
       //generateAuthHeader(apiKey),
       'x-debug-drjs-application': applicationHeader
-    },
-    httpsAgent: agent
+    }
   };
   var url = paymentApiUrl !== undefined ? paymentApiUrl : undefined; //eslint-disable-line no-undef
 
