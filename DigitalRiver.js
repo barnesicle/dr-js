@@ -4954,14 +4954,15 @@ function sendClickEvent(instanceData, resolve) {
     }; // TODO Set a timeout of x seconds....?
 
 
-    _babel_runtime_corejs3_core_js_stable_set_interval__WEBPACK_IMPORTED_MODULE_6___default()(function () {
+    var interval = _babel_runtime_corejs3_core_js_stable_set_interval__WEBPACK_IMPORTED_MODULE_6___default()(function () {
       console.log("DONE?");
 
       if (status.result === 'SUCCESS') {
         console.log("DONE");
         resolve((0,_payment_api__WEBPACK_IMPORTED_MODULE_10__.getDetailsFromOptions)(instanceData.getPaymentOptions()));
+        clearInterval(interval);
       }
-    }, 500);
+    }, 200);
 
     var result = {
       updateWith: updateWith
