@@ -5298,7 +5298,8 @@ function sendClickEvent(instanceData, resolve) {
       return data;
     };
 
-    var result = {//updateWith: updateWith
+    var result = {
+      updateWith: updateWith
     };
     (0,_input_events__WEBPACK_IMPORTED_MODULE_8__.sendEventData)(instanceData.componentData.controller, instanceData.componentData.componentId, instanceData.componentData.componentType, 'click', result);
     return result;
