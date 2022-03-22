@@ -6085,6 +6085,8 @@ function sendShippingOptionChangeEvent(selectedShippingOption, resolve, instance
 
 function sendClickEvent(instanceData, resolve) {
   if (waitForClientUpdateWithFunction(instanceData.getPaymentOptions())) {
+    console.log('YES 1');
+
     var updateWith = function updateWith(clientPassedInData) {
       var data = (0,_options__WEBPACK_IMPORTED_MODULE_10__.mergeOptions)(instanceData.getPaymentOptions(), clientPassedInData);
       instanceData.setOptions(data);
