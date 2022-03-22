@@ -6093,6 +6093,7 @@ function sendClickEvent(instanceData, resolve) {
       return data;
     };*/
 
+    resolve((0,_payment_api__WEBPACK_IMPORTED_MODULE_9__.getDetailsFromOptions)(instanceData.getPaymentOptions()));
     var result = {//updateWith: updateWith
     };
     (0,_input_events__WEBPACK_IMPORTED_MODULE_8__.sendEventData)(instanceData.componentData.controller, instanceData.componentData.componentId, instanceData.componentData.componentType, 'click', result);
