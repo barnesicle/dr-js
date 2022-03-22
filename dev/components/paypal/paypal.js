@@ -271,6 +271,16 @@ module.exports = __webpack_require__(/*! core-js-pure/stable/promise */ "./node_
 
 /***/ }),
 
+/***/ "./node_modules/@babel/runtime-corejs3/core-js-stable/set-interval.js":
+/*!****************************************************************************!*\
+  !*** ./node_modules/@babel/runtime-corejs3/core-js-stable/set-interval.js ***!
+  \****************************************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! core-js-pure/stable/set-interval */ "./node_modules/core-js-pure/stable/set-interval.js");
+
+/***/ }),
+
 /***/ "./node_modules/@babel/runtime-corejs3/core-js-stable/url.js":
 /*!*******************************************************************!*\
   !*** ./node_modules/@babel/runtime-corejs3/core-js-stable/url.js ***!
@@ -4737,14 +4747,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_find__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/find */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/find.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_find__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_find__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_array_is_array__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/array/is-array */ "./node_modules/@babel/runtime-corejs3/core-js-stable/array/is-array.js");
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_array_is_array__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_array_is_array__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/filter */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/filter.js");
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var _input_events__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./input-events */ "./src/app/components/input-events.js");
-/* harmony import */ var _payment_api__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./payment-api */ "./src/app/components/payment-api.js");
-/* harmony import */ var _options__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./options */ "./src/app/components/options.js");
-/* harmony import */ var _google_apple_pay_events__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./google-apple-pay-events */ "./src/app/components/google-apple-pay-events.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_set_interval__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/set-interval */ "./node_modules/@babel/runtime-corejs3/core-js-stable/set-interval.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_set_interval__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_set_interval__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_array_is_array__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/array/is-array */ "./node_modules/@babel/runtime-corejs3/core-js-stable/array/is-array.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_array_is_array__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_array_is_array__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/filter */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/filter.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _input_events__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./input-events */ "./src/app/components/input-events.js");
+/* harmony import */ var _payment_api__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./payment-api */ "./src/app/components/payment-api.js");
+/* harmony import */ var _options__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./options */ "./src/app/components/options.js");
+/* harmony import */ var _google_apple_pay_events__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./google-apple-pay-events */ "./src/app/components/google-apple-pay-events.js");
+
 
 
 
@@ -4763,7 +4776,7 @@ __webpack_require__.r(__webpack_exports__);
  */
 
 function emitComponentReady(componentData) {
-  (0,_input_events__WEBPACK_IMPORTED_MODULE_8__.handleEvent)(componentData, 'ready');
+  (0,_input_events__WEBPACK_IMPORTED_MODULE_9__.handleEvent)(componentData, 'ready');
 }
 /**
  * Emits component cancelled event
@@ -4771,7 +4784,7 @@ function emitComponentReady(componentData) {
  */
 
 function emitComponentCancelled(componentData) {
-  (0,_input_events__WEBPACK_IMPORTED_MODULE_8__.handleEvent)(componentData, 'cancel');
+  (0,_input_events__WEBPACK_IMPORTED_MODULE_9__.handleEvent)(componentData, 'cancel');
 }
 /**
  * Returns complete function for payment source request
@@ -4798,7 +4811,7 @@ function createCompleteFunction(resolve, paymentRequestResponseData) {
 
 function processPayment(paymentRequestData, resolve, instanceData) {
   var complete = createCompleteFunction(resolve, paymentRequestData);
-  var paymentServiceRequest = (0,_payment_api__WEBPACK_IMPORTED_MODULE_9__.paymentRequestApiResponseToPaymentServiceRequest)(paymentRequestData, instanceData.getPaymentOptions());
+  var paymentServiceRequest = (0,_payment_api__WEBPACK_IMPORTED_MODULE_10__.paymentRequestApiResponseToPaymentServiceRequest)(paymentRequestData, instanceData.getPaymentOptions());
 
   if (typeof instanceData.getPaymentOptions().billingAddress !== 'undefined') {
     paymentServiceRequest.sessionId = instanceData.getPaymentOptions().sessionId;
@@ -4814,7 +4827,7 @@ function processPayment(paymentRequestData, resolve, instanceData) {
   } // Send payment / credit card data to controller to call payment service
 
 
-  (0,_google_apple_pay_events__WEBPACK_IMPORTED_MODULE_11__.sendCreateSourceRequest)(instanceData.controllerEmitter, instanceData.componentData, paymentRequestData, paymentServiceRequest, _payment_api__WEBPACK_IMPORTED_MODULE_9__.toSourceEventData, complete);
+  (0,_google_apple_pay_events__WEBPACK_IMPORTED_MODULE_12__.sendCreateSourceRequest)(instanceData.controllerEmitter, instanceData.componentData, paymentRequestData, paymentServiceRequest, _payment_api__WEBPACK_IMPORTED_MODULE_10__.toSourceEventData, complete);
 }
 /**
  * Sends shipping address change event to client
@@ -4828,7 +4841,7 @@ function processPayment(paymentRequestData, resolve, instanceData) {
 function sendShippingAddressChangeEvent(googleShippingAddress, selectedShippingOption, resolve, instanceData) {
   var _context;
 
-  var shippingAddress = (0,_payment_api__WEBPACK_IMPORTED_MODULE_9__.convertPaymentRequestApiShippingAddressForEvent)(googleShippingAddress);
+  var shippingAddress = (0,_payment_api__WEBPACK_IMPORTED_MODULE_10__.convertPaymentRequestApiShippingAddressForEvent)(googleShippingAddress);
   var paymentOptions = instanceData.getPaymentOptions(); // set the previously selected one as selected in the data
 
   _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_2___default()(_context = paymentOptions.shippingOptions).call(_context, function (shippingOption) {
@@ -4839,10 +4852,10 @@ function sendShippingAddressChangeEvent(googleShippingAddress, selectedShippingO
     var errorData = {};
 
     if (clientPassedInData.status === 'failure') {
-      errorData = (0,_payment_api__WEBPACK_IMPORTED_MODULE_9__.convertClientShippingAddressErrorsForPaymentRequestUpdateEvent)(clientPassedInData.error, instanceData);
+      errorData = (0,_payment_api__WEBPACK_IMPORTED_MODULE_10__.convertClientShippingAddressErrorsForPaymentRequestUpdateEvent)(clientPassedInData.error, instanceData);
     }
 
-    var mergedDataWithoutErrors = (0,_options__WEBPACK_IMPORTED_MODULE_10__.mergeOptions)(paymentOptions, clientPassedInData);
+    var mergedDataWithoutErrors = (0,_options__WEBPACK_IMPORTED_MODULE_11__.mergeOptions)(paymentOptions, clientPassedInData);
 
     if (clientPassedInData.status === 'success') {
       delete mergedDataWithoutErrors['error'];
@@ -4852,7 +4865,7 @@ function sendShippingAddressChangeEvent(googleShippingAddress, selectedShippingO
 
     var mergedData = _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_3___default()({}, mergedDataWithoutErrors, errorData);
 
-    var newPaymentOptions = (0,_payment_api__WEBPACK_IMPORTED_MODULE_9__.updateShippingOptionsSelectedAttribute)(mergedData);
+    var newPaymentOptions = (0,_payment_api__WEBPACK_IMPORTED_MODULE_10__.updateShippingOptionsSelectedAttribute)(mergedData);
     var detailsData = getGoogleTransactionInfo(newPaymentOptions);
 
     if (_babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_4___default()(errorData).length > 0) {
@@ -4875,7 +4888,7 @@ function sendShippingAddressChangeEvent(googleShippingAddress, selectedShippingO
     shippingAddress: shippingAddress,
     updateWith: updateWith
   };
-  (0,_input_events__WEBPACK_IMPORTED_MODULE_8__.sendEventData)(instanceData.componentData.controller, instanceData.componentData.componentId, instanceData.componentData.componentType, 'shippingaddresschange', eventData);
+  (0,_input_events__WEBPACK_IMPORTED_MODULE_9__.sendEventData)(instanceData.componentData.controller, instanceData.componentData.componentId, instanceData.componentData.componentType, 'shippingaddresschange', eventData);
   return eventData;
 }
 /**
@@ -4898,9 +4911,9 @@ function sendShippingOptionChangeEvent(selectedShippingOption, resolve, instance
       shippingOption.selected = shippingOption.id === selectedShippingOption;
     });
 
-    var data = (0,_options__WEBPACK_IMPORTED_MODULE_10__.mergeOptions)(paymentOptions, clientPassedInData);
+    var data = (0,_options__WEBPACK_IMPORTED_MODULE_11__.mergeOptions)(paymentOptions, clientPassedInData);
     instanceData.setOptions(data);
-    var updatedDetails = (0,_payment_api__WEBPACK_IMPORTED_MODULE_9__.updateShippingOptionsSelectedAttribute)(data);
+    var updatedDetails = (0,_payment_api__WEBPACK_IMPORTED_MODULE_10__.updateShippingOptionsSelectedAttribute)(data);
     var detailsData = getGoogleTransactionInfo(updatedDetails);
     resolve({
       newTransactionInfo: detailsData,
@@ -4919,7 +4932,7 @@ function sendShippingOptionChangeEvent(selectedShippingOption, resolve, instance
     shippingOption: foundShippingOption,
     updateWith: updateWith
   };
-  (0,_input_events__WEBPACK_IMPORTED_MODULE_8__.sendEventData)(instanceData.componentData.controller, instanceData.componentData.componentId, instanceData.componentData.componentType, 'shippingoptionchange', eventData);
+  (0,_input_events__WEBPACK_IMPORTED_MODULE_9__.sendEventData)(instanceData.componentData.controller, instanceData.componentData.componentId, instanceData.componentData.componentType, 'shippingoptionchange', eventData);
   return eventData;
 }
 /**
@@ -4931,23 +4944,38 @@ function sendShippingOptionChangeEvent(selectedShippingOption, resolve, instance
 
 function sendClickEvent(instanceData, resolve) {
   if (waitForClientUpdateWithFunction(instanceData.getPaymentOptions())) {
-    console.log('YES 2');
-    /*const updateWith = function (clientPassedInData) {
-      const data = mergeOptions(instanceData.getPaymentOptions(), clientPassedInData);
-      instanceData.setOptions(data);
-      resolve(getDetailsFromOptions(instanceData.getPaymentOptions()));
-      return data;
-    };*/
-
-    resolve((0,_payment_api__WEBPACK_IMPORTED_MODULE_9__.getDetailsFromOptions)(instanceData.getPaymentOptions()));
-    var result = {//updateWith: updateWith
+    console.log('YES 3');
+    var status = {
+      result: 'INIT'
     };
-    (0,_input_events__WEBPACK_IMPORTED_MODULE_8__.sendEventData)(instanceData.componentData.controller, instanceData.componentData.componentId, instanceData.componentData.componentType, 'click', result);
+
+    var updateWith = function updateWith(clientPassedInData) {
+      var data = (0,_options__WEBPACK_IMPORTED_MODULE_11__.mergeOptions)(instanceData.getPaymentOptions(), clientPassedInData);
+      instanceData.setOptions(data); //resolve(getDetailsFromOptions(instanceData.getPaymentOptions()));
+
+      status.result = 'SUCCESS';
+      return data;
+    }; // TODO Set a timeout of x seconds....?
+
+
+    _babel_runtime_corejs3_core_js_stable_set_interval__WEBPACK_IMPORTED_MODULE_6___default()(function () {
+      console.log("DONE?");
+
+      if (result === 'SUCCESS') {
+        console.log("DONE");
+        resolve((0,_payment_api__WEBPACK_IMPORTED_MODULE_10__.getDetailsFromOptions)(instanceData.getPaymentOptions()));
+      }
+    }, 500);
+
+    var result = {
+      updateWith: updateWith
+    };
+    (0,_input_events__WEBPACK_IMPORTED_MODULE_9__.sendEventData)(instanceData.componentData.controller, instanceData.componentData.componentId, instanceData.componentData.componentType, 'click', result);
     return result;
   } else {
-    resolve((0,_payment_api__WEBPACK_IMPORTED_MODULE_9__.getDetailsFromOptions)(instanceData.getPaymentOptions()));
+    resolve((0,_payment_api__WEBPACK_IMPORTED_MODULE_10__.getDetailsFromOptions)(instanceData.getPaymentOptions()));
     var _result = {};
-    (0,_input_events__WEBPACK_IMPORTED_MODULE_8__.sendEventData)(instanceData.componentData.controller, instanceData.componentData.componentId, instanceData.componentData.componentType, 'click', _result);
+    (0,_input_events__WEBPACK_IMPORTED_MODULE_9__.sendEventData)(instanceData.componentData.controller, instanceData.componentData.componentId, instanceData.componentData.componentType, 'click', _result);
     return _result;
   }
 }
@@ -4976,7 +5004,7 @@ function _onPayButtonClick() {
       while (1) {
         switch (_context6.prev = _context6.next) {
           case 0:
-            return _context6.abrupt("return", (0,_payment_api__WEBPACK_IMPORTED_MODULE_9__.onBuyClicked)(processPayment, emitComponentCancelled, sendClickEvent, instanceData, paymentData));
+            return _context6.abrupt("return", (0,_payment_api__WEBPACK_IMPORTED_MODULE_10__.onBuyClicked)(processPayment, emitComponentCancelled, sendClickEvent, instanceData, paymentData));
 
           case 1:
           case "end":
@@ -4989,7 +5017,7 @@ function _onPayButtonClick() {
 }
 
 function createDisplayItems(paymentOptions) {
-  if (paymentOptions.displayItems && _babel_runtime_corejs3_core_js_stable_array_is_array__WEBPACK_IMPORTED_MODULE_6___default()(paymentOptions.displayItems)) {
+  if (paymentOptions.displayItems && _babel_runtime_corejs3_core_js_stable_array_is_array__WEBPACK_IMPORTED_MODULE_7___default()(paymentOptions.displayItems)) {
     var _context4;
 
     var displayItems = [];
@@ -5025,13 +5053,13 @@ function getGoogleDefaultShippingOptions(paymentOptions) {
     return [];
   }
 
-  var defaultSelected = _babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_7___default()(_context5 = paymentOptions.shippingOptions).call(_context5, function (so) {
+  var defaultSelected = _babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_8___default()(_context5 = paymentOptions.shippingOptions).call(_context5, function (so) {
     return so.selected === true;
   });
 
   return {
     defaultSelectedOptionId: defaultSelected.length > 0 ? defaultSelected[0].id : paymentOptions.shippingOptions[0].id,
-    shippingOptions: (0,_payment_api__WEBPACK_IMPORTED_MODULE_9__.convertShippingOptions)(paymentOptions.shippingOptions)
+    shippingOptions: (0,_payment_api__WEBPACK_IMPORTED_MODULE_10__.convertShippingOptions)(paymentOptions.shippingOptions)
   };
 }
 
@@ -22716,6 +22744,44 @@ for (var COLLECTION_NAME in DOMIterables) {
 
 /***/ }),
 
+/***/ "./node_modules/core-js-pure/modules/web.timers.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/core-js-pure/modules/web.timers.js ***!
+  \*********************************************************/
+/***/ (function(__unused_webpack_module, __unused_webpack_exports, __webpack_require__) {
+
+var $ = __webpack_require__(/*! ../internals/export */ "./node_modules/core-js-pure/internals/export.js");
+var global = __webpack_require__(/*! ../internals/global */ "./node_modules/core-js-pure/internals/global.js");
+var userAgent = __webpack_require__(/*! ../internals/engine-user-agent */ "./node_modules/core-js-pure/internals/engine-user-agent.js");
+
+var slice = [].slice;
+var MSIE = /MSIE .\./.test(userAgent); // <- dirty ie9- check
+
+var wrap = function (scheduler) {
+  return function (handler, timeout /* , ...arguments */) {
+    var boundArgs = arguments.length > 2;
+    var args = boundArgs ? slice.call(arguments, 2) : undefined;
+    return scheduler(boundArgs ? function () {
+      // eslint-disable-next-line no-new-func -- spec requirement
+      (typeof handler == 'function' ? handler : Function(handler)).apply(this, args);
+    } : handler, timeout);
+  };
+};
+
+// ie9- setTimeout & setInterval additional parameters fix
+// https://html.spec.whatwg.org/multipage/timers-and-user-prompts.html#timers
+$({ global: true, bind: true, forced: MSIE }, {
+  // `setTimeout` method
+  // https://html.spec.whatwg.org/multipage/timers-and-user-prompts.html#dom-settimeout
+  setTimeout: wrap(global.setTimeout),
+  // `setInterval` method
+  // https://html.spec.whatwg.org/multipage/timers-and-user-prompts.html#dom-setinterval
+  setInterval: wrap(global.setInterval)
+});
+
+
+/***/ }),
+
 /***/ "./node_modules/core-js-pure/modules/web.url-search-params.js":
 /*!********************************************************************!*\
   !*** ./node_modules/core-js-pure/modules/web.url-search-params.js ***!
@@ -24501,6 +24567,20 @@ module.exports = parent;
 var parent = __webpack_require__(/*! ../../es/promise */ "./node_modules/core-js-pure/es/promise/index.js");
 
 module.exports = parent;
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js-pure/stable/set-interval.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/core-js-pure/stable/set-interval.js ***!
+  \**********************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+__webpack_require__(/*! ../modules/web.timers */ "./node_modules/core-js-pure/modules/web.timers.js");
+var path = __webpack_require__(/*! ../internals/path */ "./node_modules/core-js-pure/internals/path.js");
+
+module.exports = path.setInterval;
 
 
 /***/ }),
