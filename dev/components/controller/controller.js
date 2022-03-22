@@ -6105,7 +6105,7 @@ function sendClickEvent(instanceData, resolve) {
     _babel_runtime_corejs3_core_js_stable_set_interval__WEBPACK_IMPORTED_MODULE_6___default()(function () {
       console.log("DONE?");
 
-      if (result === 'SUCCESS') {
+      if (status.result === 'SUCCESS') {
         console.log("DONE");
         resolve((0,_payment_api__WEBPACK_IMPORTED_MODULE_10__.getDetailsFromOptions)(instanceData.getPaymentOptions()));
       }
