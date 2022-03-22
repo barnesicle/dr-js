@@ -1,0 +1,82 @@
+<!-- DigitalRiver JS is injected into head by webpack -->
+<!doctype html>
+<html>
+<head>
+    <META http-equiv=Content-Type content="text/html; charset=utf-8">
+    <title>Compliance Element Example</title>
+    <style>
+        body {
+            font-family: apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif;
+            margin: 4em;
+        }
+        #complianceContainer {
+            color: #777;
+            font-size: .75em;
+            margin: 2em;
+            padding: 2em;
+        }
+        #complianceContainer .DR-Legal-Footer-Link {
+            padding-right: 1em;
+            color: #135eee;
+        }
+        #complianceContainer .dr_resellerDisclosure {
+            color: #135eee;
+        }
+    </style>
+<script defer src="dropInStyles.js"></script><script defer src="DigitalRiver.js"></script><link href="css/DigitalRiver.css" rel="stylesheet"></head>
+<body>
+<h1>Compliance Element Example</h1>
+
+<p>This is an example of how to create and style the Compliance element. You can find more information, including a full
+    list of locales and entities, in the
+    <a href="https://docs.digitalriver.com/digital-river-api/payment-integrations-1/digitalriver.js/reference/compliance-elements">docs</a>.</p>
+
+<p>Locale determines which language the compliance element content will be displayed in.</p>
+<p>Entity determines what content the compliance element will display.</p>
+
+<p>Enter your information and then click the Create Compliance Element button.</p>
+
+<label for="locale">Locale (ex: da-DK):</label>
+<input id="locale" name="locale" type="text" value=""/>
+<br />
+<label for="entity">Entity (ex: DR_IRELAND-ENTITY):</label>
+<input id="entity" name="entity" type="text" value=""/>
+<br />
+<button id="createCompliance">Create Compliance Element</button>
+
+<div id="complianceContainer"></div>
+
+<script>
+    var digitalriverpayments;
+    var compliance;
+
+    document.getElementById('createCompliance').addEventListener('click', function() {
+
+        var apikey = 'pk_sys_c2608001bba7477eae22808e1eb138db'
+        var locale = document.getElementById('locale').value;
+        var entity = document.getElementById('entity').value;
+
+        digitalriverpayments = new DigitalRiver(apikey);
+        var complianceOptions = {
+            classes: {
+                base: 'DRElement'
+            },
+            compliance: {
+                locale, // locale determines which language the compliance element content will be displayed in
+                entity // entity determines what content the compliance element will display
+            }
+        }
+        // if we haven't already created it, we will create it. if we have, we'll update instead.
+        if(document.getElementById('complianceContainer').childNodes.length === 0) {
+            console.log('creating compliance element')
+            compliance = digitalriverpayments.createElement('compliance', complianceOptions);
+            compliance.mount('complianceContainer');
+        } else {
+            console.log('updating compliance element')
+            compliance.update(complianceOptions);
+        }
+    });
+
+</script>
+</body>
+</html>

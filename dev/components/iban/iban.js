@@ -271,6 +271,16 @@ module.exports = __webpack_require__(/*! core-js-pure/stable/promise */ "./node_
 
 /***/ }),
 
+/***/ "./node_modules/@babel/runtime-corejs3/core-js-stable/url.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/@babel/runtime-corejs3/core-js-stable/url.js ***!
+  \*******************************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! core-js-pure/stable/url */ "./node_modules/core-js-pure/stable/url/index.js");
+
+/***/ }),
+
 /***/ "./node_modules/@babel/runtime-corejs3/core-js/array/from.js":
 /*!*******************************************************************!*\
   !*** ./node_modules/@babel/runtime-corejs3/core-js/array/from.js ***!
@@ -2658,11 +2668,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "config": function() { return /* binding */ config; }
 /* harmony export */ });
 // Holds any configuration data that changes depending on environment
-// 'https://payments-util.c141.drcloud.zone:9017/clients/gc/channels/paylive/sessions
 var config = {
   domain: "https://github.digitalriverws.net",
   // eslint-disable-line no-undef
-  paymentServiceUrl: 'https://mjoshi-gpupgrade-7.c141.drcloud.zone:8443/clients/gc/channels/paylive/sources',
+  paymentServiceUrl: "https://api.digitalriver.com" + '/payments/sources',
   // eslint-disable-line no-undef
   basePath: "/pages/lbarnes/drjs-demo" || 0,
   // eslint-disable-line no-undef
@@ -2692,7 +2701,7 @@ var config = {
   // eslint-disable-line no-undef
   paypalRedirectBaseUrl: "https://payments-test.digitalriver.com/redirect/",
   // eslint-disable-line no-undef
-  paymentMethodsUrl: 'https://mjoshi-gpupgrade-7.c141.drcloud.zone:8443/clients/gc/channels/paylive/payment-methods',
+  paymentMethodsUrl: "https://api.digitalriver.com" + '/payments/payment-methods',
   // eslint-disable-line no-undef
   apiUrl: "https://api.digitalriver.com",
   // eslint-disable-line no-undef
@@ -4370,12 +4379,14 @@ function runEventOnElement(event, triggerData) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "DEFAULT_LOCALE": function() { return /* binding */ DEFAULT_LOCALE; },
+/* harmony export */   "DEFAULT_COUNTRY": function() { return /* binding */ DEFAULT_COUNTRY; },
 /* harmony export */   "getLocaleMessage": function() { return /* binding */ getLocaleMessage; },
 /* harmony export */   "localeMessagesContainsClientProvidedLocale": function() { return /* binding */ localeMessagesContainsClientProvidedLocale; },
 /* harmony export */   "forceCasingOfLocale": function() { return /* binding */ forceCasingOfLocale; },
 /* harmony export */   "getMappedLocale": function() { return /* binding */ getMappedLocale; },
 /* harmony export */   "getLocaleFromLanguage": function() { return /* binding */ getLocaleFromLanguage; },
-/* harmony export */   "getLocaleFromCountry": function() { return /* binding */ getLocaleFromCountry; }
+/* harmony export */   "getLocaleFromCountry": function() { return /* binding */ getLocaleFromCountry; },
+/* harmony export */   "getCountryFromLocale": function() { return /* binding */ getCountryFromLocale; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/filter */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/filter.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_0__);
@@ -4388,6 +4399,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var DEFAULT_LOCALE = 'en-US';
+var DEFAULT_COUNTRY = 'US';
 
 function getLocaleMessages(locale) {
   return _messages_json__WEBPACK_IMPORTED_MODULE_2__.hasOwnProperty(locale) ? _messages_json__WEBPACK_IMPORTED_MODULE_2__[locale] : undefined;
@@ -4512,6 +4524,10 @@ function getLocaleFromCountry(country) {
     'ZA': 'en-ZA'
   };
   return countryMap.hasOwnProperty(country.toUpperCase()) ? countryMap[country.toUpperCase()] : DEFAULT_LOCALE;
+}
+function getCountryFromLocale(locale) {
+  var formattedLocale = locale.replace('_', '-');
+  return typeof formattedLocale.split('-')[1] !== 'undefined' ? formattedLocale.split('-')[1] : DEFAULT_COUNTRY;
 }
 
 /***/ }),
@@ -6556,8 +6572,7 @@ var paymentServiceRequest = function paymentServiceRequest(data, apiKey, payment
     headers: {
       'Content-Type': 'application/json',
       'version': 'new',
-      'Authorization': 'Basic cGF5c2VydmljZTpkb250X3BhbmljXzQy',
-      //generateAuthHeader(apiKey),
+      'Authorization': generateAuthHeader(apiKey),
       'x-debug-drjs-application': applicationHeader
     }
   };
@@ -6572,8 +6587,7 @@ var paymentServiceGetRequest = function paymentServiceGetRequest(apiKey, payment
     timeout: 15000,
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': 'Basic cGF5c2VydmljZTpkb250X3BhbmljXzQy' //generateAuthHeader(apiKey)
-
+      'Authorization': generateAuthHeader(apiKey)
     }
   };
   return axios__WEBPACK_IMPORTED_MODULE_1___default().get(paymentApiUrl, options);
@@ -7333,6 +7347,8 @@ DigitalRiver.prototype.paymentRequest = function (data) {
 };
 
 function getDetails(entityValue, userLocale) {
+  var restrictByCountry = false;
+
   if (!entityValue) {
     throw new Error('Without business entity value we cannot trigger this method.');
   }
@@ -7341,7 +7357,7 @@ function getDetails(entityValue, userLocale) {
     userLocale = this.locale;
   }
 
-  return (0,_complianceData__WEBPACK_IMPORTED_MODULE_13__.complianceGetDetails)(entityValue, userLocale, undefined, false);
+  return (0,_complianceData__WEBPACK_IMPORTED_MODULE_13__.complianceGetDetails)(entityValue, userLocale, undefined, restrictByCountry);
 }
 
 DigitalRiver.prototype.retrieveKonbiniStores = function () {
@@ -8703,6 +8719,9 @@ function getAuthenticateSource(controllerId, sessionId, sourceId, sourceClientSe
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "complianceGetDetails": function() { return /* binding */ complianceGetDetails; },
+/* harmony export */   "isCompanyNameValid": function() { return /* binding */ isCompanyNameValid; },
+/* harmony export */   "isEulaValid": function() { return /* binding */ isEulaValid; },
+/* harmony export */   "isTermsOfUseValid": function() { return /* binding */ isTermsOfUseValid; },
 /* harmony export */   "localizedText": function() { return /* binding */ localizedText; },
 /* harmony export */   "getAutoRenewPlanTerms": function() { return /* binding */ getAutoRenewPlanTerms; },
 /* harmony export */   "stripOutDoublePeriods": function() { return /* binding */ stripOutDoublePeriods; },
@@ -8711,19 +8730,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "getActiveAcceptance": function() { return /* binding */ getActiveAcceptance; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/typeof */ "./node_modules/@babel/runtime-corejs3/helpers/esm/typeof.js");
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_index_of__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/index-of */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/index-of.js");
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_index_of__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_index_of__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/includes */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/includes.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/keys */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/keys.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/includes */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/includes.js");
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/for-each */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/for-each.js");
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/concat */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/concat.js");
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _json_compliance_json__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../json/compliance.json */ "./src/json/compliance.json");
-/* harmony import */ var _app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../app/components/localization/localized-messages */ "./src/app/components/localization/localized-messages.js");
-/* harmony import */ var _mandate__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./mandate */ "./src/client/mandate.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/for-each */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/for-each.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/concat */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/concat.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _json_compliance_json__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../json/compliance.json */ "./src/json/compliance.json");
+/* harmony import */ var _app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../app/components/localization/localized-messages */ "./src/app/components/localization/localized-messages.js");
+/* harmony import */ var _mandate__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./mandate */ "./src/client/mandate.js");
+/* harmony import */ var _url_utils__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./url-utils */ "./src/client/url-utils.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../utils */ "./src/utils.js");
+
 
 
 
@@ -8736,15 +8756,16 @@ __webpack_require__.r(__webpack_exports__);
 var defaultDRStore = 'https://store.digitalriver.com/store/defaults/';
 var eCommerceProvider = '/eCommerceProvider.';
 var slash = '/';
-var commerceSupportedLocales = _json_compliance_json__WEBPACK_IMPORTED_MODULE_6__.locale;
+var commerceSupportedLocales = _json_compliance_json__WEBPACK_IMPORTED_MODULE_5__.locale;
 function complianceGetDetails(entityInfo, locale, country, restrictByCountry) {
   var isEntityInfoAnObject = (0,_babel_runtime_corejs3_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__.default)(entityInfo) === 'object';
-  var fullLocale = typeof entityInfo.language !== 'undefined' ? (0,_app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_7__.getLocaleFromLanguage)(entityInfo.language) : locale.length > 2 ? locale : (0,_app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_7__.getLocaleFromLanguage)(locale);
+  var fullLocale = typeof entityInfo.language !== 'undefined' ? (0,_app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_6__.getLocaleFromLanguage)(entityInfo.language) : locale.length > 2 ? locale : (0,_app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_6__.getLocaleFromLanguage)(locale);
   var updatedLocale = fullLocale.replace('-', '_'); // todo we need to maybe do this es_419 stuff differently
 
   updatedLocale = updatedLocale === 'es_419' ? 'es_MX' : updatedLocale;
   var businessEntityNameEncoded;
   var businessEntityName = isEntityInfoAnObject ? getBusinessEntityNameFromCode(entityInfo.businessEntityCode) : getBusinessEntityNameFromCode(entityInfo);
+  var countryFromLocale = (0,_app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_6__.getCountryFromLocale)(locale);
 
   if (typeof businessEntityName !== 'undefined') {
     businessEntityNameEncoded = encodeURIComponent(businessEntityName);
@@ -8754,40 +8775,41 @@ function complianceGetDetails(entityInfo, locale, country, restrictByCountry) {
     throw new Error('Locale is not supported');
   }
 
-  var linkLocale = typeof country === 'undefined' || isEntityInfoAnObject ? updatedLocale : (0,_app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_7__.getLocaleFromCountry)(country).replace('-', '_');
+  var linkLocale = typeof country === 'undefined' || isEntityInfoAnObject ? updatedLocale : (0,_app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_6__.getLocaleFromCountry)(country).replace('-', '_');
   var showCancellationRightsCountries = ['de', 'dk', 'es', 'fi', 'fr', 'gb', 'ie', 'it', 'nl', 'no', 'pt', 'se'];
   var showCancellationRights = false;
+  var definedCountry = typeof country !== 'undefined' ? country.toLowerCase() : countryFromLocale.toLowerCase();
 
-  if (typeof country !== 'undefined' && _babel_runtime_corejs3_core_js_stable_instance_index_of__WEBPACK_IMPORTED_MODULE_1___default()(showCancellationRightsCountries).call(showCancellationRightsCountries, country.toLowerCase()) !== -1 || !restrictByCountry) {
+  if (_babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_1___default()(showCancellationRightsCountries).call(showCancellationRightsCountries, definedCountry) || !restrictByCountry) {
     showCancellationRights = true;
   }
 
   var complianceData = {
     'disclosure': {
       'termsOfSale': {
-        'localizedText': localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_2___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_6__).TERMS_OF_SALE, updatedLocale, businessEntityName, undefined, undefined, linkLocale),
+        'localizedText': localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_2___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_5__).TERMS_OF_SALE, updatedLocale, businessEntityName, undefined, undefined, linkLocale),
         'url': localizedUrl(linkLocale, 'DisplayDRTermsAndConditionsPage', businessEntityNameEncoded)
       },
       'privacyPolicy': {
-        'localizedText': localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_2___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_6__).PRIVACY_POLICY, updatedLocale, businessEntityName, undefined, undefined, linkLocale),
+        'localizedText': localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_2___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_5__).PRIVACY_POLICY, updatedLocale, businessEntityName, undefined, undefined, linkLocale),
         'url': localizedUrl(linkLocale, 'DisplayDRPrivacyPolicyPage', businessEntityNameEncoded)
       },
       'cookiePolicy': {
-        'localizedText': localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_2___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_6__).COOKIE_POLICY, updatedLocale, businessEntityName, undefined, undefined, linkLocale),
+        'localizedText': localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_2___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_5__).COOKIE_POLICY, updatedLocale, businessEntityName, undefined, undefined, linkLocale),
         'url': localizedUrl(linkLocale, 'DisplayDRCookiesPolicyPage', businessEntityNameEncoded)
       },
       'legalNotice': {
-        'localizedText': localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_2___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_6__).LEGAL_NOTICE, updatedLocale, businessEntityName, undefined, undefined, linkLocale),
+        'localizedText': localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_2___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_5__).LEGAL_NOTICE, updatedLocale, businessEntityName, undefined, undefined, linkLocale),
         'url': localizedUrl(linkLocale, 'DisplayDRContactInformationPage', businessEntityNameEncoded)
       },
       'autorenewalPlanTerms': {
-        'localizedText': localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_2___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_6__).AUTORENEWAL_PLAN_TERMS, updatedLocale, businessEntityName, undefined, undefined, linkLocale)
+        'localizedText': getAutoRenewPlanTerms(updatedLocale, entityInfo, undefined)
       },
       'saveCardMandate': {
-        'localizedText': (0,_mandate__WEBPACK_IMPORTED_MODULE_8__.getSaveCardMandateText)(updatedLocale, businessEntityName)
+        'localizedText': (0,_mandate__WEBPACK_IMPORTED_MODULE_7__.getSaveCardMandateText)(updatedLocale, businessEntityName)
       },
       'idealRecurringAgreement': {
-        'localizedText': localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_2___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_6__).IDEAL_RECURRING_AGREEMENT, updatedLocale, businessEntityName, undefined, undefined, linkLocale)
+        'localizedText': localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_2___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_5__).IDEAL_RECURRING_AGREEMENT, updatedLocale, businessEntityName, undefined, undefined, linkLocale)
       }
     }
   };
@@ -8798,11 +8820,11 @@ function complianceGetDetails(entityInfo, locale, country, restrictByCountry) {
       'id': isEntityInfoAnObject ? entityInfo.businessEntityCode : entityInfo
     };
     complianceData.disclosure.resellerDisclosure = {
-      'localizedText': localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_2___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_6__).RESELLER_DISCLOSURE, updatedLocale, businessEntityName, undefined, undefined, linkLocale),
+      'localizedText': localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_2___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_5__).RESELLER_DISCLOSURE, updatedLocale, businessEntityName, undefined, undefined, linkLocale),
       'url': localizedUrl(linkLocale, 'DisplayDRAboutDigitalRiverPage', businessEntityNameEncoded)
     };
     complianceData.disclosure.confirmDisclosure = {
-      'localizedText': stripOutDoublePeriods(localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_2___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_6__).CONFIRM_DISCLOSURE, updatedLocale, businessEntityName, undefined, undefined, linkLocale))
+      'localizedText': stripOutDoublePeriods(localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_2___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_5__).CONFIRM_DISCLOSURE, updatedLocale, businessEntityName, undefined, undefined, linkLocale))
     };
   }
 
@@ -8840,40 +8862,66 @@ function complianceGetDetails(entityInfo, locale, country, restrictByCountry) {
 }
 
 function checkLocaleSupports(locale) {
-  return _babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_3___default()(commerceSupportedLocales).call(commerceSupportedLocales, locale);
+  return _babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_1___default()(commerceSupportedLocales).call(commerceSupportedLocales, locale);
 }
 
-function localizedText(type, locale, businessEntityName, payNowButtonText, createAccountButtonTextClass, linkLocale) {
+function hasConsents(configuration) {
+  return typeof configuration !== 'undefined' && typeof configuration.options !== 'undefined' && typeof configuration.options.consents !== 'undefined';
+}
+
+function isCompanyNameValid(configuration) {
+  return hasConsents(configuration) && typeof configuration.options.consents.companyName === 'string';
+}
+function isEulaValid(configuration) {
+  return hasConsents(configuration) && typeof configuration.options.consents.eula !== 'undefined' && typeof configuration.options.consents.eula.url === 'string' && (0,_url_utils__WEBPACK_IMPORTED_MODULE_8__.isValidHttpUrl)(configuration.options.consents.eula.url);
+}
+function isTermsOfUseValid(configuration) {
+  return hasConsents(configuration) && typeof configuration.options.consents.termsOfUse !== 'undefined' && typeof configuration.options.consents.termsOfUse.url === 'string' && (0,_url_utils__WEBPACK_IMPORTED_MODULE_8__.isValidHttpUrl)(configuration.options.consents.termsOfUse.url);
+}
+function localizedText(type, locale, businessEntityName, payNowButtonText, createAccountButtonTextClass, linkLocale, configuration) {
   var chosenDefaultLinkLocale = typeof linkLocale === 'undefined' ? locale : linkLocale;
   var localizedValue;
 
-  if (locale in _json_compliance_json__WEBPACK_IMPORTED_MODULE_6__.details && type in _json_compliance_json__WEBPACK_IMPORTED_MODULE_6__.details[locale]) {
-    localizedValue = _json_compliance_json__WEBPACK_IMPORTED_MODULE_6__.details[locale][type];
+  if (locale in _json_compliance_json__WEBPACK_IMPORTED_MODULE_5__.details && type in _json_compliance_json__WEBPACK_IMPORTED_MODULE_5__.details[locale]) {
+    localizedValue = _json_compliance_json__WEBPACK_IMPORTED_MODULE_5__.details[locale][type];
   } else {
     localizedValue = '';
   }
 
-  localizedValue = evaluateVars(localizedValue, locale, businessEntityName, payNowButtonText, createAccountButtonTextClass, chosenDefaultLinkLocale);
+  localizedValue = evaluateVars(localizedValue, locale, businessEntityName, payNowButtonText, createAccountButtonTextClass, chosenDefaultLinkLocale, configuration);
   return localizedValue;
 }
 
-function evaluateVars(string, locale, businessEntityName, payButtonText, createAccountButtonTextClass, linkLocale) {
+function evaluateVars(string, locale, businessEntityName, payButtonText, createAccountButtonTextClass, linkLocale, configuration) {
   var replacementRules = {
     termsOfSaleUrl: localizedUrl(linkLocale, 'DisplayDRTermsAndConditionsPage', encodeURIComponent(businessEntityName)),
     privacyPolicyUrl: localizedUrl(linkLocale, 'DisplayDRPrivacyPolicyPage', encodeURIComponent(businessEntityName)),
     resellerDisclosureUrl: localizedUrl(linkLocale, 'DisplayDRAboutDigitalRiverPage', encodeURIComponent(businessEntityName)),
     businessEntityName: businessEntityName,
-    payNow: typeof payButtonText !== 'undefined' ? payButtonText : (0,_app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_7__.getLocaleMessage)(locale.split('_').join('-'), 'payNow'),
+    payNow: typeof payButtonText !== 'undefined' ? payButtonText : (0,_app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_6__.getLocaleMessage)(locale.split('_').join('-'), 'payNow'),
     //TODO refactor so localized messages and compliance data use same format for locale
     createAccountButtonTextClass: createAccountButtonTextClass
   };
+
+  if (isCompanyNameValid(configuration)) {
+    replacementRules.companyName = configuration.options.consents.companyName;
+  }
+
+  if (isEulaValid(configuration)) {
+    replacementRules.eulaUrl = configuration.options.consents.eula.url;
+  }
+
+  if (isTermsOfUseValid(configuration)) {
+    replacementRules.termsOfUseUrl = configuration.options.consents.termsOfUse.url;
+  }
+
   var replacementsPattern = /[^{}]+(?=})/g;
   var varsPattern = /{([^}]+)}/gm;
   var replacements = string.match(replacementsPattern);
   var varsToReplace = string.match(varsPattern);
 
   if (varsToReplace !== null) {
-    _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_4___default()(varsToReplace).call(varsToReplace, function (stringVar, index) {
+    _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_3___default()(varsToReplace).call(varsToReplace, function (stringVar, index) {
       string = string.replace(stringVar, replacementRules[replacements[index]]);
     });
   }
@@ -8893,7 +8941,7 @@ function localizedUrl(locale, entityType, entityNameEncoded, anchor) {
   if (anchor) {
     var _context;
 
-    url = _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_5___default()(_context = "".concat(url, "#")).call(_context, anchor);
+    url = _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_4___default()(_context = "".concat(url, "#")).call(_context, anchor);
   }
 
   return url;
@@ -8904,7 +8952,7 @@ function getBusinessEntityNameFromCode(entityId) {
 
   var entityName;
 
-  _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_4___default()(_context2 = _json_compliance_json__WEBPACK_IMPORTED_MODULE_6__.entityCode).call(_context2, function (entity) {
+  _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_3___default()(_context2 = _json_compliance_json__WEBPACK_IMPORTED_MODULE_5__.entityCode).call(_context2, function (entity) {
     if (typeof entityId === 'string' && entityId.toUpperCase() === entity.code) {
       entityName = entity.name;
     }
@@ -8915,9 +8963,9 @@ function getBusinessEntityNameFromCode(entityId) {
 
 function getCaliforniaPrivacyRights(updatedLocale, businessEntityName, linkLocale) {
   var californiaPrivacyRights;
-  var californiaPrivacyRightText = localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_2___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_6__).CALIFORNIA_PRIVACY_RIGHTS, updatedLocale, businessEntityName);
+  var californiaPrivacyRightText = localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_2___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_5__).CALIFORNIA_PRIVACY_RIGHTS, updatedLocale, businessEntityName);
 
-  if (californiaPrivacyRightText !== '' && existsForLocale(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_2___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_6__).CALIFORNIA_PRIVACY_RIGHTS, linkLocale, businessEntityName)) {
+  if (californiaPrivacyRightText !== '' && existsForLocale(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_2___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_5__).CALIFORNIA_PRIVACY_RIGHTS, linkLocale, businessEntityName)) {
     californiaPrivacyRights = {
       'localizedText': californiaPrivacyRightText,
       'url': 'https://store.digitalriver.com/store/defaults/en_US/DisplayCCPAPage'
@@ -8929,9 +8977,9 @@ function getCaliforniaPrivacyRights(updatedLocale, businessEntityName, linkLocal
 
 function getCancellationRights(updatedLocale, businessEntityName, linkLocale, businessEntityNameEncoded) {
   var cancellationRights;
-  var cancellationRightsText = localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_2___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_6__).CANCELLATION_RIGHTS, updatedLocale, businessEntityName, undefined, undefined, linkLocale);
+  var cancellationRightsText = localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_2___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_5__).CANCELLATION_RIGHTS, updatedLocale, businessEntityName, undefined, undefined, linkLocale);
 
-  if (cancellationRightsText !== '' && existsForLocale(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_2___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_6__).CANCELLATION_RIGHTS, linkLocale, businessEntityName)) {
+  if (cancellationRightsText !== '' && existsForLocale(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_2___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_5__).CANCELLATION_RIGHTS, linkLocale, businessEntityName)) {
     cancellationRights = {
       'localizedText': cancellationRightsText,
       'url': localizedUrl(linkLocale, 'DisplayDRTermsAndConditionsPage', businessEntityNameEncoded, 'cancellationRight')
@@ -8947,10 +8995,10 @@ function existsForLocale(key, locale, businessEntityName) {
 
 function getWarrantyInformation(updatedLocale, businessEntityName, linkLocale) {
   var warrantyInformation;
-  var warrantyInformationText = localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_2___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_6__).WARRANTY_INFORMATION, updatedLocale, businessEntityName);
+  var warrantyInformationText = localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_2___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_5__).WARRANTY_INFORMATION, updatedLocale, businessEntityName);
   var warrantyInformationUrl = localizedUrl(linkLocale, 'DisplayDRTermsAndConditionsPage', typeof businessEntityName !== 'undefined' ? encodeURIComponent(businessEntityName) : businessEntityName, 'warrantyInformation');
 
-  if (warrantyInformationText !== '' && existsForLocale(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_2___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_6__).WARRANTY_INFORMATION, linkLocale, businessEntityName)) {
+  if (warrantyInformationText !== '' && existsForLocale(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_2___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_5__).WARRANTY_INFORMATION, linkLocale, businessEntityName)) {
     warrantyInformation = {
       'localizedText': warrantyInformationText,
       'url': warrantyInformationUrl
@@ -8960,27 +9008,103 @@ function getWarrantyInformation(updatedLocale, businessEntityName, linkLocale) {
   return warrantyInformation;
 }
 
-function getAutoRenewPlanTerms(locale, businessEntityId) {
+function getAutoRenewPlanTerms(locale, businessEntityId, configuration) {
   var updatedLocale = locale.replace('-', '_');
   var businessEntityName = getBusinessEntityNameFromCode(businessEntityId);
-  return localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_2___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_6__).AUTORENEWAL_PLAN_TERMS, updatedLocale, businessEntityName);
+  var shouldAddPeriod = false;
+  var consentsText = '';
+
+  if (typeof configuration !== 'undefined') {
+    consentsText = getConsentsText(configuration, updatedLocale, businessEntityName, shouldAddPeriod);
+  }
+
+  return localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_2___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_5__).AUTORENEWAL_PLAN_TERMS_BEGIN, updatedLocale, businessEntityName, undefined, undefined, undefined, configuration) + consentsText + localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_2___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_5__).AUTORENEWAL_PLAN_TERMS_END, updatedLocale, businessEntityName, undefined, undefined, undefined, configuration);
 }
 function stripOutDoublePeriods(text) {
   return text.split('..').join('.');
 }
-function getConfirmDisclosure(locale, businessEntityId) {
+
+function isEulaOnly(configuration) {
+  return isEulaValid(configuration) && !isTermsOfUseValid(configuration);
+}
+
+function isTermsOfUseOnly(configuration) {
+  return !isEulaValid(configuration) && isTermsOfUseValid(configuration);
+}
+
+function isEulaAndTermsOfUse(configuration) {
+  return isEulaValid(configuration) && isTermsOfUseValid(configuration);
+}
+
+function getConsentsText(configuration, updatedLocale, businessEntityName, shouldAddPeriod) {
+  var companyNameText;
+  var eulaText;
+  var termsOfUseText;
+  var consentsText = '';
+  var showTermsOfSaleDisclosure = false;
+  var period = '.';
+
+  if (updatedLocale === 'ja_JP' || updatedLocale === 'zh_CN' || updatedLocale === 'zh_HK' || updatedLocale === 'zh_TW') {
+    period = '。';
+  }
+
+  if (typeof configuration !== 'undefined' && typeof configuration.options !== 'undefined' && typeof configuration.options.showTermsOfSaleDisclosure !== 'undefined') {
+    showTermsOfSaleDisclosure = configuration.options.showTermsOfSaleDisclosure;
+  }
+
+  if (showTermsOfSaleDisclosure && isCompanyNameValid(configuration)) {
+    companyNameText = localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_2___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_5__).CONSENTS_COMPANY_NAME, updatedLocale, businessEntityName, undefined, undefined, undefined, configuration);
+
+    if (isEulaValid(configuration)) {
+      eulaText = localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_2___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_5__).CONSENTS_EULA, updatedLocale, businessEntityName, undefined, undefined, undefined, configuration);
+    }
+
+    if (isTermsOfUseValid(configuration)) {
+      termsOfUseText = localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_2___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_5__).CONSENTS_TERMS_OF_USE, updatedLocale, businessEntityName, undefined, undefined, undefined, configuration);
+    }
+
+    if (isEulaOnly(configuration)) {
+      consentsText = eulaText + companyNameText;
+    }
+
+    if (isTermsOfUseOnly(configuration)) {
+      consentsText = termsOfUseText + companyNameText;
+    }
+
+    if (isEulaAndTermsOfUse(configuration)) {
+      consentsText = eulaText + termsOfUseText + companyNameText;
+    }
+  }
+
+  if (shouldAddPeriod && consentsText !== '') {
+    return consentsText + period;
+  } else {
+    return consentsText;
+  }
+}
+
+function getConfirmDisclosure(locale, businessEntityId, configuration) {
   var updatedLocale = locale.replace('-', '_');
   var businessEntityName = getBusinessEntityNameFromCode(businessEntityId);
-  return stripOutDoublePeriods(localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_2___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_6__).CONFIRM_DISCLOSURE, updatedLocale, businessEntityName));
+  var shouldAddPeriod = true;
+  var disclosureText = localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_2___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_5__).CONFIRM_DISCLOSURE, updatedLocale, businessEntityName, undefined, undefined, undefined, configuration);
+  var consentsText = getConsentsText(configuration, updatedLocale, businessEntityName, shouldAddPeriod);
+
+  if (consentsText !== '') {
+    // We have consents so we have to remove the period at the end of the disclosure text so we can append consents to the it. Consents already has a period at the end of it.
+    disclosureText = (0,_utils__WEBPACK_IMPORTED_MODULE_9__.removeLastCharacterFromString)(disclosureText);
+  }
+
+  return stripOutDoublePeriods(disclosureText + consentsText);
 }
 function getAgreeToTerms(locale, businessEntityId) {
   var updatedLocale = locale.replace('-', '_');
   var businessEntityName = getBusinessEntityNameFromCode(businessEntityId);
-  return localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_2___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_6__).AGREE_TO_TERMS, updatedLocale, businessEntityName);
+  return localizedText(_babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_2___default()(_json_compliance_json__WEBPACK_IMPORTED_MODULE_5__).AGREE_TO_TERMS, updatedLocale, businessEntityName);
 }
 function getActiveAcceptance(locale, businessEntityId, paymentMethodType, buttonText, customClasses) {
-  var exactLocaleMatchExists = _json_compliance_json__WEBPACK_IMPORTED_MODULE_6__.details[locale.replace('-', '_')].hasOwnProperty(paymentMethodType + 'ActiveAcceptance');
-  var updatedLocale = exactLocaleMatchExists ? locale.replace('-', '_') : (0,_app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_7__.getMappedLocale)(locale).replace('-', '_');
+  var exactLocaleMatchExists = _json_compliance_json__WEBPACK_IMPORTED_MODULE_5__.details[locale.replace('-', '_')].hasOwnProperty(paymentMethodType + 'ActiveAcceptance');
+  var updatedLocale = exactLocaleMatchExists ? locale.replace('-', '_') : (0,_app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_6__.getMappedLocale)(locale).replace('-', '_');
   var businessEntityName = getBusinessEntityNameFromCode(businessEntityId);
   return localizedText("".concat(paymentMethodType, "ActiveAcceptance"), updatedLocale, businessEntityName, buttonText, customClasses);
 }
@@ -9024,8 +9148,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function getComplianceData(sellingEntityId, locale) {
+  var restrictByCountry = true;
+
   try {
-    return (0,_complianceData__WEBPACK_IMPORTED_MODULE_9__.complianceGetDetails)(sellingEntityId, locale, undefined, true);
+    return (0,_complianceData__WEBPACK_IMPORTED_MODULE_9__.complianceGetDetails)(sellingEntityId, locale, undefined, restrictByCountry);
   } catch (e) {
     return undefined;
   }
@@ -9514,8 +9640,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "getStoredId": function() { return /* binding */ getStoredId; },
 /* harmony export */   "mountDropin": function() { return /* binding */ mountDropin; },
 /* harmony export */   "createHeaderDiv": function() { return /* binding */ createHeaderDiv; },
+/* harmony export */   "determinePaymentDisclosureTextId": function() { return /* binding */ determinePaymentDisclosureTextId; },
 /* harmony export */   "determinePaymentDisclosureCheckboxErrorId": function() { return /* binding */ determinePaymentDisclosureCheckboxErrorId; },
 /* harmony export */   "determinePaymentDisclosureCheckboxId": function() { return /* binding */ determinePaymentDisclosureCheckboxId; },
+/* harmony export */   "determineMandateTextId": function() { return /* binding */ determineMandateTextId; },
 /* harmony export */   "determineMandateCheckboxErrorId": function() { return /* binding */ determineMandateCheckboxErrorId; },
 /* harmony export */   "determineMandateCheckboxId": function() { return /* binding */ determineMandateCheckboxId; },
 /* harmony export */   "handleRedirectSource": function() { return /* binding */ handleRedirectSource; },
@@ -10330,11 +10458,11 @@ function mountDropin(controller, configuration, createSource, createElement, ins
         }
 
         if (shouldShowTermsForStoredStoreCredit(availablePaymentMethod, configuration, sessionInformation)) {
-          bodyParent.appendChild((0,_dropin_terms__WEBPACK_IMPORTED_MODULE_26__.createTermsOfSale)(paymentMethod.type, locale, sessionInformation, paymentMethod, componentHolder, availablePaymentMethod));
+          bodyParent.appendChild((0,_dropin_terms__WEBPACK_IMPORTED_MODULE_26__.createTermsOfSale)(paymentMethod.type, locale, sessionInformation, paymentMethod, componentHolder, availablePaymentMethod, configuration));
         } else if ((0,_dropin_terms__WEBPACK_IMPORTED_MODULE_26__.displayShowTermsOfSaleDisclosure)(configuration, sessionInformation) && !paymentMethod.standaloneButton && !(0,_dropin_stored_payment_methods__WEBPACK_IMPORTED_MODULE_29__.isStoreCredit)(availablePaymentMethod.type)) {
-          bodyParent.appendChild((0,_dropin_terms__WEBPACK_IMPORTED_MODULE_26__.createTermsOfSale)(paymentMethod.type, locale, sessionInformation, paymentMethod, componentHolder, availablePaymentMethod));
+          bodyParent.appendChild((0,_dropin_terms__WEBPACK_IMPORTED_MODULE_26__.createTermsOfSale)(paymentMethod.type, locale, sessionInformation, paymentMethod, componentHolder, availablePaymentMethod, configuration));
         } else if ((0,_dropin_terms__WEBPACK_IMPORTED_MODULE_26__.displayShowTermsOfSaleDisclosure)(configuration, sessionInformation) && paymentMethod.standaloneButton) {
-          bodyParent.prepend((0,_dropin_terms__WEBPACK_IMPORTED_MODULE_26__.createTermsOfSale)(paymentMethod.type, locale, sessionInformation, paymentMethod, componentHolder, availablePaymentMethod));
+          bodyParent.prepend((0,_dropin_terms__WEBPACK_IMPORTED_MODULE_26__.createTermsOfSale)(paymentMethod.type, locale, sessionInformation, paymentMethod, componentHolder, availablePaymentMethod, configuration));
         }
 
         if (addMSTSEnrollmentURL(paymentMethod, availablePaymentMethod, configuration)) {
@@ -10362,6 +10490,8 @@ function mountDropin(controller, configuration, createSource, createElement, ins
           var elementErrorContainer = document.createElement('div');
           elementErrorContainer.id = 'DR-ideal-iban-error';
           elementErrorContainer.className = 'DR-error-message';
+          elementErrorContainer.setAttribute('aria-hidden', 'true'); //aria-hidden bc we have one in the iban iframe for screen readers
+
           idealMandate.appendChild(elementErrorContainer);
           idealCheckbox.addEventListener('change', function () {
             if (idealCheckbox.checked) {
@@ -10776,6 +10906,9 @@ function getMandateValue(locale) {
   return (0,_mandate__WEBPACK_IMPORTED_MODULE_21__.getSaveCardMandateText)(locale);
 }
 
+function determinePaymentDisclosureTextId(paymentMethod) {
+  return 'DR-payment-disclosure-text-' + paymentMethod.type;
+}
 function determinePaymentDisclosureCheckboxErrorId(paymentMethod) {
   return 'DR-payment-disclosure-checkbox-error-' + paymentMethod.type;
 }
@@ -10790,12 +10923,18 @@ function createPaymentDisclosure(paymentMethod, componentHolder) {
   var paymentDisclosureError = document.createElement('div');
   paymentDisclosureError.id = determinePaymentDisclosureCheckboxErrorId(paymentMethod);
   paymentDisclosureError.className = 'DR-payment-disclosure-checkbox-error DR-error-message';
+  paymentDisclosureError.setAttribute('aria-live', 'assertive');
   var paymentDisclosureRow = document.createElement('div');
   paymentDisclosureRow.className = 'DR-payment-disclosure-row DR-payment-disclosure-row-' + paymentMethodType;
   var paymentDisclosureText = document.createElement('div');
+  paymentDisclosureText.id = determinePaymentDisclosureTextId(paymentMethod);
   var paymentDisclosureCheckboxParent = document.createElement('div');
   var paymentDisclosureCheckbox = document.createElement('input');
   paymentDisclosureCheckbox.id = determinePaymentDisclosureCheckboxId(paymentMethod);
+  paymentDisclosureCheckbox.setAttribute('name', determinePaymentDisclosureCheckboxId(paymentMethod));
+  paymentDisclosureCheckbox.setAttribute('aria-required', 'true');
+  paymentDisclosureCheckbox.setAttribute('aria-errormessage', determinePaymentDisclosureCheckboxErrorId(paymentMethod));
+  paymentDisclosureCheckbox.setAttribute('aria-labelledby', determinePaymentDisclosureTextId(paymentMethod));
   paymentDisclosureCheckbox.type = 'checkbox';
   paymentDisclosureCheckboxParent.className = 'DR-payment-disclosure-checkbox DR-payment-disclosure-checkbox-' + paymentMethodType;
   paymentDisclosureCheckboxParent.appendChild(paymentDisclosureCheckbox);
@@ -10809,6 +10948,9 @@ function createPaymentDisclosure(paymentMethod, componentHolder) {
   return paymentDisclosureParent;
 }
 
+function determineMandateTextId(paymentMethod) {
+  return 'DR-mandate-text-' + paymentMethod.type;
+}
 function determineMandateCheckboxErrorId(paymentMethod) {
   return 'DR-mandate-checkbox-error-' + paymentMethod.type;
 }
@@ -10823,12 +10965,17 @@ function createMandate(paymentMethod, locale, componentHolder, isStorageMode, av
   var mandateError = document.createElement('div');
   mandateError.id = determineMandateCheckboxErrorId(availablePaymentMethod);
   mandateError.className = 'DR-mandate-checkbox-error DR-error-message';
+  mandateError.setAttribute('aria-live', 'assertive');
   var mandateRow = document.createElement('div');
   mandateRow.className = 'DR-mandate-row DR-mandate-row-' + paymentMethodType;
   var mandateText = document.createElement('div');
+  mandateText.id = determineMandateTextId(availablePaymentMethod);
   var mandateCheckboxParent = document.createElement('div');
   var mandateCheckbox = document.createElement('input');
   mandateCheckbox.id = determineMandateCheckboxId(availablePaymentMethod);
+  mandateCheckbox.setAttribute('name', determineMandateCheckboxId(availablePaymentMethod));
+  mandateCheckbox.setAttribute('aria-errormessage', determineMandateCheckboxErrorId(availablePaymentMethod));
+  mandateCheckbox.setAttribute('aria-labelledby', determineMandateTextId(availablePaymentMethod));
   mandateCheckbox.type = 'checkbox';
   mandateCheckboxParent.className = 'DR-mandate-checkbox DR-mandate-checkbox-' + paymentMethodType;
   mandateCheckboxParent.appendChild(mandateCheckbox);
@@ -10840,6 +10987,7 @@ function createMandate(paymentMethod, locale, componentHolder, isStorageMode, av
   mandateParent.appendChild(mandateError);
 
   if (isStorageMode) {
+    mandateCheckbox.setAttribute('aria-required', 'true');
     (0,_dropin_terms__WEBPACK_IMPORTED_MODULE_26__.addChangeEventToCheckbox)(mandateCheckbox, paymentMethod, componentHolder);
   }
 
@@ -10916,35 +11064,53 @@ function createSubmitButton(controllerId, configuration, createSource, component
     }
 
     if (requireStorageValidation) {
+      var checkboxEl = document.getElementById(determineMandateCheckboxId(paymentMethodFromAPI));
+
       var _isChecked = (0,_dropin_checkbox__WEBPACK_IMPORTED_MODULE_30__.getCheckboxValue)(determineMandateCheckboxId(paymentMethodFromAPI));
 
       if (_isChecked === false) {
         (0,_utils__WEBPACK_IMPORTED_MODULE_32__.setElementErrorMessage)('DR-mandate-checkbox-error-' + paymentMethod.type, (0,_mandate__WEBPACK_IMPORTED_MODULE_21__.getMustAcceptTermsText)(locale));
+        checkboxEl.setAttribute('aria-invalid', 'true');
         return;
       } else {
         (0,_utils__WEBPACK_IMPORTED_MODULE_32__.setElementErrorMessage)('DR-mandate-checkbox-error-' + paymentMethod.type, '');
+        checkboxEl.removeAttribute('aria-invalid');
       }
     }
 
     if (showTermsOfSaleDisclosure && !paymentMethodFromAPI.isStored) {
+      var _checkboxEl = document.getElementById((0,_dropin_terms__WEBPACK_IMPORTED_MODULE_26__.determineTermsCheckboxId)(paymentMethodFromAPI));
+
       var _isChecked2 = (0,_dropin_checkbox__WEBPACK_IMPORTED_MODULE_30__.getCheckboxValue)((0,_dropin_terms__WEBPACK_IMPORTED_MODULE_26__.determineTermsCheckboxId)(paymentMethodFromAPI));
 
       if (_isChecked2 === false) {
         (0,_utils__WEBPACK_IMPORTED_MODULE_32__.setElementErrorMessage)('DR-terms-checkbox-error-' + paymentMethod.type, (0,_mandate__WEBPACK_IMPORTED_MODULE_21__.getMustAcceptTermsText)(locale));
+
+        _checkboxEl.setAttribute('aria-invalid', 'true');
+
         return;
       } else {
         (0,_utils__WEBPACK_IMPORTED_MODULE_32__.setElementErrorMessage)('DR-terms-checkbox-error-' + paymentMethod.type, '');
+
+        _checkboxEl.removeAttribute('aria-invalid');
       }
     }
 
     if (hasPaymentDisclosure) {
+      var _checkboxEl2 = document.getElementById(determinePaymentDisclosureCheckboxId(paymentMethodFromAPI));
+
       var _isChecked3 = (0,_dropin_checkbox__WEBPACK_IMPORTED_MODULE_30__.getCheckboxValue)(determinePaymentDisclosureCheckboxId(paymentMethodFromAPI));
 
       if (_isChecked3 === false) {
         (0,_utils__WEBPACK_IMPORTED_MODULE_32__.setElementErrorMessage)('DR-payment-disclosure-checkbox-error-' + paymentMethod.type, (0,_mandate__WEBPACK_IMPORTED_MODULE_21__.getMustAcceptTermsText)(locale));
+
+        _checkboxEl2.setAttribute('aria-invalid', 'true');
+
         return;
       } else {
         (0,_utils__WEBPACK_IMPORTED_MODULE_32__.setElementErrorMessage)('DR-payment-disclosure-checkbox-error-' + paymentMethod.type, '');
+
+        _checkboxEl2.removeAttribute('aria-invalid');
       }
     }
 
@@ -11279,21 +11445,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_starts_with__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/starts-with */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/starts-with.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_starts_with__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_starts_with__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! uuid */ "./node_modules/uuid/dist/esm-browser/index.js");
-/* harmony import */ var _createFrame__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./createFrame */ "./src/client/createFrame.js");
-/* harmony import */ var _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../post-robot-wrapper */ "./src/post-robot-wrapper.js");
-/* harmony import */ var cross_domain_utils__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! cross-domain-utils */ "./node_modules/cross-domain-utils/dist/module/index.js");
-/* harmony import */ var cross_domain_utils__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(cross_domain_utils__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var _dataStore__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./dataStore */ "./src/client/dataStore.js");
-/* harmony import */ var _createController__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./createController */ "./src/client/createController.js");
-/* harmony import */ var _event_middleware__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./event-middleware */ "./src/client/event-middleware.js");
-/* harmony import */ var _css_class_utils__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./css-class-utils */ "./src/client/css-class-utils.js");
-/* harmony import */ var _app_components_config__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../app/components/config */ "./src/app/components/config.js");
-/* harmony import */ var _app_components_options__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../app/components/options */ "./src/app/components/options.js");
-/* harmony import */ var _beacon_beacon_client_data__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../beacon/beacon-client-data */ "./src/beacon/beacon-client-data.js");
-/* harmony import */ var _app_components_controller_controller_create_source_utils__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../app/components/controller/controller-create-source-utils */ "./src/app/components/controller/controller-create-source-utils.js");
-/* harmony import */ var _app_key_helper__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../app/key-helper */ "./src/app/key-helper.js");
-/* harmony import */ var _app_config__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ../app/config */ "./src/app/config.js");
+/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! uuid */ "./node_modules/uuid/dist/esm-browser/v4.js");
+/* harmony import */ var _createFrame__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./createFrame */ "./src/client/createFrame.js");
+/* harmony import */ var _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../post-robot-wrapper */ "./src/post-robot-wrapper.js");
+/* harmony import */ var cross_domain_utils__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! cross-domain-utils */ "./node_modules/cross-domain-utils/dist/module/index.js");
+/* harmony import */ var cross_domain_utils__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(cross_domain_utils__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _dataStore__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./dataStore */ "./src/client/dataStore.js");
+/* harmony import */ var _createController__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./createController */ "./src/client/createController.js");
+/* harmony import */ var _event_middleware__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./event-middleware */ "./src/client/event-middleware.js");
+/* harmony import */ var _css_class_utils__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./css-class-utils */ "./src/client/css-class-utils.js");
+/* harmony import */ var _app_components_config__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../app/components/config */ "./src/app/components/config.js");
+/* harmony import */ var _app_components_options__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../app/components/options */ "./src/app/components/options.js");
+/* harmony import */ var _beacon_beacon_client_data__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../beacon/beacon-client-data */ "./src/beacon/beacon-client-data.js");
+/* harmony import */ var _app_components_controller_controller_create_source_utils__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../app/components/controller/controller-create-source-utils */ "./src/app/components/controller/controller-create-source-utils.js");
+/* harmony import */ var _app_key_helper__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../app/key-helper */ "./src/app/key-helper.js");
+/* harmony import */ var _app_config__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../app/config */ "./src/app/config.js");
 
 
 
@@ -11315,7 +11481,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var MAX_TRIES = 5;
 function getComponentsBasePath() {
-  return _app_components_config__WEBPACK_IMPORTED_MODULE_13__.config.domain + _app_components_config__WEBPACK_IMPORTED_MODULE_13__.config.basePath + '/' + _app_components_config__WEBPACK_IMPORTED_MODULE_13__.config.componentsVersionId + '/components';
+  return _app_components_config__WEBPACK_IMPORTED_MODULE_12__.config.domain + _app_components_config__WEBPACK_IMPORTED_MODULE_12__.config.basePath + '/' + _app_components_config__WEBPACK_IMPORTED_MODULE_12__.config.componentsVersionId + '/components';
 }
 var eventNames = ['blur', 'change', 'focus', 'ready', 'click', 'source', 'shippingaddresschange', 'shippingoptionchange', 'cancel', 'return'];
 /**
@@ -11330,7 +11496,7 @@ function onEventHandler(eventName, eventFunction) {
   }
 
   var key = this.key;
-  var data = _dataStore__WEBPACK_IMPORTED_MODULE_9__.default.get(this.key);
+  var data = _dataStore__WEBPACK_IMPORTED_MODULE_8__.default.get(this.key);
   data.customEvents.push({
     eventType: this.type,
     componentId: this.id,
@@ -11338,7 +11504,7 @@ function onEventHandler(eventName, eventFunction) {
     eventFunction: eventFunction
   }); // Stores the custom function in the data store
 
-  _dataStore__WEBPACK_IMPORTED_MODULE_9__.default.set(key, data);
+  _dataStore__WEBPACK_IMPORTED_MODULE_8__.default.set(key, data);
 }
 /**
  * Triggers component events
@@ -11350,7 +11516,7 @@ function onEventHandler(eventName, eventFunction) {
 
 function triggerEvent(controllerId, id, eventType) {
   return function () {
-    _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_7__.default.send(getComponentWindow(controllerId), 'triggerComponentEvent', {
+    _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_6__.default.send(getComponentWindow(controllerId), 'triggerComponentEvent', {
       componentId: id,
       eventType: eventType
     });
@@ -11364,7 +11530,7 @@ function triggerEvent(controllerId, id, eventType) {
 function unmount() {
   var parentNode = this.parentNode;
   var key = this.key;
-  var data = _dataStore__WEBPACK_IMPORTED_MODULE_9__.default.get(key);
+  var data = _dataStore__WEBPACK_IMPORTED_MODULE_8__.default.get(key);
   var cssClasses;
 
   if (data && data.hasOwnProperty('components')) {
@@ -11378,20 +11544,20 @@ function unmount() {
   }
 
   try {
-    _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_7__.default.send(getComponentWindow(this.controllerId), 'unmountComponent', {
+    _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_6__.default.send(getComponentWindow(this.controllerId), 'unmountComponent', {
       componentId: this.id,
       componentType: this.type
     });
 
     if (document.getElementById(this.id)) {
       parentNode.removeChild(document.getElementById(this.id));
-      (0,_css_class_utils__WEBPACK_IMPORTED_MODULE_12__.removeClasses)(cssClasses, parentNode);
+      (0,_css_class_utils__WEBPACK_IMPORTED_MODULE_11__.removeClasses)(cssClasses, parentNode);
     }
 
     this.parentNode = null; // this.parentNode set to null indicates that there is no parent this component is mounted to
 
     data.components[this.type] = null;
-    _dataStore__WEBPACK_IMPORTED_MODULE_9__.default.set(key, data);
+    _dataStore__WEBPACK_IMPORTED_MODULE_8__.default.set(key, data);
   } catch (err) {
     throw new Error("Failed to unmount component '".concat(this.type, "'."));
   }
@@ -11432,11 +11598,11 @@ function mount(node) {
 
     if (this.type === 'controller') {
       // Controller
-      (0,_createFrame__WEBPACK_IMPORTED_MODULE_6__.createFrame)(this.type, node, getComponentURL(this.type, this.id, this.controllerId), attributes);
+      (0,_createFrame__WEBPACK_IMPORTED_MODULE_5__.createFrame)(this.type, node, getComponentURL(this.type, this.id, this.controllerId), attributes);
     } else {
       // Other Component
       var key = this.key;
-      var data = _dataStore__WEBPACK_IMPORTED_MODULE_9__.default.get(key);
+      var data = _dataStore__WEBPACK_IMPORTED_MODULE_8__.default.get(key);
 
       if (data && data.hasOwnProperty('components')) {
         var _context;
@@ -11452,33 +11618,33 @@ function mount(node) {
 
       if (typeof this.options !== 'undefined') {
         //arbitrate custom vs default options
-        this.options.classes = (0,_css_class_utils__WEBPACK_IMPORTED_MODULE_12__.getCssClasses)(this.options.classes);
-        var elementHeight = (0,_css_class_utils__WEBPACK_IMPORTED_MODULE_12__.getElementHeight)(this.options.style); // If we have options, send them and wait for them to be sent before creating the component
+        this.options.classes = (0,_css_class_utils__WEBPACK_IMPORTED_MODULE_11__.getCssClasses)(this.options.classes);
+        var elementHeight = (0,_css_class_utils__WEBPACK_IMPORTED_MODULE_11__.getElementHeight)(this.options.style); // If we have options, send them and wait for them to be sent before creating the component
 
         if (this.type !== 'applepay' && this.type !== 'compliance') {
-          (0,_createFrame__WEBPACK_IMPORTED_MODULE_6__.createFrame)(this.type, node, getComponentURL(this.type, this.id, this.controllerId), attributes, elementHeight, data.instanceOptions.locale, this.id, this.nameForAccessibility);
+          (0,_createFrame__WEBPACK_IMPORTED_MODULE_5__.createFrame)(this.type, node, getComponentURL(this.type, this.id, this.controllerId), attributes, elementHeight, data.instanceOptions.locale, this.id, this.nameForAccessibility);
         }
 
-        var dataKey = (0,_app_key_helper__WEBPACK_IMPORTED_MODULE_17__.fieldKey)(this.type, this.id);
+        var dataKey = (0,_app_key_helper__WEBPACK_IMPORTED_MODULE_16__.fieldKey)(this.type, this.id);
         data.components[dataKey] = {
           'parent': node,
-          'options': (0,_app_components_options__WEBPACK_IMPORTED_MODULE_14__.sanitizeOptionsForType)(this.options, this.type)
+          'options': (0,_app_components_options__WEBPACK_IMPORTED_MODULE_13__.sanitizeOptionsForType)(this.options, this.type)
         };
-        _dataStore__WEBPACK_IMPORTED_MODULE_9__.default.set(key, data); // Set base css class & empty class since field is empty
+        _dataStore__WEBPACK_IMPORTED_MODULE_8__.default.set(key, data); // Set base css class & empty class since field is empty
 
-        if ((0,_app_config__WEBPACK_IMPORTED_MODULE_18__.shouldAddBaseClass)(this.type)) {
+        if ((0,_app_config__WEBPACK_IMPORTED_MODULE_17__.shouldAddBaseClass)(this.type)) {
           var DRElementClass = data.components[dataKey].options.classes.base;
           node.classList.add(DRElementClass);
         }
 
-        if ((0,_app_config__WEBPACK_IMPORTED_MODULE_18__.shouldAddEmptyClass)(this.type)) {
+        if ((0,_app_config__WEBPACK_IMPORTED_MODULE_17__.shouldAddEmptyClass)(this.type)) {
           var DREmptyClass = data.components[dataKey].options.classes.empty;
           node.classList.add(DREmptyClass);
         }
       } else {
         // If we don't have any options just create the frame
         if (this.type !== 'applepay' && this.type !== 'compliance') {
-          (0,_createFrame__WEBPACK_IMPORTED_MODULE_6__.createFrame)(this.type, node, getComponentURL(this.type, this.id, this.controllerId), attributes);
+          (0,_createFrame__WEBPACK_IMPORTED_MODULE_5__.createFrame)(this.type, node, getComponentURL(this.type, this.id, this.controllerId), attributes);
         }
       }
     }
@@ -11518,11 +11684,11 @@ function destroy() {
     return _babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_3___default().reject("Unable to locate controller '".concat(this.controllerId, "'"));
   }
 
-  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_7__.default.send(controllerWindow, 'unregisterComponent', {
+  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_6__.default.send(controllerWindow, 'unregisterComponent', {
     componentId: this.id,
     componentType: this.type
   }).then(function () {
-    (0,_event_middleware__WEBPACK_IMPORTED_MODULE_11__.removeEventsForComponent)(_this.key, _this.id);
+    (0,_event_middleware__WEBPACK_IMPORTED_MODULE_10__.removeEventsForComponent)(_this.key, _this.id);
     modifyThisForDestroy.call(_this);
   });
 }
@@ -11535,7 +11701,7 @@ function destroy() {
  */
 
 function createComponent(type, controllerId, key, options, nameForAccessibility) {
-  if (typeof type !== 'string' || !(0,_app_config__WEBPACK_IMPORTED_MODULE_18__.isValidComponent)(type)) {
+  if (typeof type !== 'string' || !(0,_app_config__WEBPACK_IMPORTED_MODULE_17__.isValidComponent)(type)) {
     throw new Error('createComponent() requires a valid component type');
   }
 
@@ -11551,7 +11717,7 @@ function createComponent(type, controllerId, key, options, nameForAccessibility)
     mount: mount,
     destroy: destroy,
     on: onEventHandler,
-    options: (0,_app_components_options__WEBPACK_IMPORTED_MODULE_14__.sanitizeOptionsForType)(options, formattedType),
+    options: (0,_app_components_options__WEBPACK_IMPORTED_MODULE_13__.sanitizeOptionsForType)(options, formattedType),
     unmount: unmount,
     blur: triggerEvent(controllerId, id, 'blur'),
     clear: triggerEvent(controllerId, id, 'clear'),
@@ -11581,7 +11747,7 @@ function createComponent(type, controllerId, key, options, nameForAccessibility)
 */
 
 function googlePayCanMakePayment() {
-  return !!window.PaymentRequest && isChrome();
+  return true;
 }
 /**
  * Returns true if browser is Chrome
@@ -11603,11 +11769,11 @@ function isChrome() {
 
 
 function getComponentURL(type, id, controllerId) {
-  if (!(0,_app_config__WEBPACK_IMPORTED_MODULE_18__.isValidComponent)(type)) {
+  if (!(0,_app_config__WEBPACK_IMPORTED_MODULE_17__.isValidComponent)(type)) {
     throw new Error('getComponentURL() requires a valid component type');
   }
 
-  var url = getComponentsBasePath() + (0,_app_config__WEBPACK_IMPORTED_MODULE_18__.getIframeSrc)(type) + '?componentId=' + id;
+  var url = getComponentsBasePath() + (0,_app_config__WEBPACK_IMPORTED_MODULE_17__.getIframeSrc)(type) + '?componentId=' + id;
 
   if (type === 'controller') {
     return url;
@@ -11625,7 +11791,7 @@ function generateComponentId(type) {
   if (type === 'td' || type === 'dr3dsecure') {
     return type;
   } else {
-    return type + '-' + (0,uuid__WEBPACK_IMPORTED_MODULE_5__.v4)();
+    return type + '-' + (0,uuid__WEBPACK_IMPORTED_MODULE_18__.default)();
   }
 }
 /**
@@ -11649,16 +11815,16 @@ function findWindow(currentWindow, id) {
   var tries = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
 
   if (tries >= MAX_TRIES) {
-    return (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_8__.getFrameByName)(currentWindow, id);
+    return (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_7__.getFrameByName)(currentWindow, id);
   }
 
-  var foundFrame = (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_8__.getFrameByName)(currentWindow, id);
+  var foundFrame = (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_7__.getFrameByName)(currentWindow, id);
 
   if (typeof foundFrame !== 'undefined') {
     return foundFrame;
   }
 
-  var parentWindow = (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_8__.getParent)(currentWindow);
+  var parentWindow = (0,cross_domain_utils__WEBPACK_IMPORTED_MODULE_7__.getParent)(currentWindow);
 
   if (typeof parentWindow === 'undefined') {
     return foundFrame;
@@ -11682,7 +11848,7 @@ function registerComponentWithController(controllerId, component, options) {
   } // Send component Id to the controller, we return a promise but you don't really need to wait?
 
 
-  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_7__.default.send(controllerWindow, 'registerNewComponent', {
+  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_6__.default.send(controllerWindow, 'registerNewComponent', {
     componentType: component.type,
     componentId: component.id,
     options: options
@@ -11706,7 +11872,7 @@ function sendOptions(controllerId, component, unsafeOptions) {
   } // Send component Id to the controller, we return a promise but you don't really need to wait?
 
 
-  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_7__.default.send(controllerWindow, 'sendOptions', {
+  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_6__.default.send(controllerWindow, 'sendOptions', {
     componentType: component.type,
     componentId: component.id,
     unsafeOptions: unsafeOptions
@@ -11730,7 +11896,7 @@ function sendApiKey(controllerId, eventName, data) {
   } // Send component Id to the controller, we return a promise but you don't really need to wait?
 
 
-  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_7__.default.send(controllerWindow, eventName, data).catch(function () {
+  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_6__.default.send(controllerWindow, eventName, data).catch(function () {
     throw new Error('Sending apiKey error');
   });
 }
@@ -11761,7 +11927,7 @@ function createOrExtractBeaconController() {
   var beaconComponent = getComponentIFrame(type);
 
   if (!beaconComponent) {
-    beaconComponent = (0,_createController__WEBPACK_IMPORTED_MODULE_10__.createController)(document.body, type);
+    beaconComponent = (0,_createController__WEBPACK_IMPORTED_MODULE_9__.createController)(document.body, type);
   }
 
   return beaconComponent;
@@ -11793,7 +11959,7 @@ function createOrExtractAdyenController() {
 
   if (!adyenComponent) {
     var adyenDiv = createOverlayDiv('DRPayment3ds');
-    adyenComponent = (0,_createController__WEBPACK_IMPORTED_MODULE_10__.createController)(adyenDiv, type);
+    adyenComponent = (0,_createController__WEBPACK_IMPORTED_MODULE_9__.createController)(adyenDiv, type);
   }
 
   return adyenComponent;
@@ -11805,28 +11971,28 @@ function createOrExtractAdyenController() {
 
 function update(options) {
   var key = this.key;
-  var data = _dataStore__WEBPACK_IMPORTED_MODULE_9__.default.get(key);
-  var el = data.components[(0,_app_key_helper__WEBPACK_IMPORTED_MODULE_17__.fieldKey)(this.type, this.id)].parent;
-  var activeClasses = (0,_css_class_utils__WEBPACK_IMPORTED_MODULE_12__.getActiveClasses)(this.options.classes, el);
-  (0,_css_class_utils__WEBPACK_IMPORTED_MODULE_12__.removeClasses)(data.components[(0,_app_key_helper__WEBPACK_IMPORTED_MODULE_17__.fieldKey)(this.type, this.id)].options.classes, el);
-  var mergedOptions = (0,_app_components_options__WEBPACK_IMPORTED_MODULE_14__.mergeOptions)(data.components[(0,_app_key_helper__WEBPACK_IMPORTED_MODULE_17__.fieldKey)(this.type, this.id)].options, options); // we need to run classes through default/custom arbitration
+  var data = _dataStore__WEBPACK_IMPORTED_MODULE_8__.default.get(key);
+  var el = data.components[(0,_app_key_helper__WEBPACK_IMPORTED_MODULE_16__.fieldKey)(this.type, this.id)].parent;
+  var activeClasses = (0,_css_class_utils__WEBPACK_IMPORTED_MODULE_11__.getActiveClasses)(this.options.classes, el);
+  (0,_css_class_utils__WEBPACK_IMPORTED_MODULE_11__.removeClasses)(data.components[(0,_app_key_helper__WEBPACK_IMPORTED_MODULE_16__.fieldKey)(this.type, this.id)].options.classes, el);
+  var mergedOptions = (0,_app_components_options__WEBPACK_IMPORTED_MODULE_13__.mergeOptions)(data.components[(0,_app_key_helper__WEBPACK_IMPORTED_MODULE_16__.fieldKey)(this.type, this.id)].options, options); // we need to run classes through default/custom arbitration
 
-  mergedOptions.classes = (0,_css_class_utils__WEBPACK_IMPORTED_MODULE_12__.getCssClasses)(mergedOptions.classes);
+  mergedOptions.classes = (0,_css_class_utils__WEBPACK_IMPORTED_MODULE_11__.getCssClasses)(mergedOptions.classes);
   sendOptions(this.controllerId, {
     'type': this.type,
     'id': this.id
   }, mergedOptions);
-  data.components[(0,_app_key_helper__WEBPACK_IMPORTED_MODULE_17__.fieldKey)(this.type, this.id)].options = (0,_app_components_options__WEBPACK_IMPORTED_MODULE_14__.sanitizeOptionsForType)(mergedOptions, this.type);
-  delete data.components[(0,_app_key_helper__WEBPACK_IMPORTED_MODULE_17__.fieldKey)(this.type, this.id)].options.sourceData; // Note: Do not store the sourceData
+  data.components[(0,_app_key_helper__WEBPACK_IMPORTED_MODULE_16__.fieldKey)(this.type, this.id)].options = (0,_app_components_options__WEBPACK_IMPORTED_MODULE_13__.sanitizeOptionsForType)(mergedOptions, this.type);
+  delete data.components[(0,_app_key_helper__WEBPACK_IMPORTED_MODULE_16__.fieldKey)(this.type, this.id)].options.sourceData; // Note: Do not store the sourceData
 
-  _dataStore__WEBPACK_IMPORTED_MODULE_9__.default.set(key, data);
-  this.options = data.components[(0,_app_key_helper__WEBPACK_IMPORTED_MODULE_17__.fieldKey)(this.type, this.id)].options;
+  _dataStore__WEBPACK_IMPORTED_MODULE_8__.default.set(key, data);
+  this.options = data.components[(0,_app_key_helper__WEBPACK_IMPORTED_MODULE_16__.fieldKey)(this.type, this.id)].options;
 
   if (this.type !== 'onlinebanking') {
     //online banking update means changing select options, so we have to set classes back to empty
-    (0,_css_class_utils__WEBPACK_IMPORTED_MODULE_12__.applyActiveClasses)(activeClasses, this.options.classes, el);
+    (0,_css_class_utils__WEBPACK_IMPORTED_MODULE_11__.applyActiveClasses)(activeClasses, this.options.classes, el);
   } else {
-    (0,_css_class_utils__WEBPACK_IMPORTED_MODULE_12__.applyActiveClasses)(['base', 'empty'], this.options.classes, el);
+    (0,_css_class_utils__WEBPACK_IMPORTED_MODULE_11__.applyActiveClasses)(['base', 'empty'], this.options.classes, el);
   }
 }
 /**
@@ -11842,12 +12008,12 @@ function sendInitalize3dSecure(adyenId, apiKey) {
     throw new Error("Unable to locate 3ds '".concat(adyenId, "'"));
   }
 
-  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_7__.default.send(adyenWindow, 'sendInitalize3dSecure', {
+  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_6__.default.send(adyenWindow, 'sendInitalize3dSecure', {
     secureId: adyenId,
     apiKey: apiKey,
-    userLocale: (0,_beacon_beacon_client_data__WEBPACK_IMPORTED_MODULE_15__.getUserLocale)(window)
+    userLocale: (0,_beacon_beacon_client_data__WEBPACK_IMPORTED_MODULE_14__.getUserLocale)(window)
   }).catch(function () {
-    return (0,_app_components_controller_controller_create_source_utils__WEBPACK_IMPORTED_MODULE_16__.chooseCreateSourceCatchMessage)('Unable to configure Adyen.');
+    return (0,_app_components_controller_controller_create_source_utils__WEBPACK_IMPORTED_MODULE_15__.chooseCreateSourceCatchMessage)('Unable to configure Adyen.');
   });
 }
 /**
@@ -11866,15 +12032,15 @@ function sendAdyen3dDetails(adyenId, controllerId, paymentServiceResponse, resol
     throw new Error("Unable to locate 3ds '".concat(adyenId, "'"));
   }
 
-  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_7__.default.send(adyenWindow, 'sendActions', {
+  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_6__.default.send(adyenWindow, 'sendActions', {
     controllerId: controllerId,
     secureId: adyenId,
     resolve: resolve,
     paymentServiceResponse: paymentServiceResponse,
-    clientData: (0,_beacon_beacon_client_data__WEBPACK_IMPORTED_MODULE_15__.collectClientData)(window),
+    clientData: (0,_beacon_beacon_client_data__WEBPACK_IMPORTED_MODULE_14__.collectClientData)(window),
     redirectWindow: redirectWindow
   }).catch(function () {
-    return (0,_app_components_controller_controller_create_source_utils__WEBPACK_IMPORTED_MODULE_16__.chooseCreateSourceCatchMessage)('Unable to configure Adyen.');
+    return (0,_app_components_controller_controller_create_source_utils__WEBPACK_IMPORTED_MODULE_15__.chooseCreateSourceCatchMessage)('Unable to configure Adyen.');
   });
 }
 /**
@@ -11892,14 +12058,14 @@ function sendAdyenAction(adyenId, controllerId, response, resolve) {
     throw new Error("Unable to locate 3ds '".concat(adyenId, "'"));
   }
 
-  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_7__.default.send(adyenWindow, 'sendActions', {
+  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_6__.default.send(adyenWindow, 'sendActions', {
     controllerId: controllerId,
     secureId: adyenId,
     resolve: resolve,
     paymentServiceResponse: response,
-    clientData: (0,_beacon_beacon_client_data__WEBPACK_IMPORTED_MODULE_15__.collectClientData)(window)
+    clientData: (0,_beacon_beacon_client_data__WEBPACK_IMPORTED_MODULE_14__.collectClientData)(window)
   }).catch(function () {
-    return (0,_app_components_controller_controller_create_source_utils__WEBPACK_IMPORTED_MODULE_16__.chooseCreateSourceCatchMessage)('Unable to intialize adyen challenge.');
+    return (0,_app_components_controller_controller_create_source_utils__WEBPACK_IMPORTED_MODULE_15__.chooseCreateSourceCatchMessage)('Unable to intialize adyen challenge.');
   });
 }
 /**
@@ -12513,7 +12679,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_corejs3_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/typeof */ "./node_modules/@babel/runtime-corejs3/helpers/esm/typeof.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/object/assign */ "./node_modules/@babel/runtime-corejs3/core-js-stable/object/assign.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! uuid */ "./node_modules/uuid/dist/esm-browser/index.js");
+/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! uuid */ "./node_modules/uuid/dist/esm-browser/v4.js");
 
 
 
@@ -12536,7 +12702,7 @@ function set(key, data) {
 }
 
 function create(data) {
-  var key = (0,uuid__WEBPACK_IMPORTED_MODULE_2__.v4)();
+  var key = (0,uuid__WEBPACK_IMPORTED_MODULE_2__.default)();
   set(key, data);
   return key;
 }
@@ -12938,6 +13104,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _createComponent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./createComponent */ "./src/client/createComponent.js");
 /* harmony import */ var _app_components_config__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../app/components/config */ "./src/app/components/config.js");
 /* harmony import */ var _create_dropin__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./create-dropin */ "./src/client/create-dropin.js");
+/* harmony import */ var _complianceData__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./complianceData */ "./src/client/complianceData.js");
+
 
 
 
@@ -12987,6 +13155,21 @@ function isSupportsStorage(paymentMethodFromAPI) {
   return typeof paymentMethodFromAPI !== 'undefined' ? paymentMethodFromAPI.supportsStorage : false;
 }
 
+function addConsentsData(options, onSuccessData) {
+  if (typeof options !== 'undefined' && typeof options.options !== 'undefined' && typeof options.options.showTermsOfSaleDisclosure !== 'undefined' && options.options.showTermsOfSaleDisclosure) {
+    onSuccessData.consents = {
+      eula: false,
+      termsOfUse: false,
+      termsOfSale: true
+    };
+
+    if ((0,_complianceData__WEBPACK_IMPORTED_MODULE_5__.isCompanyNameValid)(options) && ((0,_complianceData__WEBPACK_IMPORTED_MODULE_5__.isEulaValid)(options) || (0,_complianceData__WEBPACK_IMPORTED_MODULE_5__.isTermsOfUseValid)(options))) {
+      onSuccessData.consents.eula = (0,_complianceData__WEBPACK_IMPORTED_MODULE_5__.isEulaValid)(options);
+      onSuccessData.consents.termsOfUse = (0,_complianceData__WEBPACK_IMPORTED_MODULE_5__.isTermsOfUseValid)(options);
+    }
+  }
+}
+
 function runClientProvidedCompleteEvents(options, sourceData, buttonElement, buttonText, paymentMethodFromAPI) {
   var isSuccess = typeof sourceData.source !== 'undefined' && sourceData.source !== null;
   var redirectDisabled = (0,_create_dropin__WEBPACK_IMPORTED_MODULE_4__.isRedirectDisabled)(options);
@@ -12994,12 +13177,14 @@ function runClientProvidedCompleteEvents(options, sourceData, buttonElement, but
   if (options.onSuccess && isSuccess && (sourceData.source.state === 'pending_redirect' || sourceData.source.state === 'cancelled') && !redirectDisabled) {
     runClientProvidedCancelEvent(options, sourceData.source.type, buttonElement, buttonText);
   } else if (options.onSuccess && isSuccess) {
-    (0,_create_dropin__WEBPACK_IMPORTED_MODULE_4__.updateButton)(buttonElement, buttonText, false);
-    options.onSuccess({
+    var onSuccessData = {
       source: sourceData.source,
       readyForStorage: isReadyForStorage(sourceData),
       supportsStorage: isSupportsStorage(paymentMethodFromAPI)
-    });
+    };
+    addConsentsData(options, onSuccessData);
+    (0,_create_dropin__WEBPACK_IMPORTED_MODULE_4__.updateButton)(buttonElement, buttonText, false);
+    options.onSuccess(onSuccessData);
   } else if (options.onError && !isSuccess) {
     (0,_create_dropin__WEBPACK_IMPORTED_MODULE_4__.updateButton)(buttonElement, buttonText, false);
     options.onError(sourceData.error);
@@ -13345,6 +13530,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "getAgreeToTermsValue": function() { return /* binding */ getAgreeToTermsValue; },
 /* harmony export */   "createTermsOfSale": function() { return /* binding */ createTermsOfSale; },
 /* harmony export */   "addChangeEventToCheckbox": function() { return /* binding */ addChangeEventToCheckbox; },
+/* harmony export */   "determineTermsTextId": function() { return /* binding */ determineTermsTextId; },
 /* harmony export */   "determineTermsCheckboxErrorId": function() { return /* binding */ determineTermsCheckboxErrorId; },
 /* harmony export */   "determineTermsCheckboxId": function() { return /* binding */ determineTermsCheckboxId; },
 /* harmony export */   "createTermsOfSaleNotRecurring": function() { return /* binding */ createTermsOfSaleNotRecurring; },
@@ -13374,22 +13560,22 @@ function createTermsSourceObject(locale, sessionInformation) {
   }
 }
 
-function getTermsOfSaleDisclosureValue(locale, sessionInformation) {
+function getTermsOfSaleDisclosureValue(locale, sessionInformation, configuration) {
   if (sessionInformation.recurring === true) {
-    return (0,_complianceData__WEBPACK_IMPORTED_MODULE_0__.getAutoRenewPlanTerms)(locale, sessionInformation.sellingEntityId);
+    return (0,_complianceData__WEBPACK_IMPORTED_MODULE_0__.getAutoRenewPlanTerms)(locale, sessionInformation.sellingEntityId, configuration);
   } else {
-    return (0,_complianceData__WEBPACK_IMPORTED_MODULE_0__.getConfirmDisclosure)(locale, sessionInformation.sellingEntityId);
+    return (0,_complianceData__WEBPACK_IMPORTED_MODULE_0__.getConfirmDisclosure)(locale, sessionInformation.sellingEntityId, configuration);
   }
 }
 
 function getAgreeToTermsValue(locale, sellingEntityId) {
   return (0,_complianceData__WEBPACK_IMPORTED_MODULE_0__.getAgreeToTerms)(locale, sellingEntityId);
 }
-function createTermsOfSale(paymentMethodType, locale, sessionInformation, paymentMethod, componentHolder, availablePaymentMethod) {
+function createTermsOfSale(paymentMethodType, locale, sessionInformation, paymentMethod, componentHolder, availablePaymentMethod, configuration) {
   if (sessionInformation.recurring === true) {
-    return createTermsOfSaleRecurring(paymentMethodType, locale, sessionInformation, paymentMethod, componentHolder, availablePaymentMethod);
+    return createTermsOfSaleRecurring(paymentMethodType, locale, sessionInformation, paymentMethod, componentHolder, availablePaymentMethod, configuration);
   } else {
-    return createTermsOfSaleNotRecurring(paymentMethodType, locale, sessionInformation, paymentMethod, componentHolder, availablePaymentMethod);
+    return createTermsOfSaleNotRecurring(paymentMethodType, locale, sessionInformation, paymentMethod, componentHolder, availablePaymentMethod, configuration);
   }
 }
 function addChangeEventToCheckbox(termsCheckbox, paymentMethod, componentHolder) {
@@ -13402,6 +13588,13 @@ function addChangeEventToCheckbox(termsCheckbox, paymentMethod, componentHolder)
       }
     };
   }
+}
+function determineTermsTextId(paymentMethod) {
+  if ((0,_stored_payment_methods__WEBPACK_IMPORTED_MODULE_1__.isStoredPaymentMethod)(paymentMethod)) {
+    return 'DR-terms-text' + (0,_create_dropin__WEBPACK_IMPORTED_MODULE_2__.getStoredId)(paymentMethod);
+  }
+
+  return 'DR-terms-text-' + paymentMethod.type;
 }
 function determineTermsCheckboxErrorId(paymentMethod) {
   if ((0,_stored_payment_methods__WEBPACK_IMPORTED_MODULE_1__.isStoredPaymentMethod)(paymentMethod)) {
@@ -13417,49 +13610,61 @@ function determineTermsCheckboxId(paymentMethod) {
 
   return 'DR-terms-checkbox-' + paymentMethod.type;
 }
-function createTermsOfSaleNotRecurring(paymentMethodType, locale, sessionInformation, paymentMethod, componentHolder, availablePaymentMethod) {
+function createTermsOfSaleNotRecurring(paymentMethodType, locale, sessionInformation, paymentMethod, componentHolder, availablePaymentMethod, configuration) {
   var termsParent = document.createElement('div');
   termsParent.className = 'DR-terms DR-terms-' + paymentMethodType;
   var termsError = document.createElement('div');
   termsError.id = determineTermsCheckboxErrorId(availablePaymentMethod);
   termsError.className = 'DR-terms-checkbox-error DR-error-message';
+  termsError.setAttribute('aria-live', 'assertive');
   var termsRow = document.createElement('div');
   termsRow.className = 'DR-terms-row DR-terms-row-' + paymentMethodType;
   var termsText = document.createElement('div');
+  termsText.id = determineTermsTextId(availablePaymentMethod);
   var termsCheckboxParent = document.createElement('div');
   var termsCheckbox = document.createElement('input');
   termsCheckbox.id = determineTermsCheckboxId(availablePaymentMethod);
+  termsCheckbox.setAttribute('name', determineTermsCheckboxId(availablePaymentMethod));
+  termsCheckbox.setAttribute('aria-required', 'true');
+  termsCheckbox.setAttribute('aria-errormessage', determineTermsCheckboxErrorId(availablePaymentMethod));
+  termsCheckbox.setAttribute('aria-labelledby', determineTermsTextId(availablePaymentMethod));
   termsCheckbox.type = 'checkbox';
   termsCheckboxParent.className = 'DR-terms-checkbox DR-terms-checkbox-' + paymentMethodType;
   termsCheckboxParent.appendChild(termsCheckbox);
   termsRow.appendChild(termsCheckboxParent);
   termsText.className = 'DR-terms-content';
-  termsText.innerHTML = getTermsOfSaleDisclosureValue(locale, sessionInformation);
+  termsText.innerHTML = getTermsOfSaleDisclosureValue(locale, sessionInformation, configuration);
   termsRow.appendChild(termsText);
   termsParent.appendChild(termsRow);
   termsParent.appendChild(termsError);
   addChangeEventToCheckbox(termsCheckbox, paymentMethod, componentHolder);
   return termsParent;
 }
-function createTermsOfSaleRecurring(paymentMethodType, locale, sessionInformation, paymentMethod, componentHolder, availablePaymentMethod) {
+function createTermsOfSaleRecurring(paymentMethodType, locale, sessionInformation, paymentMethod, componentHolder, availablePaymentMethod, configuration) {
   var termsParent = document.createElement('div');
   termsParent.className = 'DR-terms DR-terms-' + paymentMethodType;
   var termsError = document.createElement('div');
   termsError.id = determineTermsCheckboxErrorId(availablePaymentMethod);
   termsError.className = 'DR-terms-checkbox-error DR-error-message';
+  termsError.setAttribute('aria-live', 'assertive');
   var termsRow = document.createElement('div');
   termsRow.className = 'DR-terms-row DR-terms-row-' + paymentMethodType;
   var termsText = document.createElement('div');
+  termsText.id = determineTermsTextId(availablePaymentMethod);
   var termsCheckboxParent = document.createElement('div');
   var termsCheckbox = document.createElement('input');
   termsCheckbox.id = determineTermsCheckboxId(availablePaymentMethod);
+  termsCheckbox.setAttribute('name', determineTermsCheckboxId(availablePaymentMethod));
+  termsCheckbox.setAttribute('aria-required', 'true');
+  termsCheckbox.setAttribute('aria-errormessage', determineTermsCheckboxErrorId(availablePaymentMethod));
+  termsCheckbox.setAttribute('aria-labelledby', determineTermsTextId(availablePaymentMethod));
   termsCheckbox.type = 'checkbox';
   termsCheckboxParent.className = 'DR-terms-checkbox DR-terms-checkbox-' + paymentMethodType;
   termsCheckboxParent.appendChild(termsCheckbox);
   termsText.className = 'DR-terms-content DR-terms-' + paymentMethodType;
   var termsContentParent = document.createElement('div');
   termsContentParent.className = 'DR-terms-of-sale-disclosure DR-terms-of-sale-disclosure-' + paymentMethodType;
-  termsContentParent.innerHTML = getTermsOfSaleDisclosureValue(locale, sessionInformation);
+  termsContentParent.innerHTML = getTermsOfSaleDisclosureValue(locale, sessionInformation, configuration);
   termsText.appendChild(termsContentParent);
   var termsAgreeParent = document.createElement('div');
   termsAgreeParent.className = 'DR-agree-terms-row DR-agree-terms-row-' + paymentMethodType;
@@ -15791,17 +15996,32 @@ function addHandleOptions(controllerListener, handleOptions) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "getRedirectReceiverURL": function() { return /* binding */ getRedirectReceiverURL; }
+/* harmony export */   "getRedirectReceiverURL": function() { return /* binding */ getRedirectReceiverURL; },
+/* harmony export */   "isValidHttpUrl": function() { return /* binding */ isValidHttpUrl; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/concat */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/concat.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _createComponent__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./createComponent */ "./src/client/createComponent.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_url__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/url */ "./node_modules/@babel/runtime-corejs3/core-js-stable/url.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_url__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_url__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _createComponent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./createComponent */ "./src/client/createComponent.js");
+
 
 
 function getRedirectReceiverURL(controllerId) {
   var _context;
 
-  return _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_0___default()(_context = "".concat((0,_createComponent__WEBPACK_IMPORTED_MODULE_1__.getComponentsBasePath)(), "/redirect-receiver/redirect-receiver.html?controllerId=")).call(_context, controllerId, "&componentId=redirect-receiver-1757f835-c21b-4f4e-b208-92adc5c30573");
+  return _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_0___default()(_context = "".concat((0,_createComponent__WEBPACK_IMPORTED_MODULE_2__.getComponentsBasePath)(), "/redirect-receiver/redirect-receiver.html?controllerId=")).call(_context, controllerId, "&componentId=redirect-receiver-1757f835-c21b-4f4e-b208-92adc5c30573");
+}
+function isValidHttpUrl(string) {
+  var url;
+
+  try {
+    url = new (_babel_runtime_corejs3_core_js_stable_url__WEBPACK_IMPORTED_MODULE_1___default())(string);
+  } catch (_) {
+    return false;
+  }
+
+  return url.protocol === 'http:' || url.protocol === 'https:';
 }
 
 /***/ }),
@@ -15872,11 +16092,15 @@ function _on(name, data, callback) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "setElementErrorMessage": function() { return /* binding */ setElementErrorMessage; }
+/* harmony export */   "setElementErrorMessage": function() { return /* binding */ setElementErrorMessage; },
+/* harmony export */   "removeLastCharacterFromString": function() { return /* binding */ removeLastCharacterFromString; }
 /* harmony export */ });
 function setElementErrorMessage(id, message) {
   message === '' ? document.getElementById(id).style.display = 'none' : document.getElementById(id).style.display = 'block';
   document.getElementById(id).innerText = message;
+}
+function removeLastCharacterFromString(str) {
+  return str.substring(0, str.length - 1);
 }
 
 /***/ }),
@@ -17968,6 +18192,25 @@ module.exports = function (it) {
 
 /***/ }),
 
+/***/ "./node_modules/core-js-pure/internals/get-iterator.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/core-js-pure/internals/get-iterator.js ***!
+  \*************************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+var anObject = __webpack_require__(/*! ../internals/an-object */ "./node_modules/core-js-pure/internals/an-object.js");
+var getIteratorMethod = __webpack_require__(/*! ../internals/get-iterator-method */ "./node_modules/core-js-pure/internals/get-iterator-method.js");
+
+module.exports = function (it) {
+  var iteratorMethod = getIteratorMethod(it);
+  if (typeof iteratorMethod != 'function') {
+    throw TypeError(String(it) + ' is not iterable');
+  } return anObject(iteratorMethod.call(it));
+};
+
+
+/***/ }),
+
 /***/ "./node_modules/core-js-pure/internals/global.js":
 /*!*******************************************************!*\
   !*** ./node_modules/core-js-pure/internals/global.js ***!
@@ -18586,6 +18829,49 @@ module.exports = !!Object.getOwnPropertySymbols && !fails(function () {
   return !String(symbol) || !(Object(symbol) instanceof Symbol) ||
     // Chrome 38-40 symbols are not inherited from DOM collections prototypes to instances
     !Symbol.sham && V8_VERSION && V8_VERSION < 41;
+});
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js-pure/internals/native-url.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/core-js-pure/internals/native-url.js ***!
+  \***********************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+var fails = __webpack_require__(/*! ../internals/fails */ "./node_modules/core-js-pure/internals/fails.js");
+var wellKnownSymbol = __webpack_require__(/*! ../internals/well-known-symbol */ "./node_modules/core-js-pure/internals/well-known-symbol.js");
+var IS_PURE = __webpack_require__(/*! ../internals/is-pure */ "./node_modules/core-js-pure/internals/is-pure.js");
+
+var ITERATOR = wellKnownSymbol('iterator');
+
+module.exports = !fails(function () {
+  var url = new URL('b?a=1&b=2&c=3', 'http://a');
+  var searchParams = url.searchParams;
+  var result = '';
+  url.pathname = 'c%20d';
+  searchParams.forEach(function (value, key) {
+    searchParams['delete']('b');
+    result += key + value;
+  });
+  return (IS_PURE && !url.toJSON)
+    || !searchParams.sort
+    || url.href !== 'http://a/c%20d?a=1&c=3'
+    || searchParams.get('c') !== '3'
+    || String(new URLSearchParams('?a=1')) !== 'a=1'
+    || !searchParams[ITERATOR]
+    // throws in Edge
+    || new URL('https://a@b').username !== 'a'
+    || new URLSearchParams(new URLSearchParams('a=b')).get('a') !== 'b'
+    // not punycoded in Edge
+    || new URL('http://тест').host !== 'xn--e1aybc'
+    // not escaped in Chrome 62-
+    || new URL('http://a#б').hash !== '#%D0%B1'
+    // fails in Chrome 66-
+    || result !== 'a1c3'
+    // throws in Safari
+    || new URL('http://x', undefined).host !== 'x';
 });
 
 
@@ -19497,6 +19783,185 @@ module.exports = {
   // `String.prototype.at` method
   // https://github.com/mathiasbynens/String.prototype.at
   charAt: createMethod(true)
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js-pure/internals/string-punycode-to-ascii.js":
+/*!*************************************************************************!*\
+  !*** ./node_modules/core-js-pure/internals/string-punycode-to-ascii.js ***!
+  \*************************************************************************/
+/***/ (function(module) {
+
+"use strict";
+
+// based on https://github.com/bestiejs/punycode.js/blob/master/punycode.js
+var maxInt = 2147483647; // aka. 0x7FFFFFFF or 2^31-1
+var base = 36;
+var tMin = 1;
+var tMax = 26;
+var skew = 38;
+var damp = 700;
+var initialBias = 72;
+var initialN = 128; // 0x80
+var delimiter = '-'; // '\x2D'
+var regexNonASCII = /[^\0-\u007E]/; // non-ASCII chars
+var regexSeparators = /[.\u3002\uFF0E\uFF61]/g; // RFC 3490 separators
+var OVERFLOW_ERROR = 'Overflow: input needs wider integers to process';
+var baseMinusTMin = base - tMin;
+var floor = Math.floor;
+var stringFromCharCode = String.fromCharCode;
+
+/**
+ * Creates an array containing the numeric code points of each Unicode
+ * character in the string. While JavaScript uses UCS-2 internally,
+ * this function will convert a pair of surrogate halves (each of which
+ * UCS-2 exposes as separate characters) into a single code point,
+ * matching UTF-16.
+ */
+var ucs2decode = function (string) {
+  var output = [];
+  var counter = 0;
+  var length = string.length;
+  while (counter < length) {
+    var value = string.charCodeAt(counter++);
+    if (value >= 0xD800 && value <= 0xDBFF && counter < length) {
+      // It's a high surrogate, and there is a next character.
+      var extra = string.charCodeAt(counter++);
+      if ((extra & 0xFC00) == 0xDC00) { // Low surrogate.
+        output.push(((value & 0x3FF) << 10) + (extra & 0x3FF) + 0x10000);
+      } else {
+        // It's an unmatched surrogate; only append this code unit, in case the
+        // next code unit is the high surrogate of a surrogate pair.
+        output.push(value);
+        counter--;
+      }
+    } else {
+      output.push(value);
+    }
+  }
+  return output;
+};
+
+/**
+ * Converts a digit/integer into a basic code point.
+ */
+var digitToBasic = function (digit) {
+  //  0..25 map to ASCII a..z or A..Z
+  // 26..35 map to ASCII 0..9
+  return digit + 22 + 75 * (digit < 26);
+};
+
+/**
+ * Bias adaptation function as per section 3.4 of RFC 3492.
+ * https://tools.ietf.org/html/rfc3492#section-3.4
+ */
+var adapt = function (delta, numPoints, firstTime) {
+  var k = 0;
+  delta = firstTime ? floor(delta / damp) : delta >> 1;
+  delta += floor(delta / numPoints);
+  for (; delta > baseMinusTMin * tMax >> 1; k += base) {
+    delta = floor(delta / baseMinusTMin);
+  }
+  return floor(k + (baseMinusTMin + 1) * delta / (delta + skew));
+};
+
+/**
+ * Converts a string of Unicode symbols (e.g. a domain name label) to a
+ * Punycode string of ASCII-only symbols.
+ */
+// eslint-disable-next-line max-statements -- TODO
+var encode = function (input) {
+  var output = [];
+
+  // Convert the input in UCS-2 to an array of Unicode code points.
+  input = ucs2decode(input);
+
+  // Cache the length.
+  var inputLength = input.length;
+
+  // Initialize the state.
+  var n = initialN;
+  var delta = 0;
+  var bias = initialBias;
+  var i, currentValue;
+
+  // Handle the basic code points.
+  for (i = 0; i < input.length; i++) {
+    currentValue = input[i];
+    if (currentValue < 0x80) {
+      output.push(stringFromCharCode(currentValue));
+    }
+  }
+
+  var basicLength = output.length; // number of basic code points.
+  var handledCPCount = basicLength; // number of code points that have been handled;
+
+  // Finish the basic string with a delimiter unless it's empty.
+  if (basicLength) {
+    output.push(delimiter);
+  }
+
+  // Main encoding loop:
+  while (handledCPCount < inputLength) {
+    // All non-basic code points < n have been handled already. Find the next larger one:
+    var m = maxInt;
+    for (i = 0; i < input.length; i++) {
+      currentValue = input[i];
+      if (currentValue >= n && currentValue < m) {
+        m = currentValue;
+      }
+    }
+
+    // Increase `delta` enough to advance the decoder's <n,i> state to <m,0>, but guard against overflow.
+    var handledCPCountPlusOne = handledCPCount + 1;
+    if (m - n > floor((maxInt - delta) / handledCPCountPlusOne)) {
+      throw RangeError(OVERFLOW_ERROR);
+    }
+
+    delta += (m - n) * handledCPCountPlusOne;
+    n = m;
+
+    for (i = 0; i < input.length; i++) {
+      currentValue = input[i];
+      if (currentValue < n && ++delta > maxInt) {
+        throw RangeError(OVERFLOW_ERROR);
+      }
+      if (currentValue == n) {
+        // Represent delta as a generalized variable-length integer.
+        var q = delta;
+        for (var k = base; /* no condition */; k += base) {
+          var t = k <= bias ? tMin : (k >= bias + tMax ? tMax : k - bias);
+          if (q < t) break;
+          var qMinusT = q - t;
+          var baseMinusT = base - t;
+          output.push(stringFromCharCode(digitToBasic(t + qMinusT % baseMinusT)));
+          q = floor(qMinusT / baseMinusT);
+        }
+
+        output.push(stringFromCharCode(digitToBasic(q)));
+        bias = adapt(delta, handledCPCountPlusOne, handledCPCount == basicLength);
+        delta = 0;
+        ++handledCPCount;
+      }
+    }
+
+    ++delta;
+    ++n;
+  }
+  return output.join('');
+};
+
+module.exports = function (input) {
+  var encoded = [];
+  var labels = input.toLowerCase().replace(regexSeparators, '\u002E').split('.');
+  var i, label;
+  for (i = 0; i < labels.length; i++) {
+    label = labels[i];
+    encoded.push(regexNonASCII.test(label) ? 'xn--' + encode(label) : label);
+  }
+  return encoded.join('.');
 };
 
 
@@ -22219,6 +22684,1392 @@ for (var COLLECTION_NAME in DOMIterables) {
 
 /***/ }),
 
+/***/ "./node_modules/core-js-pure/modules/web.url-search-params.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/core-js-pure/modules/web.url-search-params.js ***!
+  \********************************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+
+// TODO: in core-js@4, move /modules/ dependencies to public entries for better optimization by tools like `preset-env`
+__webpack_require__(/*! ../modules/es.array.iterator */ "./node_modules/core-js-pure/modules/es.array.iterator.js");
+var $ = __webpack_require__(/*! ../internals/export */ "./node_modules/core-js-pure/internals/export.js");
+var getBuiltIn = __webpack_require__(/*! ../internals/get-built-in */ "./node_modules/core-js-pure/internals/get-built-in.js");
+var USE_NATIVE_URL = __webpack_require__(/*! ../internals/native-url */ "./node_modules/core-js-pure/internals/native-url.js");
+var redefine = __webpack_require__(/*! ../internals/redefine */ "./node_modules/core-js-pure/internals/redefine.js");
+var redefineAll = __webpack_require__(/*! ../internals/redefine-all */ "./node_modules/core-js-pure/internals/redefine-all.js");
+var setToStringTag = __webpack_require__(/*! ../internals/set-to-string-tag */ "./node_modules/core-js-pure/internals/set-to-string-tag.js");
+var createIteratorConstructor = __webpack_require__(/*! ../internals/create-iterator-constructor */ "./node_modules/core-js-pure/internals/create-iterator-constructor.js");
+var InternalStateModule = __webpack_require__(/*! ../internals/internal-state */ "./node_modules/core-js-pure/internals/internal-state.js");
+var anInstance = __webpack_require__(/*! ../internals/an-instance */ "./node_modules/core-js-pure/internals/an-instance.js");
+var hasOwn = __webpack_require__(/*! ../internals/has */ "./node_modules/core-js-pure/internals/has.js");
+var bind = __webpack_require__(/*! ../internals/function-bind-context */ "./node_modules/core-js-pure/internals/function-bind-context.js");
+var classof = __webpack_require__(/*! ../internals/classof */ "./node_modules/core-js-pure/internals/classof.js");
+var anObject = __webpack_require__(/*! ../internals/an-object */ "./node_modules/core-js-pure/internals/an-object.js");
+var isObject = __webpack_require__(/*! ../internals/is-object */ "./node_modules/core-js-pure/internals/is-object.js");
+var create = __webpack_require__(/*! ../internals/object-create */ "./node_modules/core-js-pure/internals/object-create.js");
+var createPropertyDescriptor = __webpack_require__(/*! ../internals/create-property-descriptor */ "./node_modules/core-js-pure/internals/create-property-descriptor.js");
+var getIterator = __webpack_require__(/*! ../internals/get-iterator */ "./node_modules/core-js-pure/internals/get-iterator.js");
+var getIteratorMethod = __webpack_require__(/*! ../internals/get-iterator-method */ "./node_modules/core-js-pure/internals/get-iterator-method.js");
+var wellKnownSymbol = __webpack_require__(/*! ../internals/well-known-symbol */ "./node_modules/core-js-pure/internals/well-known-symbol.js");
+
+var $fetch = getBuiltIn('fetch');
+var Headers = getBuiltIn('Headers');
+var ITERATOR = wellKnownSymbol('iterator');
+var URL_SEARCH_PARAMS = 'URLSearchParams';
+var URL_SEARCH_PARAMS_ITERATOR = URL_SEARCH_PARAMS + 'Iterator';
+var setInternalState = InternalStateModule.set;
+var getInternalParamsState = InternalStateModule.getterFor(URL_SEARCH_PARAMS);
+var getInternalIteratorState = InternalStateModule.getterFor(URL_SEARCH_PARAMS_ITERATOR);
+
+var plus = /\+/g;
+var sequences = Array(4);
+
+var percentSequence = function (bytes) {
+  return sequences[bytes - 1] || (sequences[bytes - 1] = RegExp('((?:%[\\da-f]{2}){' + bytes + '})', 'gi'));
+};
+
+var percentDecode = function (sequence) {
+  try {
+    return decodeURIComponent(sequence);
+  } catch (error) {
+    return sequence;
+  }
+};
+
+var deserialize = function (it) {
+  var result = it.replace(plus, ' ');
+  var bytes = 4;
+  try {
+    return decodeURIComponent(result);
+  } catch (error) {
+    while (bytes) {
+      result = result.replace(percentSequence(bytes--), percentDecode);
+    }
+    return result;
+  }
+};
+
+var find = /[!'()~]|%20/g;
+
+var replace = {
+  '!': '%21',
+  "'": '%27',
+  '(': '%28',
+  ')': '%29',
+  '~': '%7E',
+  '%20': '+'
+};
+
+var replacer = function (match) {
+  return replace[match];
+};
+
+var serialize = function (it) {
+  return encodeURIComponent(it).replace(find, replacer);
+};
+
+var parseSearchParams = function (result, query) {
+  if (query) {
+    var attributes = query.split('&');
+    var index = 0;
+    var attribute, entry;
+    while (index < attributes.length) {
+      attribute = attributes[index++];
+      if (attribute.length) {
+        entry = attribute.split('=');
+        result.push({
+          key: deserialize(entry.shift()),
+          value: deserialize(entry.join('='))
+        });
+      }
+    }
+  }
+};
+
+var updateSearchParams = function (query) {
+  this.entries.length = 0;
+  parseSearchParams(this.entries, query);
+};
+
+var validateArgumentsLength = function (passed, required) {
+  if (passed < required) throw TypeError('Not enough arguments');
+};
+
+var URLSearchParamsIterator = createIteratorConstructor(function Iterator(params, kind) {
+  setInternalState(this, {
+    type: URL_SEARCH_PARAMS_ITERATOR,
+    iterator: getIterator(getInternalParamsState(params).entries),
+    kind: kind
+  });
+}, 'Iterator', function next() {
+  var state = getInternalIteratorState(this);
+  var kind = state.kind;
+  var step = state.iterator.next();
+  var entry = step.value;
+  if (!step.done) {
+    step.value = kind === 'keys' ? entry.key : kind === 'values' ? entry.value : [entry.key, entry.value];
+  } return step;
+});
+
+// `URLSearchParams` constructor
+// https://url.spec.whatwg.org/#interface-urlsearchparams
+var URLSearchParamsConstructor = function URLSearchParams(/* init */) {
+  anInstance(this, URLSearchParamsConstructor, URL_SEARCH_PARAMS);
+  var init = arguments.length > 0 ? arguments[0] : undefined;
+  var that = this;
+  var entries = [];
+  var iteratorMethod, iterator, next, step, entryIterator, entryNext, first, second, key;
+
+  setInternalState(that, {
+    type: URL_SEARCH_PARAMS,
+    entries: entries,
+    updateURL: function () { /* empty */ },
+    updateSearchParams: updateSearchParams
+  });
+
+  if (init !== undefined) {
+    if (isObject(init)) {
+      iteratorMethod = getIteratorMethod(init);
+      if (typeof iteratorMethod === 'function') {
+        iterator = iteratorMethod.call(init);
+        next = iterator.next;
+        while (!(step = next.call(iterator)).done) {
+          entryIterator = getIterator(anObject(step.value));
+          entryNext = entryIterator.next;
+          if (
+            (first = entryNext.call(entryIterator)).done ||
+            (second = entryNext.call(entryIterator)).done ||
+            !entryNext.call(entryIterator).done
+          ) throw TypeError('Expected sequence with length 2');
+          entries.push({ key: first.value + '', value: second.value + '' });
+        }
+      } else for (key in init) if (hasOwn(init, key)) entries.push({ key: key, value: init[key] + '' });
+    } else {
+      parseSearchParams(entries, typeof init === 'string' ? init.charAt(0) === '?' ? init.slice(1) : init : init + '');
+    }
+  }
+};
+
+var URLSearchParamsPrototype = URLSearchParamsConstructor.prototype;
+
+redefineAll(URLSearchParamsPrototype, {
+  // `URLSearchParams.prototype.append` method
+  // https://url.spec.whatwg.org/#dom-urlsearchparams-append
+  append: function append(name, value) {
+    validateArgumentsLength(arguments.length, 2);
+    var state = getInternalParamsState(this);
+    state.entries.push({ key: name + '', value: value + '' });
+    state.updateURL();
+  },
+  // `URLSearchParams.prototype.delete` method
+  // https://url.spec.whatwg.org/#dom-urlsearchparams-delete
+  'delete': function (name) {
+    validateArgumentsLength(arguments.length, 1);
+    var state = getInternalParamsState(this);
+    var entries = state.entries;
+    var key = name + '';
+    var index = 0;
+    while (index < entries.length) {
+      if (entries[index].key === key) entries.splice(index, 1);
+      else index++;
+    }
+    state.updateURL();
+  },
+  // `URLSearchParams.prototype.get` method
+  // https://url.spec.whatwg.org/#dom-urlsearchparams-get
+  get: function get(name) {
+    validateArgumentsLength(arguments.length, 1);
+    var entries = getInternalParamsState(this).entries;
+    var key = name + '';
+    var index = 0;
+    for (; index < entries.length; index++) {
+      if (entries[index].key === key) return entries[index].value;
+    }
+    return null;
+  },
+  // `URLSearchParams.prototype.getAll` method
+  // https://url.spec.whatwg.org/#dom-urlsearchparams-getall
+  getAll: function getAll(name) {
+    validateArgumentsLength(arguments.length, 1);
+    var entries = getInternalParamsState(this).entries;
+    var key = name + '';
+    var result = [];
+    var index = 0;
+    for (; index < entries.length; index++) {
+      if (entries[index].key === key) result.push(entries[index].value);
+    }
+    return result;
+  },
+  // `URLSearchParams.prototype.has` method
+  // https://url.spec.whatwg.org/#dom-urlsearchparams-has
+  has: function has(name) {
+    validateArgumentsLength(arguments.length, 1);
+    var entries = getInternalParamsState(this).entries;
+    var key = name + '';
+    var index = 0;
+    while (index < entries.length) {
+      if (entries[index++].key === key) return true;
+    }
+    return false;
+  },
+  // `URLSearchParams.prototype.set` method
+  // https://url.spec.whatwg.org/#dom-urlsearchparams-set
+  set: function set(name, value) {
+    validateArgumentsLength(arguments.length, 1);
+    var state = getInternalParamsState(this);
+    var entries = state.entries;
+    var found = false;
+    var key = name + '';
+    var val = value + '';
+    var index = 0;
+    var entry;
+    for (; index < entries.length; index++) {
+      entry = entries[index];
+      if (entry.key === key) {
+        if (found) entries.splice(index--, 1);
+        else {
+          found = true;
+          entry.value = val;
+        }
+      }
+    }
+    if (!found) entries.push({ key: key, value: val });
+    state.updateURL();
+  },
+  // `URLSearchParams.prototype.sort` method
+  // https://url.spec.whatwg.org/#dom-urlsearchparams-sort
+  sort: function sort() {
+    var state = getInternalParamsState(this);
+    var entries = state.entries;
+    // Array#sort is not stable in some engines
+    var slice = entries.slice();
+    var entry, entriesIndex, sliceIndex;
+    entries.length = 0;
+    for (sliceIndex = 0; sliceIndex < slice.length; sliceIndex++) {
+      entry = slice[sliceIndex];
+      for (entriesIndex = 0; entriesIndex < sliceIndex; entriesIndex++) {
+        if (entries[entriesIndex].key > entry.key) {
+          entries.splice(entriesIndex, 0, entry);
+          break;
+        }
+      }
+      if (entriesIndex === sliceIndex) entries.push(entry);
+    }
+    state.updateURL();
+  },
+  // `URLSearchParams.prototype.forEach` method
+  forEach: function forEach(callback /* , thisArg */) {
+    var entries = getInternalParamsState(this).entries;
+    var boundFunction = bind(callback, arguments.length > 1 ? arguments[1] : undefined, 3);
+    var index = 0;
+    var entry;
+    while (index < entries.length) {
+      entry = entries[index++];
+      boundFunction(entry.value, entry.key, this);
+    }
+  },
+  // `URLSearchParams.prototype.keys` method
+  keys: function keys() {
+    return new URLSearchParamsIterator(this, 'keys');
+  },
+  // `URLSearchParams.prototype.values` method
+  values: function values() {
+    return new URLSearchParamsIterator(this, 'values');
+  },
+  // `URLSearchParams.prototype.entries` method
+  entries: function entries() {
+    return new URLSearchParamsIterator(this, 'entries');
+  }
+}, { enumerable: true });
+
+// `URLSearchParams.prototype[@@iterator]` method
+redefine(URLSearchParamsPrototype, ITERATOR, URLSearchParamsPrototype.entries);
+
+// `URLSearchParams.prototype.toString` method
+// https://url.spec.whatwg.org/#urlsearchparams-stringification-behavior
+redefine(URLSearchParamsPrototype, 'toString', function toString() {
+  var entries = getInternalParamsState(this).entries;
+  var result = [];
+  var index = 0;
+  var entry;
+  while (index < entries.length) {
+    entry = entries[index++];
+    result.push(serialize(entry.key) + '=' + serialize(entry.value));
+  } return result.join('&');
+}, { enumerable: true });
+
+setToStringTag(URLSearchParamsConstructor, URL_SEARCH_PARAMS);
+
+$({ global: true, forced: !USE_NATIVE_URL }, {
+  URLSearchParams: URLSearchParamsConstructor
+});
+
+// Wrap `fetch` for correct work with polyfilled `URLSearchParams`
+// https://github.com/zloirock/core-js/issues/674
+if (!USE_NATIVE_URL && typeof $fetch == 'function' && typeof Headers == 'function') {
+  $({ global: true, enumerable: true, forced: true }, {
+    fetch: function fetch(input /* , init */) {
+      var args = [input];
+      var init, body, headers;
+      if (arguments.length > 1) {
+        init = arguments[1];
+        if (isObject(init)) {
+          body = init.body;
+          if (classof(body) === URL_SEARCH_PARAMS) {
+            headers = init.headers ? new Headers(init.headers) : new Headers();
+            if (!headers.has('content-type')) {
+              headers.set('content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
+            }
+            init = create(init, {
+              body: createPropertyDescriptor(0, String(body)),
+              headers: createPropertyDescriptor(0, headers)
+            });
+          }
+        }
+        args.push(init);
+      } return $fetch.apply(this, args);
+    }
+  });
+}
+
+module.exports = {
+  URLSearchParams: URLSearchParamsConstructor,
+  getState: getInternalParamsState
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js-pure/modules/web.url.js":
+/*!******************************************************!*\
+  !*** ./node_modules/core-js-pure/modules/web.url.js ***!
+  \******************************************************/
+/***/ (function(__unused_webpack_module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+
+// TODO: in core-js@4, move /modules/ dependencies to public entries for better optimization by tools like `preset-env`
+__webpack_require__(/*! ../modules/es.string.iterator */ "./node_modules/core-js-pure/modules/es.string.iterator.js");
+var $ = __webpack_require__(/*! ../internals/export */ "./node_modules/core-js-pure/internals/export.js");
+var DESCRIPTORS = __webpack_require__(/*! ../internals/descriptors */ "./node_modules/core-js-pure/internals/descriptors.js");
+var USE_NATIVE_URL = __webpack_require__(/*! ../internals/native-url */ "./node_modules/core-js-pure/internals/native-url.js");
+var global = __webpack_require__(/*! ../internals/global */ "./node_modules/core-js-pure/internals/global.js");
+var defineProperties = __webpack_require__(/*! ../internals/object-define-properties */ "./node_modules/core-js-pure/internals/object-define-properties.js");
+var redefine = __webpack_require__(/*! ../internals/redefine */ "./node_modules/core-js-pure/internals/redefine.js");
+var anInstance = __webpack_require__(/*! ../internals/an-instance */ "./node_modules/core-js-pure/internals/an-instance.js");
+var has = __webpack_require__(/*! ../internals/has */ "./node_modules/core-js-pure/internals/has.js");
+var assign = __webpack_require__(/*! ../internals/object-assign */ "./node_modules/core-js-pure/internals/object-assign.js");
+var arrayFrom = __webpack_require__(/*! ../internals/array-from */ "./node_modules/core-js-pure/internals/array-from.js");
+var codeAt = __webpack_require__(/*! ../internals/string-multibyte */ "./node_modules/core-js-pure/internals/string-multibyte.js").codeAt;
+var toASCII = __webpack_require__(/*! ../internals/string-punycode-to-ascii */ "./node_modules/core-js-pure/internals/string-punycode-to-ascii.js");
+var setToStringTag = __webpack_require__(/*! ../internals/set-to-string-tag */ "./node_modules/core-js-pure/internals/set-to-string-tag.js");
+var URLSearchParamsModule = __webpack_require__(/*! ../modules/web.url-search-params */ "./node_modules/core-js-pure/modules/web.url-search-params.js");
+var InternalStateModule = __webpack_require__(/*! ../internals/internal-state */ "./node_modules/core-js-pure/internals/internal-state.js");
+
+var NativeURL = global.URL;
+var URLSearchParams = URLSearchParamsModule.URLSearchParams;
+var getInternalSearchParamsState = URLSearchParamsModule.getState;
+var setInternalState = InternalStateModule.set;
+var getInternalURLState = InternalStateModule.getterFor('URL');
+var floor = Math.floor;
+var pow = Math.pow;
+
+var INVALID_AUTHORITY = 'Invalid authority';
+var INVALID_SCHEME = 'Invalid scheme';
+var INVALID_HOST = 'Invalid host';
+var INVALID_PORT = 'Invalid port';
+
+var ALPHA = /[A-Za-z]/;
+// eslint-disable-next-line regexp/no-obscure-range -- safe
+var ALPHANUMERIC = /[\d+-.A-Za-z]/;
+var DIGIT = /\d/;
+var HEX_START = /^0x/i;
+var OCT = /^[0-7]+$/;
+var DEC = /^\d+$/;
+var HEX = /^[\dA-Fa-f]+$/;
+/* eslint-disable no-control-regex -- safe */
+var FORBIDDEN_HOST_CODE_POINT = /[\0\t\n\r #%/:<>?@[\\\]^|]/;
+var FORBIDDEN_HOST_CODE_POINT_EXCLUDING_PERCENT = /[\0\t\n\r #/:<>?@[\\\]^|]/;
+var LEADING_AND_TRAILING_C0_CONTROL_OR_SPACE = /^[\u0000-\u001F ]+|[\u0000-\u001F ]+$/g;
+var TAB_AND_NEW_LINE = /[\t\n\r]/g;
+/* eslint-enable no-control-regex -- safe */
+var EOF;
+
+var parseHost = function (url, input) {
+  var result, codePoints, index;
+  if (input.charAt(0) == '[') {
+    if (input.charAt(input.length - 1) != ']') return INVALID_HOST;
+    result = parseIPv6(input.slice(1, -1));
+    if (!result) return INVALID_HOST;
+    url.host = result;
+  // opaque host
+  } else if (!isSpecial(url)) {
+    if (FORBIDDEN_HOST_CODE_POINT_EXCLUDING_PERCENT.test(input)) return INVALID_HOST;
+    result = '';
+    codePoints = arrayFrom(input);
+    for (index = 0; index < codePoints.length; index++) {
+      result += percentEncode(codePoints[index], C0ControlPercentEncodeSet);
+    }
+    url.host = result;
+  } else {
+    input = toASCII(input);
+    if (FORBIDDEN_HOST_CODE_POINT.test(input)) return INVALID_HOST;
+    result = parseIPv4(input);
+    if (result === null) return INVALID_HOST;
+    url.host = result;
+  }
+};
+
+var parseIPv4 = function (input) {
+  var parts = input.split('.');
+  var partsLength, numbers, index, part, radix, number, ipv4;
+  if (parts.length && parts[parts.length - 1] == '') {
+    parts.pop();
+  }
+  partsLength = parts.length;
+  if (partsLength > 4) return input;
+  numbers = [];
+  for (index = 0; index < partsLength; index++) {
+    part = parts[index];
+    if (part == '') return input;
+    radix = 10;
+    if (part.length > 1 && part.charAt(0) == '0') {
+      radix = HEX_START.test(part) ? 16 : 8;
+      part = part.slice(radix == 8 ? 1 : 2);
+    }
+    if (part === '') {
+      number = 0;
+    } else {
+      if (!(radix == 10 ? DEC : radix == 8 ? OCT : HEX).test(part)) return input;
+      number = parseInt(part, radix);
+    }
+    numbers.push(number);
+  }
+  for (index = 0; index < partsLength; index++) {
+    number = numbers[index];
+    if (index == partsLength - 1) {
+      if (number >= pow(256, 5 - partsLength)) return null;
+    } else if (number > 255) return null;
+  }
+  ipv4 = numbers.pop();
+  for (index = 0; index < numbers.length; index++) {
+    ipv4 += numbers[index] * pow(256, 3 - index);
+  }
+  return ipv4;
+};
+
+// eslint-disable-next-line max-statements -- TODO
+var parseIPv6 = function (input) {
+  var address = [0, 0, 0, 0, 0, 0, 0, 0];
+  var pieceIndex = 0;
+  var compress = null;
+  var pointer = 0;
+  var value, length, numbersSeen, ipv4Piece, number, swaps, swap;
+
+  var char = function () {
+    return input.charAt(pointer);
+  };
+
+  if (char() == ':') {
+    if (input.charAt(1) != ':') return;
+    pointer += 2;
+    pieceIndex++;
+    compress = pieceIndex;
+  }
+  while (char()) {
+    if (pieceIndex == 8) return;
+    if (char() == ':') {
+      if (compress !== null) return;
+      pointer++;
+      pieceIndex++;
+      compress = pieceIndex;
+      continue;
+    }
+    value = length = 0;
+    while (length < 4 && HEX.test(char())) {
+      value = value * 16 + parseInt(char(), 16);
+      pointer++;
+      length++;
+    }
+    if (char() == '.') {
+      if (length == 0) return;
+      pointer -= length;
+      if (pieceIndex > 6) return;
+      numbersSeen = 0;
+      while (char()) {
+        ipv4Piece = null;
+        if (numbersSeen > 0) {
+          if (char() == '.' && numbersSeen < 4) pointer++;
+          else return;
+        }
+        if (!DIGIT.test(char())) return;
+        while (DIGIT.test(char())) {
+          number = parseInt(char(), 10);
+          if (ipv4Piece === null) ipv4Piece = number;
+          else if (ipv4Piece == 0) return;
+          else ipv4Piece = ipv4Piece * 10 + number;
+          if (ipv4Piece > 255) return;
+          pointer++;
+        }
+        address[pieceIndex] = address[pieceIndex] * 256 + ipv4Piece;
+        numbersSeen++;
+        if (numbersSeen == 2 || numbersSeen == 4) pieceIndex++;
+      }
+      if (numbersSeen != 4) return;
+      break;
+    } else if (char() == ':') {
+      pointer++;
+      if (!char()) return;
+    } else if (char()) return;
+    address[pieceIndex++] = value;
+  }
+  if (compress !== null) {
+    swaps = pieceIndex - compress;
+    pieceIndex = 7;
+    while (pieceIndex != 0 && swaps > 0) {
+      swap = address[pieceIndex];
+      address[pieceIndex--] = address[compress + swaps - 1];
+      address[compress + --swaps] = swap;
+    }
+  } else if (pieceIndex != 8) return;
+  return address;
+};
+
+var findLongestZeroSequence = function (ipv6) {
+  var maxIndex = null;
+  var maxLength = 1;
+  var currStart = null;
+  var currLength = 0;
+  var index = 0;
+  for (; index < 8; index++) {
+    if (ipv6[index] !== 0) {
+      if (currLength > maxLength) {
+        maxIndex = currStart;
+        maxLength = currLength;
+      }
+      currStart = null;
+      currLength = 0;
+    } else {
+      if (currStart === null) currStart = index;
+      ++currLength;
+    }
+  }
+  if (currLength > maxLength) {
+    maxIndex = currStart;
+    maxLength = currLength;
+  }
+  return maxIndex;
+};
+
+var serializeHost = function (host) {
+  var result, index, compress, ignore0;
+  // ipv4
+  if (typeof host == 'number') {
+    result = [];
+    for (index = 0; index < 4; index++) {
+      result.unshift(host % 256);
+      host = floor(host / 256);
+    } return result.join('.');
+  // ipv6
+  } else if (typeof host == 'object') {
+    result = '';
+    compress = findLongestZeroSequence(host);
+    for (index = 0; index < 8; index++) {
+      if (ignore0 && host[index] === 0) continue;
+      if (ignore0) ignore0 = false;
+      if (compress === index) {
+        result += index ? ':' : '::';
+        ignore0 = true;
+      } else {
+        result += host[index].toString(16);
+        if (index < 7) result += ':';
+      }
+    }
+    return '[' + result + ']';
+  } return host;
+};
+
+var C0ControlPercentEncodeSet = {};
+var fragmentPercentEncodeSet = assign({}, C0ControlPercentEncodeSet, {
+  ' ': 1, '"': 1, '<': 1, '>': 1, '`': 1
+});
+var pathPercentEncodeSet = assign({}, fragmentPercentEncodeSet, {
+  '#': 1, '?': 1, '{': 1, '}': 1
+});
+var userinfoPercentEncodeSet = assign({}, pathPercentEncodeSet, {
+  '/': 1, ':': 1, ';': 1, '=': 1, '@': 1, '[': 1, '\\': 1, ']': 1, '^': 1, '|': 1
+});
+
+var percentEncode = function (char, set) {
+  var code = codeAt(char, 0);
+  return code > 0x20 && code < 0x7F && !has(set, char) ? char : encodeURIComponent(char);
+};
+
+var specialSchemes = {
+  ftp: 21,
+  file: null,
+  http: 80,
+  https: 443,
+  ws: 80,
+  wss: 443
+};
+
+var isSpecial = function (url) {
+  return has(specialSchemes, url.scheme);
+};
+
+var includesCredentials = function (url) {
+  return url.username != '' || url.password != '';
+};
+
+var cannotHaveUsernamePasswordPort = function (url) {
+  return !url.host || url.cannotBeABaseURL || url.scheme == 'file';
+};
+
+var isWindowsDriveLetter = function (string, normalized) {
+  var second;
+  return string.length == 2 && ALPHA.test(string.charAt(0))
+    && ((second = string.charAt(1)) == ':' || (!normalized && second == '|'));
+};
+
+var startsWithWindowsDriveLetter = function (string) {
+  var third;
+  return string.length > 1 && isWindowsDriveLetter(string.slice(0, 2)) && (
+    string.length == 2 ||
+    ((third = string.charAt(2)) === '/' || third === '\\' || third === '?' || third === '#')
+  );
+};
+
+var shortenURLsPath = function (url) {
+  var path = url.path;
+  var pathSize = path.length;
+  if (pathSize && (url.scheme != 'file' || pathSize != 1 || !isWindowsDriveLetter(path[0], true))) {
+    path.pop();
+  }
+};
+
+var isSingleDot = function (segment) {
+  return segment === '.' || segment.toLowerCase() === '%2e';
+};
+
+var isDoubleDot = function (segment) {
+  segment = segment.toLowerCase();
+  return segment === '..' || segment === '%2e.' || segment === '.%2e' || segment === '%2e%2e';
+};
+
+// States:
+var SCHEME_START = {};
+var SCHEME = {};
+var NO_SCHEME = {};
+var SPECIAL_RELATIVE_OR_AUTHORITY = {};
+var PATH_OR_AUTHORITY = {};
+var RELATIVE = {};
+var RELATIVE_SLASH = {};
+var SPECIAL_AUTHORITY_SLASHES = {};
+var SPECIAL_AUTHORITY_IGNORE_SLASHES = {};
+var AUTHORITY = {};
+var HOST = {};
+var HOSTNAME = {};
+var PORT = {};
+var FILE = {};
+var FILE_SLASH = {};
+var FILE_HOST = {};
+var PATH_START = {};
+var PATH = {};
+var CANNOT_BE_A_BASE_URL_PATH = {};
+var QUERY = {};
+var FRAGMENT = {};
+
+// eslint-disable-next-line max-statements -- TODO
+var parseURL = function (url, input, stateOverride, base) {
+  var state = stateOverride || SCHEME_START;
+  var pointer = 0;
+  var buffer = '';
+  var seenAt = false;
+  var seenBracket = false;
+  var seenPasswordToken = false;
+  var codePoints, char, bufferCodePoints, failure;
+
+  if (!stateOverride) {
+    url.scheme = '';
+    url.username = '';
+    url.password = '';
+    url.host = null;
+    url.port = null;
+    url.path = [];
+    url.query = null;
+    url.fragment = null;
+    url.cannotBeABaseURL = false;
+    input = input.replace(LEADING_AND_TRAILING_C0_CONTROL_OR_SPACE, '');
+  }
+
+  input = input.replace(TAB_AND_NEW_LINE, '');
+
+  codePoints = arrayFrom(input);
+
+  while (pointer <= codePoints.length) {
+    char = codePoints[pointer];
+    switch (state) {
+      case SCHEME_START:
+        if (char && ALPHA.test(char)) {
+          buffer += char.toLowerCase();
+          state = SCHEME;
+        } else if (!stateOverride) {
+          state = NO_SCHEME;
+          continue;
+        } else return INVALID_SCHEME;
+        break;
+
+      case SCHEME:
+        if (char && (ALPHANUMERIC.test(char) || char == '+' || char == '-' || char == '.')) {
+          buffer += char.toLowerCase();
+        } else if (char == ':') {
+          if (stateOverride && (
+            (isSpecial(url) != has(specialSchemes, buffer)) ||
+            (buffer == 'file' && (includesCredentials(url) || url.port !== null)) ||
+            (url.scheme == 'file' && !url.host)
+          )) return;
+          url.scheme = buffer;
+          if (stateOverride) {
+            if (isSpecial(url) && specialSchemes[url.scheme] == url.port) url.port = null;
+            return;
+          }
+          buffer = '';
+          if (url.scheme == 'file') {
+            state = FILE;
+          } else if (isSpecial(url) && base && base.scheme == url.scheme) {
+            state = SPECIAL_RELATIVE_OR_AUTHORITY;
+          } else if (isSpecial(url)) {
+            state = SPECIAL_AUTHORITY_SLASHES;
+          } else if (codePoints[pointer + 1] == '/') {
+            state = PATH_OR_AUTHORITY;
+            pointer++;
+          } else {
+            url.cannotBeABaseURL = true;
+            url.path.push('');
+            state = CANNOT_BE_A_BASE_URL_PATH;
+          }
+        } else if (!stateOverride) {
+          buffer = '';
+          state = NO_SCHEME;
+          pointer = 0;
+          continue;
+        } else return INVALID_SCHEME;
+        break;
+
+      case NO_SCHEME:
+        if (!base || (base.cannotBeABaseURL && char != '#')) return INVALID_SCHEME;
+        if (base.cannotBeABaseURL && char == '#') {
+          url.scheme = base.scheme;
+          url.path = base.path.slice();
+          url.query = base.query;
+          url.fragment = '';
+          url.cannotBeABaseURL = true;
+          state = FRAGMENT;
+          break;
+        }
+        state = base.scheme == 'file' ? FILE : RELATIVE;
+        continue;
+
+      case SPECIAL_RELATIVE_OR_AUTHORITY:
+        if (char == '/' && codePoints[pointer + 1] == '/') {
+          state = SPECIAL_AUTHORITY_IGNORE_SLASHES;
+          pointer++;
+        } else {
+          state = RELATIVE;
+          continue;
+        } break;
+
+      case PATH_OR_AUTHORITY:
+        if (char == '/') {
+          state = AUTHORITY;
+          break;
+        } else {
+          state = PATH;
+          continue;
+        }
+
+      case RELATIVE:
+        url.scheme = base.scheme;
+        if (char == EOF) {
+          url.username = base.username;
+          url.password = base.password;
+          url.host = base.host;
+          url.port = base.port;
+          url.path = base.path.slice();
+          url.query = base.query;
+        } else if (char == '/' || (char == '\\' && isSpecial(url))) {
+          state = RELATIVE_SLASH;
+        } else if (char == '?') {
+          url.username = base.username;
+          url.password = base.password;
+          url.host = base.host;
+          url.port = base.port;
+          url.path = base.path.slice();
+          url.query = '';
+          state = QUERY;
+        } else if (char == '#') {
+          url.username = base.username;
+          url.password = base.password;
+          url.host = base.host;
+          url.port = base.port;
+          url.path = base.path.slice();
+          url.query = base.query;
+          url.fragment = '';
+          state = FRAGMENT;
+        } else {
+          url.username = base.username;
+          url.password = base.password;
+          url.host = base.host;
+          url.port = base.port;
+          url.path = base.path.slice();
+          url.path.pop();
+          state = PATH;
+          continue;
+        } break;
+
+      case RELATIVE_SLASH:
+        if (isSpecial(url) && (char == '/' || char == '\\')) {
+          state = SPECIAL_AUTHORITY_IGNORE_SLASHES;
+        } else if (char == '/') {
+          state = AUTHORITY;
+        } else {
+          url.username = base.username;
+          url.password = base.password;
+          url.host = base.host;
+          url.port = base.port;
+          state = PATH;
+          continue;
+        } break;
+
+      case SPECIAL_AUTHORITY_SLASHES:
+        state = SPECIAL_AUTHORITY_IGNORE_SLASHES;
+        if (char != '/' || buffer.charAt(pointer + 1) != '/') continue;
+        pointer++;
+        break;
+
+      case SPECIAL_AUTHORITY_IGNORE_SLASHES:
+        if (char != '/' && char != '\\') {
+          state = AUTHORITY;
+          continue;
+        } break;
+
+      case AUTHORITY:
+        if (char == '@') {
+          if (seenAt) buffer = '%40' + buffer;
+          seenAt = true;
+          bufferCodePoints = arrayFrom(buffer);
+          for (var i = 0; i < bufferCodePoints.length; i++) {
+            var codePoint = bufferCodePoints[i];
+            if (codePoint == ':' && !seenPasswordToken) {
+              seenPasswordToken = true;
+              continue;
+            }
+            var encodedCodePoints = percentEncode(codePoint, userinfoPercentEncodeSet);
+            if (seenPasswordToken) url.password += encodedCodePoints;
+            else url.username += encodedCodePoints;
+          }
+          buffer = '';
+        } else if (
+          char == EOF || char == '/' || char == '?' || char == '#' ||
+          (char == '\\' && isSpecial(url))
+        ) {
+          if (seenAt && buffer == '') return INVALID_AUTHORITY;
+          pointer -= arrayFrom(buffer).length + 1;
+          buffer = '';
+          state = HOST;
+        } else buffer += char;
+        break;
+
+      case HOST:
+      case HOSTNAME:
+        if (stateOverride && url.scheme == 'file') {
+          state = FILE_HOST;
+          continue;
+        } else if (char == ':' && !seenBracket) {
+          if (buffer == '') return INVALID_HOST;
+          failure = parseHost(url, buffer);
+          if (failure) return failure;
+          buffer = '';
+          state = PORT;
+          if (stateOverride == HOSTNAME) return;
+        } else if (
+          char == EOF || char == '/' || char == '?' || char == '#' ||
+          (char == '\\' && isSpecial(url))
+        ) {
+          if (isSpecial(url) && buffer == '') return INVALID_HOST;
+          if (stateOverride && buffer == '' && (includesCredentials(url) || url.port !== null)) return;
+          failure = parseHost(url, buffer);
+          if (failure) return failure;
+          buffer = '';
+          state = PATH_START;
+          if (stateOverride) return;
+          continue;
+        } else {
+          if (char == '[') seenBracket = true;
+          else if (char == ']') seenBracket = false;
+          buffer += char;
+        } break;
+
+      case PORT:
+        if (DIGIT.test(char)) {
+          buffer += char;
+        } else if (
+          char == EOF || char == '/' || char == '?' || char == '#' ||
+          (char == '\\' && isSpecial(url)) ||
+          stateOverride
+        ) {
+          if (buffer != '') {
+            var port = parseInt(buffer, 10);
+            if (port > 0xFFFF) return INVALID_PORT;
+            url.port = (isSpecial(url) && port === specialSchemes[url.scheme]) ? null : port;
+            buffer = '';
+          }
+          if (stateOverride) return;
+          state = PATH_START;
+          continue;
+        } else return INVALID_PORT;
+        break;
+
+      case FILE:
+        url.scheme = 'file';
+        if (char == '/' || char == '\\') state = FILE_SLASH;
+        else if (base && base.scheme == 'file') {
+          if (char == EOF) {
+            url.host = base.host;
+            url.path = base.path.slice();
+            url.query = base.query;
+          } else if (char == '?') {
+            url.host = base.host;
+            url.path = base.path.slice();
+            url.query = '';
+            state = QUERY;
+          } else if (char == '#') {
+            url.host = base.host;
+            url.path = base.path.slice();
+            url.query = base.query;
+            url.fragment = '';
+            state = FRAGMENT;
+          } else {
+            if (!startsWithWindowsDriveLetter(codePoints.slice(pointer).join(''))) {
+              url.host = base.host;
+              url.path = base.path.slice();
+              shortenURLsPath(url);
+            }
+            state = PATH;
+            continue;
+          }
+        } else {
+          state = PATH;
+          continue;
+        } break;
+
+      case FILE_SLASH:
+        if (char == '/' || char == '\\') {
+          state = FILE_HOST;
+          break;
+        }
+        if (base && base.scheme == 'file' && !startsWithWindowsDriveLetter(codePoints.slice(pointer).join(''))) {
+          if (isWindowsDriveLetter(base.path[0], true)) url.path.push(base.path[0]);
+          else url.host = base.host;
+        }
+        state = PATH;
+        continue;
+
+      case FILE_HOST:
+        if (char == EOF || char == '/' || char == '\\' || char == '?' || char == '#') {
+          if (!stateOverride && isWindowsDriveLetter(buffer)) {
+            state = PATH;
+          } else if (buffer == '') {
+            url.host = '';
+            if (stateOverride) return;
+            state = PATH_START;
+          } else {
+            failure = parseHost(url, buffer);
+            if (failure) return failure;
+            if (url.host == 'localhost') url.host = '';
+            if (stateOverride) return;
+            buffer = '';
+            state = PATH_START;
+          } continue;
+        } else buffer += char;
+        break;
+
+      case PATH_START:
+        if (isSpecial(url)) {
+          state = PATH;
+          if (char != '/' && char != '\\') continue;
+        } else if (!stateOverride && char == '?') {
+          url.query = '';
+          state = QUERY;
+        } else if (!stateOverride && char == '#') {
+          url.fragment = '';
+          state = FRAGMENT;
+        } else if (char != EOF) {
+          state = PATH;
+          if (char != '/') continue;
+        } break;
+
+      case PATH:
+        if (
+          char == EOF || char == '/' ||
+          (char == '\\' && isSpecial(url)) ||
+          (!stateOverride && (char == '?' || char == '#'))
+        ) {
+          if (isDoubleDot(buffer)) {
+            shortenURLsPath(url);
+            if (char != '/' && !(char == '\\' && isSpecial(url))) {
+              url.path.push('');
+            }
+          } else if (isSingleDot(buffer)) {
+            if (char != '/' && !(char == '\\' && isSpecial(url))) {
+              url.path.push('');
+            }
+          } else {
+            if (url.scheme == 'file' && !url.path.length && isWindowsDriveLetter(buffer)) {
+              if (url.host) url.host = '';
+              buffer = buffer.charAt(0) + ':'; // normalize windows drive letter
+            }
+            url.path.push(buffer);
+          }
+          buffer = '';
+          if (url.scheme == 'file' && (char == EOF || char == '?' || char == '#')) {
+            while (url.path.length > 1 && url.path[0] === '') {
+              url.path.shift();
+            }
+          }
+          if (char == '?') {
+            url.query = '';
+            state = QUERY;
+          } else if (char == '#') {
+            url.fragment = '';
+            state = FRAGMENT;
+          }
+        } else {
+          buffer += percentEncode(char, pathPercentEncodeSet);
+        } break;
+
+      case CANNOT_BE_A_BASE_URL_PATH:
+        if (char == '?') {
+          url.query = '';
+          state = QUERY;
+        } else if (char == '#') {
+          url.fragment = '';
+          state = FRAGMENT;
+        } else if (char != EOF) {
+          url.path[0] += percentEncode(char, C0ControlPercentEncodeSet);
+        } break;
+
+      case QUERY:
+        if (!stateOverride && char == '#') {
+          url.fragment = '';
+          state = FRAGMENT;
+        } else if (char != EOF) {
+          if (char == "'" && isSpecial(url)) url.query += '%27';
+          else if (char == '#') url.query += '%23';
+          else url.query += percentEncode(char, C0ControlPercentEncodeSet);
+        } break;
+
+      case FRAGMENT:
+        if (char != EOF) url.fragment += percentEncode(char, fragmentPercentEncodeSet);
+        break;
+    }
+
+    pointer++;
+  }
+};
+
+// `URL` constructor
+// https://url.spec.whatwg.org/#url-class
+var URLConstructor = function URL(url /* , base */) {
+  var that = anInstance(this, URLConstructor, 'URL');
+  var base = arguments.length > 1 ? arguments[1] : undefined;
+  var urlString = String(url);
+  var state = setInternalState(that, { type: 'URL' });
+  var baseState, failure;
+  if (base !== undefined) {
+    if (base instanceof URLConstructor) baseState = getInternalURLState(base);
+    else {
+      failure = parseURL(baseState = {}, String(base));
+      if (failure) throw TypeError(failure);
+    }
+  }
+  failure = parseURL(state, urlString, null, baseState);
+  if (failure) throw TypeError(failure);
+  var searchParams = state.searchParams = new URLSearchParams();
+  var searchParamsState = getInternalSearchParamsState(searchParams);
+  searchParamsState.updateSearchParams(state.query);
+  searchParamsState.updateURL = function () {
+    state.query = String(searchParams) || null;
+  };
+  if (!DESCRIPTORS) {
+    that.href = serializeURL.call(that);
+    that.origin = getOrigin.call(that);
+    that.protocol = getProtocol.call(that);
+    that.username = getUsername.call(that);
+    that.password = getPassword.call(that);
+    that.host = getHost.call(that);
+    that.hostname = getHostname.call(that);
+    that.port = getPort.call(that);
+    that.pathname = getPathname.call(that);
+    that.search = getSearch.call(that);
+    that.searchParams = getSearchParams.call(that);
+    that.hash = getHash.call(that);
+  }
+};
+
+var URLPrototype = URLConstructor.prototype;
+
+var serializeURL = function () {
+  var url = getInternalURLState(this);
+  var scheme = url.scheme;
+  var username = url.username;
+  var password = url.password;
+  var host = url.host;
+  var port = url.port;
+  var path = url.path;
+  var query = url.query;
+  var fragment = url.fragment;
+  var output = scheme + ':';
+  if (host !== null) {
+    output += '//';
+    if (includesCredentials(url)) {
+      output += username + (password ? ':' + password : '') + '@';
+    }
+    output += serializeHost(host);
+    if (port !== null) output += ':' + port;
+  } else if (scheme == 'file') output += '//';
+  output += url.cannotBeABaseURL ? path[0] : path.length ? '/' + path.join('/') : '';
+  if (query !== null) output += '?' + query;
+  if (fragment !== null) output += '#' + fragment;
+  return output;
+};
+
+var getOrigin = function () {
+  var url = getInternalURLState(this);
+  var scheme = url.scheme;
+  var port = url.port;
+  if (scheme == 'blob') try {
+    return new URLConstructor(scheme.path[0]).origin;
+  } catch (error) {
+    return 'null';
+  }
+  if (scheme == 'file' || !isSpecial(url)) return 'null';
+  return scheme + '://' + serializeHost(url.host) + (port !== null ? ':' + port : '');
+};
+
+var getProtocol = function () {
+  return getInternalURLState(this).scheme + ':';
+};
+
+var getUsername = function () {
+  return getInternalURLState(this).username;
+};
+
+var getPassword = function () {
+  return getInternalURLState(this).password;
+};
+
+var getHost = function () {
+  var url = getInternalURLState(this);
+  var host = url.host;
+  var port = url.port;
+  return host === null ? ''
+    : port === null ? serializeHost(host)
+    : serializeHost(host) + ':' + port;
+};
+
+var getHostname = function () {
+  var host = getInternalURLState(this).host;
+  return host === null ? '' : serializeHost(host);
+};
+
+var getPort = function () {
+  var port = getInternalURLState(this).port;
+  return port === null ? '' : String(port);
+};
+
+var getPathname = function () {
+  var url = getInternalURLState(this);
+  var path = url.path;
+  return url.cannotBeABaseURL ? path[0] : path.length ? '/' + path.join('/') : '';
+};
+
+var getSearch = function () {
+  var query = getInternalURLState(this).query;
+  return query ? '?' + query : '';
+};
+
+var getSearchParams = function () {
+  return getInternalURLState(this).searchParams;
+};
+
+var getHash = function () {
+  var fragment = getInternalURLState(this).fragment;
+  return fragment ? '#' + fragment : '';
+};
+
+var accessorDescriptor = function (getter, setter) {
+  return { get: getter, set: setter, configurable: true, enumerable: true };
+};
+
+if (DESCRIPTORS) {
+  defineProperties(URLPrototype, {
+    // `URL.prototype.href` accessors pair
+    // https://url.spec.whatwg.org/#dom-url-href
+    href: accessorDescriptor(serializeURL, function (href) {
+      var url = getInternalURLState(this);
+      var urlString = String(href);
+      var failure = parseURL(url, urlString);
+      if (failure) throw TypeError(failure);
+      getInternalSearchParamsState(url.searchParams).updateSearchParams(url.query);
+    }),
+    // `URL.prototype.origin` getter
+    // https://url.spec.whatwg.org/#dom-url-origin
+    origin: accessorDescriptor(getOrigin),
+    // `URL.prototype.protocol` accessors pair
+    // https://url.spec.whatwg.org/#dom-url-protocol
+    protocol: accessorDescriptor(getProtocol, function (protocol) {
+      var url = getInternalURLState(this);
+      parseURL(url, String(protocol) + ':', SCHEME_START);
+    }),
+    // `URL.prototype.username` accessors pair
+    // https://url.spec.whatwg.org/#dom-url-username
+    username: accessorDescriptor(getUsername, function (username) {
+      var url = getInternalURLState(this);
+      var codePoints = arrayFrom(String(username));
+      if (cannotHaveUsernamePasswordPort(url)) return;
+      url.username = '';
+      for (var i = 0; i < codePoints.length; i++) {
+        url.username += percentEncode(codePoints[i], userinfoPercentEncodeSet);
+      }
+    }),
+    // `URL.prototype.password` accessors pair
+    // https://url.spec.whatwg.org/#dom-url-password
+    password: accessorDescriptor(getPassword, function (password) {
+      var url = getInternalURLState(this);
+      var codePoints = arrayFrom(String(password));
+      if (cannotHaveUsernamePasswordPort(url)) return;
+      url.password = '';
+      for (var i = 0; i < codePoints.length; i++) {
+        url.password += percentEncode(codePoints[i], userinfoPercentEncodeSet);
+      }
+    }),
+    // `URL.prototype.host` accessors pair
+    // https://url.spec.whatwg.org/#dom-url-host
+    host: accessorDescriptor(getHost, function (host) {
+      var url = getInternalURLState(this);
+      if (url.cannotBeABaseURL) return;
+      parseURL(url, String(host), HOST);
+    }),
+    // `URL.prototype.hostname` accessors pair
+    // https://url.spec.whatwg.org/#dom-url-hostname
+    hostname: accessorDescriptor(getHostname, function (hostname) {
+      var url = getInternalURLState(this);
+      if (url.cannotBeABaseURL) return;
+      parseURL(url, String(hostname), HOSTNAME);
+    }),
+    // `URL.prototype.port` accessors pair
+    // https://url.spec.whatwg.org/#dom-url-port
+    port: accessorDescriptor(getPort, function (port) {
+      var url = getInternalURLState(this);
+      if (cannotHaveUsernamePasswordPort(url)) return;
+      port = String(port);
+      if (port == '') url.port = null;
+      else parseURL(url, port, PORT);
+    }),
+    // `URL.prototype.pathname` accessors pair
+    // https://url.spec.whatwg.org/#dom-url-pathname
+    pathname: accessorDescriptor(getPathname, function (pathname) {
+      var url = getInternalURLState(this);
+      if (url.cannotBeABaseURL) return;
+      url.path = [];
+      parseURL(url, pathname + '', PATH_START);
+    }),
+    // `URL.prototype.search` accessors pair
+    // https://url.spec.whatwg.org/#dom-url-search
+    search: accessorDescriptor(getSearch, function (search) {
+      var url = getInternalURLState(this);
+      search = String(search);
+      if (search == '') {
+        url.query = null;
+      } else {
+        if ('?' == search.charAt(0)) search = search.slice(1);
+        url.query = '';
+        parseURL(url, search, QUERY);
+      }
+      getInternalSearchParamsState(url.searchParams).updateSearchParams(url.query);
+    }),
+    // `URL.prototype.searchParams` getter
+    // https://url.spec.whatwg.org/#dom-url-searchparams
+    searchParams: accessorDescriptor(getSearchParams),
+    // `URL.prototype.hash` accessors pair
+    // https://url.spec.whatwg.org/#dom-url-hash
+    hash: accessorDescriptor(getHash, function (hash) {
+      var url = getInternalURLState(this);
+      hash = String(hash);
+      if (hash == '') {
+        url.fragment = null;
+        return;
+      }
+      if ('#' == hash.charAt(0)) hash = hash.slice(1);
+      url.fragment = '';
+      parseURL(url, hash, FRAGMENT);
+    })
+  });
+}
+
+// `URL.prototype.toJSON` method
+// https://url.spec.whatwg.org/#dom-url-tojson
+redefine(URLPrototype, 'toJSON', function toJSON() {
+  return serializeURL.call(this);
+}, { enumerable: true });
+
+// `URL.prototype.toString` method
+// https://url.spec.whatwg.org/#URL-stringification-behavior
+redefine(URLPrototype, 'toString', function toString() {
+  return serializeURL.call(this);
+}, { enumerable: true });
+
+if (NativeURL) {
+  var nativeCreateObjectURL = NativeURL.createObjectURL;
+  var nativeRevokeObjectURL = NativeURL.revokeObjectURL;
+  // `URL.createObjectURL` method
+  // https://developer.mozilla.org/en-US/docs/Web/API/URL/createObjectURL
+  // eslint-disable-next-line no-unused-vars -- required for `.length`
+  if (nativeCreateObjectURL) redefine(URLConstructor, 'createObjectURL', function createObjectURL(blob) {
+    return nativeCreateObjectURL.apply(NativeURL, arguments);
+  });
+  // `URL.revokeObjectURL` method
+  // https://developer.mozilla.org/en-US/docs/Web/API/URL/revokeObjectURL
+  // eslint-disable-next-line no-unused-vars -- required for `.length`
+  if (nativeRevokeObjectURL) redefine(URLConstructor, 'revokeObjectURL', function revokeObjectURL(url) {
+    return nativeRevokeObjectURL.apply(NativeURL, arguments);
+  });
+}
+
+setToStringTag(URLConstructor, 'URL');
+
+$({ global: true, forced: !USE_NATIVE_URL, sham: !DESCRIPTORS }, {
+  URL: URLConstructor
+});
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js-pure/modules/web.url.to-json.js":
+/*!**************************************************************!*\
+  !*** ./node_modules/core-js-pure/modules/web.url.to-json.js ***!
+  \**************************************************************/
+/***/ (function() {
+
+// empty
+
+
+/***/ }),
+
 /***/ "./node_modules/core-js-pure/stable/array/from.js":
 /*!********************************************************!*\
   !*** ./node_modules/core-js-pure/stable/array/from.js ***!
@@ -22618,6 +24469,35 @@ module.exports = parent;
 var parent = __webpack_require__(/*! ../../es/promise */ "./node_modules/core-js-pure/es/promise/index.js");
 
 module.exports = parent;
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js-pure/stable/url/index.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/core-js-pure/stable/url/index.js ***!
+  \*******************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+var parent = __webpack_require__(/*! ../../web/url */ "./node_modules/core-js-pure/web/url.js");
+
+module.exports = parent;
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js-pure/web/url.js":
+/*!**********************************************!*\
+  !*** ./node_modules/core-js-pure/web/url.js ***!
+  \**********************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+__webpack_require__(/*! ../modules/web.url */ "./node_modules/core-js-pure/modules/web.url.js");
+__webpack_require__(/*! ../modules/web.url.to-json */ "./node_modules/core-js-pure/modules/web.url.to-json.js");
+__webpack_require__(/*! ../modules/web.url-search-params */ "./node_modules/core-js-pure/modules/web.url-search-params.js");
+var path = __webpack_require__(/*! ../internals/path */ "./node_modules/core-js-pure/internals/path.js");
+
+module.exports = path.URL;
 
 
 /***/ }),
@@ -30699,331 +32579,6 @@ module.exports = function (list, options) {
 
 /***/ }),
 
-/***/ "./node_modules/uuid/dist/esm-browser/index.js":
-/*!*****************************************************!*\
-  !*** ./node_modules/uuid/dist/esm-browser/index.js ***!
-  \*****************************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "v1": function() { return /* reexport safe */ _v1_js__WEBPACK_IMPORTED_MODULE_0__.default; },
-/* harmony export */   "v3": function() { return /* reexport safe */ _v3_js__WEBPACK_IMPORTED_MODULE_1__.default; },
-/* harmony export */   "v4": function() { return /* reexport safe */ _v4_js__WEBPACK_IMPORTED_MODULE_2__.default; },
-/* harmony export */   "v5": function() { return /* reexport safe */ _v5_js__WEBPACK_IMPORTED_MODULE_3__.default; },
-/* harmony export */   "NIL": function() { return /* reexport safe */ _nil_js__WEBPACK_IMPORTED_MODULE_4__.default; },
-/* harmony export */   "version": function() { return /* reexport safe */ _version_js__WEBPACK_IMPORTED_MODULE_5__.default; },
-/* harmony export */   "validate": function() { return /* reexport safe */ _validate_js__WEBPACK_IMPORTED_MODULE_6__.default; },
-/* harmony export */   "stringify": function() { return /* reexport safe */ _stringify_js__WEBPACK_IMPORTED_MODULE_7__.default; },
-/* harmony export */   "parse": function() { return /* reexport safe */ _parse_js__WEBPACK_IMPORTED_MODULE_8__.default; }
-/* harmony export */ });
-/* harmony import */ var _v1_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./v1.js */ "./node_modules/uuid/dist/esm-browser/v1.js");
-/* harmony import */ var _v3_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./v3.js */ "./node_modules/uuid/dist/esm-browser/v3.js");
-/* harmony import */ var _v4_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./v4.js */ "./node_modules/uuid/dist/esm-browser/v4.js");
-/* harmony import */ var _v5_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./v5.js */ "./node_modules/uuid/dist/esm-browser/v5.js");
-/* harmony import */ var _nil_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./nil.js */ "./node_modules/uuid/dist/esm-browser/nil.js");
-/* harmony import */ var _version_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./version.js */ "./node_modules/uuid/dist/esm-browser/version.js");
-/* harmony import */ var _validate_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./validate.js */ "./node_modules/uuid/dist/esm-browser/validate.js");
-/* harmony import */ var _stringify_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./stringify.js */ "./node_modules/uuid/dist/esm-browser/stringify.js");
-/* harmony import */ var _parse_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./parse.js */ "./node_modules/uuid/dist/esm-browser/parse.js");
-
-
-
-
-
-
-
-
-
-
-/***/ }),
-
-/***/ "./node_modules/uuid/dist/esm-browser/md5.js":
-/*!***************************************************!*\
-  !*** ./node_modules/uuid/dist/esm-browser/md5.js ***!
-  \***************************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/*
- * Browser-compatible JavaScript MD5
- *
- * Modification of JavaScript MD5
- * https://github.com/blueimp/JavaScript-MD5
- *
- * Copyright 2011, Sebastian Tschan
- * https://blueimp.net
- *
- * Licensed under the MIT license:
- * https://opensource.org/licenses/MIT
- *
- * Based on
- * A JavaScript implementation of the RSA Data Security, Inc. MD5 Message
- * Digest Algorithm, as defined in RFC 1321.
- * Version 2.2 Copyright (C) Paul Johnston 1999 - 2009
- * Other contributors: Greg Holt, Andrew Kepert, Ydnar, Lostinet
- * Distributed under the BSD License
- * See http://pajhome.org.uk/crypt/md5 for more info.
- */
-function md5(bytes) {
-  if (typeof bytes === 'string') {
-    var msg = unescape(encodeURIComponent(bytes)); // UTF8 escape
-
-    bytes = new Uint8Array(msg.length);
-
-    for (var i = 0; i < msg.length; ++i) {
-      bytes[i] = msg.charCodeAt(i);
-    }
-  }
-
-  return md5ToHexEncodedArray(wordsToMd5(bytesToWords(bytes), bytes.length * 8));
-}
-/*
- * Convert an array of little-endian words to an array of bytes
- */
-
-
-function md5ToHexEncodedArray(input) {
-  var output = [];
-  var length32 = input.length * 32;
-  var hexTab = '0123456789abcdef';
-
-  for (var i = 0; i < length32; i += 8) {
-    var x = input[i >> 5] >>> i % 32 & 0xff;
-    var hex = parseInt(hexTab.charAt(x >>> 4 & 0x0f) + hexTab.charAt(x & 0x0f), 16);
-    output.push(hex);
-  }
-
-  return output;
-}
-/**
- * Calculate output length with padding and bit length
- */
-
-
-function getOutputLength(inputLength8) {
-  return (inputLength8 + 64 >>> 9 << 4) + 14 + 1;
-}
-/*
- * Calculate the MD5 of an array of little-endian words, and a bit length.
- */
-
-
-function wordsToMd5(x, len) {
-  /* append padding */
-  x[len >> 5] |= 0x80 << len % 32;
-  x[getOutputLength(len) - 1] = len;
-  var a = 1732584193;
-  var b = -271733879;
-  var c = -1732584194;
-  var d = 271733878;
-
-  for (var i = 0; i < x.length; i += 16) {
-    var olda = a;
-    var oldb = b;
-    var oldc = c;
-    var oldd = d;
-    a = md5ff(a, b, c, d, x[i], 7, -680876936);
-    d = md5ff(d, a, b, c, x[i + 1], 12, -389564586);
-    c = md5ff(c, d, a, b, x[i + 2], 17, 606105819);
-    b = md5ff(b, c, d, a, x[i + 3], 22, -1044525330);
-    a = md5ff(a, b, c, d, x[i + 4], 7, -176418897);
-    d = md5ff(d, a, b, c, x[i + 5], 12, 1200080426);
-    c = md5ff(c, d, a, b, x[i + 6], 17, -1473231341);
-    b = md5ff(b, c, d, a, x[i + 7], 22, -45705983);
-    a = md5ff(a, b, c, d, x[i + 8], 7, 1770035416);
-    d = md5ff(d, a, b, c, x[i + 9], 12, -1958414417);
-    c = md5ff(c, d, a, b, x[i + 10], 17, -42063);
-    b = md5ff(b, c, d, a, x[i + 11], 22, -1990404162);
-    a = md5ff(a, b, c, d, x[i + 12], 7, 1804603682);
-    d = md5ff(d, a, b, c, x[i + 13], 12, -40341101);
-    c = md5ff(c, d, a, b, x[i + 14], 17, -1502002290);
-    b = md5ff(b, c, d, a, x[i + 15], 22, 1236535329);
-    a = md5gg(a, b, c, d, x[i + 1], 5, -165796510);
-    d = md5gg(d, a, b, c, x[i + 6], 9, -1069501632);
-    c = md5gg(c, d, a, b, x[i + 11], 14, 643717713);
-    b = md5gg(b, c, d, a, x[i], 20, -373897302);
-    a = md5gg(a, b, c, d, x[i + 5], 5, -701558691);
-    d = md5gg(d, a, b, c, x[i + 10], 9, 38016083);
-    c = md5gg(c, d, a, b, x[i + 15], 14, -660478335);
-    b = md5gg(b, c, d, a, x[i + 4], 20, -405537848);
-    a = md5gg(a, b, c, d, x[i + 9], 5, 568446438);
-    d = md5gg(d, a, b, c, x[i + 14], 9, -1019803690);
-    c = md5gg(c, d, a, b, x[i + 3], 14, -187363961);
-    b = md5gg(b, c, d, a, x[i + 8], 20, 1163531501);
-    a = md5gg(a, b, c, d, x[i + 13], 5, -1444681467);
-    d = md5gg(d, a, b, c, x[i + 2], 9, -51403784);
-    c = md5gg(c, d, a, b, x[i + 7], 14, 1735328473);
-    b = md5gg(b, c, d, a, x[i + 12], 20, -1926607734);
-    a = md5hh(a, b, c, d, x[i + 5], 4, -378558);
-    d = md5hh(d, a, b, c, x[i + 8], 11, -2022574463);
-    c = md5hh(c, d, a, b, x[i + 11], 16, 1839030562);
-    b = md5hh(b, c, d, a, x[i + 14], 23, -35309556);
-    a = md5hh(a, b, c, d, x[i + 1], 4, -1530992060);
-    d = md5hh(d, a, b, c, x[i + 4], 11, 1272893353);
-    c = md5hh(c, d, a, b, x[i + 7], 16, -155497632);
-    b = md5hh(b, c, d, a, x[i + 10], 23, -1094730640);
-    a = md5hh(a, b, c, d, x[i + 13], 4, 681279174);
-    d = md5hh(d, a, b, c, x[i], 11, -358537222);
-    c = md5hh(c, d, a, b, x[i + 3], 16, -722521979);
-    b = md5hh(b, c, d, a, x[i + 6], 23, 76029189);
-    a = md5hh(a, b, c, d, x[i + 9], 4, -640364487);
-    d = md5hh(d, a, b, c, x[i + 12], 11, -421815835);
-    c = md5hh(c, d, a, b, x[i + 15], 16, 530742520);
-    b = md5hh(b, c, d, a, x[i + 2], 23, -995338651);
-    a = md5ii(a, b, c, d, x[i], 6, -198630844);
-    d = md5ii(d, a, b, c, x[i + 7], 10, 1126891415);
-    c = md5ii(c, d, a, b, x[i + 14], 15, -1416354905);
-    b = md5ii(b, c, d, a, x[i + 5], 21, -57434055);
-    a = md5ii(a, b, c, d, x[i + 12], 6, 1700485571);
-    d = md5ii(d, a, b, c, x[i + 3], 10, -1894986606);
-    c = md5ii(c, d, a, b, x[i + 10], 15, -1051523);
-    b = md5ii(b, c, d, a, x[i + 1], 21, -2054922799);
-    a = md5ii(a, b, c, d, x[i + 8], 6, 1873313359);
-    d = md5ii(d, a, b, c, x[i + 15], 10, -30611744);
-    c = md5ii(c, d, a, b, x[i + 6], 15, -1560198380);
-    b = md5ii(b, c, d, a, x[i + 13], 21, 1309151649);
-    a = md5ii(a, b, c, d, x[i + 4], 6, -145523070);
-    d = md5ii(d, a, b, c, x[i + 11], 10, -1120210379);
-    c = md5ii(c, d, a, b, x[i + 2], 15, 718787259);
-    b = md5ii(b, c, d, a, x[i + 9], 21, -343485551);
-    a = safeAdd(a, olda);
-    b = safeAdd(b, oldb);
-    c = safeAdd(c, oldc);
-    d = safeAdd(d, oldd);
-  }
-
-  return [a, b, c, d];
-}
-/*
- * Convert an array bytes to an array of little-endian words
- * Characters >255 have their high-byte silently ignored.
- */
-
-
-function bytesToWords(input) {
-  if (input.length === 0) {
-    return [];
-  }
-
-  var length8 = input.length * 8;
-  var output = new Uint32Array(getOutputLength(length8));
-
-  for (var i = 0; i < length8; i += 8) {
-    output[i >> 5] |= (input[i / 8] & 0xff) << i % 32;
-  }
-
-  return output;
-}
-/*
- * Add integers, wrapping at 2^32. This uses 16-bit operations internally
- * to work around bugs in some JS interpreters.
- */
-
-
-function safeAdd(x, y) {
-  var lsw = (x & 0xffff) + (y & 0xffff);
-  var msw = (x >> 16) + (y >> 16) + (lsw >> 16);
-  return msw << 16 | lsw & 0xffff;
-}
-/*
- * Bitwise rotate a 32-bit number to the left.
- */
-
-
-function bitRotateLeft(num, cnt) {
-  return num << cnt | num >>> 32 - cnt;
-}
-/*
- * These functions implement the four basic operations the algorithm uses.
- */
-
-
-function md5cmn(q, a, b, x, s, t) {
-  return safeAdd(bitRotateLeft(safeAdd(safeAdd(a, q), safeAdd(x, t)), s), b);
-}
-
-function md5ff(a, b, c, d, x, s, t) {
-  return md5cmn(b & c | ~b & d, a, b, x, s, t);
-}
-
-function md5gg(a, b, c, d, x, s, t) {
-  return md5cmn(b & d | c & ~d, a, b, x, s, t);
-}
-
-function md5hh(a, b, c, d, x, s, t) {
-  return md5cmn(b ^ c ^ d, a, b, x, s, t);
-}
-
-function md5ii(a, b, c, d, x, s, t) {
-  return md5cmn(c ^ (b | ~d), a, b, x, s, t);
-}
-
-/* harmony default export */ __webpack_exports__["default"] = (md5);
-
-/***/ }),
-
-/***/ "./node_modules/uuid/dist/esm-browser/nil.js":
-/*!***************************************************!*\
-  !*** ./node_modules/uuid/dist/esm-browser/nil.js ***!
-  \***************************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ('00000000-0000-0000-0000-000000000000');
-
-/***/ }),
-
-/***/ "./node_modules/uuid/dist/esm-browser/parse.js":
-/*!*****************************************************!*\
-  !*** ./node_modules/uuid/dist/esm-browser/parse.js ***!
-  \*****************************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _validate_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./validate.js */ "./node_modules/uuid/dist/esm-browser/validate.js");
-
-
-function parse(uuid) {
-  if (!(0,_validate_js__WEBPACK_IMPORTED_MODULE_0__.default)(uuid)) {
-    throw TypeError('Invalid UUID');
-  }
-
-  var v;
-  var arr = new Uint8Array(16); // Parse ########-....-....-....-............
-
-  arr[0] = (v = parseInt(uuid.slice(0, 8), 16)) >>> 24;
-  arr[1] = v >>> 16 & 0xff;
-  arr[2] = v >>> 8 & 0xff;
-  arr[3] = v & 0xff; // Parse ........-####-....-....-............
-
-  arr[4] = (v = parseInt(uuid.slice(9, 13), 16)) >>> 8;
-  arr[5] = v & 0xff; // Parse ........-....-####-....-............
-
-  arr[6] = (v = parseInt(uuid.slice(14, 18), 16)) >>> 8;
-  arr[7] = v & 0xff; // Parse ........-....-....-####-............
-
-  arr[8] = (v = parseInt(uuid.slice(19, 23), 16)) >>> 8;
-  arr[9] = v & 0xff; // Parse ........-....-....-....-############
-  // (Use "/" to avoid 32-bit truncation when bit-shifting high-order bytes)
-
-  arr[10] = (v = parseInt(uuid.slice(24, 36), 16)) / 0x10000000000 & 0xff;
-  arr[11] = v / 0x100000000 & 0xff;
-  arr[12] = v >>> 24 & 0xff;
-  arr[13] = v >>> 16 & 0xff;
-  arr[14] = v >>> 8 & 0xff;
-  arr[15] = v & 0xff;
-  return arr;
-}
-
-/* harmony default export */ __webpack_exports__["default"] = (parse);
-
-/***/ }),
-
 /***/ "./node_modules/uuid/dist/esm-browser/regex.js":
 /*!*****************************************************!*\
   !*** ./node_modules/uuid/dist/esm-browser/regex.js ***!
@@ -31069,113 +32624,6 @@ function rng() {
 
 /***/ }),
 
-/***/ "./node_modules/uuid/dist/esm-browser/sha1.js":
-/*!****************************************************!*\
-  !*** ./node_modules/uuid/dist/esm-browser/sha1.js ***!
-  \****************************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-// Adapted from Chris Veness' SHA1 code at
-// http://www.movable-type.co.uk/scripts/sha1.html
-function f(s, x, y, z) {
-  switch (s) {
-    case 0:
-      return x & y ^ ~x & z;
-
-    case 1:
-      return x ^ y ^ z;
-
-    case 2:
-      return x & y ^ x & z ^ y & z;
-
-    case 3:
-      return x ^ y ^ z;
-  }
-}
-
-function ROTL(x, n) {
-  return x << n | x >>> 32 - n;
-}
-
-function sha1(bytes) {
-  var K = [0x5a827999, 0x6ed9eba1, 0x8f1bbcdc, 0xca62c1d6];
-  var H = [0x67452301, 0xefcdab89, 0x98badcfe, 0x10325476, 0xc3d2e1f0];
-
-  if (typeof bytes === 'string') {
-    var msg = unescape(encodeURIComponent(bytes)); // UTF8 escape
-
-    bytes = [];
-
-    for (var i = 0; i < msg.length; ++i) {
-      bytes.push(msg.charCodeAt(i));
-    }
-  } else if (!Array.isArray(bytes)) {
-    // Convert Array-like to Array
-    bytes = Array.prototype.slice.call(bytes);
-  }
-
-  bytes.push(0x80);
-  var l = bytes.length / 4 + 2;
-  var N = Math.ceil(l / 16);
-  var M = new Array(N);
-
-  for (var _i = 0; _i < N; ++_i) {
-    var arr = new Uint32Array(16);
-
-    for (var j = 0; j < 16; ++j) {
-      arr[j] = bytes[_i * 64 + j * 4] << 24 | bytes[_i * 64 + j * 4 + 1] << 16 | bytes[_i * 64 + j * 4 + 2] << 8 | bytes[_i * 64 + j * 4 + 3];
-    }
-
-    M[_i] = arr;
-  }
-
-  M[N - 1][14] = (bytes.length - 1) * 8 / Math.pow(2, 32);
-  M[N - 1][14] = Math.floor(M[N - 1][14]);
-  M[N - 1][15] = (bytes.length - 1) * 8 & 0xffffffff;
-
-  for (var _i2 = 0; _i2 < N; ++_i2) {
-    var W = new Uint32Array(80);
-
-    for (var t = 0; t < 16; ++t) {
-      W[t] = M[_i2][t];
-    }
-
-    for (var _t = 16; _t < 80; ++_t) {
-      W[_t] = ROTL(W[_t - 3] ^ W[_t - 8] ^ W[_t - 14] ^ W[_t - 16], 1);
-    }
-
-    var a = H[0];
-    var b = H[1];
-    var c = H[2];
-    var d = H[3];
-    var e = H[4];
-
-    for (var _t2 = 0; _t2 < 80; ++_t2) {
-      var s = Math.floor(_t2 / 20);
-      var T = ROTL(a, 5) + f(s, b, c, d) + e + K[s] + W[_t2] >>> 0;
-      e = d;
-      d = c;
-      c = ROTL(b, 30) >>> 0;
-      b = a;
-      a = T;
-    }
-
-    H[0] = H[0] + a >>> 0;
-    H[1] = H[1] + b >>> 0;
-    H[2] = H[2] + c >>> 0;
-    H[3] = H[3] + d >>> 0;
-    H[4] = H[4] + e >>> 0;
-  }
-
-  return [H[0] >> 24 & 0xff, H[0] >> 16 & 0xff, H[0] >> 8 & 0xff, H[0] & 0xff, H[1] >> 24 & 0xff, H[1] >> 16 & 0xff, H[1] >> 8 & 0xff, H[1] & 0xff, H[2] >> 24 & 0xff, H[2] >> 16 & 0xff, H[2] >> 8 & 0xff, H[2] & 0xff, H[3] >> 24 & 0xff, H[3] >> 16 & 0xff, H[3] >> 8 & 0xff, H[3] & 0xff, H[4] >> 24 & 0xff, H[4] >> 16 & 0xff, H[4] >> 8 & 0xff, H[4] & 0xff];
-}
-
-/* harmony default export */ __webpack_exports__["default"] = (sha1);
-
-/***/ }),
-
 /***/ "./node_modules/uuid/dist/esm-browser/stringify.js":
 /*!*********************************************************!*\
   !*** ./node_modules/uuid/dist/esm-browser/stringify.js ***!
@@ -31218,213 +32666,6 @@ function stringify(arr) {
 
 /***/ }),
 
-/***/ "./node_modules/uuid/dist/esm-browser/v1.js":
-/*!**************************************************!*\
-  !*** ./node_modules/uuid/dist/esm-browser/v1.js ***!
-  \**************************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _rng_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./rng.js */ "./node_modules/uuid/dist/esm-browser/rng.js");
-/* harmony import */ var _stringify_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./stringify.js */ "./node_modules/uuid/dist/esm-browser/stringify.js");
-
- // **`v1()` - Generate time-based UUID**
-//
-// Inspired by https://github.com/LiosK/UUID.js
-// and http://docs.python.org/library/uuid.html
-
-var _nodeId;
-
-var _clockseq; // Previous uuid creation time
-
-
-var _lastMSecs = 0;
-var _lastNSecs = 0; // See https://github.com/uuidjs/uuid for API details
-
-function v1(options, buf, offset) {
-  var i = buf && offset || 0;
-  var b = buf || new Array(16);
-  options = options || {};
-  var node = options.node || _nodeId;
-  var clockseq = options.clockseq !== undefined ? options.clockseq : _clockseq; // node and clockseq need to be initialized to random values if they're not
-  // specified.  We do this lazily to minimize issues related to insufficient
-  // system entropy.  See #189
-
-  if (node == null || clockseq == null) {
-    var seedBytes = options.random || (options.rng || _rng_js__WEBPACK_IMPORTED_MODULE_0__.default)();
-
-    if (node == null) {
-      // Per 4.5, create and 48-bit node id, (47 random bits + multicast bit = 1)
-      node = _nodeId = [seedBytes[0] | 0x01, seedBytes[1], seedBytes[2], seedBytes[3], seedBytes[4], seedBytes[5]];
-    }
-
-    if (clockseq == null) {
-      // Per 4.2.2, randomize (14 bit) clockseq
-      clockseq = _clockseq = (seedBytes[6] << 8 | seedBytes[7]) & 0x3fff;
-    }
-  } // UUID timestamps are 100 nano-second units since the Gregorian epoch,
-  // (1582-10-15 00:00).  JSNumbers aren't precise enough for this, so
-  // time is handled internally as 'msecs' (integer milliseconds) and 'nsecs'
-  // (100-nanoseconds offset from msecs) since unix epoch, 1970-01-01 00:00.
-
-
-  var msecs = options.msecs !== undefined ? options.msecs : Date.now(); // Per 4.2.1.2, use count of uuid's generated during the current clock
-  // cycle to simulate higher resolution clock
-
-  var nsecs = options.nsecs !== undefined ? options.nsecs : _lastNSecs + 1; // Time since last uuid creation (in msecs)
-
-  var dt = msecs - _lastMSecs + (nsecs - _lastNSecs) / 10000; // Per 4.2.1.2, Bump clockseq on clock regression
-
-  if (dt < 0 && options.clockseq === undefined) {
-    clockseq = clockseq + 1 & 0x3fff;
-  } // Reset nsecs if clock regresses (new clockseq) or we've moved onto a new
-  // time interval
-
-
-  if ((dt < 0 || msecs > _lastMSecs) && options.nsecs === undefined) {
-    nsecs = 0;
-  } // Per 4.2.1.2 Throw error if too many uuids are requested
-
-
-  if (nsecs >= 10000) {
-    throw new Error("uuid.v1(): Can't create more than 10M uuids/sec");
-  }
-
-  _lastMSecs = msecs;
-  _lastNSecs = nsecs;
-  _clockseq = clockseq; // Per 4.1.4 - Convert from unix epoch to Gregorian epoch
-
-  msecs += 12219292800000; // `time_low`
-
-  var tl = ((msecs & 0xfffffff) * 10000 + nsecs) % 0x100000000;
-  b[i++] = tl >>> 24 & 0xff;
-  b[i++] = tl >>> 16 & 0xff;
-  b[i++] = tl >>> 8 & 0xff;
-  b[i++] = tl & 0xff; // `time_mid`
-
-  var tmh = msecs / 0x100000000 * 10000 & 0xfffffff;
-  b[i++] = tmh >>> 8 & 0xff;
-  b[i++] = tmh & 0xff; // `time_high_and_version`
-
-  b[i++] = tmh >>> 24 & 0xf | 0x10; // include version
-
-  b[i++] = tmh >>> 16 & 0xff; // `clock_seq_hi_and_reserved` (Per 4.2.2 - include variant)
-
-  b[i++] = clockseq >>> 8 | 0x80; // `clock_seq_low`
-
-  b[i++] = clockseq & 0xff; // `node`
-
-  for (var n = 0; n < 6; ++n) {
-    b[i + n] = node[n];
-  }
-
-  return buf || (0,_stringify_js__WEBPACK_IMPORTED_MODULE_1__.default)(b);
-}
-
-/* harmony default export */ __webpack_exports__["default"] = (v1);
-
-/***/ }),
-
-/***/ "./node_modules/uuid/dist/esm-browser/v3.js":
-/*!**************************************************!*\
-  !*** ./node_modules/uuid/dist/esm-browser/v3.js ***!
-  \**************************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _v35_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./v35.js */ "./node_modules/uuid/dist/esm-browser/v35.js");
-/* harmony import */ var _md5_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./md5.js */ "./node_modules/uuid/dist/esm-browser/md5.js");
-
-
-var v3 = (0,_v35_js__WEBPACK_IMPORTED_MODULE_0__.default)('v3', 0x30, _md5_js__WEBPACK_IMPORTED_MODULE_1__.default);
-/* harmony default export */ __webpack_exports__["default"] = (v3);
-
-/***/ }),
-
-/***/ "./node_modules/uuid/dist/esm-browser/v35.js":
-/*!***************************************************!*\
-  !*** ./node_modules/uuid/dist/esm-browser/v35.js ***!
-  \***************************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "DNS": function() { return /* binding */ DNS; },
-/* harmony export */   "URL": function() { return /* binding */ URL; },
-/* harmony export */   "default": function() { return /* export default binding */ __WEBPACK_DEFAULT_EXPORT__; }
-/* harmony export */ });
-/* harmony import */ var _stringify_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./stringify.js */ "./node_modules/uuid/dist/esm-browser/stringify.js");
-/* harmony import */ var _parse_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./parse.js */ "./node_modules/uuid/dist/esm-browser/parse.js");
-
-
-
-function stringToBytes(str) {
-  str = unescape(encodeURIComponent(str)); // UTF8 escape
-
-  var bytes = [];
-
-  for (var i = 0; i < str.length; ++i) {
-    bytes.push(str.charCodeAt(i));
-  }
-
-  return bytes;
-}
-
-var DNS = '6ba7b810-9dad-11d1-80b4-00c04fd430c8';
-var URL = '6ba7b811-9dad-11d1-80b4-00c04fd430c8';
-/* harmony default export */ function __WEBPACK_DEFAULT_EXPORT__(name, version, hashfunc) {
-  function generateUUID(value, namespace, buf, offset) {
-    if (typeof value === 'string') {
-      value = stringToBytes(value);
-    }
-
-    if (typeof namespace === 'string') {
-      namespace = (0,_parse_js__WEBPACK_IMPORTED_MODULE_1__.default)(namespace);
-    }
-
-    if (namespace.length !== 16) {
-      throw TypeError('Namespace must be array-like (16 iterable integer values, 0-255)');
-    } // Compute hash of namespace and value, Per 4.3
-    // Future: Use spread syntax when supported on all platforms, e.g. `bytes =
-    // hashfunc([...namespace, ... value])`
-
-
-    var bytes = new Uint8Array(16 + value.length);
-    bytes.set(namespace);
-    bytes.set(value, namespace.length);
-    bytes = hashfunc(bytes);
-    bytes[6] = bytes[6] & 0x0f | version;
-    bytes[8] = bytes[8] & 0x3f | 0x80;
-
-    if (buf) {
-      offset = offset || 0;
-
-      for (var i = 0; i < 16; ++i) {
-        buf[offset + i] = bytes[i];
-      }
-
-      return buf;
-    }
-
-    return (0,_stringify_js__WEBPACK_IMPORTED_MODULE_0__.default)(bytes);
-  } // Function#name is not settable on some platforms (#270)
-
-
-  try {
-    generateUUID.name = name; // eslint-disable-next-line no-empty
-  } catch (err) {} // For CommonJS default export support
-
-
-  generateUUID.DNS = DNS;
-  generateUUID.URL = URL;
-  return generateUUID;
-}
-
-/***/ }),
-
 /***/ "./node_modules/uuid/dist/esm-browser/v4.js":
 /*!**************************************************!*\
   !*** ./node_modules/uuid/dist/esm-browser/v4.js ***!
@@ -31462,23 +32703,6 @@ function v4(options, buf, offset) {
 
 /***/ }),
 
-/***/ "./node_modules/uuid/dist/esm-browser/v5.js":
-/*!**************************************************!*\
-  !*** ./node_modules/uuid/dist/esm-browser/v5.js ***!
-  \**************************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _v35_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./v35.js */ "./node_modules/uuid/dist/esm-browser/v35.js");
-/* harmony import */ var _sha1_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./sha1.js */ "./node_modules/uuid/dist/esm-browser/sha1.js");
-
-
-var v5 = (0,_v35_js__WEBPACK_IMPORTED_MODULE_0__.default)('v5', 0x50, _sha1_js__WEBPACK_IMPORTED_MODULE_1__.default);
-/* harmony default export */ __webpack_exports__["default"] = (v5);
-
-/***/ }),
-
 /***/ "./node_modules/uuid/dist/esm-browser/validate.js":
 /*!********************************************************!*\
   !*** ./node_modules/uuid/dist/esm-browser/validate.js ***!
@@ -31495,29 +32719,6 @@ function validate(uuid) {
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (validate);
-
-/***/ }),
-
-/***/ "./node_modules/uuid/dist/esm-browser/version.js":
-/*!*******************************************************!*\
-  !*** ./node_modules/uuid/dist/esm-browser/version.js ***!
-  \*******************************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _validate_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./validate.js */ "./node_modules/uuid/dist/esm-browser/validate.js");
-
-
-function version(uuid) {
-  if (!(0,_validate_js__WEBPACK_IMPORTED_MODULE_0__.default)(uuid)) {
-    throw TypeError('Invalid UUID');
-  }
-
-  return parseInt(uuid.substr(14, 1), 16);
-}
-
-/* harmony default export */ __webpack_exports__["default"] = (version);
 
 /***/ }),
 
@@ -31616,7 +32817,7 @@ module.exports = JSON.parse('{"ar-EG":{"buttons":{"continue":"للمتابعة "
 /***/ (function(module) {
 
 "use strict";
-module.exports = JSON.parse('{"details":{"ar_EG":{"cancellationRights":"حق الإلغاء","cookiePolicy":"ملفات كوكيز","legalNotice":"ملحوظة قانونية","privacyPolicy":"سياسة الخصوصية","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> هو الموزع والموزع المعتمد للمنتجات والخدمات المقدمة في هذا المتجر.","termsOfSale":"شروط البيع","confirmDisclosure":"بإرسال طلبي فإنني أوافق على <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">شروط البيع</a> و<a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">سياسة الخصوصية</a> لدى {businessEntityName}.","autoRenewPlanTerms":"بالتأشير في المربع السفلي وإتمام مشترياتك، فأنت تصرّح وتسمح بشكل قاطع لشركة Digital River بتجديد اشتراكك أو ترخيصك الذي قمت بشرائه بشكل أوتوماتيكي بناءً على مدد التجديد اللاحقة والمساوية في الطول للمدة الأساسية المحددة أعلاه، بسعر الشراء لمدتك الأساسية (بالإضافة للضرائب والرسوم، وتنفيذ أية خصومات سارية) وباستخدام معلومات الدفع التي أدخلتها خلال عملية الشراء الأصلية، إلى أن تقوم بالإلغاء. تجدر الإشارة إلى أنك ستتسلم رسالة بريد إلكتروني واحدة على الأقل على سبيل التذكير عند كل تجديد قادم. قد نقوم بتغيير سعر التجديد في موعد التجديد التالي بعد إخطارك مسبقا عن طريق رسالة بريد إلكتروني (يمكنك اختيار إلغاء التجديد الأوتوماتيكي كما هو مشروح أدناه في حالة عدم موافقتك على التغيير). سوف تسري <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">شروط البيع</a> و <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">سياسة الخصوصية</a> الخاصة بشركة Digital River على كل عملية تجديد. يمكنك إلغاء خطة التجديد الأوتوماتيكية في أي وقت عن طريق تسجيل الدخول في واجهة الحساب (ستجد معلومات الدخول مضمنة في رسالة البريد الإلكتروني التأكيدية لطلبك أو في صفحة المساعدة التابعة لخدمة العملاء)، واختيار المنتج واختيار إيقاف التجديد الأوتوماتيكي.<br /><br /> أوافق على أنه يجوز لشركة Digital River حفظ معلومات الدفع الخاصة بي لعمليات الشراء المستقبلية بما في ذلك تنفيذ أي عمليات تجديد اشتراكات تالية قد تحدث بعد تاريخ هذا الطلب.","agreeToTerms":"لقد اطلعت على الشروط والرسوم وأوافق عليها.","idealRecurringAgreement":"بالنقر فوق المربع، فإنك تأذن لشركة Digital River بتحصيل دفعتك الأولى عبر iDEAL واستخدام رقم IBAN الخاص بك لتحصيل مدفوعات الاشتراك اللاحقة عن طريق الخصم المباشر من SEPA. يمكنك مراجعة معلومات الخصم المباشر ل SEPA بعد إرسال الطلب. <br/><br/>كجزء من حقوقك، يحق لك استرداد الأموال من البنك الذي تتعامل معه بموجب شروط وأحكام اتفاقك مع البنك الذي تتعامل معه. يجب أن تتم المطالبة برد المبلغ في غضون 8 أسابيع بدءا من التاريخ الذي تم فيه الخصم من حسابك. "},"cs_CZ":{"cancellationRights":"Oprávnění ke zrušení","cookiePolicy":"Cookies","legalNotice":"Právní dokument","privacyPolicy":"Zásady zachování soukromí","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> je autorizovaným prodejcem a obchodníkem s produkty a službami, které tento obchod nabízí.","termsOfSale":"Prodejní podmínky","confirmDisclosure":"Odesláním své objednávky vyjadřuji souhlas s <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">prodejními podmínkami</a> a <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">ochranou soukromí</a> {businessEntityName}.","autoRenewPlanTerms":"Zaškrtnutím dále zobrazeného políčka a dokončením vašeho nákupu výslovně zmocňujete a pověřujete společnost Digital River, aby automaticky obnovovala vaši zakoupenou licenci nebo předplatné vždy na následující prolongační období, jehož délka bude shodná s dříve specifikovaným počátečním obdobím, za kupní cenu shodnou s vaším počátečním obdobím (včetně daní a poplatků a po odečtení případně se vztahujících slev) a s využitím platebních informací, které jste poskytli pro váš počáteční nákup, dokud toto nezrušíte. Bude vám zaslán nejméně jeden e-mail, který vás upozorní na každé následující obnovení. Obnovovací cenu můžeme změnit k datu následujícího obnovení, pokud vás předem o této změně informujeme e-mailem (máte možnost zrušit automatické obnovování, jak je popsáno dále, jestliže s touto změnou nesouhlasíte). <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Prodejní podmínky</a> společnosti Digital River a její <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">zásady pro ochranu osobních údajů </a>se budou vztahovat na každý případ obnovení předplatného nebo licence. Svůj plán automatického obnovování můžete zrušit přihlášením se do rozhraní vašeho účtu (přístupové informace budou součástí e-mailu potvrzujícího vaši objednávku nebo budou obsaženy na stránce nápovědy zákaznického servisu), zvolením vašeho produktu a zvolením možnosti zrušení automatického obnovování.<br/><br/>Souhlasím, aby společnost Digital River ukládala moje platební údaje pro budoucí nákupy, včetně zpracování dalších obnovení předplatného, k nimž může dojít po datu této objednávky.","agreeToTerms":"Přečetl jsem si dříve uvedené podmínky a účtované poplatky a souhlasím s nimi.","idealRecurringAgreement":"Kliknutím na toto políčko udělujete společnosti Digital River oprávnění k inkasu první platby prostřednictvím iDEAL a k inkasu dalších plateb předplatného prostřednictvím SEPA inkasa pomocí vašeho IBAN. Informace o přímém inkasu SEPA si můžete zkontrolovat po odeslání objednávky. <br/><br/>Součástí vašich práv je nárok na proplacení od vaší banky podle podmínek vaší smlouvy s bankou. Žádost o proplacení musí být podána v průběhu 8 týdnů od data, ke kterému došlo k zúčtování částky na vrub vašeho účtu. "},"da_DK":{"cancellationRights":"Fortrydelsesret","cookiePolicy":"Cookies","legalNotice":"Juridisk note","privacyPolicy":"Retningslinjer for personbeskyttelse","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> er den autoriserede forhandler af de produkter og tjenesteydelser, der tilbydes i denne forretning.","termsOfSale":"Salgsvilkår","confirmDisclosure":"Ved at indsende min bestilling, accepterer jeg <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Salgsvilkårene</a> og <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Politikken om beskyttelse af personlige oplysninger</a> på {businessEntityName}.","autoRenewPlanTerms":"Når du markerer afkrydsningsfeltet nedenfor og gennemfører købet, godkender du udtrykkeligt og giver tilladelse til, at Digital River automatisk fornyer den licens eller det abonnement, du køber i perioder svarende til den første periode, som er angivet nedenfor, til den samme købspris som prisen for den første periode (plus afgifter og gebyrer og fratrukket eventuelle rabatter) via de betalingsoplysninger, du har angivet, indtil du opsiger licensen eller abonnementet. Du vil modtage mindst én e-mail som påmindelse om, at abonnementet bliver fornyet. Vi har ret til at ændre prisen for fornyelsen pr. den kommende fornyelsesdato, hvis vi informerer dig herom forud via e-mail (du kan vælge at annullere automatisk fornyelse som beskrevet nedenfor, hvis du ikke accepterer ændringen). Digital Rivers <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Salgsvilkår</a> og <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Fortrolighedspolitik</a> gælder for alle fornyelsestransaktioner. Du kan når som helst annullere din automatiske fornyelsesplan ved at logge på kontoskærmen (adgangsoplysningerne er angivet i e-mailen med ordrebekræftelsen eller på Kundeservice-siden), vælge dit produkt og vælge at deaktivere automatisk fornyelse.<br/><br/>Jeg giver mit samtykke til, at Digital River gemmer mine betalingsoplysninger til brug ved fremtidige køb samt til brug ved fornyelse af abonnementer efter denne ordredato.","klarnaCreditActiveAcceptance":"Ved at klikke <span class=\\"DR-button-text\\">{payNow}</span> vil du blive præsenteret for forskellige betalingsmetoder som Klarna tilbyder. Ved at fortsætte godkender du <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/da_dk/user\\">Klarnas Vilkår for tjenester og funktioner</a> samt bekræfter at du har læst <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/da_dk/privacy\\">Klarnas databeskyttelsesmeddelse</a>.","klarnaCreditRecurringActiveAcceptance":"Ved at klikke <span class=\\"DR-button-text\\">{payNow}</span> vil du blive præsenteret for forskellige betalingsmetoder som Klarna tilbyder. Ved at fortsætte godkender du <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/da_dk/user\\">Klarnas Vilkår for tjenester og funktioner</a> samt bekræfter at du har læst <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/da_dk/privacy\\">Klarnas databeskyttelsesmeddelse</a>.","agreeToTerms":"Jeg har læst og accepterer ovenstående vilkår og priser.","idealRecurringAgreement":"Ved at klikke på feltet giver du Digital River tilladelse til at opkræve din første betaling via iDEAL og bruge dit IBAN-nummer til at opkræve de efterfølgende abonnementsbetalinger via SEPA-automatindbetaling. Du kan gennemgå dine SEPA Direct Debit-oplysninger efter ordreafgivelse. <br/><br/>Du har krav på en refusion fra din bank på de vilkår og betingelser, der følger af din aftale med banken. Refusion skal kræves senest 8 uger fra den dato, kontoen blev debiteret. "},"de_AT":{"cancellationRights":"Widerrufsrecht","cookiePolicy":"Cookies","legalNotice":"Impressum","privacyPolicy":"Datenschutzrichtlinien","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> ist der autorisierte Wiederverkäufer und Händler der Produkte und Dienstleistungen die in diesem Shop angeboten werden.","termsOfSale":"Verkaufsbedingungen","confirmDisclosure":"Durch Einreichen meiner Bestellung stimme ich den <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Verkaufsbedingungen</a> und den <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Datenschutzrichtlinien</a> von {businessEntityName} zu.","autoRenewPlanTerms":"Durch das Markieren des Kästchens unten und den Abschluss Ihres Kaufvorgangs erteilen Sie Digital River ausdrücklich die Genehmigung, Ihre gekaufte Lizenz bzw. Ihr Abonnement für Folgelaufzeiten mit gleicher Dauer wie der oben angegebenen anfänglichen Laufzeit zum angegebenen Lizenzpreis (plus Steuern und Abgaben, abzüglich eventueller Rabatte) für die anfängliche Laufzeit über die für Ihren ersten Kauf angegebenen Zahlungsinformationen abzurechnen, bis Sie die Bestellung kündigen. Bei jeder anstehenden Verlängerung erhalten Sie mindestens eine E-Mail zur Erinnerung. Wir behalten uns vor, den Verlängerungspreis zum nächsten Verlängerungsdatum zu ändern, sofern wir Sie über eine solche Änderung rechtzeitig per E-Mail benachrichtigen (wenn Sie mit der Änderung nicht einverstanden sind, können Sie wie unten beschrieben die automatische Verlängerung stornieren). Die <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Verkaufsbedingungen</a> und die <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Datenschutzerklärung</a> von Digital River gelten für jede Verlängerungstransaktion. Sie können Ihren Plan mit automatischer Verlängerung jederzeit kündigen, indem Sie sich in Ihrem Konto anmelden (Zugangsdaten finden Sie in Ihrer Bestätigungs-E-Mail oder auf der Kundenservice-Hilfeseite), Ihr Produkt auswählen und die Option zum Stornieren der automatischen Verlängerung wählen.<br/><br/>Ich bin einverstanden, dass Digital River meine Zahlungsinformationen für zukünftige Käufe speichert, einschließlich der Verarbeitung späterer Abonnementverlängerungen nach dem Datum dieser Bestellung.","klarnaCreditActiveAcceptance":"Wenn Sie <span class=\\"DR-button-text\\">{payNow}</span> drücken, werden Ihnen die von Klarna angebotenen Zahlungsarten vorgestellt. Indem Sie fortfahren, akzeptieren Sie <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/de_at/user\\">die allgemeinen Geschäftsbedingungen für Klarna Dienste</a> und bestätigen, dass Sie Klarnas Datenschutzerklärung gelesen haben.","klarnaCreditRecurringActiveAcceptance":"Wenn Sie <span class=\\"DR-button-text\\">{payNow}</span> drücken, werden Ihnen die von Klarna angebotenen Zahlungsarten vorgestellt. Indem Sie fortfahren, akzeptieren Sie <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/de_at/user\\">die allgemeinen Geschäftsbedingungen für Klarna Dienste</a> und bestätigen, dass Sie Klarnas <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/de_at/privacy\\">Datenschutzerklärung</a> gelesen haben.","agreeToTerms":"Ich habe die oben aufgeführten Geschäftsbedingungen und Preise gelesen und stimme ihnen zu.","idealRecurringAgreement":"Wenn Sie das Kästchen anklicken, ermächtigen Sie Digital River, Ihre erste Zahlung über iDEAL einzuziehen und Ihre IBAN zu verwenden, um die weiteren Zahlungen für das Abonnement per SEPA-Lastschrift einzuziehen. Sie können Ihre SEPA-Lastschriftinformationen nach der Bestellung überprüfen. <br/><br/>Im Rahmen Ihrer Rechte haben Sie gemäß den Bestimmungen in der Vereinbarung mit Ihrer Bank Anspruch auf eine Erstattung. Eine Erstattung muss innerhalb von acht Wochen ab dem Datum der Belastung Ihres Kontos angefordert werden. "},"de_CH":{"cancellationRights":"Widerrufsrecht","cookiePolicy":"Cookies","legalNotice":"Impressum","privacyPolicy":"Datenschutzrichtlinien","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> ist der autorisierte Wiederverkäufer und Händler der Produkte und Dienstleistungen die in diesem Shop angeboten werden.","termsOfSale":"Verkaufsbedingungen","confirmDisclosure":"Durch Einreichen meiner Bestellung stimme ich den <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Verkaufsbedingungen</a> und den <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Datenschutzrichtlinien</a> von {businessEntityName} zu.","autoRenewPlanTerms":"Durch das Markieren des Kästchens unten und den Abschluss Ihres Kaufvorgangs erteilen Sie Digital River ausdrücklich die Genehmigung, Ihre gekaufte Lizenz bzw. Ihr Abonnement für Folgelaufzeiten mit gleicher Dauer wie der oben angegebenen anfänglichen Laufzeit zum angegebenen Lizenzpreis (plus Steuern und Abgaben, abzüglich eventueller Rabatte) für die anfängliche Laufzeit über die für Ihren ersten Kauf angegebenen Zahlungsinformationen abzurechnen, bis Sie die Bestellung kündigen. Bei jeder anstehenden Verlängerung erhalten Sie mindestens eine E-Mail zur Erinnerung. Wir behalten uns vor, den Verlängerungspreis zum nächsten Verlängerungsdatum zu ändern, sofern wir Sie über eine solche Änderung rechtzeitig per E-Mail benachrichtigen (wenn Sie mit der Änderung nicht einverstanden sind, können Sie wie unten beschrieben die automatische Verlängerung stornieren). Die <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Verkaufsbedingungen</a> und die <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Datenschutzerklärung</a> von Digital River gelten für jede Verlängerungstransaktion. Sie können Ihren Plan mit automatischer Verlängerung jederzeit kündigen, indem Sie sich in Ihrem Konto anmelden (Zugangsdaten finden Sie in Ihrer Bestätigungs-E-Mail oder auf der Kundenservice-Hilfeseite), Ihr Produkt auswählen und die Option zum Stornieren der automatischen Verlängerung wählen.<br/><br/>Ich bin einverstanden, dass Digital River meine Zahlungsinformationen für zukünftige Käufe speichert, einschließlich der Verarbeitung späterer Abonnementverlängerungen nach dem Datum dieser Bestellung.","klarnaCreditActiveAcceptance":"Wenn Sie <span class=\\"DR-button-text\\">{payNow}</span> drücken, werden Ihnen die von Klarna angebotenen Zahlungsartenvorgestellt. Indem Sie fortfahren, akzeptieren Sie die allgemeinen <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/de_ch/user\\">Geschäftsbedingungen für Klarna</a> Dienste und bestätigen, dass Sie <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/de_ch/privacy_bp\\">Klarnas Datenschutzerklärung</a> gelesen haben.","klarnaCreditRecurringActiveAcceptance":"Wenn Sie <span class=\\"DR-button-text\\">{payNow}</span> drücken, werden Ihnen die von Klarna angebotenen Zahlungsartenvorgestellt. Indem Sie fortfahren, akzeptieren Sie die allgemeinen <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/de_ch/user\\">Geschäftsbedingungen für Klarna</a> Dienste und bestätigen, dass Sie <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/de_ch/privacy_bp\\">Klarnas Datenschutzerklärung</a> gelesen haben.","agreeToTerms":"Ich habe die oben aufgeführten Geschäftsbedingungen und Preise gelesen und stimme ihnen zu.","idealRecurringAgreement":"Wenn Sie das Kästchen anklicken, ermächtigen Sie Digital River, Ihre erste Zahlung über iDEAL einzuziehen und Ihre IBAN zu verwenden, um die weiteren Zahlungen für das Abonnement per SEPA-Lastschrift einzuziehen. Sie können Ihre SEPA-Lastschriftinformationen nach der Bestellung überprüfen. <br/><br/>Im Rahmen Ihrer Rechte haben Sie gemäß den Bestimmungen in der Vereinbarung mit Ihrer Bank Anspruch auf eine Erstattung. Eine Erstattung muss innerhalb von acht Wochen ab dem Datum der Belastung Ihres Kontos angefordert werden. "},"de_DE":{"cancellationRights":"Widerrufsrecht","cookiePolicy":"Cookies","legalNotice":"Impressum","privacyPolicy":"Datenschutzrichtlinien","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> ist der autorisierte Wiederverkäufer und Händler der Produkte und Dienstleistungen die in diesem Shop angeboten werden.","termsOfSale":"Verkaufsbedingungen","confirmDisclosure":"Durch Einreichen meiner Bestellung stimme ich den <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Verkaufsbedingungen</a> und den <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Datenschutzrichtlinien</a> von {businessEntityName} zu.","autoRenewPlanTerms":"Durch das Markieren des Kästchens unten und den Abschluss Ihres Kaufvorgangs erteilen Sie Digital River ausdrücklich die Genehmigung, Ihre gekaufte Lizenz bzw. Ihr Abonnement für Folgelaufzeiten mit gleicher Dauer wie der oben angegebenen anfänglichen Laufzeit zum angegebenen Lizenzpreis (plus Steuern und Abgaben, abzüglich eventueller Rabatte) für die anfängliche Laufzeit über die für Ihren ersten Kauf angegebenen Zahlungsinformationen abzurechnen, bis Sie die Bestellung kündigen. Bei jeder anstehenden Verlängerung erhalten Sie mindestens eine E-Mail zur Erinnerung. Wir behalten uns vor, den Verlängerungspreis zum nächsten Verlängerungsdatum zu ändern, sofern wir Sie über eine solche Änderung rechtzeitig per E-Mail benachrichtigen (wenn Sie mit der Änderung nicht einverstanden sind, können Sie wie unten beschrieben die automatische Verlängerung stornieren). Die <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Verkaufsbedingungen</a> und die <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Datenschutzerklärung</a> von Digital River gelten für jede Verlängerungstransaktion. Sie können Ihren Plan mit automatischer Verlängerung jederzeit kündigen, indem Sie sich in Ihrem Konto anmelden (Zugangsdaten finden Sie in Ihrer Bestätigungs-E-Mail oder auf der Kundenservice-Hilfeseite), Ihr Produkt auswählen und die Option zum Stornieren der automatischen Verlängerung wählen.<br/><br/>Ich bin einverstanden, dass Digital River meine Zahlungsinformationen für zukünftige Käufe speichert, einschließlich der Verarbeitung späterer Abonnementverlängerungen nach dem Datum dieser Bestellung.","klarnaCreditActiveAcceptance":"Wenn Sie <span class=\\"DR-button-text\\">{payNow}</span> drücken, werden Ihnen die von Klarna angebotenen Zahlungsarten vorgestellt. Indem Sie fortfahren, akzeptieren <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/de_de/user\\">Sie die allgemeinen Geschäftsbedingungen für Klarna Dienste</a> und bestätigen, dass Sie Klarnas <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/de_de/privacy\\">Datenschutzerklärung</a> gelesen haben.","klarnaCreditRecurringActiveAcceptance":"Wenn Sie <span class=\\"DR-button-text\\">{payNow}</span> drücken, werden Ihnen die von Klarna angebotenen Zahlungsarten vorgestellt. Indem Sie fortfahren, akzeptieren <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/de_de/user\\">Sie die allgemeinen Geschäftsbedingungen für Klarna Dienste</a> und bestätigen, dass Sie Klarnas <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/de_de/privacy\\">Datenschutzerklärung</a> gelesen haben.","agreeToTerms":"Ich habe die oben aufgeführten Geschäftsbedingungen und Preise gelesen und stimme ihnen zu.","idealRecurringAgreement":"Wenn Sie das Kästchen anklicken, ermächtigen Sie Digital River, Ihre erste Zahlung über iDEAL einzuziehen und Ihre IBAN zu verwenden, um die weiteren Zahlungen für das Abonnement per SEPA-Lastschrift einzuziehen. Sie können Ihre SEPA-Lastschriftinformationen nach der Bestellung überprüfen. <br/><br/>Im Rahmen Ihrer Rechte haben Sie gemäß den Bestimmungen in der Vereinbarung mit Ihrer Bank Anspruch auf eine Erstattung. Eine Erstattung muss innerhalb von acht Wochen ab dem Datum der Belastung Ihres Kontos angefordert werden. ","mstsActiveAcceptance":"Wählen Sie {payNow}, um sich bei TreviPay anzumelden, die Zwei-Faktor-Authentifizierung abzuschließen und den Kauf zu bestätigen.<span class=\\"{createAccountButtonTextClass}\\"><br /><br />Wählen Sie Jetzt registrieren um ein TreviPay-Konto zu erstellen.</span><br /><br />Haftungsausschluss<br /><br />* Alle Konten und Kreditlinien des Kaufprogramms im Rahmen des Zahlungsbedingungen-Programms werden von Multi Service Technology Solutions, Inc., einem in Florida, USA, eingetragenen Unternehmen („MSTS“), ausgestellt.<br /><br />* {businessEntityName} ist keine Partei des Kontoinhabervertrags für das Kaufprogramm. {businessEntityName} ist weder Kreditgeber noch Makler für die im Rahmen des Zahlungsbedingungen-Programms ausgegebenen Kreditlinien<br /><br />Alle Bewerbungen und Ihre Qualifikationen werden von TreviPay geprüft und entschieden. <a href=\\"https://www.trevipay.com/privacy-center/\\" target=\\"_blank\\">TreviPay Privacy Center.</a>"},"el_GR":{"cancellationRights":"Δικαίωμα Ακύρωσης","cookiePolicy":"Cookies","legalNotice":"Νομική Σημείωση","privacyPolicy":"Πολιτική Ιδιωτικού Απορρήτου","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> είναι ο εξουσιοδοτημένος μεταπωλητής και έμπορος των προϊόντων και υπηρεσιών, που προσφέρονται σε αυτό το κατάστημα.","termsOfSale":"Όροι Πώλησης","confirmDisclosure":"Υποβάλλοντας την παραγγελία μου, συμφωνώ με τους <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Όρους πώλησης</a> και την <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Πολιτική ιδιωτικού απορρήτου</a> της {businessEntityName}.","autoRenewPlanTerms":"Τσεκάροντας αυτό το πλαίσιο και ολοκληρώνοντας την αγορά σας, εξουσιοδοτείτε ρητά και επιτρέπετε στην Digital River να ανανεώνει αυτόματα την άδεια χρήσης ή τη συνδρομή που έχετε αγοράσει για διαδοχικά χρονικά διαστήματα ανανέωσης ίσα με το αρχικό χρονικό διάστημα που καθορίζεται παραπάνω, στην τιμή αγοράς για το αρχικό χρονικό διάστημα (συν τους φόρους και τα τέλη, μείον οποιασδήποτε ισχύουσας έκπτωσης) χρησιμοποιώντας τα στοιχεία πληρωμής που δώσατε κατά την αρχική αγορά, έως ότου ζητήσετε να ακυρωθεί. Θα σας αποστέλλεται τουλάχιστον ένα e-mail για να σας υπενθυμίζει κάθε επικείμενη ανανέωση. Διατηρούμε το δικαίωμα να αλλάξουμε την τιμή ανανέωσης από την ημερομηνία της επόμενης ανανέωσης, εφόσον σας ειδοποιήσουμε από πριν για την αλλαγή μέσω e-mail (μπορείτε να ζητήσετε να ακυρωθεί η αυτόματη ανανέωση με τον τρόπο που περιγράφεται πιο κάτω, αν δεν συμφωνείτε με την αλλαγή). Οι <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Όροι πώλησης</a> και η <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Πολιτική ιδιωτικού απορρήτου</a> της Digital River ισχύουν σε κάθε πράξη ανανέωσης. Μπορείτε να ακυρώσετε ανά πάσα στιγμή το πρόγραμμα αυτόματης ανανέωσης, αρκεί να συνδεθείτε στο περιβάλλον λογαριασμού (οι πληροφορίες πρόσβασης περιλαμβάνονται στο e-mail επιβεβαίωσης της παραγγελίας σας ή στη σελίδα βοήθειας του Τμήματος Εξυπηρέτησης Πελατών), να επιλέξετε το προϊόν σας και να ενεργοποιήσετε την επιλογή απενεργοποίησης της αυτόματης ανανέωσης.<br/><br/>Συμφωνώ να επιτρέπεται στην Digital River να αποθηκεύει τα στοιχεία πληρωμής μου για μελλοντικές αγορές, συμπεριλαμβανομένης της επεξεργασίας τυχόν επομένων ανανεώσεων συνδρομής που μπορεί να πραγματοποιηθούν μετά την ημερομηνία της παρούσας παραγγελίας.","agreeToTerms":"Έχω διαβάσει και συμφωνώ με τους όρους και τις χρεώσεις πιο πάνω.","idealRecurringAgreement":"Κάνοντας κλικ στο πλαίσιο, εξουσιοδοτείτε την Digital River να εισπράξει την πρώτη σας πληρωμή μέσω iDEAL και να χρησιμοποιήσει το IBAN σας για να εισπράξει τις επόμενες πληρωμές συνδρομής μέσω άμεσης χρέωσης SEPA. Μπορείτε να επανεξετάσετε τις πληροφορίες σας για την άμεση χρέωση SEPA μετά την υποβολή της παραγγελίας. <br/><br/>Ως μέρος των δικαιωμάτων σας, δικαιούστε να απαιτήσετε επιστροφή χρημάτων από την τράπεζά σας σύμφωνα με τους όρους και τις προϋποθέσεις της μεταξύ σας συμφωνίας. Επιστροφή χρημάτων πρέπει να αξιωθεί εντός 8 εβδομάδων από την ημερομηνία χρέωσης του λογαριασμού σας. "},"en_AU":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> is the authorised reseller and merchant of the products and services offered within this store.","termsOfSale":"Terms of Sale","confirmDisclosure":"By submitting my order, I agree to the <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and the <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> of {businessEntityName}.","autoRenewPlanTerms":"By checking the box below and completing your purchase, you expressly authorize and permit Digital River to automatically renew your purchased license or subscription for successive renewal terms each equal in length to the initial term specified above, at the purchase price for your initial term (plus taxes and fees, less any applicable discounts) using the payment information you provided for your initial purchase, until you cancel. At least one email will be sent to you to remind you of each upcoming renewal. We may change the renewal price as of the next renewal date if we provide you with prior notice of the change by email (you can elect to cancel automatic renewal as described below if you do not agree to the change). The Digital River <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> will apply to each renewal transaction. You may cancel your auto-renewal plan at any time by logging into the account interface (access information will be included in your order confirmation email or on the Customer Service Help page), selecting your product, and selecting the option to disable automatic renewal.<br/><br/>I agree that Digital River may store my payment information for future purchases including the processing of any subsequent subscription renewals which may occur following the date of this order.","klarnaCreditActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. Klarna will perform a quotation search with an external credit reference agency to check your eligibility. By continuing you accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_au/user\\">Klarna\'s Services Terms</a> and confirm that you have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_au/privacy\\">Klarna\'s Privacy Notice</a>.","klarnaCreditRecurringActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. Klarna will perform a quotation search with an external credit reference agency to check your eligibility. By continuing you accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_au/user\\">Klarna\'s Services Terms</a> and confirm that you have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_au/privacy\\">Klarna\'s Privacy Notice</a>.","agreeToTerms":"I have read and agree to the terms and charges above.","idealRecurringAgreement":"By clicking the box, you authorize Digital River to collect your first payment via iDEAL and use your IBAN to collect the subsequent subscription payments by SEPA direct debit. You can review your SEPA Direct Debit information after order submission. <br/><br/>As part of your rights, you are entitled to a refund from your bank under the terms and conditions of your agreement with your bank. A refund must be claimed within 8 weeks starting from the date on which your account was debited. "},"en_BE":{"privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> is the authorised retailer and merchant providing e-commerce services for this shop.","termsOfSale":"Terms and Conditions","confirmDisclosure":"By submitting my order, I agree to the <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and the <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> of {businessEntityName}.","autoRenewPlanTerms":"By checking the box below and completing your purchase, you expressly authorize and permit Digital River to automatically renew your purchased license or subscription for successive renewal terms each equal in length to the initial term specified above, at the purchase price for your initial term (plus taxes and fees, less any applicable discounts) using the payment information you provided for your initial purchase, until you cancel. At least one email will be sent to you to remind you of each upcoming renewal. We may change the renewal price as of the next renewal date if we provide you with prior notice of the change by email (you can elect to cancel automatic renewal as described below if you do not agree to the change). The Digital River <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> will apply to each renewal transaction. You may cancel your auto-renewal plan at any time by logging into the account interface (access information will be included in your order confirmation email or on the Customer Service Help page), selecting your product, and selecting the option to disable automatic renewal.<br/><br/>I agree that Digital River may store my payment information for future purchases including the processing of any subsequent subscription renewals which may occur following the date of this order.","klarnaCreditActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. By continuing you accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_be/user\\">Klarna’s Services Terms</a> and confirm that you have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_be/privacy\\">Klarna\'s Privacy Notice</a>.","klarnaCreditRecurringActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. By continuing you accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_be/user\\">Klarna’s Services Terms</a> and confirm that you have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_be/privacy\\">Klarna\'s Privacy Notice</a>.","idealRecurringAgreement":"By clicking the box, you authorize Digital River to collect your first payment via iDEAL and use your IBAN to collect the subsequent subscription payments by SEPA direct debit. You can review your SEPA Direct Debit information after order submission. <br/><br/>As part of your rights, you are entitled to a refund from your bank under the terms and conditions of your agreement with your bank. A refund must be claimed within 8 weeks starting from the date on which your account was debited. "},"en_CA":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> is the authorised reseller and merchant of the products and services offered within this store.","termsOfSale":"Terms of Sale","confirmDisclosure":"By submitting my order, I agree to the <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and the <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> of {businessEntityName}.","autoRenewPlanTerms":"By checking the box below and completing your purchase, you expressly authorize and permit Digital River to automatically renew your purchased license or subscription for successive renewal terms each equal in length to the initial term specified above, at the purchase price for your initial term (plus taxes and fees, less any applicable discounts) using the payment information you provided for your initial purchase, until you cancel. At least one email will be sent to you to remind you of each upcoming renewal. We may change the renewal price as of the next renewal date if we provide you with prior notice of the change by email (you can elect to cancel automatic renewal as described below if you do not agree to the change). The Digital River <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> will apply to each renewal transaction. You may cancel your auto-renewal plan at any time by logging into the account interface (access information will be included in your order confirmation email or on the Customer Service Help page), selecting your product, and selecting the option to disable automatic renewal.<br/><br/>I agree that Digital River may store my payment information for future purchases including the processing of any subsequent subscription renewals which may occur following the date of this order.","klarnaCreditActiveAcceptance":"View the Privacy Notice, Klarna Shopping Service terms and Payment method terms <a target=\\"_blank\\" href=\\"https://www.klarna.com/ca/legal/\\">here</a>.","klarnaCreditRecurringActiveAcceptance":"View the Privacy Notice, Klarna Shopping Service terms and Payment method terms <a target=\\"_blank\\" href=\\"https://www.klarna.com/ca/legal/\\">here</a>.","agreeToTerms":"I have read and agree to the terms and charges above.","idealRecurringAgreement":"By clicking the box, you authorize Digital River to collect your first payment via iDEAL and use your IBAN to collect the subsequent subscription payments by SEPA direct debit. You can review your SEPA Direct Debit information after order submission. <br/><br/>As part of your rights, you are entitled to a refund from your bank under the terms and conditions of your agreement with your bank. A refund must be claimed within 8 weeks starting from the date on which your account was debited. "},"en_CH":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> is the authorized reseller and merchant of the products and services offered within this store.","termsOfSale":"Terms of Sale","confirmDisclosure":"By submitting my order, I agree to the <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and the <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> of {businessEntityName}.","autoRenewPlanTerms":"By checking the box below and completing your purchase, you expressly authorize and permit Digital River to automatically renew your purchased license or subscription for successive renewal terms each equal in length to the initial term specified above, at the purchase price for your initial term (plus taxes and fees, less any applicable discounts) using the payment information you provided for your initial purchase, until you cancel. At least one email will be sent to you to remind you of each upcoming renewal. We may change the renewal price as of the next renewal date if we provide you with prior notice of the change by email (you can elect to cancel automatic renewal as described below if you do not agree to the change). The Digital River <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> will apply to each renewal transaction. You may cancel your auto-renewal plan at any time by logging into the account interface (access information will be included in your order confirmation email or on the Customer Service Help page), selecting your product, and selecting the option to disable automatic renewal.<br/><br/>I agree that Digital River may store my payment information for future purchases including the processing of any subsequent subscription renewals which may occur following the date of this order.","klarnaCreditActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. By continuing you accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_ch/user\\">Klarna\'s Services Terms</a> and confirm that you have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_ch/privacy_bp\\">Klarna\'s Privacy Notice</a>.","klarnaCreditRecurringActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. By continuing you accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_ch/user\\">Klarna\'s Services Terms</a> and confirm that you have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_ch/privacy_bp\\">Klarna\'s Privacy Notice</a>.","agreeToTerms":"I have read and agree to the terms and charges above.","idealRecurringAgreement":"By clicking the box, you authorize Digital River to collect your first payment via iDEAL and use your IBAN to collect the subsequent subscription payments by SEPA direct debit. You can review your SEPA Direct Debit information after order submission. <br/><br/>As part of your rights, you are entitled to a refund from your bank under the terms and conditions of your agreement with your bank. A refund must be claimed within 8 weeks starting from the date on which your account was debited. "},"en_DK":{"privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> is the authorised retailer and merchant providing e-commerce services for this shop.","termsOfSale":"Terms and Conditions","confirmDisclosure":"By submitting my order, I agree to the <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and the <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> of {businessEntityName}.","autoRenewPlanTerms":"By checking the box below and completing your purchase, you expressly authorize and permit Digital River to automatically renew your purchased license or subscription for successive renewal terms each equal in length to the initial term specified above, at the purchase price for your initial term (plus taxes and fees, less any applicable discounts) using the payment information you provided for your initial purchase, until you cancel. At least one email will be sent to you to remind you of each upcoming renewal. We may change the renewal price as of the next renewal date if we provide you with prior notice of the change by email (you can elect to cancel automatic renewal as described below if you do not agree to the change). The Digital River <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> will apply to each renewal transaction. You may cancel your auto-renewal plan at any time by logging into the account interface (access information will be included in your order confirmation email or on the Customer Service Help page), selecting your product, and selecting the option to disable automatic renewal.<br/><br/>I agree that Digital River may store my payment information for future purchases including the processing of any subsequent subscription renewals which may occur following the date of this order.","klarnaCreditActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. Klarna will perform a quotation search with an external credit reference agency to check your eligibility. By continuing you accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_dk/user\\">Klarna\'s Services Terms</a> and confirm that you have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_dk/privacy\\">Klarna\'s Privacy Notice</a>.","klarnaCreditRecurringActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. Klarna will perform a quotation search with an external credit reference agency to check your eligibility. By continuing you accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_dk/user\\">Klarna\'s Services Terms</a> and confirm that you have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_dk/privacy\\">Klarna\'s Privacy Notice</a>.","idealRecurringAgreement":"By clicking the box, you authorize Digital River to collect your first payment via iDEAL and use your IBAN to collect the subsequent subscription payments by SEPA direct debit. You can review your SEPA Direct Debit information after order submission. <br/><br/>As part of your rights, you are entitled to a refund from your bank under the terms and conditions of your agreement with your bank. A refund must be claimed within 8 weeks starting from the date on which your account was debited. "},"en_FI":{"privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> is the authorised retailer and merchant providing e-commerce services for this shop.","termsOfSale":"Terms and Conditions","confirmDisclosure":"By submitting my order, I agree to the <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and the <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> of {businessEntityName}.","autoRenewPlanTerms":"By checking the box below and completing your purchase, you expressly authorize and permit Digital River to automatically renew your purchased license or subscription for successive renewal terms each equal in length to the initial term specified above, at the purchase price for your initial term (plus taxes and fees, less any applicable discounts) using the payment information you provided for your initial purchase, until you cancel. At least one email will be sent to you to remind you of each upcoming renewal. We may change the renewal price as of the next renewal date if we provide you with prior notice of the change by email (you can elect to cancel automatic renewal as described below if you do not agree to the change). The Digital River <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> will apply to each renewal transaction. You may cancel your auto-renewal plan at any time by logging into the account interface (access information will be included in your order confirmation email or on the Customer Service Help page), selecting your product, and selecting the option to disable automatic renewal.<br/><br/>I agree that Digital River may store my payment information for future purchases including the processing of any subsequent subscription renewals which may occur following the date of this order.","klarnaCreditActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. Klarna will perform a quotation search with an external credit reference agency to check your eligibility. By continuing you accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_fi/user\\">Klarna\'s Services Terms</a> and confirm that you have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_fi/privacy\\">Klarna\'s Privacy Notice</a>.","klarnaCreditRecurringActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. Klarna will perform a quotation search with an external credit reference agency to check your eligibility. By continuing you accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_fi/user\\">Klarna\'s Services Terms</a> and confirm that you have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_fi/privacy\\">Klarna\'s Privacy Notice</a>.","idealRecurringAgreement":"By clicking the box, you authorize Digital River to collect your first payment via iDEAL and use your IBAN to collect the subsequent subscription payments by SEPA direct debit. You can review your SEPA Direct Debit information after order submission. <br/><br/>As part of your rights, you are entitled to a refund from your bank under the terms and conditions of your agreement with your bank. A refund must be claimed within 8 weeks starting from the date on which your account was debited. "},"en_GB":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> is the authorised reseller and merchant of the products and services offered within this store.","termsOfSale":"Terms of Sale","confirmDisclosure":"By submitting my order, I agree to the <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and the <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> of {businessEntityName}.","autoRenewPlanTerms":"By checking the box below and completing your purchase, you expressly authorize and permit Digital River to automatically renew your purchased license or subscription for successive renewal terms each equal in length to the initial term specified above, at the purchase price for your initial term (plus taxes and fees, less any applicable discounts) using the payment information you provided for your initial purchase, until you cancel. At least one email will be sent to you to remind you of each upcoming renewal. We may change the renewal price as of the next renewal date if we provide you with prior notice of the change by email (you can elect to cancel automatic renewal as described below if you do not agree to the change). The Digital River <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> will apply to each renewal transaction. You may cancel your auto-renewal plan at any time by logging into the account interface (access information will be included in your order confirmation email or on the Customer Service Help page), selecting your product, and selecting the option to disable automatic renewal.<br/><br/>I agree that Digital River may store my payment information for future purchases including the processing of any subsequent subscription renewals which may occur following the date of this order.","klarnaCreditActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. Klarna will perform a quotation search with an external credit reference agency to check your eligibility. By continuing you accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_gb/user\\">Klarna\'s Services Terms</a> and confirm that you have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_gb/privacy\\">Klarna\'s Privacy Notice</a>.","klarnaCreditRecurringActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. Klarna will perform a quotation search with an external credit reference agency to check your eligibility. By continuing you accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_gb/user\\">Klarna\'s Services Terms</a> and confirm that you have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_gb/privacy\\">Klarna\'s Privacy Notice</a>.","agreeToTerms":"I have read and agree to the terms and charges above.","idealRecurringAgreement":"By clicking the box, you authorize Digital River to collect your first payment via iDEAL and use your IBAN to collect the subsequent subscription payments by SEPA direct debit. You can review your SEPA Direct Debit information after order submission. <br/><br/>As part of your rights, you are entitled to a refund from your bank under the terms and conditions of your agreement with your bank. A refund must be claimed within 8 weeks starting from the date on which your account was debited. ","mstsActiveAcceptance":"Select {payNow} to login to TreviPay, complete Two-factor authentication and confirm purchase.<span class=\\"{createAccountButtonTextClass}\\"><br /><br />Select Enroll Now to create TreviPay Account.</span><br /><br />DISCLAIMER<br /><br />* All the purchase program accounts and credit lines under the Payment Terms program are issued by Multi Service Technology Solutions, Inc., a Florida USA incorporated company (“MSTS”).<br /><br />* {businessEntityName} is not a party to the Purchase Program Accountholder Agreement. {businessEntityName} is neither a lender nor a broker for the credit lines issued under the Payment Terms program<br /><br />All the applications and your qualifications will be reviewed and decided by TreviPay. <a href=\\"https://www.trevipay.com/privacy-center/\\" target=\\"_blank\\">TreviPay’s Privacy Center.</a>"},"en_IE":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> is the authorised reseller and merchant of the products and services offered within this store.","termsOfSale":"Terms of Sale","confirmDisclosure":"By submitting my order, I agree to the <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and the <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> of {businessEntityName}.","autoRenewPlanTerms":"By checking the box below and completing your purchase, you expressly authorize and permit Digital River to automatically renew your purchased license or subscription for successive renewal terms each equal in length to the initial term specified above, at the purchase price for your initial term (plus taxes and fees, less any applicable discounts) using the payment information you provided for your initial purchase, until you cancel. At least one email will be sent to you to remind you of each upcoming renewal. We may change the renewal price as of the next renewal date if we provide you with prior notice of the change by email (you can elect to cancel automatic renewal as described below if you do not agree to the change). The Digital River <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> will apply to each renewal transaction. You may cancel your auto-renewal plan at any time by logging into the account interface (access information will be included in your order confirmation email or on the Customer Service Help page), selecting your product, and selecting the option to disable automatic renewal.<br/><br/>I agree that Digital River may store my payment information for future purchases including the processing of any subsequent subscription renewals which may occur following the date of this order.","klarnaCreditActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. Klarna will perform a quotation search with an external credit reference agency to check your eligibility. By continuing you accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_ie/user\\">Klarna\'s Services Terms</a> and confirm that you have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_ie/privacy\\">Klarna\'s Privacy Notice</a>.","klarnaCreditRecurringActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. Klarna will perform a quotation search with an external credit reference agency to check your eligibility. By continuing you accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_ie/user\\">Klarna\'s Services Terms</a> and confirm that you have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_ie/privacy\\">Klarna\'s Privacy Notice</a>.","agreeToTerms":"I have read and agree to the terms and charges above.","idealRecurringAgreement":"By clicking the box, you authorize Digital River to collect your first payment via iDEAL and use your IBAN to collect the subsequent subscription payments by SEPA direct debit. You can review your SEPA Direct Debit information after order submission. <br/><br/>As part of your rights, you are entitled to a refund from your bank under the terms and conditions of your agreement with your bank. A refund must be claimed within 8 weeks starting from the date on which your account was debited. ","mstsActiveAcceptance":"Select {payNow} to login to TreviPay, complete Two-factor authentication and confirm purchase.<span class=\\"{createAccountButtonTextClass}\\"><br /><br />Select Enroll Now to create TreviPay Account.</span><br /><br />DISCLAIMER<br /><br />* All the purchase program accounts and credit lines under the Payment Terms program are issued by Multi Service Technology Solutions, Inc., a Florida USA incorporated company (“MSTS”).<br /><br />* {businessEntityName} is not a party to the Purchase Program Accountholder Agreement. {businessEntityName} is neither a lender nor a broker for the credit lines issued under the Payment Terms program<br /><br />All the applications and your qualifications will be reviewed and decided by TreviPay. <a href=\\"https://www.trevipay.com/privacy-center/\\" target=\\"_blank\\">TreviPay’s Privacy Center.</a>"},"en_IN":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> is the authorised reseller and merchant of the products and services offered within this store.","termsOfSale":"Terms of Sale","confirmDisclosure":"By submitting my order, I agree to the <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and the <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> of {businessEntityName}.","autoRenewPlanTerms":"By checking the box below and completing your purchase, you expressly authorize and permit Digital River to automatically renew your purchased license or subscription for successive renewal terms each equal in length to the initial term specified above, at the purchase price for your initial term (plus taxes and fees, less any applicable discounts) using the payment information you provided for your initial purchase, until you cancel. At least one email will be sent to you to remind you of each upcoming renewal. We may change the renewal price as of the next renewal date if we provide you with prior notice of the change by email (you can elect to cancel automatic renewal as described below if you do not agree to the change). The Digital River <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> will apply to each renewal transaction. You may cancel your auto-renewal plan at any time by logging into the account interface (access information will be included in your order confirmation email or on the Customer Service Help page), selecting your product, and selecting the option to disable automatic renewal.<br/><br/>I agree that Digital River may store my payment information for future purchases including the processing of any subsequent subscription renewals which may occur following the date of this order.","klarnaCreditActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. Klarna will perform a quotation search with an external credit reference agency to check your eligibility. By continuing you accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_in/user\\">Klarna\'s Services Terms</a> and confirm that you have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_in/privacy\\">Klarna\'s Privacy Notice</a>.","klarnaCreditRecurringActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. Klarna will perform a quotation search with an external credit reference agency to check your eligibility. By continuing you accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_in/user\\">Klarna\'s Services Terms</a> and confirm that you have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_in/privacy\\">Klarna\'s Privacy Notice</a>.","agreeToTerms":"I have read and agree to the terms and charges above.","idealRecurringAgreement":"By clicking the box, you authorize Digital River to collect your first payment via iDEAL and use your IBAN to collect the subsequent subscription payments by SEPA direct debit. You can review your SEPA Direct Debit information after order submission. <br/><br/>As part of your rights, you are entitled to a refund from your bank under the terms and conditions of your agreement with your bank. A refund must be claimed within 8 weeks starting from the date on which your account was debited. "},"en_MY":{"privacyPolicy":"Privacy Policy","termsOfSale":"Terms and Conditions","confirmDisclosure":"By submitting my order, I agree to the <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and the <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> of {businessEntityName}.","autoRenewPlanTerms":"By checking the box below and completing your purchase, you expressly authorize and permit Digital River to automatically renew your purchased license or subscription for successive renewal terms each equal in length to the initial term specified above, at the purchase price for your initial term (plus taxes and fees, less any applicable discounts) using the payment information you provided for your initial purchase, until you cancel. At least one email will be sent to you to remind you of each upcoming renewal. We may change the renewal price as of the next renewal date if we provide you with prior notice of the change by email (you can elect to cancel automatic renewal as described below if you do not agree to the change). The Digital River <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> will apply to each renewal transaction. You may cancel your auto-renewal plan at any time by logging into the account interface (access information will be included in your order confirmation email or on the Customer Service Help page), selecting your product, and selecting the option to disable automatic renewal.<br/><br/>I agree that Digital River may store my payment information for future purchases including the processing of any subsequent subscription renewals which may occur following the date of this order.","klarnaCreditActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. Klarna will perform a quotation search with an external credit reference agency to check your eligibility. By continuing you accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_my/user\\">Klarna\'s Services Terms</a> and confirm that you have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_my/privacy\\">Klarna\'s Privacy Notice</a>.","klarnaCreditRecurringActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. Klarna will perform a quotation search with an external credit reference agency to check your eligibility. By continuing you accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_my/user\\">Klarna\'s Services Terms</a> and confirm that you have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_my/privacy\\">Klarna\'s Privacy Notice</a>.","idealRecurringAgreement":"By clicking the box, you authorize Digital River to collect your first payment via iDEAL and use your IBAN to collect the subsequent subscription payments by SEPA direct debit. You can review your SEPA Direct Debit information after order submission. <br/><br/>As part of your rights, you are entitled to a refund from your bank under the terms and conditions of your agreement with your bank. A refund must be claimed within 8 weeks starting from the date on which your account was debited. "},"en_NL":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> is the authorised reseller and merchant of the products and services offered within this store.","termsOfSale":"Terms of Sale","confirmDisclosure":"By submitting my order, I agree to the <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and the <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> of {businessEntityName}.","autoRenewPlanTerms":"By checking the box below and completing your purchase, you expressly authorize and permit Digital River to automatically renew your purchased license or subscription for successive renewal terms each equal in length to the initial term specified above, at the purchase price for your initial term (plus taxes and fees, less any applicable discounts) using the payment information you provided for your initial purchase, until you cancel. At least one email will be sent to you to remind you of each upcoming renewal. We may change the renewal price as of the next renewal date if we provide you with prior notice of the change by email (you can elect to cancel automatic renewal as described below if you do not agree to the change). The Digital River <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> will apply to each renewal transaction. You may cancel your auto-renewal plan at any time by logging into the account interface (access information will be included in your order confirmation email or on the Customer Service Help page), selecting your product, and selecting the option to disable automatic renewal.<br/><br/>I agree that Digital River may store my payment information for future purchases including the processing of any subsequent subscription renewals which may occur following the date of this order.","klarnaCreditActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. Klarna will perform a quotation search with an external credit reference agency to check your eligibility. By continuing you accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_nl/user\\">Klarna\'s Services Terms</a> and confirm that you have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_nl/privacy\\">Klarna\'s Privacy Notice</a>.","klarnaCreditRecurringActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. Klarna will perform a quotation search with an external credit reference agency to check your eligibility. By continuing you accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_nl/user\\">Klarna\'s Services Terms</a> and confirm that you have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_nl/privacy\\">Klarna\'s Privacy Notice</a>.","agreeToTerms":"I have read and agree to the terms and charges above.","idealRecurringAgreement":"By clicking the box, you authorize Digital River to collect your first payment via iDEAL and use your IBAN to collect the subsequent subscription payments by SEPA direct debit. You can review your SEPA Direct Debit information after order submission. <br/><br/>As part of your rights, you are entitled to a refund from your bank under the terms and conditions of your agreement with your bank. A refund must be claimed within 8 weeks starting from the date on which your account was debited. "},"en_NO":{"privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> is the authorised retailer and merchant providing e-commerce services for this shop.","termsOfSale":"Terms and Conditions","confirmDisclosure":"By submitting my order, I agree to the <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and the <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> of {businessEntityName}.","autoRenewPlanTerms":"By checking the box below and completing your purchase, you expressly authorize and permit Digital River to automatically renew your purchased license or subscription for successive renewal terms each equal in length to the initial term specified above, at the purchase price for your initial term (plus taxes and fees, less any applicable discounts) using the payment information you provided for your initial purchase, until you cancel. At least one email will be sent to you to remind you of each upcoming renewal. We may change the renewal price as of the next renewal date if we provide you with prior notice of the change by email (you can elect to cancel automatic renewal as described below if you do not agree to the change). The Digital River <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> will apply to each renewal transaction. You may cancel your auto-renewal plan at any time by logging into the account interface (access information will be included in your order confirmation email or on the Customer Service Help page), selecting your product, and selecting the option to disable automatic renewal.<br/><br/>I agree that Digital River may store my payment information for future purchases including the processing of any subsequent subscription renewals which may occur following the date of this order.","klarnaCreditActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. Klarna will perform a quotation search with an external credit reference agency to check your eligibility. By continuing you accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_no/user\\">Klarna\'s Services Terms</a> and confirm that you have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_no/privacy\\">Klarna\'s Privacy Notice</a>.","klarnaCreditRecurringActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. Klarna will perform a quotation search with an external credit reference agency to check your eligibility. By continuing you accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_no/user\\">Klarna\'s Services Terms</a> and confirm that you have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_no/privacy\\">Klarna\'s Privacy Notice</a>.","idealRecurringAgreement":"By clicking the box, you authorize Digital River to collect your first payment via iDEAL and use your IBAN to collect the subsequent subscription payments by SEPA direct debit. You can review your SEPA Direct Debit information after order submission. <br/><br/>As part of your rights, you are entitled to a refund from your bank under the terms and conditions of your agreement with your bank. A refund must be claimed within 8 weeks starting from the date on which your account was debited. "},"en_NZ":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> is the authorised reseller and merchant of the products and services offered within this store.","termsOfSale":"Terms of Sale","confirmDisclosure":"By submitting my order, I agree to the <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and the <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> of {businessEntityName}.","autoRenewPlanTerms":"By checking the box below and completing your purchase, you expressly authorize and permit Digital River to automatically renew your purchased license or subscription for successive renewal terms each equal in length to the initial term specified above, at the purchase price for your initial term (plus taxes and fees, less any applicable discounts) using the payment information you provided for your initial purchase, until you cancel. At least one email will be sent to you to remind you of each upcoming renewal. We may change the renewal price as of the next renewal date if we provide you with prior notice of the change by email (you can elect to cancel automatic renewal as described below if you do not agree to the change). The Digital River <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> will apply to each renewal transaction. You may cancel your auto-renewal plan at any time by logging into the account interface (access information will be included in your order confirmation email or on the Customer Service Help page), selecting your product, and selecting the option to disable automatic renewal.<br/><br/>I agree that Digital River may store my payment information for future purchases including the processing of any subsequent subscription renewals which may occur following the date of this order.","klarnaCreditActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. Klarna will perform a quotation search with an external credit reference agency to check your eligibility. By continuing you accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_nz/user\\">Klarna\'s Services Terms</a> and confirm that you have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_nz/privacy\\">Klarna\'s Privacy Notice</a>.","klarnaCreditRecurringActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. Klarna will perform a quotation search with an external credit reference agency to check your eligibility. By continuing you accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_nz/user\\">Klarna\'s Services Terms</a> and confirm that you have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_nz/privacy\\">Klarna\'s Privacy Notice</a>.","agreeToTerms":"I have read and agree to the terms and charges above.","idealRecurringAgreement":"By clicking the box, you authorize Digital River to collect your first payment via iDEAL and use your IBAN to collect the subsequent subscription payments by SEPA direct debit. You can review your SEPA Direct Debit information after order submission. <br/><br/>As part of your rights, you are entitled to a refund from your bank under the terms and conditions of your agreement with your bank. A refund must be claimed within 8 weeks starting from the date on which your account was debited. "},"en_PR":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> is the authorised reseller and merchant of the products and services offered within this store.","termsOfSale":"Terms of Sale","confirmDisclosure":"By submitting my order, I agree to the <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and the <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> of {businessEntityName}.","autoRenewPlanTerms":"By checking the box below and completing your purchase, you expressly authorize and permit Digital River to automatically renew your purchased license or subscription for successive renewal terms each equal in length to the initial term specified above, at the purchase price for your initial term (plus taxes and fees, less any applicable discounts) using the payment information you provided for your initial purchase, until you cancel. At least one email will be sent to you to remind you of each upcoming renewal. We may change the renewal price as of the next renewal date if we provide you with prior notice of the change by email (you can elect to cancel automatic renewal as described below if you do not agree to the change). The Digital River <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> will apply to each renewal transaction. You may cancel your auto-renewal plan at any time by logging into the account interface (access information will be included in your order confirmation email or on the Customer Service Help page), selecting your product, and selecting the option to disable automatic renewal.<br/><br/>I agree that Digital River may store my payment information for future purchases including the processing of any subsequent subscription renewals which may occur following the date of this order.","klarnaCreditActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. Klarna will perform a quotation search with an external credit reference agency to check your eligibility. By continuing you accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_pr/user\\">Klarna\'s Services Terms</a> and confirm that you have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_pr/privacy\\">Klarna\'s Privacy Notice</a>.","klarnaCreditRecurringActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. Klarna will perform a quotation search with an external credit reference agency to check your eligibility. By continuing you accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_pr/user\\">Klarna\'s Services Terms</a> and confirm that you have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_pr/privacy\\">Klarna\'s Privacy Notice</a>.","agreeToTerms":"I have read and agree to the terms and charges above.","idealRecurringAgreement":"By clicking the box, you authorize Digital River to collect your first payment via iDEAL and use your IBAN to collect the subsequent subscription payments by SEPA direct debit. You can review your SEPA Direct Debit information after order submission. <br/><br/>As part of your rights, you are entitled to a refund from your bank under the terms and conditions of your agreement with your bank. A refund must be claimed within 8 weeks starting from the date on which your account was debited. "},"en_SE":{"privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> is the authorised retailer and merchant providing e-commerce services for this shop.","termsOfSale":"Terms and Conditions","confirmDisclosure":"By submitting my order, I agree to the <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and the <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> of {businessEntityName}.","autoRenewPlanTerms":"By checking the box below and completing your purchase, you expressly authorize and permit Digital River to automatically renew your purchased license or subscription for successive renewal terms each equal in length to the initial term specified above, at the purchase price for your initial term (plus taxes and fees, less any applicable discounts) using the payment information you provided for your initial purchase, until you cancel. At least one email will be sent to you to remind you of each upcoming renewal. We may change the renewal price as of the next renewal date if we provide you with prior notice of the change by email (you can elect to cancel automatic renewal as described below if you do not agree to the change). The Digital River <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> will apply to each renewal transaction. You may cancel your auto-renewal plan at any time by logging into the account interface (access information will be included in your order confirmation email or on the Customer Service Help page), selecting your product, and selecting the option to disable automatic renewal.<br/><br/>I agree that Digital River may store my payment information for future purchases including the processing of any subsequent subscription renewals which may occur following the date of this order.","klarnaCreditActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. Klarna will perform a quotation search with an external credit reference agency to check your eligibility. By continuing you accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_se/user\\">Klarna\'s Services Terms</a> and confirm that you have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_se/privacy\\">Klarna\'s Privacy Notice</a>.","klarnaCreditRecurringActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. Klarna will perform a quotation search with an external credit reference agency to check your eligibility. By continuing you accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_se/user\\">Klarna\'s Services Terms</a> and confirm that you have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_se/privacy\\">Klarna\'s Privacy Notice</a>.","idealRecurringAgreement":"By clicking the box, you authorize Digital River to collect your first payment via iDEAL and use your IBAN to collect the subsequent subscription payments by SEPA direct debit. You can review your SEPA Direct Debit information after order submission. <br/><br/>As part of your rights, you are entitled to a refund from your bank under the terms and conditions of your agreement with your bank. A refund must be claimed within 8 weeks starting from the date on which your account was debited. "},"en_SG":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> is the authorised reseller and merchant of the products and services offered within this store.","termsOfSale":"Terms of Sale","confirmDisclosure":"By submitting my order, I agree to the <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and the <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> of {businessEntityName}.","autoRenewPlanTerms":"By checking the box below and completing your purchase, you expressly authorize and permit Digital River to automatically renew your purchased license or subscription for successive renewal terms each equal in length to the initial term specified above, at the purchase price for your initial term (plus taxes and fees, less any applicable discounts) using the payment information you provided for your initial purchase, until you cancel. At least one email will be sent to you to remind you of each upcoming renewal. We may change the renewal price as of the next renewal date if we provide you with prior notice of the change by email (you can elect to cancel automatic renewal as described below if you do not agree to the change). The Digital River <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> will apply to each renewal transaction. You may cancel your auto-renewal plan at any time by logging into the account interface (access information will be included in your order confirmation email or on the Customer Service Help page), selecting your product, and selecting the option to disable automatic renewal.<br/><br/>I agree that Digital River may store my payment information for future purchases including the processing of any subsequent subscription renewals which may occur following the date of this order.","klarnaCreditActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. Klarna will perform a quotation search with an external credit reference agency to check your eligibility. By continuing you accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_sg/user\\">Klarna\'s Services Terms</a> and confirm that you have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_sg/privacy\\">Klarna\'s Privacy Notice</a>.","klarnaCreditRecurringActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. Klarna will perform a quotation search with an external credit reference agency to check your eligibility. By continuing you accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_sg/user\\">Klarna\'s Services Terms</a> and confirm that you have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_sg/privacy\\">Klarna\'s Privacy Notice</a>.","agreeToTerms":"I have read and agree to the terms and charges above.","idealRecurringAgreement":"By clicking the box, you authorize Digital River to collect your first payment via iDEAL and use your IBAN to collect the subsequent subscription payments by SEPA direct debit. You can review your SEPA Direct Debit information after order submission. <br/><br/>As part of your rights, you are entitled to a refund from your bank under the terms and conditions of your agreement with your bank. A refund must be claimed within 8 weeks starting from the date on which your account was debited. "},"en_US":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> is the authorized reseller and merchant of the products and services offered within this store.","termsOfSale":"Terms of Sale","confirmDisclosure":"By submitting my order, I agree to the <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and the <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> of {businessEntityName}.","californiaPrivacyRights":"Your California Privacy Rights","autoRenewPlanTerms":"By checking the box below and completing your purchase, you expressly authorize and permit Digital River to automatically renew your purchased license or subscription for successive renewal terms each equal in length to the initial term specified above, at the purchase price for your initial term (plus taxes and fees, less any applicable discounts) using the payment information you provided for your initial purchase, until you cancel. At least one email will be sent to you to remind you of each upcoming renewal. We may change the renewal price as of the next renewal date if we provide you with prior notice of the change by email (you can elect to cancel automatic renewal as described below if you do not agree to the change). The Digital River <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> will apply to each renewal transaction. You may cancel your auto-renewal plan at any time by logging into the account interface (access information will be included in your order confirmation email or on the Customer Service Help page), selecting your product, and selecting the option to disable automatic renewal.<br/><br/>I agree that Digital River may store my payment information for future purchases including the processing of any subsequent subscription renewals which may occur following the date of this order.","klarnaCreditActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. By continuing you accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_us/user\\">Klarna\'s Services Terms</a> and confirm that you have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_us/privacy\\">Klarna\'s Privacy Policy</a>.","klarnaCreditRecurringActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. By continuing you accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_us/user\\">Klarna\'s Services Terms</a> and confirm that you have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_us/privacy\\">Klarna\'s Privacy Policy</a>.","agreeToTerms":"I have read and agree to the terms and charges above.","idealRecurringAgreement":"By clicking the box, you authorize Digital River to collect your first payment via iDEAL and use your IBAN to collect the subsequent subscription payments by SEPA direct debit. You can review your SEPA Direct Debit information after order submission. <br/><br/>As part of your rights, you are entitled to a refund from your bank under the terms and conditions of your agreement with your bank. A refund must be claimed within 8 weeks starting from the date on which your account was debited. ","mstsActiveAcceptance":"Select {payNow} to login to TreviPay, complete Two-factor authentication and confirm purchase.<span class=\\"{createAccountButtonTextClass}\\"><br /><br />Select Enroll Now to create TreviPay Account.</span><br /><br />DISCLAIMER<br /><br />* All the purchase program accounts and credit lines under the Payment Terms program are issued by Multi Service Technology Solutions, Inc., a Florida USA incorporated company (“MSTS”).<br /><br />* {businessEntityName} is not a party to the Purchase Program Accountholder Agreement. {businessEntityName} is neither a lender nor a broker for the credit lines issued under the Payment Terms program<br /><br />All the applications and your qualifications will be reviewed and decided by TreviPay. <a href=\\"https://www.trevipay.com/privacy-center/\\" target=\\"_blank\\">TreviPay’s Privacy Center.</a>"},"en_ZA":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> is the authorised reseller and merchant of the products and services offered within this store.","termsOfSale":"Terms of Sale","confirmDisclosure":"By submitting my order, I agree to the <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and the <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> of {businessEntityName}.","autoRenewPlanTerms":"By checking the box below and completing your purchase, you expressly authorize and permit Digital River to automatically renew your purchased license or subscription for successive renewal terms each equal in length to the initial term specified above, at the purchase price for your initial term (plus taxes and fees, less any applicable discounts) using the payment information you provided for your initial purchase, until you cancel. At least one email will be sent to you to remind you of each upcoming renewal. We may change the renewal price as of the next renewal date if we provide you with prior notice of the change by email (you can elect to cancel automatic renewal as described below if you do not agree to the change). The Digital River <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> will apply to each renewal transaction. You may cancel your auto-renewal plan at any time by logging into the account interface (access information will be included in your order confirmation email or on the Customer Service Help page), selecting your product, and selecting the option to disable automatic renewal.<br/><br/>I agree that Digital River may store my payment information for future purchases including the processing of any subsequent subscription renewals which may occur following the date of this order.","klarnaCreditActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. Klarna will perform a quotation search with an external credit reference agency to check your eligibility. By continuing you accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_za/user\\">Klarna\'s Services Terms</a> and confirm that you have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_za/privacy\\">Klarna\'s Privacy Notice</a>.","klarnaCreditRecurringActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. Klarna will perform a quotation search with an external credit reference agency to check your eligibility. By continuing you accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_za/user\\">Klarna\'s Services Terms</a> and confirm that you have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_za/privacy\\">Klarna\'s Privacy Notice</a>.","agreeToTerms":"I have read and agree to the terms and charges above.","idealRecurringAgreement":"By clicking the box, you authorize Digital River to collect your first payment via iDEAL and use your IBAN to collect the subsequent subscription payments by SEPA direct debit. You can review your SEPA Direct Debit information after order submission. <br/><br/>As part of your rights, you are entitled to a refund from your bank under the terms and conditions of your agreement with your bank. A refund must be claimed within 8 weeks starting from the date on which your account was debited. "},"es_AR":{"cancellationRights":"Derechos de cancelación","cookiePolicy":"Cookies","legalNotice":"Aviso legal","privacyPolicy":"Política de privacidad","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> es el revendedor y comercializador autorizado de los productos ofrecidos en esta tienda.","termsOfSale":"Términos de la venta","confirmDisclosure":"Al enviar mi pedido, acepto los <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Términos de ventas</a> y la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Política de privacidad</a> de {businessEntityName}.","autoRenewPlanTerms":"Al marcar la casilla que aparece a continuación y finalizar la compra, usted autoriza y otorga permiso de forma expresa a Digital River para renovar automáticamente la licencia o suscripción en periodos de renovación sucesivos de idéntica duración a la del periodo inicial especificado anteriormente, al precio de compra de su periodo inicial (más impuestos y recargos, restando los descuentos aplicables) utilizando la información de pago que facilitó para la primera compra, hasta que usted lo cancele. Recibirá al menos un correo electrónico para recordarle cada renovación automática. Podemos cambiar el precio de renovación a partir de la próxima fecha de renovación, siempre y cuando le avisemos del cambio con antelación por correo electrónico (usted podrá decidir si desea cancelar la renovación automática tal como se describe a continuación si no está de acuerdo con el cambio). Los <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Términos de venta</a> y la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Política de confidencialidad</a> de Digital River se aplicarán en todas las transacciones de renovación. Puede cancelar su plan de renovación automática en cualquier momento iniciando sesión en la interfaz de la cuenta (encontrará la información de acceso en la confirmación de pedido que recibió por correo electrónico o en la página de ayuda del Servicio de Atención al Cliente), seleccionando el producto y luego la opción de desactivar la renovación automática.<br/><br/>Autorizo a Digital River a almacenar mi información de pago para futuras compras, incluido el procesamiento de cualquier renovación de suscripción que se produzca después de la fecha de este pedido.","agreeToTerms":"He leído y acepto los términos y cargos arriba detallados.","idealRecurringAgreement":"Al hacer clic en la casilla, autoriza a Digital River a cobrar su primer pago a través de iDEAL y a utilizar su IBAN para cobrar los siguientes pagos de la suscripción mediante domiciliación bancaria SEPA. Puede revisar la información de su adeudo directo SEPA después de enviar el pedido. <br/><br/>Tiene derecho a recibir un reembolso de su banco según los términos y condiciones de su acuerdo con su banco. Cualquier reembolso deberá solicitarse en un plazo máximo de 8 semanas desde la fecha en la que se realice el adeudo. "},"es_CL":{"cancellationRights":"Derechos de cancelación","cookiePolicy":"Cookies","legalNotice":"Aviso legal","privacyPolicy":"Política de privacidad","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> es el revendedor y comercializador autorizado de los productos ofrecidos en esta tienda.","termsOfSale":"Términos de la venta","confirmDisclosure":"Al enviar mi pedido, acepto los <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Términos de ventas</a> y la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Política de privacidad</a> de {businessEntityName}.","autoRenewPlanTerms":"Al marcar la casilla que aparece a continuación y finalizar la compra, usted autoriza y otorga permiso de forma expresa a Digital River para renovar automáticamente la licencia o suscripción en periodos de renovación sucesivos de idéntica duración a la del periodo inicial especificado anteriormente, al precio de compra de su periodo inicial (más impuestos y recargos, restando los descuentos aplicables) utilizando la información de pago que facilitó para la primera compra, hasta que usted lo cancele. Recibirá al menos un correo electrónico para recordarle cada renovación automática. Podemos cambiar el precio de renovación a partir de la próxima fecha de renovación, siempre y cuando le avisemos del cambio con antelación por correo electrónico (usted podrá decidir si desea cancelar la renovación automática tal como se describe a continuación si no está de acuerdo con el cambio). Los <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Términos de venta</a> y la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Política de confidencialidad</a> de Digital River se aplicarán en todas las transacciones de renovación. Puede cancelar su plan de renovación automática en cualquier momento iniciando sesión en la interfaz de la cuenta (encontrará la información de acceso en la confirmación de pedido que recibió por correo electrónico o en la página de ayuda del Servicio de Atención al Cliente), seleccionando el producto y luego la opción de desactivar la renovación automática.<br/><br/>Autorizo a Digital River a almacenar mi información de pago para futuras compras, incluido el procesamiento de cualquier renovación de suscripción que se produzca después de la fecha de este pedido.","agreeToTerms":"He leído y acepto los términos y cargos arriba detallados.","idealRecurringAgreement":"Al hacer clic en la casilla, autoriza a Digital River a cobrar su primer pago a través de iDEAL y a utilizar su IBAN para cobrar los siguientes pagos de la suscripción mediante domiciliación bancaria SEPA. Puede revisar la información de su adeudo directo SEPA después de enviar el pedido. <br/><br/>Tiene derecho a recibir un reembolso de su banco según los términos y condiciones de su acuerdo con su banco. Cualquier reembolso deberá solicitarse en un plazo máximo de 8 semanas desde la fecha en la que se realice el adeudo. "},"es_CO":{"cancellationRights":"Derechos de cancelación","cookiePolicy":"Cookies","legalNotice":"Aviso legal","privacyPolicy":"Política de privacidad","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> es el revendedor y comercializador autorizado de los productos ofrecidos en esta tienda.","termsOfSale":"Términos de la venta","confirmDisclosure":"Al enviar mi pedido, acepto los <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Términos de ventas</a> y la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Política de privacidad</a> de {businessEntityName}.","autoRenewPlanTerms":"Al marcar la casilla que aparece a continuación y finalizar la compra, usted autoriza y otorga permiso de forma expresa a Digital River para renovar automáticamente la licencia o suscripción en periodos de renovación sucesivos de idéntica duración a la del periodo inicial especificado anteriormente, al precio de compra de su periodo inicial (más impuestos y recargos, restando los descuentos aplicables) utilizando la información de pago que facilitó para la primera compra, hasta que usted lo cancele. Recibirá al menos un correo electrónico para recordarle cada renovación automática. Podemos cambiar el precio de renovación a partir de la próxima fecha de renovación, siempre y cuando le avisemos del cambio con antelación por correo electrónico (usted podrá decidir si desea cancelar la renovación automática tal como se describe a continuación si no está de acuerdo con el cambio). Los <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Términos de venta</a> y la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Política de confidencialidad</a> de Digital River se aplicarán en todas las transacciones de renovación. Puede cancelar su plan de renovación automática en cualquier momento iniciando sesión en la interfaz de la cuenta (encontrará la información de acceso en la confirmación de pedido que recibió por correo electrónico o en la página de ayuda del Servicio de Atención al Cliente), seleccionando el producto y luego la opción de desactivar la renovación automática.<br/><br/>Autorizo a Digital River a almacenar mi información de pago para futuras compras, incluido el procesamiento de cualquier renovación de suscripción que se produzca después de la fecha de este pedido.","agreeToTerms":"He leído y acepto los términos y cargos arriba detallados.","idealRecurringAgreement":"Al hacer clic en la casilla, autoriza a Digital River a cobrar su primer pago a través de iDEAL y a utilizar su IBAN para cobrar los siguientes pagos de la suscripción mediante domiciliación bancaria SEPA. Puede revisar la información de su adeudo directo SEPA después de enviar el pedido. <br/><br/>Tiene derecho a recibir un reembolso de su banco según los términos y condiciones de su acuerdo con su banco. Cualquier reembolso deberá solicitarse en un plazo máximo de 8 semanas desde la fecha en la que se realice el adeudo. "},"es_EC":{"cancellationRights":"Derechos de cancelación","cookiePolicy":"Cookies","legalNotice":"Aviso legal","privacyPolicy":"Política de privacidad","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> es el revendedor y comercializador autorizado de los productos ofrecidos en esta tienda.","termsOfSale":"Términos de la venta","confirmDisclosure":"Al enviar mi pedido, acepto los <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Términos de ventas</a> y la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Política de privacidad</a> de {businessEntityName}.","autoRenewPlanTerms":"Al marcar la casilla que aparece a continuación y finalizar la compra, usted autoriza y otorga permiso de forma expresa a Digital River para renovar automáticamente la licencia o suscripción en periodos de renovación sucesivos de idéntica duración a la del periodo inicial especificado anteriormente, al precio de compra de su periodo inicial (más impuestos y recargos, restando los descuentos aplicables) utilizando la información de pago que facilitó para la primera compra, hasta que usted lo cancele. Recibirá al menos un correo electrónico para recordarle cada renovación automática. Podemos cambiar el precio de renovación a partir de la próxima fecha de renovación, siempre y cuando le avisemos del cambio con antelación por correo electrónico (usted podrá decidir si desea cancelar la renovación automática tal como se describe a continuación si no está de acuerdo con el cambio). Los <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Términos de venta</a> y la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Política de confidencialidad</a> de Digital River se aplicarán en todas las transacciones de renovación. Puede cancelar su plan de renovación automática en cualquier momento iniciando sesión en la interfaz de la cuenta (encontrará la información de acceso en la confirmación de pedido que recibió por correo electrónico o en la página de ayuda del Servicio de Atención al Cliente), seleccionando el producto y luego la opción de desactivar la renovación automática.<br/><br/>Autorizo a Digital River a almacenar mi información de pago para futuras compras, incluido el procesamiento de cualquier renovación de suscripción que se produzca después de la fecha de este pedido.","agreeToTerms":"He leído y acepto los términos y cargos arriba detallados.","idealRecurringAgreement":"Al hacer clic en la casilla, autoriza a Digital River a cobrar su primer pago a través de iDEAL y a utilizar su IBAN para cobrar los siguientes pagos de la suscripción mediante domiciliación bancaria SEPA. Puede revisar la información de su adeudo directo SEPA después de enviar el pedido. <br/><br/>Tiene derecho a recibir un reembolso de su banco según los términos y condiciones de su acuerdo con su banco. Cualquier reembolso deberá solicitarse en un plazo máximo de 8 semanas desde la fecha en la que se realice el adeudo. "},"es_ES":{"cancellationRights":"Derechos de cancelación","cookiePolicy":"Cookies","legalNotice":"Aviso legal","privacyPolicy":"Política de confidencialidad","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> es el distribuidor y el vendedor autorizado de los productos y servicios ofrecidos en esta tienda virtual.","termsOfSale":"Condiciones de venta","confirmDisclosure":"Al enviar mi pedido, acepto los <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Términos de ventas</a> y la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Política de privacidad</a> de {businessEntityName}.","autoRenewPlanTerms":"Al marcar la casilla que aparece a continuación y finalizar la compra, usted autoriza y otorga permiso de forma expresa a Digital River para renovar automáticamente la licencia o suscripción en periodos de renovación sucesivos de idéntica duración a la del periodo inicial especificado anteriormente, al precio de compra de su periodo inicial (más impuestos y recargos, restando los descuentos aplicables) utilizando la información de pago que facilitó para la primera compra, hasta que usted lo cancele. Recibirá al menos un correo electrónico para recordarle cada renovación automática. Podemos cambiar el precio de renovación a partir de la próxima fecha de renovación, siempre y cuando le avisemos del cambio con antelación por correo electrónico (usted podrá decidir si desea cancelar la renovación automática tal como se describe a continuación si no está de acuerdo con el cambio). Los <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Términos de venta</a> y la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Política de confidencialidad</a> de Digital River se aplicarán en todas las transacciones de renovación. Puede cancelar su plan de renovación automática en cualquier momento iniciando sesión en la interfaz de la cuenta (encontrará la información de acceso en la confirmación de pedido que recibió por correo electrónico o en la página de ayuda del Servicio de Atención al Cliente), seleccionando el producto y luego la opción de desactivar la renovación automática.<br/><br/>Autorizo a Digital River a almacenar mi información de pago para futuras compras, incluido el procesamiento de cualquier renovación de suscripción que se produzca después de la fecha de este pedido.","klarnaCreditActiveAcceptance":"Si presiona <span class=\\"DR-button-text\\">{payNow}</span>, se le presentarán los métodos de pago ofrecidos por Klarna. I continuar, acepta los <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/es_es/user\\">términos y condiciones generales de los servicios de Klarna</a> y confirma que ha leído la <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/es_es/privacy\\">política de privacidad de Klarna</a>.","klarnaCreditRecurringActiveAcceptance":"Si presiona <span class=\\"DR-button-text\\">{payNow}</span>, se le presentarán los métodos de pago ofrecidos por Klarna. I continuar, acepta los <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/es_es/user\\">términos y condiciones generales de los servicios de Klarna</a> y confirma que ha leído la <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/es_es/privacy\\">política de privacidad de Klarna</a>.","agreeToTerms":"He leído y acepto las condiciones y los cobros anteriormente indicados.","idealRecurringAgreement":"Al hacer clic en la casilla, autoriza a Digital River a cobrar su primer pago a través de iDEAL y a utilizar su IBAN para cobrar los siguientes pagos de la suscripción mediante domiciliación bancaria SEPA. Puede revisar la información de su adeudo directo SEPA después de enviar el pedido. <br/><br/>Tiene derecho a recibir un reembolso de su banco según los términos y condiciones de su acuerdo con su banco. Cualquier reembolso deberá solicitarse en un plazo máximo de 8 semanas desde la fecha en la que se realice el adeudo. ","mstsActiveAcceptance":"Seleccione {payNow} para iniciar sesión en TreviPay, completar la autenticación de DOS factores y confirmar la compra.<span class=\\"{createAccountButtonTextClass}\\"><br /><br />Seleccione \'Regístrate ahora\' para crear una cuenta TreviPay.</span><br /><br />* Todas las cuentas del programa de compras y las líneas de crédito bajo el programa Condiciones de pago son emitidas por Multi Service Technology Solutions, Inc., una compañía incorporada en Florida USA (\\"MSTS\\")<br /><br />DESCARGO DE RESPONSABILIDAD<br /><br />* {businessEntityName} no es parte del Acuerdo de titulares de cuentas del Programa de compras. {businessEntityName} no es un prestamista ni un corredor de líneas de crédito emitidas bajo el programa Condiciones de pago.<br /><br />Todas las solicitudes y sus calificaciones serán revisadas y decididas por TreviPay. <a href=\\"https://www.trevipay.com/privacy-center/\\" target=\\"_blank\\">Aquí hay un enlace al Centro de privacidad de TreviPay.</a>"},"es_MX":{"cancellationRights":"Derechos de cancelación","cookiePolicy":"Cookies","legalNotice":"Aviso legal","privacyPolicy":"Política de privacidad","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> es el revendedor y comercializador autorizado de los productos ofrecidos en esta tienda.","termsOfSale":"Términos de la venta","confirmDisclosure":"Al enviar mi pedido, acepto los <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Términos de ventas</a> y la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Política de privacidad</a> de {businessEntityName}.","autoRenewPlanTerms":"Al marcar la casilla que aparece a continuación y finalizar la compra, usted autoriza y otorga permiso de forma expresa a Digital River para renovar automáticamente la licencia o suscripción en periodos de renovación sucesivos de idéntica duración a la del periodo inicial especificado anteriormente, al precio de compra de su periodo inicial (más impuestos y recargos, restando los descuentos aplicables) utilizando la información de pago que facilitó para la primera compra, hasta que usted lo cancele. Recibirá al menos un correo electrónico para recordarle cada renovación automática. Podemos cambiar el precio de renovación a partir de la próxima fecha de renovación, siempre y cuando le avisemos del cambio con antelación por correo electrónico (usted podrá decidir si desea cancelar la renovación automática tal como se describe a continuación si no está de acuerdo con el cambio). Los <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Términos de venta</a> y la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Política de confidencialidad</a> de Digital River se aplicarán en todas las transacciones de renovación. Puede cancelar su plan de renovación automática en cualquier momento iniciando sesión en la interfaz de la cuenta (encontrará la información de acceso en la confirmación de pedido que recibió por correo electrónico o en la página de ayuda del Servicio de Atención al Cliente), seleccionando el producto y luego la opción de desactivar la renovación automática.<br/><br/>Autorizo a Digital River a almacenar mi información de pago para futuras compras, incluido el procesamiento de cualquier renovación de suscripción que se produzca después de la fecha de este pedido.","agreeToTerms":"He leído y acepto los términos y cargos arriba detallados.","idealRecurringAgreement":"Al hacer clic en la casilla, autoriza a Digital River a cobrar su primer pago a través de iDEAL y a utilizar su IBAN para cobrar los siguientes pagos de la suscripción mediante domiciliación bancaria SEPA. Puede revisar la información de su adeudo directo SEPA después de enviar el pedido. <br/><br/>Tiene derecho a recibir un reembolso de su banco según los términos y condiciones de su acuerdo con su banco. Cualquier reembolso deberá solicitarse en un plazo máximo de 8 semanas desde la fecha en la que se realice el adeudo. ","mstsActiveAcceptance":"Seleccione {payNow} para iniciar sesión en TreviPay, completar la autenticación de DOS factores y confirmar la compra.<span class=\\"{createAccountButtonTextClass}\\"><br /><br />Seleccione \'Regístrate ahora\' para crear una cuenta TreviPay.</span><br /><br />* Todas las cuentas del programa de compras y las líneas de crédito bajo el programa Condiciones de pago son emitidas por Multi Service Technology Solutions, Inc., una compañía incorporada en Florida USA (\\"MSTS\\")<br /><br />DESCARGO DE RESPONSABILIDAD<br /><br />* {businessEntityName} no es parte del Acuerdo de titulares de cuentas del Programa de compras. {businessEntityName} no es un prestamista ni un corredor de líneas de crédito emitidas bajo el programa Condiciones de pago.<br /><br />Todas las solicitudes y sus calificaciones serán revisadas y decididas por TreviPay. <a href=\\"https://www.trevipay.com/privacy-center/\\" target=\\"_blank\\">Aquí hay un enlace al Centro de privacidad de TreviPay.</a>"},"es_PE":{"cancellationRights":"Derechos de cancelación","cookiePolicy":"Cookies","legalNotice":"Aviso legal","privacyPolicy":"Política de privacidad","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> es el revendedor y comercializador autorizado de los productos ofrecidos en esta tienda.","termsOfSale":"Términos de la venta","confirmDisclosure":"Al enviar mi pedido, acepto los <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Términos de ventas</a> y la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Política de privacidad</a> de {businessEntityName}.","autoRenewPlanTerms":"Al marcar la casilla que aparece a continuación y finalizar la compra, usted autoriza y otorga permiso de forma expresa a Digital River para renovar automáticamente la licencia o suscripción en periodos de renovación sucesivos de idéntica duración a la del periodo inicial especificado anteriormente, al precio de compra de su periodo inicial (más impuestos y recargos, restando los descuentos aplicables) utilizando la información de pago que facilitó para la primera compra, hasta que usted lo cancele. Recibirá al menos un correo electrónico para recordarle cada renovación automática. Podemos cambiar el precio de renovación a partir de la próxima fecha de renovación, siempre y cuando le avisemos del cambio con antelación por correo electrónico (usted podrá decidir si desea cancelar la renovación automática tal como se describe a continuación si no está de acuerdo con el cambio). Los <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Términos de venta</a> y la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Política de confidencialidad</a> de Digital River se aplicarán en todas las transacciones de renovación. Puede cancelar su plan de renovación automática en cualquier momento iniciando sesión en la interfaz de la cuenta (encontrará la información de acceso en la confirmación de pedido que recibió por correo electrónico o en la página de ayuda del Servicio de Atención al Cliente), seleccionando el producto y luego la opción de desactivar la renovación automática.<br/><br/>Autorizo a Digital River a almacenar mi información de pago para futuras compras, incluido el procesamiento de cualquier renovación de suscripción que se produzca después de la fecha de este pedido.","agreeToTerms":"He leído y acepto los términos y cargos arriba detallados.","idealRecurringAgreement":"Al hacer clic en la casilla, autoriza a Digital River a cobrar su primer pago a través de iDEAL y a utilizar su IBAN para cobrar los siguientes pagos de la suscripción mediante domiciliación bancaria SEPA. Puede revisar la información de su adeudo directo SEPA después de enviar el pedido. <br/><br/>Tiene derecho a recibir un reembolso de su banco según los términos y condiciones de su acuerdo con su banco. Cualquier reembolso deberá solicitarse en un plazo máximo de 8 semanas desde la fecha en la que se realice el adeudo. "},"es_VE":{"cancellationRights":"Derechos de cancelación","cookiePolicy":"Cookies","legalNotice":"Aviso legal","privacyPolicy":"Política de privacidad","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> es el revendedor y comercializador autorizado de los productos ofrecidos en esta tienda.","termsOfSale":"Términos de la venta","confirmDisclosure":"Al enviar mi pedido, acepto los <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Términos de ventas</a> y la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Política de privacidad</a> de {businessEntityName}.","autoRenewPlanTerms":"Al marcar la casilla que aparece a continuación y finalizar la compra, usted autoriza y otorga permiso de forma expresa a Digital River para renovar automáticamente la licencia o suscripción en periodos de renovación sucesivos de idéntica duración a la del periodo inicial especificado anteriormente, al precio de compra de su periodo inicial (más impuestos y recargos, restando los descuentos aplicables) utilizando la información de pago que facilitó para la primera compra, hasta que usted lo cancele. Recibirá al menos un correo electrónico para recordarle cada renovación automática. Podemos cambiar el precio de renovación a partir de la próxima fecha de renovación, siempre y cuando le avisemos del cambio con antelación por correo electrónico (usted podrá decidir si desea cancelar la renovación automática tal como se describe a continuación si no está de acuerdo con el cambio). Los <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Términos de venta</a> y la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Política de confidencialidad</a> de Digital River se aplicarán en todas las transacciones de renovación. Puede cancelar su plan de renovación automática en cualquier momento iniciando sesión en la interfaz de la cuenta (encontrará la información de acceso en la confirmación de pedido que recibió por correo electrónico o en la página de ayuda del Servicio de Atención al Cliente), seleccionando el producto y luego la opción de desactivar la renovación automática.<br/><br/>Autorizo a Digital River a almacenar mi información de pago para futuras compras, incluido el procesamiento de cualquier renovación de suscripción que se produzca después de la fecha de este pedido.","agreeToTerms":"He leído y acepto los términos y cargos arriba detallados.","idealRecurringAgreement":"Al hacer clic en la casilla, autoriza a Digital River a cobrar su primer pago a través de iDEAL y a utilizar su IBAN para cobrar los siguientes pagos de la suscripción mediante domiciliación bancaria SEPA. Puede revisar la información de su adeudo directo SEPA después de enviar el pedido. <br/><br/>Tiene derecho a recibir un reembolso de su banco según los términos y condiciones de su acuerdo con su banco. Cualquier reembolso deberá solicitarse en un plazo máximo de 8 semanas desde la fecha en la que se realice el adeudo. "},"et_EE":{"privacyPolicy":"Privaatsuspoliitika","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> on sellele kauplusele e-kaubanduse teenuseid osutav volitatud edasimüüja.","termsOfSale":"Tingimused","confirmDisclosure":"","autoRenewPlanTerms":""},"fi_FI":{"cancellationRights":"Peruutusoikeus","cookiePolicy":"Evästeet","legalNotice":"Lainmukainen tiedotus","privacyPolicy":"Yksityisyyden suoja","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> on valtuutettu jälleenmyyjä, joka myy tässä kaupassa tarjolla olevia tuotteita ja palveluja.","termsOfSale":"Myyntiehdot","confirmDisclosure":"Lähettämällä tilaukseni hyväksyn {businessEntityName} <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Myyntiehdot</a> ja <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Tietosuojamenettelyn</a>.","autoRenewPlanTerms":"Valitsemalla alla olevan valintaruudun ja viemällä ostoksesi päätökseen, valtuutat ja sallit, että Digital River uusii automaattisesti ostamasi lisenssin tai tekemäsi tilauksen peräkkäisin, pituudeltaan yllä mainittua aikajaksoa vastaavin uusintavälein ja soveltaa alkuperäiselle aikajaksolle määritettyä ostohintaa (johon lisätään verot ja maksut ja josta vähennetään kaikki asianmukaiset alennukset) käyttämällä alkuperäisen ostoksen yhteydessä valitsemaasi maksutapaa, kunnes teet peruutuksen. Sinulle lähetetään vähintään yksi sähköposti, jossa sinua muistutetaan tulevasta automaattisesta uusinnasta. Voimme muuttaa uusintahintaa ja soveltaa sitä seuraavasta uusintapäivästä alkaen, jos ilmoitamme sinulle muutoksesta ennakkoon sähköpostilla (jos et hyväksy muutosta, voit peruuttaa automaattisen uusinnan alla ilmoitetulla tavalla). Digital Riverin <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">myyntiehdot</a> ja <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">yksityisyydensuojakäytäntö</a> koskevat jokaista uusintaa. Voit peruuttaa automaattisen uusintapalvelun koska tahansa kirjautumalla tilin käyttöliittymään (löydät käyttötiedot tilauksesi vahvistussähköpostista tai asiakaspalvelun ohjesivulta), valitsemalla tuotteesi ja valitsemalla automaattisen uusinnan käytöstäpoistovaihtoehdon.<br/><br/>Hyväksyn, että Digital River voi tallentaa maksutietoni tulevia ostoksia sekä tämän tilauksen jälkeen mahdollisesti tehtävien tilausuusintojen käsittelyä varten.","klarnaCreditActiveAcceptance":"Kun painat <span class=\\"DR-button-text\\">{payNow}</span>-painiketta, saat näkyviin Klarnan tarjoamat maksutavat. Jatkamalla eteenpäin hyväksyt <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/fi_fi/user\\">Klarnan Palveluehdot</a> ja vahvistat lukeneesi <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/fi_fi/privacy\\">Klarnan tietosuojailmoituksen</a>.","klarnaCreditRecurringActiveAcceptance":"Kun painat <span class=\\"DR-button-text\\">{payNow}</span>-painiketta, saat näkyviin Klarnan tarjoamat maksutavat. Jatkamalla eteenpäin hyväksyt <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/fi_fi/user\\">Klarnan Palveluehdot</a> ja vahvistat lukeneesi <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/fi_fi/privacy\\">Klarnan tietosuojailmoituksen</a>.","agreeToTerms":"Olen lukenut ja hyväksyn yllä olevat ehdot ja maksut."},"fr_BE":{"cancellationRights":"Droits d\'annulation","cookiePolicy":"Témoins de connexion","legalNotice":"Mentions legales","privacyPolicy":"Politique de confidentialité","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> est le revendeur et marchand agréé pour les produits et services proposés au sein de ce magasin.","termsOfSale":"Conditions de vente","confirmDisclosure":"En envoyant ma commande, j’accepte les <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Conditions de vente</a> et la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Politique de confidentialité</a> de {businessEntityName}.","autoRenewPlanTerms":"En cochant la case ci-dessous et en terminant votre achat, vous autorisez expressément et vous permettez à Digital River de renouveler automatiquement la licence ou l\'abonnement que vous avez acheté par périodes de renouvellement successives, chacune étant égale à la durée initiale spécifiée ci-dessus, au prix d\'achat de la durée initiale (plus les taxes et frais, déduction faite des ristournes applicables) en utilisant les informations de paiement fournies lors de votre achat initial, jusqu\'à ce que vous annuliez. Vous recevrez au moins un e-mail de rappel avant chaque renouvellement. Nous pouvons modifier le prix de renouvellement à la date du prochain renouvellement si nous vous prévenons de cette modification par e-mail (vous pouvez choisir d\'annuler le renouvellement automatique comme décrit ci-dessous si vous n\'acceptez pas cette modification). Les <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Conditions de Vente</a> et la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Politique de confidentialité</a> de Digital River s\'appliqueront à chaque transaction de renouvellement. Vous pouvez annuler votre plan de renouvellement automatique à tout moment en vous connectant à votre compte (les informations d\'accès seront fournies dans votre e-mail de confirmation de commande ou sur la page d\'aide du service clientèle), en sélectionnant votre produit, puis l\'option de désactivation du renouvellement automatique.<br/><br/>J\'accepte que Digital River puisse stocker mes informations de paiement pour des achats ultérieurs, y compris le traitement de tout renouvellement d\'abonnement à venir qui pourrait avoir lieu après la date de cette commande.","klarnaCreditActiveAcceptance":"En procédant, les méthodes de paiement fournies par Klarna vous seront présentées. En continuant, vous acceptez les <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/fr_be/user\\">Modalités de Services</a> et confirmez avoir lu la <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/fr_be/privacy\\">Notice de Confidentialité de Klarna</a>.","klarnaCreditRecurringActiveAcceptance":"En procédant, les méthodes de paiement fournies par Klarna vous seront présentées. En continuant, vous acceptez les <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/fr_be/user\\">Modalités de Services</a> et confirmez avoir lu la <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/fr_be/privacy\\">Notice de Confidentialité de Klarna</a>.","agreeToTerms":"J\'ai lu et j\'accepte les Conditions générales de vente et les frais ci-dessus.","idealRecurringAgreement":"En cliquant sur la case, vous autorisez Digital River à percevoir votre premier paiement par iDEAL et à utiliser votre IBAN pour percevoir les paiements d\'abonnement suivants par prélèvement SEPA. Vous pouvez consulter les informations relatives à votre prélèvement SEPA après la soumission de votre commande. <br/><br/>Vous bénéficiez du droit d\'être remboursé par votre banque suivant les conditions décrites dans la convention que vous avez passée avec elle. Une demande de remboursement doit être présentée dans les 8 semaines suivant la date de débit de votre compte pour un prélèvement autorisé. "},"fr_CA":{"cancellationRights":"Droits d\'annulation","cookiePolicy":"Témoins","legalNotice":"Mentions legales","privacyPolicy":"Politique sur la confidentialité","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> est le revendeur et commerçant autorisé fournissant les services de commerce électronique pour ce magasin.","termsOfSale":"Conditions de vente","confirmDisclosure":"En soumettant ma commande, j\'accepte les <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Conditions de vente</a> et la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Politique de confidentialité</a> de {businessEntityName}.","autoRenewPlanTerms":"En cochant la case ci-dessous et en terminant votre achat, vous autorisez expressément et vous permettez à Digital River de renouveler automatiquement la licence ou l\'abonnement que vous avez acheté par périodes de renouvellement successives, chacune étant égale à la durée initiale spécifiée ci-dessus, au prix d\'achat de la durée initiale (plus les taxes et frais, déduction faite des ristournes applicables) en utilisant les informations de paiement fournies lors de votre achat initial, jusqu\'à ce que vous annuliez. Vous recevrez au moins un e-mail de rappel avant chaque renouvellement. Nous pouvons modifier le prix de renouvellement à la date du prochain renouvellement si nous vous prévenons de cette modification par e-mail (vous pouvez choisir d\'annuler le renouvellement automatique comme décrit ci-dessous si vous n\'acceptez pas cette modification). Les <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Conditions de Vente</a> et la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Politique de confidentialité</a> de Digital River s\'appliqueront à chaque transaction de renouvellement. Vous pouvez annuler votre plan de renouvellement automatique à tout moment en vous connectant à votre compte (les informations d\'accès seront fournies dans votre e-mail de confirmation de commande ou sur la page d\'aide du service clientèle), en sélectionnant votre produit, puis l\'option de désactivation du renouvellement automatique.<br/><br/>J\'accepte que Digital River puisse stocker mes informations de paiement pour des achats ultérieurs, y compris le traitement de tout renouvellement d\'abonnement à venir qui pourrait avoir lieu après la date de cette commande.","klarnaCreditActiveAcceptance":"Pour accéder aux conditions d\'utilisations de données, de paiement, et les conditions du service de magasinage Klarna, <a target=\\"_blank\\" href=\\"https://www.klarna.com/fr-ca/mentions-legales/\\">cliquer ici</a>.","klarnaCreditRecurringActiveAcceptance":"Pour accéder aux conditions d\'utilisations de données, de paiement, et les conditions du service de magasinage Klarna, <a target=\\"_blank\\" href=\\"https://www.klarna.com/fr-ca/mentions-legales/\\">cliquer ici</a>.","agreeToTerms":"J’ai lu et j’accepte les conditions générales et les modalités tarifaires ci-dessus.","idealRecurringAgreement":"En cliquant sur la case, vous autorisez Digital River à percevoir votre premier paiement par iDEAL et à utiliser votre IBAN pour percevoir les paiements d\'abonnement suivants par prélèvement SEPA. Vous pouvez consulter les informations relatives à votre prélèvement SEPA après la soumission de votre commande. <br/><br/>Vous bénéficiez du droit d\'être remboursé par votre banque suivant les conditions décrites dans la convention que vous avez passée avec elle. Une demande de remboursement doit être présentée dans les 8 semaines suivant la date de débit de votre compte pour un prélèvement autorisé. ","mstsActiveAcceptance":"Sélectionnez {payNow} pour vous connecter à TreviPay, effectuer l\'identification à deux facteurs et confirmer l\'achat.<span class=\\"{createAccountButtonTextClass}\\"><br /><br />Sélectionnez \'Inscrivez-vous maintenant\' pour créer un compte TreviPay.</span><br /><br />AVERTISSEMENT<br /><br />* Tous les comptes du programme d’achat et les lignes de crédit dans le carde du programme de Modalités de Paiement sont émis par Multi Service Technology Solutions, Inc., une société constituée en Floride aux États-Unis (« MSTS »).<br /><br />* {businessEntityName} n’est pas partie à l\'Accord relatif aux Titulaires de compte du Programme d’achat. {businessEntityName} n’est ni un prêteur ni un courtier pour les lignes de crédit émises dans le cadre du programme des Modalités de Paiement<br /><br />Toutes les demandes et vos qualifications seront examinées et décidées par TreviPay. <a href=\\"https://www.trevipay.com/privacy-center/\\" target=\\"_blank\\">Voici un lien vers le Centre de confidentialité de TreviPay.</a>"},"fr_CH":{"cancellationRights":"Droits d\'annulation","cookiePolicy":"Témoins de connexion","legalNotice":"Mentions legales","privacyPolicy":"Politique de confidentialité","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> est le revendeur et marchand agréé pour les produits et services proposés au sein de ce magasin.","termsOfSale":"Conditions de vente","confirmDisclosure":"En envoyant ma commande, j\'accepte les <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Conditions de vente</a> et la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Politique de confidentialité</a> de {businessEntityName}.","autoRenewPlanTerms":"En cochant la case ci-dessous et en terminant votre achat, vous autorisez expressément et vous permettez à Digital River de renouveler automatiquement la licence ou l\'abonnement que vous avez acheté par périodes de renouvellement successives, chacune étant égale à la durée initiale spécifiée ci-dessus, au prix d\'achat de la durée initiale (plus les taxes et frais, déduction faite des ristournes applicables) en utilisant les informations de paiement fournies lors de votre achat initial, jusqu\'à ce que vous annuliez. Vous recevrez au moins un e-mail de rappel avant chaque renouvellement. Nous pouvons modifier le prix de renouvellement à la date du prochain renouvellement si nous vous prévenons de cette modification par e-mail (vous pouvez choisir d\'annuler le renouvellement automatique comme décrit ci-dessous si vous n\'acceptez pas cette modification). Les <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Conditions de Vente</a> et la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Politique de confidentialité</a> de Digital River s\'appliqueront à chaque transaction de renouvellement. Vous pouvez annuler votre plan de renouvellement automatique à tout moment en vous connectant à votre compte (les informations d\'accès seront fournies dans votre e-mail de confirmation de commande ou sur la page d\'aide du service clientèle), en sélectionnant votre produit, puis l\'option de désactivation du renouvellement automatique.<br/><br/>J\'accepte que Digital River puisse stocker mes informations de paiement pour des achats ultérieurs, y compris le traitement de tout renouvellement d\'abonnement à venir qui pourrait avoir lieu après la date de cette commande.","klarnaCreditActiveAcceptance":"En procédant, les méthodes de paiement fournies par Klarna vous seront présentées. En continuant, vous acceptez les <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/fr_ch/user\\">Modalités de Services</a> et confirmez avoir lu la <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/fr_ch/privacy_bp\\">Notice de Confidentialité de Klarna</a>.","klarnaCreditRecurringActiveAcceptance":"En procédant, les méthodes de paiement fournies par Klarna vous seront présentées. En continuant, vous acceptez les <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/fr_ch/user\\">Modalités de Services</a> et confirmez avoir lu la <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/fr_ch/privacy_bp\\">Notice de Confidentialité de Klarna</a>.","agreeToTerms":"J\'ai lu et j\'accepte les Conditions générales de vente et les frais ci-dessus.","idealRecurringAgreement":"En cliquant sur la case, vous autorisez Digital River à percevoir votre premier paiement par iDEAL et à utiliser votre IBAN pour percevoir les paiements d\'abonnement suivants par prélèvement SEPA. Vous pouvez consulter les informations relatives à votre prélèvement SEPA après la soumission de votre commande. <br/><br/>Vous bénéficiez du droit d\'être remboursé par votre banque suivant les conditions décrites dans la convention que vous avez passée avec elle. Une demande de remboursement doit être présentée dans les 8 semaines suivant la date de débit de votre compte pour un prélèvement autorisé. "},"fr_FR":{"cancellationRights":"Droits d\'annulation","cookiePolicy":"Témoins de connexion","legalNotice":"Mentions legales","privacyPolicy":"Politique de confidentialité","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> est le revendeur et marchand agréé pour les produits et services proposés au sein de ce magasin.","termsOfSale":"Conditions de vente","confirmDisclosure":"En envoyant ma commande, j\'accepte les <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Conditions de vente</a> et la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Politique de confidentialité</a> de {businessEntityName}.","autoRenewPlanTerms":"En cochant la case ci-dessous et en terminant votre achat, vous autorisez expressément et vous permettez à Digital River de renouveler automatiquement la licence ou l\'abonnement que vous avez acheté par périodes de renouvellement successives, chacune étant égale à la durée initiale spécifiée ci-dessus, au prix d\'achat de la durée initiale (plus les taxes et frais, déduction faite des ristournes applicables) en utilisant les informations de paiement fournies lors de votre achat initial, jusqu\'à ce que vous annuliez. Vous recevrez au moins un e-mail de rappel avant chaque renouvellement. Nous pouvons modifier le prix de renouvellement à la date du prochain renouvellement si nous vous prévenons de cette modification par e-mail (vous pouvez choisir d\'annuler le renouvellement automatique comme décrit ci-dessous si vous n\'acceptez pas cette modification). Les <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Conditions de Vente</a> et la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Politique de confidentialité</a> de Digital River s\'appliqueront à chaque transaction de renouvellement. Vous pouvez annuler votre plan de renouvellement automatique à tout moment en vous connectant à votre compte (les informations d\'accès seront fournies dans votre e-mail de confirmation de commande ou sur la page d\'aide du service clientèle), en sélectionnant votre produit, puis l\'option de désactivation du renouvellement automatique.<br/><br/>J\'accepte que Digital River puisse stocker mes informations de paiement pour des achats ultérieurs, y compris le traitement de tout renouvellement d\'abonnement à venir qui pourrait avoir lieu après la date de cette commande.","agreeToTerms":"J\'ai lu et j\'accepte les Conditions générales de vente et les frais ci-dessus.","idealRecurringAgreement":"En cliquant sur la case, vous autorisez Digital River à percevoir votre premier paiement par iDEAL et à utiliser votre IBAN pour percevoir les paiements d\'abonnement suivants par prélèvement SEPA. Vous pouvez consulter les informations relatives à votre prélèvement SEPA après la soumission de votre commande. <br/><br/>Vous bénéficiez du droit d\'être remboursé par votre banque suivant les conditions décrites dans la convention que vous avez passée avec elle. Une demande de remboursement doit être présentée dans les 8 semaines suivant la date de débit de votre compte pour un prélèvement autorisé. ","mstsActiveAcceptance":"Sélectionnez {payNow} pour vous connecter à TreviPay, effectuer l\'identification à deux facteurs et confirmer l\'achat.<span class=\\"{createAccountButtonTextClass}\\"><br /><br />Sélectionnez \'Inscrivez-vous maintenant\' pour créer un compte TreviPay.</span><br /><br />AVERTISSEMENT<br /><br />* Tous les comptes du programme d’achat et les lignes de crédit dans le carde du programme de Modalités de Paiement sont émis par Multi Service Technology Solutions, Inc., une société constituée en Floride aux États-Unis (« MSTS »).<br /><br />* {businessEntityName} n’est pas partie à l\'Accord relatif aux Titulaires de compte du Programme d’achat. {businessEntityName} n’est ni un prêteur ni un courtier pour les lignes de crédit émises dans le cadre du programme des Modalités de Paiement<br /><br />Toutes les demandes et vos qualifications seront examinées et décidées par TreviPay. <a href=\\"https://www.trevipay.com/privacy-center/\\" target=\\"_blank\\">Voici un lien vers le Centre de confidentialité de TreviPay.</a>"},"hu_HU":{"cancellationRights":"Rendelés törlésének lehetõsége","cookiePolicy":"Cookie-k","legalNotice":"Jogi nyilatkozat","privacyPolicy":"Adatvédelmi politika","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> az áruházban megvásárolható termékek és szolgáltatások hivatalos értékesítő partnere és forgalmazója.","termsOfSale":"Értékesítési feltételek","confirmDisclosure":"A rendelés elküldésével elfogadom a(z) {businessEntityName} <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Értékesítési feltételeit</a> és <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Adatvédelmi nyilatkozatát</a>.","autoRenewPlanTerms":"Az alábbi jelölőnégyzet bejelölésével és a vásárlás teljesítésével kifejezetten hozzájárul ahhoz, illetve felhatalmazza a Digital River vállalatot arra, hogy a megvásárolt licencét vagy előfizetését automatikusan megújítsa egymást követő, az eredeti időtartammal megegyező, fent meghatározott megújítási időtartamokra, az eredeti árral megegyező áron (növelve az adók és díjak összegével, csökkentve az érvényes kedvezményekkel), a vásárláskor megadott fizetési adatokkal, a megújítás lemondásáig. Az esedékes megújításról legalább egy alkalommal e-mailben értesítjük Önt. A következő megújítás dátumával módosíthatjuk az előfizetés díját, amennyiben arról e-mailben előzetesen tájékoztattuk (ha nem fogadja el a módosításokat, az alább megadott módon törölheti az automatikus megújítást). A Digital River <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Értékesítési feltételei</a> és <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Adatvédelmi irányelvei</a> minden megújítás esetén érvényesek. Az automatikus megújítási csomag bármikor lemondható: ehhez jelentkezzen be fiókjába (a belépési adatokat a megrendelés visszaigazolását tartalmazó e-mailben vagy a vevőszolgálat Súgó oldalán találja), jelölje ki a terméket, majd válassza az automatikus megújítás letiltása opciót.<br/><br/>Hozzájárulok ahhoz, hogy a Digital River tárolja fizetési adataimat a jövőbeni vásárlásokhoz, beleértve az előfizetések esetleges megújítását, melyre e megrendelés dátumát követően kerülhet sor.","agreeToTerms":"Elolvastam és elfogadom a fenti feltételeket és díjakat.","idealRecurringAgreement":"A négyzetre kattintva Ön felhatalmazza a Digital River-t, hogy az első fizetést iDEAL-on keresztül szedje be, és az IBAN-számlaszámát használja a további előfizetési díjak SEPA-alapú beszedésére. A SEPA beszedési információkat a megrendelés elküldése után tekintheti meg. <br/><br/>Ön a banktól a közte és Ön között fennálló megállapodás feltételeinek megfelelő visszatérítésre jogosult. A visszatérítési igényt a számla megterhelését követő 8 héten belül kell benyújtani. "},"it_CH":{"cancellationRights":"Diritto di recesso","cookiePolicy":"Cookie","legalNotice":"Avviso legale","privacyPolicy":"Tutela della privacy","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> è il rivenditore autorizzato e fornitore dei prodotti e dei servizi offerti all\'interno di questo negozio.","termsOfSale":"Condizioni di vendita","confirmDisclosure":"Inviando il mio ordine accetto le <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Condizioni di vendita</a> e l’<a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Informativa sulla privacy</a> di {businessEntityName}.","autoRenewPlanTerms":"Selezionando la casella e completando l\'acquisto, l\'utente autorizza espressamente e consente a Digital River il rinnovo automatico dell\'abbonamento o della licenza acquistati per periodi successivi di rinnovo, ciascuno pari alla durata indicata nei termini iniziali. Consente inoltre l\'addebito al costo specificato nei termini iniziali (più tasse e oneri, detratti gli eventuali sconti) in base al metodo di pagamento fornito per l\'acquisto iniziale, fino all\'annullamento del rinnovo automatico. Riceverai almeno una e-mail di promemoria relativa all\'imminente rinnovo. Digital River può modificare il prezzo di rinnovo a partire dalla data di rinnovo successiva, purché fornisca un preavviso tramite e-mail (se non si acconsente a tali modifiche, è possibile annullare il rinnovo automatico così come descritto sopra). Le <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Condizioni di vendita</a> e l\'<a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Informativa sulla privacy</a> di Digital River sono valide per tutte le transazioni di rinnovo. È possibile annullare il programma di rinnovo automatico in qualsiasi momento accedendo all\'account (i dati di accesso sono disponibili nella e-mail di conferma dell\'ordine o tramite l\'Assistenza clienti), selezionando il prodotto e la relativa opzione per disabilitare il rinnovo automatico.<br/><br/>Confermo che Digital River può conservare le mie informazioni di pagamento per effettuare acquisti futuri, compresa l\'elaborazione di rinnovi successivi dell\'abbonamento che possono verificarsi in seguito alla data del presente ordine.","agreeToTerms":"Il sottoscritto dichiara di aver letto e di accettare le condizioni e i costi indicati sopra.","idealRecurringAgreement":"Cliccando la casella, autorizzate Digital River a raccogliere il vostro primo pagamento tramite iDEAL e ad utilizzare il vostro IBAN per raccogliere i successivi pagamenti dell\'abbonamento tramite addebito diretto SEPA. Puoi rivedere le tue informazioni sull\'addebito diretto SEPA dopo l\'invio dell\'ordine. <br/><br/>Rientra tra i vostri diritti richiedere alla banca l\'eventuale rimborso, nei termini e nelle condizioni previsti dal vostro contratto con la banca. Un eventuale rimborso deve essere richiesto entro 8 settimane dalla data di addebito in conto. ","klarnaCreditActiveAcceptance":"Proseguendo, ti verranno presentate le opzioni di pagamento fornite da Klarna. Continuandoaccetti i <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/it_ch/user\\">Termini di pagamento di Klarna</a> e confermi di aver letto <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/it_ch/privacy_bp\\">l\'informativa sulla privacy di Klarna</a>.","klarnaCreditRecurringActiveAcceptance":"Proseguendo, ti verranno presentate le opzioni di pagamento fornite da Klarna. Continuandoaccetti i <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/it_ch/user\\">Termini di pagamento di Klarna</a> e confermi di aver letto <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/it_ch/privacy_bp\\">l\'informativa sulla privacy di Klarna</a>.","mstsActiveAcceptance":"Selezionare {payNow} per accedere a TreviPay, effettuare l\'autenticazione a due fattori e confermare l\'ordine.<span class=\\"{createAccountButtonTextClass}\\"><br /><br />Selezionare Iscriviti ora per creare un conto TreviPay.</span><br /><br />DISCLAIMER<br /><br />* Tutte le linee di credito e tutti gli account del programma di acquisto relativi al programma Termini di pagamento sono emessi da Multi Service Technology Solutions, Inc. (\\"MSTS\\"), una personalità giuridica con sede in Florida, USA.<br /><br />* {{businessEntityName} non è parte dell&#39;accordo dei titolari di account del Programma di acquisto. {businessEntityName} non costituisce né un prestatore né un mediatore delle linee di credito emesse dal programma Termini di pagamento.<br /><br />Tutte le domande e le qualifiche verranno esaminate e giudicate da TreviPay. <a href=\\"https://www.trevipay.com/privacy-center/\\" target=\\"_blank\\">Centro Privacy di TreviPay.</a>"},"it_IT":{"cancellationRights":"Diritto di recesso","cookiePolicy":"Cookie","legalNotice":"Avviso legale","privacyPolicy":"Tutela della privacy","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> è il rivenditore autorizzato dei prodotti di venduti in questo negozio online.","termsOfSale":"Condizioni di vendita","warrantyInformation":"Informazioni sulla Garanzia","confirmDisclosure":"Inviando il mio ordine accetto le <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Condizioni di vendita</a> e l’<a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Informativa sulla privacy</a> di {businessEntityName}.","autoRenewPlanTerms":"Selezionando la casella e completando l\'acquisto, l\'utente autorizza espressamente e consente a Digital River il rinnovo automatico dell\'abbonamento o della licenza acquistati per periodi successivi di rinnovo, ciascuno pari alla durata indicata nei termini iniziali. Consente inoltre l\'addebito al costo specificato nei termini iniziali (più tasse e oneri, detratti gli eventuali sconti) in base al metodo di pagamento fornito per l\'acquisto iniziale, fino all\'annullamento del rinnovo automatico. Riceverai almeno una e-mail di promemoria relativa all\'imminente rinnovo. Digital River può modificare il prezzo di rinnovo a partire dalla data di rinnovo successiva, purché fornisca un preavviso tramite e-mail (se non si acconsente a tali modifiche, è possibile annullare il rinnovo automatico così come descritto sopra). Le <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Condizioni di vendita</a> e l\'<a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Informativa sulla privacy</a> di Digital River sono valide per tutte le transazioni di rinnovo. È possibile annullare il programma di rinnovo automatico in qualsiasi momento accedendo all\'account (i dati di accesso sono disponibili nella e-mail di conferma dell\'ordine o tramite l\'Assistenza clienti), selezionando il prodotto e la relativa opzione per disabilitare il rinnovo automatico.<br/><br/>Confermo che Digital River può conservare le mie informazioni di pagamento per effettuare acquisti futuri, compresa l\'elaborazione di rinnovi successivi dell\'abbonamento che possono verificarsi in seguito alla data del presente ordine.","klarnaCreditActiveAcceptance":"Proseguendo, ti verranno presentate le opzioni di pagamento fornite da Klarna. Continuandoaccetti i <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/it_it/user\\">Termini di pagamento di Klarna</a> e confermi di aver letto <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/it_it/privacy\\">l\'informativa sulla privacy di Klarna</a>.","klarnaCreditRecurringActiveAcceptance":"Proseguendo, ti verranno presentate le opzioni di pagamento fornite da Klarna. Continuandoaccetti i <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/it_it/user\\">Termini di pagamento di Klarna</a> e confermi di aver letto <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/it_it/privacy\\">l\'informativa sulla privacy di Klarna</a>.","agreeToTerms":"Il sottoscritto dichiara di aver letto e di accettare le condizioni e i costi indicati sopra.","idealRecurringAgreement":"Cliccando la casella, autorizzate Digital River a raccogliere il vostro primo pagamento tramite iDEAL e ad utilizzare il vostro IBAN per raccogliere i successivi pagamenti dell\'abbonamento tramite addebito diretto SEPA. Puoi rivedere le tue informazioni sull\'addebito diretto SEPA dopo l\'invio dell\'ordine. <br/><br/>Rientra tra i vostri diritti richiedere alla banca l\'eventuale rimborso, nei termini e nelle condizioni previsti dal vostro contratto con la banca. Un eventuale rimborso deve essere richiesto entro 8 settimane dalla data di addebito in conto. ","mstsActiveAcceptance":"Selezionare {payNow} per accedere a TreviPay, effettuare l\'autenticazione a due fattori e confermare l\'ordine.<span class=\\"{createAccountButtonTextClass}\\"><br /><br />Selezionare Iscriviti ora per creare un conto TreviPay.</span><br /><br />DISCLAIMER<br /><br />* Tutte le linee di credito e tutti gli account del programma di acquisto relativi al programma Termini di pagamento sono emessi da Multi Service Technology Solutions, Inc. (\\"MSTS\\"), una personalità giuridica con sede in Florida, USA.<br /><br />* {{businessEntityName} non è parte dell&#39;accordo dei titolari di account del Programma di acquisto. {businessEntityName} non costituisce né un prestatore né un mediatore delle linee di credito emesse dal programma Termini di pagamento.<br /><br />Tutte le domande e le qualifiche verranno esaminate e giudicate da TreviPay. <a href=\\"https://www.trevipay.com/privacy-center/\\" target=\\"_blank\\">Centro Privacy di TreviPay.</a>"},"iw_IL":{"cancellationRights":"זכות ביטול הזמנה","cookiePolicy":"קובצי cookie","legalNotice":"הודעה משפטית","privacyPolicy":"מדיניות שמירה על פרטיות","resellerDisclosure":" <a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a>  הוא המפיץ והסוחר המורשה עבור חנוות מקוונת זו.","termsOfSale":"תנאי מכירה","confirmDisclosure":"ביצוע ההזמנה מהווה עדות לכך שאני מסכים <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">לתנאי המכירה</a> וכן <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">למדיניות הפרטיות</a> של {businessEntityName}.","autoRenewPlanTerms":"בסימון התיבה שלהלן והשלמת הרכישה הנך מאשר ומתיר ל-Digital River לחדש אוטומטית את הרישיון או המינוי שרכשת במועדי חידוש רציפים, מדי תקופה הזהה באורכה למשך התקופה שצוין לעיל, במחיר הרכישה ששילמת עבור התקופה הראשונה (בתוספת מסים ואגרות, ובהפחתה של ההנחות החלות). החיוב ייעשה באמצעות אמצעי התשלום שהזנת ברכישה הראשונה, וזאת עד לביטול מצדך. לנוחותך, תישלח אליך הודעת דוא\\"ל אחת לפחות כדי להזכיר לך על מועד החידוש המתקרב. אנו עשויים לשנות את מחיר החידוש, החל מתאריך החידוש הבא, וזאת בתנאי שנודיע לך מראש על השינוי באמצעות הודעות דוא\\"ל (במקרה שאינך מסכים לשינוי במחיר, באפשרותך לבטל את החידוש האוטומטי על פי המפורט להלן). <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">תנאי המכירה</a> ו-<a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">מדיניות ההגנה על הפרטיות</a> של Digital River יחולו על כל עסקת חידוש .באפשרותך לבטל את תוכנית החידוש האוטומטי שלך בכל עת על-ידי כניסה לממשק החשבון (פרטים על אופן הגישה יופיעו בהודעת אישור ההזמנה שתישלח אליך בדוא\\"ל או בדף העזרה של שירות הלקוחות), בחירה במוצר שלך ובחירה באפשרות לביטול החידוש האוטומטי<br /><br />אני מסכים לכך ש-Digital River רשאית לשמור את פרטי התשלום שלי לשימוש ברכישות עתידיות, ובכלל זה טיפול בחידושי מינוי נוספים שעשויים להתבצע לאחר תאריך ההזמנה הנוכחית.","agreeToTerms":"קראתי ואני מסכים לכל התנאים ולחיובים המפורטים לעיל.","idealRecurringAgreement":"על ידי לחיצה על התיבה, אתה מאשר לנהר הדיגיטלי לאסוף את התשלום הראשון שלך באמצעות iDEAL ולהשתמש IBAN שלך כדי לאסוף את תשלומי המנוי הבאים על ידי חיוב ישיר SEPA. באפשרותך לסקור את פרטי החיוב הישיר של SEPA לאחר שליחת ההזמנה. <br/><br/>כחלק מהזכויות שלך, אתה זכאי לקבל החזר מהבנק שלך בכפוף לתנאים ולהתניות הכלולים בהסכם שלך עם הבנק. יש להגיש דרישה לקבלת החזר בתוך 8 שבועות ממועד חיוב החשבון שלך. "},"ja_JP":{"cancellationRights":"キャンセル権","cookiePolicy":"クッキー","legalNotice":"本サイトのご利用について","privacyPolicy":"プライバシーポリシー","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> は、このストアで提供される製品とサービスの認定再販業者および代理店です。","termsOfSale":"販売条件","confirmDisclosure":"注文の送信により、{businessEntityName}の<a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">売買条件</a>および<a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">プライバシーポリシー</a>に同意します。","autoRenewPlanTerms":"下にあるチェックボックスをオンにして購入手続きを完了すると、お客様がキャンセルを行うまで、初回購入時にお客様からご提供いただいたお支払情報を使用して、購入したライセンスまたはサブスクリプションを初回のライセンス価格（それに税金と手数料を加算して割引額を差し引いた金額）で、Digital Riverが上記の当初の期間と同じ長さの期間継続して自動更新することに対して、お客様が明示的に承認して許可したことになります。更新毎に、更新をお知らせする電子メールが少なくとも1回はお客様に送信されます。電子メールで変更に関する事前の通知を行った場合、次回の更新日以降に更新価格を変更することがあります（変更に同意しない場合は、下記に記載されているとおり、自動更新のキャンセルを選択できます）。Digital Riverの<a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">「売買条件」</a>および<a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">「プライバシーポリシー」</a>は、更新取引ごとに適用されます。自動更新プランは、お客様が「アカウントインターフェイス」（アクセス情報は注文確認メールまたは「カスタマサービスヘルプ」ページに記載）にログインし、製品を選択して自動更新を無効にするオプションを選択すれば、いつでもキャンセルできます。<br/><br/>私は、本注文日のあとに発生し得る今後のあらゆるサブスクリプション更新の処理を含む、将来的な製品購入のために、Digital Riverにより個人的な支払い情報が保管されることに同意します。","agreeToTerms":"私は上記の契約条件および料金を読んだ上で、これに同意します。","idealRecurringAgreement":"ボックスをクリックすることで、Digital Riverが初回の支払いをiDEALで回収し、IBANを使用して以降の購読料をSEPAダイレクトデビットで回収することを承認します。SEPA Direct Debitの情報は、注文送信後に確認することができます。<br/><br/>お客様の権利として、銀行との契約条件の下で、銀行からの払い戻しを受ける権利があります。払い戻しは、口座から引き落とされた日から8週間以内に請求する必要があります。"},"ko_KR":{"cancellationRights":"취소 권한","cookiePolicy":"쿠키","legalNotice":"법적 고지","privacyPolicy":"개인정보 보호 정책","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> 은(는) 이 스토어에서 제품과 서비스를 제공하도록 인가된 리셀러 및 판매자입니다.","termsOfSale":"판매 조건","confirmDisclosure":"주문을 제출하면 {businessEntityName}의 <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">이용약관</a>과 <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">개인정보보호정책</a>에 동의한 것으로 간주됩니다.","autoRenewPlanTerms":"아래 확인란을 선택하고 구입을 완료하면 취소할 때까지 Digital River가 최초 구입 시 입력한 결제 정보를 이용해 최초 기간에 대한 구입 가격(세금 및 수수료 포함, 할인액 공제)으로 위에 명시된 최초 기간과 동일한 갱신 기간 동안 구입한 라이선스나 구독을 자동 갱신하는 것을 명시적으로 승인 및 허용하는 것으로 간주됩니다. 갱신이 다가올 때마다 최소한 한 통의 알림 이메일이 발송됩니다. 이메일로 사전 공지를 할 경우 다음 갱신일의 갱신 가격을 변경할 수 있습니다(변경에 동의하지 않을 경우 아래에서 설명한 대로 자동 갱신을 취소할 수 있습니다). 각 갱신에는 Digital River <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">이용약관</a>과 <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">개인정보취급방침</a>이 적용됩니다. 계정 인터페이스에 로그인하고(접속 정보는 주문 확인 이메일이나 고객 서비스 도움말 페이지에서 확인 가능) 제품을 선택한 다음 자동 갱신 취소 옵션을 선택하면 언제든지 자동 갱신 계획을 취소할 수 있습니다.<br/><br/>Digital River가 이 주문 날짜 이후에 발생할 수 있는 모든 후속 구독 갱신의 처리를 포함한 미래의 구매를 위해 내 결제 정보를 보관하는 것에 동의합니다.","agreeToTerms":"상기 이용약관과 요금을 읽었고 이에 동의합니다.","idealRecurringAgreement":"상자를 클릭하면 디지털 리버가 iDEAL를 통해 첫 번째 결제를 수집하고 IBAN을 사용하여 SEPA 자동 이체로 후속 구독 료를 수령할 수 있는 권한을 부여합니다. 주문 제출 후 SEPA 자동 이불 정보를 검토할 수 있습니다. <br/><br/>사용자 권리의 일부로서 사용자는 은행과의 이용약관에 따라 은행으로부터 환불받을 수 있습니다. 환불은 계정에서 출금된 날짜로부터 8주 안에 요청되어야 합니다. "},"lt_LT":{"privacyPolicy":"Privatumo strategija","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> įgaliotasis mažmenininkas ir šios parduotuvės el. prekybos paslaugų didmenininkas.","termsOfSale":"Nuostatos ir sąlygos","confirmDisclosure":"","autoRenewPlanTerms":""},"lv_LV":{"privacyPolicy":"Konfidencialitātes politika","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> ir pilnvarots tālākpārdevējs un tirgotājs, kas šim veikalam nodrošina e-komecijas pakalpojumus.","termsOfSale":"Noteikumi un nosacījumi","confirmDisclosure":"","autoRenewPlanTerms":""},"nl_BE":{"cancellationRights":"Recht op annulering","cookiePolicy":"Cookies","legalNotice":"Juridische kennisgeving","privacyPolicy":"Privacybeleid","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> is de erkende reseller die de producten en services voor deze store levert.","termsOfSale":"Algemene verkoopvoorwaarden","confirmDisclosure":"Door mijn bestelling in te dienen, ga ik akkoord met de <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Verkoopvoorwaarden</a> en het <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacybeleid</a> van {businessEntityName}.","autoRenewPlanTerms":"Door onderstaand vakje aan te kruisen en uw aankoop te voltooien, stemt u er uitdrukkelijk mee in en staat u toe dat Digital River uw aangekochte licentie of abonnement automatisch verlengt voor opeenvolgende verlengingsperioden die in lengte gelijk zijn aan de initiële periode die hierboven staat aangegeven, tegen de aankoopprijs van uw initiële licentieperiode (plus btw en toeslagen, minus eventuele toepasselijke korting) met gebruikmaking van de betaalgegevens die u bij uw initiële aankoop hebt opgegeven, totdat u deze service annuleert. U ontvangt ten minste één e-mail om u te herinneren aan elke volgende verlenging. We kunnen de verlengingsprijs bij de volgende verlengingsdatum wijzigen als wij u via e-mail van tevoren van deze wijziging op de hoogte stellen (u kunt ervoor kiezen om de hieronder beschreven automatische verlenging te annuleren als u het niet met deze prijswijziging eens bent). De <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Algemene verkoopvoorwaarden</a> en het <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacybeleid</a> van Digital River zijn op elke verlenging van toepassing. U kunt de automatische verlengingsservice op elk moment annuleren door u aan te melden bij uw account (de toegangsgegevens zijn inbegrepen bij de e-mailbevestiging van uw bestelling of beschikbaar via de Helppagina van de klantenservice), uw product te selecteren en de automatische verlengingsservice te annuleren.<br/><br/>Ik ga ermee akkoord dat Digital River mijn betalingsgegevens bewaart voor latere aankopen, met inbegrip van de verwerking van alle eventuele abonnementsverlengingen die kunnen optreden na de datum van deze bestelling.","klarnaCreditActiveAcceptance":"Als je klikt op <span class=\\"DR-button-text\\">{payNow}</span>, krijg je de door Klarna aangeboden betaalmethoden te zien. Door verder te gaan, ga je akkoord met de <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/nl_be/user\\">Voorwaarden voor het gebruik van Klarna Services en</a> bevestig je dat je de <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/nl_be/privacy\\">Privacyverklaring van Klarna</a> hebt gelezen.","klarnaCreditRecurringActiveAcceptance":"Als je klikt op <span class=\\"DR-button-text\\">{payNow}</span>, krijg je de door Klarna aangeboden betaalmethoden te zien. Door verder te gaan, ga je akkoord met de <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/nl_be/user\\">Voorwaarden voor het gebruik van Klarna Services en</a> bevestig je dat je de <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/nl_be/privacy\\">Privacyverklaring van Klarna</a> hebt gelezen.","agreeToTerms":"Ik heb de voorwaarden en prijzen gelezen en ga ermee akkoord.","idealRecurringAgreement":"Door het vakje aan te klikken, machtigt u Digital River om uw eerste betaling via iDEAL te innen en uw IBAN te gebruiken om de volgende abonnementsbetalingen via SEPA-incasso te innen. U kunt uw SEPA-incasso-gegevens bekijken nadat u uw bestelling hebt ingediend. <br/><br/>U kunt een Europese incasso laten terugbetalen in overeenstemming met de algemene voorwaarden van uw overeenkomst met uw bank. Een terugbetaling moet worden aangevraagd binnen 8 weken na de datum waarop uw rekening werd gedebiteerd. "},"nl_NL":{"cancellationRights":"Recht op annulering","cookiePolicy":"Cookies","legalNotice":"Juridische kennisgeving","privacyPolicy":"Privacybeleid","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> is de erkende reseller die de producten en services voor deze store levert.","termsOfSale":"Algemene verkoopvoorwaarden","confirmDisclosure":"Door mijn bestelling in te dienen, ga ik akkoord met de <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Verkoopvoorwaarden</a> en het <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacybeleid</a> van {businessEntityName}.","autoRenewPlanTerms":"Door onderstaand vakje aan te kruisen en uw aankoop te voltooien, stemt u er uitdrukkelijk mee in en staat u toe dat Digital River uw aangekochte licentie of abonnement automatisch verlengt voor opeenvolgende verlengingsperioden die in lengte gelijk zijn aan de initiële periode die hierboven staat aangegeven, tegen de aankoopprijs van uw initiële licentieperiode (plus btw en toeslagen, minus eventuele toepasselijke korting) met gebruikmaking van de betaalgegevens die u bij uw initiële aankoop hebt opgegeven, totdat u deze service annuleert. U ontvangt ten minste één e-mail om u te herinneren aan elke volgende verlenging. We kunnen de verlengingsprijs bij de volgende verlengingsdatum wijzigen als wij u via e-mail van tevoren van deze wijziging op de hoogte stellen (u kunt ervoor kiezen om de hieronder beschreven automatische verlenging te annuleren als u het niet met deze prijswijziging eens bent). De <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Algemene verkoopvoorwaarden</a> en het <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacybeleid</a> van Digital River zijn op elke verlenging van toepassing. U kunt de automatische verlengingsservice op elk moment annuleren door u aan te melden bij uw account (de toegangsgegevens zijn inbegrepen bij de e-mailbevestiging van uw bestelling of beschikbaar via de Helppagina van de klantenservice), uw product te selecteren en de automatische verlengingsservice te annuleren.<br/><br/>Ik ga ermee akkoord dat Digital River mijn betalingsgegevens bewaart voor latere aankopen, met inbegrip van de verwerking van alle eventuele abonnementsverlengingen die kunnen optreden na de datum van deze bestelling.","klarnaCreditActiveAcceptance":"Als je klikt op <span class=\\"DR-button-text\\">{payNow}</span>, krijg je de door Klarna aangeboden betaalmethoden te zien. Door verder te gaan, ga je akkoord met de <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/nl_nl/user\\">Voorwaarden voor het gebruik van Klarna Services</a> en bevestig je dat je de <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/nl_nl/privacy\\">Privacyverklaring van Klarna</a> hebt gelezen.","klarnaCreditRecurringActiveAcceptance":"Als je klikt op <span class=\\"DR-button-text\\">{payNow}</span>, krijg je de door Klarna aangeboden betaalmethoden te zien. Door verder te gaan, ga je akkoord met de <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/nl_nl/user\\">Voorwaarden voor het gebruik van Klarna Services</a> en bevestig je dat je de <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/nl_nl/privacy\\">Privacyverklaring van Klarna</a> hebt gelezen.","agreeToTerms":"Ik heb de voorwaarden en prijzen gelezen en ga ermee akkoord.","idealRecurringAgreement":"Door het vakje aan te klikken, machtigt u Digital River om uw eerste betaling via iDEAL te innen en uw IBAN te gebruiken om de volgende abonnementsbetalingen via SEPA-incasso te innen. U kunt uw SEPA-incasso-gegevens bekijken nadat u uw bestelling hebt ingediend. <br/><br/>U kunt een Europese incasso laten terugbetalen in overeenstemming met de algemene voorwaarden van uw overeenkomst met uw bank. Een terugbetaling moet worden aangevraagd binnen 8 weken na de datum waarop uw rekening werd gedebiteerd. ","mstsActiveAcceptance":"Selecteer {payNow} om in te loggen bij TreviPay, de Twee-factor-authenticatie te voltooien en je aankoop te bevestigen.<span class=\\"{createAccountButtonTextClass}\\"><br /><br />Selecteer \'Meld je NU aan\' om een TreviPay account aan te maken.</span><br /><br />DISCLAIMER<br /><br />* Alle aankoopprogramma accounts en kredietlijnen onder het betalingsvoorwaarden programma zijn uitgegeven door Multi Service Technology Solutions, Inc., een in Florida USA gevestigde onderneming (\\"MSTS\\").<br /><br />* {businessEntityName} is geen partij bij de Purchase Program Accountholder Agreement. {businessEntityName} is noch een kredietverstrekker, noch een makelaar voor de kredietlijnen die zijn uitgegeven onder het betalingsvoorwaardenprogramma<br /><br />Alle aanmeldingen en uw kwalificaties worden beoordeeld en beslist door TreviPay. <a href=\\"https://www.trevipay.com/privacy-center/\\" target=\\"_blank\\">TreviPay Privacy Center.</a>"},"no_NO":{"cancellationRights":"Rett til avbestilling","cookiePolicy":"Informasjonskapsler","legalNotice":"Juridiske bestemmelser","privacyPolicy":"Personvern","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> er den autoriserte selgeren og forhandleren av varene og tjenestene som tilbys i denne butikken.","termsOfSale":"Salgsbetingelser","confirmDisclosure":"Ved å sende inn min bestilling, samtykker jeg i <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Salgsbetingelsene</a> og <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Personvernpolitikken</a> for {businessEntityName}.","autoRenewPlanTerms":"Ved å merke av i boksen nedenfor og gjennomføre kjøpet, gir du uttrykkelig godkjenning og tillatelse til at Digital River automatisk fornyer lisenskjøpet ditt eller abonnementet for en påfølgende periode, begge vil være av tilsvarende lengde som den opprinnelige perioden spesifisert ovenfor, til kjøpsprisen for den opprinnelige perioden (pluss skatter og avgifter, med reduksjon av gjeldende rabatter), med bruk av den betalingsinformasjonen du har oppgitt ved første handel, inntil du avbryter avtalen. Du vil motta minst én e-post som påminnelse i forkant av hver fornyelse. Vi kan endre fornyelsesprisen fra neste fornyelsesdato dersom vi gir deg forvarsel om endringen i en e-post (du kan velge å kansellere automatisk fornyelse som beskrevet nedenfor dersom du ikke samtykker til endringen). Digital Rivers <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">salgsbetingelser</a> og <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">personvernbestemmelser</a> vil gjelde for hver fornyelse. Du kan kansellere den automatiske fornyelsen når som helst ved å logge inn på kontoen (adgangsinformasjon vil inkluderes i ordrebekreftelsen på e-post eller på kundeservices hjelpeside), velge produktet og velge alternativet for å kansellere automatisk fornyelse.<br/><br/>Jeg samtykker i at Digital River kan lagre min betalingsinformasjon for fremtidige kjøp inkludert behandling av eventuelle påfølgende abonnementsfornyelser som kan forekomme etter datoen for denne bestillingen.","klarnaCreditActiveAcceptance":"Ved å klikke på <span class=\\"DR-button-text\\">{payNow}</span> vil du bli presentert med ulike betalingsmetoder som Klarna tilbyr. Ved å fortsette godkjenner du <a target=\\"_blank\\" href=\\"http://cdn.klarna.com/1.0/shared/content/legal/terms/Klarna/nb_no/user\\">Klarnas brukervilkår</a> og bekrefter at du har lest <a target=\\"_blank\\" href=\\"http://cdn.klarna.com/1.0/shared/content/legal/terms/Klarna/nb_no/privacy\\">Klarnas personvernerklæring</a>.","klarnaCreditRecurringActiveAcceptance":"Ved å klikke på <span class=\\"DR-button-text\\">{payNow}</span> vil du bli presentert med ulike betalingsmetoder som Klarna tilbyr. Ved å fortsette godkjenner du <a target=\\"_blank\\" href=\\"http://cdn.klarna.com/1.0/shared/content/legal/terms/Klarna/nb_no/user\\">Klarnas brukervilkår</a> og bekrefter at du har lest <a target=\\"_blank\\" href=\\"http://cdn.klarna.com/1.0/shared/content/legal/terms/Klarna/nb_no/privacy\\">Klarnas personvernerklæring</a>.","agreeToTerms":"Jeg har lest og godtar betingelsene og kostnadene ovenfor."},"pl_PL":{"cancellationRights":"Prawo do anulowania zamówienia","cookiePolicy":"Pliki cookie","legalNotice":"Nota prawna","privacyPolicy":"Polityka ochrony danych","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> to autoryzowany dystrybutor oraz sprzedawca produktów i usług dostępnych w naszym sklepie.","termsOfSale":"Warunki sprzedaży","confirmDisclosure":"Składając zamówienie, akceptuję <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Warunki sprzedaży</a> oraz <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Politykę prywatności</a> {businessEntityName}.","autoRenewPlanTerms":"Przez zaznaczenie poniższego pola wyboru i dokonanie zakupu klient wyraża zgodę na automatyczne odnawianie przez firmę Digital River zakupionej licencji lub subskrypcji na kolejny okres subskrypcji, równy pierwszemu okresowi określonemu powyżej, w cenie określonej dla pierwszego okresu subskrypcji (plus podatki i opłaty pomniejszone o wszystkie przysługujące rabaty) dzięki danym płatności podanym podczas pierwszego zakupu, do momentu anulowania zgody. Zostanie wysłana co najmniej jedna wiadomość e-mail z przypomnieniem o nadchodzącym odnowieniu subskrypcji. Cena odnowienia subskrypcji może ulec zmianie w kolejnym okresie odnowienia, jeżeli klient zostanie uprzednio powiadomiony o takiej zmianie za pośrednictwem poczty e-mail (w przypadku braku zgody na zmianę ceny klient ma prawo do anulowania usługi automatycznego odnawiania licencji zgodnie z poniższym opisem). Każda transakcja odnowienia licencji/subskrypcji podlega przepisom <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Regulaminu sprzedaży</a> oraz <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Polityki prywatności</a> firmy Digital River. Możesz anulować plan automatycznego odnawiania w dowolnym momencie, logując się przez interfejs konta (informacje dostępowe będą zawarte w wiadomości e-mail z potwierdzeniem zamówienia lub na stronie pomocy technicznej działu obsługi klienta), wybierając produkt oraz opcję wyłączenia automatycznego odnawiania.<br/><br/>Wyrażam zgodę, aby Digital River przechowywała moje dane dotyczące płatności dla przyszłych zakupów, w tym przetwarzania przyszłych odnowień subskrypcji, jakie mogą pojawić się po dacie tego zamówienia.","agreeToTerms":"Znam i akceptuję powyższe warunki oraz opłaty.","idealRecurringAgreement":"Klikając to pole, upoważniasz Digital River do pobrania pierwszej płatności za pośrednictwem iDEAL i wykorzystania Twojego numeru IBAN do pobrania kolejnych płatności za subskrypcję w formie polecenia zapłaty SEPA. Po złożeniu zamówienia możesz sprawdzić informacje dotyczące Polecenia Zapłaty SEPA. <br/><br/>Zgodnie z przysługującymi uprawnieniami użytkownik jest upoważniony do uzyskania zwrotu od banku zgodnie z regulaminem oraz umową z bankiem. Żądanie zwrotu musi zostać zgłoszone w okresie 8 tygodni od daty obciążenia rachunku. ","mstsActiveAcceptance":"Wybierz opcję {payNow}, aby zalogować się do TreviPay, przeprowadzić dwustopniowe uwierzytelnienie i potwierdzić zakup.<span class=\\"{createAccountButtonTextClass}\\"><br /><br />Wybierz opcję Zarejestruj się TERAZ, aby utworzyć konto TreviPay.</span><br /><br />Wybierając opcję Zarejestruj się terazutworzysz swoje konto TreviPay<br /><br /><br /><br />ZRZECZENIE SIĘ<br /><br />* Wszystkie konta programu zakupów oraz linie kredytowe w ramach warunków płatności są wydawane przez Multi Service Technology Solutions, Inc., spółkę zarejestrowaną na Florydzie w USA („MSTS”).<br /><br />* {businessEntityName} nie jest stroną Umowy z właścicielem konta w ramach programu zakupów. {businessEntityName} nie jest pożyczkodawcą ani brokerem w zakresie linii kredytowych wydanych w ramach programu warunków i płatności.<br /><br />Wszystkie aplikacje i twoje kwalifikacje zostaną sprawdzone i rozstrzygnięte przez TreviPay. <a href=\\"https://www.trevipay.com/privacy-center/\\" target=\\"_blank\\">TUTAJ jest link do Centrum ochrony prywatności TreviPay.</a>"},"pt_BR":{"cancellationRights":"Regras de cancelamento","cookiePolicy":"Cookies","legalNotice":"Aviso legal","privacyPolicy":"Política de privacidade","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> é o revendedor e o distribuidor autorizado dos produtos e serviços oferecidos nesta loja.","termsOfSale":"Termos de vendas","confirmDisclosure":"Ao enviar meu pedido, eu concordo com os <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Termos de vendas</a> e com a <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Política de privacidade</a> de {businessEntityName}.","autoRenewPlanTerms":"Ao marcar a caixa abaixo e completar a sua compra, você autoriza e permite expressamente que a Digital River renove a sua licença ou assinatura adquirida sucessiva e automaticamente de acordo com os termos aceitos para o período inicial especificado acima, ao valor de compra de seu termo inicial (além dos respectivos impostos e taxas, deduzidos quaisquer desconto oferecidos) e utilizando as informações de pagamento fornecidas para sua compra inicial, até que você cancele. Você receberá ao menos um e-mail para lembrá-lo de que a renovação está próxima. Podemos alterar o valor da renovação na próxima data de renovação desde que você receba um aviso prévio e por e-mail sobre esta alteração (caso não concorde com a alteração de preço, você tem a liberdade de cancelar a renovação automática, conforme descrito abaixo). Os <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Termos de venda</a> e a <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Política de privacidade</a> da Digital River prevalecerão a cada operação de renovação. Você pode cancelar seu plano de renovação automática acessando a interface de conta (as informações para o acesso serão incluídas no seu e-mail de confirmação de pedido ou na página de ajuda do atendimento ao cliente), selecione seu produto e em seguida, selecione a opção de desabilitar a renovação automática.<br/><br/>Concordo que a Digital River armazene meus dados de pagamento para compras futuras incluindo o processamento de qualquer renovação de assinatura posterior que possa ocorrer após a data desse pedido.","agreeToTerms":"Li e concordo com os termos e cobranças acima.","idealRecurringAgreement":"Ao clicar na caixa, autoriza a Digital River a cobrar o seu primeiro pagamento através do iDEAL e a utilizar o seu IBAN para cobrar os pagamentos de subscrição subsequente por débito directo SEPA. Pode rever a sua informação sobre Débitos Directos SEPA após o envio da encomenda. <br/><br/>Como parte dos seus direitos, tem o direito a um reembolso por parte do seu banco, segundo os termos e condições do seu acordo com o este. Um reembolso deve ser solicitado no espaço de 8 semanas, a contar a partir da data em que a sua conta foi debitada. "},"pt_PT":{"cancellationRights":"Direito de Cancelamento","cookiePolicy":"Cookies","legalNotice":"Aviso Legal","privacyPolicy":"Política de privacidade","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> é o revendedor autorizado e o comerciante dos produtos e serviços disponibilizados nesta loja.","termsOfSale":"Termos de Venda","confirmDisclosure":"Ao submeter a minha encomenda, concordo com os <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Termos de Venda</a> e a <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\"  class=\\"dr_privacyPolicy\\">Política de Privacidade</a> de {businessEntityName}.","autoRenewPlanTerms":"Ao assinalar a caixa abaixo e finalizar a sua compra, autoriza expressamente a Digital River a renovar automaticamente a licença ou subscrição adquirida por períodos de renovação sucessivos de duração igual ao período inicial especificado acima, ao preço de compra do seu período inicial (acrescido de impostos e taxas, deduzido de quaisquer descontos aplicáveis) recorrendo à informação de pagamento fornecida por si para a sua compra inicial, até que a renovação seja cancelada. Ser-lhe-á enviado, no mínimo, um e-mail para o lembrar de cada renovação iminente. A Digital River pode alterar o preço a partir da próxima data de renovação, desde que o avisemos com antecedência por e-mail (poderá optar por cancelar a renovação automática, conforme descrito abaixo, caso não concorde com a alteração). As <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Condições de Venda</a> e <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Política de Privacidade</a> da Digital River aplicam-se a cada transação de renovação. Poderá cancelar o seu plano de renovação automática em qualquer altura, acedendo à interface da conta (a informação de acesso está incluída no e-mail de confirmação da sua encomenda ou na página da Ajuda do Serviço de Clientes), selecionando o seu produto e a opção para desativar a renovação automática.<br/><br/>Aceito que a Digital River poderá guardar a minha informação de pagamento para compras futuras, incluindo o processamento de quaisquer renovações subsequentes da subscrição que poderão ocorrer a seguir à data desta encomenda.","agreeToTerms":"Li e concordo com os termos e encargos acima mencionados.","idealRecurringAgreement":"Ao clicar na caixa, autoriza a Digital River a cobrar o seu primeiro pagamento através do iDEAL e a utilizar o seu IBAN para cobrar os pagamentos de subscrição subsequente por débito directo SEPA. Pode rever a sua informação sobre Débitos Directos SEPA após o envio da encomenda. <br/><br/>Como parte dos seus direitos, tem o direito a um reembolso por parte do seu banco, segundo os termos e condições do seu acordo com o este. Um reembolso deve ser solicitado no espaço de 8 semanas, a contar a partir da data em que a sua conta foi debitada. "},"ro_RO":{"privacyPolicy":"Politică de confidenţialitate","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> este un vânzător şi comerciant cu amănuntul autorizat ce furnizează servicii de comerţ electronic pentru acest magazin.","termsOfSale":"Termeni şi condiţii","confirmDisclosure":"","autoRenewPlanTerms":""},"ru_RU":{"cancellationRights":"Право отмены","cookiePolicy":"Cookie","legalNotice":"Юридическое уведомление","privacyPolicy":"Политика конфиденциальности","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> является авторизованным реселлером и продавцом продукции и услуг, предлагаемых в настоящем магазине.","termsOfSale":"Условия продажи","confirmDisclosure":"Подтверждая заказ, я соглашаюсь с <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Условиями продажи</a> и <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Политикой конфиденциальности</a> {businessEntityName}.","autoRenewPlanTerms":"Установив внизу соответствующий флажок и завершив покупку, вы даете свое согласие компании Digital River на автоматическое продление приобретенной лицензии или подписки на срок, равный первоначальному, указанному выше, сроку, по установленной для первоначального срока (плюс налоги и сборы, за вычетом соответствующих скидок) цене с использованием предоставленной вами информации для оплаты первоначальной покупки до тех пор, пока вы не отмените автоматическое продление. Перед этим Вам будет отправлено по крайней мере одно электронное письмо с напоминанием о предстоящем продлении. Мы оставляем за собой право изменить стоимость продления в соответствии с ценами на момент следующего продления, обязуясь предварительно уведомить Вас об этом по электронной почте (если Вы не согласны с изменениями, Вы можете выбрать отмену автоматического продления, как описано ниже). <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Условия продажи</a> и <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Политика конфиденциальности</a> Digital River распространяются на каждую процедуру продления. Вы можете отказаться от автоматического продления. Для этого войдите в свою учетную запись (информация для доступа указана в электронном письме с подтверждением заказа или на справочной странице Службы поддержки клиентов), выберите ваш продукт и опцию отмены автоматического продления.<br/><br/>Я согласен (-на) на то, чтобы компания Digital River хранила мою информацию об оплате для совершения покупок в будущем, в том числе для обновления подписок, следующих после даты настоящего заказа.","agreeToTerms":"Я прочитал и согласен с Условиями и стоимостью, указанными выше.","idealRecurringAgreement":"Нажав на галочку, вы разрешаете Digital River собрать ваш первый платеж через iDEAL и использовать ваш IBAN для сбора последующих платежей за подписку путем прямого дебета SEPA. Вы можете просмотреть информацию о своем прямом дебете SEPA после отправки заказа. <br/><br/>Вы также имеете право на возмещение банком Ваших денежных средств согласно условиям и положениям заключенного с банком соглашения. Возмещение должно быть заявлено в течение 8 недель, начиная с даты списания средств с вашего счета. "},"sk_SK":{"cancellationRights":"Oprávnenie na zrušenie","cookiePolicy":"Cookies","legalNotice":"Právny dokument","privacyPolicy":"Politika ochrany osobných údajov","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> je predajca alebo veľkoobchod s produktmi a službami poskytovanými v tomto obchode.","termsOfSale":"Predajné podmienky","confirmDisclosure":"Odoslaním objednávky vyjadrujem svoj súhlas s <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">predajnými podmienkami</a> a <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">zásadami ochrany osobných údajov</a> spoločnosti {businessEntityName}.","autoRenewPlanTerms":"Zaškrtnutím nasledujúceho políčka a dokončením nákupu výslovne oprávňujete spoločnosť Digital River a povoľujete jej automaticky obnovovať zakúpenú licenciu alebo zakúpené predplatné na nasledujúce obdobia obnovenia, ktoré sa zhodujú s dĺžkou pôvodnej doby uvedenej vyššie, a to za kúpnu cenu pôvodného obdobia (plus dane a poplatky a zníženú o prípadné zľavy) s použitím platobných informácií, ktoré ste poskytli pre pôvodný nákup. Toto oprávnenie môžete kedykoľvek zrušiť. Na blížiaci sa termín obnovenia vás upozorníme najmenej jedným e-mailom. Cenu obnovenia môžeme zmeniť k dátumu nasledujúceho obnovenia, ak vás o tejto zmene budeme vopred informovať e-mailom (ak s touto zmenou nesúhlasíte, podľa nasledujúceho postupu môžete zrušiť automatické obnovenie). Na každú transakciu obnovenia sa uplatňujú <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">predajné podmienky</a> a <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">zásady ochrany osobných údajov</a> spoločnosti Digital River. Automatické obnovenie plánu môžete kedykoľvek zrušiť, ak sa prihlásite k rozhraniu účtu (prístupové údaje budú uvedené v e-mailovom potvrdení vašej objednávky alebo ich nájdete na stránke pomoci zákazníckeho servisu), vyberiete príslušný produkt a zvolíte možnosť zrušenia automatického obnovenia. <br/><br/>Súhlasím s tým, aby spoločnosť Digital River ukladala moje platobné informácie na budúce nákupy vrátane spracovania všetkých obnovení predplatného, ku ktorým môže dôjsť po uplynutí tohto príkazu.","agreeToTerms":"Prečítal(a) som si uvedené informácie o podmienkach a cenách a súhlasím s nimi.","idealRecurringAgreement":"Kliknutím na toto políčko povoľujete spoločnosti Digital River inkasovať vašu prvú platbu prostredníctvom iDEAL a používať váš IBAN na inkaso ďalších platieb predplatného prostredníctvom SEPA inkasa. Po odoslaní objednávky si môžete skontrolovať svoje informácie o priamom inkase SEPA. <br/><br/>Na základe svojich práv môžete požiadať banku o vrátenie sumy v súlade so zmluvnými podmienkami svojej banky. O vrátenie peňazí je potrebné požiadať do 8 týždňov odo dňa odpísania sumy z vášho účtu. "},"sl_SI":{"privacyPolicy":"Pravilnik o zasebnosti","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> je pooblaščen trgovec na debelo in drobno, ki ponuja storitve spletne prodaje za to trgovino.","termsOfSale":"Pogoji in določila","confirmDisclosure":"","autoRenewPlanTerms":""},"sr_YU":{"privacyPolicy":"Pravilnik o poverljivosti","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> je ovlašćen za maloprodaju i trgovinu i pruža usluge e-trgovine za ovu prodavnicu.","termsOfSale":"Uslovi","confirmDisclosure":"","autoRenewPlanTerms":""},"sv_SE":{"cancellationRights":"Ångerrätt","cookiePolicy":"Cookies","legalNotice":"Juridisk information","privacyPolicy":"Sekretesspolicy","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> är den auktoriserade återförsäljaren av de produkter och tjänster som erbjuds i den här butiken.","termsOfSale":"Försäljningsvillkor","confirmDisclosure":"Genom att skicka ordern godkänner jag <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">köpvillkoren</a> och <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">sekretesspolicyn</a> för {businessEntityName}.","autoRenewPlanTerms":"Genom att kryssa i rutan nedan och slutföra ditt köp ger du uttryckligen Digital River tillåtelse att förnya din inköpta licens eller prenumeration för lika lång förnyelseperiod som den ursprungliga, ovannämnda perioden, och för det pris som gällde för den ursprungliga perioden (plus skatter och avgifter, minus ev. rabatter) tills du väljer att avbryta förfarandet. Samma betalningsinformation används som du angav vid ditt första köp. Du får minst en påminnelse via e-post inför varje förlängning. Vi kan komma att ändra priset på förlängningen från och med kommande förlängningsdatum om vi meddelar dig i förväg per e-post (du kan välja att annullera den automatiska förlängningen enligt nedan om du inte godkänner ändringen). Digital Rivers <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">försäljningsvillkor</a> och <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">sekretesspolicy</a> gäller för varje transaktion i samband med förlängning. Du kan när som helst annullera den automatiska förlängningen genom att logga in till kontogränssnittet (inloggningsuppgifter inkluderas i orderbekräftelsen eller på hjälpsidan för kundtjänst), markera produkten och välja alternativet för att annullera den automatiska förlängningen.<br/><br/>Jag godkänner att Digital River sparar min betalningsinformation för framtida inköp, inklusive bearbetning av eventuellt efterföljande prenumerationsförlängningar som kan inträffa efter beställningsdatumet.","klarnaCreditActiveAcceptance":"Genom att klicka <span class=\\"DR-button-text\\">{payNow}</span> kommer du att bli presenterad med olika betalmetod tillhandahållna av Klarna. Genom att gå vidare godkänner du <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/sv_se/user\\">Klarnas Användarvillkor</a> och bekräftar att du läst <a target=\\"blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/sv_se/privacy\\">Klarnas Dataskyddsinformation</a>.","klarnaCreditRecurringActiveAcceptance":"Genom att klicka <span class=\\"DR-button-text\\">{payNow}</span> kommer du att bli presenterad med olika betalmetod tillhandahållna av Klarna. Genom att gå vidare godkänner du <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/sv_se/user\\">Klarnas Användarvillkor</a> och bekräftar att du läst <a target=\\"blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/sv_se/privacy\\">Klarnas Dataskyddsinformation</a>.","agreeToTerms":"Jag har läst och godkänner villkoren och beloppen ovan.","idealRecurringAgreement":"Genom att klicka i rutan godkänner du att Digital River tar emot din första betalning via iDEAL och använder ditt IBAN för att ta emot efterföljande prenumerationsbetalningar via SEPA-autogiro. Du kan granska din information om SEPA-direktdebitering efter att du har skickat din beställning. <br/><br/>Du har bland annat rätt till återbetalning från banken enligt villkoren i ditt avtal med banken. En återbetalning måste begäras inom åtta veckor från det datum då kontot debiterades. "},"th_TH":{"cancellationRights":"สิทธิ์ในการยกเลิก","cookiePolicy":"คุกกี้","legalNotice":"ข้อความสงวนสิทธิ์ทางกฎหมาย","privacyPolicy":"นโยบายการเก็บรักษาข้อมูลส่วนบุคคล","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> เป็นผู้ค้าและผู้จำหน่ายที่ได้รับอนุญาตสำหรับผลิตภัณฑ์และบริการที่นำเสนอภายในร้านค้าแห่งนี้","termsOfSale":"เงื่อนไขการขาย","confirmDisclosure":"ในการส่งคำสั่งซื้อของฉัน ฉันยอมรับ<a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">ข้อกำหนดการจำหน่าย</a>และ<a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">นโยบายความเป็นส่วนตัว</a>ของ {businessEntityName}","autoRenewPlanTerms":"","agreeToTerms":"ฉันได้อ่านและเห็นชอบในเงื่อนไขและค่าใช้จ่ายข้างต้นแล้ว","idealRecurringAgreement":"เมื่อคลิกที่กล่องคุณอนุญาตให้ Digital River เรียกเก็บเงินครั้งแรกผ่าน iDEAL และใช้ IBAN ของคุณเพื่อรวบรวมการชําระเงินการสมัครสมาชิกที่ตามมาโดยการหักบัญชีเงินฝากอัตโนมัติ SEPA คุณสามารถตรวจสอบข้อมูลการหักบัญชีเงินฝากอัตโนมัติ SEPA ของคุณหลังจากส่งคําสั่งซื้อ <br/><br/>คุณมีสิทธิ์ในการขอคืนเงินจากธนาคารของคุณภายใต้ข้อกำหนดและเงื่อนไขของข้อตกลงระหว่างคุณกับทางธนาคารของคุณ การใช้สิทธิ์ขอคืนเงินจะต้องดำเนินการภายใน 8 สัปดาห์นับจากวันที่ที่บัญชีของคุณถูกหัก "},"tr_TR":{"cancellationRights":"İptal Hakkı","cookiePolicy":"Tanımlama Bilgileri","legalNotice":"Yasal Uyarı","privacyPolicy":"Gizlilik Politikası","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> bu mağazada ürünlerin ve servislerin önerilen yetkili satıcısı ve tüccarıdır.","termsOfSale":"Satış Şartları","confirmDisclosure":"Siparişimi göndererek {businessEntityName}’ye ait <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Satış Şartları</a> ve <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Gizlilik Politikası</a>’nı kabul ediyorum.","autoRenewPlanTerms":"Aşağıdaki kutuyu işaretlediğinizde ve siparişinizi tamamladığınızda, sipariş ettiğiniz lisansın veya aboneliğin daha sonraki yenileme dönemlerinde Digital River tarafından başlangıç dönemi ile aynı süre kadar ve başlangıç döneminde ödediğiniz aynı ücret ile (vergiler ve harçlar eklenir, olası indirimler düşülür) otomatik olarak yenilenmesi için açıkça yetki ve izin vermiş olursunuz. Bunun için ilk satın alma işleminiz sırasında sağladığınız ödeme bilgileri kullanılır ve yetki siz iptal edene kadar geçerliliğini korur. Yaklaşmakta olan her yenileme için size en az bir e-posta gönderilecektir. Bir sonraki yenileme tarihi için size önceden e-posta ile bildirmek koşuluyla yenileme ücretini değiştirme hakkımız saklıdır (değişikliği onaylamıyorsanız otomatik yenilemeyi aşağıda açıklanan şekilde iptal edebilirsiniz). Her yenileme işlemi için Digital River <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Satış Koşulları</a> ve <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Gizlilik Politikası</a> geçerli olacaktır. İsterseniz hesap arayüzünde oturum açtıktan sonra ürünü seçip otomatik yenilemenin kaldırılması seçeneğini belirleyerek otomatik yenileme planınızı iptal edebilirsiniz (erişim bilgilerini sipariş onay e-postasında veya Müşteri Hizmetleri Yardım sayfasında bulabilirsiniz).<br/><br/>Digital River\'ın ödeme bilgilerimi, bu sipariş tarihini takiben gerçekleşebilecek aboneliğin daha sonraki yenilenme işlemleri de dahil olmak üzere gelecekteki alışverişler için saklamasını kabul ediyorum.","agreeToTerms":"Yukarıdaki koşulları ve ücretleri okudum ve kabul ediyorum.","idealRecurringAgreement":"Kutuya tıklayarak Digital River\'a ilk ödemenizi iDEAL üzerinden tahsil etme yetkisi veriyorsunuz ve sonraki abonelik ödemelerini SEPA otomatik ödeme ile toplamak için IBAN\'ınızı kullanıyorsunuz. Sepa Otomatik Ödeme bilgilerinizi sipariş gönderimini inceledikten sonra inceleyebilirsiniz. <br/><br/>Haklarınızın bir parçası olarak, bankanızla olan anlaşmanızın hüküm ve şartlarına uygun biçimde bankanızdan geri ödeme alma hakkınız mevcuttur. Bir geri ödeme, hesabınızdan para çekildikten sonra 8 hafta içerisinde talep edilmelidir. "},"zh_CN":{"cancellationRights":"取消订单权","cookiePolicy":"Cookie","legalNotice":"法律声明","privacyPolicy":"隐私政策","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> 是本商店提供的产品和服务的授权经销商和商家。","termsOfSale":"销售条款","confirmDisclosure":"通过提交我的订单，我同意{businessEntityName}的<a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">销售条款</a>和<a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">隐私政策</a>。","autoRenewPlanTerms":"选中下面的选项框并完成购买后，即表示您明确授权并允许Digital River使用您首次购买产品时提供的付款信息自动续订您购买的许可证或订阅，后续每一期续订期限等于以上列出的首期订阅期限，价格等于首期价格(加上各种税费，减去各种适用折扣)，直至您取消为止。每次续订前，您将收到至少一份提醒电子邮件。如果我们事先通过电子邮件向您发出了变更通知，可能从下一次续订日期起更改续订价格(如果不同意价格变更，您可以选择按照如下说明取消自动续订)。Digital River<a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">销售条款</a>和<a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">隐私政策</a>适用于每一次续订交易。登录帐户界面(访问信息包含在订购确认邮件中，或请参见“客户服务帮助”页面)，选择产品并选择禁用自动续订选项，即可随时取消自动续订计划。<br/><br/>我同意Digital River保存我的支付信息，方便日后购买商品使用，包括自订单下达之日起，处理随后可能出现的任何续订。","agreeToTerms":"我已阅读并同意以上销售条款和费用。","idealRecurringAgreement":"通过点击方框，您授权Digital River通过iDEAL收取您的第一笔付款，并使用您的IBAN通过SEPA直接借记收取后续的订阅付款。您可以在提交订单后查看您的SEPA直接借记信息。<br/><br/>作为您权利的一部分，您可根据与开户银行所签订协议的各项条款和条件从您的开户银行获取退款。退款必须在你的账户被扣款之日起8周内提出。"},"zh_HK":{"cancellationRights":"取消權利","cookiePolicy":"Cookies","legalNotice":"法律聲明","privacyPolicy":"隱私權政策","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> 是本商店內所提供產品及服務的授權轉售商和販售者。","termsOfSale":"銷售條款","confirmDisclosure":"通过提交我的订单，我同意{businessEntityName}的<a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">销售条款</a>和<a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">隐私政策</a>。","autoRenewPlanTerms":"勾選以下方格並完成購買時，即代表您明確授權並允許Digital River使用您在初次購買時提供的付款資訊，依照最初的訂閱期及該訂閱期的價格（加上稅項及費用，減去適用的折扣）以相同年期及價格自動續訂您已購買的許可證或訂閱服務，直到您取消為止。到期續訂之前，您會收到至少一封電子郵件提示。若下次續訂日的價格有變更，我們將提前以電子郵件通知（若您不同意該價格變動，可透過以下方式選擇取消自動續訂）。Digital River<a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">銷售條款</a>與<a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">私隱政策</a>將適用於每次續訂交易。若要取消自動續訂計劃，您可隨時登入帳號介面（操作資訊列於您的訂單確認電子郵件或客戶服務支援頁面），選取您的產品後選擇取消自動續訂。<br/><br/>我同意Digital River儲存此帳戶及付款資訊，以供未來付款及本訂單日期後的任何續訂使用。","agreeToTerms":"我已閱讀並同意上述條款和收費。"},"zh_TW":{"cancellationRights":"取消權利","cookiePolicy":"Cookie","legalNotice":"法律聲明","privacyPolicy":"隱私權政策","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> 本商店所提供商品及服務的授權經銷商及批發商。","termsOfSale":"銷售條款","confirmDisclosure":"通过提交我的订单，我同意{businessEntityName}的<a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">销售条款</a>和<a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">隐私政策</a>。","autoRenewPlanTerms":"核取底下的方塊並完成購買，表示您已明確授權並允許Digital River使用您在一開始購買時提供的付款資訊，依照上述更新條款以最初的授權條款（加上所需的稅金及規費，減去適用的折扣）自動續訂您已購買的授權或訂閱產品，直到您取消訂閱為止。即將續訂之前，您會收到至少一封提醒的電子郵件。若下次續訂日的價格有變動，我們將提前以電子郵件通知（若不同意價格變動，您可以根據下方說明取消自動續訂）。Digital River<a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">銷售條款</a>與<a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">隱私權政策</a>將適用於每次的更新交易。您可隨時登入帳號介面以取消自動續訂計畫（可在您的訂單確認電子郵件或客戶服務支援頁面找到操作資訊），選取您的產品後選擇取消自動續訂。<br/><br/>我同意Digital River儲存此付款資訊，以供未來付款及本訂單日期後的任何續訂使用。","agreeToTerms":"我已經閱讀並同意上述條款與付款規定。"}},"locale":["ar_EG","cs_CZ","da_DK","de_AT","de_CH","de_DE","el_GR","en_AU","en_BE","en_CA","en_CH","en_DK","en_FI","en_GB","en_IE","en_IN","en_MY","en_NL","en_NO","en_NZ","en_PR","en_SE","en_SG","en_US","en_ZA","es_AR","es_CL","es_CO","es_EC","es_ES","es_MX","es_PE","es_VE","et_EE","fi_FI","fr_BE","fr_CA","fr_CH","fr_FR","hu_HU","it_CH","it_IT","iw_IL","ja_JP","ko_KR","lt_LT","lv_LV","nl_BE","nl_NL","no_NO","pl_PL","pt_BR","pt_PT","ro_RO","ru_RU","sk_SK","sl_SI","sr_YU","sv_SE","th_TH","tr_TR","zh_CN","zh_HK","zh_TW"],"entityCode":[{"code":"DRES_INC-ENTITY","name":"DR Education Services"},{"code":"DR_WP-ENTITY","name":"DR World Payments"},{"code":"DR_WPAB-ENTITY","name":"DR World Payments AB"},{"code":"C5_INC-ENTITY","name":"DR globalTech Inc."},{"code":"DR_BRAZIL-ENTITY","name":"Digital River Brazil"},{"code":"DR_CHINA-ENTITY","name":"Digital River China"},{"code":"DR_GMBH-ENTITY","name":"Digital River GmbH"},{"code":"DR_INC-ENTITY","name":"Digital River Inc."},{"code":"DR_INDIA-ENTITY","name":"Digital River India Pvt"},{"code":"DR_IRELAND-ENTITY","name":"Digital River Ireland Ltd."},{"code":"DR_JAPAN-ENTITY","name":"Digital River Japan"},{"code":"DR_KOREA-ENTITY","name":"Digital River Korea YH"},{"code":"DR_MEXICO-ENTITY","name":"Digital River Mexico"},{"code":"DR_RUSSIA-ENTITY","name":"Digital River Russia"},{"code":"DR_SARL-ENTITY","name":"Digital River, International SARL"},{"code":"DR_TAIWAN-ENTITY","name":"Digital River Taiwan"},{"code":"DR_UK-ENTITY","name":"Digital River UK Ltd."}],"keys":{"AUTORENEWAL_PLAN_TERMS":"autoRenewPlanTerms","RESELLER_DISCLOSURE":"resellerDisclosure","TERMS_OF_SALE":"termsOfSale","PRIVACY_POLICY":"privacyPolicy","COOKIE_POLICY":"cookiePolicy","CANCELLATION_RIGHTS":"cancellationRights","CONFIRM_DISCLOSURE":"confirmDisclosure","LEGAL_NOTICE":"legalNotice","CALIFORNIA_PRIVACY_RIGHTS":"californiaPrivacyRights","WARRANTY_INFORMATION":"warrantyInformation","AGREE_TO_TERMS":"agreeToTerms","IDEAL_RECURRING_AGREEMENT":"idealRecurringAgreement"}}');
+module.exports = JSON.parse('{"details":{"ar_EG":{"cancellationRights":"حق الإلغاء","cookiePolicy":"ملفات كوكيز","legalNotice":"ملحوظة قانونية","privacyPolicy":"سياسة الخصوصية","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> هو الموزع والموزع المعتمد للمنتجات والخدمات المقدمة في هذا المتجر.","termsOfSale":"شروط البيع","confirmDisclosure":"بإرسال طلبي فإنني أوافق على <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">شروط البيع</a> و<a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">سياسة الخصوصية</a> لدى {businessEntityName}.","autoRenewPlanTermsBegin":"بالتأشير في المربع السفلي وإتمام مشترياتك، فأنت تصرّح وتسمح بشكل قاطع لشركة Digital River بتجديد اشتراكك أو ترخيصك الذي قمت بشرائه بشكل أوتوماتيكي بناءً على مدد التجديد اللاحقة والمساوية في الطول للمدة الأساسية المحددة أعلاه، بسعر الشراء لمدتك الأساسية (بالإضافة للضرائب والرسوم، وتنفيذ أية خصومات سارية) وباستخدام معلومات الدفع التي أدخلتها خلال عملية الشراء الأصلية، إلى أن تقوم بالإلغاء. تجدر الإشارة إلى أنك ستتسلم رسالة بريد إلكتروني واحدة على الأقل على سبيل التذكير عند كل تجديد قادم. قد نقوم بتغيير سعر التجديد في موعد التجديد التالي بعد إخطارك مسبقا عن طريق رسالة بريد إلكتروني (يمكنك اختيار إلغاء التجديد الأوتوماتيكي كما هو مشروح أدناه في حالة عدم موافقتك على التغيير). سوف تسري <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">شروط البيع</a> و <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">سياسة الخصوصية</a> الخاصة بشركة Digital River على كل عملية تجديد. يمكنك إلغاء خطة التجديد الأوتوماتيكية في أي وقت عن طريق تسجيل الدخول في واجهة الحساب (ستجد معلومات الدخول مضمنة في رسالة البريد الإلكتروني التأكيدية لطلبك أو في صفحة المساعدة التابعة لخدمة العملاء)، واختيار المنتج واختيار إيقاف التجديد الأوتوماتيكي.<br /><br /> أوافق على أنه يجوز لشركة Digital River حفظ معلومات الدفع الخاصة بي لعمليات الشراء المستقبلية بما في ذلك تنفيذ أي عمليات تجديد اشتراكات تالية قد تحدث بعد تاريخ هذا الطلب.","autoRenewPlanTermsEnd":"","agreeToTerms":"لقد اطلعت على الشروط والرسوم وأوافق عليها.","idealRecurringAgreement":"بالنقر فوق المربع، فإنك تأذن لشركة Digital River بتحصيل دفعتك الأولى عبر iDEAL واستخدام رقم IBAN الخاص بك لتحصيل مدفوعات الاشتراك اللاحقة عن طريق الخصم المباشر من SEPA. يمكنك مراجعة معلومات الخصم المباشر ل SEPA بعد إرسال الطلب. <br/><br/>كجزء من حقوقك، يحق لك استرداد الأموال من البنك الذي تتعامل معه بموجب شروط وأحكام اتفاقك مع البنك الذي تتعامل معه. يجب أن تتم المطالبة برد المبلغ في غضون 8 أسابيع بدءا من التاريخ الذي تم فيه الخصم من حسابك. "},"cs_CZ":{"cancellationRights":"Oprávnění ke zrušení","cookiePolicy":"Cookies","legalNotice":"Právní dokument","privacyPolicy":"Zásady zachování soukromí","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> je autorizovaným prodejcem a obchodníkem s produkty a službami, které tento obchod nabízí.","termsOfSale":"Prodejní podmínky","confirmDisclosure":"Odesláním své objednávky vyjadřuji souhlas s <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">prodejními podmínkami</a> a <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">ochranou soukromí</a> {businessEntityName}.","consentsEula":" a <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Licenční smlouva koncového uživatele</a>","consentsTermsOfUse":" a <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Podmínky použití</a>","consentsCompanyName":" z {companyName}","autoRenewPlanTermsBegin":"Zaškrtnutím dále zobrazeného políčka a dokončením vašeho nákupu výslovně zmocňujete a pověřujete společnost Digital River, aby automaticky obnovovala vaši zakoupenou licenci nebo předplatné vždy na následující prolongační období, jehož délka bude shodná s dříve specifikovaným počátečním obdobím, za kupní cenu shodnou s vaším počátečním obdobím (včetně daní a poplatků a po odečtení případně se vztahujících slev) a s využitím platebních informací, které jste poskytli pro váš počáteční nákup, dokud toto nezrušíte. Bude vám zaslán nejméně jeden e-mail, který vás upozorní na každé následující obnovení. Obnovovací cenu můžeme změnit k datu následujícího obnovení, pokud vás předem o této změně informujeme e-mailem (máte možnost zrušit automatické obnovování, jak je popsáno dále, jestliže s touto změnou nesouhlasíte). <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Prodejní podmínky</a> společnosti Digital River a její <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">zásady pro ochranu osobních údajů</a>","autoRenewPlanTermsEnd":" se budou vztahovat na každý případ obnovení předplatného nebo licence. Svůj plán automatického obnovování můžete zrušit přihlášením se do rozhraní vašeho účtu (přístupové informace budou součástí e-mailu potvrzujícího vaši objednávku nebo budou obsaženy na stránce nápovědy zákaznického servisu), zvolením vašeho produktu a zvolením možnosti zrušení automatického obnovování.<br/><br/>Souhlasím, aby společnost Digital River ukládala moje platební údaje pro budoucí nákupy, včetně zpracování dalších obnovení předplatného, k nimž může dojít po datu této objednávky.","agreeToTerms":"Přečetl jsem si dříve uvedené podmínky a účtované poplatky a souhlasím s nimi.","idealRecurringAgreement":"Kliknutím na toto políčko udělujete společnosti Digital River oprávnění k inkasu první platby prostřednictvím iDEAL a k inkasu dalších plateb předplatného prostřednictvím SEPA inkasa pomocí vašeho IBAN. Informace o přímém inkasu SEPA si můžete zkontrolovat po odeslání objednávky. <br/><br/>Součástí vašich práv je nárok na proplacení od vaší banky podle podmínek vaší smlouvy s bankou. Žádost o proplacení musí být podána v průběhu 8 týdnů od data, ke kterému došlo k zúčtování částky na vrub vašeho účtu. "},"da_DK":{"cancellationRights":"Fortrydelsesret","cookiePolicy":"Cookies","legalNotice":"Juridisk note","privacyPolicy":"Retningslinjer for personbeskyttelse","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> er den autoriserede forhandler af de produkter og tjenesteydelser, der tilbydes i denne forretning.","termsOfSale":"Salgsvilkår","confirmDisclosure":"Ved at indsende min bestilling, accepterer jeg <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Salgsvilkårene</a> og <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Politikken om beskyttelse af personlige oplysninger</a> på {businessEntityName}.","consentsEula":" og den <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Slutbruger-licensaftale</a>","consentsTermsOfUse":" og den <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Brugsbetingelser</a>","consentsCompanyName":" af {companyName}","autoRenewPlanTermsBegin":"Når du markerer afkrydsningsfeltet nedenfor og gennemfører købet, godkender du udtrykkeligt og giver tilladelse til, at Digital River automatisk fornyer den licens eller det abonnement, du køber i perioder svarende til den første periode, som er angivet nedenfor, til den samme købspris som prisen for den første periode (plus afgifter og gebyrer og fratrukket eventuelle rabatter) via de betalingsoplysninger, du har angivet, indtil du opsiger licensen eller abonnementet. Du vil modtage mindst én e-mail som påmindelse om, at abonnementet bliver fornyet. Vi har ret til at ændre prisen for fornyelsen pr. den kommende fornyelsesdato, hvis vi informerer dig herom forud via e-mail (du kan vælge at annullere automatisk fornyelse som beskrevet nedenfor, hvis du ikke accepterer ændringen). Digital Rivers <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Salgsvilkår</a> og <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Fortrolighedspolitik</a>","autoRenewPlanTermsEnd":" gælder for alle fornyelsestransaktioner. Du kan når som helst annullere din automatiske fornyelsesplan ved at logge på kontoskærmen (adgangsoplysningerne er angivet i e-mailen med ordrebekræftelsen eller på Kundeservice-siden), vælge dit produkt og vælge at deaktivere automatisk fornyelse.<br/><br/>Jeg giver mit samtykke til, at Digital River gemmer mine betalingsoplysninger til brug ved fremtidige køb samt til brug ved fornyelse af abonnementer efter denne ordredato.","klarnaCreditActiveAcceptance":"Ved at klikke <span class=\\"DR-button-text\\">{payNow}</span> vil du blive præsenteret for forskellige betalingsmetoder som Klarna tilbyder. Ved at fortsætte godkender du <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/da_dk/user\\">Klarnas Vilkår for tjenester og funktioner</a> samt bekræfter at du har læst <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/da_dk/privacy\\">Klarnas databeskyttelsesmeddelse</a>.","klarnaCreditRecurringActiveAcceptance":"Ved at klikke <span class=\\"DR-button-text\\">{payNow}</span> vil du blive præsenteret for forskellige betalingsmetoder som Klarna tilbyder. Ved at fortsætte godkender du <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/da_dk/user\\">Klarnas Vilkår for tjenester og funktioner</a> samt bekræfter at du har læst <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/da_dk/privacy\\">Klarnas databeskyttelsesmeddelse</a>.","agreeToTerms":"Jeg har læst og accepterer ovenstående vilkår og priser.","idealRecurringAgreement":"Ved at klikke på feltet giver du Digital River tilladelse til at opkræve din første betaling via iDEAL og bruge dit IBAN-nummer til at opkræve de efterfølgende abonnementsbetalinger via SEPA-automatindbetaling. Du kan gennemgå dine SEPA Direct Debit-oplysninger efter ordreafgivelse. <br/><br/>Du har krav på en refusion fra din bank på de vilkår og betingelser, der følger af din aftale med banken. Refusion skal kræves senest 8 uger fra den dato, kontoen blev debiteret. "},"de_AT":{"cancellationRights":"Widerrufsrecht","cookiePolicy":"Cookies","legalNotice":"Impressum","privacyPolicy":"Datenschutzrichtlinien","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> ist der autorisierte Wiederverkäufer und Händler der Produkte und Dienstleistungen die in diesem Shop angeboten werden.","termsOfSale":"Verkaufsbedingungen","confirmDisclosure":"Durch Einreichen meiner Bestellung stimme ich den <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Verkaufsbedingungen</a> und den <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Datenschutzrichtlinien</a> von {businessEntityName} zu.","consentsEula":" und die <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Endbenutzer-Lizenzvereinbarung</a>","consentsTermsOfUse":" und die <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Nutzungsbedingungen</a>","consentsCompanyName":" von {companyName}","autoRenewPlanTermsBegin":"Durch das Markieren des Kästchens unten und den Abschluss Ihres Kaufvorgangs erteilen Sie Digital River ausdrücklich die Genehmigung, Ihre gekaufte Lizenz bzw. Ihr Abonnement für Folgelaufzeiten mit gleicher Dauer wie der oben angegebenen anfänglichen Laufzeit zum angegebenen Lizenzpreis (plus Steuern und Abgaben, abzüglich eventueller Rabatte) für die anfängliche Laufzeit über die für Ihren ersten Kauf angegebenen Zahlungsinformationen abzurechnen, bis Sie die Bestellung kündigen. Bei jeder anstehenden Verlängerung erhalten Sie mindestens eine E-Mail zur Erinnerung. Wir behalten uns vor, den Verlängerungspreis zum nächsten Verlängerungsdatum zu ändern, sofern wir Sie über eine solche Änderung rechtzeitig per E-Mail benachrichtigen (wenn Sie mit der Änderung nicht einverstanden sind, können Sie wie unten beschrieben die automatische Verlängerung stornieren). Die <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Verkaufsbedingungen</a> und die <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Datenschutzerklärung</a> von Digital River","autoRenewPlanTermsEnd":" gelten für jede Verlängerungstransaktion. Sie können Ihren Plan mit automatischer Verlängerung jederzeit kündigen, indem Sie sich in Ihrem Konto anmelden (Zugangsdaten finden Sie in Ihrer Bestätigungs-E-Mail oder auf der Kundenservice-Hilfeseite), Ihr Produkt auswählen und die Option zum Stornieren der automatischen Verlängerung wählen.<br/><br/>Ich bin einverstanden, dass Digital River meine Zahlungsinformationen für zukünftige Käufe speichert, einschließlich der Verarbeitung späterer Abonnementverlängerungen nach dem Datum dieser Bestellung.","klarnaCreditActiveAcceptance":"Wenn Sie <span class=\\"DR-button-text\\">{payNow}</span> drücken, werden Ihnen die von Klarna angebotenen Zahlungsarten vorgestellt. Indem Sie fortfahren, akzeptieren Sie <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/de_at/user\\">die allgemeinen Geschäftsbedingungen für Klarna Dienste</a> und bestätigen, dass Sie Klarnas Datenschutzerklärung gelesen haben.","klarnaCreditRecurringActiveAcceptance":"Wenn Sie <span class=\\"DR-button-text\\">{payNow}</span> drücken, werden Ihnen die von Klarna angebotenen Zahlungsarten vorgestellt. Indem Sie fortfahren, akzeptieren Sie <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/de_at/user\\">die allgemeinen Geschäftsbedingungen für Klarna Dienste</a> und bestätigen, dass Sie Klarnas <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/de_at/privacy\\">Datenschutzerklärung</a> gelesen haben.","agreeToTerms":"Ich habe die oben aufgeführten Geschäftsbedingungen und Preise gelesen und stimme ihnen zu.","idealRecurringAgreement":"Wenn Sie das Kästchen anklicken, ermächtigen Sie Digital River, Ihre erste Zahlung über iDEAL einzuziehen und Ihre IBAN zu verwenden, um die weiteren Zahlungen für das Abonnement per SEPA-Lastschrift einzuziehen. Sie können Ihre SEPA-Lastschriftinformationen nach der Bestellung überprüfen. <br/><br/>Im Rahmen Ihrer Rechte haben Sie gemäß den Bestimmungen in der Vereinbarung mit Ihrer Bank Anspruch auf eine Erstattung. Eine Erstattung muss innerhalb von acht Wochen ab dem Datum der Belastung Ihres Kontos angefordert werden. "},"de_CH":{"cancellationRights":"Widerrufsrecht","cookiePolicy":"Cookies","legalNotice":"Impressum","privacyPolicy":"Datenschutzrichtlinien","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> ist der autorisierte Wiederverkäufer und Händler der Produkte und Dienstleistungen die in diesem Shop angeboten werden.","termsOfSale":"Verkaufsbedingungen","confirmDisclosure":"Durch Einreichen meiner Bestellung stimme ich den <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Verkaufsbedingungen</a> und den <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Datenschutzrichtlinien</a> von {businessEntityName} zu.","consentsEula":" und die <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Endbenutzer-Lizenzvereinbarung</a>","consentsTermsOfUse":" und die <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Nutzungsbedingungen</a>","consentsCompanyName":" von {companyName}","autoRenewPlanTermsBegin":"Durch das Markieren des Kästchens unten und den Abschluss Ihres Kaufvorgangs erteilen Sie Digital River ausdrücklich die Genehmigung, Ihre gekaufte Lizenz bzw. Ihr Abonnement für Folgelaufzeiten mit gleicher Dauer wie der oben angegebenen anfänglichen Laufzeit zum angegebenen Lizenzpreis (plus Steuern und Abgaben, abzüglich eventueller Rabatte) für die anfängliche Laufzeit über die für Ihren ersten Kauf angegebenen Zahlungsinformationen abzurechnen, bis Sie die Bestellung kündigen. Bei jeder anstehenden Verlängerung erhalten Sie mindestens eine E-Mail zur Erinnerung. Wir behalten uns vor, den Verlängerungspreis zum nächsten Verlängerungsdatum zu ändern, sofern wir Sie über eine solche Änderung rechtzeitig per E-Mail benachrichtigen (wenn Sie mit der Änderung nicht einverstanden sind, können Sie wie unten beschrieben die automatische Verlängerung stornieren). Die <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Verkaufsbedingungen</a> und die <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Datenschutzerklärung</a> von Digital River","autoRenewPlanTermsEnd":" gelten für jede Verlängerungstransaktion. Sie können Ihren Plan mit automatischer Verlängerung jederzeit kündigen, indem Sie sich in Ihrem Konto anmelden (Zugangsdaten finden Sie in Ihrer Bestätigungs-E-Mail oder auf der Kundenservice-Hilfeseite), Ihr Produkt auswählen und die Option zum Stornieren der automatischen Verlängerung wählen.<br/><br/>Ich bin einverstanden, dass Digital River meine Zahlungsinformationen für zukünftige Käufe speichert, einschließlich der Verarbeitung späterer Abonnementverlängerungen nach dem Datum dieser Bestellung.","klarnaCreditActiveAcceptance":"Wenn Sie <span class=\\"DR-button-text\\">{payNow}</span> drücken, werden Ihnen die von Klarna angebotenen Zahlungsartenvorgestellt. Indem Sie fortfahren, akzeptieren Sie die allgemeinen <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/de_ch/user\\">Geschäftsbedingungen für Klarna</a> Dienste und bestätigen, dass Sie <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/de_ch/privacy_bp\\">Klarnas Datenschutzerklärung</a> gelesen haben.","klarnaCreditRecurringActiveAcceptance":"Wenn Sie <span class=\\"DR-button-text\\">{payNow}</span> drücken, werden Ihnen die von Klarna angebotenen Zahlungsartenvorgestellt. Indem Sie fortfahren, akzeptieren Sie die allgemeinen <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/de_ch/user\\">Geschäftsbedingungen für Klarna</a> Dienste und bestätigen, dass Sie <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/de_ch/privacy_bp\\">Klarnas Datenschutzerklärung</a> gelesen haben.","agreeToTerms":"Ich habe die oben aufgeführten Geschäftsbedingungen und Preise gelesen und stimme ihnen zu.","idealRecurringAgreement":"Wenn Sie das Kästchen anklicken, ermächtigen Sie Digital River, Ihre erste Zahlung über iDEAL einzuziehen und Ihre IBAN zu verwenden, um die weiteren Zahlungen für das Abonnement per SEPA-Lastschrift einzuziehen. Sie können Ihre SEPA-Lastschriftinformationen nach der Bestellung überprüfen. <br/><br/>Im Rahmen Ihrer Rechte haben Sie gemäß den Bestimmungen in der Vereinbarung mit Ihrer Bank Anspruch auf eine Erstattung. Eine Erstattung muss innerhalb von acht Wochen ab dem Datum der Belastung Ihres Kontos angefordert werden. "},"de_DE":{"cancellationRights":"Widerrufsrecht","cookiePolicy":"Cookies","legalNotice":"Impressum","privacyPolicy":"Datenschutzrichtlinien","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> ist der autorisierte Wiederverkäufer und Händler der Produkte und Dienstleistungen die in diesem Shop angeboten werden.","termsOfSale":"Verkaufsbedingungen","confirmDisclosure":"Durch Einreichen meiner Bestellung stimme ich den <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Verkaufsbedingungen</a> und den <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Datenschutzrichtlinien</a> von {businessEntityName} zu.","consentsEula":" und die <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Endbenutzer-Lizenzvereinbarung</a>","consentsTermsOfUse":" und die <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Nutzungsbedingungen</a>","consentsCompanyName":" von {companyName}","autoRenewPlanTermsBegin":"Durch das Markieren des Kästchens unten und den Abschluss Ihres Kaufvorgangs erteilen Sie Digital River ausdrücklich die Genehmigung, Ihre gekaufte Lizenz bzw. Ihr Abonnement für Folgelaufzeiten mit gleicher Dauer wie der oben angegebenen anfänglichen Laufzeit zum angegebenen Lizenzpreis (plus Steuern und Abgaben, abzüglich eventueller Rabatte) für die anfängliche Laufzeit über die für Ihren ersten Kauf angegebenen Zahlungsinformationen abzurechnen, bis Sie die Bestellung kündigen. Bei jeder anstehenden Verlängerung erhalten Sie mindestens eine E-Mail zur Erinnerung. Wir behalten uns vor, den Verlängerungspreis zum nächsten Verlängerungsdatum zu ändern, sofern wir Sie über eine solche Änderung rechtzeitig per E-Mail benachrichtigen (wenn Sie mit der Änderung nicht einverstanden sind, können Sie wie unten beschrieben die automatische Verlängerung stornieren). Die <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Verkaufsbedingungen</a> und die <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Datenschutzerklärung</a> von Digital River","autoRenewPlanTermsEnd":" gelten für jede Verlängerungstransaktion. Sie können Ihren Plan mit automatischer Verlängerung jederzeit kündigen, indem Sie sich in Ihrem Konto anmelden (Zugangsdaten finden Sie in Ihrer Bestätigungs-E-Mail oder auf der Kundenservice-Hilfeseite), Ihr Produkt auswählen und die Option zum Stornieren der automatischen Verlängerung wählen.<br/><br/>Ich bin einverstanden, dass Digital River meine Zahlungsinformationen für zukünftige Käufe speichert, einschließlich der Verarbeitung späterer Abonnementverlängerungen nach dem Datum dieser Bestellung.","klarnaCreditActiveAcceptance":"Wenn Sie <span class=\\"DR-button-text\\">{payNow}</span> drücken, werden Ihnen die von Klarna angebotenen Zahlungsarten vorgestellt. Indem Sie fortfahren, akzeptieren <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/de_de/user\\">Sie die allgemeinen Geschäftsbedingungen für Klarna Dienste</a> und bestätigen, dass Sie Klarnas <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/de_de/privacy\\">Datenschutzerklärung</a> gelesen haben.","klarnaCreditRecurringActiveAcceptance":"Wenn Sie <span class=\\"DR-button-text\\">{payNow}</span> drücken, werden Ihnen die von Klarna angebotenen Zahlungsarten vorgestellt. Indem Sie fortfahren, akzeptieren <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/de_de/user\\">Sie die allgemeinen Geschäftsbedingungen für Klarna Dienste</a> und bestätigen, dass Sie Klarnas <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/de_de/privacy\\">Datenschutzerklärung</a> gelesen haben.","agreeToTerms":"Ich habe die oben aufgeführten Geschäftsbedingungen und Preise gelesen und stimme ihnen zu.","idealRecurringAgreement":"Wenn Sie das Kästchen anklicken, ermächtigen Sie Digital River, Ihre erste Zahlung über iDEAL einzuziehen und Ihre IBAN zu verwenden, um die weiteren Zahlungen für das Abonnement per SEPA-Lastschrift einzuziehen. Sie können Ihre SEPA-Lastschriftinformationen nach der Bestellung überprüfen. <br/><br/>Im Rahmen Ihrer Rechte haben Sie gemäß den Bestimmungen in der Vereinbarung mit Ihrer Bank Anspruch auf eine Erstattung. Eine Erstattung muss innerhalb von acht Wochen ab dem Datum der Belastung Ihres Kontos angefordert werden. ","mstsActiveAcceptance":"Wählen Sie {payNow}, um sich bei TreviPay anzumelden, die Zwei-Faktor-Authentifizierung abzuschließen und den Kauf zu bestätigen.<span class=\\"{createAccountButtonTextClass}\\"><br /><br />Wählen Sie Jetzt registrieren um ein TreviPay-Konto zu erstellen.</span><br /><br />Haftungsausschluss<br /><br />* Alle Konten und Kreditlinien des Kaufprogramms im Rahmen des Zahlungsbedingungen-Programms werden von Multi Service Technology Solutions, Inc., einem in Florida, USA, eingetragenen Unternehmen („MSTS“), ausgestellt.<br /><br />* {businessEntityName} ist keine Partei des Kontoinhabervertrags für das Kaufprogramm. {businessEntityName} ist weder Kreditgeber noch Makler für die im Rahmen des Zahlungsbedingungen-Programms ausgegebenen Kreditlinien<br /><br />Alle Bewerbungen und Ihre Qualifikationen werden von TreviPay geprüft und entschieden. <a href=\\"https://www.trevipay.com/privacy-center/\\" target=\\"_blank\\">TreviPay Privacy Center.</a>"},"el_GR":{"cancellationRights":"Δικαίωμα Ακύρωσης","cookiePolicy":"Cookies","legalNotice":"Νομική Σημείωση","privacyPolicy":"Πολιτική Ιδιωτικού Απορρήτου","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> είναι ο εξουσιοδοτημένος μεταπωλητής και έμπορος των προϊόντων και υπηρεσιών, που προσφέρονται σε αυτό το κατάστημα.","termsOfSale":"Όροι Πώλησης","confirmDisclosure":"Υποβάλλοντας την παραγγελία μου, συμφωνώ με τους <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Όρους πώλησης</a> και την <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Πολιτική ιδιωτικού απορρήτου</a> της {businessEntityName}.","autoRenewPlanTermsBegin":"Τσεκάροντας αυτό το πλαίσιο και ολοκληρώνοντας την αγορά σας, εξουσιοδοτείτε ρητά και επιτρέπετε στην Digital River να ανανεώνει αυτόματα την άδεια χρήσης ή τη συνδρομή που έχετε αγοράσει για διαδοχικά χρονικά διαστήματα ανανέωσης ίσα με το αρχικό χρονικό διάστημα που καθορίζεται παραπάνω, στην τιμή αγοράς για το αρχικό χρονικό διάστημα (συν τους φόρους και τα τέλη, μείον οποιασδήποτε ισχύουσας έκπτωσης) χρησιμοποιώντας τα στοιχεία πληρωμής που δώσατε κατά την αρχική αγορά, έως ότου ζητήσετε να ακυρωθεί. Θα σας αποστέλλεται τουλάχιστον ένα e-mail για να σας υπενθυμίζει κάθε επικείμενη ανανέωση. Διατηρούμε το δικαίωμα να αλλάξουμε την τιμή ανανέωσης από την ημερομηνία της επόμενης ανανέωσης, εφόσον σας ειδοποιήσουμε από πριν για την αλλαγή μέσω e-mail (μπορείτε να ζητήσετε να ακυρωθεί η αυτόματη ανανέωση με τον τρόπο που περιγράφεται πιο κάτω, αν δεν συμφωνείτε με την αλλαγή). Οι <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Όροι πώλησης</a> και η <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Πολιτική ιδιωτικού απορρήτου</a> της Digital River ισχύουν σε κάθε πράξη ανανέωσης. Μπορείτε να ακυρώσετε ανά πάσα στιγμή το πρόγραμμα αυτόματης ανανέωσης, αρκεί να συνδεθείτε στο περιβάλλον λογαριασμού (οι πληροφορίες πρόσβασης περιλαμβάνονται στο e-mail επιβεβαίωσης της παραγγελίας σας ή στη σελίδα βοήθειας του Τμήματος Εξυπηρέτησης Πελατών), να επιλέξετε το προϊόν σας και να ενεργοποιήσετε την επιλογή απενεργοποίησης της αυτόματης ανανέωσης.<br/><br/>Συμφωνώ να επιτρέπεται στην Digital River να αποθηκεύει τα στοιχεία πληρωμής μου για μελλοντικές αγορές, συμπεριλαμβανομένης της επεξεργασίας τυχόν επομένων ανανεώσεων συνδρομής που μπορεί να πραγματοποιηθούν μετά την ημερομηνία της παρούσας παραγγελίας.","autoRenewPlanTermsEnd":"","agreeToTerms":"Έχω διαβάσει και συμφωνώ με τους όρους και τις χρεώσεις πιο πάνω.","idealRecurringAgreement":"Κάνοντας κλικ στο πλαίσιο, εξουσιοδοτείτε την Digital River να εισπράξει την πρώτη σας πληρωμή μέσω iDEAL και να χρησιμοποιήσει το IBAN σας για να εισπράξει τις επόμενες πληρωμές συνδρομής μέσω άμεσης χρέωσης SEPA. Μπορείτε να επανεξετάσετε τις πληροφορίες σας για την άμεση χρέωση SEPA μετά την υποβολή της παραγγελίας. <br/><br/>Ως μέρος των δικαιωμάτων σας, δικαιούστε να απαιτήσετε επιστροφή χρημάτων από την τράπεζά σας σύμφωνα με τους όρους και τις προϋποθέσεις της μεταξύ σας συμφωνίας. Επιστροφή χρημάτων πρέπει να αξιωθεί εντός 8 εβδομάδων από την ημερομηνία χρέωσης του λογαριασμού σας. "},"en_AU":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> is the authorised reseller and merchant of the products and services offered within this store.","termsOfSale":"Terms of Sale","confirmDisclosure":"By submitting my order, I agree to the <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and the <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> of {businessEntityName}.","consentsEula":" and the <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">End User License Agreement</a>","consentsTermsOfUse":" and the <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Terms of Use</a>","consentsCompanyName":" of {companyName}","autoRenewPlanTermsBegin":"By checking the box below and completing your purchase, you expressly authorize and permit Digital River to automatically renew your purchased license or subscription for successive renewal terms each equal in length to the initial term specified above, at the purchase price for your initial term (plus taxes and fees, less any applicable discounts) using the payment information you provided for your initial purchase, until you cancel. At least one email will be sent to you to remind you of each upcoming renewal. We may change the renewal price as of the next renewal date if we provide you with prior notice of the change by email (you can elect to cancel automatic renewal as described below if you do not agree to the change). The Digital River <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a>","autoRenewPlanTermsEnd":" will apply to each renewal transaction. You may cancel your auto-renewal plan at any time by logging into the account interface (access information will be included in your order confirmation email or on the Customer Service Help page), selecting your product, and selecting the option to disable automatic renewal.<br/><br/>I agree that Digital River may store my payment information for future purchases including the processing of any subsequent subscription renewals which may occur following the date of this order.","klarnaCreditActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. Klarna will perform a quotation search with an external credit reference agency to check your eligibility. By continuing you accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_au/user\\">Klarna\'s Services Terms</a> and confirm that you have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_au/privacy\\">Klarna\'s Privacy Notice</a>.","klarnaCreditRecurringActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. Klarna will perform a quotation search with an external credit reference agency to check your eligibility. By continuing you accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_au/user\\">Klarna\'s Services Terms</a> and confirm that you have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_au/privacy\\">Klarna\'s Privacy Notice</a>.","agreeToTerms":"I have read and agree to the terms and charges above.","idealRecurringAgreement":"By clicking the box, you authorize Digital River to collect your first payment via iDEAL and use your IBAN to collect the subsequent subscription payments by SEPA direct debit. You can review your SEPA Direct Debit information after order submission. <br/><br/>As part of your rights, you are entitled to a refund from your bank under the terms and conditions of your agreement with your bank. A refund must be claimed within 8 weeks starting from the date on which your account was debited. "},"en_BE":{"privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> is the authorised retailer and merchant providing e-commerce services for this shop.","termsOfSale":"Terms and Conditions","confirmDisclosure":"By submitting my order, I agree to the <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and the <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> of {businessEntityName}.","consentsEula":" and the <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">End User License Agreement</a>","consentsTermsOfUse":" and the <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Terms of Use</a>","consentsCompanyName":" of {companyName}","autoRenewPlanTermsBegin":"By checking the box below and completing your purchase, you expressly authorize and permit Digital River to automatically renew your purchased license or subscription for successive renewal terms each equal in length to the initial term specified above, at the purchase price for your initial term (plus taxes and fees, less any applicable discounts) using the payment information you provided for your initial purchase, until you cancel. At least one email will be sent to you to remind you of each upcoming renewal. We may change the renewal price as of the next renewal date if we provide you with prior notice of the change by email (you can elect to cancel automatic renewal as described below if you do not agree to the change). The Digital River <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a>","autoRenewPlanTermsEnd":" will apply to each renewal transaction. You may cancel your auto-renewal plan at any time by logging into the account interface (access information will be included in your order confirmation email or on the Customer Service Help page), selecting your product, and selecting the option to disable automatic renewal.<br/><br/>I agree that Digital River may store my payment information for future purchases including the processing of any subsequent subscription renewals which may occur following the date of this order.","klarnaCreditActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. By continuing you accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_be/user\\">Klarna’s Services Terms</a> and confirm that you have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_be/privacy\\">Klarna\'s Privacy Notice</a>.","klarnaCreditRecurringActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. By continuing you accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_be/user\\">Klarna’s Services Terms</a> and confirm that you have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_be/privacy\\">Klarna\'s Privacy Notice</a>.","idealRecurringAgreement":"By clicking the box, you authorize Digital River to collect your first payment via iDEAL and use your IBAN to collect the subsequent subscription payments by SEPA direct debit. You can review your SEPA Direct Debit information after order submission. <br/><br/>As part of your rights, you are entitled to a refund from your bank under the terms and conditions of your agreement with your bank. A refund must be claimed within 8 weeks starting from the date on which your account was debited. "},"en_CA":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> is the authorised reseller and merchant of the products and services offered within this store.","termsOfSale":"Terms of Sale","confirmDisclosure":"By submitting my order, I agree to the <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and the <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> of {businessEntityName}.","consentsEula":" and the <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">End User License Agreement</a>","consentsTermsOfUse":" and the <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Terms of Use</a>","consentsCompanyName":" of {companyName}","autoRenewPlanTermsBegin":"By checking the box below and completing your purchase, you expressly authorize and permit Digital River to automatically renew your purchased license or subscription for successive renewal terms each equal in length to the initial term specified above, at the purchase price for your initial term (plus taxes and fees, less any applicable discounts) using the payment information you provided for your initial purchase, until you cancel. At least one email will be sent to you to remind you of each upcoming renewal. We may change the renewal price as of the next renewal date if we provide you with prior notice of the change by email (you can elect to cancel automatic renewal as described below if you do not agree to the change). The Digital River <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a>","autoRenewPlanTermsEnd":" will apply to each renewal transaction. You may cancel your auto-renewal plan at any time by logging into the account interface (access information will be included in your order confirmation email or on the Customer Service Help page), selecting your product, and selecting the option to disable automatic renewal.<br/><br/>I agree that Digital River may store my payment information for future purchases including the processing of any subsequent subscription renewals which may occur following the date of this order.","klarnaCreditActiveAcceptance":"View the Privacy Notice, Klarna Shopping Service terms and Payment method terms <a target=\\"_blank\\" href=\\"https://www.klarna.com/ca/legal/\\">here</a>.","klarnaCreditRecurringActiveAcceptance":"View the Privacy Notice, Klarna Shopping Service terms and Payment method terms <a target=\\"_blank\\" href=\\"https://www.klarna.com/ca/legal/\\">here</a>.","agreeToTerms":"I have read and agree to the terms and charges above.","idealRecurringAgreement":"By clicking the box, you authorize Digital River to collect your first payment via iDEAL and use your IBAN to collect the subsequent subscription payments by SEPA direct debit. You can review your SEPA Direct Debit information after order submission. <br/><br/>As part of your rights, you are entitled to a refund from your bank under the terms and conditions of your agreement with your bank. A refund must be claimed within 8 weeks starting from the date on which your account was debited. "},"en_CH":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> is the authorized reseller and merchant of the products and services offered within this store.","termsOfSale":"Terms of Sale","confirmDisclosure":"By submitting my order, I agree to the <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and the <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> of {businessEntityName}.","consentsEula":" and the <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">End User License Agreement</a>","consentsTermsOfUse":" and the <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Terms of Use</a>","consentsCompanyName":" of {companyName}","autoRenewPlanTermsBegin":"By checking the box below and completing your purchase, you expressly authorize and permit Digital River to automatically renew your purchased license or subscription for successive renewal terms each equal in length to the initial term specified above, at the purchase price for your initial term (plus taxes and fees, less any applicable discounts) using the payment information you provided for your initial purchase, until you cancel. At least one email will be sent to you to remind you of each upcoming renewal. We may change the renewal price as of the next renewal date if we provide you with prior notice of the change by email (you can elect to cancel automatic renewal as described below if you do not agree to the change). The Digital River <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a>","autoRenewPlanTermsEnd":" will apply to each renewal transaction. You may cancel your auto-renewal plan at any time by logging into the account interface (access information will be included in your order confirmation email or on the Customer Service Help page), selecting your product, and selecting the option to disable automatic renewal.<br/><br/>I agree that Digital River may store my payment information for future purchases including the processing of any subsequent subscription renewals which may occur following the date of this order.","klarnaCreditActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. By continuing you accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_ch/user\\">Klarna\'s Services Terms</a> and confirm that you have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_ch/privacy_bp\\">Klarna\'s Privacy Notice</a>.","klarnaCreditRecurringActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. By continuing you accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_ch/user\\">Klarna\'s Services Terms</a> and confirm that you have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_ch/privacy_bp\\">Klarna\'s Privacy Notice</a>.","agreeToTerms":"I have read and agree to the terms and charges above.","idealRecurringAgreement":"By clicking the box, you authorize Digital River to collect your first payment via iDEAL and use your IBAN to collect the subsequent subscription payments by SEPA direct debit. You can review your SEPA Direct Debit information after order submission. <br/><br/>As part of your rights, you are entitled to a refund from your bank under the terms and conditions of your agreement with your bank. A refund must be claimed within 8 weeks starting from the date on which your account was debited. "},"en_DK":{"privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> is the authorised retailer and merchant providing e-commerce services for this shop.","termsOfSale":"Terms and Conditions","confirmDisclosure":"By submitting my order, I agree to the <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and the <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> of {businessEntityName}.","consentsEula":" and the <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">End User License Agreement</a>","consentsTermsOfUse":" and the <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Terms of Use</a>","consentsCompanyName":" of {companyName}","autoRenewPlanTermsBegin":"By checking the box below and completing your purchase, you expressly authorize and permit Digital River to automatically renew your purchased license or subscription for successive renewal terms each equal in length to the initial term specified above, at the purchase price for your initial term (plus taxes and fees, less any applicable discounts) using the payment information you provided for your initial purchase, until you cancel. At least one email will be sent to you to remind you of each upcoming renewal. We may change the renewal price as of the next renewal date if we provide you with prior notice of the change by email (you can elect to cancel automatic renewal as described below if you do not agree to the change). The Digital River <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a>","autoRenewPlanTermsEnd":" will apply to each renewal transaction. You may cancel your auto-renewal plan at any time by logging into the account interface (access information will be included in your order confirmation email or on the Customer Service Help page), selecting your product, and selecting the option to disable automatic renewal.<br/><br/>I agree that Digital River may store my payment information for future purchases including the processing of any subsequent subscription renewals which may occur following the date of this order.","klarnaCreditActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. Klarna will perform a quotation search with an external credit reference agency to check your eligibility. By continuing you accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_dk/user\\">Klarna\'s Services Terms</a> and confirm that you have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_dk/privacy\\">Klarna\'s Privacy Notice</a>.","klarnaCreditRecurringActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. Klarna will perform a quotation search with an external credit reference agency to check your eligibility. By continuing you accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_dk/user\\">Klarna\'s Services Terms</a> and confirm that you have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_dk/privacy\\">Klarna\'s Privacy Notice</a>.","idealRecurringAgreement":"By clicking the box, you authorize Digital River to collect your first payment via iDEAL and use your IBAN to collect the subsequent subscription payments by SEPA direct debit. You can review your SEPA Direct Debit information after order submission. <br/><br/>As part of your rights, you are entitled to a refund from your bank under the terms and conditions of your agreement with your bank. A refund must be claimed within 8 weeks starting from the date on which your account was debited. "},"en_FI":{"privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> is the authorised retailer and merchant providing e-commerce services for this shop.","termsOfSale":"Terms and Conditions","confirmDisclosure":"By submitting my order, I agree to the <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and the <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> of {businessEntityName}.","consentsEula":" and the <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">End User License Agreement</a>","consentsTermsOfUse":" and the <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Terms of Use</a>","consentsCompanyName":" of {companyName}","autoRenewPlanTermsBegin":"By checking the box below and completing your purchase, you expressly authorize and permit Digital River to automatically renew your purchased license or subscription for successive renewal terms each equal in length to the initial term specified above, at the purchase price for your initial term (plus taxes and fees, less any applicable discounts) using the payment information you provided for your initial purchase, until you cancel. At least one email will be sent to you to remind you of each upcoming renewal. We may change the renewal price as of the next renewal date if we provide you with prior notice of the change by email (you can elect to cancel automatic renewal as described below if you do not agree to the change). The Digital River <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a>","autoRenewPlanTermsEnd":" will apply to each renewal transaction. You may cancel your auto-renewal plan at any time by logging into the account interface (access information will be included in your order confirmation email or on the Customer Service Help page), selecting your product, and selecting the option to disable automatic renewal.<br/><br/>I agree that Digital River may store my payment information for future purchases including the processing of any subsequent subscription renewals which may occur following the date of this order.","klarnaCreditActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. Klarna will perform a quotation search with an external credit reference agency to check your eligibility. By continuing you accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_fi/user\\">Klarna\'s Services Terms</a> and confirm that you have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_fi/privacy\\">Klarna\'s Privacy Notice</a>.","klarnaCreditRecurringActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. Klarna will perform a quotation search with an external credit reference agency to check your eligibility. By continuing you accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_fi/user\\">Klarna\'s Services Terms</a> and confirm that you have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_fi/privacy\\">Klarna\'s Privacy Notice</a>.","idealRecurringAgreement":"By clicking the box, you authorize Digital River to collect your first payment via iDEAL and use your IBAN to collect the subsequent subscription payments by SEPA direct debit. You can review your SEPA Direct Debit information after order submission. <br/><br/>As part of your rights, you are entitled to a refund from your bank under the terms and conditions of your agreement with your bank. A refund must be claimed within 8 weeks starting from the date on which your account was debited. "},"en_GB":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> is the authorised reseller and merchant of the products and services offered within this store.","termsOfSale":"Terms of Sale","confirmDisclosure":"By submitting my order, I agree to the <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and the <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> of {businessEntityName}.","consentsEula":" and the <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">End User License Agreement</a>","consentsTermsOfUse":" and the <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Terms of Use</a>","consentsCompanyName":" of {companyName}","autoRenewPlanTermsBegin":"By checking the box below and completing your purchase, you expressly authorize and permit Digital River to automatically renew your purchased license or subscription for successive renewal terms each equal in length to the initial term specified above, at the purchase price for your initial term (plus taxes and fees, less any applicable discounts) using the payment information you provided for your initial purchase, until you cancel. At least one email will be sent to you to remind you of each upcoming renewal. We may change the renewal price as of the next renewal date if we provide you with prior notice of the change by email (you can elect to cancel automatic renewal as described below if you do not agree to the change). The Digital River <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a>","autoRenewPlanTermsEnd":" will apply to each renewal transaction. You may cancel your auto-renewal plan at any time by logging into the account interface (access information will be included in your order confirmation email or on the Customer Service Help page), selecting your product, and selecting the option to disable automatic renewal.<br/><br/>I agree that Digital River may store my payment information for future purchases including the processing of any subsequent subscription renewals which may occur following the date of this order.","klarnaCreditActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. Klarna will perform a quotation search with an external credit reference agency to check your eligibility. By continuing you accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_gb/user\\">Klarna\'s Services Terms</a> and confirm that you have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_gb/privacy\\">Klarna\'s Privacy Notice</a>.","klarnaCreditRecurringActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. Klarna will perform a quotation search with an external credit reference agency to check your eligibility. By continuing you accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_gb/user\\">Klarna\'s Services Terms</a> and confirm that you have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_gb/privacy\\">Klarna\'s Privacy Notice</a>.","agreeToTerms":"I have read and agree to the terms and charges above.","idealRecurringAgreement":"By clicking the box, you authorize Digital River to collect your first payment via iDEAL and use your IBAN to collect the subsequent subscription payments by SEPA direct debit. You can review your SEPA Direct Debit information after order submission. <br/><br/>As part of your rights, you are entitled to a refund from your bank under the terms and conditions of your agreement with your bank. A refund must be claimed within 8 weeks starting from the date on which your account was debited. ","mstsActiveAcceptance":"Select {payNow} to login to TreviPay, complete Two-factor authentication and confirm purchase.<span class=\\"{createAccountButtonTextClass}\\"><br /><br />Select Enroll Now to create TreviPay Account.</span><br /><br />DISCLAIMER<br /><br />* All the purchase program accounts and credit lines under the Payment Terms program are issued by Multi Service Technology Solutions, Inc., a Florida USA incorporated company (“MSTS”).<br /><br />* {businessEntityName} is not a party to the Purchase Program Accountholder Agreement. {businessEntityName} is neither a lender nor a broker for the credit lines issued under the Payment Terms program<br /><br />All the applications and your qualifications will be reviewed and decided by TreviPay. <a href=\\"https://www.trevipay.com/privacy-center/\\" target=\\"_blank\\">TreviPay’s Privacy Center.</a>"},"en_IE":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> is the authorised reseller and merchant of the products and services offered within this store.","termsOfSale":"Terms of Sale","confirmDisclosure":"By submitting my order, I agree to the <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and the <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> of {businessEntityName}.","consentsEula":" and the <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">End User License Agreement</a>","consentsTermsOfUse":" and the <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Terms of Use</a>","consentsCompanyName":" of {companyName}","autoRenewPlanTermsBegin":"By checking the box below and completing your purchase, you expressly authorize and permit Digital River to automatically renew your purchased license or subscription for successive renewal terms each equal in length to the initial term specified above, at the purchase price for your initial term (plus taxes and fees, less any applicable discounts) using the payment information you provided for your initial purchase, until you cancel. At least one email will be sent to you to remind you of each upcoming renewal. We may change the renewal price as of the next renewal date if we provide you with prior notice of the change by email (you can elect to cancel automatic renewal as described below if you do not agree to the change). The Digital River <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a>","autoRenewPlanTermsEnd":" will apply to each renewal transaction. You may cancel your auto-renewal plan at any time by logging into the account interface (access information will be included in your order confirmation email or on the Customer Service Help page), selecting your product, and selecting the option to disable automatic renewal.<br/><br/>I agree that Digital River may store my payment information for future purchases including the processing of any subsequent subscription renewals which may occur following the date of this order.","klarnaCreditActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. Klarna will perform a quotation search with an external credit reference agency to check your eligibility. By continuing you accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_ie/user\\">Klarna\'s Services Terms</a> and confirm that you have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_ie/privacy\\">Klarna\'s Privacy Notice</a>.","klarnaCreditRecurringActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. Klarna will perform a quotation search with an external credit reference agency to check your eligibility. By continuing you accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_ie/user\\">Klarna\'s Services Terms</a> and confirm that you have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_ie/privacy\\">Klarna\'s Privacy Notice</a>.","agreeToTerms":"I have read and agree to the terms and charges above.","idealRecurringAgreement":"By clicking the box, you authorize Digital River to collect your first payment via iDEAL and use your IBAN to collect the subsequent subscription payments by SEPA direct debit. You can review your SEPA Direct Debit information after order submission. <br/><br/>As part of your rights, you are entitled to a refund from your bank under the terms and conditions of your agreement with your bank. A refund must be claimed within 8 weeks starting from the date on which your account was debited. ","mstsActiveAcceptance":"Select {payNow} to login to TreviPay, complete Two-factor authentication and confirm purchase.<span class=\\"{createAccountButtonTextClass}\\"><br /><br />Select Enroll Now to create TreviPay Account.</span><br /><br />DISCLAIMER<br /><br />* All the purchase program accounts and credit lines under the Payment Terms program are issued by Multi Service Technology Solutions, Inc., a Florida USA incorporated company (“MSTS”).<br /><br />* {businessEntityName} is not a party to the Purchase Program Accountholder Agreement. {businessEntityName} is neither a lender nor a broker for the credit lines issued under the Payment Terms program<br /><br />All the applications and your qualifications will be reviewed and decided by TreviPay. <a href=\\"https://www.trevipay.com/privacy-center/\\" target=\\"_blank\\">TreviPay’s Privacy Center.</a>"},"en_IN":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> is the authorised reseller and merchant of the products and services offered within this store.","termsOfSale":"Terms of Sale","confirmDisclosure":"By submitting my order, I agree to the <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and the <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> of {businessEntityName}.","consentsEula":" and the <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">End User License Agreement</a>","consentsTermsOfUse":" and the <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Terms of Use</a>","consentsCompanyName":" of {companyName}","autoRenewPlanTermsBegin":"By checking the box below and completing your purchase, you expressly authorize and permit Digital River to automatically renew your purchased license or subscription for successive renewal terms each equal in length to the initial term specified above, at the purchase price for your initial term (plus taxes and fees, less any applicable discounts) using the payment information you provided for your initial purchase, until you cancel. At least one email will be sent to you to remind you of each upcoming renewal. We may change the renewal price as of the next renewal date if we provide you with prior notice of the change by email (you can elect to cancel automatic renewal as described below if you do not agree to the change). The Digital River <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a>","autoRenewPlanTermsEnd":" will apply to each renewal transaction. You may cancel your auto-renewal plan at any time by logging into the account interface (access information will be included in your order confirmation email or on the Customer Service Help page), selecting your product, and selecting the option to disable automatic renewal.<br/><br/>I agree that Digital River may store my payment information for future purchases including the processing of any subsequent subscription renewals which may occur following the date of this order.","klarnaCreditActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. Klarna will perform a quotation search with an external credit reference agency to check your eligibility. By continuing you accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_in/user\\">Klarna\'s Services Terms</a> and confirm that you have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_in/privacy\\">Klarna\'s Privacy Notice</a>.","klarnaCreditRecurringActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. Klarna will perform a quotation search with an external credit reference agency to check your eligibility. By continuing you accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_in/user\\">Klarna\'s Services Terms</a> and confirm that you have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_in/privacy\\">Klarna\'s Privacy Notice</a>.","agreeToTerms":"I have read and agree to the terms and charges above.","idealRecurringAgreement":"By clicking the box, you authorize Digital River to collect your first payment via iDEAL and use your IBAN to collect the subsequent subscription payments by SEPA direct debit. You can review your SEPA Direct Debit information after order submission. <br/><br/>As part of your rights, you are entitled to a refund from your bank under the terms and conditions of your agreement with your bank. A refund must be claimed within 8 weeks starting from the date on which your account was debited. "},"en_MY":{"privacyPolicy":"Privacy Policy","termsOfSale":"Terms and Conditions","confirmDisclosure":"By submitting my order, I agree to the <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and the <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> of {businessEntityName}.","consentsEula":" and the <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">End User License Agreement</a>","consentsTermsOfUse":" and the <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Terms of Use</a>","consentsCompanyName":" of {companyName}","autoRenewPlanTermsBegin":"By checking the box below and completing your purchase, you expressly authorize and permit Digital River to automatically renew your purchased license or subscription for successive renewal terms each equal in length to the initial term specified above, at the purchase price for your initial term (plus taxes and fees, less any applicable discounts) using the payment information you provided for your initial purchase, until you cancel. At least one email will be sent to you to remind you of each upcoming renewal. We may change the renewal price as of the next renewal date if we provide you with prior notice of the change by email (you can elect to cancel automatic renewal as described below if you do not agree to the change). The Digital River <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a>","autoRenewPlanTermsEnd":" will apply to each renewal transaction. You may cancel your auto-renewal plan at any time by logging into the account interface (access information will be included in your order confirmation email or on the Customer Service Help page), selecting your product, and selecting the option to disable automatic renewal.<br/><br/>I agree that Digital River may store my payment information for future purchases including the processing of any subsequent subscription renewals which may occur following the date of this order.","klarnaCreditActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. Klarna will perform a quotation search with an external credit reference agency to check your eligibility. By continuing you accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_my/user\\">Klarna\'s Services Terms</a> and confirm that you have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_my/privacy\\">Klarna\'s Privacy Notice</a>.","klarnaCreditRecurringActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. Klarna will perform a quotation search with an external credit reference agency to check your eligibility. By continuing you accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_my/user\\">Klarna\'s Services Terms</a> and confirm that you have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_my/privacy\\">Klarna\'s Privacy Notice</a>.","idealRecurringAgreement":"By clicking the box, you authorize Digital River to collect your first payment via iDEAL and use your IBAN to collect the subsequent subscription payments by SEPA direct debit. You can review your SEPA Direct Debit information after order submission. <br/><br/>As part of your rights, you are entitled to a refund from your bank under the terms and conditions of your agreement with your bank. A refund must be claimed within 8 weeks starting from the date on which your account was debited. "},"en_NL":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> is the authorised reseller and merchant of the products and services offered within this store.","termsOfSale":"Terms of Sale","confirmDisclosure":"By submitting my order, I agree to the <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and the <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> of {businessEntityName}.","consentsEula":" and the <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">End User License Agreement</a>","consentsTermsOfUse":" and the <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Terms of Use</a>","consentsCompanyName":" of {companyName}","autoRenewPlanTermsBegin":"By checking the box below and completing your purchase, you expressly authorize and permit Digital River to automatically renew your purchased license or subscription for successive renewal terms each equal in length to the initial term specified above, at the purchase price for your initial term (plus taxes and fees, less any applicable discounts) using the payment information you provided for your initial purchase, until you cancel. At least one email will be sent to you to remind you of each upcoming renewal. We may change the renewal price as of the next renewal date if we provide you with prior notice of the change by email (you can elect to cancel automatic renewal as described below if you do not agree to the change). The Digital River <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a>","autoRenewPlanTermsEnd":" will apply to each renewal transaction. You may cancel your auto-renewal plan at any time by logging into the account interface (access information will be included in your order confirmation email or on the Customer Service Help page), selecting your product, and selecting the option to disable automatic renewal.<br/><br/>I agree that Digital River may store my payment information for future purchases including the processing of any subsequent subscription renewals which may occur following the date of this order.","klarnaCreditActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. Klarna will perform a quotation search with an external credit reference agency to check your eligibility. By continuing you accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_nl/user\\">Klarna\'s Services Terms</a> and confirm that you have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_nl/privacy\\">Klarna\'s Privacy Notice</a>.","klarnaCreditRecurringActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. Klarna will perform a quotation search with an external credit reference agency to check your eligibility. By continuing you accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_nl/user\\">Klarna\'s Services Terms</a> and confirm that you have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_nl/privacy\\">Klarna\'s Privacy Notice</a>.","agreeToTerms":"I have read and agree to the terms and charges above.","idealRecurringAgreement":"By clicking the box, you authorize Digital River to collect your first payment via iDEAL and use your IBAN to collect the subsequent subscription payments by SEPA direct debit. You can review your SEPA Direct Debit information after order submission. <br/><br/>As part of your rights, you are entitled to a refund from your bank under the terms and conditions of your agreement with your bank. A refund must be claimed within 8 weeks starting from the date on which your account was debited. "},"en_NO":{"privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> is the authorised retailer and merchant providing e-commerce services for this shop.","termsOfSale":"Terms and Conditions","confirmDisclosure":"By submitting my order, I agree to the <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and the <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> of {businessEntityName}.","consentsEula":" and the <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">End User License Agreement</a>","consentsTermsOfUse":" and the <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Terms of Use</a>","consentsCompanyName":" of {companyName}","autoRenewPlanTermsBegin":"By checking the box below and completing your purchase, you expressly authorize and permit Digital River to automatically renew your purchased license or subscription for successive renewal terms each equal in length to the initial term specified above, at the purchase price for your initial term (plus taxes and fees, less any applicable discounts) using the payment information you provided for your initial purchase, until you cancel. At least one email will be sent to you to remind you of each upcoming renewal. We may change the renewal price as of the next renewal date if we provide you with prior notice of the change by email (you can elect to cancel automatic renewal as described below if you do not agree to the change). The Digital River <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a>","autoRenewPlanTermsEnd":" will apply to each renewal transaction. You may cancel your auto-renewal plan at any time by logging into the account interface (access information will be included in your order confirmation email or on the Customer Service Help page), selecting your product, and selecting the option to disable automatic renewal.<br/><br/>I agree that Digital River may store my payment information for future purchases including the processing of any subsequent subscription renewals which may occur following the date of this order.","klarnaCreditActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. Klarna will perform a quotation search with an external credit reference agency to check your eligibility. By continuing you accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_no/user\\">Klarna\'s Services Terms</a> and confirm that you have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_no/privacy\\">Klarna\'s Privacy Notice</a>.","klarnaCreditRecurringActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. Klarna will perform a quotation search with an external credit reference agency to check your eligibility. By continuing you accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_no/user\\">Klarna\'s Services Terms</a> and confirm that you have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_no/privacy\\">Klarna\'s Privacy Notice</a>.","idealRecurringAgreement":"By clicking the box, you authorize Digital River to collect your first payment via iDEAL and use your IBAN to collect the subsequent subscription payments by SEPA direct debit. You can review your SEPA Direct Debit information after order submission. <br/><br/>As part of your rights, you are entitled to a refund from your bank under the terms and conditions of your agreement with your bank. A refund must be claimed within 8 weeks starting from the date on which your account was debited. "},"en_NZ":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> is the authorised reseller and merchant of the products and services offered within this store.","termsOfSale":"Terms of Sale","confirmDisclosure":"By submitting my order, I agree to the <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and the <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> of {businessEntityName}.","consentsEula":" and the <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">End User License Agreement</a>","consentsTermsOfUse":" and the <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Terms of Use</a>","consentsCompanyName":" of {companyName}","autoRenewPlanTermsBegin":"By checking the box below and completing your purchase, you expressly authorize and permit Digital River to automatically renew your purchased license or subscription for successive renewal terms each equal in length to the initial term specified above, at the purchase price for your initial term (plus taxes and fees, less any applicable discounts) using the payment information you provided for your initial purchase, until you cancel. At least one email will be sent to you to remind you of each upcoming renewal. We may change the renewal price as of the next renewal date if we provide you with prior notice of the change by email (you can elect to cancel automatic renewal as described below if you do not agree to the change). The Digital River <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a>","autoRenewPlanTermsEnd":" will apply to each renewal transaction. You may cancel your auto-renewal plan at any time by logging into the account interface (access information will be included in your order confirmation email or on the Customer Service Help page), selecting your product, and selecting the option to disable automatic renewal.<br/><br/>I agree that Digital River may store my payment information for future purchases including the processing of any subsequent subscription renewals which may occur following the date of this order.","klarnaCreditActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. Klarna will perform a quotation search with an external credit reference agency to check your eligibility. By continuing you accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_nz/user\\">Klarna\'s Services Terms</a> and confirm that you have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_nz/privacy\\">Klarna\'s Privacy Notice</a>.","klarnaCreditRecurringActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. Klarna will perform a quotation search with an external credit reference agency to check your eligibility. By continuing you accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_nz/user\\">Klarna\'s Services Terms</a> and confirm that you have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_nz/privacy\\">Klarna\'s Privacy Notice</a>.","agreeToTerms":"I have read and agree to the terms and charges above.","idealRecurringAgreement":"By clicking the box, you authorize Digital River to collect your first payment via iDEAL and use your IBAN to collect the subsequent subscription payments by SEPA direct debit. You can review your SEPA Direct Debit information after order submission. <br/><br/>As part of your rights, you are entitled to a refund from your bank under the terms and conditions of your agreement with your bank. A refund must be claimed within 8 weeks starting from the date on which your account was debited. "},"en_PR":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> is the authorised reseller and merchant of the products and services offered within this store.","termsOfSale":"Terms of Sale","confirmDisclosure":"By submitting my order, I agree to the <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and the <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> of {businessEntityName}.","consentsEula":" and the <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">End User License Agreement</a>","consentsTermsOfUse":" and the <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Terms of Use</a>","consentsCompanyName":" of {companyName}","autoRenewPlanTermsBegin":"By checking the box below and completing your purchase, you expressly authorize and permit Digital River to automatically renew your purchased license or subscription for successive renewal terms each equal in length to the initial term specified above, at the purchase price for your initial term (plus taxes and fees, less any applicable discounts) using the payment information you provided for your initial purchase, until you cancel. At least one email will be sent to you to remind you of each upcoming renewal. We may change the renewal price as of the next renewal date if we provide you with prior notice of the change by email (you can elect to cancel automatic renewal as described below if you do not agree to the change). The Digital River <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a>","autoRenewPlanTermsEnd":" will apply to each renewal transaction. You may cancel your auto-renewal plan at any time by logging into the account interface (access information will be included in your order confirmation email or on the Customer Service Help page), selecting your product, and selecting the option to disable automatic renewal.<br/><br/>I agree that Digital River may store my payment information for future purchases including the processing of any subsequent subscription renewals which may occur following the date of this order.","klarnaCreditActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. Klarna will perform a quotation search with an external credit reference agency to check your eligibility. By continuing you accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_pr/user\\">Klarna\'s Services Terms</a> and confirm that you have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_pr/privacy\\">Klarna\'s Privacy Notice</a>.","klarnaCreditRecurringActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. Klarna will perform a quotation search with an external credit reference agency to check your eligibility. By continuing you accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_pr/user\\">Klarna\'s Services Terms</a> and confirm that you have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_pr/privacy\\">Klarna\'s Privacy Notice</a>.","agreeToTerms":"I have read and agree to the terms and charges above.","idealRecurringAgreement":"By clicking the box, you authorize Digital River to collect your first payment via iDEAL and use your IBAN to collect the subsequent subscription payments by SEPA direct debit. You can review your SEPA Direct Debit information after order submission. <br/><br/>As part of your rights, you are entitled to a refund from your bank under the terms and conditions of your agreement with your bank. A refund must be claimed within 8 weeks starting from the date on which your account was debited. "},"en_SE":{"privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> is the authorised retailer and merchant providing e-commerce services for this shop.","termsOfSale":"Terms and Conditions","confirmDisclosure":"By submitting my order, I agree to the <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and the <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> of {businessEntityName}.","consentsEula":" and the <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">End User License Agreement</a>","consentsTermsOfUse":" and the <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Terms of Use</a>","consentsCompanyName":" of {companyName}","autoRenewPlanTermsBegin":"By checking the box below and completing your purchase, you expressly authorize and permit Digital River to automatically renew your purchased license or subscription for successive renewal terms each equal in length to the initial term specified above, at the purchase price for your initial term (plus taxes and fees, less any applicable discounts) using the payment information you provided for your initial purchase, until you cancel. At least one email will be sent to you to remind you of each upcoming renewal. We may change the renewal price as of the next renewal date if we provide you with prior notice of the change by email (you can elect to cancel automatic renewal as described below if you do not agree to the change). The Digital River <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a>","autoRenewPlanTermsEnd":" will apply to each renewal transaction. You may cancel your auto-renewal plan at any time by logging into the account interface (access information will be included in your order confirmation email or on the Customer Service Help page), selecting your product, and selecting the option to disable automatic renewal.<br/><br/>I agree that Digital River may store my payment information for future purchases including the processing of any subsequent subscription renewals which may occur following the date of this order.","klarnaCreditActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. Klarna will perform a quotation search with an external credit reference agency to check your eligibility. By continuing you accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_se/user\\">Klarna\'s Services Terms</a> and confirm that you have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_se/privacy\\">Klarna\'s Privacy Notice</a>.","klarnaCreditRecurringActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. Klarna will perform a quotation search with an external credit reference agency to check your eligibility. By continuing you accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_se/user\\">Klarna\'s Services Terms</a> and confirm that you have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_se/privacy\\">Klarna\'s Privacy Notice</a>.","idealRecurringAgreement":"By clicking the box, you authorize Digital River to collect your first payment via iDEAL and use your IBAN to collect the subsequent subscription payments by SEPA direct debit. You can review your SEPA Direct Debit information after order submission. <br/><br/>As part of your rights, you are entitled to a refund from your bank under the terms and conditions of your agreement with your bank. A refund must be claimed within 8 weeks starting from the date on which your account was debited. "},"en_SG":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> is the authorised reseller and merchant of the products and services offered within this store.","termsOfSale":"Terms of Sale","confirmDisclosure":"By submitting my order, I agree to the <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and the <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> of {businessEntityName}.","consentsEula":" and the <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">End User License Agreement</a>","consentsTermsOfUse":" and the <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Terms of Use</a>","consentsCompanyName":" of {companyName}","autoRenewPlanTermsBegin":"By checking the box below and completing your purchase, you expressly authorize and permit Digital River to automatically renew your purchased license or subscription for successive renewal terms each equal in length to the initial term specified above, at the purchase price for your initial term (plus taxes and fees, less any applicable discounts) using the payment information you provided for your initial purchase, until you cancel. At least one email will be sent to you to remind you of each upcoming renewal. We may change the renewal price as of the next renewal date if we provide you with prior notice of the change by email (you can elect to cancel automatic renewal as described below if you do not agree to the change). The Digital River <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a>","autoRenewPlanTermsEnd":" will apply to each renewal transaction. You may cancel your auto-renewal plan at any time by logging into the account interface (access information will be included in your order confirmation email or on the Customer Service Help page), selecting your product, and selecting the option to disable automatic renewal.<br/><br/>I agree that Digital River may store my payment information for future purchases including the processing of any subsequent subscription renewals which may occur following the date of this order.","klarnaCreditActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. Klarna will perform a quotation search with an external credit reference agency to check your eligibility. By continuing you accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_sg/user\\">Klarna\'s Services Terms</a> and confirm that you have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_sg/privacy\\">Klarna\'s Privacy Notice</a>.","klarnaCreditRecurringActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. Klarna will perform a quotation search with an external credit reference agency to check your eligibility. By continuing you accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_sg/user\\">Klarna\'s Services Terms</a> and confirm that you have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_sg/privacy\\">Klarna\'s Privacy Notice</a>.","agreeToTerms":"I have read and agree to the terms and charges above.","idealRecurringAgreement":"By clicking the box, you authorize Digital River to collect your first payment via iDEAL and use your IBAN to collect the subsequent subscription payments by SEPA direct debit. You can review your SEPA Direct Debit information after order submission. <br/><br/>As part of your rights, you are entitled to a refund from your bank under the terms and conditions of your agreement with your bank. A refund must be claimed within 8 weeks starting from the date on which your account was debited. "},"en_US":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> is the authorized reseller and merchant of the products and services offered within this store.","termsOfSale":"Terms of Sale","confirmDisclosure":"By submitting my order, I agree to the <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and the <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> of {businessEntityName}.","consentsEula":" and the <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">End User License Agreement</a>","consentsTermsOfUse":" and the <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Terms of Use</a>","consentsCompanyName":" of {companyName}","californiaPrivacyRights":"Your California Privacy Rights","autoRenewPlanTermsBegin":"By checking the box below and completing your purchase, you expressly authorize and permit Digital River to automatically renew your purchased license or subscription for successive renewal terms each equal in length to the initial term specified above, at the purchase price for your initial term (plus taxes and fees, less any applicable discounts) using the payment information you provided for your initial purchase, until you cancel. At least one email will be sent to you to remind you of each upcoming renewal. We may change the renewal price as of the next renewal date if we provide you with prior notice of the change by email (you can elect to cancel automatic renewal as described below if you do not agree to the change). The Digital River <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a>","autoRenewPlanTermsEnd":" will apply to each renewal transaction. You may cancel your auto-renewal plan at any time by logging into the account interface (access information will be included in your order confirmation email or on the Customer Service Help page), selecting your product, and selecting the option to disable automatic renewal.<br/><br/>I agree that Digital River may store my payment information for future purchases including the processing of any subsequent subscription renewals which may occur following the date of this order.","klarnaCreditActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. By continuing you accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_us/user\\">Klarna\'s Services Terms</a> and confirm that you have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_us/privacy\\">Klarna\'s Privacy Policy</a>.","klarnaCreditRecurringActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. By continuing you accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_us/user\\">Klarna\'s Services Terms</a> and confirm that you have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_us/privacy\\">Klarna\'s Privacy Policy</a>.","agreeToTerms":"I have read and agree to the terms and charges above.","idealRecurringAgreement":"By clicking the box, you authorize Digital River to collect your first payment via iDEAL and use your IBAN to collect the subsequent subscription payments by SEPA direct debit. You can review your SEPA Direct Debit information after order submission. <br/><br/>As part of your rights, you are entitled to a refund from your bank under the terms and conditions of your agreement with your bank. A refund must be claimed within 8 weeks starting from the date on which your account was debited. ","mstsActiveAcceptance":"Select {payNow} to login to TreviPay, complete Two-factor authentication and confirm purchase.<span class=\\"{createAccountButtonTextClass}\\"><br /><br />Select Enroll Now to create TreviPay Account.</span><br /><br />DISCLAIMER<br /><br />* All the purchase program accounts and credit lines under the Payment Terms program are issued by Multi Service Technology Solutions, Inc., a Florida USA incorporated company (“MSTS”).<br /><br />* {businessEntityName} is not a party to the Purchase Program Accountholder Agreement. {businessEntityName} is neither a lender nor a broker for the credit lines issued under the Payment Terms program<br /><br />All the applications and your qualifications will be reviewed and decided by TreviPay. <a href=\\"https://www.trevipay.com/privacy-center/\\" target=\\"_blank\\">TreviPay’s Privacy Center.</a>"},"en_ZA":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> is the authorised reseller and merchant of the products and services offered within this store.","termsOfSale":"Terms of Sale","confirmDisclosure":"By submitting my order, I agree to the <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and the <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> of {businessEntityName}.","consentsEula":" and the <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">End User License Agreement</a>","consentsTermsOfUse":" and the <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Terms of Use</a>","consentsCompanyName":" of {companyName}","autoRenewPlanTermsBegin":"By checking the box below and completing your purchase, you expressly authorize and permit Digital River to automatically renew your purchased license or subscription for successive renewal terms each equal in length to the initial term specified above, at the purchase price for your initial term (plus taxes and fees, less any applicable discounts) using the payment information you provided for your initial purchase, until you cancel. At least one email will be sent to you to remind you of each upcoming renewal. We may change the renewal price as of the next renewal date if we provide you with prior notice of the change by email (you can elect to cancel automatic renewal as described below if you do not agree to the change). The Digital River <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a>","autoRenewPlanTermsEnd":" will apply to each renewal transaction. You may cancel your auto-renewal plan at any time by logging into the account interface (access information will be included in your order confirmation email or on the Customer Service Help page), selecting your product, and selecting the option to disable automatic renewal.<br/><br/>I agree that Digital River may store my payment information for future purchases including the processing of any subsequent subscription renewals which may occur following the date of this order.","klarnaCreditActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. Klarna will perform a quotation search with an external credit reference agency to check your eligibility. By continuing you accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_za/user\\">Klarna\'s Services Terms</a> and confirm that you have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_za/privacy\\">Klarna\'s Privacy Notice</a>.","klarnaCreditRecurringActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. Klarna will perform a quotation search with an external credit reference agency to check your eligibility. By continuing you accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_za/user\\">Klarna\'s Services Terms</a> and confirm that you have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_za/privacy\\">Klarna\'s Privacy Notice</a>.","agreeToTerms":"I have read and agree to the terms and charges above.","idealRecurringAgreement":"By clicking the box, you authorize Digital River to collect your first payment via iDEAL and use your IBAN to collect the subsequent subscription payments by SEPA direct debit. You can review your SEPA Direct Debit information after order submission. <br/><br/>As part of your rights, you are entitled to a refund from your bank under the terms and conditions of your agreement with your bank. A refund must be claimed within 8 weeks starting from the date on which your account was debited. "},"es_AR":{"cancellationRights":"Derechos de cancelación","cookiePolicy":"Cookies","legalNotice":"Aviso legal","privacyPolicy":"Política de privacidad","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> es el revendedor y comercializador autorizado de los productos ofrecidos en esta tienda.","termsOfSale":"Términos de la venta","confirmDisclosure":"Al enviar mi pedido, acepto los <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Términos de ventas</a> y la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Política de privacidad</a> de {businessEntityName}.","consentsEula":" y el <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Acuerdo de licencia del usuario final</a>","consentsTermsOfUse":" y los <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Condiciones de uso</a>","consentsCompanyName":" de {companyName}","autoRenewPlanTermsBegin":"Al marcar la casilla que aparece a continuación y finalizar la compra, usted autoriza y otorga permiso de forma expresa a Digital River para renovar automáticamente la licencia o suscripción en periodos de renovación sucesivos de idéntica duración a la del periodo inicial especificado anteriormente, al precio de compra de su periodo inicial (más impuestos y recargos, restando los descuentos aplicables) utilizando la información de pago que facilitó para la primera compra, hasta que usted lo cancele. Recibirá al menos un correo electrónico para recordarle cada renovación automática. Podemos cambiar el precio de renovación a partir de la próxima fecha de renovación, siempre y cuando le avisemos del cambio con antelación por correo electrónico (usted podrá decidir si desea cancelar la renovación automática tal como se describe a continuación si no está de acuerdo con el cambio). Los <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Términos de venta</a> y la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Política de confidencialidad</a> de Digital River","autoRenewPlanTermsEnd":" se aplicarán en todas las transacciones de renovación. Puede cancelar su plan de renovación automática en cualquier momento iniciando sesión en la interfaz de la cuenta (encontrará la información de acceso en la confirmación de pedido que recibió por correo electrónico o en la página de ayuda del Servicio de Atención al Cliente), seleccionando el producto y luego la opción de desactivar la renovación automática.<br/><br/>Autorizo a Digital River a almacenar mi información de pago para futuras compras, incluido el procesamiento de cualquier renovación de suscripción que se produzca después de la fecha de este pedido.","agreeToTerms":"He leído y acepto los términos y cargos arriba detallados.","idealRecurringAgreement":"Al hacer clic en la casilla, autoriza a Digital River a cobrar su primer pago a través de iDEAL y a utilizar su IBAN para cobrar los siguientes pagos de la suscripción mediante domiciliación bancaria SEPA. Puede revisar la información de su adeudo directo SEPA después de enviar el pedido. <br/><br/>Tiene derecho a recibir un reembolso de su banco según los términos y condiciones de su acuerdo con su banco. Cualquier reembolso deberá solicitarse en un plazo máximo de 8 semanas desde la fecha en la que se realice el adeudo. "},"es_CL":{"cancellationRights":"Derechos de cancelación","cookiePolicy":"Cookies","legalNotice":"Aviso legal","privacyPolicy":"Política de privacidad","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> es el revendedor y comercializador autorizado de los productos ofrecidos en esta tienda.","termsOfSale":"Términos de la venta","confirmDisclosure":"Al enviar mi pedido, acepto los <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Términos de ventas</a> y la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Política de privacidad</a> de {businessEntityName}.","consentsEula":" y el <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Acuerdo de licencia del usuario final</a>","consentsTermsOfUse":" y los <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Condiciones de uso</a>","consentsCompanyName":" de {companyName}","autoRenewPlanTermsBegin":"Al marcar la casilla que aparece a continuación y finalizar la compra, usted autoriza y otorga permiso de forma expresa a Digital River para renovar automáticamente la licencia o suscripción en periodos de renovación sucesivos de idéntica duración a la del periodo inicial especificado anteriormente, al precio de compra de su periodo inicial (más impuestos y recargos, restando los descuentos aplicables) utilizando la información de pago que facilitó para la primera compra, hasta que usted lo cancele. Recibirá al menos un correo electrónico para recordarle cada renovación automática. Podemos cambiar el precio de renovación a partir de la próxima fecha de renovación, siempre y cuando le avisemos del cambio con antelación por correo electrónico (usted podrá decidir si desea cancelar la renovación automática tal como se describe a continuación si no está de acuerdo con el cambio). Los <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Términos de venta</a> y la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Política de confidencialidad</a> de Digital River","autoRenewPlanTermsEnd":" se aplicarán en todas las transacciones de renovación. Puede cancelar su plan de renovación automática en cualquier momento iniciando sesión en la interfaz de la cuenta (encontrará la información de acceso en la confirmación de pedido que recibió por correo electrónico o en la página de ayuda del Servicio de Atención al Cliente), seleccionando el producto y luego la opción de desactivar la renovación automática.<br/><br/>Autorizo a Digital River a almacenar mi información de pago para futuras compras, incluido el procesamiento de cualquier renovación de suscripción que se produzca después de la fecha de este pedido.","agreeToTerms":"He leído y acepto los términos y cargos arriba detallados.","idealRecurringAgreement":"Al hacer clic en la casilla, autoriza a Digital River a cobrar su primer pago a través de iDEAL y a utilizar su IBAN para cobrar los siguientes pagos de la suscripción mediante domiciliación bancaria SEPA. Puede revisar la información de su adeudo directo SEPA después de enviar el pedido. <br/><br/>Tiene derecho a recibir un reembolso de su banco según los términos y condiciones de su acuerdo con su banco. Cualquier reembolso deberá solicitarse en un plazo máximo de 8 semanas desde la fecha en la que se realice el adeudo. "},"es_CO":{"cancellationRights":"Derechos de cancelación","cookiePolicy":"Cookies","legalNotice":"Aviso legal","privacyPolicy":"Política de privacidad","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> es el revendedor y comercializador autorizado de los productos ofrecidos en esta tienda.","termsOfSale":"Términos de la venta","confirmDisclosure":"Al enviar mi pedido, acepto los <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Términos de ventas</a> y la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Política de privacidad</a> de {businessEntityName}.","consentsEula":" y el <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Acuerdo de licencia del usuario final</a>","consentsTermsOfUse":" y los <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Condiciones de uso</a>","consentsCompanyName":" de {companyName}","autoRenewPlanTermsBegin":"Al marcar la casilla que aparece a continuación y finalizar la compra, usted autoriza y otorga permiso de forma expresa a Digital River para renovar automáticamente la licencia o suscripción en periodos de renovación sucesivos de idéntica duración a la del periodo inicial especificado anteriormente, al precio de compra de su periodo inicial (más impuestos y recargos, restando los descuentos aplicables) utilizando la información de pago que facilitó para la primera compra, hasta que usted lo cancele. Recibirá al menos un correo electrónico para recordarle cada renovación automática. Podemos cambiar el precio de renovación a partir de la próxima fecha de renovación, siempre y cuando le avisemos del cambio con antelación por correo electrónico (usted podrá decidir si desea cancelar la renovación automática tal como se describe a continuación si no está de acuerdo con el cambio). Los <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Términos de venta</a> y la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Política de confidencialidad</a> de Digital River","autoRenewPlanTermsEnd":" se aplicarán en todas las transacciones de renovación. Puede cancelar su plan de renovación automática en cualquier momento iniciando sesión en la interfaz de la cuenta (encontrará la información de acceso en la confirmación de pedido que recibió por correo electrónico o en la página de ayuda del Servicio de Atención al Cliente), seleccionando el producto y luego la opción de desactivar la renovación automática.<br/><br/>Autorizo a Digital River a almacenar mi información de pago para futuras compras, incluido el procesamiento de cualquier renovación de suscripción que se produzca después de la fecha de este pedido.","agreeToTerms":"He leído y acepto los términos y cargos arriba detallados.","idealRecurringAgreement":"Al hacer clic en la casilla, autoriza a Digital River a cobrar su primer pago a través de iDEAL y a utilizar su IBAN para cobrar los siguientes pagos de la suscripción mediante domiciliación bancaria SEPA. Puede revisar la información de su adeudo directo SEPA después de enviar el pedido. <br/><br/>Tiene derecho a recibir un reembolso de su banco según los términos y condiciones de su acuerdo con su banco. Cualquier reembolso deberá solicitarse en un plazo máximo de 8 semanas desde la fecha en la que se realice el adeudo. "},"es_EC":{"cancellationRights":"Derechos de cancelación","cookiePolicy":"Cookies","legalNotice":"Aviso legal","privacyPolicy":"Política de privacidad","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> es el revendedor y comercializador autorizado de los productos ofrecidos en esta tienda.","termsOfSale":"Términos de la venta","confirmDisclosure":"Al enviar mi pedido, acepto los <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Términos de ventas</a> y la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Política de privacidad</a> de {businessEntityName}.","consentsEula":" y el <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Acuerdo de licencia del usuario final</a>","consentsTermsOfUse":" y los <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Condiciones de uso</a>","consentsCompanyName":" de {companyName}","autoRenewPlanTermsBegin":"Al marcar la casilla que aparece a continuación y finalizar la compra, usted autoriza y otorga permiso de forma expresa a Digital River para renovar automáticamente la licencia o suscripción en periodos de renovación sucesivos de idéntica duración a la del periodo inicial especificado anteriormente, al precio de compra de su periodo inicial (más impuestos y recargos, restando los descuentos aplicables) utilizando la información de pago que facilitó para la primera compra, hasta que usted lo cancele. Recibirá al menos un correo electrónico para recordarle cada renovación automática. Podemos cambiar el precio de renovación a partir de la próxima fecha de renovación, siempre y cuando le avisemos del cambio con antelación por correo electrónico (usted podrá decidir si desea cancelar la renovación automática tal como se describe a continuación si no está de acuerdo con el cambio). Los <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Términos de venta</a> y la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Política de confidencialidad</a> de Digital River","autoRenewPlanTermsEnd":" se aplicarán en todas las transacciones de renovación. Puede cancelar su plan de renovación automática en cualquier momento iniciando sesión en la interfaz de la cuenta (encontrará la información de acceso en la confirmación de pedido que recibió por correo electrónico o en la página de ayuda del Servicio de Atención al Cliente), seleccionando el producto y luego la opción de desactivar la renovación automática.<br/><br/>Autorizo a Digital River a almacenar mi información de pago para futuras compras, incluido el procesamiento de cualquier renovación de suscripción que se produzca después de la fecha de este pedido.","agreeToTerms":"He leído y acepto los términos y cargos arriba detallados.","idealRecurringAgreement":"Al hacer clic en la casilla, autoriza a Digital River a cobrar su primer pago a través de iDEAL y a utilizar su IBAN para cobrar los siguientes pagos de la suscripción mediante domiciliación bancaria SEPA. Puede revisar la información de su adeudo directo SEPA después de enviar el pedido. <br/><br/>Tiene derecho a recibir un reembolso de su banco según los términos y condiciones de su acuerdo con su banco. Cualquier reembolso deberá solicitarse en un plazo máximo de 8 semanas desde la fecha en la que se realice el adeudo. "},"es_ES":{"cancellationRights":"Derechos de cancelación","cookiePolicy":"Cookies","legalNotice":"Aviso legal","privacyPolicy":"Política de confidencialidad","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> es el distribuidor y el vendedor autorizado de los productos y servicios ofrecidos en esta tienda virtual.","termsOfSale":"Condiciones de venta","confirmDisclosure":"Al enviar mi pedido, acepto los <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Términos de ventas</a> y la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Política de privacidad</a> de {businessEntityName}.","consentsEula":" y el <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Acuerdo de licencia del usuario final</a>","consentsTermsOfUse":" y los <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Condiciones de uso</a>","consentsCompanyName":" de {companyName}","autoRenewPlanTermsBegin":"Al marcar la casilla que aparece a continuación y finalizar la compra, usted autoriza y otorga permiso de forma expresa a Digital River para renovar automáticamente la licencia o suscripción en periodos de renovación sucesivos de idéntica duración a la del periodo inicial especificado anteriormente, al precio de compra de su periodo inicial (más impuestos y recargos, restando los descuentos aplicables) utilizando la información de pago que facilitó para la primera compra, hasta que usted lo cancele. Recibirá al menos un correo electrónico para recordarle cada renovación automática. Podemos cambiar el precio de renovación a partir de la próxima fecha de renovación, siempre y cuando le avisemos del cambio con antelación por correo electrónico (usted podrá decidir si desea cancelar la renovación automática tal como se describe a continuación si no está de acuerdo con el cambio). Los <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Términos de venta</a> y la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Política de confidencialidad</a> de Digital River","autoRenewPlanTermsEnd":" se aplicarán en todas las transacciones de renovación. Puede cancelar su plan de renovación automática en cualquier momento iniciando sesión en la interfaz de la cuenta (encontrará la información de acceso en la confirmación de pedido que recibió por correo electrónico o en la página de ayuda del Servicio de Atención al Cliente), seleccionando el producto y luego la opción de desactivar la renovación automática.<br/><br/>Autorizo a Digital River a almacenar mi información de pago para futuras compras, incluido el procesamiento de cualquier renovación de suscripción que se produzca después de la fecha de este pedido.","klarnaCreditActiveAcceptance":"Si presiona <span class=\\"DR-button-text\\">{payNow}</span>, se le presentarán los métodos de pago ofrecidos por Klarna. I continuar, acepta los <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/es_es/user\\">términos y condiciones generales de los servicios de Klarna</a> y confirma que ha leído la <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/es_es/privacy\\">política de privacidad de Klarna</a>.","klarnaCreditRecurringActiveAcceptance":"Si presiona <span class=\\"DR-button-text\\">{payNow}</span>, se le presentarán los métodos de pago ofrecidos por Klarna. I continuar, acepta los <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/es_es/user\\">términos y condiciones generales de los servicios de Klarna</a> y confirma que ha leído la <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/es_es/privacy\\">política de privacidad de Klarna</a>.","agreeToTerms":"He leído y acepto las condiciones y los cobros anteriormente indicados.","idealRecurringAgreement":"Al hacer clic en la casilla, autoriza a Digital River a cobrar su primer pago a través de iDEAL y a utilizar su IBAN para cobrar los siguientes pagos de la suscripción mediante domiciliación bancaria SEPA. Puede revisar la información de su adeudo directo SEPA después de enviar el pedido. <br/><br/>Tiene derecho a recibir un reembolso de su banco según los términos y condiciones de su acuerdo con su banco. Cualquier reembolso deberá solicitarse en un plazo máximo de 8 semanas desde la fecha en la que se realice el adeudo. ","mstsActiveAcceptance":"Seleccione {payNow} para iniciar sesión en TreviPay, completar la autenticación de DOS factores y confirmar la compra.<span class=\\"{createAccountButtonTextClass}\\"><br /><br />Seleccione \'Regístrate ahora\' para crear una cuenta TreviPay.</span><br /><br />* Todas las cuentas del programa de compras y las líneas de crédito bajo el programa Condiciones de pago son emitidas por Multi Service Technology Solutions, Inc., una compañía incorporada en Florida USA (\\"MSTS\\")<br /><br />DESCARGO DE RESPONSABILIDAD<br /><br />* {businessEntityName} no es parte del Acuerdo de titulares de cuentas del Programa de compras. {businessEntityName} no es un prestamista ni un corredor de líneas de crédito emitidas bajo el programa Condiciones de pago.<br /><br />Todas las solicitudes y sus calificaciones serán revisadas y decididas por TreviPay. <a href=\\"https://www.trevipay.com/privacy-center/\\" target=\\"_blank\\">Aquí hay un enlace al Centro de privacidad de TreviPay.</a>"},"es_MX":{"cancellationRights":"Derechos de cancelación","cookiePolicy":"Cookies","legalNotice":"Aviso legal","privacyPolicy":"Política de privacidad","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> es el revendedor y comercializador autorizado de los productos ofrecidos en esta tienda.","termsOfSale":"Términos de la venta","confirmDisclosure":"Al enviar mi pedido, acepto los <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Términos de ventas</a> y la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Política de privacidad</a> de {businessEntityName}.","consentsEula":" y el <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Acuerdo de licencia del usuario final</a>","consentsTermsOfUse":" y los <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Términos de uso</a>","consentsCompanyName":" de {companyName}","autoRenewPlanTermsBegin":"Al marcar la casilla que aparece a continuación y finalizar la compra, usted autoriza y otorga permiso de forma expresa a Digital River para renovar automáticamente la licencia o suscripción en periodos de renovación sucesivos de idéntica duración a la del periodo inicial especificado anteriormente, al precio de compra de su periodo inicial (más impuestos y recargos, restando los descuentos aplicables) utilizando la información de pago que facilitó para la primera compra, hasta que usted lo cancele. Recibirá al menos un correo electrónico para recordarle cada renovación automática. Podemos cambiar el precio de renovación a partir de la próxima fecha de renovación, siempre y cuando le avisemos del cambio con antelación por correo electrónico (usted podrá decidir si desea cancelar la renovación automática tal como se describe a continuación si no está de acuerdo con el cambio). Los <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Términos de venta</a> y la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Política de confidencialidad</a> de Digital River","autoRenewPlanTermsEnd":" se aplicarán en todas las transacciones de renovación. Puede cancelar su plan de renovación automática en cualquier momento iniciando sesión en la interfaz de la cuenta (encontrará la información de acceso en la confirmación de pedido que recibió por correo electrónico o en la página de ayuda del Servicio de Atención al Cliente), seleccionando el producto y luego la opción de desactivar la renovación automática.<br/><br/>Autorizo a Digital River a almacenar mi información de pago para futuras compras, incluido el procesamiento de cualquier renovación de suscripción que se produzca después de la fecha de este pedido.","agreeToTerms":"He leído y acepto los términos y cargos arriba detallados.","idealRecurringAgreement":"Al hacer clic en la casilla, autoriza a Digital River a cobrar su primer pago a través de iDEAL y a utilizar su IBAN para cobrar los siguientes pagos de la suscripción mediante domiciliación bancaria SEPA. Puede revisar la información de su adeudo directo SEPA después de enviar el pedido. <br/><br/>Tiene derecho a recibir un reembolso de su banco según los términos y condiciones de su acuerdo con su banco. Cualquier reembolso deberá solicitarse en un plazo máximo de 8 semanas desde la fecha en la que se realice el adeudo. ","mstsActiveAcceptance":"Seleccione {payNow} para iniciar sesión en TreviPay, completar la autenticación de DOS factores y confirmar la compra.<span class=\\"{createAccountButtonTextClass}\\"><br /><br />Seleccione \'Regístrate ahora\' para crear una cuenta TreviPay.</span><br /><br />* Todas las cuentas del programa de compras y las líneas de crédito bajo el programa Condiciones de pago son emitidas por Multi Service Technology Solutions, Inc., una compañía incorporada en Florida USA (\\"MSTS\\")<br /><br />DESCARGO DE RESPONSABILIDAD<br /><br />* {businessEntityName} no es parte del Acuerdo de titulares de cuentas del Programa de compras. {businessEntityName} no es un prestamista ni un corredor de líneas de crédito emitidas bajo el programa Condiciones de pago.<br /><br />Todas las solicitudes y sus calificaciones serán revisadas y decididas por TreviPay. <a href=\\"https://www.trevipay.com/privacy-center/\\" target=\\"_blank\\">Aquí hay un enlace al Centro de privacidad de TreviPay.</a>"},"es_PE":{"cancellationRights":"Derechos de cancelación","cookiePolicy":"Cookies","legalNotice":"Aviso legal","privacyPolicy":"Política de privacidad","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> es el revendedor y comercializador autorizado de los productos ofrecidos en esta tienda.","termsOfSale":"Términos de la venta","confirmDisclosure":"Al enviar mi pedido, acepto los <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Términos de ventas</a> y la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Política de privacidad</a> de {businessEntityName}.","consentsEula":" y el <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Acuerdo de licencia del usuario final</a>","consentsTermsOfUse":" y los <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Condiciones de uso</a>","consentsCompanyName":" de {companyName}","autoRenewPlanTermsBegin":"Al marcar la casilla que aparece a continuación y finalizar la compra, usted autoriza y otorga permiso de forma expresa a Digital River para renovar automáticamente la licencia o suscripción en periodos de renovación sucesivos de idéntica duración a la del periodo inicial especificado anteriormente, al precio de compra de su periodo inicial (más impuestos y recargos, restando los descuentos aplicables) utilizando la información de pago que facilitó para la primera compra, hasta que usted lo cancele. Recibirá al menos un correo electrónico para recordarle cada renovación automática. Podemos cambiar el precio de renovación a partir de la próxima fecha de renovación, siempre y cuando le avisemos del cambio con antelación por correo electrónico (usted podrá decidir si desea cancelar la renovación automática tal como se describe a continuación si no está de acuerdo con el cambio). Los <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Términos de venta</a> y la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Política de confidencialidad</a> de Digital River","autoRenewPlanTermsEnd":" se aplicarán en todas las transacciones de renovación. Puede cancelar su plan de renovación automática en cualquier momento iniciando sesión en la interfaz de la cuenta (encontrará la información de acceso en la confirmación de pedido que recibió por correo electrónico o en la página de ayuda del Servicio de Atención al Cliente), seleccionando el producto y luego la opción de desactivar la renovación automática.<br/><br/>Autorizo a Digital River a almacenar mi información de pago para futuras compras, incluido el procesamiento de cualquier renovación de suscripción que se produzca después de la fecha de este pedido.","agreeToTerms":"He leído y acepto los términos y cargos arriba detallados.","idealRecurringAgreement":"Al hacer clic en la casilla, autoriza a Digital River a cobrar su primer pago a través de iDEAL y a utilizar su IBAN para cobrar los siguientes pagos de la suscripción mediante domiciliación bancaria SEPA. Puede revisar la información de su adeudo directo SEPA después de enviar el pedido. <br/><br/>Tiene derecho a recibir un reembolso de su banco según los términos y condiciones de su acuerdo con su banco. Cualquier reembolso deberá solicitarse en un plazo máximo de 8 semanas desde la fecha en la que se realice el adeudo. "},"es_VE":{"cancellationRights":"Derechos de cancelación","cookiePolicy":"Cookies","legalNotice":"Aviso legal","privacyPolicy":"Política de privacidad","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> es el revendedor y comercializador autorizado de los productos ofrecidos en esta tienda.","termsOfSale":"Términos de la venta","confirmDisclosure":"Al enviar mi pedido, acepto los <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Términos de ventas</a> y la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Política de privacidad</a> de {businessEntityName}.","consentsEula":" y el <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Acuerdo de licencia del usuario final</a>","consentsTermsOfUse":" y los <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Condiciones de uso</a>","consentsCompanyName":" de {companyName}","autoRenewPlanTermsBegin":"Al marcar la casilla que aparece a continuación y finalizar la compra, usted autoriza y otorga permiso de forma expresa a Digital River para renovar automáticamente la licencia o suscripción en periodos de renovación sucesivos de idéntica duración a la del periodo inicial especificado anteriormente, al precio de compra de su periodo inicial (más impuestos y recargos, restando los descuentos aplicables) utilizando la información de pago que facilitó para la primera compra, hasta que usted lo cancele. Recibirá al menos un correo electrónico para recordarle cada renovación automática. Podemos cambiar el precio de renovación a partir de la próxima fecha de renovación, siempre y cuando le avisemos del cambio con antelación por correo electrónico (usted podrá decidir si desea cancelar la renovación automática tal como se describe a continuación si no está de acuerdo con el cambio). Los <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Términos de venta</a> y la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Política de confidencialidad</a> de Digital River","autoRenewPlanTermsEnd":" se aplicarán en todas las transacciones de renovación. Puede cancelar su plan de renovación automática en cualquier momento iniciando sesión en la interfaz de la cuenta (encontrará la información de acceso en la confirmación de pedido que recibió por correo electrónico o en la página de ayuda del Servicio de Atención al Cliente), seleccionando el producto y luego la opción de desactivar la renovación automática.<br/><br/>Autorizo a Digital River a almacenar mi información de pago para futuras compras, incluido el procesamiento de cualquier renovación de suscripción que se produzca después de la fecha de este pedido.","agreeToTerms":"He leído y acepto los términos y cargos arriba detallados.","idealRecurringAgreement":"Al hacer clic en la casilla, autoriza a Digital River a cobrar su primer pago a través de iDEAL y a utilizar su IBAN para cobrar los siguientes pagos de la suscripción mediante domiciliación bancaria SEPA. Puede revisar la información de su adeudo directo SEPA después de enviar el pedido. <br/><br/>Tiene derecho a recibir un reembolso de su banco según los términos y condiciones de su acuerdo con su banco. Cualquier reembolso deberá solicitarse en un plazo máximo de 8 semanas desde la fecha en la que se realice el adeudo. "},"et_EE":{"privacyPolicy":"Privaatsuspoliitika","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> on sellele kauplusele e-kaubanduse teenuseid osutav volitatud edasimüüja.","termsOfSale":"Tingimused","confirmDisclosure":"","autoRenewPlanTermsBegin":"","autoRenewPlanTermsEnd":""},"fi_FI":{"cancellationRights":"Peruutusoikeus","cookiePolicy":"Evästeet","legalNotice":"Lainmukainen tiedotus","privacyPolicy":"Yksityisyyden suoja","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> on valtuutettu jälleenmyyjä, joka myy tässä kaupassa tarjolla olevia tuotteita ja palveluja.","termsOfSale":"Myyntiehdot","confirmDisclosure":"Lähettämällä tilaukseni hyväksyn {businessEntityName} <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Myyntiehdot</a> ja <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Tietosuojamenettelyn</a>.","consentsEula":" ja <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Loppukäyttäjän lisenssisopimus</a>","consentsTermsOfUse":" ja <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Käyttöehdot</a>","consentsCompanyName":" of {companyName}","autoRenewPlanTermsBegin":"Valitsemalla alla olevan valintaruudun ja viemällä ostoksesi päätökseen, valtuutat ja sallit, että Digital River uusii automaattisesti ostamasi lisenssin tai tekemäsi tilauksen peräkkäisin, pituudeltaan yllä mainittua aikajaksoa vastaavin uusintavälein ja soveltaa alkuperäiselle aikajaksolle määritettyä ostohintaa (johon lisätään verot ja maksut ja josta vähennetään kaikki asianmukaiset alennukset) käyttämällä alkuperäisen ostoksen yhteydessä valitsemaasi maksutapaa, kunnes teet peruutuksen. Sinulle lähetetään vähintään yksi sähköposti, jossa sinua muistutetaan tulevasta automaattisesta uusinnasta. Voimme muuttaa uusintahintaa ja soveltaa sitä seuraavasta uusintapäivästä alkaen, jos ilmoitamme sinulle muutoksesta ennakkoon sähköpostilla (jos et hyväksy muutosta, voit peruuttaa automaattisen uusinnan alla ilmoitetulla tavalla). Digital Riverin <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">myyntiehdot</a> ja <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">yksityisyydensuojakäytäntö</a>","autoRenewPlanTermsEnd":" koskevat jokaista uusintaa. Voit peruuttaa automaattisen uusintapalvelun koska tahansa kirjautumalla tilin käyttöliittymään (löydät käyttötiedot tilauksesi vahvistussähköpostista tai asiakaspalvelun ohjesivulta), valitsemalla tuotteesi ja valitsemalla automaattisen uusinnan käytöstäpoistovaihtoehdon.<br/><br/>Hyväksyn, että Digital River voi tallentaa maksutietoni tulevia ostoksia sekä tämän tilauksen jälkeen mahdollisesti tehtävien tilausuusintojen käsittelyä varten.","klarnaCreditActiveAcceptance":"Kun painat <span class=\\"DR-button-text\\">{payNow}</span>-painiketta, saat näkyviin Klarnan tarjoamat maksutavat. Jatkamalla eteenpäin hyväksyt <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/fi_fi/user\\">Klarnan Palveluehdot</a> ja vahvistat lukeneesi <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/fi_fi/privacy\\">Klarnan tietosuojailmoituksen</a>.","klarnaCreditRecurringActiveAcceptance":"Kun painat <span class=\\"DR-button-text\\">{payNow}</span>-painiketta, saat näkyviin Klarnan tarjoamat maksutavat. Jatkamalla eteenpäin hyväksyt <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/fi_fi/user\\">Klarnan Palveluehdot</a> ja vahvistat lukeneesi <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/fi_fi/privacy\\">Klarnan tietosuojailmoituksen</a>.","agreeToTerms":"Olen lukenut ja hyväksyn yllä olevat ehdot ja maksut."},"fr_BE":{"cancellationRights":"Droits d\'annulation","cookiePolicy":"Témoins de connexion","legalNotice":"Mentions legales","privacyPolicy":"Politique de confidentialité","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> est le revendeur et marchand agréé pour les produits et services proposés au sein de ce magasin.","termsOfSale":"Conditions de vente","confirmDisclosure":"En envoyant ma commande, j’accepte les <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Conditions de vente</a> et la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Politique de confidentialité</a> de {businessEntityName}.","consentsEula":" et le <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Contrat de licence utilisateur final</a>","consentsTermsOfUse":" et les <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Conditions générales d&#39;utilisation</a>","consentsCompanyName":" de {companyName}","autoRenewPlanTermsBegin":"En cochant la case ci-dessous et en terminant votre achat, vous autorisez expressément et vous permettez à Digital River de renouveler automatiquement la licence ou l\'abonnement que vous avez acheté par périodes de renouvellement successives, chacune étant égale à la durée initiale spécifiée ci-dessus, au prix d\'achat de la durée initiale (plus les taxes et frais, déduction faite des ristournes applicables) en utilisant les informations de paiement fournies lors de votre achat initial, jusqu\'à ce que vous annuliez. Vous recevrez au moins un e-mail de rappel avant chaque renouvellement. Nous pouvons modifier le prix de renouvellement à la date du prochain renouvellement si nous vous prévenons de cette modification par e-mail (vous pouvez choisir d\'annuler le renouvellement automatique comme décrit ci-dessous si vous n\'acceptez pas cette modification). Les <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Conditions de Vente</a> et la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Politique de confidentialité</a> de Digital River","autoRenewPlanTermsEnd":" s\'appliqueront à chaque transaction de renouvellement. Vous pouvez annuler votre plan de renouvellement automatique à tout moment en vous connectant à votre compte (les informations d\'accès seront fournies dans votre e-mail de confirmation de commande ou sur la page d\'aide du service clientèle), en sélectionnant votre produit, puis l\'option de désactivation du renouvellement automatique.<br/><br/>J\'accepte que Digital River puisse stocker mes informations de paiement pour des achats ultérieurs, y compris le traitement de tout renouvellement d\'abonnement à venir qui pourrait avoir lieu après la date de cette commande.","klarnaCreditActiveAcceptance":"En procédant, les méthodes de paiement fournies par Klarna vous seront présentées. En continuant, vous acceptez les <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/fr_be/user\\">Modalités de Services</a> et confirmez avoir lu la <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/fr_be/privacy\\">Notice de Confidentialité de Klarna</a>.","klarnaCreditRecurringActiveAcceptance":"En procédant, les méthodes de paiement fournies par Klarna vous seront présentées. En continuant, vous acceptez les <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/fr_be/user\\">Modalités de Services</a> et confirmez avoir lu la <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/fr_be/privacy\\">Notice de Confidentialité de Klarna</a>.","agreeToTerms":"J\'ai lu et j\'accepte les Conditions générales de vente et les frais ci-dessus.","idealRecurringAgreement":"En cliquant sur la case, vous autorisez Digital River à percevoir votre premier paiement par iDEAL et à utiliser votre IBAN pour percevoir les paiements d\'abonnement suivants par prélèvement SEPA. Vous pouvez consulter les informations relatives à votre prélèvement SEPA après la soumission de votre commande. <br/><br/>Vous bénéficiez du droit d\'être remboursé par votre banque suivant les conditions décrites dans la convention que vous avez passée avec elle. Une demande de remboursement doit être présentée dans les 8 semaines suivant la date de débit de votre compte pour un prélèvement autorisé. "},"fr_CA":{"cancellationRights":"Droits d\'annulation","cookiePolicy":"Témoins","legalNotice":"Mentions legales","privacyPolicy":"Politique sur la confidentialité","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> est le revendeur et commerçant autorisé fournissant les services de commerce électronique pour ce magasin.","termsOfSale":"Conditions de vente","confirmDisclosure":"En soumettant ma commande, j\'accepte les <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Conditions de vente</a> et la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Politique de confidentialité</a> de {businessEntityName}.","consentsEula":" et le <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Contrat de licence de l&#39;utilisateur final</a>","consentsTermsOfUse":" et les <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Conditions d&#39;utilisation</a>","consentsCompanyName":" de {companyName}","autoRenewPlanTermsBegin":"En cochant la case ci-dessous et en terminant votre achat, vous autorisez expressément et vous permettez à Digital River de renouveler automatiquement la licence ou l\'abonnement que vous avez acheté par périodes de renouvellement successives, chacune étant égale à la durée initiale spécifiée ci-dessus, au prix d\'achat de la durée initiale (plus les taxes et frais, déduction faite des ristournes applicables) en utilisant les informations de paiement fournies lors de votre achat initial, jusqu\'à ce que vous annuliez. Vous recevrez au moins un e-mail de rappel avant chaque renouvellement. Nous pouvons modifier le prix de renouvellement à la date du prochain renouvellement si nous vous prévenons de cette modification par e-mail (vous pouvez choisir d\'annuler le renouvellement automatique comme décrit ci-dessous si vous n\'acceptez pas cette modification). Les <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Conditions de Vente</a> et la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Politique de confidentialité</a> de Digital River","autoRenewPlanTermsEnd":" s\'appliqueront à chaque transaction de renouvellement. Vous pouvez annuler votre plan de renouvellement automatique à tout moment en vous connectant à votre compte (les informations d\'accès seront fournies dans votre e-mail de confirmation de commande ou sur la page d\'aide du service clientèle), en sélectionnant votre produit, puis l\'option de désactivation du renouvellement automatique.<br/><br/>J\'accepte que Digital River puisse stocker mes informations de paiement pour des achats ultérieurs, y compris le traitement de tout renouvellement d\'abonnement à venir qui pourrait avoir lieu après la date de cette commande.","klarnaCreditActiveAcceptance":"Pour accéder aux conditions d\'utilisations de données, de paiement, et les conditions du service de magasinage Klarna, <a target=\\"_blank\\" href=\\"https://www.klarna.com/fr-ca/mentions-legales/\\">cliquer ici</a>.","klarnaCreditRecurringActiveAcceptance":"Pour accéder aux conditions d\'utilisations de données, de paiement, et les conditions du service de magasinage Klarna, <a target=\\"_blank\\" href=\\"https://www.klarna.com/fr-ca/mentions-legales/\\">cliquer ici</a>.","agreeToTerms":"J’ai lu et j’accepte les conditions générales et les modalités tarifaires ci-dessus.","idealRecurringAgreement":"En cliquant sur la case, vous autorisez Digital River à percevoir votre premier paiement par iDEAL et à utiliser votre IBAN pour percevoir les paiements d\'abonnement suivants par prélèvement SEPA. Vous pouvez consulter les informations relatives à votre prélèvement SEPA après la soumission de votre commande. <br/><br/>Vous bénéficiez du droit d\'être remboursé par votre banque suivant les conditions décrites dans la convention que vous avez passée avec elle. Une demande de remboursement doit être présentée dans les 8 semaines suivant la date de débit de votre compte pour un prélèvement autorisé. ","mstsActiveAcceptance":"Sélectionnez {payNow} pour vous connecter à TreviPay, effectuer l\'identification à deux facteurs et confirmer l\'achat.<span class=\\"{createAccountButtonTextClass}\\"><br /><br />Sélectionnez \'Inscrivez-vous maintenant\' pour créer un compte TreviPay.</span><br /><br />AVERTISSEMENT<br /><br />* Tous les comptes du programme d’achat et les lignes de crédit dans le carde du programme de Modalités de Paiement sont émis par Multi Service Technology Solutions, Inc., une société constituée en Floride aux États-Unis (« MSTS »).<br /><br />* {businessEntityName} n’est pas partie à l\'Accord relatif aux Titulaires de compte du Programme d’achat. {businessEntityName} n’est ni un prêteur ni un courtier pour les lignes de crédit émises dans le cadre du programme des Modalités de Paiement<br /><br />Toutes les demandes et vos qualifications seront examinées et décidées par TreviPay. <a href=\\"https://www.trevipay.com/privacy-center/\\" target=\\"_blank\\">Voici un lien vers le Centre de confidentialité de TreviPay.</a>"},"fr_CH":{"cancellationRights":"Droits d\'annulation","cookiePolicy":"Témoins de connexion","legalNotice":"Mentions legales","privacyPolicy":"Politique de confidentialité","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> est le revendeur et marchand agréé pour les produits et services proposés au sein de ce magasin.","termsOfSale":"Conditions de vente","confirmDisclosure":"En envoyant ma commande, j\'accepte les <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Conditions de vente</a> et la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Politique de confidentialité</a> de {businessEntityName}.","consentsEula":" et le <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Contrat de licence utilisateur final</a>","consentsTermsOfUse":" et les <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Conditions générales d&#39;utilisation</a>","consentsCompanyName":" de {companyName}","autoRenewPlanTermsBegin":"En cochant la case ci-dessous et en terminant votre achat, vous autorisez expressément et vous permettez à Digital River de renouveler automatiquement la licence ou l\'abonnement que vous avez acheté par périodes de renouvellement successives, chacune étant égale à la durée initiale spécifiée ci-dessus, au prix d\'achat de la durée initiale (plus les taxes et frais, déduction faite des ristournes applicables) en utilisant les informations de paiement fournies lors de votre achat initial, jusqu\'à ce que vous annuliez. Vous recevrez au moins un e-mail de rappel avant chaque renouvellement. Nous pouvons modifier le prix de renouvellement à la date du prochain renouvellement si nous vous prévenons de cette modification par e-mail (vous pouvez choisir d\'annuler le renouvellement automatique comme décrit ci-dessous si vous n\'acceptez pas cette modification). Les <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Conditions de Vente</a> et la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Politique de confidentialité</a> de Digital River","autoRenewPlanTermsEnd":" s\'appliqueront à chaque transaction de renouvellement. Vous pouvez annuler votre plan de renouvellement automatique à tout moment en vous connectant à votre compte (les informations d\'accès seront fournies dans votre e-mail de confirmation de commande ou sur la page d\'aide du service clientèle), en sélectionnant votre produit, puis l\'option de désactivation du renouvellement automatique.<br/><br/>J\'accepte que Digital River puisse stocker mes informations de paiement pour des achats ultérieurs, y compris le traitement de tout renouvellement d\'abonnement à venir qui pourrait avoir lieu après la date de cette commande.","klarnaCreditActiveAcceptance":"En procédant, les méthodes de paiement fournies par Klarna vous seront présentées. En continuant, vous acceptez les <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/fr_ch/user\\">Modalités de Services</a> et confirmez avoir lu la <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/fr_ch/privacy_bp\\">Notice de Confidentialité de Klarna</a>.","klarnaCreditRecurringActiveAcceptance":"En procédant, les méthodes de paiement fournies par Klarna vous seront présentées. En continuant, vous acceptez les <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/fr_ch/user\\">Modalités de Services</a> et confirmez avoir lu la <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/fr_ch/privacy_bp\\">Notice de Confidentialité de Klarna</a>.","agreeToTerms":"J\'ai lu et j\'accepte les Conditions générales de vente et les frais ci-dessus.","idealRecurringAgreement":"En cliquant sur la case, vous autorisez Digital River à percevoir votre premier paiement par iDEAL et à utiliser votre IBAN pour percevoir les paiements d\'abonnement suivants par prélèvement SEPA. Vous pouvez consulter les informations relatives à votre prélèvement SEPA après la soumission de votre commande. <br/><br/>Vous bénéficiez du droit d\'être remboursé par votre banque suivant les conditions décrites dans la convention que vous avez passée avec elle. Une demande de remboursement doit être présentée dans les 8 semaines suivant la date de débit de votre compte pour un prélèvement autorisé. "},"fr_FR":{"cancellationRights":"Droits d\'annulation","cookiePolicy":"Témoins de connexion","legalNotice":"Mentions legales","privacyPolicy":"Politique de confidentialité","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> est le revendeur et marchand agréé pour les produits et services proposés au sein de ce magasin.","termsOfSale":"Conditions de vente","confirmDisclosure":"En envoyant ma commande, j\'accepte les <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Conditions de vente</a> et la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Politique de confidentialité</a> de {businessEntityName}.","consentsEula":" et le <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Contrat de licence utilisateur final</a>","consentsTermsOfUse":" et les <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Conditions générales d&#39;utilisation</a>","consentsCompanyName":" de {companyName}","autoRenewPlanTermsBegin":"En cochant la case ci-dessous et en terminant votre achat, vous autorisez expressément et vous permettez à Digital River de renouveler automatiquement la licence ou l\'abonnement que vous avez acheté par périodes de renouvellement successives, chacune étant égale à la durée initiale spécifiée ci-dessus, au prix d\'achat de la durée initiale (plus les taxes et frais, déduction faite des ristournes applicables) en utilisant les informations de paiement fournies lors de votre achat initial, jusqu\'à ce que vous annuliez. Vous recevrez au moins un e-mail de rappel avant chaque renouvellement. Nous pouvons modifier le prix de renouvellement à la date du prochain renouvellement si nous vous prévenons de cette modification par e-mail (vous pouvez choisir d\'annuler le renouvellement automatique comme décrit ci-dessous si vous n\'acceptez pas cette modification). Les <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Conditions de Vente</a> et la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Politique de confidentialité</a> de Digital River","autoRenewPlanTermsEnd":" s\'appliqueront à chaque transaction de renouvellement. Vous pouvez annuler votre plan de renouvellement automatique à tout moment en vous connectant à votre compte (les informations d\'accès seront fournies dans votre e-mail de confirmation de commande ou sur la page d\'aide du service clientèle), en sélectionnant votre produit, puis l\'option de désactivation du renouvellement automatique.<br/><br/>J\'accepte que Digital River puisse stocker mes informations de paiement pour des achats ultérieurs, y compris le traitement de tout renouvellement d\'abonnement à venir qui pourrait avoir lieu après la date de cette commande.","agreeToTerms":"J\'ai lu et j\'accepte les Conditions générales de vente et les frais ci-dessus.","idealRecurringAgreement":"En cliquant sur la case, vous autorisez Digital River à percevoir votre premier paiement par iDEAL et à utiliser votre IBAN pour percevoir les paiements d\'abonnement suivants par prélèvement SEPA. Vous pouvez consulter les informations relatives à votre prélèvement SEPA après la soumission de votre commande. <br/><br/>Vous bénéficiez du droit d\'être remboursé par votre banque suivant les conditions décrites dans la convention que vous avez passée avec elle. Une demande de remboursement doit être présentée dans les 8 semaines suivant la date de débit de votre compte pour un prélèvement autorisé. ","mstsActiveAcceptance":"Sélectionnez {payNow} pour vous connecter à TreviPay, effectuer l\'identification à deux facteurs et confirmer l\'achat.<span class=\\"{createAccountButtonTextClass}\\"><br /><br />Sélectionnez \'Inscrivez-vous maintenant\' pour créer un compte TreviPay.</span><br /><br />AVERTISSEMENT<br /><br />* Tous les comptes du programme d’achat et les lignes de crédit dans le carde du programme de Modalités de Paiement sont émis par Multi Service Technology Solutions, Inc., une société constituée en Floride aux États-Unis (« MSTS »).<br /><br />* {businessEntityName} n’est pas partie à l\'Accord relatif aux Titulaires de compte du Programme d’achat. {businessEntityName} n’est ni un prêteur ni un courtier pour les lignes de crédit émises dans le cadre du programme des Modalités de Paiement<br /><br />Toutes les demandes et vos qualifications seront examinées et décidées par TreviPay. <a href=\\"https://www.trevipay.com/privacy-center/\\" target=\\"_blank\\">Voici un lien vers le Centre de confidentialité de TreviPay.</a>"},"hu_HU":{"cancellationRights":"Rendelés törlésének lehetõsége","cookiePolicy":"Cookie-k","legalNotice":"Jogi nyilatkozat","privacyPolicy":"Adatvédelmi politika","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> az áruházban megvásárolható termékek és szolgáltatások hivatalos értékesítő partnere és forgalmazója.","termsOfSale":"Értékesítési feltételek","confirmDisclosure":"A rendelés elküldésével elfogadom a(z) {businessEntityName} <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Értékesítési feltételeit</a> és <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Adatvédelmi nyilatkozatát</a>.","consentsEula":" és <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Végfelhasználói licencszerződés</a>","consentsTermsOfUse":" és <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Felhasználási feltételek</a>","consentsCompanyName":" {companyName}","autoRenewPlanTermsBegin":"Az alábbi jelölőnégyzet bejelölésével és a vásárlás teljesítésével kifejezetten hozzájárul ahhoz, illetve felhatalmazza a Digital River vállalatot arra, hogy a megvásárolt licencét vagy előfizetését automatikusan megújítsa egymást követő, az eredeti időtartammal megegyező, fent meghatározott megújítási időtartamokra, az eredeti árral megegyező áron (növelve az adók és díjak összegével, csökkentve az érvényes kedvezményekkel), a vásárláskor megadott fizetési adatokkal, a megújítás lemondásáig. Az esedékes megújításról legalább egy alkalommal e-mailben értesítjük Önt. A következő megújítás dátumával módosíthatjuk az előfizetés díját, amennyiben arról e-mailben előzetesen tájékoztattuk (ha nem fogadja el a módosításokat, az alább megadott módon törölheti az automatikus megújítást). A Digital River <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Értékesítési feltételei</a> és <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Adatvédelmi irányelvei</a>","autoRenewPlanTermsEnd":" minden megújítás esetén érvényesek. Az automatikus megújítási csomag bármikor lemondható: ehhez jelentkezzen be fiókjába (a belépési adatokat a megrendelés visszaigazolását tartalmazó e-mailben vagy a vevőszolgálat Súgó oldalán találja), jelölje ki a terméket, majd válassza az automatikus megújítás letiltása opciót.<br/><br/>Hozzájárulok ahhoz, hogy a Digital River tárolja fizetési adataimat a jövőbeni vásárlásokhoz, beleértve az előfizetések esetleges megújítását, melyre e megrendelés dátumát követően kerülhet sor.","agreeToTerms":"Elolvastam és elfogadom a fenti feltételeket és díjakat.","idealRecurringAgreement":"A négyzetre kattintva Ön felhatalmazza a Digital River-t, hogy az első fizetést iDEAL-on keresztül szedje be, és az IBAN-számlaszámát használja a további előfizetési díjak SEPA-alapú beszedésére. A SEPA beszedési információkat a megrendelés elküldése után tekintheti meg. <br/><br/>Ön a banktól a közte és Ön között fennálló megállapodás feltételeinek megfelelő visszatérítésre jogosult. A visszatérítési igényt a számla megterhelését követő 8 héten belül kell benyújtani. "},"it_CH":{"cancellationRights":"Diritto di recesso","cookiePolicy":"Cookie","legalNotice":"Avviso legale","privacyPolicy":"Tutela della privacy","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> è il rivenditore autorizzato e fornitore dei prodotti e dei servizi offerti all\'interno di questo negozio.","termsOfSale":"Condizioni di vendita","confirmDisclosure":"Inviando il mio ordine accetto le <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Condizioni di vendita</a> e l’<a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Informativa sulla privacy</a> di {businessEntityName}.","consentsEula":" e <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Contratto di licenza con l\'utente finale</a>","consentsTermsOfUse":" e <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Termini e condizioni di utilizzo</a>","consentsCompanyName":" di {companyName}","autoRenewPlanTermsBegin":"Selezionando la casella e completando l\'acquisto, l\'utente autorizza espressamente e consente a Digital River il rinnovo automatico dell\'abbonamento o della licenza acquistati per periodi successivi di rinnovo, ciascuno pari alla durata indicata nei termini iniziali. Consente inoltre l\'addebito al costo specificato nei termini iniziali (più tasse e oneri, detratti gli eventuali sconti) in base al metodo di pagamento fornito per l\'acquisto iniziale, fino all\'annullamento del rinnovo automatico. Riceverai almeno una e-mail di promemoria relativa all\'imminente rinnovo. Digital River può modificare il prezzo di rinnovo a partire dalla data di rinnovo successiva, purché fornisca un preavviso tramite e-mail (se non si acconsente a tali modifiche, è possibile annullare il rinnovo automatico così come descritto sopra). Le <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Condizioni di vendita</a> e l\'<a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Informativa sulla privacy</a> di Digital River","autoRenewPlanTermsEnd":" sono valide per tutte le transazioni di rinnovo. È possibile annullare il programma di rinnovo automatico in qualsiasi momento accedendo all\'account (i dati di accesso sono disponibili nella e-mail di conferma dell\'ordine o tramite l\'Assistenza clienti), selezionando il prodotto e la relativa opzione per disabilitare il rinnovo automatico.<br/><br/>Confermo che Digital River può conservare le mie informazioni di pagamento per effettuare acquisti futuri, compresa l\'elaborazione di rinnovi successivi dell\'abbonamento che possono verificarsi in seguito alla data del presente ordine.","agreeToTerms":"Il sottoscritto dichiara di aver letto e di accettare le condizioni e i costi indicati sopra.","idealRecurringAgreement":"Cliccando la casella, autorizzate Digital River a raccogliere il vostro primo pagamento tramite iDEAL e ad utilizzare il vostro IBAN per raccogliere i successivi pagamenti dell\'abbonamento tramite addebito diretto SEPA. Puoi rivedere le tue informazioni sull\'addebito diretto SEPA dopo l\'invio dell\'ordine. <br/><br/>Rientra tra i vostri diritti richiedere alla banca l\'eventuale rimborso, nei termini e nelle condizioni previsti dal vostro contratto con la banca. Un eventuale rimborso deve essere richiesto entro 8 settimane dalla data di addebito in conto. ","klarnaCreditActiveAcceptance":"Proseguendo, ti verranno presentate le opzioni di pagamento fornite da Klarna. Continuandoaccetti i <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/it_ch/user\\">Termini di pagamento di Klarna</a> e confermi di aver letto <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/it_ch/privacy_bp\\">l\'informativa sulla privacy di Klarna</a>.","klarnaCreditRecurringActiveAcceptance":"Proseguendo, ti verranno presentate le opzioni di pagamento fornite da Klarna. Continuandoaccetti i <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/it_ch/user\\">Termini di pagamento di Klarna</a> e confermi di aver letto <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/it_ch/privacy_bp\\">l\'informativa sulla privacy di Klarna</a>.","mstsActiveAcceptance":"Selezionare {payNow} per accedere a TreviPay, effettuare l\'autenticazione a due fattori e confermare l\'ordine.<span class=\\"{createAccountButtonTextClass}\\"><br /><br />Selezionare Iscriviti ora per creare un conto TreviPay.</span><br /><br />DISCLAIMER<br /><br />* Tutte le linee di credito e tutti gli account del programma di acquisto relativi al programma Termini di pagamento sono emessi da Multi Service Technology Solutions, Inc. (\\"MSTS\\"), una personalità giuridica con sede in Florida, USA.<br /><br />* {{businessEntityName} non è parte dell&#39;accordo dei titolari di account del Programma di acquisto. {businessEntityName} non costituisce né un prestatore né un mediatore delle linee di credito emesse dal programma Termini di pagamento.<br /><br />Tutte le domande e le qualifiche verranno esaminate e giudicate da TreviPay. <a href=\\"https://www.trevipay.com/privacy-center/\\" target=\\"_blank\\">Centro Privacy di TreviPay.</a>"},"it_IT":{"cancellationRights":"Diritto di recesso","cookiePolicy":"Cookie","legalNotice":"Avviso legale","privacyPolicy":"Tutela della privacy","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> è il rivenditore autorizzato dei prodotti di venduti in questo negozio online.","termsOfSale":"Condizioni di vendita","warrantyInformation":"Informazioni sulla Garanzia","confirmDisclosure":"Inviando il mio ordine accetto le <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Condizioni di vendita</a> e l’<a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Informativa sulla privacy</a> di {businessEntityName}.","consentsEula":" e <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Contratto di licenza con l\'utente finale</a>","consentsTermsOfUse":" e <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Termini e condizioni di utilizzo</a>","consentsCompanyName":" di {companyName}","autoRenewPlanTermsBegin":"Selezionando la casella e completando l\'acquisto, l\'utente autorizza espressamente e consente a Digital River il rinnovo automatico dell\'abbonamento o della licenza acquistati per periodi successivi di rinnovo, ciascuno pari alla durata indicata nei termini iniziali. Consente inoltre l\'addebito al costo specificato nei termini iniziali (più tasse e oneri, detratti gli eventuali sconti) in base al metodo di pagamento fornito per l\'acquisto iniziale, fino all\'annullamento del rinnovo automatico. Riceverai almeno una e-mail di promemoria relativa all\'imminente rinnovo. Digital River può modificare il prezzo di rinnovo a partire dalla data di rinnovo successiva, purché fornisca un preavviso tramite e-mail (se non si acconsente a tali modifiche, è possibile annullare il rinnovo automatico così come descritto sopra). Le <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Condizioni di vendita</a> e l\'<a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Informativa sulla privacy</a> di Digital River","autoRenewPlanTermsEnd":" sono valide per tutte le transazioni di rinnovo. È possibile annullare il programma di rinnovo automatico in qualsiasi momento accedendo all\'account (i dati di accesso sono disponibili nella e-mail di conferma dell\'ordine o tramite l\'Assistenza clienti), selezionando il prodotto e la relativa opzione per disabilitare il rinnovo automatico.<br/><br/>Confermo che Digital River può conservare le mie informazioni di pagamento per effettuare acquisti futuri, compresa l\'elaborazione di rinnovi successivi dell\'abbonamento che possono verificarsi in seguito alla data del presente ordine.","klarnaCreditActiveAcceptance":"Proseguendo, ti verranno presentate le opzioni di pagamento fornite da Klarna. Continuandoaccetti i <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/it_it/user\\">Termini di pagamento di Klarna</a> e confermi di aver letto <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/it_it/privacy\\">l\'informativa sulla privacy di Klarna</a>.","klarnaCreditRecurringActiveAcceptance":"Proseguendo, ti verranno presentate le opzioni di pagamento fornite da Klarna. Continuandoaccetti i <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/it_it/user\\">Termini di pagamento di Klarna</a> e confermi di aver letto <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/it_it/privacy\\">l\'informativa sulla privacy di Klarna</a>.","agreeToTerms":"Il sottoscritto dichiara di aver letto e di accettare le condizioni e i costi indicati sopra.","idealRecurringAgreement":"Cliccando la casella, autorizzate Digital River a raccogliere il vostro primo pagamento tramite iDEAL e ad utilizzare il vostro IBAN per raccogliere i successivi pagamenti dell\'abbonamento tramite addebito diretto SEPA. Puoi rivedere le tue informazioni sull\'addebito diretto SEPA dopo l\'invio dell\'ordine. <br/><br/>Rientra tra i vostri diritti richiedere alla banca l\'eventuale rimborso, nei termini e nelle condizioni previsti dal vostro contratto con la banca. Un eventuale rimborso deve essere richiesto entro 8 settimane dalla data di addebito in conto. ","mstsActiveAcceptance":"Selezionare {payNow} per accedere a TreviPay, effettuare l\'autenticazione a due fattori e confermare l\'ordine.<span class=\\"{createAccountButtonTextClass}\\"><br /><br />Selezionare Iscriviti ora per creare un conto TreviPay.</span><br /><br />DISCLAIMER<br /><br />* Tutte le linee di credito e tutti gli account del programma di acquisto relativi al programma Termini di pagamento sono emessi da Multi Service Technology Solutions, Inc. (\\"MSTS\\"), una personalità giuridica con sede in Florida, USA.<br /><br />* {{businessEntityName} non è parte dell&#39;accordo dei titolari di account del Programma di acquisto. {businessEntityName} non costituisce né un prestatore né un mediatore delle linee di credito emesse dal programma Termini di pagamento.<br /><br />Tutte le domande e le qualifiche verranno esaminate e giudicate da TreviPay. <a href=\\"https://www.trevipay.com/privacy-center/\\" target=\\"_blank\\">Centro Privacy di TreviPay.</a>"},"iw_IL":{"cancellationRights":"זכות ביטול הזמנה","cookiePolicy":"קובצי cookie","legalNotice":"הודעה משפטית","privacyPolicy":"מדיניות שמירה על פרטיות","resellerDisclosure":" <a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a>  הוא המפיץ והסוחר המורשה עבור חנוות מקוונת זו.","termsOfSale":"תנאי מכירה","confirmDisclosure":"ביצוע ההזמנה מהווה עדות לכך שאני מסכים <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">לתנאי המכירה</a> וכן <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">למדיניות הפרטיות</a> של {businessEntityName}.","autoRenewPlanTermsBegin":"בסימון התיבה שלהלן והשלמת הרכישה הנך מאשר ומתיר ל-Digital River לחדש אוטומטית את הרישיון או המינוי שרכשת במועדי חידוש רציפים, מדי תקופה הזהה באורכה למשך התקופה שצוין לעיל, במחיר הרכישה ששילמת עבור התקופה הראשונה (בתוספת מסים ואגרות, ובהפחתה של ההנחות החלות). החיוב ייעשה באמצעות אמצעי התשלום שהזנת ברכישה הראשונה, וזאת עד לביטול מצדך. לנוחותך, תישלח אליך הודעת דוא\\"ל אחת לפחות כדי להזכיר לך על מועד החידוש המתקרב. אנו עשויים לשנות את מחיר החידוש, החל מתאריך החידוש הבא, וזאת בתנאי שנודיע לך מראש על השינוי באמצעות הודעות דוא\\"ל (במקרה שאינך מסכים לשינוי במחיר, באפשרותך לבטל את החידוש האוטומטי על פי המפורט להלן). <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">תנאי המכירה</a> ו-<a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">מדיניות ההגנה על הפרטיות</a> של Digital River יחולו על כל עסקת חידוש .באפשרותך לבטל את תוכנית החידוש האוטומטי שלך בכל עת על-ידי כניסה לממשק החשבון (פרטים על אופן הגישה יופיעו בהודעת אישור ההזמנה שתישלח אליך בדוא\\"ל או בדף העזרה של שירות הלקוחות), בחירה במוצר שלך ובחירה באפשרות לביטול החידוש האוטומטי<br /><br />אני מסכים לכך ש-Digital River רשאית לשמור את פרטי התשלום שלי לשימוש ברכישות עתידיות, ובכלל זה טיפול בחידושי מינוי נוספים שעשויים להתבצע לאחר תאריך ההזמנה הנוכחית.","autoRenewPlanTermsEnd":"","agreeToTerms":"קראתי ואני מסכים לכל התנאים ולחיובים המפורטים לעיל.","idealRecurringAgreement":"על ידי לחיצה על התיבה, אתה מאשר לנהר הדיגיטלי לאסוף את התשלום הראשון שלך באמצעות iDEAL ולהשתמש IBAN שלך כדי לאסוף את תשלומי המנוי הבאים על ידי חיוב ישיר SEPA. באפשרותך לסקור את פרטי החיוב הישיר של SEPA לאחר שליחת ההזמנה. <br/><br/>כחלק מהזכויות שלך, אתה זכאי לקבל החזר מהבנק שלך בכפוף לתנאים ולהתניות הכלולים בהסכם שלך עם הבנק. יש להגיש דרישה לקבלת החזר בתוך 8 שבועות ממועד חיוב החשבון שלך. "},"ja_JP":{"cancellationRights":"キャンセル権","cookiePolicy":"クッキー","legalNotice":"本サイトのご利用について","privacyPolicy":"プライバシーポリシー","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> は、このストアで提供される製品とサービスの認定再販業者および代理店です。","termsOfSale":"販売条件","confirmDisclosure":"注文の送信により、{businessEntityName}の<a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">売買条件</a>および<a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">プライバシーポリシー</a>に同意します。","consentsEula":" および <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">エンド ユーザー向け使用許諾契約書</a>","consentsTermsOfUse":" および <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">使用条件</a>","consentsCompanyName":" の {companyName}","autoRenewPlanTermsBegin":"下にあるチェックボックスをオンにして購入手続きを完了すると、お客様がキャンセルを行うまで、初回購入時にお客様からご提供いただいたお支払情報を使用して、購入したライセンスまたはサブスクリプションを初回のライセンス価格（それに税金と手数料を加算して割引額を差し引いた金額）で、Digital Riverが上記の当初の期間と同じ長さの期間継続して自動更新することに対して、お客様が明示的に承認して許可したことになります。更新毎に、更新をお知らせする電子メールが少なくとも1回はお客様に送信されます。電子メールで変更に関する事前の通知を行った場合、次回の更新日以降に更新価格を変更することがあります（変更に同意しない場合は、下記に記載されているとおり、自動更新のキャンセルを選択できます）。Digital Riverの<a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">「売買条件」</a>および<a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">「プライバシーポリシー」</a>は、","autoRenewPlanTermsEnd":" 更新取引ごとに適用されます。自動更新プランは、お客様が「アカウントインターフェイス」（アクセス情報は注文確認メールまたは「カスタマサービスヘルプ」ページに記載）にログインし、製品を選択して自動更新を無効にするオプションを選択すれば、いつでもキャンセルできます。<br/><br/>私は、本注文日のあとに発生し得る今後のあらゆるサブスクリプション更新の処理を含む、将来的な製品購入のために、Digital Riverにより個人的な支払い情報が保管されることに同意します。","agreeToTerms":"私は上記の契約条件および料金を読んだ上で、これに同意します。","idealRecurringAgreement":"ボックスをクリックすることで、Digital Riverが初回の支払いをiDEALで回収し、IBANを使用して以降の購読料をSEPAダイレクトデビットで回収することを承認します。SEPA Direct Debitの情報は、注文送信後に確認することができます。<br/><br/>お客様の権利として、銀行との契約条件の下で、銀行からの払い戻しを受ける権利があります。払い戻しは、口座から引き落とされた日から8週間以内に請求する必要があります。"},"ko_KR":{"cancellationRights":"취소 권한","cookiePolicy":"쿠키","legalNotice":"법적 고지","privacyPolicy":"개인정보 보호 정책","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> 은(는) 이 스토어에서 제품과 서비스를 제공하도록 인가된 리셀러 및 판매자입니다.","termsOfSale":"판매 조건","confirmDisclosure":"주문을 제출하면 {businessEntityName}의 <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">이용약관</a>과 <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">개인정보보호정책</a>에 동의한 것으로 간주됩니다.","consentsEula":" 그리고 <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">최종 사용자 라이센스 계약</a>","consentsTermsOfUse":" 그리고 <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">사용 약관</a>","consentsCompanyName":" / {companyName}","autoRenewPlanTermsBegin":"아래 확인란을 선택하고 구입을 완료하면 취소할 때까지 Digital River가 최초 구입 시 입력한 결제 정보를 이용해 최초 기간에 대한 구입 가격(세금 및 수수료 포함, 할인액 공제)으로 위에 명시된 최초 기간과 동일한 갱신 기간 동안 구입한 라이선스나 구독을 자동 갱신하는 것을 명시적으로 승인 및 허용하는 것으로 간주됩니다. 갱신이 다가올 때마다 최소한 한 통의 알림 이메일이 발송됩니다. 이메일로 사전 공지를 할 경우 다음 갱신일의 갱신 가격을 변경할 수 있습니다(변경에 동의하지 않을 경우 아래에서 설명한 대로 자동 갱신을 취소할 수 있습니다). 각 갱신에는 Digital River <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">이용약관</a>과 <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">개인정보취급방침</a>이 적용됩니다","autoRenewPlanTermsEnd":". 계정 인터페이스에 로그인하고(접속 정보는 주문 확인 이메일이나 고객 서비스 도움말 페이지에서 확인 가능) 제품을 선택한 다음 자동 갱신 취소 옵션을 선택하면 언제든지 자동 갱신 계획을 취소할 수 있습니다.<br/><br/>Digital River가 이 주문 날짜 이후에 발생할 수 있는 모든 후속 구독 갱신의 처리를 포함한 미래의 구매를 위해 내 결제 정보를 보관하는 것에 동의합니다.","agreeToTerms":"상기 이용약관과 요금을 읽었고 이에 동의합니다.","idealRecurringAgreement":"상자를 클릭하면 디지털 리버가 iDEAL를 통해 첫 번째 결제를 수집하고 IBAN을 사용하여 SEPA 자동 이체로 후속 구독 료를 수령할 수 있는 권한을 부여합니다. 주문 제출 후 SEPA 자동 이불 정보를 검토할 수 있습니다. <br/><br/>사용자 권리의 일부로서 사용자는 은행과의 이용약관에 따라 은행으로부터 환불받을 수 있습니다. 환불은 계정에서 출금된 날짜로부터 8주 안에 요청되어야 합니다. "},"lt_LT":{"privacyPolicy":"Privatumo strategija","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> įgaliotasis mažmenininkas ir šios parduotuvės el. prekybos paslaugų didmenininkas.","termsOfSale":"Nuostatos ir sąlygos","confirmDisclosure":"","autoRenewPlanTermsBegin":"","autoRenewPlanTermsEnd":""},"lv_LV":{"privacyPolicy":"Konfidencialitātes politika","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> ir pilnvarots tālākpārdevējs un tirgotājs, kas šim veikalam nodrošina e-komecijas pakalpojumus.","termsOfSale":"Noteikumi un nosacījumi","confirmDisclosure":"","autoRenewPlanTermsBegin":"","autoRenewPlanTermsEnd":""},"nl_BE":{"cancellationRights":"Recht op annulering","cookiePolicy":"Cookies","legalNotice":"Juridische kennisgeving","privacyPolicy":"Privacybeleid","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> is de erkende reseller die de producten en services voor deze store levert.","termsOfSale":"Algemene verkoopvoorwaarden","confirmDisclosure":"Door mijn bestelling in te dienen, ga ik akkoord met de <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Verkoopvoorwaarden</a> en het <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacybeleid</a> van {businessEntityName}.","consentsEula":" en het <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Eindgebruikerslicentieovereenkomst</a>","consentsTermsOfUse":" en het <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Gebruiksvoorwaarden</a>","consentsCompanyName":" van {companyName}","autoRenewPlanTermsBegin":"Door onderstaand vakje aan te kruisen en uw aankoop te voltooien, stemt u er uitdrukkelijk mee in en staat u toe dat Digital River uw aangekochte licentie of abonnement automatisch verlengt voor opeenvolgende verlengingsperioden die in lengte gelijk zijn aan de initiële periode die hierboven staat aangegeven, tegen de aankoopprijs van uw initiële licentieperiode (plus btw en toeslagen, minus eventuele toepasselijke korting) met gebruikmaking van de betaalgegevens die u bij uw initiële aankoop hebt opgegeven, totdat u deze service annuleert. U ontvangt ten minste één e-mail om u te herinneren aan elke volgende verlenging. We kunnen de verlengingsprijs bij de volgende verlengingsdatum wijzigen als wij u via e-mail van tevoren van deze wijziging op de hoogte stellen (u kunt ervoor kiezen om de hieronder beschreven automatische verlenging te annuleren als u het niet met deze prijswijziging eens bent). De <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Algemene verkoopvoorwaarden</a> en het <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacybeleid</a> van Digital River","autoRenewPlanTermsEnd":" zijn op elke verlenging van toepassing. U kunt de automatische verlengingsservice op elk moment annuleren door u aan te melden bij uw account (de toegangsgegevens zijn inbegrepen bij de e-mailbevestiging van uw bestelling of beschikbaar via de Helppagina van de klantenservice), uw product te selecteren en de automatische verlengingsservice te annuleren.<br/><br/>Ik ga ermee akkoord dat Digital River mijn betalingsgegevens bewaart voor latere aankopen, met inbegrip van de verwerking van alle eventuele abonnementsverlengingen die kunnen optreden na de datum van deze bestelling.","klarnaCreditActiveAcceptance":"Als je klikt op <span class=\\"DR-button-text\\">{payNow}</span>, krijg je de door Klarna aangeboden betaalmethoden te zien. Door verder te gaan, ga je akkoord met de <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/nl_be/user\\">Voorwaarden voor het gebruik van Klarna Services en</a> bevestig je dat je de <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/nl_be/privacy\\">Privacyverklaring van Klarna</a> hebt gelezen.","klarnaCreditRecurringActiveAcceptance":"Als je klikt op <span class=\\"DR-button-text\\">{payNow}</span>, krijg je de door Klarna aangeboden betaalmethoden te zien. Door verder te gaan, ga je akkoord met de <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/nl_be/user\\">Voorwaarden voor het gebruik van Klarna Services en</a> bevestig je dat je de <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/nl_be/privacy\\">Privacyverklaring van Klarna</a> hebt gelezen.","agreeToTerms":"Ik heb de voorwaarden en prijzen gelezen en ga ermee akkoord.","idealRecurringAgreement":"Door het vakje aan te klikken, machtigt u Digital River om uw eerste betaling via iDEAL te innen en uw IBAN te gebruiken om de volgende abonnementsbetalingen via SEPA-incasso te innen. U kunt uw SEPA-incasso-gegevens bekijken nadat u uw bestelling hebt ingediend. <br/><br/>U kunt een Europese incasso laten terugbetalen in overeenstemming met de algemene voorwaarden van uw overeenkomst met uw bank. Een terugbetaling moet worden aangevraagd binnen 8 weken na de datum waarop uw rekening werd gedebiteerd. "},"nl_NL":{"cancellationRights":"Recht op annulering","cookiePolicy":"Cookies","legalNotice":"Juridische kennisgeving","privacyPolicy":"Privacybeleid","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> is de erkende reseller die de producten en services voor deze store levert.","termsOfSale":"Algemene verkoopvoorwaarden","confirmDisclosure":"Door mijn bestelling in te dienen, ga ik akkoord met de <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Verkoopvoorwaarden</a> en het <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacybeleid</a> van {businessEntityName}.","consentsEula":" en het <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Eindgebruikerslicentieovereenkomst</a>","consentsTermsOfUse":" en het <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Gebruiksvoorwaarden</a>","consentsCompanyName":" van {companyName}","autoRenewPlanTermsBegin":"Door onderstaand vakje aan te kruisen en uw aankoop te voltooien, stemt u er uitdrukkelijk mee in en staat u toe dat Digital River uw aangekochte licentie of abonnement automatisch verlengt voor opeenvolgende verlengingsperioden die in lengte gelijk zijn aan de initiële periode die hierboven staat aangegeven, tegen de aankoopprijs van uw initiële licentieperiode (plus btw en toeslagen, minus eventuele toepasselijke korting) met gebruikmaking van de betaalgegevens die u bij uw initiële aankoop hebt opgegeven, totdat u deze service annuleert. U ontvangt ten minste één e-mail om u te herinneren aan elke volgende verlenging. We kunnen de verlengingsprijs bij de volgende verlengingsdatum wijzigen als wij u via e-mail van tevoren van deze wijziging op de hoogte stellen (u kunt ervoor kiezen om de hieronder beschreven automatische verlenging te annuleren als u het niet met deze prijswijziging eens bent). De <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Algemene verkoopvoorwaarden</a> en het <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacybeleid</a> van Digital River","autoRenewPlanTermsEnd":" zijn op elke verlenging van toepassing. U kunt de automatische verlengingsservice op elk moment annuleren door u aan te melden bij uw account (de toegangsgegevens zijn inbegrepen bij de e-mailbevestiging van uw bestelling of beschikbaar via de Helppagina van de klantenservice), uw product te selecteren en de automatische verlengingsservice te annuleren.<br/><br/>Ik ga ermee akkoord dat Digital River mijn betalingsgegevens bewaart voor latere aankopen, met inbegrip van de verwerking van alle eventuele abonnementsverlengingen die kunnen optreden na de datum van deze bestelling.","klarnaCreditActiveAcceptance":"Als je klikt op <span class=\\"DR-button-text\\">{payNow}</span>, krijg je de door Klarna aangeboden betaalmethoden te zien. Door verder te gaan, ga je akkoord met de <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/nl_nl/user\\">Voorwaarden voor het gebruik van Klarna Services</a> en bevestig je dat je de <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/nl_nl/privacy\\">Privacyverklaring van Klarna</a> hebt gelezen.","klarnaCreditRecurringActiveAcceptance":"Als je klikt op <span class=\\"DR-button-text\\">{payNow}</span>, krijg je de door Klarna aangeboden betaalmethoden te zien. Door verder te gaan, ga je akkoord met de <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/nl_nl/user\\">Voorwaarden voor het gebruik van Klarna Services</a> en bevestig je dat je de <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/nl_nl/privacy\\">Privacyverklaring van Klarna</a> hebt gelezen.","agreeToTerms":"Ik heb de voorwaarden en prijzen gelezen en ga ermee akkoord.","idealRecurringAgreement":"Door het vakje aan te klikken, machtigt u Digital River om uw eerste betaling via iDEAL te innen en uw IBAN te gebruiken om de volgende abonnementsbetalingen via SEPA-incasso te innen. U kunt uw SEPA-incasso-gegevens bekijken nadat u uw bestelling hebt ingediend. <br/><br/>U kunt een Europese incasso laten terugbetalen in overeenstemming met de algemene voorwaarden van uw overeenkomst met uw bank. Een terugbetaling moet worden aangevraagd binnen 8 weken na de datum waarop uw rekening werd gedebiteerd. ","mstsActiveAcceptance":"Selecteer {payNow} om in te loggen bij TreviPay, de Twee-factor-authenticatie te voltooien en je aankoop te bevestigen.<span class=\\"{createAccountButtonTextClass}\\"><br /><br />Selecteer \'Meld je NU aan\' om een TreviPay account aan te maken.</span><br /><br />DISCLAIMER<br /><br />* Alle aankoopprogramma accounts en kredietlijnen onder het betalingsvoorwaarden programma zijn uitgegeven door Multi Service Technology Solutions, Inc., een in Florida USA gevestigde onderneming (\\"MSTS\\").<br /><br />* {businessEntityName} is geen partij bij de Purchase Program Accountholder Agreement. {businessEntityName} is noch een kredietverstrekker, noch een makelaar voor de kredietlijnen die zijn uitgegeven onder het betalingsvoorwaardenprogramma<br /><br />Alle aanmeldingen en uw kwalificaties worden beoordeeld en beslist door TreviPay. <a href=\\"https://www.trevipay.com/privacy-center/\\" target=\\"_blank\\">TreviPay Privacy Center.</a>"},"no_NO":{"cancellationRights":"Rett til avbestilling","cookiePolicy":"Informasjonskapsler","legalNotice":"Juridiske bestemmelser","privacyPolicy":"Personvern","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> er den autoriserte selgeren og forhandleren av varene og tjenestene som tilbys i denne butikken.","termsOfSale":"Salgsbetingelser","confirmDisclosure":"Ved å sende inn min bestilling, samtykker jeg i <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Salgsbetingelsene</a> og <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Personvernpolitikken</a> for {businessEntityName}.","consentsEula":" og <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Sluttbrukerlisensavtale</a>","consentsTermsOfUse":" og <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Vilkår for bruk</a>","consentsCompanyName":" av {companyName}","autoRenewPlanTermsBegin":"Ved å merke av i boksen nedenfor og gjennomføre kjøpet, gir du uttrykkelig godkjenning og tillatelse til at Digital River automatisk fornyer lisenskjøpet ditt eller abonnementet for en påfølgende periode, begge vil være av tilsvarende lengde som den opprinnelige perioden spesifisert ovenfor, til kjøpsprisen for den opprinnelige perioden (pluss skatter og avgifter, med reduksjon av gjeldende rabatter), med bruk av den betalingsinformasjonen du har oppgitt ved første handel, inntil du avbryter avtalen. Du vil motta minst én e-post som påminnelse i forkant av hver fornyelse. Vi kan endre fornyelsesprisen fra neste fornyelsesdato dersom vi gir deg forvarsel om endringen i en e-post (du kan velge å kansellere automatisk fornyelse som beskrevet nedenfor dersom du ikke samtykker til endringen). Digital Rivers <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">salgsbetingelser</a> og <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">personvernbestemmelser</a>","autoRenewPlanTermsEnd":" vil gjelde for hver fornyelse. Du kan kansellere den automatiske fornyelsen når som helst ved å logge inn på kontoen (adgangsinformasjon vil inkluderes i ordrebekreftelsen på e-post eller på kundeservices hjelpeside), velge produktet og velge alternativet for å kansellere automatisk fornyelse.<br/><br/>Jeg samtykker i at Digital River kan lagre min betalingsinformasjon for fremtidige kjøp inkludert behandling av eventuelle påfølgende abonnementsfornyelser som kan forekomme etter datoen for denne bestillingen.","klarnaCreditActiveAcceptance":"Ved å klikke på <span class=\\"DR-button-text\\">{payNow}</span> vil du bli presentert med ulike betalingsmetoder som Klarna tilbyr. Ved å fortsette godkjenner du <a target=\\"_blank\\" href=\\"http://cdn.klarna.com/1.0/shared/content/legal/terms/Klarna/nb_no/user\\">Klarnas brukervilkår</a> og bekrefter at du har lest <a target=\\"_blank\\" href=\\"http://cdn.klarna.com/1.0/shared/content/legal/terms/Klarna/nb_no/privacy\\">Klarnas personvernerklæring</a>.","klarnaCreditRecurringActiveAcceptance":"Ved å klikke på <span class=\\"DR-button-text\\">{payNow}</span> vil du bli presentert med ulike betalingsmetoder som Klarna tilbyr. Ved å fortsette godkjenner du <a target=\\"_blank\\" href=\\"http://cdn.klarna.com/1.0/shared/content/legal/terms/Klarna/nb_no/user\\">Klarnas brukervilkår</a> og bekrefter at du har lest <a target=\\"_blank\\" href=\\"http://cdn.klarna.com/1.0/shared/content/legal/terms/Klarna/nb_no/privacy\\">Klarnas personvernerklæring</a>.","agreeToTerms":"Jeg har lest og godtar betingelsene og kostnadene ovenfor."},"pl_PL":{"cancellationRights":"Prawo do anulowania zamówienia","cookiePolicy":"Pliki cookie","legalNotice":"Nota prawna","privacyPolicy":"Polityka ochrony danych","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> to autoryzowany dystrybutor oraz sprzedawca produktów i usług dostępnych w naszym sklepie.","termsOfSale":"Warunki sprzedaży","confirmDisclosure":"Składając zamówienie, akceptuję <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Warunki sprzedaży</a> oraz <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Politykę prywatności</a> {businessEntityName}.","consentsEula":" i <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Umowa licencyjna dla klienta końcowego</a>","consentsTermsOfUse":" i <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Warunki korzystania z produktów</a>","consentsCompanyName":" z {companyName}","autoRenewPlanTermsBegin":"Przez zaznaczenie poniższego pola wyboru i dokonanie zakupu klient wyraża zgodę na automatyczne odnawianie przez firmę Digital River zakupionej licencji lub subskrypcji na kolejny okres subskrypcji, równy pierwszemu okresowi określonemu powyżej, w cenie określonej dla pierwszego okresu subskrypcji (plus podatki i opłaty pomniejszone o wszystkie przysługujące rabaty) dzięki danym płatności podanym podczas pierwszego zakupu, do momentu anulowania zgody. Zostanie wysłana co najmniej jedna wiadomość e-mail z przypomnieniem o nadchodzącym odnowieniu subskrypcji. Cena odnowienia subskrypcji może ulec zmianie w kolejnym okresie odnowienia, jeżeli klient zostanie uprzednio powiadomiony o takiej zmianie za pośrednictwem poczty e-mail (w przypadku braku zgody na zmianę ceny klient ma prawo do anulowania usługi automatycznego odnawiania licencji zgodnie z poniższym opisem). Każda transakcja odnowienia licencji/subskrypcji podlega przepisom <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Regulaminu sprzedaży</a> oraz <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Polityki prywatności</a> firmy Digital River","autoRenewPlanTermsEnd":" możesz anulować plan automatycznego odnawiania w dowolnym momencie, logując się przez interfejs konta (informacje dostępowe będą zawarte w wiadomości e-mail z potwierdzeniem zamówienia lub na stronie pomocy technicznej działu obsługi klienta), wybierając produkt oraz opcję wyłączenia automatycznego odnawiania.<br/><br/>Wyrażam zgodę, aby Digital River przechowywała moje dane dotyczące płatności dla przyszłych zakupów, w tym przetwarzania przyszłych odnowień subskrypcji, jakie mogą pojawić się po dacie tego zamówienia.","agreeToTerms":"Znam i akceptuję powyższe warunki oraz opłaty.","idealRecurringAgreement":"Klikając to pole, upoważniasz Digital River do pobrania pierwszej płatności za pośrednictwem iDEAL i wykorzystania Twojego numeru IBAN do pobrania kolejnych płatności za subskrypcję w formie polecenia zapłaty SEPA. Po złożeniu zamówienia możesz sprawdzić informacje dotyczące Polecenia Zapłaty SEPA. <br/><br/>Zgodnie z przysługującymi uprawnieniami użytkownik jest upoważniony do uzyskania zwrotu od banku zgodnie z regulaminem oraz umową z bankiem. Żądanie zwrotu musi zostać zgłoszone w okresie 8 tygodni od daty obciążenia rachunku. ","mstsActiveAcceptance":"Wybierz opcję {payNow}, aby zalogować się do TreviPay, przeprowadzić dwustopniowe uwierzytelnienie i potwierdzić zakup.<span class=\\"{createAccountButtonTextClass}\\"><br /><br />Wybierz opcję Zarejestruj się TERAZ, aby utworzyć konto TreviPay.</span><br /><br />Wybierając opcję Zarejestruj się terazutworzysz swoje konto TreviPay<br /><br /><br /><br />ZRZECZENIE SIĘ<br /><br />* Wszystkie konta programu zakupów oraz linie kredytowe w ramach warunków płatności są wydawane przez Multi Service Technology Solutions, Inc., spółkę zarejestrowaną na Florydzie w USA („MSTS”).<br /><br />* {businessEntityName} nie jest stroną Umowy z właścicielem konta w ramach programu zakupów. {businessEntityName} nie jest pożyczkodawcą ani brokerem w zakresie linii kredytowych wydanych w ramach programu warunków i płatności.<br /><br />Wszystkie aplikacje i twoje kwalifikacje zostaną sprawdzone i rozstrzygnięte przez TreviPay. <a href=\\"https://www.trevipay.com/privacy-center/\\" target=\\"_blank\\">TUTAJ jest link do Centrum ochrony prywatności TreviPay.</a>"},"pt_BR":{"cancellationRights":"Regras de cancelamento","cookiePolicy":"Cookies","legalNotice":"Aviso legal","privacyPolicy":"Política de privacidade","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> é o revendedor e o distribuidor autorizado dos produtos e serviços oferecidos nesta loja.","termsOfSale":"Termos de vendas","confirmDisclosure":"Ao enviar meu pedido, eu concordo com os <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Termos de vendas</a> e com a <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Política de privacidade</a> de {businessEntityName}.","consentsEula":" e a <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Acordo de licença do usuário final</a>","consentsTermsOfUse":" e a <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Termos de uso</a>","consentsCompanyName":" de {companyName}","autoRenewPlanTermsBegin":"Ao marcar a caixa abaixo e completar a sua compra, você autoriza e permite expressamente que a Digital River renove a sua licença ou assinatura adquirida sucessiva e automaticamente de acordo com os termos aceitos para o período inicial especificado acima, ao valor de compra de seu termo inicial (além dos respectivos impostos e taxas, deduzidos quaisquer desconto oferecidos) e utilizando as informações de pagamento fornecidas para sua compra inicial, até que você cancele. Você receberá ao menos um e-mail para lembrá-lo de que a renovação está próxima. Podemos alterar o valor da renovação na próxima data de renovação desde que você receba um aviso prévio e por e-mail sobre esta alteração (caso não concorde com a alteração de preço, você tem a liberdade de cancelar a renovação automática, conforme descrito abaixo). Os <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Termos de venda</a> e a <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Política de privacidade</a> da Digital River","autoRenewPlanTermsEnd":" prevalecerão a cada operação de renovação. Você pode cancelar seu plano de renovação automática acessando a interface de conta (as informações para o acesso serão incluídas no seu e-mail de confirmação de pedido ou na página de ajuda do atendimento ao cliente), selecione seu produto e em seguida, selecione a opção de desabilitar a renovação automática.<br/><br/>Concordo que a Digital River armazene meus dados de pagamento para compras futuras incluindo o processamento de qualquer renovação de assinatura posterior que possa ocorrer após a data desse pedido.","agreeToTerms":"Li e concordo com os termos e cobranças acima.","idealRecurringAgreement":"Ao clicar na caixa, autoriza a Digital River a cobrar o seu primeiro pagamento através do iDEAL e a utilizar o seu IBAN para cobrar os pagamentos de subscrição subsequente por débito directo SEPA. Pode rever a sua informação sobre Débitos Directos SEPA após o envio da encomenda. <br/><br/>Como parte dos seus direitos, tem o direito a um reembolso por parte do seu banco, segundo os termos e condições do seu acordo com o este. Um reembolso deve ser solicitado no espaço de 8 semanas, a contar a partir da data em que a sua conta foi debitada. "},"pt_PT":{"cancellationRights":"Direito de Cancelamento","cookiePolicy":"Cookies","legalNotice":"Aviso Legal","privacyPolicy":"Política de privacidade","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> é o revendedor autorizado e o comerciante dos produtos e serviços disponibilizados nesta loja.","termsOfSale":"Termos de Venda","confirmDisclosure":"Ao submeter a minha encomenda, concordo com os <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Termos de Venda</a> e a <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\"  class=\\"dr_privacyPolicy\\">Política de Privacidade</a> de {businessEntityName}.","consentsEula":" e a <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Acordo de Licença de Utilizador Final</a>","consentsTermsOfUse":" e a <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Termos de Utilização</a>","consentsCompanyName":" de {companyName}","autoRenewPlanTermsBegin":"Ao assinalar a caixa abaixo e finalizar a sua compra, autoriza expressamente a Digital River a renovar automaticamente a licença ou subscrição adquirida por períodos de renovação sucessivos de duração igual ao período inicial especificado acima, ao preço de compra do seu período inicial (acrescido de impostos e taxas, deduzido de quaisquer descontos aplicáveis) recorrendo à informação de pagamento fornecida por si para a sua compra inicial, até que a renovação seja cancelada. Ser-lhe-á enviado, no mínimo, um e-mail para o lembrar de cada renovação iminente. A Digital River pode alterar o preço a partir da próxima data de renovação, desde que o avisemos com antecedência por e-mail (poderá optar por cancelar a renovação automática, conforme descrito abaixo, caso não concorde com a alteração). As <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Condições de Venda</a> e <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Política de Privacidade</a> da Digital River","autoRenewPlanTermsEnd":" aplicam-se a cada transação de renovação. Poderá cancelar o seu plano de renovação automática em qualquer altura, acedendo à interface da conta (a informação de acesso está incluída no e-mail de confirmação da sua encomenda ou na página da Ajuda do Serviço de Clientes), selecionando o seu produto e a opção para desativar a renovação automática.<br/><br/>Aceito que a Digital River poderá guardar a minha informação de pagamento para compras futuras, incluindo o processamento de quaisquer renovações subsequentes da subscrição que poderão ocorrer a seguir à data desta encomenda.","agreeToTerms":"Li e concordo com os termos e encargos acima mencionados.","idealRecurringAgreement":"Ao clicar na caixa, autoriza a Digital River a cobrar o seu primeiro pagamento através do iDEAL e a utilizar o seu IBAN para cobrar os pagamentos de subscrição subsequente por débito directo SEPA. Pode rever a sua informação sobre Débitos Directos SEPA após o envio da encomenda. <br/><br/>Como parte dos seus direitos, tem o direito a um reembolso por parte do seu banco, segundo os termos e condições do seu acordo com o este. Um reembolso deve ser solicitado no espaço de 8 semanas, a contar a partir da data em que a sua conta foi debitada. "},"ro_RO":{"privacyPolicy":"Politică de confidenţialitate","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> este un vânzător şi comerciant cu amănuntul autorizat ce furnizează servicii de comerţ electronic pentru acest magazin.","termsOfSale":"Termeni şi condiţii","confirmDisclosure":"","autoRenewPlanTermsBegin":"","autoRenewPlanTermsEnd":""},"ru_RU":{"cancellationRights":"Право отмены","cookiePolicy":"Cookie","legalNotice":"Юридическое уведомление","privacyPolicy":"Политика конфиденциальности","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> является авторизованным реселлером и продавцом продукции и услуг, предлагаемых в настоящем магазине.","termsOfSale":"Условия продажи","confirmDisclosure":"Подтверждая заказ, я соглашаюсь с <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Условиями продажи</a> и <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Политикой конфиденциальности</a> {businessEntityName}.","consentsEula":" и <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Лицензионное соглашение конечного пользователя</a>","consentsTermsOfUse":" и <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Условия использования</a>","consentsCompanyName":" {companyName}","autoRenewPlanTermsBegin":"Установив внизу соответствующий флажок и завершив покупку, вы даете свое согласие компании Digital River на автоматическое продление приобретенной лицензии или подписки на срок, равный первоначальному, указанному выше, сроку, по установленной для первоначального срока (плюс налоги и сборы, за вычетом соответствующих скидок) цене с использованием предоставленной вами информации для оплаты первоначальной покупки до тех пор, пока вы не отмените автоматическое продление. Перед этим Вам будет отправлено по крайней мере одно электронное письмо с напоминанием о предстоящем продлении. Мы оставляем за собой право изменить стоимость продления в соответствии с ценами на момент следующего продления, обязуясь предварительно уведомить Вас об этом по электронной почте (если Вы не согласны с изменениями, Вы можете выбрать отмену автоматического продления, как описано ниже). <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Условия продажи</a> и <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Политика конфиденциальности</a> Digital River","autoRenewPlanTermsEnd":" распространяются на каждую процедуру продления. Вы можете отказаться от автоматического продления. Для этого войдите в свою учетную запись (информация для доступа указана в электронном письме с подтверждением заказа или на справочной странице Службы поддержки клиентов), выберите ваш продукт и опцию отмены автоматического продления.<br/><br/>Я согласен (-на) на то, чтобы компания Digital River хранила мою информацию об оплате для совершения покупок в будущем, в том числе для обновления подписок, следующих после даты настоящего заказа.","agreeToTerms":"Я прочитал и согласен с Условиями и стоимостью, указанными выше.","idealRecurringAgreement":"Нажав на галочку, вы разрешаете Digital River собрать ваш первый платеж через iDEAL и использовать ваш IBAN для сбора последующих платежей за подписку путем прямого дебета SEPA. Вы можете просмотреть информацию о своем прямом дебете SEPA после отправки заказа. <br/><br/>Вы также имеете право на возмещение банком Ваших денежных средств согласно условиям и положениям заключенного с банком соглашения. Возмещение должно быть заявлено в течение 8 недель, начиная с даты списания средств с вашего счета. "},"sk_SK":{"cancellationRights":"Oprávnenie na zrušenie","cookiePolicy":"Cookies","legalNotice":"Právny dokument","privacyPolicy":"Politika ochrany osobných údajov","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> je predajca alebo veľkoobchod s produktmi a službami poskytovanými v tomto obchode.","termsOfSale":"Predajné podmienky","confirmDisclosure":"Odoslaním objednávky vyjadrujem svoj súhlas s <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">predajnými podmienkami</a> a <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">zásadami ochrany osobných údajov</a> spoločnosti {businessEntityName}.","consentsEula":" a <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Licenčná zmluva koncového používateľa</a>","consentsTermsOfUse":" a <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Podmienky používania</a>","consentsCompanyName":" och {companyName}","autoRenewPlanTermsBegin":"Zaškrtnutím nasledujúceho políčka a dokončením nákupu výslovne oprávňujete spoločnosť Digital River a povoľujete jej automaticky obnovovať zakúpenú licenciu alebo zakúpené predplatné na nasledujúce obdobia obnovenia, ktoré sa zhodujú s dĺžkou pôvodnej doby uvedenej vyššie, a to za kúpnu cenu pôvodného obdobia (plus dane a poplatky a zníženú o prípadné zľavy) s použitím platobných informácií, ktoré ste poskytli pre pôvodný nákup. Toto oprávnenie môžete kedykoľvek zrušiť. Na blížiaci sa termín obnovenia vás upozorníme najmenej jedným e-mailom. Cenu obnovenia môžeme zmeniť k dátumu nasledujúceho obnovenia, ak vás o tejto zmene budeme vopred informovať e-mailom (ak s touto zmenou nesúhlasíte, podľa nasledujúceho postupu môžete zrušiť automatické obnovenie). Na každú transakciu obnovenia sa uplatňujú <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">predajné podmienky</a> a <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">zásady ochrany osobných údajov</a> spoločnosti Digital River","autoRenewPlanTermsEnd":" automatické obnovenie plánu môžete kedykoľvek zrušiť, ak sa prihlásite k rozhraniu účtu (prístupové údaje budú uvedené v e-mailovom potvrdení vašej objednávky alebo ich nájdete na stránke pomoci zákazníckeho servisu), vyberiete príslušný produkt a zvolíte možnosť zrušenia automatického obnovenia. <br/><br/>Súhlasím s tým, aby spoločnosť Digital River ukladala moje platobné informácie na budúce nákupy vrátane spracovania všetkých obnovení predplatného, ku ktorým môže dôjsť po uplynutí tohto príkazu.","agreeToTerms":"Prečítal(a) som si uvedené informácie o podmienkach a cenách a súhlasím s nimi.","idealRecurringAgreement":"Kliknutím na toto políčko povoľujete spoločnosti Digital River inkasovať vašu prvú platbu prostredníctvom iDEAL a používať váš IBAN na inkaso ďalších platieb predplatného prostredníctvom SEPA inkasa. Po odoslaní objednávky si môžete skontrolovať svoje informácie o priamom inkase SEPA. <br/><br/>Na základe svojich práv môžete požiadať banku o vrátenie sumy v súlade so zmluvnými podmienkami svojej banky. O vrátenie peňazí je potrebné požiadať do 8 týždňov odo dňa odpísania sumy z vášho účtu. "},"sl_SI":{"privacyPolicy":"Pravilnik o zasebnosti","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> je pooblaščen trgovec na debelo in drobno, ki ponuja storitve spletne prodaje za to trgovino.","termsOfSale":"Pogoji in določila","confirmDisclosure":"","autoRenewPlanTermsBegin":"","autoRenewPlanTermsEnd":""},"sr_YU":{"privacyPolicy":"Pravilnik o poverljivosti","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> je ovlašćen za maloprodaju i trgovinu i pruža usluge e-trgovine za ovu prodavnicu.","termsOfSale":"Uslovi","confirmDisclosure":"","autoRenewPlanTermsBegin":"","autoRenewPlanTermsEnd":""},"sv_SE":{"cancellationRights":"Ångerrätt","cookiePolicy":"Cookies","legalNotice":"Juridisk information","privacyPolicy":"Sekretesspolicy","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> är den auktoriserade återförsäljaren av de produkter och tjänster som erbjuds i den här butiken.","termsOfSale":"Försäljningsvillkor","confirmDisclosure":"Genom att skicka ordern godkänner jag <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">köpvillkoren</a> och <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">sekretesspolicyn</a> för {businessEntityName}.","consentsEula":" och <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Licensavtal för användare</a>","consentsTermsOfUse":" och <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Användningsvillkor</a>","consentsCompanyName":" av {companyName}","autoRenewPlanTermsBegin":"Genom att kryssa i rutan nedan och slutföra ditt köp ger du uttryckligen Digital River tillåtelse att förnya din inköpta licens eller prenumeration för lika lång förnyelseperiod som den ursprungliga, ovannämnda perioden, och för det pris som gällde för den ursprungliga perioden (plus skatter och avgifter, minus ev. rabatter) tills du väljer att avbryta förfarandet. Samma betalningsinformation används som du angav vid ditt första köp. Du får minst en påminnelse via e-post inför varje förlängning. Vi kan komma att ändra priset på förlängningen från och med kommande förlängningsdatum om vi meddelar dig i förväg per e-post (du kan välja att annullera den automatiska förlängningen enligt nedan om du inte godkänner ändringen). Digital Rivers <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">försäljningsvillkor</a> och <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">sekretesspolicy</a>","autoRenewPlanTermsEnd":" gäller för varje transaktion i samband med förlängning. Du kan när som helst annullera den automatiska förlängningen genom att logga in till kontogränssnittet (inloggningsuppgifter inkluderas i orderbekräftelsen eller på hjälpsidan för kundtjänst), markera produkten och välja alternativet för att annullera den automatiska förlängningen.<br/><br/>Jag godkänner att Digital River sparar min betalningsinformation för framtida inköp, inklusive bearbetning av eventuellt efterföljande prenumerationsförlängningar som kan inträffa efter beställningsdatumet.","klarnaCreditActiveAcceptance":"Genom att klicka <span class=\\"DR-button-text\\">{payNow}</span> kommer du att bli presenterad med olika betalmetod tillhandahållna av Klarna. Genom att gå vidare godkänner du <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/sv_se/user\\">Klarnas Användarvillkor</a> och bekräftar att du läst <a target=\\"blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/sv_se/privacy\\">Klarnas Dataskyddsinformation</a>.","klarnaCreditRecurringActiveAcceptance":"Genom att klicka <span class=\\"DR-button-text\\">{payNow}</span> kommer du att bli presenterad med olika betalmetod tillhandahållna av Klarna. Genom att gå vidare godkänner du <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/sv_se/user\\">Klarnas Användarvillkor</a> och bekräftar att du läst <a target=\\"blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/sv_se/privacy\\">Klarnas Dataskyddsinformation</a>.","agreeToTerms":"Jag har läst och godkänner villkoren och beloppen ovan.","idealRecurringAgreement":"Genom att klicka i rutan godkänner du att Digital River tar emot din första betalning via iDEAL och använder ditt IBAN för att ta emot efterföljande prenumerationsbetalningar via SEPA-autogiro. Du kan granska din information om SEPA-direktdebitering efter att du har skickat din beställning. <br/><br/>Du har bland annat rätt till återbetalning från banken enligt villkoren i ditt avtal med banken. En återbetalning måste begäras inom åtta veckor från det datum då kontot debiterades. "},"th_TH":{"cancellationRights":"สิทธิ์ในการยกเลิก","cookiePolicy":"คุกกี้","legalNotice":"ข้อความสงวนสิทธิ์ทางกฎหมาย","privacyPolicy":"นโยบายการเก็บรักษาข้อมูลส่วนบุคคล","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> เป็นผู้ค้าและผู้จำหน่ายที่ได้รับอนุญาตสำหรับผลิตภัณฑ์และบริการที่นำเสนอภายในร้านค้าแห่งนี้","termsOfSale":"เงื่อนไขการขาย","confirmDisclosure":"ในการส่งคำสั่งซื้อของฉัน ฉันยอมรับ<a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">ข้อกำหนดการจำหน่าย</a>และ<a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">นโยบายความเป็นส่วนตัว</a>ของ {businessEntityName}","autoRenewPlanTermsBegin":"","autoRenewPlanTermsEnd":"","agreeToTerms":"ฉันได้อ่านและเห็นชอบในเงื่อนไขและค่าใช้จ่ายข้างต้นแล้ว","idealRecurringAgreement":"เมื่อคลิกที่กล่องคุณอนุญาตให้ Digital River เรียกเก็บเงินครั้งแรกผ่าน iDEAL และใช้ IBAN ของคุณเพื่อรวบรวมการชําระเงินการสมัครสมาชิกที่ตามมาโดยการหักบัญชีเงินฝากอัตโนมัติ SEPA คุณสามารถตรวจสอบข้อมูลการหักบัญชีเงินฝากอัตโนมัติ SEPA ของคุณหลังจากส่งคําสั่งซื้อ <br/><br/>คุณมีสิทธิ์ในการขอคืนเงินจากธนาคารของคุณภายใต้ข้อกำหนดและเงื่อนไขของข้อตกลงระหว่างคุณกับทางธนาคารของคุณ การใช้สิทธิ์ขอคืนเงินจะต้องดำเนินการภายใน 8 สัปดาห์นับจากวันที่ที่บัญชีของคุณถูกหัก "},"tr_TR":{"cancellationRights":"İptal Hakkı","cookiePolicy":"Tanımlama Bilgileri","legalNotice":"Yasal Uyarı","privacyPolicy":"Gizlilik Politikası","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> bu mağazada ürünlerin ve servislerin önerilen yetkili satıcısı ve tüccarıdır.","termsOfSale":"Satış Şartları","confirmDisclosure":"Siparişimi göndererek {businessEntityName}’ye ait <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Satış Şartları</a> ve <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Gizlilik Politikası</a>’nı kabul ediyorum.","consentsEula":" ve <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Son Kullanıcı Lisans Anlaşması</a>","consentsTermsOfUse":" ve <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Kullanım Koşulları</a>","consentsCompanyName":" , {companyName}","autoRenewPlanTermsBegin":"Aşağıdaki kutuyu işaretlediğinizde ve siparişinizi tamamladığınızda, sipariş ettiğiniz lisansın veya aboneliğin daha sonraki yenileme dönemlerinde Digital River tarafından başlangıç dönemi ile aynı süre kadar ve başlangıç döneminde ödediğiniz aynı ücret ile (vergiler ve harçlar eklenir, olası indirimler düşülür) otomatik olarak yenilenmesi için açıkça yetki ve izin vermiş olursunuz. Bunun için ilk satın alma işleminiz sırasında sağladığınız ödeme bilgileri kullanılır ve yetki siz iptal edene kadar geçerliliğini korur. Yaklaşmakta olan her yenileme için size en az bir e-posta gönderilecektir. Bir sonraki yenileme tarihi için size önceden e-posta ile bildirmek koşuluyla yenileme ücretini değiştirme hakkımız saklıdır (değişikliği onaylamıyorsanız otomatik yenilemeyi aşağıda açıklanan şekilde iptal edebilirsiniz). Her yenileme işlemi için Digital River <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Satış Koşulları</a> ve <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Gizlilik Politikası</a>","autoRenewPlanTermsEnd":" geçerli olacaktır. İsterseniz hesap arayüzünde oturum açtıktan sonra ürünü seçip otomatik yenilemenin kaldırılması seçeneğini belirleyerek otomatik yenileme planınızı iptal edebilirsiniz (erişim bilgilerini sipariş onay e-postasında veya Müşteri Hizmetleri Yardım sayfasında bulabilirsiniz).<br/><br/>Digital River\'ın ödeme bilgilerimi, bu sipariş tarihini takiben gerçekleşebilecek aboneliğin daha sonraki yenilenme işlemleri de dahil olmak üzere gelecekteki alışverişler için saklamasını kabul ediyorum.","agreeToTerms":"Yukarıdaki koşulları ve ücretleri okudum ve kabul ediyorum.","idealRecurringAgreement":"Kutuya tıklayarak Digital River\'a ilk ödemenizi iDEAL üzerinden tahsil etme yetkisi veriyorsunuz ve sonraki abonelik ödemelerini SEPA otomatik ödeme ile toplamak için IBAN\'ınızı kullanıyorsunuz. Sepa Otomatik Ödeme bilgilerinizi sipariş gönderimini inceledikten sonra inceleyebilirsiniz. <br/><br/>Haklarınızın bir parçası olarak, bankanızla olan anlaşmanızın hüküm ve şartlarına uygun biçimde bankanızdan geri ödeme alma hakkınız mevcuttur. Bir geri ödeme, hesabınızdan para çekildikten sonra 8 hafta içerisinde talep edilmelidir. "},"zh_CN":{"cancellationRights":"取消订单权","cookiePolicy":"Cookie","legalNotice":"法律声明","privacyPolicy":"隐私政策","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> 是本商店提供的产品和服务的授权经销商和商家。","termsOfSale":"销售条款","confirmDisclosure":"通过提交我的订单，我同意{businessEntityName}的<a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">销售条款</a>和<a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">隐私政策</a>。","consentsEula":" 以及 <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">最终用户许可协议</a>","consentsTermsOfUse":" 以及 <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">使用条款</a>","consentsCompanyName":" 的 {companyName}","autoRenewPlanTermsBegin":"选中下面的选项框并完成购买后，即表示您明确授权并允许Digital River使用您首次购买产品时提供的付款信息自动续订您购买的许可证或订阅，后续每一期续订期限等于以上列出的首期订阅期限，价格等于首期价格(加上各种税费，减去各种适用折扣)，直至您取消为止。每次续订前，您将收到至少一份提醒电子邮件。如果我们事先通过电子邮件向您发出了变更通知，可能从下一次续订日期起更改续订价格(如果不同意价格变更，您可以选择按照如下说明取消自动续订)。Digital River<a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">销售条款</a>和<a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">隐私政策</a>","autoRenewPlanTermsEnd":" 适用于每一次续订交易。登录帐户界面(访问信息包含在订购确认邮件中，或请参见“客户服务帮助”页面)，选择产品并选择禁用自动续订选项，即可随时取消自动续订计划。<br/><br/>我同意Digital River保存我的支付信息，方便日后购买商品使用，包括自订单下达之日起，处理随后可能出现的任何续订。","agreeToTerms":"我已阅读并同意以上销售条款和费用。","idealRecurringAgreement":"通过点击方框，您授权Digital River通过iDEAL收取您的第一笔付款，并使用您的IBAN通过SEPA直接借记收取后续的订阅付款。您可以在提交订单后查看您的SEPA直接借记信息。<br/><br/>作为您权利的一部分，您可根据与开户银行所签订协议的各项条款和条件从您的开户银行获取退款。退款必须在你的账户被扣款之日起8周内提出。"},"zh_HK":{"cancellationRights":"取消權利","cookiePolicy":"Cookies","legalNotice":"法律聲明","privacyPolicy":"隱私權政策","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> 是本商店內所提供產品及服務的授權轉售商和販售者。","termsOfSale":"銷售條款","confirmDisclosure":"通过提交我的订单，我同意{businessEntityName}的<a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">销售条款</a>和<a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">隐私政策</a>。","consentsEula":" 以及 <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">使用者授權合約</a>","consentsTermsOfUse":" 以及 <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">使用條款</a>","consentsCompanyName":" 的 {companyName}","autoRenewPlanTermsBegin":"勾選以下方格並完成購買時，即代表您明確授權並允許Digital River使用您在初次購買時提供的付款資訊，依照最初的訂閱期及該訂閱期的價格（加上稅項及費用，減去適用的折扣）以相同年期及價格自動續訂您已購買的許可證或訂閱服務，直到您取消為止。到期續訂之前，您會收到至少一封電子郵件提示。若下次續訂日的價格有變更，我們將提前以電子郵件通知（若您不同意該價格變動，可透過以下方式選擇取消自動續訂）。Digital River<a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">銷售條款</a>與<a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">私隱政策</a>","autoRenewPlanTermsEnd":" 將適用於每次續訂交易。若要取消自動續訂計劃，您可隨時登入帳號介面（操作資訊列於您的訂單確認電子郵件或客戶服務支援頁面），選取您的產品後選擇取消自動續訂。<br/><br/>我同意Digital River儲存此帳戶及付款資訊，以供未來付款及本訂單日期後的任何續訂使用。","agreeToTerms":"我已閱讀並同意上述條款和收費。"},"zh_TW":{"cancellationRights":"取消權利","cookiePolicy":"Cookie","legalNotice":"法律聲明","privacyPolicy":"隱私權政策","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> 本商店所提供商品及服務的授權經銷商及批發商。","termsOfSale":"銷售條款","confirmDisclosure":"通过提交我的订单，我同意{businessEntityName}的<a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">销售条款</a>和<a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">隐私政策</a>。","consentsEula":" 以及 <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">終端使用者授權同意書</a>","consentsTermsOfUse":" 以及 <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">使用規定</a>","consentsCompanyName":" 的 {companyName}","autoRenewPlanTermsBegin":"核取底下的方塊並完成購買，表示您已明確授權並允許Digital River使用您在一開始購買時提供的付款資訊，依照上述更新條款以最初的授權條款（加上所需的稅金及規費，減去適用的折扣）自動續訂您已購買的授權或訂閱產品，直到您取消訂閱為止。即將續訂之前，您會收到至少一封提醒的電子郵件。若下次續訂日的價格有變動，我們將提前以電子郵件通知（若不同意價格變動，您可以根據下方說明取消自動續訂）。Digital River<a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">銷售條款</a>與<a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">隱私權政策</a>","autoRenewPlanTermsEnd":" 將適用於每次的更新交易。您可隨時登入帳號介面以取消自動續訂計畫（可在您的訂單確認電子郵件或客戶服務支援頁面找到操作資訊），選取您的產品後選擇取消自動續訂。<br/><br/>我同意Digital River儲存此付款資訊，以供未來付款及本訂單日期後的任何續訂使用。","agreeToTerms":"我已經閱讀並同意上述條款與付款規定。"}},"locale":["ar_EG","cs_CZ","da_DK","de_AT","de_CH","de_DE","el_GR","en_AU","en_BE","en_CA","en_CH","en_DK","en_FI","en_GB","en_IE","en_IN","en_MY","en_NL","en_NO","en_NZ","en_PR","en_SE","en_SG","en_US","en_ZA","es_AR","es_CL","es_CO","es_EC","es_ES","es_MX","es_PE","es_VE","et_EE","fi_FI","fr_BE","fr_CA","fr_CH","fr_FR","hu_HU","it_CH","it_IT","iw_IL","ja_JP","ko_KR","lt_LT","lv_LV","nl_BE","nl_NL","no_NO","pl_PL","pt_BR","pt_PT","ro_RO","ru_RU","sk_SK","sl_SI","sr_YU","sv_SE","th_TH","tr_TR","zh_CN","zh_HK","zh_TW"],"entityCode":[{"code":"DRES_INC-ENTITY","name":"DR Education Services"},{"code":"DR_WP-ENTITY","name":"DR World Payments"},{"code":"DR_WPAB-ENTITY","name":"DR World Payments AB"},{"code":"C5_INC-ENTITY","name":"DR globalTech Inc."},{"code":"DR_BRAZIL-ENTITY","name":"Digital River Brazil"},{"code":"DR_CHINA-ENTITY","name":"Digital River China"},{"code":"DR_GMBH-ENTITY","name":"Digital River GmbH"},{"code":"DR_INC-ENTITY","name":"Digital River Inc."},{"code":"DR_INDIA-ENTITY","name":"Digital River India Pvt"},{"code":"DR_IRELAND-ENTITY","name":"Digital River Ireland Ltd."},{"code":"DR_JAPAN-ENTITY","name":"Digital River Japan"},{"code":"DR_KOREA-ENTITY","name":"Digital River Korea YH"},{"code":"DR_MEXICO-ENTITY","name":"Digital River Mexico"},{"code":"DR_RUSSIA-ENTITY","name":"Digital River Russia"},{"code":"DR_SARL-ENTITY","name":"Digital River, International SARL"},{"code":"DR_TAIWAN-ENTITY","name":"Digital River Taiwan"},{"code":"DR_UK-ENTITY","name":"Digital River UK Ltd."}],"keys":{"AUTORENEWAL_PLAN_TERMS":"autoRenewPlanTerms","AUTORENEWAL_PLAN_TERMS_BEGIN":"autoRenewPlanTermsBegin","AUTORENEWAL_PLAN_TERMS_END":"autoRenewPlanTermsEnd","RESELLER_DISCLOSURE":"resellerDisclosure","TERMS_OF_SALE":"termsOfSale","PRIVACY_POLICY":"privacyPolicy","COOKIE_POLICY":"cookiePolicy","CANCELLATION_RIGHTS":"cancellationRights","CONFIRM_DISCLOSURE":"confirmDisclosure","CONSENTS_EULA":"consentsEula","CONSENTS_TERMS_OF_USE":"consentsTermsOfUse","CONSENTS_COMPANY_NAME":"consentsCompanyName","LEGAL_NOTICE":"legalNotice","CALIFORNIA_PRIVACY_RIGHTS":"californiaPrivacyRights","WARRANTY_INFORMATION":"warrantyInformation","AGREE_TO_TERMS":"agreeToTerms","IDEAL_RECURRING_AGREEMENT":"idealRecurringAgreement"}}');
 
 /***/ }),
 
@@ -31747,6 +32948,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "getValue": function() { return /* binding */ getValue; },
 /* harmony export */   "getElement": function() { return /* binding */ getElement; },
+/* harmony export */   "getLabelElement": function() { return /* binding */ getLabelElement; },
 /* harmony export */   "handleOptions": function() { return /* binding */ handleOptions; },
 /* harmony export */   "addInstanceOptions": function() { return /* binding */ addInstanceOptions; },
 /* harmony export */   "handleBlur": function() { return /* binding */ handleBlur; },
@@ -31821,6 +33023,14 @@ function getElement() {
   return document.getElementById('iban');
 }
 /**
+ * getLabelElement returns the label dom element
+ * @returns {HTMLElement}
+ */
+
+function getLabelElement() {
+  return document.getElementById('iban-label');
+}
+/**
  * handleOptions applies options to the iban dom element
  * @param {object} data
  */
@@ -31832,6 +33042,7 @@ function handleOptions(data) {
   addInstanceOptions(data.instanceOptions);
   componentData.options = data.options;
   (0,_accessibility__WEBPACK_IMPORTED_MODULE_12__.setAriaLabel)(el, data.instanceOptions.locale, COMPONENT_TYPE);
+  (0,_accessibility__WEBPACK_IMPORTED_MODULE_12__.setLabelText)(getLabelElement(), data.instanceOptions.locale, COMPONENT_TYPE);
 }
 /**
  * Stores the instance options in the component state
@@ -31913,7 +33124,7 @@ function isValid(value) {
   return (0,ibantools__WEBPACK_IMPORTED_MODULE_11__.isValidIBAN)(value);
 }
 function inputHtml() {
-  return "<input id=\"iban\"\n         autocomplete=\"iban\"\n         class=\"base empty\"\n         type=\"text\"\n         onfocus=\"handleFocus(event)\"\n         onblur=\"handleBlur(event)\"\n         oninput=\"handleChange(event)\"\n         onkeyup=\"keyUpEvent(event)\"\n         value=\"\"\n         aria-invalid=\"false\"\n  />";
+  return "<label id=\"iban-label\" for=\"iban\" class=\"sr-only\"></label><input id=\"iban\"\n         name=\"iban\"\n         autocomplete=\"iban\"\n         class=\"base empty\"\n         type=\"text\"\n         onfocus=\"handleFocus(event)\"\n         onblur=\"handleBlur(event)\"\n         oninput=\"handleChange(event)\"\n         onkeyup=\"keyUpEvent(event)\"\n         value=\"\"\n         aria-invalid=\"false\"\n         aria-errormessage=\"iban-error\"\n  /><div id=\"iban-error\" class=\"sr-only\" aria-live=\"assertive\"></div>";
 }
 }();
 var __webpack_export_target__ = self;

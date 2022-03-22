@@ -1,107 +1,286 @@
-<head><script defer src="dropInStyles.js"></script><script defer src="DigitalRiver.js"></script><link href="css/DigitalRiver.css" rel="stylesheet"></head>Html Webpack Plugin:
-<pre>
-  Error: Child compilation failed:
-  Module not found: Error: Can't resolve 'C:\dev\ui-architecture\digitalriverpayments\config\build-utils\html-files\schema-driven.html' in 'C:\dev\ui-architecture\digitalriverpayments'
-  ModuleNotFoundError: Module not found: Error: Can't resolve 'C:\dev\ui-architecture\digitalriverpayments\config\build-utils\html-files\schema-driven.html' in 'C:\dev\ui-architecture\digitalriverpayments'
-      at C:\dev\ui-architecture\digitalriverpayments\node_modules\webpack\lib\Compilation.js:1668:28
-      at C:\dev\ui-architecture\digitalriverpayments\node_modules\webpack\lib\NormalModuleFactory.js:712:13
-      at eval (eval at create (C:\dev\ui-architecture\digitalriverpayments\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:10:1)
-      at C:\dev\ui-architecture\digitalriverpayments\node_modules\webpack\lib\NormalModuleFactory.js:273:22
-      at eval (eval at create (C:\dev\ui-architecture\digitalriverpayments\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:9:1)
-      at C:\dev\ui-architecture\digitalriverpayments\node_modules\webpack\lib\NormalModuleFactory.js:402:22
-      at C:\dev\ui-architecture\digitalriverpayments\node_modules\webpack\lib\NormalModuleFactory.js:117:11
-      at C:\dev\ui-architecture\digitalriverpayments\node_modules\webpack\lib\NormalModuleFactory.js:628:24
-      at C:\dev\ui-architecture\digitalriverpayments\node_modules\webpack\lib\NormalModuleFactory.js:782:8
-      at C:\dev\ui-architecture\digitalriverpayments\node_modules\webpack\lib\NormalModuleFactory.js:902:5
-      at C:\dev\ui-architecture\digitalriverpayments\node_modules\neo-async\async.js:6883:13
-      at C:\dev\ui-architecture\digitalriverpayments\node_modules\webpack\lib\NormalModuleFactory.js:885:45
-      at finishWithoutResolve (C:\dev\ui-architecture\digitalriverpayments\node_modules\enhanced-resolve\lib\Resolver.js:296:11)
-      at C:\dev\ui-architecture\digitalriverpayments\node_modules\enhanced-resolve\lib\Resolver.js:362:15
-      at C:\dev\ui-architecture\digitalriverpayments\node_modules\enhanced-resolve\lib\Resolver.js:410:5
-      at eval (eval at create (C:\dev\ui-architecture\digitalriverpayments\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:16:1)
-  
-  - Compilation.js:1668 
-    [digitalriverpayments]/[webpack]/lib/Compilation.js:1668:28
-  
-  - NormalModuleFactory.js:712 
-    [digitalriverpayments]/[webpack]/lib/NormalModuleFactory.js:712:13
-  
-  
-  - NormalModuleFactory.js:273 
-    [digitalriverpayments]/[webpack]/lib/NormalModuleFactory.js:273:22
-  
-  
-  - NormalModuleFactory.js:402 
-    [digitalriverpayments]/[webpack]/lib/NormalModuleFactory.js:402:22
-  
-  - NormalModuleFactory.js:117 
-    [digitalriverpayments]/[webpack]/lib/NormalModuleFactory.js:117:11
-  
-  - NormalModuleFactory.js:628 
-    [digitalriverpayments]/[webpack]/lib/NormalModuleFactory.js:628:24
-  
-  - NormalModuleFactory.js:782 
-    [digitalriverpayments]/[webpack]/lib/NormalModuleFactory.js:782:8
-  
-  - NormalModuleFactory.js:902 
-    [digitalriverpayments]/[webpack]/lib/NormalModuleFactory.js:902:5
-  
-  - async.js:6883 
-    [digitalriverpayments]/[neo-async]/async.js:6883:13
-  
-  - NormalModuleFactory.js:885 
-    [digitalriverpayments]/[webpack]/lib/NormalModuleFactory.js:885:45
-  
-  - Resolver.js:296 finishWithoutResolve
-    [digitalriverpayments]/[enhanced-resolve]/lib/Resolver.js:296:11
-  
-  - Resolver.js:362 
-    [digitalriverpayments]/[enhanced-resolve]/lib/Resolver.js:362:15
-  
-  - Resolver.js:410 
-    [digitalriverpayments]/[enhanced-resolve]/lib/Resolver.js:410:5
-  
-  
-  - child-compiler.js:169 
-    [digitalriverpayments]/[html-webpack-plugin]/lib/child-compiler.js:169:18
-  
-  - Compiler.js:534 
-    [digitalriverpayments]/[webpack]/lib/Compiler.js:534:11
-  
-  - Compiler.js:1087 
-    [digitalriverpayments]/[webpack]/lib/Compiler.js:1087:17
-  
-  
-  - Hook.js:18 Hook.CALL_ASYNC_DELEGATE [as _callAsync]
-    [digitalriverpayments]/[tapable]/lib/Hook.js:18:14
-  
-  - Compiler.js:1083 
-    [digitalriverpayments]/[webpack]/lib/Compiler.js:1083:33
-  
-  - Compilation.js:2424 
-    [digitalriverpayments]/[webpack]/lib/Compilation.js:2424:11
-  
-  
-  - Hook.js:18 Hook.CALL_ASYNC_DELEGATE [as _callAsync]
-    [digitalriverpayments]/[tapable]/lib/Hook.js:18:14
-  
-  - Compilation.js:2417 
-    [digitalriverpayments]/[webpack]/lib/Compilation.js:2417:38
-  
-  
-  - Compilation.js:415 
-    [digitalriverpayments]/[webpack]/lib/Compilation.js:415:10
-  
-  - SourceMapDevToolPlugin.js:543 
-    [digitalriverpayments]/[webpack]/lib/SourceMapDevToolPlugin.js:543:10
-  
-  - async.js:2830 
-    [digitalriverpayments]/[neo-async]/async.js:2830:7
-  
-  - async.js:2857 Object.each
-    [digitalriverpayments]/[neo-async]/async.js:2857:9
-  
-  - SourceMapDevToolPlugin.js:379 
-    [digitalriverpayments]/[webpack]/lib/SourceMapDevToolPlugin.js:379:17
-  
-</pre>
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8"/>
+  <title>Schema Driven Example Page</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+  <style>
+    .xsmall {
+      font-size: 60%;
+      margin: 0 20px;
+    }
+
+    #response {
+      border: 1px solid deepskyblue;
+      margin: 20px;
+      padding: 20px;
+      height: 80%;
+      overflow: auto;
+      overflow-wrap: break-word;
+    }
+
+    .ccIcons {
+      color: #ddd;
+      font-size: 2.3em;
+      margin: -.5rem 0 .2rem 3px;
+    }
+
+    .ccIcons .active {
+      color: #007bff;
+    }
+
+    #ccError, #expError, #cvvError {
+      margin: -.5rem 0 .2rem 3px;
+    }
+
+    .DRElement {
+      border:1px solid #ced4da;
+      margin:0 0.2rem;
+      border-radius:.25rem;
+      overflow:hidden;
+    }
+
+    #apple-pay.DRElement,
+    #google-pay.DRElement {
+      border: none;
+    }
+
+    .custom--base, .myCustomBase2, .cc--base {
+      border:1px solid #ced4da;
+      margin:0 0.2rem;
+      border-radius:.25rem;
+      overflow:hidden;
+    }
+
+    .DRElement--focus {
+      border-color: #80bdff;
+      outline: 0;
+      box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+    }
+
+    .custom--focus, .cc--focus {
+      border-color: #80bdff;
+      background-color: rgba(128, 189, 255, 0.5);
+      outline: 0;
+      box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+    }
+
+    .DRElement--invalid {
+      border-color: #dc3545;
+      outline: 0;
+      box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.31);
+    }
+
+    .custom--invalid, .cc--invalid {
+      border-color: #dc3545;
+      background-color: rgba(220, 53, 69, 0.5);
+      outline: 0;
+      box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.31);
+    }
+
+    .DRElement--complete, .cc--complete {
+      border-color: #28a745;
+      outline: 0;
+      box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.31);
+    }
+
+    .custom--complete {
+      border-color: #28a745;
+      background-color: rgba(40, 167, 69, 0.51);
+      outline: 0;
+      box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.31);
+    }
+
+    .DRElement--empty {
+      border-color: #db4518;
+      outline: 0;
+      box-shadow: 0 0 0 0.2rem rgba(219, 69, 24, 0.31);
+    }
+
+    .custom--empty, .cc--empty {
+      border-color: #db4518;
+      background-color: rgba(219, 69, 24, 0.5);
+      outline: 0;
+      box-shadow: 0 0 0 0.2rem rgba(219, 69, 24, 0.31);
+    }
+
+    .DRElement--webkit-autofill {
+      border-color: #4e20db;
+      outline: 0;
+      box-shadow: 0 0 0 0.2rem rgba(78, 32, 219, 0.31);
+    }
+
+    .custom--webkit-autofill {
+      border-color: #4e20db;
+      background-color: rgba(78, 32, 219, 0.5);
+      outline: 0;
+      box-shadow: 0 0 0 0.2rem rgba(78, 32, 219, 0.31);
+    }
+
+
+  </style>
+  <link rel="stylesheet" href="http://localhost:8080/v1/css/DigitalRiver.css" type="text/css" />
+  <script type="text/javascript">
+
+    const apiKey = 'pk_hc_805a0837ed6a43f5af99caebcddd2b6e'; //test3ds
+
+    let styles = {
+      base: {
+        padding: '0',
+        color: '#495057',
+        height: '35px',
+        fontSize: '1rem',
+        fontFamily: 'apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif',
+        // fontWeight: 'lighter',
+        ':hover': {
+          color: '#137bee',
+        },
+        '::placeholder': {
+          color: '#999'
+        },
+        ':-webkit-autofill': {
+          color: 'purple'
+        },
+        ':focus': {
+          color: 'blue'
+        }
+      },
+      invalid: {
+        color: '#dc3545',
+        ':-webkit-autofill': {
+          color: '#dc3545'
+        }
+      },
+      complete: {
+        color: '#28a745',
+        ':hover': {
+          color:'#28a745',
+        },
+        ':-webkit-autofill': {
+          color: '#28a745'
+        }
+      },
+      empty: {
+        color: '#000000'
+        /*color: '#db4518',
+        ':hover': {
+          color: '#db4518'
+        },
+        '::placeholder': {
+          color: '#db4518'
+        }*/
+      },
+
+    };
+
+    let options = {
+      //placeholderText: 'Test Place holder',
+      style: styles,
+      classes: {
+        base: 'custom--base',
+        focus: 'custom--focus',
+        invalid: 'custom--invalid',
+        empty: 'custom--empty',
+        complete: 'custom--complete',
+        webkitAutofill: 'custom--webkit-autofill'
+      },
+    };
+
+
+    let schemaDrivenElement;
+    let digitalRiverPayments;
+
+    const elementType = 'some-p-pro'; // TODO Change here to change the element
+
+    window.onload = function() {
+
+      let response = document.getElementById('response');
+
+      digitalRiverPayments = new DigitalRiver(apiKey, options);
+
+      schemaDrivenElement = digitalRiverPayments.createElement(elementType, options);
+      schemaDrivenElement.mount("schema-driven");
+
+      schemaDrivenElement.on('ready', function (event) {
+        responseLog('Ready received ' + JSON.stringify(event) + ' for ' + event.elementType);
+      });
+
+      schemaDrivenElement.on('blur', function (event) {
+        responseLog('Blur received ' + JSON.stringify(event) + ' for ' + event.elementType);
+      });
+
+      schemaDrivenElement.on('focus', function (event) {
+        responseLog('Focus received ' + JSON.stringify(event) + ' for ' + event.elementType);
+      });
+
+      schemaDrivenElement.on('change', function (event) {
+        responseLog('Change received ' + JSON.stringify(event) + ' for ' + event.elementType);
+      });
+
+      schemaDrivenElement.on('return', function (event) {
+        responseLog('Return received ' + JSON.stringify(event) + ' for ' + event.elementType);
+      });
+
+      function responseLog(msg) {
+        response.innerHTML += msg + '<br/><br/>';
+      }
+
+    }
+
+    function submitElement() {
+
+      const  owner = {
+        firstName: "Fred",
+        lastName: "Flintstone",
+        email: "test@digitalriver.com",
+        phoneNumber: "000-000-0000",
+        address: {
+          line1: "10380 Bren Road West",
+          line2: "Ichikawa-shi",
+          city: "Minnetonka",
+          state: "MN",
+          postalCode: "55346",
+          country: 'US'
+        }
+      };
+
+      // Call CreateSource
+      const payload = {
+        "type": elementType,
+        //"usage": "single",
+        "owner": owner,
+        // "amount": 1.2,
+        // "currency": "EUR",
+        [elementType]: {}
+      };
+
+      document.getElementById("response").innerHTML += "Submitting Credit Card payment...please wait<br/>";
+      digitalRiverPayments.createSource(schemaDrivenElement, payload).then( function(response) {
+        if(response.error) {
+          document.getElementById("response").innerHTML += "Response received error: " + JSON.stringify(response, null, '\t');
+        } else {
+          document.getElementById("response").innerHTML += "Payment response: " + "" + JSON.stringify(response.source, null, '\t');
+        }
+      }).catch(function (err)  {
+        console.error('createSource failed:', err);
+      });
+    }
+
+  </script>
+<script defer src="dropInStyles.js"></script><script defer src="DigitalRiver.js"></script><link href="css/DigitalRiver.css" rel="stylesheet"></head>
+
+<body class="bg-light" style="padding-top:50px;">
+<div class="row">
+  <div id="schema-driven"></div>
+  <button id="submitPaymentButton" class="btn btn-primary btn-lg btn-block" onclick="submitElement()">Submit</button>
+  <div class="col-md-4 console">
+    <pre id="response"></pre>
+  </div>
+</div>
+
+
+</body>
+
+</html>

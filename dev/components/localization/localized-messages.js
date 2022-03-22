@@ -1407,12 +1407,14 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "DEFAULT_LOCALE": function() { return /* binding */ DEFAULT_LOCALE; },
+/* harmony export */   "DEFAULT_COUNTRY": function() { return /* binding */ DEFAULT_COUNTRY; },
 /* harmony export */   "getLocaleMessage": function() { return /* binding */ getLocaleMessage; },
 /* harmony export */   "localeMessagesContainsClientProvidedLocale": function() { return /* binding */ localeMessagesContainsClientProvidedLocale; },
 /* harmony export */   "forceCasingOfLocale": function() { return /* binding */ forceCasingOfLocale; },
 /* harmony export */   "getMappedLocale": function() { return /* binding */ getMappedLocale; },
 /* harmony export */   "getLocaleFromLanguage": function() { return /* binding */ getLocaleFromLanguage; },
-/* harmony export */   "getLocaleFromCountry": function() { return /* binding */ getLocaleFromCountry; }
+/* harmony export */   "getLocaleFromCountry": function() { return /* binding */ getLocaleFromCountry; },
+/* harmony export */   "getCountryFromLocale": function() { return /* binding */ getCountryFromLocale; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/filter */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/filter.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_0__);
@@ -1425,6 +1427,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var DEFAULT_LOCALE = 'en-US';
+var DEFAULT_COUNTRY = 'US';
 
 function getLocaleMessages(locale) {
   return _messages_json__WEBPACK_IMPORTED_MODULE_2__.hasOwnProperty(locale) ? _messages_json__WEBPACK_IMPORTED_MODULE_2__[locale] : undefined;
@@ -1549,6 +1552,10 @@ function getLocaleFromCountry(country) {
     'ZA': 'en-ZA'
   };
   return countryMap.hasOwnProperty(country.toUpperCase()) ? countryMap[country.toUpperCase()] : DEFAULT_LOCALE;
+}
+function getCountryFromLocale(locale) {
+  var formattedLocale = locale.replace('_', '-');
+  return typeof formattedLocale.split('-')[1] !== 'undefined' ? formattedLocale.split('-')[1] : DEFAULT_COUNTRY;
 }
 }();
 var __webpack_export_target__ = self;
