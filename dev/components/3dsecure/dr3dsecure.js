@@ -5291,17 +5291,15 @@ function sendShippingOptionChangeEvent(selectedShippingOption, resolve, instance
 
 function sendClickEvent(instanceData, resolve) {
   if (waitForClientUpdateWithFunction(instanceData.getPaymentOptions())) {
-    console.log('YES 1');
-
-    var updateWith = function updateWith(clientPassedInData) {
-      var data = (0,_options__WEBPACK_IMPORTED_MODULE_10__.mergeOptions)(instanceData.getPaymentOptions(), clientPassedInData);
+    console.log('YES 2');
+    /*const updateWith = function (clientPassedInData) {
+      const data = mergeOptions(instanceData.getPaymentOptions(), clientPassedInData);
       instanceData.setOptions(data);
-      resolve((0,_payment_api__WEBPACK_IMPORTED_MODULE_9__.getDetailsFromOptions)(instanceData.getPaymentOptions()));
+      resolve(getDetailsFromOptions(instanceData.getPaymentOptions()));
       return data;
-    };
+    };*/
 
-    var result = {
-      updateWith: updateWith
+    var result = {//updateWith: updateWith
     };
     (0,_input_events__WEBPACK_IMPORTED_MODULE_8__.sendEventData)(instanceData.componentData.controller, instanceData.componentData.componentId, instanceData.componentData.componentType, 'click', result);
     return result;
