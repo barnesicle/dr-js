@@ -12441,6 +12441,8 @@ function handleRedirectSource(controllerId, configuration, paymentMethod, create
     close: function close() {}
   };
   return createSourceFunction.then(function (response) {
+    console.log('createSourceFunction', response);
+
     if (response.source !== null && !redirectDisabled) {
       redirectWindow.location.replace(response.source.redirect.redirectUrl);
       (0,_dropin_events__WEBPACK_IMPORTED_MODULE_17__.sendRedirectSourceData)(controllerId, response.source.id, response.source.clientSecret.split('_')[1], redirectWindow, paymentMethod.type);
@@ -12449,6 +12451,7 @@ function handleRedirectSource(controllerId, configuration, paymentMethod, create
       redirectWindow.close();
     }
   }).catch(function (error) {
+    console.error('error', error);
     (0,_dropin_events__WEBPACK_IMPORTED_MODULE_17__.runClientProvidedCompleteEvents)(configuration, error, submitButton, selectedText, paymentMethodFromAPI);
     redirectWindow.close();
   });
