@@ -59,6 +59,11 @@
                 <div id="shipping-container" style="display: block">
 
                 </div>
+
+                <div id="tax-container" style="display: block">
+
+                </div>
+
                 <div id="payment-container" style="display: block">
 
                 </div>
@@ -113,6 +118,8 @@
 
   let position = 0;
   let displayShipping = true;
+  let showTaxIdentifiers = false;
+
   function onNextButtonClick() {
     console.log('NEXT')
     displayCorrectElement(() => {
@@ -136,6 +143,7 @@
       document.getElementById('address-container').style.display = 'block';
       document.getElementById('shipping-container').style.display = 'none';
       document.getElementById('payment-container').style.display = 'none';
+      document.getElementById('tax-container').style.display = 'none';
     } else if (position === 1) {
 
       const addressElementStatus = await addressElement.done();
@@ -147,6 +155,7 @@
       }
       document.getElementById('nextButton').style.display = 'inline-block';
       document.getElementById('address-container').style.display = 'none';
+      document.getElementById('tax-container').style.display = 'none';
 
       if (displayShipping) {
         document.getElementById('shipping-container').style.display = 'block';
@@ -156,16 +165,39 @@
       }
 
     } else if (position === 2) {
+
+      if (!showTaxIdentifiers) {
+        displayCorrectElement(fn);
+        return;
+      }
+
+      document.getElementById('address-container').style.display = 'none';
+      document.getElementById('shipping-container').style.display = 'none';
+      document.getElementById('payment-container').style.display = 'none';
+      document.getElementById('tax-container').style.display = 'block';
+
+    } else if (position === 3) {
+
+      const addressElementStatus = await taxIdentifierElement.done();
+      console.log('TAX IDENTIFIER', addressElementStatus)
+      if (!addressElementStatus) {
+        console.log('TAX IDENTIFIER ELEMENT VALIDATION FAILED')
+        --position;
+        return;
+      }
+
       document.getElementById('nextButton').style.display = 'none';
       document.getElementById('address-container').style.display = 'none';
       document.getElementById('shipping-container').style.display = 'none';
       document.getElementById('payment-container').style.display = 'block';
-    } else if (position === 3) {
+      document.getElementById('tax-container').style.display = 'none';
+    } else if (position === 4) {
       document.getElementById('address-container').style.display = 'none';
       document.getElementById('shipping-container').style.display = 'none';
       document.getElementById('payment-container').style.display = 'none';
       document.getElementById('wallet-container').style.display = 'none';
       document.getElementById('order-details-container').style.display = 'block';
+      document.getElementById('tax-container').style.display = 'none';
       document.getElementById('nextButton').style.display = 'none';
       document.getElementById('previousButton').style.display = 'none';
     }
@@ -199,6 +231,7 @@
   let walletElement;
   let thankYouElement;
   let complianceElement;
+  let taxIdentifierElement;
 
   async function initializeElements() {
 
@@ -218,6 +251,9 @@
           // If is false, the step should ignore the shipping step
           //displayShipping = false;
         }
+        if (data.showTaxIdentifiers) {
+          showTaxIdentifiers = data.showTaxIdentifiers;
+        }
         displayCorrectElement(() => {});
       },
       onSuccess: function (data) {
@@ -225,7 +261,7 @@
 
         // TODO API call to server to verify state of order
 
-        displayCorrectElement(() => {  position = 3; });
+        displayCorrectElement(() => {  position = 4; });
         //document.getElementById('order-id').innerText = data.order.id;
       },
       onChange: function (data) {
@@ -254,6 +290,7 @@
     walletElement = elements.createElement('wallet');
     thankYouElement = elements.createElement('thankyou');
     complianceElement = elements.createElement('compliance');
+    taxIdentifierElement = elements.createElement('taxidentifier');
 
     paymentElement.mount('payment-container');
     shippingChoice.mount('shipping-container');
@@ -261,6 +298,7 @@
     walletElement.mount('wallet-container');
     thankYouElement.mount('order-details-container');
     complianceElement.mount('compliance-container');
+    taxIdentifierElement.mount('tax-container');
 
     /*paymentElement.on('change', function (data) {
       console.log('change', data);

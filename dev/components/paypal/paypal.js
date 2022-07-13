@@ -7799,6 +7799,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _elementsv2_wallet_wallet_mount__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ./elementsv2/wallet/wallet-mount */ "./src/client/elementsv2/wallet/wallet-mount.js");
 /* harmony import */ var _elementsv2_thankyou_thankyou_mount__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ./elementsv2/thankyou/thankyou-mount */ "./src/client/elementsv2/thankyou/thankyou-mount.js");
 /* harmony import */ var _elementsv2_compliance_compliance_mount__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ./elementsv2/compliance/compliance-mount */ "./src/client/elementsv2/compliance/compliance-mount.js");
+/* harmony import */ var _elementsv2_tax_identifer_tax_identifier_mount__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! ./elementsv2/tax-identifer/tax-identifier-mount */ "./src/client/elementsv2/tax-identifer/tax-identifier-mount.js");
+
 
 
 
@@ -8597,8 +8599,12 @@ DigitalRiver.prototype.elements = function (configuration) {
     storage.checkoutData = data;
 
     if (typeof configuration.onReady !== 'undefined') {
+      var _data$optionalTaxIden;
+
       configuration.onReady({
-        requiresShipping: data.requiresShipping
+        requiresShipping: data.requiresShipping,
+        showTaxIdentifiers: (data === null || data === void 0 ? void 0 : (_data$optionalTaxIden = data.optionalTaxIdentifiers) === null || _data$optionalTaxIden === void 0 ? void 0 : _data$optionalTaxIden.length) > 0 // TODO required?
+
       });
     }
 
@@ -8619,8 +8625,10 @@ DigitalRiver.prototype.elements = function (configuration) {
         return (0,_elementsv2_thankyou_thankyou_mount__WEBPACK_IMPORTED_MODULE_36__.thankYou)(key, configuration, storage);
       } else if (elementName === 'compliance') {
         return (0,_elementsv2_compliance_compliance_mount__WEBPACK_IMPORTED_MODULE_37__.compliance)(key, configuration, storage, getDetails);
+      } else if (elementName === 'taxidentifier') {
+        return (0,_elementsv2_tax_identifer_tax_identifier_mount__WEBPACK_IMPORTED_MODULE_38__.taxIdentifier)(key, configuration, storage, _createElement);
       } else {
-        throw Error('Unsupported element');
+        throw Error('Unsupported element ' + elementName);
       }
     }
     /*
@@ -13484,6 +13492,7 @@ function createFrame(type, node, src, attributes, elementHeight, locale, id, nam
   frame.setAttribute('src', src);
   frame.setAttribute('scrolling', 'no');
   frame.setAttribute('referrerpolicy', 'no-referrer-when-downgrade');
+  frame.setAttribute('allow-storage-access-by-user-activation', 'true');
 
   if (typeof nameForAccessibility !== 'undefined') {
     var iframeTitle = (0,_app_components_accessibility__WEBPACK_IMPORTED_MODULE_3__.getIframeTitle)(locale, nameForAccessibility);
@@ -15503,7 +15512,7 @@ function mergeShippingRequiredFieldsWhenSameAddress(mergeRequiredFields, billing
 }
 
 function addressWithValidProperties(address) {
-  var notAValidAddressAPIProperty = ['email', 'phoneNumber', 'firstName', 'lastName', 'phone', 'name', 'address'];
+  var notAValidAddressAPIProperty = ['email', 'phoneNumber', 'firstName', 'lastName', 'phone', 'name', 'address', 'organization'];
 
   var newAddress = _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_9___default()({}, address);
 
@@ -15672,12 +15681,14 @@ function address(key, configuration, storage) {
                   'email': billingAddressToUse.email,
                   'billTo': {
                     'address': billingAddressFromState,
+                    'organization': shippingAddressFromState.organization,
                     'email': billingAddressToUse.email,
                     'name': billingAddressToUse.firstName + ' ' + billingAddressToUse.lastName,
                     'phone': billingAddressToUse.phoneNumber
                   },
                   'shipTo': {
                     'address': shippingAddressFromState,
+                    'organization': shippingAddressFromState.organization,
                     'email': storage.shippingAddress.email,
                     'name': storage.shippingAddress.firstName + ' ' + storage.shippingAddress.lastName,
                     'phone': storage.shippingAddress.phoneNumber
@@ -15802,6 +15813,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "attachStoreCreditToDropinCheckout": function() { return /* binding */ attachStoreCreditToDropinCheckout; },
 /* harmony export */   "attachShippingChoiceToDropinCheckout": function() { return /* binding */ attachShippingChoiceToDropinCheckout; },
 /* harmony export */   "attachAddressToDropinCheckout": function() { return /* binding */ attachAddressToDropinCheckout; },
+/* harmony export */   "attachTaxIdentifierToDropinCheckout": function() { return /* binding */ attachTaxIdentifierToDropinCheckout; },
 /* harmony export */   "createDropinCheckoutOrder": function() { return /* binding */ createDropinCheckoutOrder; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_json_stringify__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/json/stringify */ "./node_modules/@babel/runtime-corejs3/core-js-stable/json/stringify.js");
@@ -15875,6 +15887,18 @@ function attachAddressToDropinCheckout(address, sessionId, fingerprint, apiKey) 
   return fetch('https://api.digitalriver.com/drop-in/checkout-sessions/' + sessionId, {
     method: 'POST',
     body: _babel_runtime_corejs3_core_js_stable_json_stringify__WEBPACK_IMPORTED_MODULE_0___default()(address),
+    headers: {
+      'Content-Type': 'application/json',
+      accept: 'application/json',
+      Authorization: 'bearer ' + apiKey,
+      fingerprint: fingerprint
+    }
+  });
+}
+function attachTaxIdentifierToDropinCheckout(taxIdentifier, sessionId, fingerprint, apiKey) {
+  return fetch('https://api.digitalriver.com/drop-in/checkout-sessions/' + sessionId, {
+    method: 'POST',
+    body: _babel_runtime_corejs3_core_js_stable_json_stringify__WEBPACK_IMPORTED_MODULE_0___default()(taxIdentifier),
     headers: {
       'Content-Type': 'application/json',
       accept: 'application/json',
@@ -17340,6 +17364,197 @@ function createStorage(apiKey, controller, instanceOptions, configuration) {
   }();
 
   return storage;
+}
+
+/***/ }),
+
+/***/ "./src/client/elementsv2/tax-identifer/tax-identifier-mount.js":
+/*!*********************************************************************!*\
+  !*** ./src/client/elementsv2/tax-identifer/tax-identifier-mount.js ***!
+  \*********************************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "taxIdentifier": function() { return /* binding */ taxIdentifier; }
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_corejs3_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/slicedToArray */ "./node_modules/@babel/runtime-corejs3/helpers/esm/slicedToArray.js");
+/* harmony import */ var _babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/asyncToGenerator */ "./node_modules/@babel/runtime-corejs3/helpers/esm/asyncToGenerator.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_map__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/map */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/map.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_map__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_map__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_entries__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/object/entries */ "./node_modules/@babel/runtime-corejs3/core-js-stable/object/entries.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_entries__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_object_entries__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime-corejs3/regenerator */ "./node_modules/@babel/runtime-corejs3/regenerator/index.js");
+/* harmony import */ var _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../utils */ "./src/client/elementsv2/utils.js");
+/* harmony import */ var _checkout_sessions_api__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../checkout-sessions-api */ "./src/client/elementsv2/checkout-sessions-api.js");
+
+
+
+
+
+
+
+function taxIdentifier(key, configuration, storage, createElement) {
+  var nodeToKeep;
+  var mountedVersion = {
+    instance: undefined,
+    data: {}
+  };
+
+  var callApiAndMount = /*#__PURE__*/function () {
+    var _ref = (0,_babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__.default)( /*#__PURE__*/_babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_4___default().mark(function _callee() {
+      var _storage$checkoutData, _storage$checkoutData2, _storage$checkoutData3, _storage$checkoutData4, _storage$checkoutData5;
+
+      var _storage$checkoutData6, _storage$checkoutData7, customerType, paymentSessionId, instance;
+
+      return _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_4___default().wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              // TODO Send to the client when it is required or not, like the shipping choice
+              if ((_storage$checkoutData = storage.checkoutData) !== null && _storage$checkoutData !== void 0 && (_storage$checkoutData2 = _storage$checkoutData.payment) !== null && _storage$checkoutData2 !== void 0 && _storage$checkoutData2.session.id && (_storage$checkoutData3 = storage.checkoutData) !== null && _storage$checkoutData3 !== void 0 && (_storage$checkoutData4 = _storage$checkoutData3.billTo) !== null && _storage$checkoutData4 !== void 0 && (_storage$checkoutData5 = _storage$checkoutData4.address) !== null && _storage$checkoutData5 !== void 0 && _storage$checkoutData5.country) {
+                /*
+                taxIdentifierComponent =  digitalRiverPayments3.createElement('taxidentifier', {
+                style: styles,
+                classes: {
+                  base: 'cc--base',
+                  focus: 'cc--focus',
+                  invalid: 'cc--invalid',
+                  empty: 'cc--empty',
+                  complete: 'cc--complete',
+                  webkitAutofill: 'cc--webkit-autofill'
+                },
+                taxIdentifier: {
+                  // "sessionId": "78c37d07-c20c-4be3-aac9-4438aaa40f27", // Has selling entityID : "99b8a047-544e-4ccb-8376-04088b241206",
+                  type: getURLParamOrDefault('taxIdentifierType', undefined),
+                  country: getURLParamOrDefault('country', 'IT'),
+                  sellingEntity: getURLParamOrDefault('sellingEntity', 'DR_IRELAND-ENTITY')
+                }
+                });
+                 */
+                customerType = storage.checkoutData.customerType;
+                paymentSessionId = (_storage$checkoutData6 = storage.checkoutData) === null || _storage$checkoutData6 === void 0 ? void 0 : (_storage$checkoutData7 = _storage$checkoutData6.payment) === null || _storage$checkoutData7 === void 0 ? void 0 : _storage$checkoutData7.session.id; // TODO Update if already exists?
+
+                if (!mountedVersion.instance) {
+                  instance = createElement('taxidentifier', {
+                    // TODO Add styles / classes
+                    taxIdentifier: {
+                      sessionId: paymentSessionId,
+                      type: customerType //country: storage.checkoutData?.billTo?.address?.country,
+                      //sellingEntity: storage?.checkoutData?.sellingEntity?.id
+
+                    }
+                  });
+                  instance.on('change', function (event) {
+                    console.log('CHANGE', event);
+
+                    if (event.complete) {
+                      mountedVersion.data[event.identifier.type] = {
+                        value: event.identifier.value,
+                        type: event.identifier.type
+                      };
+                      console.log('Tax identifier data', mountedVersion.data); // TODO Save here or on a next function like address?
+                    } else {
+                      delete mountedVersion.data[event.identifier.type];
+                      console.log('Tax identifier data', mountedVersion.data);
+                    }
+                  });
+                  instance.mount(nodeToKeep.id);
+                  mountedVersion.instance = instance;
+                } else {
+                  /* mountedVersion.instance.update({
+                     taxIdentifier: {
+                       sessionId: paymentSessionId,
+                       type: customerType,
+                     }
+                   });*/
+                }
+              }
+
+            case 1:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }));
+
+    return function callApiAndMount() {
+      return _ref.apply(this, arguments);
+    };
+  }();
+
+  return {
+    mount: function mount(node) {
+      if (typeof node === 'string') {
+        node = document.getElementById(node);
+      }
+
+      if (!(node instanceof HTMLElement)) {
+        throw new Error('mount() requires a valid HTMLElement or id attribute.');
+      }
+
+      nodeToKeep = node;
+      (0,_utils__WEBPACK_IMPORTED_MODULE_5__.waitForRequiredData)(storage).then(function () {
+        callApiAndMount(storage.checkoutData);
+      });
+      storage.subscribers.push(callApiAndMount);
+    },
+    done: function () {
+      var _done = (0,_babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__.default)( /*#__PURE__*/_babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_4___default().mark(function _callee2() {
+        var _context2;
+
+        var taxIdentifier, response;
+        return _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_4___default().wrap(function _callee2$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                console.log('mountedVersion', mountedVersion); // TODO Get the required data from onReady event and return false if required data is not filled out OR rely on API to check that?
+
+                taxIdentifier = {
+                  taxIdentifiers: _babel_runtime_corejs3_core_js_stable_instance_map__WEBPACK_IMPORTED_MODULE_2___default()(_context2 = _babel_runtime_corejs3_core_js_stable_object_entries__WEBPACK_IMPORTED_MODULE_3___default()(mountedVersion.data)).call(_context2, function (_ref2) {
+                    var _ref3 = (0,_babel_runtime_corejs3_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__.default)(_ref2, 2),
+                        key = _ref3[0],
+                        value = _ref3[1];
+
+                    console.log('entry', key, value);
+                    return {
+                      type: value.type,
+                      value: value.value
+                    };
+                  })
+                }; // TODO Attach to API
+
+                _context3.prev = 2;
+                _context3.next = 5;
+                return (0,_checkout_sessions_api__WEBPACK_IMPORTED_MODULE_6__.attachTaxIdentifierToDropinCheckout)(taxIdentifier, configuration.checkoutSessionId, storage.fingerprint, storage.apiKey);
+
+              case 5:
+                response = _context3.sent;
+                return _context3.abrupt("return", true);
+
+              case 9:
+                _context3.prev = 9;
+                _context3.t0 = _context3["catch"](2);
+                return _context3.abrupt("return", false);
+
+              case 12:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee2, null, [[2, 9]]);
+      }));
+
+      function done() {
+        return _done.apply(this, arguments);
+      }
+
+      return done;
+    }()
+  };
 }
 
 /***/ }),
@@ -39062,8 +39277,8 @@ function stringify(arr) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _rng_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./rng.js */ "./node_modules/uuid/dist/esm-browser/rng.js");
-/* harmony import */ var _stringify_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./stringify.js */ "./node_modules/uuid/dist/esm-browser/stringify.js");
+/* harmony import */ var _rng_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./rng.js */ "./node_modules/uuid/dist/esm-browser/rng.js");
+/* harmony import */ var _stringify_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./stringify.js */ "./node_modules/uuid/dist/esm-browser/stringify.js");
 
  // **`v1()` - Generate time-based UUID**
 //
@@ -39088,7 +39303,7 @@ function v1(options, buf, offset) {
   // system entropy.  See #189
 
   if (node == null || clockseq == null) {
-    var seedBytes = options.random || (options.rng || _rng_js__WEBPACK_IMPORTED_MODULE_1__.default)();
+    var seedBytes = options.random || (options.rng || _rng_js__WEBPACK_IMPORTED_MODULE_0__.default)();
 
     if (node == null) {
       // Per 4.5, create and 48-bit node id, (47 random bits + multicast bit = 1)
@@ -39155,7 +39370,7 @@ function v1(options, buf, offset) {
     b[i + n] = node[n];
   }
 
-  return buf || (0,_stringify_js__WEBPACK_IMPORTED_MODULE_0__.default)(b);
+  return buf || (0,_stringify_js__WEBPACK_IMPORTED_MODULE_1__.default)(b);
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (v1);
@@ -39170,11 +39385,11 @@ function v1(options, buf, offset) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _v35_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./v35.js */ "./node_modules/uuid/dist/esm-browser/v35.js");
-/* harmony import */ var _md5_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./md5.js */ "./node_modules/uuid/dist/esm-browser/md5.js");
+/* harmony import */ var _v35_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./v35.js */ "./node_modules/uuid/dist/esm-browser/v35.js");
+/* harmony import */ var _md5_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./md5.js */ "./node_modules/uuid/dist/esm-browser/md5.js");
 
 
-var v3 = (0,_v35_js__WEBPACK_IMPORTED_MODULE_1__.default)('v3', 0x30, _md5_js__WEBPACK_IMPORTED_MODULE_0__.default);
+var v3 = (0,_v35_js__WEBPACK_IMPORTED_MODULE_0__.default)('v3', 0x30, _md5_js__WEBPACK_IMPORTED_MODULE_1__.default);
 /* harmony default export */ __webpack_exports__["default"] = (v3);
 
 /***/ }),
@@ -39306,11 +39521,11 @@ function v4(options, buf, offset) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _v35_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./v35.js */ "./node_modules/uuid/dist/esm-browser/v35.js");
-/* harmony import */ var _sha1_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./sha1.js */ "./node_modules/uuid/dist/esm-browser/sha1.js");
+/* harmony import */ var _v35_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./v35.js */ "./node_modules/uuid/dist/esm-browser/v35.js");
+/* harmony import */ var _sha1_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./sha1.js */ "./node_modules/uuid/dist/esm-browser/sha1.js");
 
 
-var v5 = (0,_v35_js__WEBPACK_IMPORTED_MODULE_1__.default)('v5', 0x50, _sha1_js__WEBPACK_IMPORTED_MODULE_0__.default);
+var v5 = (0,_v35_js__WEBPACK_IMPORTED_MODULE_0__.default)('v5', 0x50, _sha1_js__WEBPACK_IMPORTED_MODULE_1__.default);
 /* harmony default export */ __webpack_exports__["default"] = (v5);
 
 /***/ }),
