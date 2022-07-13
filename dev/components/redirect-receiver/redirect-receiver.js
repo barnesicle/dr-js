@@ -6091,9 +6091,7 @@ if (sessionAuthenticationIdFromQueryString) {
   // Note Setting to unknown is required because if it is already set, setting to the same value will not fire the storage event.
   window.localStorage.setItem(_controller_controller_storage_events__WEBPACK_IMPORTED_MODULE_2__.REDIRECT_STORAGE_SESSION_AUTHENTICATION_ID, 'unknown');
   window.localStorage.setItem(_controller_controller_storage_events__WEBPACK_IMPORTED_MODULE_2__.REDIRECT_STORAGE_SESSION_AUTHENTICATION_ID, sessionAuthenticationIdFromQueryString + '_' + controllerIdFromQueryString);
-}
-
-window.close();
+} //window.close();
 }();
 var __webpack_export_target__ = self;
 for(var i in __webpack_exports__) __webpack_export_target__[i] = __webpack_exports__[i];
