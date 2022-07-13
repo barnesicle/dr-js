@@ -14728,7 +14728,8 @@ function createSource(controllerId, type, data) {
   }, {
     timeout: 10000
   }).then(function (response) {
-    // This is a Post Robot Response object so you have to get the data out
+    console.log('createSourceFromRequest RESPONSE', response); // This is a Post Robot Response object so you have to get the data out
+
     return response.data;
   }).catch(function (error) {
     throw new Error(error);
@@ -41613,8 +41614,7 @@ function handleDropInRedirect(event) {
   console.log('handleDropInRedirect', redirectWindow, isSecurityModeEnabled(redirectWindow));
 
   if (!isSecurityModeEnabled(redirectWindow)) {
-    components['controller'].redirectWindowData = {};
-    (0,_client_dropin_window_data__WEBPACK_IMPORTED_MODULE_28__.setRedirectWindowData)(components['controller'].redirectWindowData, redirectWindow, sendCancelEvent, paymentMethodType, resolve);
+    components['controller'].redirectWindowData = {}; //setRedirectWindowData(components['controller'].redirectWindowData, redirectWindow, sendCancelEvent, paymentMethodType, resolve);
   } else {
     console.log('SENDING CANCEL EVENT');
     sendCancelEvent(paymentMethodType, resolve);

@@ -13780,7 +13780,8 @@ function createSource(controllerId, type, data) {
   }, {
     timeout: 10000
   }).then(function (response) {
-    // This is a Post Robot Response object so you have to get the data out
+    console.log('createSourceFromRequest RESPONSE', response); // This is a Post Robot Response object so you have to get the data out
+
     return response.data;
   }).catch(function (error) {
     throw new Error(error);
