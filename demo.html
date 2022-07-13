@@ -838,7 +838,7 @@
     return new Promise(function(resolve) {
       setTimeout(function() {
         resolve();
-      }, 1000);
+      }, 3000);
     });
   }
 
@@ -1994,14 +1994,23 @@
     let entity = $('#bEntity').val();
     let locale = $('#locale').val();
     let result = digitalRiverPayments.Compliance.getDetails(typeof entityInfo === 'object' ? entityInfo : entity, locale);
-    if(typeof result.disclosure.resellerDisclosure !== 'undefined') {
+    if(result.disclosure.resellerDisclosure?.localizedText) {
       $('#complianceMethod').append('<div>'+result.disclosure.resellerDisclosure.localizedText+'</div>');
     }
-    $('#complianceMethod').append('<a class="complianceLink" target="_blank" type="button" class="btn btn-info" href='+ result.disclosure.legalNotice.url +'>'+ result.disclosure.legalNotice.localizedText +'</a>');
-    $('#complianceMethod').append('<a class="complianceLink" target="_blank" type="button" class="btn btn-info" href='+ result.disclosure.cookiePolicy.url +'>'+ result.disclosure.cookiePolicy.localizedText +'</a>');
     $('#complianceMethod').append('<a class="complianceLink" target="_blank" type="button" class="btn btn-info" href='+ result.disclosure.privacyPolicy.url +'>'+ result.disclosure.privacyPolicy.localizedText +'</a>');
     $('#complianceMethod').append('<a class="complianceLink" target="_blank" type="button" class="btn btn-info" href='+ result.disclosure.termsOfSale.url +'>'+ result.disclosure.termsOfSale.localizedText +'</a>');
-    $('#complianceMethod').append('<a class="complianceLink complianceCancellationLink" target="_blank" type="button" class="btn btn-info" href='+ result.disclosure.cancellationRights.url +'>'+ result.disclosure.cancellationRights.localizedText +'</a>');
+    if(result.disclosure.californiaPrivacyRights?.url && result.disclosure.californiaPrivacyRights?.localizedText) {
+      $('#complianceMethod').append('<a class="complianceLink" target="_blank" type="button" class="btn btn-info" href='+ result.disclosure.californiaPrivacyRights.url +'>'+ result.disclosure.californiaPrivacyRights.localizedText +'</a>');
+    }
+    $('#complianceMethod').append('<a class="complianceLink" target="_blank" type="button" class="btn btn-info" href='+ result.disclosure.cookiePolicy.url +'>'+ result.disclosure.cookiePolicy.localizedText +'</a>');
+    $('#complianceMethod').append('<a class="complianceLink" target="_blank" type="button" class="btn btn-info" href='+ result.disclosure.legalNotice.url +'>'+ result.disclosure.legalNotice.localizedText +'</a>');
+    if(result.disclosure.cancellationRights?.url && result.disclosure.cancellationRights?.localizedText) {
+      $('#complianceMethod').append('<a class="complianceLink" target="_blank" type="button" class="btn btn-info" href='+ result.disclosure.cancellationRights.url +'>'+ result.disclosure.cancellationRights.localizedText +'</a>');
+    }
+    if(result.disclosure.warrantyInformation?.url && result.disclosure.warrantyInformation?.localizedText) {
+      $('#complianceMethod').append('<a class="complianceLink" target="_blank" type="button" class="btn btn-info" href='+ result.disclosure.warrantyInformation.url +'>'+ result.disclosure.warrantyInformation.localizedText +'</a>');
+    }
+
     if(typeof entityInfo === 'object') {
       console.log('Called complianceData() with argument of ', entityInfo);
       console.log('Result is ', result);

@@ -1,0 +1,498 @@
+[
+  {
+    "countryName": "Argentina",
+    "countryShortCode": "AR"
+  },
+  {
+    "countryName": "Australia",
+    "countryShortCode": "AU"
+  },
+  {
+    "countryName": "Austria",
+    "countryShortCode": "AT"
+  },
+  {
+    "countryName": "Belgium",
+    "countryShortCode": "BE"
+  },
+  {
+    "countryName": "Brazil",
+    "countryShortCode": "BR"
+  },
+  {
+    "countryName": "Canada",
+    "countryShortCode": "CA",
+    "regions": [
+      {
+        "name": "Alberta",
+        "shortCode": "AB"
+      },
+      {
+        "name": "British Columbia",
+        "shortCode": "BC"
+      },
+      {
+        "name": "Manitoba",
+        "shortCode": "MB"
+      },
+      {
+        "name": "New Brunswick",
+        "shortCode": "NB"
+      },
+      {
+        "name": "Newfoundland and Labrador",
+        "shortCode": "NL"
+      },
+      {
+        "name": "Northwest Territories",
+        "shortCode": "NT"
+      },
+      {
+        "name": "Nova Scotia",
+        "shortCode": "NS"
+      },
+      {
+        "name": "Nunavut",
+        "shortCode": "NU"
+      },
+      {
+        "name": "Ontario",
+        "shortCode": "ON"
+      },
+      {
+        "name": "Prince Edward Island",
+        "shortCode": "PE"
+      },
+      {
+        "name": "Quebec",
+        "shortCode": "QC"
+      },
+      {
+        "name": "Saskatchewan",
+        "shortCode": "SK"
+      },
+      {
+        "name": "Yukon",
+        "shortCode": "YT"
+      }
+    ]
+  },
+  {
+    "countryName": "Chile",
+    "countryShortCode": "CL"
+  },
+  {
+    "countryName": "China",
+    "countryShortCode": "CN"
+  },
+  {
+    "countryName": "Colombia",
+    "countryShortCode": "CO"
+  },
+  {
+    "countryName": "Czech Republic",
+    "countryShortCode": "CZ"
+  },
+  {
+    "countryName": "Denmark",
+    "countryShortCode": "DK"
+  },
+  {
+    "countryName": "Ecuador",
+    "countryShortCode": "EC"
+  },
+  {
+    "countryName": "Egypt",
+    "countryShortCode": "EG"
+  },
+  {
+    "countryName": "Finland",
+    "countryShortCode": "FI"
+  },
+  {
+    "countryName": "France",
+    "countryShortCode": "FR"
+  },
+  {
+    "countryName": "Germany",
+    "countryShortCode": "DE"
+  },
+  {
+    "countryName": "Great Britain",
+    "countryShortCode": "GB"
+  },
+  {
+    "countryName": "Greece",
+    "countryShortCode": "GR"
+  },
+  {
+    "countryName": "Hong Kong",
+    "countryShortCode": "HK"
+  },
+  {
+    "countryName": "Hungary",
+    "countryShortCode": "HU"
+  },
+  {
+    "countryName": "Ireland",
+    "countryShortCode": "IE"
+  },
+  {
+    "countryName": "Israel",
+    "countryShortCode": "IL"
+  },
+  {
+    "countryName": "Italy",
+    "countryShortCode": "IT"
+  },
+  {
+    "countryName": "Japan",
+    "countryShortCode": "JP"
+  },
+  {
+    "countryName": "Malaysia",
+    "countryShortCode": "MY"
+  },
+  {
+    "countryName": "Mexico",
+    "countryShortCode": "MX"
+  },
+  {
+    "countryName": "Netherlands",
+    "countryShortCode": "NL"
+  },
+  {
+    "countryName": "New Zealand",
+    "countryShortCode": "NZ"
+  },
+  {
+    "countryName": "Norway",
+    "countryShortCode": "NO"
+  },
+  {
+    "countryName": "Peru",
+    "countryShortCode": "PE"
+  },
+  {
+    "countryName": "Poland",
+    "countryShortCode": "PL"
+  },
+  {
+    "countryName": "Portugal",
+    "countryShortCode": "PT"
+  },
+  {
+    "countryName": "Puerto Rico",
+    "countryShortCode": "PR"
+  },
+  {
+    "countryName": "Russia",
+    "countryShortCode": "RU"
+  },
+  {
+    "countryName": "Saudi Arabia",
+    "countryShortCode": "SA"
+  },
+  {
+    "countryName": "Singapore",
+    "countryShortCode": "SG"
+  },
+  {
+    "countryName": "Slovak Republic",
+    "countryShortCode": "SK"
+  },
+  {
+    "countryName": "South Africa",
+    "countryShortCode": "ZA"
+  },
+  {
+    "countryName": "South Korea",
+    "countryShortCode": "KP"
+  },
+  {
+    "countryName": "Spain",
+    "countryShortCode": "ES"
+  },
+  {
+    "countryName": "Sweden",
+    "countryShortCode": "SE"
+  },
+  {
+    "countryName": "Switzerland",
+    "countryShortCode": "CH"
+  },
+  {
+    "countryName": "Taiwan",
+    "countryShortCode": "TW"
+  },
+  {
+    "countryName": "Thailand",
+    "countryShortCode": "TH"
+  },
+  {
+    "countryName": "Turkey",
+    "countryShortCode": "TR"
+  },
+  {
+    "countryName": "United Arab Emirates",
+    "countryShortCode": "AE"
+  },
+  {
+    "countryName": "United States",
+    "countryShortCode": "US",
+    "regions": [
+      {
+        "name": "Alabama",
+        "shortCode": "AL"
+      },
+      {
+        "name": "Alaska",
+        "shortCode": "AK"
+      },
+      {
+        "name": "American Samoa",
+        "shortCode": "AS"
+      },
+      {
+        "name": "Arizona",
+        "shortCode": "AZ"
+      },
+      {
+        "name": "Arkansas",
+        "shortCode": "AR"
+      },
+      {
+        "name": "California",
+        "shortCode": "CA"
+      },
+      {
+        "name": "Colorado",
+        "shortCode": "CO"
+      },
+      {
+        "name": "Connecticut",
+        "shortCode": "CT"
+      },
+      {
+        "name": "Delaware",
+        "shortCode": "DE"
+      },
+      {
+        "name": "District Of Columbia",
+        "shortCode": "DC"
+      },
+      {
+        "name": "Federated States of Micronesia",
+        "shortCode": "FM"
+      },
+      {
+        "name": "Florida",
+        "shortCode": "FL"
+      },
+      {
+        "name": "Georgia",
+        "shortCode": "GA"
+      },
+      {
+        "name": "Guam",
+        "shortCode": "GU"
+      },
+      {
+        "name": "Hawaii",
+        "shortCode": "HI"
+      },
+      {
+        "name": "Idaho",
+        "shortCode": "ID"
+      },
+      {
+        "name": "Illinois",
+        "shortCode": "IL"
+      },
+      {
+        "name": "Indiana",
+        "shortCode": "IN"
+      },
+      {
+        "name": "Iowa",
+        "shortCode": "IA"
+      },
+      {
+        "name": "Kansas",
+        "shortCode": "KS"
+      },
+      {
+        "name": "Kentucky",
+        "shortCode": "KY"
+      },
+      {
+        "name": "Louisiana",
+        "shortCode": "LA"
+      },
+      {
+        "name": "Maine",
+        "shortCode": "ME"
+      },
+      {
+        "name": "Marshall Islands",
+        "shortCode": "MH"
+      },
+      {
+        "name": "Maryland",
+        "shortCode": "MD"
+      },
+      {
+        "name": "Massachusetts",
+        "shortCode": "MA"
+      },
+      {
+        "name": "Michigan",
+        "shortCode": "MI"
+      },
+      {
+        "name": "Minnesota",
+        "shortCode": "MN"
+      },
+      {
+        "name": "Mississippi",
+        "shortCode": "MS"
+      },
+      {
+        "name": "Missouri",
+        "shortCode": "MO"
+      },
+      {
+        "name": "Montana",
+        "shortCode": "MT"
+      },
+      {
+        "name": "Nebraska",
+        "shortCode": "NE"
+      },
+      {
+        "name": "Nevada",
+        "shortCode": "NV"
+      },
+      {
+        "name": "New Hampshire",
+        "shortCode": "NH"
+      },
+      {
+        "name": "New Jersey",
+        "shortCode": "NJ"
+      },
+      {
+        "name": "New Mexico",
+        "shortCode": "NM"
+      },
+      {
+        "name": "New York",
+        "shortCode": "NY"
+      },
+      {
+        "name": "North Carolina",
+        "shortCode": "NC"
+      },
+      {
+        "name": "North Dakota",
+        "shortCode": "ND"
+      },
+      {
+        "name": "Northern Mariana Islands",
+        "shortCode": "MP"
+      },
+      {
+        "name": "Ohio",
+        "shortCode": "OH"
+      },
+      {
+        "name": "Oklahoma",
+        "shortCode": "OK"
+      },
+      {
+        "name": "Oregon",
+        "shortCode": "OR"
+      },
+      {
+        "name": "Palau",
+        "shortCode": "PW"
+      },
+      {
+        "name": "Pennsylvania",
+        "shortCode": "PA"
+      },
+      {
+        "name": "Puerto Rico",
+        "shortCode": "PR"
+      },
+      {
+        "name": "Rhode Island",
+        "shortCode": "RI"
+      },
+      {
+        "name": "South Carolina",
+        "shortCode": "SC"
+      },
+      {
+        "name": "South Dakota",
+        "shortCode": "SD"
+      },
+      {
+        "name": "Tennessee",
+        "shortCode": "TN"
+      },
+      {
+        "name": "Texas",
+        "shortCode": "TX"
+      },
+      {
+        "name": "Utah",
+        "shortCode": "UT"
+      },
+      {
+        "name": "Vermont",
+        "shortCode": "VT"
+      },
+      {
+        "name": "Virgin Islands",
+        "shortCode": "VI"
+      },
+      {
+        "name": "Virginia",
+        "shortCode": "VA"
+      },
+      {
+        "name": "Washington",
+        "shortCode": "WA"
+      },
+      {
+        "name": "West Virginia",
+        "shortCode": "WV"
+      },
+      {
+        "name": "Wisconsin",
+        "shortCode": "WI"
+      },
+      {
+        "name": "Wyoming",
+        "shortCode": "WY"
+      },
+      {
+        "name": "Armed Forces America",
+        "shortCode": "AA"
+      },
+      {
+        "name": "Armed Forces Europe",
+        "shortCode": "AE"
+      },
+      {
+        "name": "Armed Forces Pacific",
+        "shortCode": "AP"
+      }
+    ]
+  },
+  {
+    "countryName": "Venezuela",
+    "countryShortCode": "VE"
+  }
+]

@@ -1,0 +1,921 @@
+<!-- This html file is used as the template for how a client uses DigitalRiverPayments -->
+<!-- DigitalRiver JS is injected into head by webpack<head>-->
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8"/>
+  <title>Example Dropin Page</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <script src="//cdn.polyfill.io/v3/polyfill.js?ver=5.1.1" type="text/javascript"></script>
+  <script src="//unpkg.com/axios/dist/axios.min.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+        integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="css/DigitalRiver.css" type="text/css"/>
+  <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+  <style>
+    table {
+      margin: 20px;
+      border-collapse: unset;
+      border-spacing: 0;
+    }
+    td, th {
+      padding: .5em;
+      border: 1px solid deepskyblue;
+    }
+    .xsmall {
+      font-size: 60%;
+      margin: 0 20px;
+    }
+
+    #response {
+      border: 1px solid deepskyblue;
+      margin: 20px;
+      padding: 20px;
+      height: 80%;
+      overflow: auto;
+      overflow-wrap: break-word;
+    }
+
+    .ccIcons {
+      color: #ddd;
+      font-size: 2.3em;
+      margin: -.5rem 0 .2rem 3px;
+    }
+
+    .ccIcons .active {
+      color: #007bff;
+    }
+
+    #ccError, #expError, #cvvError {
+      margin: -.5rem 0 .2rem 3px;
+    }
+
+    .DRElement {
+      border:1px solid #ced4da;
+      margin:0 0.2rem;
+      border-radius:.25rem;
+      overflow:hidden;
+    }
+
+    #apple-pay.DRElement,
+    #google-pay.DRElement {
+      border: none;
+    }
+
+    .custom--base, .myCustomBase2, .cc--base {
+      border:1px solid #ced4da;
+      margin:0 0.2rem;
+      border-radius:.25rem;
+      overflow:hidden;
+    }
+
+    .DRElement--focus {
+      border-color: #80bdff;
+      outline: 0;
+      box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+    }
+
+    .custom--focus, .cc--focus {
+      border-color: #80bdff;
+      background-color: rgba(128, 189, 255, 0.5);
+      outline: 0;
+      box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+    }
+
+    .DRElement--invalid {
+      border-color: #dc3545;
+      outline: 0;
+      box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.31);
+    }
+
+    .custom--invalid, .cc--invalid {
+      border-color: #dc3545;
+      background-color: rgba(220, 53, 69, 0.5);
+      outline: 0;
+      box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.31);
+    }
+
+    .DRElement--complete, .cc--complete {
+      border-color: #28a745;
+      outline: 0;
+      box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.31);
+    }
+
+    .custom--complete {
+      border-color: #28a745;
+      background-color: rgba(40, 167, 69, 0.51);
+      outline: 0;
+      box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.31);
+    }
+
+    .DRElement--empty {
+      outline: 0;
+    }
+
+    .custom--empty, .cc--empty {
+      outline: 0;
+    }
+
+    .DRElement--webkit-autofill {
+      border-color: #4e20db;
+      outline: 0;
+      box-shadow: 0 0 0 0.2rem rgba(78, 32, 219, 0.31);
+    }
+
+    .custom--webkit-autofill {
+      border-color: #4e20db;
+      background-color: rgba(78, 32, 219, 0.5);
+      outline: 0;
+      box-shadow: 0 0 0 0.2rem rgba(78, 32, 219, 0.31);
+    }
+    #apple-pay {
+      height: 42px;
+    }
+    #ibp {
+      position:absolute;
+      width: calc(100% - 32px);
+      z-index:100;
+      background-color: #fff;
+    }
+    .footer {
+      color: white;
+      background-color: black;
+      height: 80px;
+      margin-top: 80px;
+      margin-bottom: 0;
+    }
+
+    .complianceLink {
+      width: auto;
+      padding: 2px;
+      text-align: center;
+      margin-right: 15px;
+      line-height: 30px;
+      height: 30px;
+    }
+
+    .complianceCancellationLink {
+      width: 160px;
+    }
+
+  </style>
+<script defer src="dropInStyles.js"></script><script defer src="https://js-test.digitalriver.com/v1/DigitalRiver.js"></script><link href="https://js-test.digitalriver.com/v1/css/DigitalRiver.css" rel="stylesheet"></head>
+
+<body class="bg-light" style="padding-top:50px;">
+<div class="row">
+  <div class="col-md-4 col-sm-6">
+    <div class="container">
+      <div class="py-5 text-center">
+        <h2>Drop-in</h2>
+
+
+        <button  id="refresh-dropin" class="btn btn-link" onclick="refreshDropin(event)">
+          Refresh Dropin
+        </button>
+        <span style="color:red" id="message"></span>
+        <p class="lead"></p>
+      </div>
+      <div class="row">
+        <div class="col-md-12 order-md-1">
+          <div id="accordion">
+            <div class="card">
+              <div class="card-header" id="headingOne">
+                <h5 class="mb-0">
+                  <button  id="addressLink" class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
+                          aria-controls="collapseOne">
+                    Address Information
+                  </button>
+                  <div class="xsmall" id="addressInfo"></div>
+                </h5>
+              </div>
+
+              <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                <div class="card-body">
+                  <form class="needs-validation" novalidate="" id="address-form">
+                    <div class="row">
+                      <div class="col-md-6 mb-3">
+                        <label for="firstName">First name</label>
+                        <input type="text" class="form-control" id="firstName" placeholder="" value="" required="">
+                        <div class="invalid-feedback">
+                          Valid first name is required.
+                        </div>
+                      </div>
+                      <div class="col-md-6 mb-3">
+                        <label for="lastName">Last name</label>
+                        <input type="text" class="form-control" id="lastName" placeholder="" value="" required="">
+                        <div class="invalid-feedback">
+                          Valid last name is required.
+                        </div>
+                      </div>
+                    </div>
+                    <div class="mb-3">
+                      <label for="email">Email Address</label>
+                      <input type="text" class="form-control" id="email" placeholder="example@example.com" required="">
+                      <div class="invalid-feedback">
+                        Please enter your email address.
+                      </div>
+                    </div>
+                    <div class="mb-3">
+                      <label for="email">Phone Number</label>
+                      <input type="tel" class="form-control" id="phone" placeholder="9522253226" required="">
+                      <div class="invalid-feedback">
+                        Please enter your email address.
+                      </div>
+                    </div>
+                    <div class="mb-3">
+                      <label for="address">Address</label>
+                      <input type="text" class="form-control" id="address" placeholder="1234 Main St" required="">
+                      <div class="invalid-feedback">
+                        Please enter your shipping address.
+                      </div>
+                    </div>
+                    <div class="mb-3">
+                      <label for="address2">Address 2 <span class="text-muted">(Optional)</span></label>
+                      <input type="text" class="form-control" id="address2" placeholder="Apartment or suite">
+                    </div>
+                    <div class="mb-3">
+                      <label for="country">Country (ISO code)</label>
+                      <input type="text" class="form-control" id="country" placeholder="" required="" maxlength="2"/>
+                      <div class="invalid-feedback">
+                        Please select a valid country.
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-4 mb-3">
+                        <label for="city">City</label>
+                        <input type="text" class="form-control" id="city" placeholder="" required="">
+                        <div class="invalid-feedback">
+                          City is required.
+                        </div>
+                      </div>
+                      <div class="col-md-4 mb-3">
+                        <label for="state">State</label>
+                        <input type="text" class="form-control" id="state" placeholder="" required=""/>
+                        <div class="invalid-feedback">
+                          Please provide a valid state.
+                        </div>
+                      </div>
+                      <div class="col-md-3 mb-3">
+                        <label for="zip">Zip</label>
+                        <input type="text" class="form-control" id="zip" placeholder="" required="">
+                        <div class="invalid-feedback">
+                          Zip code required.
+                        </div>
+                      </div>
+                    </div>
+                    <hr class="mb-4">
+                    <div class="custom-control custom-checkbox">
+                      <input type="checkbox" class="custom-control-input" id="same-address" checked="">
+                      <label class="custom-control-label" for="same-address">Shipping address is the same as my billing
+                        address</label>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                      <input type="checkbox" class="custom-control-input" id="save-info">
+                      <label class="custom-control-label" for="save-info">Save this information for next time</label>
+                    </div>
+                    <hr class="mb-4">
+                    <input type="hidden" id="phoneNumber">
+                    <button class="btn btn-primary btn-lg btn-block" onclick="addAddress(event)" type="submit">Add Address
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <br />
+            <div id="dropin-loading">Loading...</div>
+            <div id="dropin">
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-8 col-sm-6 console">
+    <h3>Url params for testing</h3>
+
+    <table>
+      <tr>
+        <th>param</th>
+        <th>description</th>
+        <th>default</th>
+      </tr>
+      <tr>
+        <td>apiKey</td>
+        <td>apiKey will determine site id & which env of the APIs are used - please use your site's apiKey for the env you want</td>
+        <td>defaults to the sys key for site id paylive</td>
+      </tr>
+      <tr>
+        <td>locale</td>
+        <td>used for localization</td>
+        <td>en-US</td>
+      </tr>
+      <tr>
+        <td>sessionId</td>
+        <td>payment sessionId</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>useEnteredBillingAddress</td>
+        <td>applies form billing address</td>
+        <td>false</td>
+      </tr>
+      <tr>
+        <td>flow</td>
+        <td>'checkout' or 'managePaymentMethods'</td>
+        <td>'checkout'</td>
+      </tr>
+      <tr>
+        <td>showSavePaymentAgreement</td>
+        <td>adds save payment checkbox</td>
+        <td>false</td>
+      </tr>
+      <tr>
+        <td>showComplianceSection</td>
+        <td>shows legal footer</td>
+        <td>true</td>
+      </tr>
+      <tr>
+        <td>showTermsOfSaleDisclosure</td>
+        <td>adds terms of sale</td>
+        <td>false</td>
+      </tr>
+    </table>
+    <pre id="response"></pre>
+  </div>
+</div>
+<div class="footer">
+
+</div>
+<!--<script src="https://www.paypalobjects.com/api/checkout.js"></script>-->
+<script type="text/javascript">
+  let digitalRiverPayments;
+  let dropinInstance;
+  let owner = {};
+  let response = document.getElementById('response');
+
+  let ccNumComplete = false;
+  let ccExpirationComplete = false;
+  let ccCVVComplete = false;
+
+
+  let styles = {
+    base: {
+      color: '#495057',
+      padding: '2px 0 0 6px',
+      height: '35px',
+      fontSize: '1rem',
+      fontFamily: 'apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif',
+      // fontWeight: 'lighter',
+      ':hover': {
+        color: '#137bee',
+      },
+      '::placeholder': {
+        color: '#999'
+      },
+      ':-webkit-autofill': {
+        color: 'purple'
+      },
+      ':focus': {
+        color: 'blue'
+      }
+    },
+    invalid: {
+      color: '#dc3545',
+      ':-webkit-autofill': {
+        color: '#dc3545'
+      }
+    },
+    complete: {
+      color: '#28a745',
+      ':hover': {
+        color:'#28a745',
+      },
+      ':-webkit-autofill': {
+        color: '#28a745'
+      }
+    },
+    empty: {
+      color: '#000000'
+      /*color: '#db4518',
+      ':hover': {
+        color: '#db4518'
+      },
+      '::placeholder': {
+        color: '#db4518'
+      }*/
+    },
+
+  };
+
+  let sessionClientSecret = ''; // Gets set from API and passed into create source for 3DS
+
+  function mockFetch() {
+    return new Promise(function(resolve) {
+      setTimeout(function() {
+        resolve();
+      }, 1000);
+    });
+  }
+
+  function getURLParamOrDefault(name, defaultValue) {
+    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+    if (results == null){
+      return defaultValue;
+    }
+    else {
+      return decodeURI(results[1]) || 0;
+    }
+  }
+
+  function getUseEnteredBillingAddressParam() {
+    return getURLParamOrDefault('useEnteredBillingAddress','false');
+  }
+
+  function initializeDropin() {
+    const sessionId = getURLParamOrDefault('sessionId', 'c09e1774-4f6d-47da-8617-ba42a87dd5e8');
+
+    const billingAddressCountry = getURLParamOrDefault('billingAddressCountry', "US");
+
+    const billingAddress = getUseEnteredBillingAddressParam() === 'true' ? owner : {
+      firstName: "Fred",
+      lastName: "Flintstone",
+      email: "test@digitalriver.com",
+      phoneNumber: "000-000-0000",
+      address: {
+        line1: "10380 Bren Road West",
+        line2: "Ichikawa-shi",
+        city: "Minnetonka",
+        state: "MN",
+        postalCode: "55346",
+        country: billingAddressCountry
+      }
+    };
+
+    const consents = {
+      companyName: 'Cool Company',
+      eula: {
+        url: 'https://myecommercesite.com/eula'
+      },
+      termsOfUse: {
+        url: 'https://myecommercesite.com/termsOfUse'
+      }
+    }
+
+    const storedPaymentMethods = [
+      {
+        id: "1",
+        type: "creditCard",
+        brand: "americanExpress",
+        lastFour: "1111"
+      },
+      {
+        id: "2",
+        type: "creditCard",
+        brand: "visa",
+        lastFour: "4444"
+      },
+      {
+        id: "3",
+        type: "creditCard",
+        brand: "MasterCard",
+        lastFour: "4444"
+      },
+      {
+        id: '12',
+        type: 'storeCredit',
+        amount: 50,
+        displayName: 'Target'
+      },
+      {
+        id: '123',
+        type: 'storeCredit',
+        amount: 100,
+        displayName: 'Target'
+      }
+    ]
+
+    const flow = getURLParamOrDefault('flow', ''); // managePaymentMethods
+    const showSavePaymentAgreement = getURLParamOrDefault('showSavePaymentAgreement', 'false'); // managePaymentMethods
+    const showComplianceSection = getURLParamOrDefault('showComplianceSection', 'true');
+    const showTermsOfSaleDisclosure = getURLParamOrDefault('showTermsOfSaleDisclosure', 'false');
+    const recurringModel = getURLParamOrDefault('recurringModel', undefined);
+    const usage = getURLParamOrDefault('usage', undefined);
+    const disableAutomaticRedirects = getURLParamOrDefault('disableAutomaticRedirects', 'false');
+    const returnUrl = getURLParamOrDefault('returnUrl', undefined);
+    const cancelUrl = getURLParamOrDefault('cancelUrl', undefined);
+    const useBillingAddress = getURLParamOrDefault('useBillingAddress', 'true');
+    const expandFirstPaymentMethod = getURLParamOrDefault('expandFirstPaymentMethod', 'true') === 'true';
+    const showConsents = getURLParamOrDefault('showConsents', 'false');
+    const showStoredPaymentMethods = getURLParamOrDefault('showStoredPaymentMethods', 'false');
+
+    console.log('Session ID', sessionId);
+    console.log('Flow', flow);
+    console.log('showSavePaymentAgreement', showSavePaymentAgreement);
+    console.log('showComplianceSection', showComplianceSection);
+    console.log('recurringModel', recurringModel);
+    console.log('showTermsOfSaleDisclosure', showTermsOfSaleDisclosure);
+    console.log('disableAutomaticRedirects', disableAutomaticRedirects);
+    console.log('billingAddressCountry', billingAddressCountry);
+    console.log('returnUrl', returnUrl);
+    console.log('cancelUrl', cancelUrl);
+    console.log('showConsents', showConsents);
+    console.log('showStoredPaymentMethods', showStoredPaymentMethods);
+
+    const configuration = {
+      sessionId: sessionId,
+      billingAddress: useBillingAddress === 'true' ? billingAddress : undefined,
+      options: {
+        flow: flow,
+        recurringModel: recurringModel,
+        showSavePaymentAgreement: showSavePaymentAgreement === 'true',
+        showComplianceSection: showComplianceSection === 'true',
+        usage: usage,
+        showTermsOfSaleDisclosure: showTermsOfSaleDisclosure === 'true',
+        redirect: {
+          returnUrl: returnUrl,
+          cancelUrl: cancelUrl,
+          disableAutomaticRedirects: disableAutomaticRedirects === 'true',
+        },
+        button: {
+          type: 'payNow',
+          //type: 'custom',
+          //buttonText: 'Pay Right Now!'
+        },
+      },
+      paymentMethodConfiguration: {
+        //enabledPaymentMethods: ['googlePay', 'creditCard'],
+        //disabledPaymentMethods: ['creditCard'],
+        style: styles,
+        msts: {
+          enrollmentUrl: 'http://testme.com'
+        },
+        creditCard: {
+          // cardNumberPlaceholderText: "Credit Card Number",
+          // cardExpirationPlaceholderText: "MM/YY",
+          // cardCvvPlaceholderText: "CVV",
+          //style: styles,
+          mask: true
+        },
+        googlePay: {
+          style: {
+            buttonType: 'plain',
+            buttonColor: 'dark',
+            buttonLanguage: 'en'
+          }
+        },
+        applePay: {
+          style: {
+            buttonType: 'plain',
+            buttonColor: 'dark',
+            buttonLanguage: 'en'
+          }
+        },
+        konbini: {
+          //style: styles,
+        },
+        payPal: {
+          style: {
+            label: 'checkout',
+            size: 'responsive',
+            color: 'gold',
+            shape: 'pill',
+            layout: 'horizontal',
+            fundingicons: 'false',
+            tagline: 'false'
+          },
+        },
+      },
+      onSuccess: function (data) {
+        console.log('onSuccess - Returned data to client', data);
+        responseLog('onSuccess ' + JSON.stringify(data, null, '\t'))
+      },
+      onError: function (data) {
+        console.log('onError - Returned data to client', data);
+        responseLog('onError ' + JSON.stringify(data, null, '\t'))
+      },
+      onCancel: function (data) {
+        console.log('onCancel', data);
+        responseLog('onCancel ' + JSON.stringify(data, null, '\t'))
+      },
+      onReady: function (data) {
+        responseLog('onReady - Dropin ' + JSON.stringify(data, null, '\t'));
+        document.getElementById('dropin-loading').innerText = '';
+      },
+      onUpdateRequired: function (original) {
+        console.log('onUpdateRequired', original)
+        responseLog('onUpdateRequired - Dropin ' + JSON.stringify(original, null, '\t'));
+        const data = Object.assign({}, original);
+        // Would do an PAI call or something here.
+        const pm = data.storedPaymentMethods.find( spm => spm.id === data.selectedPaymentMethod.id)
+        pm.added = data.selectedPaymentMethod.action === 'add';
+
+        // Uncomment to create a source and attach to Local server.
+        /*if (data.selectedPaymentMethod.action === 'add') {
+
+          fetch('/payments/clients/gc/channels/paylive/sources', {
+            method: 'POST',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              "amount": original.selectedPaymentMethod.amount,
+              "currency": "USD",
+              "type": "customerCredit",
+              "upstreamId": "purchase_order_1602861339339",
+              "customerCredit": {}
+            })
+          }).then(response=>response.json()).then(async (source) => {
+
+            console.log('source created', source)
+
+            return fetch('/payments/clients/gc/channels/paylive/sessions/' + sessionId + '/sources', {
+              method: 'POST',
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                "sourceId": source.id
+              })
+            }).then((session) => {
+
+              console.log('Session updated', session.id)
+
+              original.updateWith([
+                {
+                  "type": "storeCredit", // New
+                  "displayName": "Target Gift Card",
+                  "lastFour": "1234",
+                  "amount": 30,
+                  "id": "your_identifier-new1"
+                },
+                {
+                  "type": "storeCredit", // New
+                  "displayName": "Target Gift Card",
+                  "lastFour": "12345",
+                  "amount": 50,
+                  "id": "your_identifier-new2"
+                }
+              ])
+            })
+
+          });
+
+        }*/
+
+      }
+
+    };
+
+    if(!expandFirstPaymentMethod) {
+      configuration.options.expandFirstPaymentMethod = false;
+    }
+
+    if(showConsents === 'true') {
+      configuration.options.consents = consents;
+    }
+
+    if(showStoredPaymentMethods === 'true') {
+      configuration.options.storedPaymentMethods = storedPaymentMethods;
+    }
+
+    dropinInstance = digitalRiverPayments.createDropin(configuration);
+
+    dropinInstance.mount('dropin');
+
+  }
+
+  function refreshDropin() {
+    console.log('Refreshing dropin on click')
+    dropinInstance.refresh();
+  }
+
+  function onLoad() {
+    let isIE = !!window.MSInputMethodContext && !!document.documentMode;
+    //console.log(isIE);
+    if(navigator.userAgent.indexOf('MSIE')!==-1
+            || navigator.appVersion.indexOf('Trident/') > -1){
+      isIE = true;
+      /* Microsoft Internet Explorer detected in. */
+    }
+    if(!isIE) {
+      let urlParams = new URLSearchParams(window.location.search);
+
+      if(urlParams.get('sourceId')) {
+        responseLog('Shopper has returned from redirect. <br/> sourceId ' + urlParams.get('sourceId') + ' can now be used for payment');
+      }
+
+    }
+
+    // pk_hc_b230cec5ef7c44a992af0bcf180ccfaf
+    const apiKey = getURLParamOrDefault('apiKey','pk_sys_c2608001bba7477eae22808e1eb138db');
+    // let apiKey = 'pk_test_d6b3712c81c640288142f204a88f3de5'; // NOTE: Use this key for paypal for test mode / to display mock page
+    //let apiKey = 'cc203ec2d74e4002a7e341abd6df6eb5'; // DoDJS15
+
+    const locale = getURLParamOrDefault('locale','en-US');
+    const instanceOptions = { 'locale': locale};
+    digitalRiverPayments = new DigitalRiver(apiKey, instanceOptions);
+
+    // *** SESSION IDS
+    // pk_sys_c2608001bba7477eae22808e1eb138db
+    // FR: e40a04e1-3cf8-47a1-acf5-c6eb14c0df8c
+    // US (no country): 8d6df7ce-2a43-4edf-b57c-b5c9bac08515
+    // US: 945c1e32-ee54-401e-a185-ddcf62980113, d6deb2b4-347e-431e-9d56-095038e0e338
+    // JP-JPY: 55e7a1d2-19c0-4b8c-8172-baa3e775dc3e
+    // DE-EUR: c8ad8392-3923-4891-a65a-0eb0b8d5ba0c
+    // MSTS FR: e808e46a-4f75-4612-90eb-5a508dcfd3d1
+    // MSTS DE: c84bbe3a-b647-442e-a938-6cf5921b5b15
+
+    // paylive systest key:  pk_hc_b230cec5ef7c44a992af0bcf180ccfaf
+    // sessions for paylive systest key:
+    if (getUseEnteredBillingAddressParam() !== 'true') {
+      document.getElementById('addressLink').click();
+      initializeDropin();
+    }
+
+  }
+
+  window.onload = onLoad;
+
+  function responseLog(msg) {
+    response.innerHTML += msg + '<br/><br/>';
+  }
+
+  function addAddress(event) {
+    event.preventDefault();
+
+    document.getElementById('addressLink').click();
+
+    let address = document.getElementById('address-form');
+    owner.firstName = address.firstName.value;
+    owner.lastName = address.lastName.value;
+    owner.email = address.email.value;
+    owner.phoneNumber = address.phone.value;
+    owner.address = {
+      "line1": address.address.value,
+      "line2": address.address2.value || '',
+      "city": address.city.value,
+      "state": address.state.value,
+      "country": address.country.value,
+      "postalCode": address.zip.value
+    };
+
+    document.getElementById('addressInfo').innerHTML = (
+            owner.firstName + ' ' + owner.lastName
+            + '<br/>'
+            + owner.address.line1 + ' ' + owner.address.line2 + '<br/>'
+            + owner.address.city + ' ' + owner.address.state + ' ' + owner.address.postalCode
+    );
+
+    response.innerHTML += 'gathering user\'s address info...<br/>'
+
+    if (getUseEnteredBillingAddressParam() === 'true') {
+      initializeDropin();
+    }
+
+  }
+
+  function updateFields(obj) {
+    if(obj.value == 'KR') {
+      $('#city').val('Seoul');
+      $('#state').val('Jeju Do');
+      $('#zip').val('100-011');
+    } else if(obj.value == 'JP') {
+      $('#city').val('Chiba');
+      $('#state').val('Kyongsangnamdo');
+      $('#zip').val('272-0138');
+    } else if(obj.value == 'FR') {
+      $('#city').val('Paris');
+      $('#state').val('Ile-de-France');
+      $('#zip').val('75001');
+    } else {
+      $('#city').val('');
+      $('#state').val('');
+      $('#zip').val('');
+    }
+  }
+
+  function complianceData() {
+    $('#complianceMethod').empty();
+    let entity = $('#bEntity').val();
+    let locale = $('#locale').val();
+    let result = digitalRiverPayments.Compliance.getDetails(entity, locale);
+    $('#complianceMethod').append('<div><strong style="color:blue;">'+result.disclosure.businessEntity.name+'</strong> '+result.disclosure.resellerDisclosure.localizedText+'</div>');
+    $('#complianceMethod').append('<a class="complianceLink" target="_blank" type="button" class="btn btn-info" href='+ result.disclosure.legalNotice.url +'>'+ result.disclosure.legalNotice.localizedText +'</a>');
+    $('#complianceMethod').append('<a class="complianceLink" target="_blank" type="button" class="btn btn-info" href='+ result.disclosure.cookiePolicy.url +'>'+ result.disclosure.cookiePolicy.localizedText +'</a>');
+    $('#complianceMethod').append('<a class="complianceLink" target="_blank" type="button" class="btn btn-info" href='+ result.disclosure.privacyPolicy.url +'>'+ result.disclosure.privacyPolicy.localizedText +'</a>');
+    $('#complianceMethod').append('<a class="complianceLink" target="_blank" type="button" class="btn btn-info" href='+ result.disclosure.termsOfSale.url +'>'+ result.disclosure.termsOfSale.localizedText +'</a>');
+    $('#complianceMethod').append('<a class="complianceLink complianceCancellationLink" target="_blank" type="button" class="btn btn-info" href='+ result.disclosure.cancellationRights.url +'>'+ result.disclosure.cancellationRights.localizedText +'</a>');
+  }
+
+  // TO Get session
+  let shopperToken;
+  const apiDomain = 'https://api.digitalriver.com';
+  const testApiDomain = 'https://dispatch-test.digitalriver.com';
+  const apiBasePath = apiDomain + '/v1/shoppers/me';
+  const testApiBasePath = testApiDomain + '/v1/shoppers/me';
+  const authString = 'Basic YWNjMjg2NDkzZDU1NDYyNWFkYTA1NWYzYWExN2YzYjQ6YmM0N2Y5YmNmYzBhNGViZmI4M2Q3Njg0YTdkYzRkNWY=';
+
+  /**
+   * Returns value stored in cookie
+   * @param name {string}
+   * @returns {string}
+   */
+  function getCookieValue(name) {
+    var value = "; " + document.cookie;
+    var parts = value.split("; " + name + "=");
+    if (parts.length === 2) {
+      return parts.pop().split(";").shift();
+    } else {
+      return "0";
+    }
+  }
+
+  function getShopperAPIToken() {
+    console.log('Getting shopper API Token');
+    try {
+      const cookieExists = document.cookie.split(';').filter(function(item) {
+        return item.trim().indexOf('shopperToken=') === 0
+      }).length;
+      if (cookieExists) {
+        shopperToken = getCookieValue('shopperToken');
+        return Promise.resolve(shopperToken);
+      } else {
+        var options = {
+          maxRedirects: 0,
+          responseType: 'json',
+          timeout: 10000,
+          headers: {
+            'Authorization': authString
+          }
+        };
+        var url = testApiDomain + '/oauth20/token.json?';
+        var data = 'grant_type=client_credentials';
+        return axios.post(url, data, options).then(function (token) {
+          console.log('Received shopper API Token', token);
+          var date = new Date();
+          date.setTime(date.getTime()+(24*60*60*1000));
+          var expires = "; expires="+date.toGMTString();
+          console.log({token: token});
+          var cookie = 'shopperToken=' + token.data.access_token + expires;
+          document.cookie = cookie;
+          return token.data.access_token;
+        });
+      }
+    } catch (e) {
+      console.error('error!',e);
+    }
+  }
+
+  function addToCart(productId) {
+    return getShopperAPIToken().then(function (token) {
+      console.log('token', token);
+      var options = {
+        maxRedirects: 0,
+        responseType: 'json',
+        timeout: 10000,
+        headers: {
+          'Authorization': 'bearer ' + token
+        }
+      };
+      var url = testApiBasePath + '/carts/active?productId=' + productId;
+      var data = 'grant_type=client_credentials';
+      return axios.post(url, data, options)
+              .then(function(response) {
+                console.log('response.data.paymentSession',response.data.cart)
+                sessionClientSecret = response.data.cart.paymentSession.id;
+                return sessionClientSecret;
+              })
+              .catch(function(e) {
+                console.log(e);
+              });
+    });
+  }
+
+  addToCart('5104504200').then(function (sessionId) {
+    console.log('session id retrieved.', sessionId)
+  }).catch(function (error) {
+    console.log('error getting session', error)
+  });
+
+</script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+</body>
+</html>

@@ -459,6 +459,49 @@
       }
     };
 
+    const consents = {
+      companyName: 'Cool Company',
+      eula: {
+        url: 'https://myecommercesite.com/eula'
+      },
+      termsOfUse: {
+        url: 'https://myecommercesite.com/termsOfUse'
+      }
+    }
+
+    const storedPaymentMethods = [
+      {
+        id: "1",
+        type: "creditCard",
+        brand: "americanExpress",
+        lastFour: "1111"
+      },
+      {
+        id: "2",
+        type: "creditCard",
+        brand: "visa",
+        lastFour: "4444"
+      },
+      {
+        id: "3",
+        type: "creditCard",
+        brand: "MasterCard",
+        lastFour: "4444"
+      },
+      {
+        id: '12',
+        type: 'storeCredit',
+        amount: 50,
+        displayName: 'Target'
+      },
+      {
+        id: '123',
+        type: 'storeCredit',
+        amount: 100,
+        displayName: 'Target'
+      }
+    ]
+
     const flow = getURLParamOrDefault('flow', ''); // managePaymentMethods
     const showSavePaymentAgreement = getURLParamOrDefault('showSavePaymentAgreement', 'false'); // managePaymentMethods
     const showComplianceSection = getURLParamOrDefault('showComplianceSection', 'true');
@@ -470,6 +513,8 @@
     const cancelUrl = getURLParamOrDefault('cancelUrl', undefined);
     const useBillingAddress = getURLParamOrDefault('useBillingAddress', 'true');
     const expandFirstPaymentMethod = getURLParamOrDefault('expandFirstPaymentMethod', 'true') === 'true';
+    const showConsents = getURLParamOrDefault('showConsents', 'false');
+    const showStoredPaymentMethods = getURLParamOrDefault('showStoredPaymentMethods', 'false');
 
     console.log('Session ID', sessionId);
     console.log('Flow', flow);
@@ -481,6 +526,8 @@
     console.log('billingAddressCountry', billingAddressCountry);
     console.log('returnUrl', returnUrl);
     console.log('cancelUrl', cancelUrl);
+    console.log('showConsents', showConsents);
+    console.log('showStoredPaymentMethods', showStoredPaymentMethods);
 
     const configuration = {
       sessionId: sessionId,
@@ -498,38 +545,10 @@
           disableAutomaticRedirects: disableAutomaticRedirects === 'true',
         },
         button: {
+          type: 'payNow',
           //type: 'custom',
           //buttonText: 'Pay Right Now!'
         },
-        // consents: {
-        //   companyName: 'Cool Company',
-        //   eula: {
-        //     url: 'https://myecommercesite.com/eula'
-        //   },
-        //   termsOfUse: {
-        //     url: 'https://myecommercesite.com/termsOfUse'
-        //   }
-        // },
-        /*storedPaymentMethods: [
-          {
-            id: "1",
-            type: "creditCard",
-            brand: "americanExpress",
-            lastFour: "1111"
-          },
-          {
-            id: "2",
-            type: "creditCard",
-            brand: "visa",
-            lastFour: "4444"
-          },
-          {
-            id: "3",
-            type: "creditCard",
-            brand: "MasterCard",
-            lastFour: "4444"
-          }
-        ]*/
       },
       paymentMethodConfiguration: {
         //enabledPaymentMethods: ['googlePay', 'creditCard'],
@@ -591,36 +610,84 @@
         document.getElementById('dropin-loading').innerText = '';
       },
       onUpdateRequired: function (original) {
+        console.log('onUpdateRequired', original)
         responseLog('onUpdateRequired - Dropin ' + JSON.stringify(original, null, '\t'));
         const data = Object.assign({}, original);
         // Would do an PAI call or something here.
         const pm = data.storedPaymentMethods.find( spm => spm.id === data.selectedPaymentMethod.id)
         pm.added = data.selectedPaymentMethod.action === 'add';
 
-        //return data.storedPaymentMethods;
-        return [
-          {
-            "type": "creditCard",
-            "brand": "visa",
-            "lastFour": "9999",
-            "id": "cc1"
-          },
-          {
-            "type": "storeCredit", // New
-            "displayName": "Target Gift Card",
-            "lastFour": "1234",
-            "amount": 999.05,
-            "id": "your_identifier-new"
-          }
-        ]
+        // Uncomment to create a source and attach to Local server.
+        /*if (data.selectedPaymentMethod.action === 'add') {
 
-      },
+          fetch('/payments/clients/gc/channels/paylive/sources', {
+            method: 'POST',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              "amount": original.selectedPaymentMethod.amount,
+              "currency": "USD",
+              "type": "customerCredit",
+              "upstreamId": "purchase_order_1602861339339",
+              "customerCredit": {}
+            })
+          }).then(response=>response.json()).then(async (source) => {
+
+            console.log('source created', source)
+
+            return fetch('/payments/clients/gc/channels/paylive/sessions/' + sessionId + '/sources', {
+              method: 'POST',
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                "sourceId": source.id
+              })
+            }).then((session) => {
+
+              console.log('Session updated', session.id)
+
+              original.updateWith([
+                {
+                  "type": "storeCredit", // New
+                  "displayName": "Target Gift Card",
+                  "lastFour": "1234",
+                  "amount": 30,
+                  "id": "your_identifier-new1"
+                },
+                {
+                  "type": "storeCredit", // New
+                  "displayName": "Target Gift Card",
+                  "lastFour": "12345",
+                  "amount": 50,
+                  "id": "your_identifier-new2"
+                }
+              ])
+            })
+
+          });
+
+        }*/
+
+      }
 
     };
 
     if(!expandFirstPaymentMethod) {
       configuration.options.expandFirstPaymentMethod = false;
     }
+
+    if(showConsents === 'true') {
+      configuration.options.consents = consents;
+    }
+
+    if(showStoredPaymentMethods === 'true') {
+      configuration.options.storedPaymentMethods = storedPaymentMethods;
+    }
+
     dropinInstance = digitalRiverPayments.createDropin(configuration);
 
     dropinInstance.mount('dropin');
@@ -670,20 +737,6 @@
 
     // paylive systest key:  pk_hc_b230cec5ef7c44a992af0bcf180ccfaf
     // sessions for paylive systest key:
-    /*
-    c328208b-5ea2-4d21-aa68-7044c36f191d //US, USD (no recurring products), DR Inc entity
-    2088396e-3cfb-4c69-a1e7-657d8669310f //DE, EUR (no recurring products), DR Ireland entity
-    51177514-fbb6-4bd3-ae7e-c19d1dea43bf //FR, EUR (no recurring products), DR Ireland entity
-    8d0ad758-d12b-4f32-8b06-a4b76eebeb1a //JP, JPY PayPal, no entity
-
-    9d0542bf-f68e-4f0b-9b9d-44e77f6014f1 //US, USD (recurring products), DR Inc entity
-    db3d210c-3255-489c-8c9a-1b9a7b7e5c49 //DE, EUR (recurring products), DR Ireland entity
-    aaea255f-8f78-4011-b913-6d37c1daced1 //FR, EUR (recurring products), DR Ireland entity
-    5ee58739-0e23-4a60-af1b-c25f46b6f52d //JP, JPY PayPal Billing, no entity
-
-    71556ae2-d6b3-499c-b879-9e66eb50c2db // FR, EUR, (recurring products), DR Ireland entity billTo FR
-
-    */
     if (getUseEnteredBillingAddressParam() !== 'true') {
       document.getElementById('addressLink').click();
       initializeDropin();

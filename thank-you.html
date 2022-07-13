@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8"/>
+  <title>Thank You Page</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<script defer src="dropInStyles.js"></script><script defer src="DigitalRiver.js"></script><link href="css/DigitalRiver.css" rel="stylesheet"></head>
+<body class="bg-light" style="padding-top:50px;">
+
+<div class="row">
+  <div>
+    <div>Client Hosted</div>
+
+    Thank you for your order! <span id="order-id"></span>
+
+    <div id="DR-delayed-payment-instructions"></div>
+
+  </div>
+</div>
+
+<script type="text/javascript">
+  let apiKey = 'pk_test_d988467af0414f3d8b4530618fb54a1a'; //payservice systest
+
+  window.onload = function () {
+    const instanceOptions = { locale: getURLParamOrDefault('locale','en-US'), customerID: 'customer-id-123'};
+    const digitalRiverPayments = new DigitalRiver(apiKey, instanceOptions);
+
+    document.getElementById('order-id').innerText = getURLParamOrDefault('orderId', '');
+
+    const sourceId = getURLParamOrDefault('sourceId', '');
+    const sourceClientSecret = getURLParamOrDefault('sourceClientSecret', '');
+
+    if (sourceId && sourceClientSecret) {
+      const options = {
+        sourceId: sourceId,
+        sourceClientSecret: sourceClientSecret
+      };
+      const delayedPaymentInstructions = digitalRiverPayments.createElement('delayedpaymentinstructions', options);
+      delayedPaymentInstructions.mount('DR-delayed-payment-instructions');
+    }
+
+  }
+
+  function getURLParamOrDefault(name, defaultValue) {
+    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+    if (results == null){
+      return defaultValue;
+    }
+    else {
+      return decodeURI(results[1]) || 0;
+    }
+  }
+</script>
+</body>
+
+</html>

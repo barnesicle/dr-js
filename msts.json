@@ -1,0 +1,46 @@
+{
+  "en-US" : {
+    "poNumber": "Purchase Order #",
+    "notes": "Notes"
+  },
+  "en-IE" : {
+    "poNumber": "Purchase Order #",
+    "notes": "Notes"
+  },
+  "en-GB" : {
+    "poNumber": "Purchase Order #",
+    "notes": "Notes"
+  },
+  "de-DE" : {
+    "poNumber": "Bestellung #",
+    "notes": "Anmerkungen"
+  },
+  "es-ES": {
+    "poNumber": "Orden de compra #",
+    "notes": "Notas"
+  },
+  "es-MX" : {
+    "poNumber": "Orden de compra #",
+    "notes": "Notas"
+  },
+  "fr-FR": {
+    "poNumber": "Ordre de commande #",
+    "notes": "Notes"
+  },
+  "fr-CA" : {
+    "poNumber": "Ordre de commande #",
+    "notes": "Notes"
+  },
+  "it-IT" : {
+    "poNumber": "Ordine di acquisto #",
+    "notes": "Note:"
+  },
+  "nl-NL" : {
+    "poNumber": "Inkooporder #",
+    "notes": "Opmerkingen"
+  },
+  "pl-PL" : {
+    "poNumber": "Numer zamówienia #",
+    "notes": "Zapłać teraz"
+  }
+}

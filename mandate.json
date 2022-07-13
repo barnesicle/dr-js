@@ -1,0 +1,224 @@
+{
+  "ar_EG": {
+    "mustAcceptTerms": "لا بد من القبول حتى يمكن مواصلة الخطوات.",
+    "addNewPayment": "أضف طريقة دفع جديدة",
+    "saveCardMandate": "نعم، أرجو حفظ هذا الحساب وبيانات الدفع لاستخدامها في عمليات الشراء المستقبلية.",
+    "subscriptionDefaultMandate": ""
+  },
+  "cs_CZ": {
+    "mustAcceptTerms": "Pro pokračování se vyžaduje souhlas.",
+    "addNewPayment": "Přidat novou platební metodu",
+    "saveCardMandate": "Ano, přeji si tento účet a platební informace uložit pro budoucí nákupy.",
+    "subscriptionDefaultMandate": ""
+  },
+  "da_DK": {
+    "mustAcceptTerms": "Accept kræves for at fortsætte.",
+    "addNewPayment": "Tilføj ny betalingsmetode",
+    "saveCardMandate": "Ja, gem venligst min konto og mine betalingsoplysninger til brug ved fremtidige køb.",
+    "subscriptionDefaultMandate": "Jeg er enig i, at Digital River vil gemme mine betalingsoplysninger til fremtidige indkøb samt til abonnementsfornyelse på en fremtidig dato."
+  },
+  "de_DE": {
+    "mustAcceptTerms": "Die Annahme ist erforderlich, um fortzufahren.",
+    "addNewPayment": "Neue Zahlungsmethode hinzufügen",
+    "saveCardMandate": "Ja, dieses Konto und die Zahlungsinformationen für spätere Einkäufe speichern.",
+    "subscriptionDefaultMandate": "Ich bin einverstanden, dass Digital River meine Zahlungsinformationen für zukünftige Käufe speichert, einschließlich der Verarbeitung späterer Abonnementsverlängerungen nach dem heutigen Datum."
+  },
+  "el_GR": {
+    "mustAcceptTerms": "Απαιτείται αποδοχή για συνέχεια.",
+    "addNewPayment": "Προσθήκη νέας μεθόδου πληρωμής",
+    "saveCardMandate": "Ναι, να αποθηκεύονται αυτά τα στοιχεία λογαριασμού και πληρωμής για μελλοντικές αγορές.",
+    "subscriptionDefaultMandate": ""
+  },
+  "en_GB": {
+    "mustAcceptTerms": "Acceptance is required to proceed.",
+    "addNewPayment": "Add new payment method",
+    "saveCardMandate": "Yes, please save this account and payment information for future purchases.",
+    "subscriptionDefaultMandate": "I agree that Digital River may store my payment information for future purchases including the processing of any subsequent subscription renewals which may occur at a future date."
+  },
+  "en_IE": {
+    "mustAcceptTerms": "Acceptance is required to proceed.",
+    "addNewPayment": "Add new payment method",
+    "saveCardMandate": "Yes, please save this account and payment information for future purchases.",
+    "subscriptionDefaultMandate": "I agree that Digital River may store my payment information for future purchases including the processing of any subsequent subscription renewals which may occur at a future date."
+  },
+  "en_US": {
+    "mustAcceptTerms": "Acceptance is required to proceed.",
+    "addNewPayment": "Add new payment method",
+    "saveCardMandate": "Yes, please save this account and payment information for future purchases.",
+    "subscriptionDefaultMandate": "I agree that Digital River may store my payment information for future purchases including the processing of any subsequent subscription renewals which may occur at a future date."
+  },
+  "es_ES": {
+    "mustAcceptTerms": "Para continuar es necesaria su aceptación.",
+    "addNewPayment": "Agregar nuevo método de pago",
+    "saveCardMandate": "Sí, deseo guardar mi información de cuenta y de pago para futuras compras.",
+    "subscriptionDefaultMandate": "Autorizo a Digital River a almacenar mi información de pago para futuras compras, incluido el procesamiento de cualquier renovación de suscripción que ocurra en una fecha futura."
+  },
+  "es_MX": {
+    "mustAcceptTerms": "Para continuar es necesaria su aceptación.",
+    "addNewPayment": "Agregar nuevo método de pago",
+    "saveCardMandate": "Sí, deseo guardar mi información de cuenta y de pago para futuras compras.",
+    "subscriptionDefaultMandate": "Autorizo a Digital River a almacenar mi información de pago para futuras compras, incluido el procesamiento de cualquier renovación de suscripción que ocurra en una fecha futura."
+  },
+  "et_EE": {
+    "mustAcceptTerms": "",
+    "addNewPayment": "",
+    "saveCardMandate": "",
+    "subscriptionDefaultMandate": ""
+  },
+  "fi_FI": {
+    "mustAcceptTerms": "Hyväksyntä tarvitaan jatkamista varten.",
+    "addNewPayment": "Lisää uusi maksutapa",
+    "saveCardMandate": "Kyllä, tallenna tämä tili ja maksutiedot tulevia ostoksia varten.",
+    "subscriptionDefaultMandate": "Hyväksyn, että Digital River voi tallentaa maksutietoni tulevia ostoksia sekä tämän tilauksen jälkeen mahdollisesti tehtävien tilaukset, jotka voidaan tehdä tulevaisuudessa."
+  },
+  "fr_CA": {
+    "mustAcceptTerms": "L'acceptation est nécessaire pour continuer.",
+    "addNewPayment": "Ajouter un mode de paiement",
+    "saveCardMandate": "Oui, veuillez enregistrer ce compte et les informations de paiement pour mes prochains achats.",
+    "subscriptionDefaultMandate": "J&#39;accepte que Digital River puisse stocker mes informations de paiement pour des achats ultérieurs, y compris le traitement de tout renouvellement d&#39;abonnement à venir qui pourrait avoir lieu après la date d&#39;aujourd'hui"
+  },
+  "fr_FR": {
+    "mustAcceptTerms": "Vous devez accepter pour pouvoir continuer.",
+    "addNewPayment": "Ajouter un mode de paiement",
+    "saveCardMandate": "Oui, enregistrer ce compte et les informations de paiement pour des achats ultérieurs.",
+    "subscriptionDefaultMandate": "J&#39;accepte que Digital River puisse stocker mes informations de paiement pour des achats ultérieurs, y compris le traitement de tout renouvellement d&#39;abonnement à venir qui pourrait avoir lieu après la date d&#39;aujourd'hui"
+  },
+  "hu_HU": {
+    "mustAcceptTerms": "A továbblépéshez jóváhagyás szükséges.",
+    "addNewPayment": "Új fizetési mód hozzáadása",
+    "saveCardMandate": "Igen, mentse el ezt a számlát és a fizetési adatokat a jövőbeni vásárlásokhoz.",
+    "subscriptionDefaultMandate": ""
+  },
+  "it_IT": {
+    "mustAcceptTerms": "Per procedere è necessaria l'accettazione.",
+    "addNewPayment": "Aggiungi nuovo metodo di pagamento",
+    "saveCardMandate": "Sì, salva questo account e le informazioni di pagamento per acquisti futuri.",
+    "subscriptionDefaultMandate": ""
+  },
+  "iw_IL": {
+    "mustAcceptTerms": "יש צורך בהבעת הסכמה כדי להמשיך.",
+    "addNewPayment": "הוסף שיטת תשלום חדשה",
+    "saveCardMandate": "כן, ברצוני לשמור את פרטי החשבון ואמצעי התשלום לשימוש בעתיד.",
+    "subscriptionDefaultMandate": ""
+  },
+  "ja_JP": {
+    "mustAcceptTerms": "処理を続行するには、同意が必要です。",
+    "addNewPayment": "新しい支払い方法の追加",
+    "saveCardMandate": "はい、この口座および支払い情報を保存し、今後の製品購入時に使用します。",
+    "subscriptionDefaultMandate": ""
+  },
+  "ko_KR": {
+    "mustAcceptTerms": "진행하기 위해 수락이 필요합니다.",
+    "addNewPayment": "새로운 결제 방법 추가하기",
+    "saveCardMandate": "예, 향후 구매를 위해 이 계좌와 결제 정보를 저장하십시오.",
+    "subscriptionDefaultMandate": ""
+  },
+  "lt_LT": {
+    "mustAcceptTerms": "",
+    "addNewPayment": "",
+    "saveCardMandate": "",
+    "subscriptionDefaultMandate": ""
+  },
+  "lv_LV": {
+    "mustAcceptTerms": "",
+    "addNewPayment": "",
+    "saveCardMandate": "",
+    "subscriptionDefaultMandate": ""
+  },
+  "nl_NL": {
+    "mustAcceptTerms": "U moet akkoord gaan om verder te kunnen gaan.",
+    "addNewPayment": "Nieuwe betaalmethode toevoegen",
+    "saveCardMandate": "Ja, sla deze account- en betalingsgegevens op voor latere aankopen.",
+    "subscriptionDefaultMandate": "Ik ga ermee akkoord dat Digital River mijn betalingsgegevens opslaat voor volgende aankopen, inclusief de verwerking van eventuele verlengingen van abonnementen die mogelijk op een later tijdstip plaatsvinden."
+  },
+  "no_NO": {
+    "mustAcceptTerms": "Krever godkjennelse før det er mulig å fortsette.",
+    "addNewPayment": "Legg inn en ny betalingsmetode",
+    "saveCardMandate": "Ja, vennligst lagre denne kontoen og betalingsinformasjonen for fremtidige kjøp.",
+    "subscriptionDefaultMandate": "Jeg er enig i at Digital River kan lagre betalingsinformasjonen min for fremtidige kjøp, inkludert behandling av eventuelle påfølgende fornyelser av abonnement som kan oppstå på en fremtidig dato."
+  },
+  "pl_PL": {
+    "mustAcceptTerms": "Aby kontynuować, należy wyrazić zgodę.",
+    "addNewPayment": "Dodaj nową metodę płatności",
+    "saveCardMandate": "Tak, proszę zachować konto i informacje dotyczące płatności dla przyszłych zakupów.",
+    "subscriptionDefaultMandate": ""
+  },
+  "pt_BR": {
+    "mustAcceptTerms": "A aceitação é necessária para continuar.",
+    "addNewPayment": "Acrescentar novo método de pagamento",
+    "saveCardMandate": "Sim, salve os dados da conta e de pagamento para compras futuras.",
+    "subscriptionDefaultMandate": "Dou meu consentimento para armazenar os dados de meu cartão bancário para esta e as futuras compras."
+  },
+  "pt_PT": {
+    "mustAcceptTerms": "É necessária a aceitação para continuar.",
+    "addNewPayment": "Adicionar um novo método de pagamento",
+    "saveCardMandate": "Sim, guardem estas informações da conta e de pagamento para futuras compras.",
+    "subscriptionDefaultMandate": "Dou meu consentimento para armazenar os dados de meu cartão bancário para esta e as futuras compras."
+  },
+  "ro_RO": {
+    "mustAcceptTerms": "",
+    "addNewPayment": "",
+    "saveCardMandate": "",
+    "subscriptionDefaultMandate": ""
+  },
+  "ru_RU": {
+    "mustAcceptTerms": "Для продолжения необходимо согласиться.",
+    "addNewPayment": "Добавить новый способ оплаты",
+    "saveCardMandate": "Да, следует сохранить информацию об этом счете и оплате для совершения покупок в будущем.",
+    "subscriptionDefaultMandate": "Я согласен (-на) с тем, что компания Digital River будет хранить мою платежную информацию для будущих покупок, в том числе для обновления подписок в будущем."
+  },
+  "sk_SK": {
+    "mustAcceptTerms": "Pred pokračovaním musíte vyjadriť súhlas.",
+    "addNewPayment": "Pridať nový spôsob platby",
+    "saveCardMandate": "Áno, prajem si tento účet a platobné informácie uložiť pre budúce nákupy.",
+    "subscriptionDefaultMandate": ""
+  },
+  "sl_SI": {
+    "mustAcceptTerms": "",
+    "addNewPayment": "",
+    "saveCardMandate": "",
+    "subscriptionDefaultMandate": ""
+  },
+  "sr_YU": {
+    "mustAcceptTerms": "",
+    "addNewPayment": "",
+    "saveCardMandate": "",
+    "subscriptionDefaultMandate": ""
+  },
+  "sv_SE": {
+    "mustAcceptTerms": "Du måste acceptera för att komma vidare.",
+    "addNewPayment": "Lägg till ny betalningsmetod",
+    "saveCardMandate": "Ja, spara detta konto och betalningsinformationen för framtida köp.",
+    "subscriptionDefaultMandate": "Jag håller med om att Digital River ska spara min betalningsinformation för framtida inköp, inklusive eventuella efterföljande abonnemangstillägg som kan uppstå vid ett framtida datum."
+  },
+  "th_TH": {
+    "mustAcceptTerms": "ต้องยอมรับเพื่อดำเนินขั้นตอนต่อไป",
+    "addNewPayment": "เพิ่มวิธีการชำระเงินใหม่",
+    "saveCardMandate": "ใช่ โปรดบันทึกข้อมูลบัญชีและการชำระเงินนี้ไว้สำหรับการสั่งซื้อในครั้งต่อไป",
+    "subscriptionDefaultMandate": ""
+  },
+  "tr_TR": {
+    "mustAcceptTerms": "Devam etmek için onay gereklidir.",
+    "addNewPayment": "Yeni bir ödeme şekli ekleyin",
+    "saveCardMandate": "Evet, lütfen bu hesabı ve ödeme bilgilerini gelecekteki satın almalar için kaydedin.",
+    "subscriptionDefaultMandate": ""
+  },
+  "zh_CN": {
+    "mustAcceptTerms": "需要接受才可继续。",
+    "addNewPayment": "添加新支付方式",
+    "saveCardMandate": "是的，请保存该帐户和支付信息，方便日后购买商品使用。",
+    "subscriptionDefaultMandate": ""
+  },
+  "zh_HK": {
+    "mustAcceptTerms": "需要接受以繼續。",
+    "addNewPayment": "增加新的付款方式",
+    "saveCardMandate": "是，請儲存此帳戶與付款資訊以供未來付款使用。",
+    "subscriptionDefaultMandate": ""
+  },
+  "zh_TW": {
+    "mustAcceptTerms": "「接受」為進行處理時的必要項目。",
+    "addNewPayment": "增加新的付款方式",
+    "saveCardMandate": "是，請儲存此帳戶與付款資訊以供未來付款使用。",
+    "subscriptionDefaultMandate": ""
+  }
+}

@@ -1,0 +1,343 @@
+{
+  "ar-EG": {
+    "buttons": {
+      "continue": "للمتابعة ",
+      "buyNow": "اشتر الآن",
+      "completeOrder": "أرسل وأكمل عملية الدفع",
+      "submit": "إرسال",
+      "submitOrder": "أرسل طلبا",
+      "payNow": "ادفع الآن",
+      "enrollNowButton": ""
+    }
+  },
+  "cs-CZ": {
+    "buttons": {
+      "continue": "Pokračovat",
+      "buyNow": "Koupit nyní",
+      "completeOrder": "Odeslat a dokončit platbu",
+      "submit": "Odeslat",
+      "submitOrder": "Koupit nyní",
+      "payNow": "Zaplatit nyní",
+      "enrollNowButton": ""
+    }
+  },
+  "da-DK": {
+    "buttons": {
+      "continue": "Fortsæt",
+      "buyNow": "køb nu",
+      "completeOrder": "Indsend og gennemfør betaling",
+      "payNow": "Betal nu",
+      "submit": "send",
+      "submitOrder": "køb nu",
+      "enrollNowButton": ""
+    }
+  },
+  "de-DE": {
+    "buttons": {
+      "continue": "Weiter zur Kasse",
+      "buyNow": "Jetzt kaufen",
+      "completeOrder": "Zahlung senden und abschließen",
+      "payNow": "Jetzt bezahlen",
+      "submit": "Senden",
+      "submitOrder": "Jetzt kaufen",
+      "enrollNowButton": "Jetzt registrieren"
+    }
+  },
+  "el-GR": {
+    "buttons": {
+      "continue": "Συνέχεια",
+      "buyNow": "αγορά τώρα",
+      "completeOrder": "Υποβολή και ολοκλήρωση πληρωμής",
+      "payNow": "Πληρωμή τώρα",
+      "submit": "Υποβολή",
+      "submitOrder": "αγορά τώρα",
+      "enrollNowButton": ""
+    }
+  },
+  "en-GB": {
+    "buttons": {
+      "continue": "Continue",
+      "buyNow": "Buy Now",
+      "completeOrder": "Submit and Complete Payment",
+      "payNow": "Pay now",
+      "submit": "Submit",
+      "submitOrder": "Submit Order",
+      "enrollNowButton": "Enroll Now"
+    }
+  },
+  "en-IE": {
+    "buttons": {
+      "continue": "Continue",
+      "buyNow": "Buy Now",
+      "completeOrder": "Submit and Complete Payment",
+      "payNow": "Pay now",
+      "submit": "Submit",
+      "submitOrder": "Submit Order",
+      "enrollNowButton": "Enroll Now"
+    }
+  },
+  "en-US": {
+    "buttons": {
+      "continue": "Continue",
+      "buyNow": "Buy Now",
+      "completeOrder": "Submit and Complete Payment",
+      "payNow": "Pay now",
+      "submit": "Submit",
+      "submitOrder": "Submit Order",
+      "enrollNowButton": "Enroll Now"
+    }
+  },
+  "es-ES": {
+    "buttons": {
+      "continue": "Continuar",
+      "buyNow": "Comprar Ahora",
+      "completeOrder": "Enviar y completar pago",
+      "payNow": "Pague ahora",
+      "submit": "Enviar",
+      "submitOrder": "Enviar orden",
+      "enrollNowButton": "Regístrate ahora"
+    }
+  },
+  "es-MX": {
+    "buttons": {
+      "continue": "Continuar",
+      "buyNow": "Comprar Ahora",
+      "completeOrder": "Enviar y completar pago",
+      "payNow": "Pague ahora",
+      "submit": "Enviar",
+      "submitOrder": "Enviar orden",
+      "enrollNowButton": "Regístrate ahora"
+    }
+  },
+  "fi-FI": {
+    "buttons": {
+      "continue": "Jatka",
+      "buyNow": "osta nyt",
+      "completeOrder": "Vie maksu loppuun ja lähetä se",
+      "payNow": "Maksa nyt",
+      "submit": "Lähetä",
+      "submitOrder": "osta nyt",
+      "enrollNowButton": ""
+    }
+  },
+  "fr-CA": {
+    "buttons": {
+      "continue": "Continuer",
+      "buyNow": "acheter maintenant",
+      "completeOrder": "Envoyer et finaliser le paiement",
+      "payNow": "Payer maintenant",
+      "submit": "Envoyer",
+      "submitOrder": "acheter maintenant",
+      "enrollNowButton": "Inscrivez-vous maintenant"
+    }
+  },
+  "fr-FR": {
+    "buttons": {
+      "continue": "Continuer",
+      "buyNow": "acheter maintenant",
+      "completeOrder": "Envoyer et finaliser le paiement",
+      "payNow": "Payer maintenant",
+      "submit": "Envoyer",
+      "submitOrder": "acheter maintenant",
+      "enrollNowButton": "Inscrivez-vous maintenant"
+    }
+  },
+  "hu-HU": {
+    "buttons": {
+      "continue": "Folytatás",
+      "buyNow": "most megveszem",
+      "completeOrder": "Küldés és fizetés",
+      "payNow": "Fizetés most",
+      "submit": "Küldés",
+      "submitOrder": "most megveszem",
+      "enrollNowButton": ""
+    }
+  },
+  "it-IT": {
+    "buttons": {
+      "continue": "Prosegui",
+      "buyNow": "acquista",
+      "completeOrder": "Invia e completa pagamento",
+      "payNow": "Paga adesso",
+      "submit": "Invia",
+      "submitOrder": "Acquista ora",
+      "enrollNowButton": "Iscriviti ora"
+    }
+  },
+  "iw-IL": {
+    "buttons": {
+      "continue": "המשך",
+      "buyNow": "רכוש עכשיו",
+      "completeOrder": "שלח והשלם תשלום",
+      "payNow": "לתשלום",
+      "submit": "שלח",
+      "submitOrder": "שלח הזמנה",
+      "enrollNowButton": ""
+    }
+  },
+  "ja-JP": {
+    "buttons": {
+      "continue": "続行",
+      "buyNow": "今すぐ購入",
+      "completeOrder": "支払いの送信と完了",
+      "payNow": "いますぐ支払う",
+      "submit": "送信",
+      "submitOrder": "注文の送信",
+      "enrollNowButton": ""
+    }
+  },
+  "ko-KR": {
+    "buttons": {
+      "continue": "계속하기",
+      "buyNow": "바로 구매하기",
+      "completeOrder": "결제 제출 및 완료",
+      "payNow": "지금 결제",
+      "submit": "제출",
+      "submitOrder": "주문 접수하기",
+      "enrollNowButton": ""
+    }
+  },
+  "nl-NL": {
+    "buttons": {
+      "continue": "Doorgaan",
+      "buyNow": "Nu kopen",
+      "completeOrder": "Indienen en betaling voltooien",
+      "payNow": "Nu betalen",
+      "submit": "Indienen",
+      "submitOrder": "Nu kopen",
+      "enrollNowButton": "Meld je nu aan"
+    }
+  },
+  "no-NO": {
+    "buttons": {
+      "continue": "Fortsett",
+      "buyNow": "kjøp nå",
+      "completeOrder": "Send og fullfør betaling",
+      "payNow": "Betal nå",
+      "submit": "Send",
+      "submitOrder": "kjøp nå",
+      "enrollNowButton": ""
+    }
+  },
+  "pl-PL": {
+    "buttons": {
+      "continue": "Kontynuuj",
+      "buyNow": "KUP TERAZ",
+      "completeOrder": "Wyślij i opłać",
+      "payNow": "Zapłać teraz",
+      "submit": "wyślij",
+      "submitOrder": "KUP TERAZ",
+      "enrollNowButton": "Zarejestruj się teraz"
+    }
+  },
+  "pt-BR": {
+    "buttons": {
+      "continue": "Continuar",
+      "buyNow": "comprar agora",
+      "completeOrder": "Enviar e concluir pagamento",
+      "payNow": "Pagar agora",
+      "submit": "Enviar",
+      "submitOrder": "enviar pedido",
+      "enrollNowButton": ""
+    }
+  },
+  "pt-PT": {
+    "buttons": {
+      "continue": "Continuar",
+      "buyNow": "Comprar agora",
+      "completeOrder": "Enviar e concluir pagamento",
+      "payNow": "Pagar agora",
+      "submit": "Enviar",
+      "submitOrder": "Enviar pedido",
+      "enrollNowButton": ""
+    }
+  },
+  "ru-RU": {
+    "buttons": {
+      "continue": "продолжить",
+      "buyNow": "купить сейчас",
+      "completeOrder": "Подтвердить и завершить платеж",
+      "payNow": "Оплатить сейчас",
+      "submit": "отправить",
+      "submitOrder": "разместить заказ",
+      "enrollNowButton": ""
+    }
+  },
+  "sk-SK": {
+    "buttons": {
+      "continue": "Pokračovať",
+      "buyNow": "kúpiť teraz",
+      "completeOrder": "Odoslať a dokončiť platbu",
+      "payNow": "Zaplatiť",
+      "submit": "Odoslať",
+      "submitOrder": "kúpiť teraz",
+      "enrollNowButton": ""
+    }
+  },
+  "sv-SE": {
+    "buttons": {
+      "continue": "Fortsätt",
+      "buyNow": "köp nu",
+      "completeOrder": "Skicka och slutför betalning",
+      "payNow": "Betala nu",
+      "submit": "Skicka",
+      "submitOrder": "köp nu",
+      "enrollNowButton": ""
+    }
+  },
+  "th-TH": {
+    "buttons": {
+      "continue": "ดำเนินการต่อ",
+      "buyNow": "ซื้อเดี๋ยวนี้",
+      "completeOrder": "ส่งและดำเนินการชำระเงินให้เสร็จสมบูรณ์",
+      "payNow": "ชำระเงินทันที",
+      "submit": "ส่ง",
+      "submitOrder": "ส่งคำสั่งซื้อ",
+      "enrollNowButton": ""
+    }
+  },
+  "tr-TR": {
+    "buttons": {
+      "continue": "Devam",
+      "buyNow": "şimdi al",
+      "completeOrder": "Ödemeyi Gönder ve Tamamla",
+      "payNow": "Hemen öde",
+      "submit": "Gönder",
+      "submitOrder": "şimdi al",
+      "enrollNowButton": ""
+    }
+  },
+  "zh-CN": {
+    "buttons": {
+      "continue": "继续",
+      "buyNow": "立即购买",
+      "completeOrder": "提交并完成付款",
+      "payNow": "立即支付",
+      "submit": "提交",
+      "submitOrder": "提交订单",
+      "enrollNowButton": ""
+    }
+  },
+  "zh-HK": {
+    "buttons": {
+      "continue": "繼續",
+      "buyNow": "立即購買",
+      "completeOrder": "送出並完成付款",
+      "payNow": "立即付款",
+      "submit": "提交",
+      "submitOrder": "提交訂單",
+      "enrollNowButton": ""
+    }
+  },
+  "zh-TW": {
+    "buttons": {
+      "continue": "繼續",
+      "buyNow": "立刻購買",
+      "completeOrder": "送出並完成付款",
+      "payNow": "立即付款",
+      "submit": "送出",
+      "submitOrder": "送出訂單",
+      "enrollNowButton": ""
+    }
+  }
+}

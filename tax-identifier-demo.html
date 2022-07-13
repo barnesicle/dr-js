@@ -145,6 +145,18 @@
         },
 
     };
+    let taxId;
+    let drJS;
+    const options = {
+        style: styles,
+        classes: {
+            empty: 'DRElement',
+            base: 'custom--offline-refund-base',
+            invalid: 'custom--invalid',
+            complete: 'custom--complete',
+        },
+        taxIdentifier: {}
+    };
 
     window.addEventListener('load', function() {
         const apiKey = getURLParamOrDefault('apiKey', 'pk_sys_c2608001bba7477eae22808e1eb138db')
@@ -154,19 +166,10 @@
         const sellingEntity = getURLParamOrDefault('sellingEntity', null);
         const type = getURLParamOrDefault('type', null);
 
-        const drJS =  new DigitalRiver(apiKey, {locale: locale});
+        drJS =  new DigitalRiver(apiKey, {locale: locale});
 
 
-        const options = {
-            style: styles,
-            classes: {
-                empty: 'DRElement',
-                base: 'custom--offline-refund-base',
-                invalid: 'custom--invalid',
-                complete: 'custom--complete',
-            },
-            taxIdentifier: {}
-        };
+
 
         if(sessionId !== null) {
             options.taxIdentifier.sessionId = sessionId;
@@ -181,7 +184,7 @@
             options.taxIdentifier.type = type;
         }
 
-        const taxId = drJS.createElement('taxidentifier', options);
+        taxId = drJS.createElement('taxidentifier', options);
 
         taxId.mount('taxid');
 

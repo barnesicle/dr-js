@@ -1,0 +1,201 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8"/>
+    <title>iDEAL Element Demo</title>
+    <style>
+        body {
+            font-family: apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif;
+            margin: 4em;
+        }
+        #log {
+            white-space: pre;
+            font-size: .75em;
+            max-height: 800px;
+            overflow-y: scroll;
+            border: 1px solid #555;
+        }
+        table {
+            margin: 20px;
+            border-collapse: unset;
+            border-spacing: 0;
+        }
+        td, th {
+            padding: .5em;
+            border: 1px solid deepskyblue;
+        }
+        .DRElement {
+            border:1px solid #ced4da;
+            margin:0 0.2rem;
+            border-radius:.25rem;
+            overflow:hidden;
+        }
+    </style>
+    <link rel="stylesheet" href="css/DigitalRiver.css" type="text/css"/>
+<script defer src="dropInStyles.js"></script><script defer src="DigitalRiver.js"></script><link href="css/DigitalRiver.css" rel="stylesheet"></head>
+<body>
+<h1>iDeal Element Example</h1>
+<h2>Instructions</h2>
+
+<p>Add url parameters to configure your options for the ideal element.</p>
+
+<table>
+    <tr>
+        <th>Parameter name</th>
+        <th>Description</th>
+    </tr>
+    <tr>
+        <td>apiKey</td>
+        <td>Defaults to paylive systest key if not provided.</td>
+    </tr>
+    <tr>
+        <td>sessionId</td>
+        <td>Payment session id. Defaults to 'ee63194d-f681-40d6-9ec2-0943232799be'</td>
+    </tr>
+    <tr>
+        <td>locale</td>
+        <td>Display locale for DR.js. Optional.</td>
+    </tr>
+</table>
+<div id="ideal"></div>
+<div>
+    <button id="createIdeal">Create iDEAL element</button>
+    <button id="mountIdeal">Mount iDEAL element</button>
+    <button id="unmountIdeal">Unmount iDEAL element</button>
+    <button id="destroyIdeal">Destroy iDEAL element</button>
+    <button id="submitIdeal">Create iDEAL source</button>
+</div>
+
+<h2>Event Log</h2>
+<div id="log"></div>
+<script>
+
+    const styles = {
+        base: {
+            padding: '0',
+            color: '#495057',
+            height: '35px',
+            fontSize: '1rem',
+            fontFamily: 'apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif',
+            // fontWeight: 'lighter',
+            ':hover': {
+                color: '#137bee',
+            },
+            '::placeholder': {
+                color: '#999'
+            },
+            ':-webkit-autofill': {
+                color: 'purple'
+            },
+            ':focus': {
+                color: 'blue'
+            }
+        },
+        invalid: {
+            color: '#dc3545',
+            ':-webkit-autofill': {
+                color: '#dc3545'
+            }
+        },
+        complete: {
+            color: '#28a745',
+            ':hover': {
+                color:'#28a745',
+            },
+            ':-webkit-autofill': {
+                color: '#28a745'
+            }
+        },
+        empty: {
+            color: '#000000'
+        },
+
+    };
+    let ideal;
+
+    window.addEventListener('load', function() {
+
+        const locale = getURLParamOrDefault('locale', 'en-US');
+        const apiKey = getURLParamOrDefault('apiKey', 'pk_sys_c2608001bba7477eae22808e1eb138db');
+        const sessionId = getURLParamOrDefault('sessionId', 'ee63194d-f681-40d6-9ec2-0943232799be');
+
+        const drJS =  new DigitalRiver(apiKey, {locale: locale});
+
+
+        const idealOptions = {
+            style: styles,
+            classes: {
+                empty: 'DRElement',
+                base: 'DRElement',
+                invalid: 'DRElement',
+                complete: 'DRElement',
+            },
+            ideal: {
+                sessionId: sessionId
+            }
+        };
+
+        document.getElementById('createIdeal').addEventListener('click', function() {
+            ideal = drJS.createElement('ideal', idealOptions);
+            ideal.on('ready', function (event) {
+                addContentToLog( event.elementType + ' ready received \n' + JSON.stringify(event, null, 4));
+
+                const idealSourceRequestData = {
+                    type: 'ideal',
+                    sessionId: sessionId,
+                    ideal: {
+                        returnUrl: window.document.location.href
+                    }
+                }
+                document.getElementById('submitIdeal').addEventListener('click', function() {
+                    drJS.createSource(ideal, idealSourceRequestData).then(response => {
+                        addContentToLog(JSON.stringify(response, null, 4))
+                    })
+                })
+            });
+
+            ideal.on('change', function (event) {
+                addContentToLog(event.elementType + ' change received \n' + JSON.stringify(event, null, 4));
+            });
+        })
+
+        document.getElementById('mountIdeal').addEventListener('click', function() {
+            ideal.mount('ideal');
+        })
+        document.getElementById('unmountIdeal').addEventListener('click', function() {
+            ideal.unmount('ideal');
+        })
+        document.getElementById('destroyIdeal').addEventListener('click', function() {
+            ideal.destroy('ideal');
+        })
+
+
+
+
+
+
+        // helper functions
+        function addContentToLog(content) {
+            const log = document.getElementById('log');
+            log.innerHTML = '\n<hr/>\n' + content + log.innerHTML;
+        }
+
+        function getURLParamOrDefault(name, defaultValue) {
+            const results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+            if (results == null){
+                return defaultValue;
+            }
+            else {
+                return decodeURI(results[1]) || 0;
+            }
+        }
+
+    })
+
+
+
+
+</script>
+</body>
+</html>

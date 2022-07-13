@@ -1,0 +1,265 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8"/>
+    <title>InvoiceAttribute Element Demo</title>
+
+    <link rel="stylesheet" href="css/DigitalRiver.css" type="text/css"/>
+    <style>
+        body {
+            font-family: apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif;
+            margin: 4em;
+        }
+        table {
+            border-collapse: collapse;
+            margin: 1em 0
+        }
+        th {
+            color: #aaa;
+        }
+        td,th {
+            text-align:left;
+            border: 1px solid #ddd;
+            padding: .5em;
+        }
+        th {
+            border-top:none;
+        }
+        td:first-of-type, th:first-of-type {
+            border-left: none;
+        }
+        td:last-of-type, th:last-of-type {
+            border-right: none;
+        }
+        #content {
+            display:flex;
+            flex-direction:row;
+            max-width: 1000px;
+        }
+        #invoiceAttribute, #log {
+            margin: 1em;
+            width:100%;
+        }
+        #log {
+            white-space: pre;
+            font-size: .75em;
+            max-height: 800px;
+            overflow-y: scroll;
+        }
+        .custom--complete {
+            color: green;
+        }
+
+
+    </style>
+<script defer src="dropInStyles.js"></script><script defer src="DigitalRiver.js"></script><link href="css/DigitalRiver.css" rel="stylesheet"></head>
+<body>
+<h1>Invoice Attribute Example</h1>
+
+<h2>Instructions</h2>
+
+<p>Add url parameters to configure your options for the invoiceAttribute element.</p>
+
+<table>
+    <tr>
+        <th>Parameter name</th>
+        <th>Description</th>
+        <th>Examples</th>
+    </tr>
+    <tr>
+        <td>apiKey</td>
+        <td>Defaults to drapi003 key if not provided.</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>sessionId</td>
+        <td>Payment session id. Required if country and sellingEntity are not provided</td>
+        <td>
+            <p>DR_CHINA-ENTITY (individual): c2f3869b-dc1c-4725-9883-2482cce22737</p>
+            <p>DR_CHINA-ENTITY (business): 62ca3d42-64c9-423b-8f22-933dfb739a99</p>
+            <p>DR_CHINA-ENTITY (no shopper type): e16a100e-ec76-41af-b227-8d2a1418ee46</p>
+            <p>DR_TAIWAN-ENTITY (individual): a38e6a38-41a3-4802-acbe-043ff2e8958a</p>
+            <p>DR_TAIWAN-ENTITY (business, no invoices): b89df58f-1286-4d3c-9727-a7dd14324bd1</p>
+            <P>DR_TAIWAN-ENTITY (no shopper type, only individual invoices): e11a60b4-e253-4172-af11-6757bdc61fb9</P>
+        </td>
+    </tr>
+    <tr>
+        <td>country</td>
+        <td>ISO country code. Required if sessionId not provided</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>sellingEntity</td>
+        <td>DR entity code for selling entity. Optional if selling entity is not provided. If not provided, a default entity will be selected</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>type</td>
+        <td>"business" or "individual". Optional, filters ready event and display.</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>locale</td>
+        <td>Display locale for DR.js. Optional.</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>email</td>
+        <td>If provided, will prepop and hide the field for TW member carrier. Optional</td>
+        <td></td>
+    </tr>
+</table>
+<div id="content">
+    <div>
+        <button id="create">Create invoiceAttribute element</button>
+        <button id="mount">Mount invoiceAttribute element</button>
+        <button id="unmount">Unmount invoiceAttribute element</button>
+        <button id="destroy">Destroy invoiceAttribute element</button>
+    </div>
+    <div id="invoiceAttribute"></div>
+
+    <div id="log"></div>
+</div>
+
+<script>
+
+    const styles = {
+        base: {
+            padding: '0',
+            color: '#495057',
+            height: '35px',
+            fontSize: '1rem',
+            fontFamily: 'apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif',
+            ':hover': {
+                color: '#137bee',
+            },
+            '::placeholder': {
+                color: '#999'
+            },
+            ':-webkit-autofill': {
+                color: 'purple'
+            },
+            ':focus': {
+                color: 'blue'
+            }
+        },
+        invalid: {
+            color: '#dc3545',
+            ':-webkit-autofill': {
+                color: '#dc3545'
+            }
+        },
+        complete: {
+            color: 'green',
+            ':hover': {
+                color:'green',
+            },
+            ':-webkit-autofill': {
+                color: 'green'
+            }
+        },
+        empty: {
+            color: '#000000'
+        },
+
+    };
+    let invoiceAttribute;
+    let drJS;
+    const options = {
+        style: styles,
+        classes: {
+            empty: 'custom--empty',
+            base: 'DRElement',
+            invalid: 'custom--invalid',
+            complete: 'custom--complete',
+        },
+        invoiceAttribute: {
+            //email: 'test@test.com'
+        }
+    };
+
+    window.addEventListener('load', function() {
+        const apiKey = getURLParamOrDefault('apiKey', 'pk_sys_b67c9da412044a11923cc938ebf5022b')
+        const locale = getURLParamOrDefault('locale', 'en-US');
+        const sessionId = getURLParamOrDefault('sessionId', null);
+        const country = getURLParamOrDefault('country', null);
+        const sellingEntity = getURLParamOrDefault('sellingEntity', null);
+        const type = getURLParamOrDefault('type', null);
+        const email = getURLParamOrDefault('email', null)
+
+        drJS =  new DigitalRiver(apiKey, {locale: locale});
+
+        if(sessionId !== null) {
+            options.invoiceAttribute.sessionId = sessionId;
+        }
+        if(country !== null) {
+            options.invoiceAttribute.country = country;
+        }
+        if(sellingEntity !== null) {
+            options.invoiceAttribute.sellingEntity = sellingEntity;
+        }
+        if(type !== null) {
+            options.invoiceAttribute.type = type;
+        }
+        if(email !== null) {
+            options.invoiceAttribute.email = email;
+        }
+
+        invoiceAttribute = drJS.createElement('invoiceAttribute', options);
+
+        invoiceAttribute.mount('invoiceAttribute');
+
+        // helper functions
+        function addContentToLog(content) {
+            const log = document.getElementById('log');
+            log.innerHTML = '\n<hr/>\n' + content + log.innerHTML;
+        }
+
+        function getURLParamOrDefault(name, defaultValue) {
+            const results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+            if (results == null){
+                return defaultValue;
+            }
+            else {
+                return decodeURI(results[1]) || 0;
+            }
+        }
+
+        document.getElementById('create').addEventListener('click', () => {
+            invoiceAttribute = drJS.createElement('invoiceAttribute', options);
+
+        });
+        document.getElementById('mount').addEventListener('click', () => {
+            invoiceAttribute.mount('invoiceAttribute');
+        });
+        document.getElementById('unmount').addEventListener('click', () => {
+            invoiceAttribute.unmount();
+        });
+        document.getElementById('destroy').addEventListener('click', () => {
+            invoiceAttribute.destroy();
+        });
+        invoiceAttribute.on('ready', function (event) {
+            addContentToLog( event.elementType + ' ready received \n\n' + JSON.stringify(event, null, 4));
+        });
+        invoiceAttribute.on('complete', function (event) {
+            addContentToLog( event.elementType + ' complete received \n\n' + JSON.stringify(event, null, 4));
+        });
+        invoiceAttribute.on('change', function (event) {
+            addContentToLog( event.elementType + ' change received \n\n' + JSON.stringify(event, null, 4));
+        });
+        invoiceAttribute.on('blur', function (event) {
+            addContentToLog( event.elementType + ' blur received \n\n' + JSON.stringify(event, null, 4));
+        });
+        invoiceAttribute.on('focus', function (event) {
+            addContentToLog( event.elementType + ' focus received \n\n' + JSON.stringify(event, null, 4));
+        });
+    })
+
+
+
+
+</script>
+
+</body>
+</html>

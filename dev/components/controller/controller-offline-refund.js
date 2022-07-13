@@ -51,6 +51,16 @@ module.exports = __webpack_require__(/*! core-js-pure/stable/instance/starts-wit
 
 /***/ }),
 
+/***/ "./node_modules/@babel/runtime-corejs3/core-js-stable/json/stringify.js":
+/*!******************************************************************************!*\
+  !*** ./node_modules/@babel/runtime-corejs3/core-js-stable/json/stringify.js ***!
+  \******************************************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! core-js-pure/stable/json/stringify */ "./node_modules/core-js-pure/stable/json/stringify.js");
+
+/***/ }),
+
 /***/ "./node_modules/@babel/runtime-corejs3/core-js-stable/promise.js":
 /*!***********************************************************************!*\
   !*** ./node_modules/@babel/runtime-corejs3/core-js-stable/promise.js ***!
@@ -2316,12 +2326,16 @@ var LOGGING_APPLICATION_KEY = 'drJSApplicationId';
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "paymentServiceRequest": function() { return /* binding */ paymentServiceRequest; },
+/* harmony export */   "invoiceAttributeRequest": function() { return /* binding */ invoiceAttributeRequest; },
 /* harmony export */   "paymentServiceGetRequest": function() { return /* binding */ paymentServiceGetRequest; }
 /* harmony export */ });
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_starts_with__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/starts-with */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/starts-with.js");
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_starts_with__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_starts_with__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_json_stringify__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/json/stringify */ "./node_modules/@babel/runtime-corejs3/core-js-stable/json/stringify.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_json_stringify__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_json_stringify__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_starts_with__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/starts-with */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/starts-with.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_starts_with__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_starts_with__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+
 
 
 
@@ -2340,7 +2354,18 @@ var paymentServiceRequest = function paymentServiceRequest(data, apiKey, payment
   };
   var url = paymentApiUrl !== undefined ? paymentApiUrl : undefined; //eslint-disable-line no-undef
 
-  return axios__WEBPACK_IMPORTED_MODULE_1___default().post(url, data, options);
+  return axios__WEBPACK_IMPORTED_MODULE_2___default().post(url, data, options);
+};
+var invoiceAttributeRequest = function invoiceAttributeRequest(data, apiKey, apiUrl) {
+  var options = {
+    maxRedirects: 0,
+    timeout: 15000,
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': generateAuthHeader(apiKey)
+    }
+  };
+  return axios__WEBPACK_IMPORTED_MODULE_2___default().post(apiUrl, _babel_runtime_corejs3_core_js_stable_json_stringify__WEBPACK_IMPORTED_MODULE_0___default()(data), options);
 };
 var paymentServiceGetRequest = function paymentServiceGetRequest(apiKey, paymentApiUrl) {
   var options = {
@@ -2352,7 +2377,7 @@ var paymentServiceGetRequest = function paymentServiceGetRequest(apiKey, payment
       'Authorization': generateAuthHeader(apiKey)
     }
   };
-  return axios__WEBPACK_IMPORTED_MODULE_1___default().get(paymentApiUrl, options);
+  return axios__WEBPACK_IMPORTED_MODULE_2___default().get(paymentApiUrl, options);
 };
 
 var encodeApiKey = function encodeApiKey(apiKey) {
@@ -2360,7 +2385,7 @@ var encodeApiKey = function encodeApiKey(apiKey) {
 };
 
 var generateAuthHeader = function generateAuthHeader(apiKey) {
-  if (_babel_runtime_corejs3_core_js_stable_instance_starts_with__WEBPACK_IMPORTED_MODULE_0___default()(apiKey).call(apiKey, 'pk_')) {
+  if (_babel_runtime_corejs3_core_js_stable_instance_starts_with__WEBPACK_IMPORTED_MODULE_1___default()(apiKey).call(apiKey, 'pk_')) {
     return 'bearer ' + apiKey;
   } else {
     return 'basic ' + encodeApiKey(apiKey);
@@ -2498,6 +2523,26 @@ module.exports = function (it) {
   var own = it.startsWith;
   return typeof it === 'string' || it === StringPrototype
     || (it instanceof String && own === StringPrototype.startsWith) ? startsWith : own;
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js-pure/es/json/stringify.js":
+/*!********************************************************!*\
+  !*** ./node_modules/core-js-pure/es/json/stringify.js ***!
+  \********************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+__webpack_require__(/*! ../../modules/es.json.stringify */ "./node_modules/core-js-pure/modules/es.json.stringify.js");
+var core = __webpack_require__(/*! ../../internals/path */ "./node_modules/core-js-pure/internals/path.js");
+
+// eslint-disable-next-line es/no-json -- safe
+if (!core.JSON) core.JSON = { stringify: JSON.stringify };
+
+// eslint-disable-next-line no-unused-vars -- required for `.length`
+module.exports = function stringify(it, replacer, space) {
+  return core.JSON.stringify.apply(null, arguments);
 };
 
 
@@ -5477,6 +5522,50 @@ $({ target: 'Array', proto: true, forced: !HAS_SPECIES_SUPPORT }, {
 
 /***/ }),
 
+/***/ "./node_modules/core-js-pure/modules/es.json.stringify.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/core-js-pure/modules/es.json.stringify.js ***!
+  \****************************************************************/
+/***/ (function(__unused_webpack_module, __unused_webpack_exports, __webpack_require__) {
+
+var $ = __webpack_require__(/*! ../internals/export */ "./node_modules/core-js-pure/internals/export.js");
+var getBuiltIn = __webpack_require__(/*! ../internals/get-built-in */ "./node_modules/core-js-pure/internals/get-built-in.js");
+var fails = __webpack_require__(/*! ../internals/fails */ "./node_modules/core-js-pure/internals/fails.js");
+
+var $stringify = getBuiltIn('JSON', 'stringify');
+var re = /[\uD800-\uDFFF]/g;
+var low = /^[\uD800-\uDBFF]$/;
+var hi = /^[\uDC00-\uDFFF]$/;
+
+var fix = function (match, offset, string) {
+  var prev = string.charAt(offset - 1);
+  var next = string.charAt(offset + 1);
+  if ((low.test(match) && !hi.test(next)) || (hi.test(match) && !low.test(prev))) {
+    return '\\u' + match.charCodeAt(0).toString(16);
+  } return match;
+};
+
+var FORCED = fails(function () {
+  return $stringify('\uDF06\uD834') !== '"\\udf06\\ud834"'
+    || $stringify('\uDEAD') !== '"\\udead"';
+});
+
+if ($stringify) {
+  // `JSON.stringify` method
+  // https://tc39.es/ecma262/#sec-json.stringify
+  // https://github.com/tc39/proposal-well-formed-stringify
+  $({ target: 'JSON', stat: true, forced: FORCED }, {
+    // eslint-disable-next-line no-unused-vars -- required for `.length`
+    stringify: function stringify(it, replacer, space) {
+      var result = $stringify.apply(null, arguments);
+      return typeof result == 'string' ? result.replace(re, fix) : result;
+    }
+  });
+}
+
+
+/***/ }),
+
 /***/ "./node_modules/core-js-pure/modules/es.object.to-string.js":
 /*!******************************************************************!*\
   !*** ./node_modules/core-js-pure/modules/es.object.to-string.js ***!
@@ -6274,6 +6363,19 @@ module.exports = parent;
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 var parent = __webpack_require__(/*! ../../es/instance/starts-with */ "./node_modules/core-js-pure/es/instance/starts-with.js");
+
+module.exports = parent;
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js-pure/stable/json/stringify.js":
+/*!************************************************************!*\
+  !*** ./node_modules/core-js-pure/stable/json/stringify.js ***!
+  \************************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+var parent = __webpack_require__(/*! ../../es/json/stringify */ "./node_modules/core-js-pure/es/json/stringify.js");
 
 module.exports = parent;
 
@@ -7565,7 +7667,7 @@ var __webpack_exports__ = {};
   \********************************************************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "runGetSchemasHandleResponse": function() { return /* binding */ runGetSchemasHandleResponse; },
+/* harmony export */   "runGetOfflineRefundInfoHandleResponse": function() { return /* binding */ runGetOfflineRefundInfoHandleResponse; },
 /* harmony export */   "getRequestFromComponentData": function() { return /* binding */ getRequestFromComponentData; },
 /* harmony export */   "runPostSchemasHandleResponse": function() { return /* binding */ runPostSchemasHandleResponse; }
 /* harmony export */ });
@@ -7587,11 +7689,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function runGetSchemasHandleResponse(apiKey, refundToken) {
+function runGetOfflineRefundInfoHandleResponse(apiKey, refundToken) {
   var _context;
 
   return (0,_payment_service_request__WEBPACK_IMPORTED_MODULE_4__.paymentServiceGetRequest)(apiKey, _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_0___default()(_context = "".concat(_config__WEBPACK_IMPORTED_MODULE_5__.config.paymentServiceBaseUrl, "/refund-schemas/")).call(_context, refundToken)).then(function (response) {
-    return response.data.refundSchemaItems;
+    return response.data;
   }).catch(function () {
     return [];
   });

@@ -31,6 +31,8 @@
     list of locales and entities, in the
     <a href="https://docs.digitalriver.com/digital-river-api/payment-integrations-1/digitalriver.js/reference/compliance-elements">docs</a>.</p>
 
+<h2>This can be used 2 ways</h2>
+<h3>Locale and entity</h3>
 <p>Locale determines which language the compliance element content will be displayed in.</p>
 <p>Entity determines what content the compliance element will display.</p>
 
@@ -42,16 +44,34 @@
 <label for="entity">Entity (ex: DR_IRELAND-ENTITY):</label>
 <input id="entity" name="entity" type="text" value=""/>
 <br />
-<button id="createCompliance">Create Compliance Element</button>
+<button id="createComplianceLocaleEntity">Create Compliance Element</button>
+<div id="complianceLocaleEntityContainer"></div>
 
-<div id="complianceContainer"></div>
+<h3>Language and country</h3>
+<p>Language determines which language the compliance element content will be displayed in.</p>
+<p>Country determines what content the compliance element will display.</p>
+
+<p>Enter your information and then click the Create Compliance Element button.</p>
+
+<label for="language">Language (ex: da):</label>
+<input id="language" name="language" type="text" value=""/>
+<br />
+<label for="country">Country (ex: DK):</label>
+<input id="country" name="country" type="text" value=""/>
+<br />
+<label for="businessEntityCode">businessEntityCode (ex: DR_IRELAND-ENTITY):</label>
+<input id="businessEntityCode" name="businessEntityCode" type="text" value=""/>
+<br/>
+<button id="createComplianceLanguageCountry">Create Compliance Element</button>
+<div id="complianceLanguageCountryContainer"></div>
 
 <script>
     var digitalriverpayments;
     var compliance;
 
-    document.getElementById('createCompliance').addEventListener('click', function() {
-
+    document.getElementById('createComplianceLocaleEntity').addEventListener('click', function() {
+        // Destroy the other method's container - can't have 2 of these mounted at once
+        document.getElementById('complianceLanguageCountryContainer').innerHTML = '';
         var apikey = 'pk_sys_c2608001bba7477eae22808e1eb138db'
         var locale = document.getElementById('locale').value;
         var entity = document.getElementById('entity').value;
@@ -66,11 +86,44 @@
                 entity // entity determines what content the compliance element will display
             }
         }
+
         // if we haven't already created it, we will create it. if we have, we'll update instead.
-        if(document.getElementById('complianceContainer').childNodes.length === 0) {
+        if(document.getElementById('complianceLocaleEntityContainer').childNodes.length === 0) {
             console.log('creating compliance element')
             compliance = digitalriverpayments.createElement('compliance', complianceOptions);
-            compliance.mount('complianceContainer');
+            compliance.mount('complianceLocaleEntityContainer');
+        } else {
+            console.log('updating compliance element')
+            compliance.update(complianceOptions);
+        }
+    });
+
+    document.getElementById('createComplianceLanguageCountry').addEventListener('click', function() {
+        // Destroy the other method's container - can't have 2 of these mounted at once
+        document.getElementById('complianceLocaleEntityContainer').innerHTML = '';
+        var apikey = 'pk_sys_c2608001bba7477eae22808e1eb138db'
+        var language = document.getElementById('language').value;
+        var country = document.getElementById('country').value;
+
+        digitalriverpayments = new DigitalRiver(apikey);
+        var complianceOptions = {
+            classes: {
+                base: 'DRElement'
+            },
+            compliance: {
+                language, // language determines which language the compliance element content will be displayed in
+                country // country determines what content the compliance element will display
+            }
+        }
+        if(document.getElementById('businessEntityCode').value !== '') {
+            complianceOptions.compliance.businessEntityCode = document.getElementById('businessEntityCode').value;
+        }
+        console.log(complianceOptions)
+        // if we haven't already created it, we will create it. if we have, we'll update instead.
+        if(document.getElementById('complianceLanguageCountryContainer').childNodes.length === 0) {
+            console.log('creating compliance element')
+            compliance = digitalriverpayments.createElement('compliance', complianceOptions);
+            compliance.mount('complianceLanguageCountryContainer');
         } else {
             console.log('updating compliance element')
             compliance.update(complianceOptions);
