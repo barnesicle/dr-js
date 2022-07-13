@@ -6068,6 +6068,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+console.log('REDIRECT RECEIVER', window.location.href);
 var actionFromQueryString = (0,_querystring__WEBPACK_IMPORTED_MODULE_1__.getActionFromQueryString)();
 var controllerIdFromQueryString = (0,_querystring__WEBPACK_IMPORTED_MODULE_1__.getControllerIdFromQueryString)();
 var sourceAuthenticationIdFromQueryString = (0,_querystring__WEBPACK_IMPORTED_MODULE_1__.getSourceAuthenticationIdFromQueryString)();
