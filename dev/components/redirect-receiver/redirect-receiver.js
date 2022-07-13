@@ -6072,6 +6072,7 @@ var actionFromQueryString = (0,_querystring__WEBPACK_IMPORTED_MODULE_1__.getActi
 var controllerIdFromQueryString = (0,_querystring__WEBPACK_IMPORTED_MODULE_1__.getControllerIdFromQueryString)();
 var sourceAuthenticationIdFromQueryString = (0,_querystring__WEBPACK_IMPORTED_MODULE_1__.getSourceAuthenticationIdFromQueryString)();
 var sessionAuthenticationIdFromQueryString = (0,_querystring__WEBPACK_IMPORTED_MODULE_1__.getSessionAuthenticationIdFromQueryString)();
+console.log('REDIRECT RECEIVED', actionFromQueryString, sourceAuthenticationIdFromQueryString, sessionAuthenticationIdFromQueryString);
 
 if (actionFromQueryString) {
   // Note Setting to unknown is required because if it is already set, setting to the same value will not fire the storage event.
