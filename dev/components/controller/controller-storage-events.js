@@ -5673,7 +5673,7 @@ function isRedirectAction(action) {
 
 function createHandleStorageEvent(components, clientEmitter, adyenEmitter, handleRedirectComplete) {
   return function (event) {
-    console.log('createHandleStorageEvent', event.key, isRedirectAction(event.newValue), event.newValue);
+    console.log('createHandleStorageEvent', event.key, event.newValue);
 
     if (event.key === REDIRECT_STORAGE_ACTION_KEY && isRedirectAction(event.newValue)) {
       var value = event.newValue.split('_');
