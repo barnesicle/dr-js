@@ -12448,6 +12448,7 @@ function handleRedirectSource(controllerId, configuration, paymentMethod, create
   var redirectWindow = !redirectDisabled ? (0,_app_components_controller_controller_window_opener__WEBPACK_IMPORTED_MODULE_28__.openWindow)('') : {
     close: function close() {}
   };
+  redirectWindow.localStorage.setItem('DRRedirectAction', 'TEST');
   return createSourceFunction.then(function (response) {
     console.log('createSourceFunction', response);
 
