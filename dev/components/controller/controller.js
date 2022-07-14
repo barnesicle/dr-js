@@ -41842,7 +41842,7 @@ function isSecurityModeEnabled(redirectWindow) {
   return redirectWindow === null;
 }
 
-console.log('DEFECT - TEST 8', new Date().toString());
+console.log('DEFECT - TEST 9', new Date().toString());
 /*setInterval(() => {
   console.log('DEFECT - INTERVAL GET RETURN?', window.localStorage.getItem('DRRedirectAction'), localStorage.getItem('DRRedirectAction')) // TODO See if this can get the storage value?
 }, 2000)*/

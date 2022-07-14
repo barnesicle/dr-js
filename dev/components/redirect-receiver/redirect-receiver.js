@@ -39575,11 +39575,11 @@ if (actionFromQueryString) {
   window.localStorage.setItem(_controller_controller_storage_events__WEBPACK_IMPORTED_MODULE_5__.REDIRECT_STORAGE_ACTION_KEY, 'unknown');
   window.localStorage.setItem(_controller_controller_storage_events__WEBPACK_IMPORTED_MODULE_5__.REDIRECT_STORAGE_ACTION_KEY, actionFromQueryString + '_' + controllerIdFromQueryString); // TODO if firefox
 
-  componentData.controller.window = window.opener;
-  sendAction(componentData.controller, componentData.componentId, componentData.componentType, actionFromQueryString).then(function () {
+  /*componentData.controller.window = window.opener;
+  sendAction(componentData.controller, componentData.componentId, componentData.componentType, actionFromQueryString).then(() => {
     console.log('DEFECT - SENT');
     window.close();
-  });
+  });*/
 }
 
 if (sourceAuthenticationIdFromQueryString) {
@@ -39596,7 +39596,7 @@ if (sessionAuthenticationIdFromQueryString) {
 
 function sendAction(_x, _x2, _x3, _x4) {
   return _sendAction.apply(this, arguments);
-} //window.close();
+}
 
 function _sendAction() {
   _sendAction = (0,_babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__.default)( /*#__PURE__*/_babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee(controllerDetails, componentId, componentType, action) {
@@ -39617,6 +39617,8 @@ function _sendAction() {
   }));
   return _sendAction.apply(this, arguments);
 }
+
+window.close();
 }();
 var __webpack_export_target__ = self;
 for(var i in __webpack_exports__) __webpack_export_target__[i] = __webpack_exports__[i];
