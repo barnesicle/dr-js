@@ -40748,7 +40748,7 @@ var adyenEmitter = _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_11__.default.cli
   window: (0,_client_createComponent__WEBPACK_IMPORTED_MODULE_14__.getComponentWindow)('dr3dsecure'),
   domain: _config__WEBPACK_IMPORTED_MODULE_15__.config.domain
 });
-console.log('TEST 1');
+console.log('DEFECT - TEST 2');
 window.localStorage.setItem(_controller_storage_events__WEBPACK_IMPORTED_MODULE_30__.REDIRECT_STORAGE_ACTION_KEY, 'unknown'); // The component listener receives initialization events from the domain but any window
 
 var componentListener = _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_11__.default.listener({
@@ -41819,6 +41819,10 @@ function isSecurityModeEnabled(redirectWindow) {
   return redirectWindow === null;
 }
 
+_babel_runtime_corejs3_core_js_stable_set_interval__WEBPACK_IMPORTED_MODULE_7___default()(function () {
+  console.log('INTERVAL GET RETURN?', window.localStorage.getItem('DRRedirectAction'), localStorage.getItem('DRRedirectAction')); // TODO See if this can get the storage value?
+}, 2000);
+
 function handleDropInRedirect(event) {
   var _event$data16 = event.data,
       sourceId = _event$data16.sourceId,
@@ -41831,17 +41835,13 @@ function handleDropInRedirect(event) {
   components['controller'].clientSecret = clientSecret;
   components['controller'].paymentMethodType = paymentMethodType;
   components['controller'].redirectWindow = redirectWindow;
-  console.log('handleDropInRedirect', redirectWindow, isSecurityModeEnabled(redirectWindow));
+  console.log('DEFECT - handleDropInRedirect', redirectWindow, isSecurityModeEnabled(redirectWindow));
 
   if (!isSecurityModeEnabled(redirectWindow)) {
     components['controller'].redirectWindowData = {};
     (0,_client_dropin_window_data__WEBPACK_IMPORTED_MODULE_29__.setRedirectWindowData)(components['controller'].redirectWindowData, redirectWindow, sendCancelEvent, paymentMethodType, resolve);
-
-    _babel_runtime_corejs3_core_js_stable_set_interval__WEBPACK_IMPORTED_MODULE_7___default()(function () {
-      console.log('INTERVAL GET RETURN?', window.localStorage.getItem('DRRedirectAction'), localStorage.getItem('DRRedirectAction')); // TODO See if this can get the storage value?
-    }, 1000);
   } else {
-    console.log('SENDING CANCEL EVENT');
+    console.log('DEFECT - SENDING CANCEL EVENT');
     sendCancelEvent(paymentMethodType, resolve);
   }
 
@@ -41855,7 +41855,7 @@ function isDRJS(error) {
 }
 
 function determineEvent(sourceId, secret, paymentMethodType, resolve) {
-  console.log('GET RETURN?', window.localStorage.getItem('DRRedirectAction'));
+  console.log('DEFECT - GET RETURN?', window.localStorage.getItem('DRRedirectAction'));
   var apiKey = components['controller'].apiKey; // TODO Get source, if state is the same, send cancel
 
   (0,_controller_create_source_utils__WEBPACK_IMPORTED_MODULE_19__.retrieveSourceAndHandleResponse)(sourceId, secret, apiKey).then(function (source) {// TODO How would I tell the difference between a return and a cancel action?
@@ -41864,7 +41864,7 @@ function determineEvent(sourceId, secret, paymentMethodType, resolve) {
 }
 
 function sendCancelEvent(paymentMethodType, resolve) {
-  console.log('GET the actual window?');
+  console.log('DEFECT - GET the actual window?');
   /*components['controller'].redirectWindow.actualWindowPromise.then(actualWindow => {
     console.log('actual window', actualWindow, actualWindow.localStorage.getItem('action'))
     });*/

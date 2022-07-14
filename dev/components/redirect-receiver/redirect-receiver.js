@@ -6075,6 +6075,24 @@ var sourceAuthenticationIdFromQueryString = (0,_querystring__WEBPACK_IMPORTED_MO
 var sessionAuthenticationIdFromQueryString = (0,_querystring__WEBPACK_IMPORTED_MODULE_1__.getSessionAuthenticationIdFromQueryString)();
 console.log('REDIRECT RECEIVED', actionFromQueryString, sourceAuthenticationIdFromQueryString, sessionAuthenticationIdFromQueryString);
 document.requestStorageAccess().then(function () {
+  if (actionFromQueryString) {
+    // Note Setting to unknown is required because if it is already set, setting to the same value will not fire the storage event.
+    window.localStorage.setItem(_controller_controller_storage_events__WEBPACK_IMPORTED_MODULE_2__.REDIRECT_STORAGE_ACTION_KEY, 'unknown');
+    window.localStorage.setItem(_controller_controller_storage_events__WEBPACK_IMPORTED_MODULE_2__.REDIRECT_STORAGE_ACTION_KEY, actionFromQueryString + '_' + controllerIdFromQueryString);
+  }
+
+  if (sourceAuthenticationIdFromQueryString) {
+    // Note Setting to unknown is required because if it is already set, setting to the same value will not fire the storage event.
+    window.localStorage.setItem(_controller_controller_storage_events__WEBPACK_IMPORTED_MODULE_2__.REDIRECT_STORAGE_SOURCE_AUTHENTICATION_ID, 'unknown');
+    window.localStorage.setItem(_controller_controller_storage_events__WEBPACK_IMPORTED_MODULE_2__.REDIRECT_STORAGE_SOURCE_AUTHENTICATION_ID, sourceAuthenticationIdFromQueryString + '_' + controllerIdFromQueryString);
+  }
+
+  if (sessionAuthenticationIdFromQueryString) {
+    // Note Setting to unknown is required because if it is already set, setting to the same value will not fire the storage event.
+    window.localStorage.setItem(_controller_controller_storage_events__WEBPACK_IMPORTED_MODULE_2__.REDIRECT_STORAGE_SESSION_AUTHENTICATION_ID, 'unknown');
+    window.localStorage.setItem(_controller_controller_storage_events__WEBPACK_IMPORTED_MODULE_2__.REDIRECT_STORAGE_SESSION_AUTHENTICATION_ID, sessionAuthenticationIdFromQueryString + '_' + controllerIdFromQueryString);
+  }
+
   console.log('access granted');
 }, function () {
   console.log('access denied');
