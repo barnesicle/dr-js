@@ -41835,7 +41835,7 @@ function handleDropInRedirect(event) {
     components['controller'].redirectWindowData = {}; //setRedirectWindowData(components['controller'].redirectWindowData, redirectWindow, sendCancelEvent, paymentMethodType, resolve);
 
     _babel_runtime_corejs3_core_js_stable_set_interval__WEBPACK_IMPORTED_MODULE_7___default()(function () {
-      console.log(document.localStorage.getItem('return'));
+      console.log('GET RETURN?', window.localStorage.getItem('return')); // TODO See if this can get the storage value?
     }, 1000);
   } else {
     console.log('SENDING CANCEL EVENT');
