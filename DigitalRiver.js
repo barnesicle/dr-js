@@ -17334,11 +17334,11 @@ function taxIdentifier(key, configuration, storage, createElement) {
                   mountedVersion.instance = instance;
                 } else {
                   /* mountedVersion.instance.update({
-                     taxIdentifier: {
-                       sessionId: paymentSessionId,
-                       type: customerType,
-                     }
-                   });*/
+                    taxIdentifier: {
+                      sessionId: paymentSessionId,
+                      type: customerType,
+                    }
+                  });*/
                 }
               }
 

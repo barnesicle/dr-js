@@ -18701,11 +18701,11 @@ function taxIdentifier(key, configuration, storage, createElement) {
                   mountedVersion.instance = instance;
                 } else {
                   /* mountedVersion.instance.update({
-                     taxIdentifier: {
-                       sessionId: paymentSessionId,
-                       type: customerType,
-                     }
-                   });*/
+                    taxIdentifier: {
+                      sessionId: paymentSessionId,
+                      type: customerType,
+                    }
+                  });*/
                 }
               }
 
@@ -40747,9 +40747,7 @@ var clientEmitter = _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_11__.default.cl
 var adyenEmitter = _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_11__.default.client({
   window: (0,_client_createComponent__WEBPACK_IMPORTED_MODULE_14__.getComponentWindow)('dr3dsecure'),
   domain: _config__WEBPACK_IMPORTED_MODULE_15__.config.domain
-});
-console.log('DEFECT - TEST 4', new Date().toString());
-window.localStorage.setItem(_controller_storage_events__WEBPACK_IMPORTED_MODULE_30__.REDIRECT_STORAGE_ACTION_KEY, 'unknown'); // The component listener receives initialization events from the domain but any window
+}); // The component listener receives initialization events from the domain but any window
 
 var componentListener = _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_11__.default.listener({
   domain: _config__WEBPACK_IMPORTED_MODULE_15__.config.domain
@@ -41819,10 +41817,17 @@ function isSecurityModeEnabled(redirectWindow) {
   return redirectWindow === null;
 }
 
+console.log('DEFECT - TEST 5', new Date().toString());
+
 _babel_runtime_corejs3_core_js_stable_set_interval__WEBPACK_IMPORTED_MODULE_7___default()(function () {
-  console.log('INTERVAL GET RETURN?', window.localStorage.getItem('DRRedirectAction'), localStorage.getItem('DRRedirectAction')); // TODO See if this can get the storage value?
+  console.log('DEFECT - INTERVAL GET RETURN?', window.localStorage.getItem('DRRedirectAction'), localStorage.getItem('DRRedirectAction')); // TODO See if this can get the storage value?
 }, 2000);
 
+document.requestStorageAccess().then(function () {
+  console.log('access granted');
+}, function () {
+  console.log('access denied');
+});
 function handleDropInRedirect(event) {
   var _event$data16 = event.data,
       sourceId = _event$data16.sourceId,

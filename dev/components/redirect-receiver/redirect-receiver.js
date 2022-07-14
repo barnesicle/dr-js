@@ -17596,11 +17596,11 @@ function taxIdentifier(key, configuration, storage, createElement) {
                   mountedVersion.instance = instance;
                 } else {
                   /* mountedVersion.instance.update({
-                     taxIdentifier: {
-                       sessionId: paymentSessionId,
-                       type: customerType,
-                     }
-                   });*/
+                    taxIdentifier: {
+                      sessionId: paymentSessionId,
+                      type: customerType,
+                    }
+                  });*/
                 }
               }
 
@@ -39559,9 +39559,8 @@ if (actionFromQueryString) {
   // Note Setting to unknown is required because if it is already set, setting to the same value will not fire the storage event.
   window.localStorage.setItem(_controller_controller_storage_events__WEBPACK_IMPORTED_MODULE_5__.REDIRECT_STORAGE_ACTION_KEY, 'unknown');
   window.localStorage.setItem(_controller_controller_storage_events__WEBPACK_IMPORTED_MODULE_5__.REDIRECT_STORAGE_ACTION_KEY, actionFromQueryString + '_' + controllerIdFromQueryString); // TODO if firefox
-
-  componentData.controller.window = window.opener;
-  sendAction(componentData.controller, componentData.componentId, componentData.componentType, actionFromQueryString);
+  //componentData.controller.window = window.opener;
+  //sendAction(componentData.controller, componentData.componentId, componentData.componentType, actionFromQueryString);
 }
 
 if (sourceAuthenticationIdFromQueryString) {
