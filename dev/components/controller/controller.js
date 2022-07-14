@@ -41842,7 +41842,7 @@ function isSecurityModeEnabled(redirectWindow) {
   return redirectWindow === null;
 }
 
-console.log('DEFECT - TEST 7', new Date().toString());
+console.log('DEFECT - TEST 8', new Date().toString());
 /*setInterval(() => {
   console.log('DEFECT - INTERVAL GET RETURN?', window.localStorage.getItem('DRRedirectAction'), localStorage.getItem('DRRedirectAction')) // TODO See if this can get the storage value?
 }, 2000)*/
@@ -41886,13 +41886,20 @@ function isDRJS(error) {
 function determineEvent(paymentMethodType, resolve) {
   console.log('DEFECT - GET RETURN?', window.localStorage.getItem('DRRedirectAction')); // TODO Get source, if state is the same, send cancel
 
-  handleRedirectComplete().then(function (source) {
+  handleRedirectComplete().then(function (data) {
     // TODO How would I tell the difference between a return and a cancel action?
-    console.log('SOURCE RETURNED', source);
+    console.log('SOURCE RETURNED', data);
 
-    if (source.state === 'pending_redirect') {
+    if (data.source.state === 'pending_redirect') {
       return sendCancelEvent(paymentMethodType, resolve);
-    } else {}
+    } else {
+      var emitter = components['controller'].paymentMethodType === 'adyen_redirect' ? adyenEmitter : clientEmitter;
+      return emitter.send('redirectComplete', {
+        response: data,
+        action: 'return',
+        paymentMethodType: components['controller'].paymentMethodType
+      });
+    }
   });
 }
 
