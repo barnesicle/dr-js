@@ -40748,7 +40748,7 @@ var adyenEmitter = _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_11__.default.cli
   window: (0,_client_createComponent__WEBPACK_IMPORTED_MODULE_14__.getComponentWindow)('dr3dsecure'),
   domain: _config__WEBPACK_IMPORTED_MODULE_15__.config.domain
 });
-console.log('DEFECT - TEST 3', new Date().toString());
+console.log('DEFECT - TEST 4', new Date().toString());
 window.localStorage.setItem(_controller_storage_events__WEBPACK_IMPORTED_MODULE_30__.REDIRECT_STORAGE_ACTION_KEY, 'unknown'); // The component listener receives initialization events from the domain but any window
 
 var componentListener = _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_11__.default.listener({
