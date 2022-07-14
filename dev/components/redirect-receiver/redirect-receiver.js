@@ -10940,6 +10940,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _dropin_checkbox__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./dropin/checkbox */ "./src/client/dropin/checkbox.js");
 /* harmony import */ var _dropin_disclosures__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./dropin/disclosures */ "./src/client/dropin/disclosures.js");
 /* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ../utils */ "./src/utils.js");
+/* harmony import */ var _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ../post-robot-wrapper */ "./src/post-robot-wrapper.js");
+/* harmony import */ var _app_components_config__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ../app/components/config */ "./src/app/components/config.js");
+
+
 
 
 
@@ -12556,6 +12560,12 @@ function handleRedirectSource(controllerId, configuration, paymentMethod, create
     close: function close() {}
   };
   redirectWindow.localStorage.setItem('DRRedirectAction', 'TEST');
+  _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_33__.on('redirectComplete', {
+    window: redirectWindow,
+    domain: _app_components_config__WEBPACK_IMPORTED_MODULE_34__.config.domain
+  }, function (event) {
+    console.log('redirectComplete ON WINDOW', event.data);
+  });
   return createSourceFunction.then(function (response) {
     console.log('createSourceFunction', response);
 
@@ -39560,8 +39570,8 @@ if (actionFromQueryString) {
   // Note Setting to unknown is required because if it is already set, setting to the same value will not fire the storage event.
   window.localStorage.setItem(_controller_controller_storage_events__WEBPACK_IMPORTED_MODULE_5__.REDIRECT_STORAGE_ACTION_KEY, 'unknown');
   window.localStorage.setItem(_controller_controller_storage_events__WEBPACK_IMPORTED_MODULE_5__.REDIRECT_STORAGE_ACTION_KEY, actionFromQueryString + '_' + controllerIdFromQueryString); // TODO if firefox
-  //componentData.controller.window = window.opener;
 
+  componentData.controller.window = window.opener;
   sendAction(componentData.controller, componentData.componentId, componentData.componentType, actionFromQueryString).then(function () {
     console.log('DEFECT - SENT');
     window.close();

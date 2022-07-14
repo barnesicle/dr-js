@@ -12045,6 +12045,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _dropin_checkbox__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./dropin/checkbox */ "./src/client/dropin/checkbox.js");
 /* harmony import */ var _dropin_disclosures__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./dropin/disclosures */ "./src/client/dropin/disclosures.js");
 /* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ../utils */ "./src/utils.js");
+/* harmony import */ var _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ../post-robot-wrapper */ "./src/post-robot-wrapper.js");
+/* harmony import */ var _app_components_config__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ../app/components/config */ "./src/app/components/config.js");
+
+
 
 
 
@@ -13661,6 +13665,12 @@ function handleRedirectSource(controllerId, configuration, paymentMethod, create
     close: function close() {}
   };
   redirectWindow.localStorage.setItem('DRRedirectAction', 'TEST');
+  _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_33__.on('redirectComplete', {
+    window: redirectWindow,
+    domain: _app_components_config__WEBPACK_IMPORTED_MODULE_34__.config.domain
+  }, function (event) {
+    console.log('redirectComplete ON WINDOW', event.data);
+  });
   return createSourceFunction.then(function (response) {
     console.log('createSourceFunction', response);
 
@@ -41854,7 +41864,7 @@ function handleDropInRedirect(event) {
       console.log('access denied');
     });
     components['controller'].redirectWindowData = {};
-    (0,_client_dropin_window_data__WEBPACK_IMPORTED_MODULE_28__.setRedirectWindowData)(components['controller'].redirectWindowData, redirectWindow, sendCancelEvent, paymentMethodType, resolve);
+    (0,_client_dropin_window_data__WEBPACK_IMPORTED_MODULE_28__.setRedirectWindowData)(components['controller'].redirectWindowData, redirectWindow, determineEvent, paymentMethodType, resolve);
   } else {
     console.log('DEFECT - SENDING CANCEL EVENT');
     sendCancelEvent(paymentMethodType, resolve);
@@ -41869,13 +41879,17 @@ function isDRJS(error) {
   return _babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_7___default()(_context5 = error.message).call(_context5, 'No handler found for post message: redirectComplete');
 }
 
-function determineEvent(sourceId, secret, paymentMethodType, resolve) {
-  console.log('DEFECT - GET RETURN?', window.localStorage.getItem('DRRedirectAction'));
-  var apiKey = components['controller'].apiKey; // TODO Get source, if state is the same, send cancel
+function determineEvent(paymentMethodType, resolve) {
+  console.log('DEFECT - GET RETURN?', window.localStorage.getItem('DRRedirectAction')); // TODO Get source, if state is the same, send cancel
 
-  (0,_controller_create_source_utils__WEBPACK_IMPORTED_MODULE_18__.retrieveSourceAndHandleResponse)(sourceId, secret, apiKey).then(function (source) {// TODO How would I tell the difference between a return and a cancel action?
+  handleRedirectComplete().then(function (source) {
+    // TODO How would I tell the difference between a return and a cancel action?
+    console.log('SOURCE RETURNED', source);
+
+    if (source.state === 'pending_redirect') {
+      return sendCancelEvent(paymentMethodType, resolve);
+    } else {}
   });
-  return sendCancelEvent(paymentMethodType, resolve);
 }
 
 function sendCancelEvent(paymentMethodType, resolve) {
