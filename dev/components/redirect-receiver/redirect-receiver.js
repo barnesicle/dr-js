@@ -39560,9 +39560,12 @@ if (actionFromQueryString) {
   // Note Setting to unknown is required because if it is already set, setting to the same value will not fire the storage event.
   window.localStorage.setItem(_controller_controller_storage_events__WEBPACK_IMPORTED_MODULE_5__.REDIRECT_STORAGE_ACTION_KEY, 'unknown');
   window.localStorage.setItem(_controller_controller_storage_events__WEBPACK_IMPORTED_MODULE_5__.REDIRECT_STORAGE_ACTION_KEY, actionFromQueryString + '_' + controllerIdFromQueryString); // TODO if firefox
+  //componentData.controller.window = window.opener;
 
-  componentData.controller.window = window.opener;
-  sendAction(componentData.controller, componentData.componentId, componentData.componentType, actionFromQueryString);
+  sendAction(componentData.controller, componentData.componentId, componentData.componentType, actionFromQueryString).then(function () {
+    console.log('DEFECT - SENT');
+    window.close();
+  });
 }
 
 if (sourceAuthenticationIdFromQueryString) {
