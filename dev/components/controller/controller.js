@@ -41810,6 +41810,19 @@ function handleRedirectComplete() {
   var apiKey = components['controller'].apiKey;
   return (0,_controller_create_source_utils__WEBPACK_IMPORTED_MODULE_19__.retrieveSourceAndHandleResponse)(sourceId, sourceClientSecret, apiKey);
 }
+componentListener.on('redirectComplete', function (event) {
+  console.log('DEFECT - SEND TO CLIENT HERE', event.data);
+  var action = event.data.action;
+  handleRedirectComplete().then(function (response) {
+    console.log('handleRedirectComplete', response);
+    var emitter = components['controller'].paymentMethodType === 'adyen_redirect' ? adyenEmitter : clientEmitter;
+    return emitter.send('redirectComplete', {
+      response: response,
+      action: action,
+      paymentMethodType: components['controller'].paymentMethodType
+    });
+  });
+});
 clientListener.on('handleDropInRedirect', handleDropInRedirect);
 componentListener.on('handleDropInRedirect', handleDropInRedirect);
 
