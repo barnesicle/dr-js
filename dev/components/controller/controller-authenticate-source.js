@@ -12356,13 +12356,12 @@ function handleRedirectSource(controllerId, configuration, paymentMethod, create
   var redirectWindow = !redirectDisabled ? (0,_app_components_controller_controller_window_opener__WEBPACK_IMPORTED_MODULE_28__.openWindow)('') : {
     close: function close() {}
   };
-  redirectWindow.localStorage.setItem('DRRedirectAction', 'TEST');
+  redirectWindow.localStorage.setItem('DRRedirectAction', 'TEST'); // TODO Can I add this multiple times?
+
   _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_33__.on('redirectComplete', {
     window: redirectWindow,
     domain: _app_components_config__WEBPACK_IMPORTED_MODULE_34__.config.domain
-  }, function (event) {
-    console.log('redirectComplete ON WINDOW', event.data);
-  });
+  }, (0,_dropin_events__WEBPACK_IMPORTED_MODULE_17__.redirectComplete)([paymentMethodFromAPI], configuration, selectedText));
   return createSourceFunction.then(function (response) {
     console.log('createSourceFunction', response);
 
@@ -14229,6 +14228,7 @@ function getWireTransferContent(source, locale) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "sendRedirectSourceData": function() { return /* binding */ sendRedirectSourceData; },
+/* harmony export */   "redirectComplete": function() { return /* binding */ redirectComplete; },
 /* harmony export */   "registerRedirectOnComplete": function() { return /* binding */ registerRedirectOnComplete; },
 /* harmony export */   "isReadyForStorage": function() { return /* binding */ isReadyForStorage; },
 /* harmony export */   "runClientProvidedCompleteEvents": function() { return /* binding */ runClientProvidedCompleteEvents; },
@@ -14259,30 +14259,34 @@ function sendRedirectSourceData(controllerId, sourceId, clientSecret, redirectWi
     throw new Error('Failed to store data');
   });
 }
+function redirectComplete(paymentMethodsFromAPI, configuration, buttonText) {
+  return function (event) {
+    var _event$data = event.data,
+        response = _event$data.response,
+        action = _event$data.action,
+        paymentMethodType = _event$data.paymentMethodType;
+    console.log('ORIGINAL REDIRECT COMPLETE', window.localStorage.getItem("DRRedirectAction"));
+    var cssSpinner = document.querySelector('.DR-pay-button .DR-spinner');
+    var buttonElement = cssSpinner != null ? cssSpinner.parentNode : null;
+
+    if (action === 'return') {
+      var paymentMethodFromAPI = _babel_runtime_corejs3_core_js_stable_instance_find__WEBPACK_IMPORTED_MODULE_0___default()(paymentMethodsFromAPI).call(paymentMethodsFromAPI, function (pm) {
+        return pm.type === paymentMethodType;
+      });
+
+      runClientProvidedCompleteEvents(configuration, response, buttonElement, buttonText, paymentMethodFromAPI);
+    } else {
+      runClientProvidedCancelEvent(configuration, paymentMethodType, buttonElement, buttonText);
+    }
+  };
+}
 function registerRedirectOnComplete(controller, configuration, buttonText, paymentMethodsFromAPI) {
   if (!(0,_create_dropin__WEBPACK_IMPORTED_MODULE_4__.isRedirectDisabled)(configuration)) {
     var controllerWindow = (0,_createComponent__WEBPACK_IMPORTED_MODULE_2__.getComponentWindow)(controller.id);
     _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_1__.on('redirectComplete', {
       window: controllerWindow,
       domain: _app_components_config__WEBPACK_IMPORTED_MODULE_3__.config.domain
-    }, function (event) {
-      var _event$data = event.data,
-          response = _event$data.response,
-          action = _event$data.action,
-          paymentMethodType = _event$data.paymentMethodType;
-      var cssSpinner = document.querySelector('.DR-pay-button .DR-spinner');
-      var buttonElement = cssSpinner != null ? cssSpinner.parentNode : null;
-
-      if (action === 'return') {
-        var paymentMethodFromAPI = _babel_runtime_corejs3_core_js_stable_instance_find__WEBPACK_IMPORTED_MODULE_0___default()(paymentMethodsFromAPI).call(paymentMethodsFromAPI, function (pm) {
-          return pm.type === paymentMethodType;
-        });
-
-        runClientProvidedCompleteEvents(configuration, response, buttonElement, buttonText, paymentMethodFromAPI);
-      } else {
-        runClientProvidedCancelEvent(configuration, paymentMethodType, buttonElement, buttonText);
-      }
-    });
+    }, redirectComplete(paymentMethodsFromAPI, configuration, buttonText));
   }
 }
 function isReadyForStorage(sourceData) {
