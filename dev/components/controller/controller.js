@@ -41817,17 +41817,12 @@ function isSecurityModeEnabled(redirectWindow) {
   return redirectWindow === null;
 }
 
-console.log('DEFECT - TEST 5', new Date().toString());
+console.log('DEFECT - TEST 6', new Date().toString());
 
 _babel_runtime_corejs3_core_js_stable_set_interval__WEBPACK_IMPORTED_MODULE_7___default()(function () {
   console.log('DEFECT - INTERVAL GET RETURN?', window.localStorage.getItem('DRRedirectAction'), localStorage.getItem('DRRedirectAction')); // TODO See if this can get the storage value?
 }, 2000);
 
-document.requestStorageAccess().then(function () {
-  console.log('access granted');
-}, function () {
-  console.log('access denied');
-});
 function handleDropInRedirect(event) {
   var _event$data16 = event.data,
       sourceId = _event$data16.sourceId,
@@ -41843,6 +41838,11 @@ function handleDropInRedirect(event) {
   console.log('DEFECT - handleDropInRedirect', redirectWindow, isSecurityModeEnabled(redirectWindow));
 
   if (!isSecurityModeEnabled(redirectWindow)) {
+    document.requestStorageAccess().then(function () {
+      console.log('access granted');
+    }, function () {
+      console.log('access denied');
+    });
     components['controller'].redirectWindowData = {};
     (0,_client_dropin_window_data__WEBPACK_IMPORTED_MODULE_29__.setRedirectWindowData)(components['controller'].redirectWindowData, redirectWindow, sendCancelEvent, paymentMethodType, resolve);
   } else {
