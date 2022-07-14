@@ -40747,7 +40747,9 @@ var clientEmitter = _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_11__.default.cl
 var adyenEmitter = _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_11__.default.client({
   window: (0,_client_createComponent__WEBPACK_IMPORTED_MODULE_14__.getComponentWindow)('dr3dsecure'),
   domain: _config__WEBPACK_IMPORTED_MODULE_15__.config.domain
-}); // The component listener receives initialization events from the domain but any window
+});
+console.log('TEST 1');
+window.localStorage.setItem(_controller_storage_events__WEBPACK_IMPORTED_MODULE_30__.REDIRECT_STORAGE_ACTION_KEY, 'unknown'); // The component listener receives initialization events from the domain but any window
 
 var componentListener = _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_11__.default.listener({
   domain: _config__WEBPACK_IMPORTED_MODULE_15__.config.domain
@@ -41832,10 +41834,11 @@ function handleDropInRedirect(event) {
   console.log('handleDropInRedirect', redirectWindow, isSecurityModeEnabled(redirectWindow));
 
   if (!isSecurityModeEnabled(redirectWindow)) {
-    components['controller'].redirectWindowData = {}; //setRedirectWindowData(components['controller'].redirectWindowData, redirectWindow, sendCancelEvent, paymentMethodType, resolve);
+    components['controller'].redirectWindowData = {};
+    (0,_client_dropin_window_data__WEBPACK_IMPORTED_MODULE_29__.setRedirectWindowData)(components['controller'].redirectWindowData, redirectWindow, sendCancelEvent, paymentMethodType, resolve);
 
     _babel_runtime_corejs3_core_js_stable_set_interval__WEBPACK_IMPORTED_MODULE_7___default()(function () {
-      console.log('GET RETURN?', window.localStorage.getItem('return')); // TODO See if this can get the storage value?
+      console.log('INTERVAL GET RETURN?', window.localStorage.getItem('DRRedirectAction'), localStorage.getItem('DRRedirectAction')); // TODO See if this can get the storage value?
     }, 1000);
   } else {
     console.log('SENDING CANCEL EVENT');
@@ -41851,7 +41854,21 @@ function isDRJS(error) {
   return _babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_8___default()(_context5 = error.message).call(_context5, 'No handler found for post message: redirectComplete');
 }
 
+function determineEvent(sourceId, secret, paymentMethodType, resolve) {
+  console.log('GET RETURN?', window.localStorage.getItem('DRRedirectAction'));
+  var apiKey = components['controller'].apiKey; // TODO Get source, if state is the same, send cancel
+
+  (0,_controller_create_source_utils__WEBPACK_IMPORTED_MODULE_19__.retrieveSourceAndHandleResponse)(sourceId, secret, apiKey).then(function (source) {// TODO How would I tell the difference between a return and a cancel action?
+  });
+  return sendCancelEvent(paymentMethodType, resolve);
+}
+
 function sendCancelEvent(paymentMethodType, resolve) {
+  console.log('GET the actual window?');
+  /*components['controller'].redirectWindow.actualWindowPromise.then(actualWindow => {
+    console.log('actual window', actualWindow, actualWindow.localStorage.getItem('action'))
+    });*/
+
   return clientEmitter.send('redirectComplete', {
     action: 'cancel',
     paymentMethodType: paymentMethodType
