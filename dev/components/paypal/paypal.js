@@ -16576,12 +16576,12 @@ function createOnSuccess(storage, configuration, handleNextAction, createElement
                           selectedPaymentMethodType = data.order.payment.sources[0].type;
                           storage.windowOpenerURL = paymentSession.nextAction.data.redirectUrl;
                           storage.selectedPaymentMethodType = selectedPaymentMethodType;
-                          _context2.next = 53;
+                          _context2.next = 52;
                           break;
 
                         case 29:
                           if (!(order && typeof order.errors !== 'undefined' && order.errors[0].code === 'additional_payment_action_required')) {
-                            _context2.next = 52;
+                            _context2.next = 51;
                             break;
                           }
 
@@ -16595,7 +16595,7 @@ function createOnSuccess(storage, configuration, handleNextAction, createElement
                           removePaymentElementSpinner();
 
                           if (!(((_checkout$payment = checkout.payment) === null || _checkout$payment === void 0 ? void 0 : (_checkout$payment$ses = _checkout$payment.session) === null || _checkout$payment$ses === void 0 ? void 0 : (_checkout$payment$ses2 = _checkout$payment$ses.nextAction) === null || _checkout$payment$ses2 === void 0 ? void 0 : _checkout$payment$ses2.action) === 'sca_required')) {
-                            _context2.next = 50;
+                            _context2.next = 49;
                             break;
                           }
 
@@ -16606,7 +16606,7 @@ function createOnSuccess(storage, configuration, handleNextAction, createElement
                           response = _context2.sent;
 
                           if (!(response.status === 'complete')) {
-                            _context2.next = 48;
+                            _context2.next = 47;
                             break;
                           }
 
@@ -16619,24 +16619,21 @@ function createOnSuccess(storage, configuration, handleNextAction, createElement
                         case 42:
                           _order = _context2.sent;
                           removePaymentElementSpinner();
-                          storage.orderCreationData = {
-                            order: _order
-                          };
                           storage.complete({
                             order: _order
                           });
-                          _context2.next = 50;
+                          _context2.next = 49;
                           break;
 
-                        case 48:
+                        case 47:
                           _message3 = storage.translations.error.createOrderFailed;
                           setErrorMessage(_message3);
 
-                        case 50:
-                          _context2.next = 53;
+                        case 49:
+                          _context2.next = 52;
                           break;
 
-                        case 52:
+                        case 51:
                           if (displayDelayedPaymentInstructions(paymentSession)) {
                             if (document.getElementById('DR-delayed-payment-instructions') !== null) {
                               options = {
@@ -16664,10 +16661,10 @@ function createOnSuccess(storage, configuration, handleNextAction, createElement
                             });
                           }
 
-                        case 53:
+                        case 52:
                           storage.notify(storage.checkoutData);
 
-                        case 54:
+                        case 53:
                         case "end":
                           return _context2.stop();
                       }
