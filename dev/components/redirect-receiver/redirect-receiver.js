@@ -139,8 +139,6 @@ function isRedirectAction(action) {
 
 function createHandleStorageEvent(components, clientEmitter, adyenEmitter, handleRedirectComplete) {
   return function (event) {
-    console.log('createHandleStorageEvent', event.key, event.newValue);
-
     if (event.key === REDIRECT_STORAGE_ACTION_KEY && isRedirectAction(event.newValue)) {
       var value = event.newValue.split('_');
       var action = value[0];
@@ -155,7 +153,6 @@ function createHandleStorageEvent(components, clientEmitter, adyenEmitter, handl
       }
 
       return handleRedirectComplete().then(function (response) {
-        console.log('handleRedirectComplete', response);
         var emitter = components['controller'].paymentMethodType === 'adyen_redirect' ? adyenEmitter : clientEmitter;
         return emitter.send('redirectComplete', {
           response: response,

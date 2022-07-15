@@ -4535,8 +4535,6 @@ function isRedirectAction(action) {
 
 function createHandleStorageEvent(components, clientEmitter, adyenEmitter, handleRedirectComplete) {
   return function (event) {
-    console.log('createHandleStorageEvent', event.key, event.newValue);
-
     if (event.key === REDIRECT_STORAGE_ACTION_KEY && isRedirectAction(event.newValue)) {
       var value = event.newValue.split('_');
       var action = value[0];
@@ -4551,7 +4549,6 @@ function createHandleStorageEvent(components, clientEmitter, adyenEmitter, handl
       }
 
       return handleRedirectComplete().then(function (response) {
-        console.log('handleRedirectComplete', response);
         var emitter = components['controller'].paymentMethodType === 'adyen_redirect' ? adyenEmitter : clientEmitter;
         return emitter.send('redirectComplete', {
           response: response,
@@ -40939,10 +40936,12 @@ function isDRJS(error) {
 }
 
 function determineEvent(paymentMethodType, resolve) {
+  console.log('determineEvent', paymentMethodType, resolve);
   return handleRedirectComplete().then(function (data) {
     var _data$source;
 
     if ((data === null || data === void 0 ? void 0 : (_data$source = data.source) === null || _data$source === void 0 ? void 0 : _data$source.state) === 'pending_redirect') {
+      console.log('determineEvent', paymentMethodType, resolve);
       return sendCancelEvent(paymentMethodType, resolve);
     } else {
       var emitter = paymentMethodType === 'adyen_redirect' ? adyenEmitter : clientEmitter;
@@ -40994,7 +40993,8 @@ function handleCloseWindow() {
   components['controller'].redirectWindow.close();
   delete components['controller'].redirectWindow;
   return _babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_3___default().resolve();
-}
+} //window.addEventListener('storage', createHandleStorageEvent(components, clientEmitter, adyenEmitter, handleRedirectComplete));
+
 window.addEventListener('storage', (0,_controller_storage_events__WEBPACK_IMPORTED_MODULE_29__.createHandleSourceAuthenticationStorageEvent)(components, clientEmitter, adyenEmitter));
 window.addEventListener('storage', (0,_controller_storage_events__WEBPACK_IMPORTED_MODULE_29__.createHandleSessionAuthenticationStorageEvent)(components, clientEmitter, adyenEmitter));
 }();
