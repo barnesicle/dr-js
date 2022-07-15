@@ -178,13 +178,13 @@
 
     } else if (position === 3) {
 
-      const addressElementStatus = await taxIdentifierElement.done();
+      /*const addressElementStatus = await taxIdentifierElement.done();
       console.log('TAX IDENTIFIER', addressElementStatus)
       if (!addressElementStatus) {
         console.log('TAX IDENTIFIER ELEMENT VALIDATION FAILED')
         --position;
         return;
-      }
+      }*/
 
       document.getElementById('nextButton').style.display = 'none';
       document.getElementById('address-container').style.display = 'none';
