@@ -230,7 +230,7 @@
   let addressElement;
   let walletElement;
   let thankYouElement;
-  let complianceElement;
+  //let complianceElement;
   let taxIdentifierElement;
 
   async function initializeElements() {
@@ -289,7 +289,7 @@
     addressElement = elements.createElement('address');
     walletElement = elements.createElement('wallet');
     thankYouElement = elements.createElement('thankyou');
-    complianceElement = elements.createElement('compliance');
+    //complianceElement = elements.createElement('compliance');
     taxIdentifierElement = elements.createElement('taxidentifier');
 
     paymentElement.mount('payment-container');
@@ -297,7 +297,7 @@
     addressElement.mount('address-container');
     walletElement.mount('wallet-container');
     thankYouElement.mount('order-details-container');
-    complianceElement.mount('compliance-container');
+    //complianceElement.mount('compliance-container');
     taxIdentifierElement.mount('tax-container');
 
     /*paymentElement.on('change', function (data) {
