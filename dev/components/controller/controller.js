@@ -13665,11 +13665,8 @@ function handleRedirectSource(controllerId, configuration, paymentMethod, create
     close: function close() {}
   };
   redirectWindow.localStorage.setItem('DRRedirectAction', 'TEST'); // TODO Can I add this multiple times?
+  //postRobot.on('redirectComplete', {window: redirectWindow, domain: config.domain}, redirectComplete([paymentMethodFromAPI], configuration, selectedText));
 
-  _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_33__.on('redirectComplete', {
-    window: redirectWindow,
-    domain: _app_components_config__WEBPACK_IMPORTED_MODULE_34__.config.domain
-  }, (0,_dropin_events__WEBPACK_IMPORTED_MODULE_17__.redirectComplete)([paymentMethodFromAPI], configuration, selectedText));
   return createSourceFunction.then(function (response) {
     console.log('createSourceFunction', response);
 
@@ -18569,6 +18566,7 @@ function createStorage(apiKey, controller, instanceOptions, configuration) {
                 break;
               }
 
+              //storage.checkoutData = checkoutData;
               _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_3___default()(_context4 = storage.subscribers).call(_context4, function (s) {
                 s(checkoutData);
               });
@@ -18902,12 +18900,13 @@ function thankYou(key, configuration, storage) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
+              console.log('THANK YOU MOUNT', storage);
               (0,_ThankYou__WEBPACK_IMPORTED_MODULE_2__.appendThankYou)(nodeToKeep, {
                 orderDetails: storage === null || storage === void 0 ? void 0 : (_storage$orderCreatio = storage.orderCreationData) === null || _storage$orderCreatio === void 0 ? void 0 : _storage$orderCreatio.order,
                 translations: storage.translations
               });
 
-            case 1:
+            case 2:
             case "end":
               return _context.stop();
           }
@@ -41822,19 +41821,25 @@ function handleRedirectComplete() {
   var apiKey = components['controller'].apiKey;
   return (0,_controller_create_source_utils__WEBPACK_IMPORTED_MODULE_18__.retrieveSourceAndHandleResponse)(sourceId, sourceClientSecret, apiKey);
 }
-componentListener.on('redirectComplete', function (event) {
+/*componentListener.on('redirectComplete', (event) => {
   console.log('DEFECT - SEND TO CLIENT HERE', event.data);
-  var action = event.data.action;
-  handleRedirectComplete().then(function (response) {
+
+  const {action} = event.data;
+
+  handleRedirectComplete().then((response) => {
+
     console.log('handleRedirectComplete', response);
-    var emitter = components['controller'].paymentMethodType === 'adyen_redirect' ? adyenEmitter : clientEmitter;
+
+    const emitter = components['controller'].paymentMethodType === 'adyen_redirect' ? adyenEmitter : clientEmitter;
+
     return emitter.send('redirectComplete', {
       response: response,
       action: action,
       paymentMethodType: components['controller'].paymentMethodType
     });
   });
-});
+});*/
+
 clientListener.on('handleDropInRedirect', handleDropInRedirect);
 componentListener.on('handleDropInRedirect', handleDropInRedirect);
 
@@ -41842,7 +41847,7 @@ function isSecurityModeEnabled(redirectWindow) {
   return redirectWindow === null;
 }
 
-console.log('DEFECT - TEST 9', new Date().toString());
+console.log('DEFECT - TEST 10', new Date().toString());
 /*setInterval(() => {
   console.log('DEFECT - INTERVAL GET RETURN?', window.localStorage.getItem('DRRedirectAction'), localStorage.getItem('DRRedirectAction')) // TODO See if this can get the storage value?
 }, 2000)*/
@@ -41862,11 +41867,6 @@ function handleDropInRedirect(event) {
   console.log('DEFECT - handleDropInRedirect', redirectWindow, isSecurityModeEnabled(redirectWindow));
 
   if (!isSecurityModeEnabled(redirectWindow)) {
-    document.requestStorageAccess().then(function () {
-      console.log('access granted');
-    }, function () {
-      console.log('access denied');
-    });
     components['controller'].redirectWindowData = {};
     (0,_client_dropin_window_data__WEBPACK_IMPORTED_MODULE_28__.setRedirectWindowData)(components['controller'].redirectWindowData, redirectWindow, determineEvent, paymentMethodType, resolve);
   } else {
@@ -41887,16 +41887,19 @@ function determineEvent(paymentMethodType, resolve) {
   console.log('DEFECT - GET RETURN?', window.localStorage.getItem('DRRedirectAction')); // TODO Get source, if state is the same, send cancel
 
   handleRedirectComplete().then(function (data) {
+    var _data$source;
+
     // TODO How would I tell the difference between a return and a cancel action?
     console.log('SOURCE RETURNED', data);
 
-    if (data.source.state === 'pending_redirect') {
+    if ((data === null || data === void 0 ? void 0 : (_data$source = data.source) === null || _data$source === void 0 ? void 0 : _data$source.state) === 'pending_redirect') {
       return sendCancelEvent(paymentMethodType, resolve);
     } else {
       var emitter = components['controller'].paymentMethodType === 'adyen_redirect' ? adyenEmitter : clientEmitter;
       return emitter.send('redirectComplete', {
         response: data,
         action: 'return',
+        // TODO Return or cancel? how to tell if a source was cancelled?
         paymentMethodType: components['controller'].paymentMethodType
       });
     }

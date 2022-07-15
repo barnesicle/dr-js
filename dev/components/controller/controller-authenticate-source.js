@@ -12357,11 +12357,8 @@ function handleRedirectSource(controllerId, configuration, paymentMethod, create
     close: function close() {}
   };
   redirectWindow.localStorage.setItem('DRRedirectAction', 'TEST'); // TODO Can I add this multiple times?
+  //postRobot.on('redirectComplete', {window: redirectWindow, domain: config.domain}, redirectComplete([paymentMethodFromAPI], configuration, selectedText));
 
-  _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_33__.on('redirectComplete', {
-    window: redirectWindow,
-    domain: _app_components_config__WEBPACK_IMPORTED_MODULE_34__.config.domain
-  }, (0,_dropin_events__WEBPACK_IMPORTED_MODULE_17__.redirectComplete)([paymentMethodFromAPI], configuration, selectedText));
   return createSourceFunction.then(function (response) {
     console.log('createSourceFunction', response);
 
@@ -17206,6 +17203,7 @@ function createStorage(apiKey, controller, instanceOptions, configuration) {
                 break;
               }
 
+              //storage.checkoutData = checkoutData;
               _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_3___default()(_context4 = storage.subscribers).call(_context4, function (s) {
                 s(checkoutData);
               });
@@ -17539,12 +17537,13 @@ function thankYou(key, configuration, storage) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
+              console.log('THANK YOU MOUNT', storage);
               (0,_ThankYou__WEBPACK_IMPORTED_MODULE_2__.appendThankYou)(nodeToKeep, {
                 orderDetails: storage === null || storage === void 0 ? void 0 : (_storage$orderCreatio = storage.orderCreationData) === null || _storage$orderCreatio === void 0 ? void 0 : _storage$orderCreatio.order,
                 translations: storage.translations
               });
 
-            case 1:
+            case 2:
             case "end":
               return _context.stop();
           }
