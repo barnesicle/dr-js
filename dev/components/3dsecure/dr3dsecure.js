@@ -16809,12 +16809,12 @@ function createOnSuccess(storage, configuration, handleNextAction, createElement
                           selectedPaymentMethodType = data.order.payment.sources[0].type;
                           storage.windowOpenerURL = paymentSession.nextAction.data.redirectUrl;
                           storage.selectedPaymentMethodType = selectedPaymentMethodType;
-                          _context2.next = 52;
+                          _context2.next = 53;
                           break;
 
                         case 29:
                           if (!(order && typeof order.errors !== 'undefined' && order.errors[0].code === 'additional_payment_action_required')) {
-                            _context2.next = 51;
+                            _context2.next = 52;
                             break;
                           }
 
@@ -16828,7 +16828,7 @@ function createOnSuccess(storage, configuration, handleNextAction, createElement
                           removePaymentElementSpinner();
 
                           if (!(((_checkout$payment = checkout.payment) === null || _checkout$payment === void 0 ? void 0 : (_checkout$payment$ses = _checkout$payment.session) === null || _checkout$payment$ses === void 0 ? void 0 : (_checkout$payment$ses2 = _checkout$payment$ses.nextAction) === null || _checkout$payment$ses2 === void 0 ? void 0 : _checkout$payment$ses2.action) === 'sca_required')) {
-                            _context2.next = 49;
+                            _context2.next = 50;
                             break;
                           }
 
@@ -16839,7 +16839,7 @@ function createOnSuccess(storage, configuration, handleNextAction, createElement
                           response = _context2.sent;
 
                           if (!(response.status === 'complete')) {
-                            _context2.next = 47;
+                            _context2.next = 48;
                             break;
                           }
 
@@ -16852,21 +16852,24 @@ function createOnSuccess(storage, configuration, handleNextAction, createElement
                         case 42:
                           _order = _context2.sent;
                           removePaymentElementSpinner();
+                          storage.orderCreationData = {
+                            order: _order
+                          };
                           storage.complete({
                             order: _order
                           });
-                          _context2.next = 49;
+                          _context2.next = 50;
                           break;
 
-                        case 47:
+                        case 48:
                           _message3 = storage.translations.error.createOrderFailed;
                           setErrorMessage(_message3);
 
-                        case 49:
-                          _context2.next = 52;
+                        case 50:
+                          _context2.next = 53;
                           break;
 
-                        case 51:
+                        case 52:
                           if (displayDelayedPaymentInstructions(paymentSession)) {
                             if (document.getElementById('DR-delayed-payment-instructions') !== null) {
                               options = {
@@ -16894,10 +16897,10 @@ function createOnSuccess(storage, configuration, handleNextAction, createElement
                             });
                           }
 
-                        case 52:
+                        case 53:
                           storage.notify(storage.checkoutData);
 
-                        case 53:
+                        case 54:
                         case "end":
                           return _context2.stop();
                       }
@@ -17415,7 +17418,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function createCompleteEvent(configuration) {
+function createCompleteEvent(configuration, storage) {
   return /*#__PURE__*/function () {
     var _ref = (0,_babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__.default)( /*#__PURE__*/_babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee(data) {
       var baseURL, _context, _context2;
@@ -17424,6 +17427,7 @@ function createCompleteEvent(configuration) {
         while (1) {
           switch (_context3.prev = _context3.next) {
             case 0:
+              storage.orderCreationData = data;
               (0,_payment_payment_events__WEBPACK_IMPORTED_MODULE_4__.removePaymentElementSpinner)(); // NOTE: I can not get the checkout again to verify it's state.... NOTE: I CAN NOT DO THAT becuase API wont let me when order has been created....
 
               /*const checkout = await getDropinCheckout(configuration.checkoutSessionId, apiKey, storage.fingerprint).then(data => data.json());
@@ -17461,7 +17465,7 @@ function createCompleteEvent(configuration) {
                 }
               }
 
-            case 3:
+            case 4:
             case "end":
               return _context3.stop();
           }
@@ -17482,7 +17486,6 @@ function createStorage(apiKey, controller, instanceOptions, configuration) {
     controller: controller,
     locale: instanceOptions.locale,
     subscribers: [],
-    complete: createCompleteEvent(configuration),
     selectedPaymentMethod: {
       getType: function getType() {
         var selectedPaymentMethod = document.querySelector('.DR-show');
@@ -17493,6 +17496,7 @@ function createStorage(apiKey, controller, instanceOptions, configuration) {
       }
     }
   };
+  storage.complete = createCompleteEvent(configuration, storage);
 
   storage.fireClientOnChange = function () {
     if (configuration.onChange) {
@@ -17602,10 +17606,12 @@ var ThankYouElement = /*#__PURE__*/function (_Component) {
   (0,_babel_runtime_corejs3_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__.default)(ThankYouElement, [{
     key: "render",
     value: function render() {
+      var _this$props$orderDeta;
+
       var pathToCheckmark = (0,_createComponent__WEBPACK_IMPORTED_MODULE_5__.getComponentsBasePath)() + '/offline-refund';
       return (0,preact__WEBPACK_IMPORTED_MODULE_4__.h)("div", {
         className: 'DR-thank-you-container'
-      }, this.props.orderDetails && (0,preact__WEBPACK_IMPORTED_MODULE_4__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_4__.h)("h1", null, this.props.translations.sectionHeading.thankYou), (0,preact__WEBPACK_IMPORTED_MODULE_4__.h)("div", {
+      }, ((_this$props$orderDeta = this.props.orderDetails) === null || _this$props$orderDeta === void 0 ? void 0 : _this$props$orderDeta.id) && (0,preact__WEBPACK_IMPORTED_MODULE_4__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_4__.h)("h1", null, this.props.translations.sectionHeading.thankYou), (0,preact__WEBPACK_IMPORTED_MODULE_4__.h)("div", {
         className: 'DR-thank-you-content'
       }, (0,preact__WEBPACK_IMPORTED_MODULE_4__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_4__.h)("img", {
         src: pathToCheckmark + '/checkmark.svg',
