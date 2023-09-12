@@ -11,7 +11,9 @@
     "billingInfo": "Billing Information",
     "orderSummary": "Order Summary",
     "storedTaxIdentifiers": "Stored Tax Identifiers",
-    "thankYou": "Thank You"
+    "thankYou": "Thank You",
+    "taxExemption": "US Tax Exemption",
+    "customerInfo": "Customer Information"
   },
   "orderSummaryTable": {
     "orderTotal": "Order Total",
@@ -42,7 +44,11 @@
     "province": "Province",
     "companyName": "Company Name",
     "division": "Division/Department",
-    "optional": "Optional"
+    "optional": "Optional",
+    "startDate": "Start Date",
+    "expirationDate": "Expiration Date",
+    "taxCertificate": "Upload your certificate (only jpg, pdf, png files are accepted)",
+    "certificateTaxAuthority": "Certificate Tax Authority"
   },
   "checkboxLabel": {
     "saveAddressCheckboxLabel": "Save this address for next time",
@@ -93,7 +99,10 @@
     "landedCostDeliveryNote1": "No additional import charges at delivery",
     "landedCostDeliveryNote2": "Import charges collected upon delivery",
     "estimatedDeliveryDateColon": "Estimated delivery date:",
-    "shippingAddressDifferent" : "Shipping address is different than billing."
+    "shippingAddressDifferent" : "Shipping address is different than billing.",
+    "purchaseForBusiness" : "Purchasing for a business?",
+    "marketingOptIn": "Email me with news and offers",
+    "pricesNotIncludeTaxesMsg" : "The prices displayed do not include taxes. Any applicable taxes, including VAT will be calculated and displayed after you have entered your address information."    
   },
   "error": {
     "shipToNotSupported": "Cannot ship to this location. Please use a different address.",
@@ -110,7 +119,13 @@
     "invalidShippingChoice": "No shipping method has been selected.",
     "noAvailableShippingMethods": "There are no shipping methods available.",
     "orderNotComplete" : "Your order is not complete",
-    "notSaved" : "Your data was not saved. Please try again."
+    "notSaved" : "Your data was not saved. Please try again.",
+    "notUploaded": "Cannot upload your certificate. Please try again.",
+    "taxInfoNotSubmitted": "Cannot submit your tax exemption information. Please try again.",
+    "invalidStartDate": "The start date must be before today's date.",
+    "invalidEndDate": "The expiration date must be after today's date.",
+    "invalidFileType": "Please check the file type of your certificate.",
+    "tryAnotherPaymentMethod": "Payment failed. Please try again or use another payment method."
   },
   "country": {
     "Argentina": "Argentina",

@@ -11,7 +11,8 @@
     "billingInfo": "請求情報",
     "orderSummary": "注文概要",
     "storedTaxIdentifiers": "保管済みの税識別子",
-    "thankYou": "ありがとうございました。"
+    "thankYou": "ありがとうございました。",
+    "customerInfo": "Customer Information"
   },
   "orderSummaryTable": {
     "orderTotal": "注文合計金額",
@@ -93,7 +94,9 @@
     "landedCostDeliveryNote1": "納入時に追加の輸入手数料はありません",
     "landedCostDeliveryNote2": "輸入手数料は納入時に徴収されます",
     "estimatedDeliveryDateColon": "提供開始予定日:",
-    "shippingAddressDifferent" : "出荷アドレスがご請求先と異なっています。"
+    "shippingAddressDifferent" : "出荷アドレスがご請求先と異なっています。",
+    "purchaseForBusiness" : "業務目的でのご購入ですか？",
+    "marketingOptIn": "ニュースやオファーをメールで受け取る"
   },
   "error": {
     "shipToNotSupported": "この場所へは配送できません。 別の住所を使用してください。",
@@ -108,7 +111,8 @@
     "createOrderFailed": "注文を作成できません。 再度お試しください。",
     "sessionUpdateNotAllowed": "問題が発生しています。 ダイアログを閉じて再度お試しください。",
     "orderNotComplete" : "下記のボタンを押して、決済処理をお願い致します",
-    "notSaved" : "データは保存されませんでした。 もう一度やり直してください。"
+    "notSaved" : "データは保存されませんでした。 もう一度やり直してください。",
+    "tryAnotherPaymentMethod": "支払いに失敗しました。 もう一度お試しいただくか、別のお支払い方法をご利用ください。"
   },
   "country": {
     "Argentina": "アルゼンチン",

@@ -1,38 +1,37 @@
-/*
-import ar from "./ar";
-import cs from "./cs";
+import ar from './ar';
+import cs from './cs';
 import da from './da';
-import de from "./de";
-import el from "./el";
-import gb from "./en-gb";
-import en from "./en";
-import es from "./es";
-import es419 from "./es-419";
-import fi from "./fi";
-import frCA from "./fr-ca";
-import fr from "./fr";
-import hu from "./hu";
-import it from "./it";
-import ja from "./ja";
-import ko from "./ko";
-import nl from "./nl";
-import no from "./no";
-import pl from "./pl";
-import br from "./pt-br";
-import pt from "./pt";
-import ru from "./ru";
-import sk from "./sk";
-import sv from "./sv";
-import th from "./th";
-import tr from "./tr";
-import zh from "./zh";
-import hk from "./zh-hk";
-import tw from "./zh-tw";
+import de from './de';
+import el from './el';
+import gb from './en-gb';
+import en from './en';
+import es from './es';
+import es419 from './es-419';
+import fi from './fi';
+import frCA from './fr-ca';
+import fr from './fr';
+import hu from './hu';
+import it from './it';
+import ja from './ja';
+import ko from './ko';
+import nl from './nl';
+import no from './no';
+import pl from './pl';
+import br from './pt-br';  
+import pt from './pt';
+import ru from './ru';
+import sk from './sk';
+import sv from './sv';
+import th from './th';
+import tr from './tr';
+import zh from './zh';      
+import hk from './zh-hk';
+import tw from './zh-tw';
 
 const resources = {
   en: {
     translation: en,
-  },
+  },    
   'ar': {
     translation: ar,
   },
@@ -41,7 +40,7 @@ const resources = {
   },
   'da': {
     translation: da,
-  },
+  },    
   'el': {
     translation: el,
   },
@@ -53,7 +52,7 @@ const resources = {
   },
   'fi': {
     translation: fi,
-  },
+  },  
   'fr-CA': {
     translation: frCA,
   },
@@ -92,7 +91,7 @@ const resources = {
   },
   'tr': {
     translation: tr,
-  },
+  },  
   'zh-HK': {
     translation: hk,
   },
@@ -101,16 +100,16 @@ const resources = {
   },
   'de': {
     translation: de,
-  },
+  },  
   'fr': {
     translation: fr,
-  },
+  }, 
   'pt': {
     translation: pt,
-  },
+  },  
   'pt-BR': {
     translation: br,
-  },
+  },  
   'zh': {
     translation: zh,
   },
@@ -119,4 +118,4 @@ const resources = {
   },
 };
 
-export default resources;*/
+export default resources;

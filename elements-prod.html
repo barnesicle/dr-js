@@ -33,7 +33,7 @@
           box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.31);
       }
   </style>
-<script defer src="dropInStyles.js"></script><script defer src="https://js-test.digitalriver.com/v1/DigitalRiver.js"></script><link href="https://js-test.digitalriver.com/v1/css/DigitalRiver.css" rel="stylesheet"></head>
+<script defer src="dropInStyles.js"></script><script defer src="https://js.digitalriver.com/v1/DigitalRiver.js"></script><link href="https://js.digitalriver.com/v1/css/DigitalRiver.css" rel="stylesheet"></head>
 
 <body class="bg-light" style="padding-top:50px;">
         <div class="col-md-12 col-sm-12">
@@ -246,14 +246,14 @@
       }
     }
 
-    elements = digitalRiverPayments.elements(configuration);
+    elements = digitalRiverPayments.components(configuration);
 
-    paymentElement = elements.createElement('payment');
-    shippingChoice = elements.createElement('shipping');
-    addressElement = elements.createElement('address');
-    walletElement = elements.createElement('wallet');
-    thankYouElement = elements.createElement('thankyou');
-    complianceElement = elements.createElement('compliance');
+    paymentElement = elements.createComponent('payment');
+    shippingChoice = elements.createComponent('shipping');
+    addressElement = elements.createComponent('address');
+    walletElement = elements.createComponent('wallet');
+    thankYouElement = elements.createComponent('thankyou');
+    complianceElement = elements.createComponent('compliance');
 
     paymentElement.mount('payment-container');
     shippingChoice.mount('shipping-container');
@@ -279,7 +279,7 @@
     //const currency = "EUR";
     const body = {
       "currency": currency,
-      locale: locale,
+      locale: locale.replace('-', '_'),
       "items": [
         {
           "skuId": skuId,
@@ -451,6 +451,7 @@
 
     const locale = getURLParamOrDefault('locale','en-US');
     const instanceOptions = { 'locale': locale};
+    console.log('LOCALE', locale)
     digitalRiverPayments = new DigitalRiver(apiKey, instanceOptions);
 
     if (getUseEnteredBillingAddressParam() !== 'true') {

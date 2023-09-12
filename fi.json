@@ -93,7 +93,8 @@
     "landedCostDeliveryNote1": "Toimituksen yhteydessä ei peritä mitään lisätuontimaksuja",
     "landedCostDeliveryNote2": "Tuontimaksut peritään toimituksen yhteydessä",
     "estimatedDeliveryDateColon": "Arvioitu toimituspäivämäärä:",
-    "shippingAddressDifferent" : "Toimitusosoite poikkeaa laskutuksesta."
+    "shippingAddressDifferent" : "Toimitusosoite poikkeaa laskutuksesta.",
+    "marketingOptIn": "Lähetä minulle uutisia ja tarjouksia sähköpostitse"
   },
   "error": {
     "shipToNotSupported": "Toimitus tähän sijaintiin ei onnistu. Käytä eri osoitetta.",
@@ -108,7 +109,8 @@
     "createOrderFailed": "Tilausta ei voi luoda. Yritä uudelleen.",
     "sessionUpdateNotAllowed": "Jokin meni vikaan. Sulje ponnahdusikkuna ja yritä uudelleen!",
     "orderNotComplete" : "Tilauksesi ei ole valmis",
-    "notSaved" : "Tietojasi ei tallennettu. Yritä uudelleen."
+    "notSaved" : "Tietojasi ei tallennettu. Yritä uudelleen.",
+    "tryAnotherPaymentMethod": "Maksu epäonnistui. Yritä uudelleen tai käytä toista maksutapaa."
   },
   "country": {
     "Argentina": "Argentiina",

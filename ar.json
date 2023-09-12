@@ -93,7 +93,8 @@
     "landedCostDeliveryNote1": "لا توجد رسوم استيراد إضافية عند التسليم",
     "landedCostDeliveryNote2": "يتم تحصيل رسوم الاستيراد عند التسليم",
     "estimatedDeliveryDateColon": "تاريخ التوصيل المقدر:",
-    "shippingAddressDifferent" : "عنوان الشحن مختلف عن عنوان إرسال الفاتورة."
+    "shippingAddressDifferent" : "عنوان الشحن مختلف عن عنوان إرسال الفاتورة.",
+    "marketingOptIn": "أرسل لي بريدا إلكترونيا يحتوي على الأخبار والعروض"
   },
   "error": {
     "shipToNotSupported": "لا يمكن الشحن إلى هذا الموقع. من فضلك استخدم عنوانا مختلفا.",
@@ -109,7 +110,8 @@
     "sessionUpdateNotAllowed": "حدث خطأ ما. من فضلك أغلق النموذج وحاول مرة أخرى!",
     "cardSecurityCodeInvalid": "برجاء إدخال كود أمان صالح للبطاقة.",
     "orderNotComplete" : "طلبك لم يكتمل",
-    "notSaved" : "لم يتم حفظ البيانات الخاصة بك. حاول مرة اخرى."
+    "notSaved" : "لم يتم حفظ البيانات الخاصة بك. حاول مرة اخرى.",
+    "tryAnotherPaymentMethod": "عملية الدفع فشلت. يرجى المحاولة مرة أخرى أو استخدام طريقة دفع أخرى"
   },
   "country": {
     "Argentina": "الأرجنتين",

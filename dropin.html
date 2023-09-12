@@ -165,7 +165,7 @@
     }
 
   </style>
-<script defer src="dropInStyles.js"></script><script defer src="DigitalRiver.js"></script><link href="css/DigitalRiver.css" rel="stylesheet"></head>
+<script defer src="DigitalRiver.js"></script></head>
 
 <body class="bg-light" style="padding-top:50px;">
 <div class="row">
@@ -347,6 +347,26 @@
         <td>adds terms of sale</td>
         <td>false</td>
       </tr>
+      <tr>
+        <td>usage</td>
+        <td>adds usage, value can be 'subscription', 'convenience', or 'unscheduled'</td>
+        <td>false</td>
+      </tr>
+      <tr>
+        <td>showStoredPaymentMethods</td>
+        <td>adds stored payment methods</td>
+        <td>false</td>
+      </tr>
+      <tr>
+        <td>skipPaymentForZeroDollarOrders</td>
+        <td>skips showing payment methods if isTrial: false, recurring: false and amountRemainingToBeContributed: '0.00'</td>
+        <td>false</td>
+      </tr>
+      <tr>
+        <td>useCustomJPCommerceLawPageUrl</td>
+        <td>customizes JPCommerceLawPageUrl in legal footer to google.com</td>
+        <td>false</td>
+      </tr>
     </table>
     <pre id="response"></pre>
   </div>
@@ -381,7 +401,8 @@
         color: '#999'
       },
       ':-webkit-autofill': {
-        color: 'purple'
+        color: 'purple',
+        boxShadow: 'inset 0 0 0px 1000px #fff'
       },
       ':focus': {
         color: 'blue'
@@ -443,6 +464,8 @@
     const sessionId = getURLParamOrDefault('sessionId', 'c09e1774-4f6d-47da-8617-ba42a87dd5e8');
 
     const billingAddressCountry = getURLParamOrDefault('billingAddressCountry', "US");
+
+
 
     const billingAddress = getUseEnteredBillingAddressParam() === 'true' ? owner : {
       firstName: "Fred",
@@ -515,22 +538,12 @@
     const expandFirstPaymentMethod = getURLParamOrDefault('expandFirstPaymentMethod', 'true') === 'true';
     const showConsents = getURLParamOrDefault('showConsents', 'false');
     const showStoredPaymentMethods = getURLParamOrDefault('showStoredPaymentMethods', 'false');
+    const skipPaymentForZeroDollarOrders = getURLParamOrDefault('skipPaymentForZeroDollarOrders', 'false');
+    const jpCommerceLawPageUrl = getURLParamOrDefault('useCustomJPCommerceLawPageUrl', undefined) === 'true';
 
-    console.log('Session ID', sessionId);
-    console.log('Flow', flow);
-    console.log('showSavePaymentAgreement', showSavePaymentAgreement);
-    console.log('showComplianceSection', showComplianceSection);
-    console.log('recurringModel', recurringModel);
-    console.log('showTermsOfSaleDisclosure', showTermsOfSaleDisclosure);
-    console.log('disableAutomaticRedirects', disableAutomaticRedirects);
-    console.log('billingAddressCountry', billingAddressCountry);
-    console.log('returnUrl', returnUrl);
-    console.log('cancelUrl', cancelUrl);
-    console.log('showConsents', showConsents);
-    console.log('showStoredPaymentMethods', showStoredPaymentMethods);
+
 
     const configuration = {
-      sessionId: sessionId,
       billingAddress: useBillingAddress === 'true' ? billingAddress : undefined,
       options: {
         flow: flow,
@@ -545,10 +558,11 @@
           disableAutomaticRedirects: disableAutomaticRedirects === 'true',
         },
         button: {
-          type: 'payNow',
+          type: skipPaymentForZeroDollarOrders ? 'continue' : 'payNow',
           //type: 'custom',
           //buttonText: 'Pay Right Now!'
         },
+        skipPaymentForZeroDollarOrders: skipPaymentForZeroDollarOrders === 'true'
       },
       paymentMethodConfiguration: {
         //enabledPaymentMethods: ['googlePay', 'creditCard'],
@@ -594,15 +608,12 @@
         },
       },
       onSuccess: function (data) {
-        console.log('onSuccess - Returned data to client', data);
         responseLog('onSuccess ' + JSON.stringify(data, null, '\t'))
       },
       onError: function (data) {
-        console.log('onError - Returned data to client', data);
         responseLog('onError ' + JSON.stringify(data, null, '\t'))
       },
       onCancel: function (data) {
-        console.log('onCancel', data);
         responseLog('onCancel ' + JSON.stringify(data, null, '\t'))
       },
       onReady: function (data) {
@@ -610,7 +621,6 @@
         document.getElementById('dropin-loading').innerText = '';
       },
       onUpdateRequired: function (original) {
-        console.log('onUpdateRequired', original)
         responseLog('onUpdateRequired - Dropin ' + JSON.stringify(original, null, '\t'));
         const data = Object.assign({}, original);
         // Would do an PAI call or something here.
@@ -618,7 +628,7 @@
         pm.added = data.selectedPaymentMethod.action === 'add';
 
         // Uncomment to create a source and attach to Local server.
-        /*if (data.selectedPaymentMethod.action === 'add') {
+        if (data.selectedPaymentMethod.action === 'add') {
 
           fetch('/payments/clients/gc/channels/paylive/sources', {
             method: 'POST',
@@ -670,7 +680,7 @@
 
           });
 
-        }*/
+        }
 
       }
 
@@ -688,6 +698,16 @@
       configuration.options.storedPaymentMethods = storedPaymentMethods;
     }
 
+    if(jpCommerceLawPageUrl) {
+      configuration.options.compliance = {
+        jpCommerceLawPageUrl: 'https://google.com'
+      }
+    }
+
+    if(typeof sessionId !== 'undefined') {
+      configuration.sessionId = sessionId;
+    }
+
     dropinInstance = digitalRiverPayments.createDropin(configuration);
 
     dropinInstance.mount('dropin');
@@ -695,7 +715,6 @@
   }
 
   function refreshDropin() {
-    console.log('Refreshing dropin on click')
     dropinInstance.refresh();
   }
 
@@ -841,7 +860,6 @@
   }
 
   function getShopperAPIToken() {
-    console.log('Getting shopper API Token');
     try {
       const cookieExists = document.cookie.split(';').filter(function(item) {
         return item.trim().indexOf('shopperToken=') === 0
@@ -861,11 +879,9 @@
         var url = testApiDomain + '/oauth20/token.json?';
         var data = 'grant_type=client_credentials';
         return axios.post(url, data, options).then(function (token) {
-          console.log('Received shopper API Token', token);
           var date = new Date();
           date.setTime(date.getTime()+(24*60*60*1000));
           var expires = "; expires="+date.toGMTString();
-          console.log({token: token});
           var cookie = 'shopperToken=' + token.data.access_token + expires;
           document.cookie = cookie;
           return token.data.access_token;
@@ -878,7 +894,6 @@
 
   function addToCart(productId) {
     return getShopperAPIToken().then(function (token) {
-      console.log('token', token);
       var options = {
         maxRedirects: 0,
         responseType: 'json',
@@ -891,7 +906,6 @@
       var data = 'grant_type=client_credentials';
       return axios.post(url, data, options)
               .then(function(response) {
-                console.log('response.data.paymentSession',response.data.cart)
                 sessionClientSecret = response.data.cart.paymentSession.id;
                 return sessionClientSecret;
               })
@@ -902,9 +916,9 @@
   }
 
   addToCart('5104504200').then(function (sessionId) {
-    console.log('session id retrieved.', sessionId)
+    //console.log('session id retrieved.', sessionId)
   }).catch(function (error) {
-    console.log('error getting session', error)
+    //console.log('error getting session', error)
   });
 
 </script>

@@ -110,7 +110,7 @@
         background-color: white;
     }
     .apple-pay-button-with-text > .text {
-        font-family: -apple-system;
+        font-family: -apple-system, sans-serif;
         font-size: calc(1em * var(--apple-pay-scale));
         font-weight: 300;
         align-self: center;

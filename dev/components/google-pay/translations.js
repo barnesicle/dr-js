@@ -84,7 +84,6 @@ function getGeneralErrorMessageByLocale(locale) {
   if (typeof _google_pay_translations_json__WEBPACK_IMPORTED_MODULE_0__[locale] === 'undefined') {
     return _google_pay_translations_json__WEBPACK_IMPORTED_MODULE_0__.en_US.GENERAL_ERROR;
   }
-
   return _google_pay_translations_json__WEBPACK_IMPORTED_MODULE_0__[locale].GENERAL_ERROR;
 }
 }();

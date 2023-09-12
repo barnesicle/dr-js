@@ -93,7 +93,8 @@
     "landedCostDeliveryNote1": "Nessun costo di importazione aggiuntivo alla consegna",
     "landedCostDeliveryNote2": "Costi di importazione da pagare alla consegna",
     "estimatedDeliveryDateColon": "Data stimata di consegna:",
-    "shippingAddressDifferent" : "L'indirizzo di spedizione è diverso dall'indirizzo di fatturazione."
+    "shippingAddressDifferent" : "L'indirizzo di spedizione è diverso dall'indirizzo di fatturazione.",
+    "marketingOptIn": "Scrivimi con notizie e offerte"
   },
   "error": {
     "shipToNotSupported": "Impossibile spedire all'indirizzo indicato. Utilizzare un diverso indirizzo.",
@@ -108,7 +109,8 @@
     "createOrderFailed": "Impossibile creare l'ordine. Si prega di riprovare.",
     "sessionUpdateNotAllowed": "Si è verificato un errore. Chiudere il modulo e riprovare",
     "orderNotComplete" : "Il tuo ordine non è completo",
-    "notSaved" : "I tuoi dati non sono stati salvati. Per favore riprova."
+    "notSaved" : "I tuoi dati non sono stati salvati. Per favore riprova.",
+    "tryAnotherPaymentMethod": "Pagamento fallito. Riprova o utilizza un altro metodo di pagamento."
   },
   "country": {
     "Argentina": "Argentina",

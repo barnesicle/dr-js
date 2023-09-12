@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Amazon Pay Element Demo</title>
+    <style>
+        body {
+            font-family: apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif;
+            margin: 4em;
+        }
+        #log {
+            white-space: pre;
+            font-size: .75em;
+            max-height: 800px;
+            overflow-y: scroll;
+            border: 1px solid #555;
+        }
+        table {
+            margin: 20px;
+            border-collapse: unset;
+            border-spacing: 0;
+        }
+        td, th {
+            padding: .5em;
+            border: 1px solid deepskyblue;
+        }
+
+        #amazonPay {
+            height: 45px;
+            width: 200px;
+        }
+
+    </style>
+<script defer src="dropInStyles.js"></script><script defer src="DigitalRiver.js"></script><link href="css/DigitalRiver.css" rel="stylesheet"></head>
+<body>
+<h1>Amazon Pay Element Example</h1>
+<h2>Instructions</h2>
+
+<p>Add url parameters to configure your options for the Amazon Pay element.</p>
+
+<table>
+    <tr>
+        <th>Parameter name</th>
+        <th>Description</th>
+    </tr>
+    <tr>
+        <td>apiKey</td>
+        <td>Defaults to paylive systest key if not provided.</td>
+    </tr>
+    <tr>
+        <td>sessionId</td>
+        <td>Payment session id. Defaults to 'fd6cda0b-c20b-428c-a068-adc5c9f9218b'</td>
+    </tr>
+    <tr>
+        <td>country</td>
+        <td>country ISO - required if session does not have country</td>
+    </tr>
+    <tr>
+        <td>locale</td>
+        <td>Display locale for DR.js. Optional, defaults to en_US.</td>
+    </tr>
+    <tr>
+        <td>futureUse</td>
+        <td>Determines whether or not the payment method can be used in future. Optional boolean, defaults to false.</td>
+    </tr>
+    <tr>
+        <td>usage</td>
+        <td>Determines how payment method will be used. Optional, one of ['subscription', 'convenience', 'unscheduled']</td>
+    </tr>
+    <tr>
+        <td>mandate</td>
+        <td>Text of the mandate shopper has agreed to. Optional boolean, defaults to false (for the purposes of this test page. client would need to add the actual mandate object into sourceData. this will be in the documentation)</td>
+    </tr>
+
+</table>
+<div id="amazonPay"></div>
+<div id="buttons">
+    <button id="create">Create AmazonPay element</button>
+    <button id="mount">Mount AmazonPay element</button>
+    <button id="unmount">Unmount AmazonPay element</button>
+    <button id="destroy">Destroy AmazonPay element</button>
+</div>
+<div>
+    <button id="startOver">Start Over</button>
+</div>
+
+<h2>Event Log 1</h2>
+<div id="log"></div>
+<script>
+
+    window.addEventListener('load', () => {
+        let amazonPay;
+        let cs;
+
+        const locale = getURLParamOrDefault('locale', 'en-US');
+        const apiKey = getURLParamOrDefault('apiKey', 'pk_sys_c2608001bba7477eae22808e1eb138db');
+        const drJS =  new DigitalRiver(apiKey, {locale: locale});
+
+        document.getElementById('startOver').addEventListener('click', ()=> {
+            document.location = document.location.origin + document.location.pathname;
+        })
+        const sourceId = getURLParamOrDefault('sourceId', null);
+
+        if(sourceId) {
+            //we've been returned to this page by the redirect after user has signed in
+            document.getElementById('buttons').style.display = 'none';
+            cs =  localStorage.getItem('cs')
+            drJS.retrieveSource(sourceId, cs).then(result => {
+                addContentToLog(JSON.stringify(result, null, 4))
+            });
+
+        } else {
+            //first time on this page
+            document.getElementById('create').addEventListener('click', function() {
+                const sessionId = getURLParamOrDefault('sessionId', 'fd6cda0b-c20b-428c-a068-adc5c9f9218b');
+                const country = getURLParamOrDefault('country', null);
+                const futureUse = getURLParamOrDefault('futureUse', 'false') === 'true';
+                const usage = getURLParamOrDefault('usage', null)
+                const options = {
+                    style: {
+                        color: 'DarkGray', // one of ['Gold', 'LightGray', 'DarkGray']
+                        height: '100px'
+                    },
+                    classes: {
+                        empty: 'DRElement',
+                        base: 'DRElement',
+                        invalid: 'DRElement',
+                        complete: 'DRElement',
+                    },
+                    sourceData: {
+                        type: 'amazonPay',
+                        sessionId: sessionId,
+                        futureUse: futureUse,
+                        amazonPay: {
+                            returnUrl: window.document.location.href,
+                            resultReturnUrl: window.document.location.href,
+                            cancelUrl: window.document.location.href,
+                            placement: 'Product'
+                            //checkoutLanguage: 'fr_FR', // US merchants - 'en_US', EU/UK merchants - 'en_GB', 'de_DE', 'fr_FR', 'it_IT', 'es_ES', Japan merchants 'ja_JP'
+                        }
+                    }
+                };
+
+                if(country) {
+                    options.sourceData.country = country;
+                }
+
+                if(usage) {
+                    options.sourceData.usage = usage;
+                }
+
+                if(futureUse) {
+                    //https://docs.digitalriver.com/digital-river-api/integration-options/checkouts/building-you-workflows#elements-6
+                    options.sourceData.mandate = {
+                        terms: 'Yes, please save this account and payment information for future purchases.'
+                    }
+                }
+
+                amazonPay = drJS.createElement('amazonpay', options);
+                amazonPay.on('ready', function (event) {
+                    addContentToLog( event.elementType + ' ready received \n' + JSON.stringify(event, null, 4));
+
+                });
+
+                amazonPay.on('source', function (event) {
+                    addContentToLog(event.elementType + ' source received \n' + JSON.stringify(event, null, 4));
+
+                    //In the real world, you wouldn't save this in local storage, you'd send it to your back end. Sending it to local storage here bc this is just a static html page with no server.
+                    const {clientSecret:cs} = event.source;
+                    localStorage.setItem('cs', cs)
+                });
+            })
+
+            document.getElementById('mount').addEventListener('click', function() {
+                amazonPay.mount('amazonPay');
+            })
+            document.getElementById('unmount').addEventListener('click', function() {
+                amazonPay.unmount('amazonPay');
+            })
+            document.getElementById('destroy').addEventListener('click', function() {
+                amazonPay.destroy('amazonPay');
+            })
+
+        }
+
+
+
+
+
+
+
+
+
+        // helper functions
+        function addContentToLog(content) {
+            const log = document.getElementById('log');
+            log.innerHTML = '\n<hr/>\n' + content + log.innerHTML;
+        }
+
+        function getURLParamOrDefault(name, defaultValue) {
+            const results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+            if (results == null){
+                return defaultValue;
+            }
+            else {
+                return decodeURI(results[1]) || 0;
+            }
+        }
+
+    })
+
+
+
+
+
+
+</script>
+</body>
+</html>

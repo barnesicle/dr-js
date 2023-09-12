@@ -166,7 +166,7 @@
   <div class="col-md-8">
     <div class="container">
       <div class="py-5 text-center">
-        <h2>Checkout form</h2>
+        <h2>Checkout form 1</h2>
         <span style="color:red" id="message"></span>
         <p class="lead"></p>
       </div>
@@ -738,7 +738,7 @@
   //let apiKey = 'pk_hc_b230cec5ef7c44a992af0bcf180ccfaf'; //paylive test key
   //let apiKey = 'pk_test_d6b3712c81c640288142f204a88f3de5'; //headless nonprod
   //let apiKey = 'pk_hc_805a0837ed6a43f5af99caebcddd2b6e'; //test3ds
-  let apiKey = 'pk_sys_c2608001bba7477eae22808e1eb138db'; //payservice systest
+  let apiKey =  getURLParamOrDefault('apiKey','pk_sys_c2608001bba7477eae22808e1eb138db'); //payservice systest
   let digitalRiverPayments;
   let digitalRiverPayments2;
   let digitalRiverPayments3;
@@ -768,6 +768,7 @@
   let ccCVVComplete = false;
 
   let taxIdentifierComponentData = {};
+  let mask = getURLParamOrDefault('mask', 'false') === 'true';
 
   let styles = {
     base: {
@@ -784,7 +785,8 @@
         color: '#999'
       },
       ':-webkit-autofill': {
-        color: 'purple'
+        color: 'purple',
+        boxShadow: 'inset 0 0 0px 1000px #fff'
       },
       ':focus': {
         color: 'blue'
@@ -829,7 +831,7 @@
       complete: 'custom--complete',
       webkitAutofill: 'custom--webkit-autofill'
     },
-    mask: true
+    mask: mask
   };
 
   let sessionClientSecret = ''; // Gets set from API and passed into create source for 3DS
@@ -877,8 +879,8 @@
       }
     ];
     return {
-      country: "US",
-      currency: "USD",
+      country: "CN",
+      currency: "CNY",
       total: {
         label: "Order Total",
         amount: 150.20,
@@ -937,7 +939,7 @@
     let ccCVVOptions = {
       placeholderText: 'CVV',
       style: styles,
-      mask: true
+      mask: mask
     };
 
 

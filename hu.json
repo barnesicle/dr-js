@@ -93,7 +93,8 @@
     "landedCostDeliveryNote1": "Szállításkor nem merült fel további importköltség",
     "landedCostDeliveryNote2": "Az importköltségek szállításkor beszedve",
     "estimatedDeliveryDateColon": "Várható szállítási dátum:",
-    "shippingAddressDifferent" : "A szállítási cím nem azonos a számlázási címmel."
+    "shippingAddressDifferent" : "A szállítási cím nem azonos a számlázási címmel.",
+    "marketingOptIn": "Híreket és ajánlatokat kérek e-mailben"
   },
   "error": {
     "shipToNotSupported": "Nem lehetséges a szállítás erre a helyre. Használjon másik címet.",
@@ -108,7 +109,8 @@
     "createOrderFailed": "A rendelés nem hozható létre. Próbálja meg újra.",
     "sessionUpdateNotAllowed": "Hiba történt. Zárja be a modált, majd próbálkozzon újra!",
     "orderNotComplete" : "Megrendelése nem teljes",
-    "notSaved" : "Adatait nem mentettük. Kérlek próbáld újra."
+    "notSaved" : "Adatait nem mentettük. Kérlek próbáld újra.",
+    "tryAnotherPaymentMethod": "Fizetés meghiúsult. Kérjük, próbálja újra, vagy használjon másik fizetési módot."
   },
   "country": {
     "Argentina": "Argentína",

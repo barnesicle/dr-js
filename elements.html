@@ -1,487 +1,878 @@
 <!-- This html file is used as the template for how a client uses DigitalRiverPayments -->
 <!-- DigitalRiver JS is injected into head by webpack<head>-->
-<!DOCTYPE html>
-<html>
+  <!DOCTYPE html>
+  <html>
 
-<head>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta charset="utf-8"/>
-  <title>Example Elements Page</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <script src="//cdn.polyfill.io/v3/polyfill.js?ver=5.1.1" type="text/javascript"></script>
-  <script src="//unpkg.com/axios/dist/axios.min.js"></script>
-  <link rel="stylesheet" href="css/DigitalRiver.css" type="text/css"/>
-  <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
-  <style>
-      DRElement--focus {
-          border-color: #80bdff;
-          outline: 0;
-          box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
-      }
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8"/>
+    <title>Example Elements Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+            integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="//cdn.polyfill.io/v3/polyfill.js?ver=5.1.1" type="text/javascript"></script>
+    <script src="//unpkg.com/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="css/DigitalRiver.css" type="text/css"/>
+    <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    <style>
+        DRElement--focus {
+            border-color: #80bdff;
+            outline: 0;
+            box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+        }
 
-      .DRElement--invalid {
-          border-color: #dc3545;
-          outline: 0;
-          box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.31);
-      }
+        .DRElement--invalid {
+            border-color: #dc3545;
+            outline: 0;
+            box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.31);
+        }
 
-      .DRElement--complete {
-          border-color: #28a745;
-          outline: 0;
-          box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.31);
-      }
-  </style>
-<script defer src="dropInStyles.js"></script><script defer src="DigitalRiver.js"></script><link href="css/DigitalRiver.css" rel="stylesheet"></head>
+        .DRElement--complete {
+            border-color: #28a745;
+            outline: 0;
+            box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.31);
+        }
+    </style>
+  <script defer src="DigitalRiver.js"></script></head>
 
-<body class="bg-light" style="padding-top:50px;">
-        <div class="col-md-12 col-sm-12">
-            <div class="">
-              <div class="py-5 text-center">
-                <h2>Elements v2 Demo Page</h2>
-                <span style="color:red" id="message"></span>
-                <p class="lead"></p>
+  <body class="bg-light" style="padding-top:50px;">
+          <div class="col-md-12 col-sm-12">
+              <div class="">
+                <div class="py-5 text-center">
+                  <h2>Elements v2 Demo Page</h2>
+                  <span style="color:red" id="message"></span>
+                  <p class="lead"></p>
+                </div>
+                <div class="row">
+                    <div class="col-md-8 col-sm-12">
+
+
+              <div style="max-width: 600px; min-height: 300px">
+
+                  <div id="loading-container" style="display: block">
+                    Loading....
+                  </div>
+
+                  <div id="wallet-container" style="display: none">
+
+                  </div>
+
+                  <div id="address-container" style="display: none">
+
+                  </div>
+                  <div id="shipping-container" style="display: none">
+
+                  </div>
+
+                  <div id="tax-container" style="display: none">
+
+                  </div>
+
+                  <div id="invoice-attribute-container" style="display: none">
+
+                  </div>
+
+                  <div id="payment-container" style="display: none">
+
+                  </div>
+
+                <div id="tax-exemption-container" style="display: none">
+
+                </div>
+
+                  <!-- Question: This ia a client hosted thank you page they manage. Or do we display that? -->
+                  <div id="order-details-container" style="display: none">
+                      <!--<h3>Thank you for your order!</h3>
+                      <div>Your order has been created. Your order number is #<span id="order-id"></span></div>
+
+                      &lt;!&ndash; The client will need to add a div with an id 'DR-delayed-payment-instructions' for us to add to the page. We could also have them add the ID in configuration. &ndash;&gt;
+                      <div class="DR-delayed-payment-instructions" id="DR-delayed-payment-instructions"></div>-->
+                  </div>
+
+                  <div style="display: flex; justify-content: center;">
+                      <div style="width: 10rem; padding: 8px;">
+                          <button id="skipButton" class="DR-primary-button" onclick="onSkipButtonClick()" style="display: none;">Skip</button>
+                      </div>
+                      <div style="width: 10rem; padding: 8px;">
+                          <button id="previousButton" class="DR-primary-button" onclick="onPreviousButtonClick()">Client Previous</button>
+                      </div>
+                      <div style="width: 10rem; padding: 8px">
+                          <button id="nextButton" class="DR-primary-button" onclick="onNextButtonClick()">Client Next</button>
+                      </div>
+                  </div>
+
+            </div>
+
+                        <div id="compliance-container" style="display: block">
+
+                        </div>
+                  </div>
+                    <div class="col-md-4 col-sm-12">
+                       <!-- <h3>Order Summary</h3>
+                        <div id="items"></div>
+                        <div>Subtotal: <span id="subtotal"></span></div>
+                        <div>Shipping: <span id="shipping"></span></div>
+                        <div>Tax: <span id="tax"></span></div>
+                        <div style="font-weight: bold">Total: <span id="total"></span></div>-->
+
+                        <div id="order-summary-container"></div>
+                    </div>
+                </div>
               </div>
-              <div class="row">
-                  <div class="col-md-8 col-sm-12">
-
-
-            <div style="max-width: 600px; min-height: 300px">
-
-                <div id="wallet-container" style="display: block">
-
-                </div>
-
-                <div id="address-container" style="display: block">
-
-                </div>
-                <div id="shipping-container" style="display: block">
-
-                </div>
-                <div id="payment-container" style="display: block">
-
-                </div>
-
-                <!-- Question: This ia a client hosted thank you page they manage. Or do we display that? -->
-                <div id="order-details-container" style="display: none">
-                    <!--<h3>Thank you for your order!</h3>
-                    <div>Your order has been created. Your order number is #<span id="order-id"></span></div>
-
-                    &lt;!&ndash; The client will need to add a div with an id 'DR-delayed-payment-instructions' for us to add to the page. We could also have them add the ID in configuration. &ndash;&gt;
-                    <div class="DR-delayed-payment-instructions" id="DR-delayed-payment-instructions"></div>-->
-                </div>
-
-                <div style="display: flex; justify-content: center;">
-                    <div style="width: 10rem; padding: 8px;">
-                        <button id="previousButton" class="DR-primary-button" onclick="onPreviousButtonClick()">Client Previous</button>
-                    </div>
-                    <div style="width: 10rem; padding: 8px">
-                        <button id="nextButton" class="DR-primary-button" onclick="onNextButtonClick()">Client Next</button>
-                    </div>
-                </div>
-
           </div>
 
-                      <div id="compliance-container" style="display: block">
+  <div class="footer">
 
-                      </div>
-                </div>
-                  <div class="col-md-4 col-sm-12">
-                      <h3>Order Summary</h3>
-                      <div id="items"></div>
-                      <div>Subtotal: <span id="subtotal"></span></div>
-                      <div>Shipping: <span id="shipping"></span></div>
-                      <div>Tax: <span id="tax"></span></div>
-                      <div style="font-weight: bold">Total: <span id="total"></span></div>
-                  </div>
-              </div>
-            </div>
-        </div>
+  </div>
+  <!--<script src="https://www.paypalobjects.com/api/checkout.js"></script>-->
+  <script type="text/javascript">
+    let digitalRiverPayments;
+    let elements;
+    let owner = {};
+    let response = document.getElementById('response');
 
-<div class="footer">
+    let sessionClientSecret = ''; // Gets set from API and passed into create source for 3DS
 
-</div>
-<!--<script src="https://www.paypalobjects.com/api/checkout.js"></script>-->
-<script type="text/javascript">
-  let digitalRiverPayments;
-  let elements;
-  let owner = {};
-  let response = document.getElementById('response');
+    let position = 0;
+    let changeData;
+    let readyData;
+    let isSkip = false;
 
-  let sessionClientSecret = ''; // Gets set from API and passed into create source for 3DS
+    function onNextButtonClick() {
+      console.log('NEXT')
+      isSkip = false;
+      /*displayCorrectElement(() => {
+        position = position + 1;
+      })*/
 
-  let position = 0;
-  let displayShipping = true;
-  function onNextButtonClick() {
-    console.log('NEXT')
-    displayCorrectElement(() => {
-      position = position + 1;
-    })
-  }
+      navigate(position, () => {
+        return ++position;
+      })
 
-  function onPreviousButtonClick() {
-    console.log('PREVIOUS')
-    displayCorrectElement(() => {
-      --position;
-    })
-  }
+    }
 
-  // NOTE: We could provide a 'button' element so we can manage the order and the button state for the clients. We can also just have one element that mounts them all?
-  async function displayCorrectElement(fn) {
-    fn();
-    console.log('Display with position...', position)
-    if (position === 0) {
-      document.getElementById('nextButton').style.display = 'inline-block';
-      document.getElementById('address-container').style.display = 'block';
-      document.getElementById('shipping-container').style.display = 'none';
-      document.getElementById('payment-container').style.display = 'none';
-    } else if (position === 1) {
-
-      const addressElementStatus = await addressElement.done();
-      console.log('addressElementStatus', addressElementStatus)
-      if (!addressElementStatus) {
-        console.log('ADDRESS ELEMENT VALIDATION FAILED')
+    function onPreviousButtonClick() {
+      console.log('PREVIOUS')
+      isSkip = false;
+      /*displayCorrectElement(() => {
         --position;
-       return;
-      }
-      document.getElementById('nextButton').style.display = 'inline-block';
-      document.getElementById('address-container').style.display = 'none';
-
-      if (displayShipping) {
-        document.getElementById('shipping-container').style.display = 'block';
-        document.getElementById('payment-container').style.display = 'none';
-      } else {
-        displayCorrectElement(fn);
-      }
-
-    } else if (position === 2) {
-      document.getElementById('nextButton').style.display = 'none';
-      document.getElementById('address-container').style.display = 'none';
-      document.getElementById('shipping-container').style.display = 'none';
-      document.getElementById('payment-container').style.display = 'block';
-    } else if (position === 3) {
-      document.getElementById('address-container').style.display = 'none';
-      document.getElementById('shipping-container').style.display = 'none';
-      document.getElementById('payment-container').style.display = 'none';
-      document.getElementById('wallet-container').style.display = 'none';
-      document.getElementById('order-details-container').style.display = 'block';
-      document.getElementById('nextButton').style.display = 'none';
-      document.getElementById('previousButton').style.display = 'none';
-    }
-  }
-
-  function mockFetch() {
-    return new Promise(function(resolve) {
-      setTimeout(function() {
-        resolve();
-      }, 1000);
-    });
-  }
-
-  function getURLParamOrDefault(name, defaultValue) {
-    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
-    if (results == null){
-      return defaultValue;
-    }
-    else {
-      return decodeURI(results[1]) || 0;
-    }
-  }
-
-  function getUseEnteredBillingAddressParam() {
-    return getURLParamOrDefault('useEnteredBillingAddress','false');
-  }
-
-  let paymentElement;
-  let shippingChoice;
-  let addressElement;
-  let walletElement;
-  let thankYouElement;
-  let complianceElement;
-
-  async function initializeElements() {
-
-    const redirectUrl = window.location.protocol + '//'  + window.location.hostname + ':' +window.location.port +'/v1/thank-you.html';
-
-    console.log('Redirect URL', redirectUrl);
-
-    const redirectUrlQueryParam = getURLParamOrDefault('redirectToThankYouPage', 'false');
-
-    // CLIENT CONFIGURATION
-    const configuration = {
-      checkoutSessionId: await createDropinCheckoutSession(),
-      redirectUrl: redirectUrlQueryParam === 'true' ? redirectUrl : undefined,
-      onReady: function (data) {
-        console.log('onReady', data);
-        if (data.requiresShipping === false) { // NOTE: This is so users do not have to show the shipping element if it is not necessary
-          // If is false, the step should ignore the shipping step
-          //displayShipping = false;
-        }
-        displayCorrectElement(() => {});
-      },
-      onSuccess: function (data) {
-        console.log('Success data', data);
-
-        // TODO API call to server to verify state of order
-
-        displayCorrectElement(() => {  position = 3; });
-        //document.getElementById('order-id').innerText = data.order.id;
-      },
-      onChange: function (data) {
-        console.log('onChange', data);
-
-        const locale = data.locale.replace('_', '-');
-        document.getElementById('total').innerText =  new Intl.NumberFormat(locale, { style: 'currency', currency: data.currency }).format(data.totalAmount);
-        document.getElementById('shipping').innerText =  new Intl.NumberFormat(locale, { style: 'currency', currency: data.currency }).format(data.totalShipping);
-        document.getElementById('tax').innerText =  new Intl.NumberFormat(locale, { style: 'currency', currency: data.currency }).format(data.totalTax);
-        document.getElementById('subtotal').innerText =  new Intl.NumberFormat(locale, { style: 'currency', currency: data.currency }).format(data.subtotal);
-
-        document.getElementById('items').innerHTML = data.items.map( i => {
-          return `<div>
-            <img style="height: 30px; width: 30px" src="${i.sku.image}"/> ${i.sku.name} - ${new Intl.NumberFormat(locale, { style: 'currency', currency: data.currency }).format(i.amount)}
-          </div>`
-        });
-
-      }
+      })*/
+      navigate(position, () => {
+        return --position;
+      })
     }
 
-    elements = digitalRiverPayments.elements(configuration);
-
-    paymentElement = elements.createElement('payment');
-    shippingChoice = elements.createElement('shipping');
-    addressElement = elements.createElement('address');
-    walletElement = elements.createElement('wallet');
-    thankYouElement = elements.createElement('thankyou');
-    complianceElement = elements.createElement('compliance');
-
-    paymentElement.mount('payment-container');
-    shippingChoice.mount('shipping-container');
-    addressElement.mount('address-container');
-    walletElement.mount('wallet-container');
-    thankYouElement.mount('order-details-container');
-    complianceElement.mount('compliance-container');
-
-    /*paymentElement.on('change', function (data) {
-      console.log('change', data);
-      const button = document.getElementById('pay-now');
-      //button.style.display = data.show === true ? '' : 'none'
+  function onSkipButtonClick() {
+    console.log('SKIP')
+    /*displayCorrectElement(() => {
+      position = position + 1;
+      isSkip = true;
     })*/
+    navigate(position, () => {
+      return ++position;
+    }, true)
   }
 
-  function createDropinCheckoutSession() {
+  const elementInstances = [
 
-    const locale = getURLParamOrDefault('locale','en_US');
-    const currency = getURLParamOrDefault('currency','USD');
-    const country = getURLParamOrDefault('country','US');
-    const skuId = getURLParamOrDefault('skuId',"3ea112ec-83b6-45c7-8e22-e2114e903745"); // SKU for pk_test_d988467af0414f3d8b4530618fb54a1a
-    //const country = 'DE';
-    //const currency = "EUR";
-    const body = {
-      "currency": currency,
-      locale: locale,
-      "items": [
-        {
-          "skuId": skuId,
-          //"skuGroupId" : '12312',
-          //"skuId" : "48e28f07-05f7-4640-be71-5a286e41a5d2",
-          "quantity": 1,
-          "price": 300,
-          "shipFrom": {
+    {
+      element: 'address',
+      domId: 'address-container',
+      canSkip: () => { return false; }, // Default
+      getInstance: () => {
+        return addressElement;
+      },
+      displayAnotherElement: 'wallet'
+    },
+
+    {
+      element: 'tax-exemption',
+      domId: 'tax-exemption-container',
+      canSkip: () => { return true; },
+      show: () => {
+        return readyData?.customerId?.length > 0;
+      },
+      getInstance: () => {
+        return taxExemptionElement;
+      }
+    },
+    {
+      element: 'taxidentifier',
+      domId: 'tax-container',
+      canSkip: () => { return true; },
+      show: () => {
+        return readyData.showTaxIdentifiers;
+      },
+      getInstance: () => {
+        return invoiceAttributeElement;
+      }
+    },
+    {
+      element: 'invoice-attribute',
+      domId: 'invoice-attribute-container',
+      canSkip: () => { return typeof changeData.invoiceAttributeRequired !== 'undefined' && changeData.invoiceAttributeRequired === true; },
+      show: () => {
+        return changeData?.showInvoiceAttribute;
+      },
+      getInstance: () => {
+        return invoiceAttributeElement;
+      }
+    },
+    {
+      element: 'wallet', // TODO Make it display at the same time as the others? Could make getInstance return an array when address element is displaying?
+      domId: 'wallet-container',
+      show() {
+        return false;
+      },
+      getInstance: () => {
+        return walletElement;
+      }
+    },
+    {
+      element: 'shipping',
+      domId: 'shipping-container',
+
+      getInstance: () => {
+        return shippingChoice;
+      }
+    },
+    {
+      element: 'payment',
+      domId: 'payment-container',
+      getInstance: () => {
+        return paymentElement;
+      }
+    },
+    /*{
+      element: 'order-summary',
+      domId: 'order-details-container',
+      getInstance: () => {
+        return orderSummaryElement;
+      }
+    },*/
+    {
+      element: 'thankyou',
+      domId: 'order-details-container',
+      getInstance: () => {
+        return thankYouElement;
+      },
+      buttons: () => {
+        return {
+          next: false,
+          previous: false
+        }
+      }
+    }
+  ]
+
+    function getElementInstances() {
+      return elementInstances.filter( e => typeof e.show === 'undefined' || e.show() )
+    }
+
+
+    /*function getNextElement(position, changePosition) {
+
+        const nextElement = elementInstances[position];
+
+        if (typeof nextElement.show === 'undefined' || nextElement.show()) {
+          return {
+            position: position,
+            element: nextElement
+          }
+        } else {
+          const newPosition = changePosition();
+
+          if (newPosition === position) {
+            return getNextElement(newPosition + 1, changePosition)
+          }
+
+          return getNextElement(newPosition, changePosition)
+        }
+
+    }*/
+
+    function showLoading() {
+      document.getElementById('loading-container').style.display = 'block';
+    }
+
+    function hideLoading() {
+      document.getElementById('loading-container').style.display = 'none';
+    }
+
+    async function navigate(currentPosition, changePosition, skipDone = false) {
+
+      console.log('getElementInstances()', getElementInstances())
+
+      const currentElement = getElementInstances()[currentPosition];
+
+      console.log('currentElement', currentElement)
+
+      const currentInstance = currentElement.getInstance();
+
+      // Check if there is a done function
+      if (!skipDone && currentInstance.done) {
+        // TODO Loading
+        showLoading();
+        const result = await currentInstance.done();
+        hideLoading();
+
+        if (!result) {
+          console.log(getElementInstances()[currentPosition].element + ' VALIDATION FAILED');
+          return;
+        }
+      }
+
+      const position = changePosition()
+
+      // TODO Could also just filter out the elements that do not need to get displayed to remove this kind of logic.
+      //const nextElement = getNextElement(position, changePosition);
+      const nextElement = getElementInstances()[position];
+
+      console.log('navigate', currentElement, position, nextElement)
+      getElementInstances().forEach( (e, index) => {
+
+        if (nextElement && e.element === nextElement.element) {
+          document.getElementById(e.domId).style.display = 'block'
+
+          if (nextElement.displayAnotherElement) {
+            const theOtherElement = elementInstances.find( e => e.element === nextElement.displayAnotherElement)
+            document.getElementById( theOtherElement.domId).style.display = 'block'
+          }
+
+        } else {
+          document.getElementById(e.domId).style.display = 'none'
+
+          if (e.displayAnotherElement) {
+            const theOtherElement = elementInstances.find( el => el.element === e.displayAnotherElement)
+            document.getElementById(theOtherElement.domId).style.display = 'none'
+          }
+
+        }
+      })
+
+
+      if (nextElement.buttons) {
+        const buttonOptions = nextElement.buttons();
+        document.getElementById('nextButton').style.display = buttonOptions.next === true ? 'block' : 'none';
+        document.getElementById('previousButton').style.display = buttonOptions.previous === true ? 'block' : 'none';
+      } else {
+
+        if (nextElement.canSkip && nextElement.canSkip()) {
+          document.getElementById('skipButton').style.display = 'block';
+        } else {
+          document.getElementById('skipButton').style.display = 'none';
+        }
+
+        if (position === 0) {
+          document.getElementById('previousButton').style.display = 'none';
+        } else {
+          document.getElementById('previousButton').style.display = 'block';
+        }
+
+        if (typeof elementInstances[position + 1] === 'undefined') {
+          document.getElementById('nextButton').style.display = 'none';
+        } else {
+          document.getElementById('nextButton').style.display = 'block';
+        }
+
+      }
+
+    }
+
+    // NOTE: We could provide a 'button' element so we can manage the order and the button state for the clients. We can also just have one element that mounts them all?
+    /*async function displayCorrectElement(fn) {
+      fn();
+      const customerId = getURLParamOrDefault('customerId','');
+      // const customerId = getURLParamOrDefault('customerId','f10ddefa73525bfb7df84e80646b3425dcf19d57');
+      if(position === 0 && !customerId){
+        position = 1;
+      }
+
+      console.log('Display with position...', position)
+      if (position === 0) {
+        /!*
+        Tax exemption test Url
+        SECRET_KEY=sk_test_b4c88995e8e247538274eca66ecb2bdb npm run server
+        http://localhost:8080/v1/elements.html?customerId=f10ddefa73525bfb7df84e80646b3425dcf19d57&apiKey=pk_test_10fdcec992dd4500ad891a233fed0fca&skuId=sku_test_10
+        *!/
+        document.getElementById('nextButton').style.display = 'inline-block';
+        document.getElementById('address-container').style.display = 'none';
+        document.getElementById('tax-exemption-container').style.display = 'block';
+        document.getElementById('shipping-container').style.display = 'none';
+        document.getElementById('payment-container').style.display = 'none';
+        document.getElementById('tax-container').style.display = 'none';
+        document.getElementById('wallet-container').style.display = 'none';
+        document.getElementById('invoice-attribute-container').style.display = 'none';
+        document.getElementById('previousButton').style.display = 'none';
+        document.getElementById('skipButton').style.display = 'block';
+      } else if (position === 1) {
+        if(!isSkip && customerId){
+          const taxExemptionElementStatus = await taxExemptionElement.done();
+          console.log('taxExemptionElementStatus', taxExemptionElementStatus)
+          if (!taxExemptionElementStatus) {
+            console.log('TAXEXEMPTION ELEMENT VALIDATION FAILED');
+            --position;
+          return;
+          }
+        }
+        document.getElementById('skipButton').style.display = 'none';
+        document.getElementById('tax-exemption-container').style.display = 'none';
+        document.getElementById('nextButton').style.display = 'inline-block';
+        document.getElementById('address-container').style.display = 'block';
+        document.getElementById('shipping-container').style.display = 'none';
+        document.getElementById('payment-container').style.display = 'none';
+        document.getElementById('tax-container').style.display = 'none';
+        document.getElementById('previousButton').style.display = 'none';
+        document.getElementById('wallet-container').style.display = 'none';
+        document.getElementById('invoice-attribute-container').style.display = 'none';
+
+      } else if (position === 2) {
+        const addressElementStatus = await addressElement.done();
+        console.log('addressElementStatus', addressElementStatus)
+        if (!addressElementStatus) {
+          console.log('ADDRESS ELEMENT VALIDATION FAILED')
+          --position;
+         return;
+        }
+        document.getElementById('nextButton').style.display = 'inline-block';
+        document.getElementById('address-container').style.display = 'none';
+        document.getElementById('tax-container').style.display = 'none';
+        document.getElementById('invoice-attribute-container').style.display = 'none';
+        document.getElementById('previousButton').style.display = 'block';
+
+        if (displayShipping) {
+          document.getElementById('shipping-container').style.display = 'block';
+          document.getElementById('payment-container').style.display = 'none';
+        } else {
+          displayCorrectElement(fn);
+        }
+
+      } else if (position === 3) {
+
+        if (displayShipping) {
+          console.log('Validating shipping....')
+          const shippingState = await shippingChoice.done();
+          if (!shippingState) {
+            console.log('SHIPPING ELEMENT VALIDATION FAILED')
+            --position;
+            return;
+          }
+        }
+
+        if (!showTaxIdentifiers) {
+          displayCorrectElement(fn);
+          return;
+        }
+
+        document.getElementById('skipButton').style.display = 'none';
+        document.getElementById('address-container').style.display = 'none';
+        document.getElementById('shipping-container').style.display = 'none';
+        document.getElementById('payment-container').style.display = 'none';
+        document.getElementById('tax-container').style.display = 'block';
+        document.getElementById('nextButton').style.display = 'block';
+        document.getElementById('previousButton').style.display = 'block';
+        document.getElementById('invoice-attribute-container').style.display = 'none';
+
+      } else if (position === 4) {
+
+        const taxIdentifierState = await taxIdentifierElement.done();
+        console.log('TAX IDENTIFIER', taxIdentifierState)
+        if (!taxIdentifierState) {
+          console.log('TAX IDENTIFIER ELEMENT VALIDATION FAILED')
+          --position;
+          return;
+        }
+
+        if (changeData.showInvoiceAttribute === false) {
+          displayCorrectElement(fn);
+          return;
+        }
+
+        console.log('Displaying invoice attribute....')
+
+        if (typeof changeData.invoiceAttributeRequired !== 'undefined' && changeData.invoiceAttributeRequired === true) {
+          document.getElementById('skipButton').style.display = 'block';
+        }
+
+        document.getElementById('previousButton').style.display = 'block';
+        document.getElementById('nextButton').style.display = 'block';
+        document.getElementById('address-container').style.display = 'none';
+        document.getElementById('shipping-container').style.display = 'none';
+        document.getElementById('payment-container').style.display = 'none';
+        document.getElementById('tax-container').style.display = 'none';
+        document.getElementById('invoice-attribute-container').style.display = 'block';
+
+      } else if (position === 5) {
+
+        if (!isSkip && changeData.showInvoiceAttribute === true) {
+
+          const invoiceAttributeState = await invoiceAttributeElement.done();
+          console.log('INVOICE ATTRIBUTE', invoiceAttributeState)
+          if (!invoiceAttributeState) {
+            console.log('INVOICE ATTRIBUTE ELEMENT VALIDATION FAILED')
+            --position;
+            return;
+          }
+
+        }
+
+        document.getElementById('skipButton').style.display = 'none';
+        document.getElementById('previousButton').style.display = 'block';
+        document.getElementById('nextButton').style.display = 'none';
+        document.getElementById('address-container').style.display = 'none';
+        document.getElementById('shipping-container').style.display = 'none';
+        document.getElementById('payment-container').style.display = 'block';
+        document.getElementById('tax-container').style.display = 'none';
+        document.getElementById('invoice-attribute-container').style.display = 'none';
+      } else if (position === 6) {
+        document.getElementById('address-container').style.display = 'none';
+        document.getElementById('shipping-container').style.display = 'none';
+        document.getElementById('payment-container').style.display = 'none';
+        document.getElementById('wallet-container').style.display = 'none';
+        document.getElementById('order-details-container').style.display = 'block';
+        document.getElementById('tax-container').style.display = 'none';
+        document.getElementById('nextButton').style.display = 'none';
+        document.getElementById('previousButton').style.display = 'none';
+        document.getElementById('invoice-attribute-container').style.display = 'none';
+      }
+    }*/
+
+    function mockFetch() {
+      return new Promise(function(resolve) {
+        setTimeout(function() {
+          resolve();
+        }, 1000);
+      });
+    }
+
+    function getURLParamOrDefault(name, defaultValue) {
+      var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+      if (results == null){
+        return defaultValue;
+      }
+      else {
+        return decodeURI(results[1]) || 0;
+      }
+    }
+
+    function getUseEnteredBillingAddressParam() {
+      return getURLParamOrDefault('useEnteredBillingAddress','false');
+    }
+
+    let paymentElement;
+    let shippingChoice;
+    let addressElement;
+    let walletElement;
+    let thankYouElement;
+    let complianceElement;
+    let taxIdentifierElement;
+    let invoiceAttributeElement;
+    let orderSummaryElement;
+
+    async function initializeElements() {
+
+      const redirectUrl = window.location.protocol + '//'  + window.location.hostname + ':' +window.location.port +'/v1/thank-you.html';
+
+      console.log('Redirect URL', redirectUrl);
+
+      const redirectUrlQueryParam = getURLParamOrDefault('redirectToThankYouPage', 'false');
+
+      // CLIENT CONFIGURATION
+      const configuration = {
+        checkoutSessionId: await createDropinCheckoutSession(),
+        redirectUrl: redirectUrlQueryParam === 'true' ? redirectUrl : undefined,
+        onReady: function (data) {
+          readyData = data;
+          console.log('onReady', data);
+          //displayCorrectElement(() => {});
+
+          //navigate(position, () => { return position}, true )
+
+        },
+        onChange: function (data) {
+          console.log('onChange', position, data, data.totalAmount, data.currency);
+          changeData = data;
+
+          if (position ===  getElementInstances().findIndex( e => e.element === 'thankyou')) {
+            return;
+          }
+
+          navigate(position, () => { return position}, true )
+
+          document.getElementById("loading-container").style.display = 'none';
+        },
+        onSuccess: function (data) {
+          console.log('Success data', data);
+
+          // TODO API call to server to verify state of order
+
+          //displayCorrectElement(() => {  position = 6; });
+
+          console.log("onSuccess BEFORE", position, getElementInstances().findIndex( e => e.element === 'thankyou'), )
+
+          navigate(position, () => {
+            position = getElementInstances().findIndex( e => e.element === 'thankyou');
+            return position;
+          }, true)
+
+          //document.getElementById('order-id').innerText = data.order.id;
+        },
+
+      }
+
+      elements = digitalRiverPayments.components(configuration);
+
+      paymentElement = elements.createComponent('payment');
+      shippingChoice = elements.createComponent('shipping');
+      addressElement = elements.createComponent('address');
+      walletElement = elements.createComponent('wallet');
+      thankYouElement = elements.createComponent('thankyou');
+      complianceElement = elements.createComponent('compliance');
+      taxIdentifierElement = elements.createComponent('taxidentifier');
+      taxExemptionElement = elements.createComponent('taxexemption');
+      invoiceAttributeElement = elements.createComponent('invoiceattribute');
+      orderSummaryElement = elements.createComponent('ordersummary');
+
+      paymentElement.mount('payment-container');
+      shippingChoice.mount('shipping-container');
+      addressElement.mount('address-container');
+      walletElement.mount('wallet-container');
+      thankYouElement.mount('order-details-container');
+      complianceElement.mount('compliance-container');
+      taxIdentifierElement.mount('tax-container');
+      taxExemptionElement.mount('tax-exemption-container');
+      invoiceAttributeElement.mount('invoice-attribute-container');
+      orderSummaryElement.mount('order-summary-container')
+
+    }
+
+    function createDropinCheckoutSession() {
+
+      const locale = getURLParamOrDefault('locale','en_US');
+      const shoppingCountry = getURLParamOrDefault('shoppingCountry','');
+      const currency = getURLParamOrDefault('currency','USD');
+      const country = getURLParamOrDefault('country','US');
+      const state = getURLParamOrDefault('state','MN');
+      const postalCode = getURLParamOrDefault('postalCode','55129');
+      const skuId = getURLParamOrDefault('skuId',"3ea112ec-83b6-45c7-8e22-e2114e903745"); // SKU for pk_test_d988467af0414f3d8b4530618fb54a1a
+      const customerType = getURLParamOrDefault('customerType','individual');
+      //const country = 'DE';
+      //const currency = "EUR";
+      const body = {
+        "currency": currency,
+        customerType: customerType,
+        locale: locale,
+        "items": [
+          {
+            "skuId": skuId,
+            //"skuGroupId" : '12312',
+            //"skuId" : "48e28f07-05f7-4640-be71-5a286e41a5d2",
+            "quantity": 1,
+            "price": 300,
+            "shipFrom": {
+              "address": {
+                "line1": "10380 Bren Rd W",
+                "line2": "",
+                "city": "Minnetonka",
+                "postalCode": postalCode,
+                "state":state,
+                "country": country
+              }
+            },
+
+          }
+        ],
+        "taxInclusive": false,
+        "options": {
+
+        },
+        /*"shipFrom": {
+          "address": {
+            "country": country
+          }
+        },*/
+        //"shoppingCountry" : 'US', // TODO
+     "shipTo": { // TODO Need to work without
+          "address": {
+            "line1": "10380 bren road west",
+            "country": country,
+            "city": "minnetonka",
+            "state": state,
+            "postalCode": postalCode
+          },
+          "email": "test@test.com",
+          "name": "test test",
+          "phone": "6519895326"
+        },
+       /* "billTo": { // TODO Need to work without
+         "address": {
+           "line1": "10380 bren road west",
+           "country": country,
+           "city": "minnetonka",
+           "state": state,
+           "postalCode": postalCode
+         },
+         "email": "test@test.com",
+         "name": "test test",
+         "phone": "6519895326"
+       },*/
+      };
+
+      if(shoppingCountry.length > 0 ){
+        body.shoppingCountry = shoppingCountry;
+      }
+
+      const subscription = getURLParamOrDefault('subscription','false');
+      if (subscription === 'true') {
+        body.items[0].subscriptionInfo = {
+            "terms": "Subscription terms accepted by the customer",
+              "autoRenewal": true,
+              "freeTrial": false
+        }
+      }
+
+      const addStoredCredits = getURLParamOrDefault('addStoredCredits','false');
+      if (addStoredCredits === 'true') {
+        body.options.storeCredits = [
+          {
+            "amount": 100,
+            "name": "Gift Card",
+            "upstreamId": "7654-2345-0987-123456-1",
+            //"iconUrl": "https://test.com/logo.png",
+            "lastFour": "7831"
+          },
+          {
+            "amount": 500,
+            "name": "Gift Card",
+            "upstreamId": "7654-2345-0987-123456-2",
+            //"iconUrl": "https://test.com/logo.png",
+            "lastFour": "7831"
+          }
+        ];
+      }
+
+      const customerId = getURLParamOrDefault('customerId',''); // NOTE. 1234567890 has a stored credit card
+      if (customerId.length > 0) {
+        body.customerId = customerId;
+      }
+
+      const addShippingOptions = getURLParamOrDefault('addShippingMethods','true');
+      if (addShippingOptions === 'true') {
+        body.options.shippingMethods = [
+          {
+            "amount": 5,
+            "description": "Standard Shipping",
+            "serviceLevel": "SG"
+          },
+          {
+            "amount": 15,
+            "description": "Next Day Air",
+            "serviceLevel": "ND"
+          }
+        ];
+      }
+
+      const addSavedAddress = getURLParamOrDefault('addSavedAddress','true');
+      if (addSavedAddress === 'true') {
+        body.options.addresses = [
+          {
             "address": {
               "line1": "10380 Bren Rd W",
-              "line2": "",
               "city": "Minnetonka",
               "postalCode": "55129",
               "state": "MN",
-              "country": country
-            }
+              "country": "US"
+            },
+            "name": "John Smith",
+            "phone": "952-111-1111",
+            "email": "jsmith@dr.com"
+          },
+          {
+            "address": {
+              "line1": "10-123 1/2 MAIN STREET NW",
+              "city": "MONTREAL",
+              "postalCode": "H3Z 2Y7",
+              "state": "QC",
+              "country": "CA"
+            },
+            "name": "John Jones",
+            "phone": "9055438570",
+            "email": "jj@dr.com"
+          },
+          {
+            "address": {
+              "line1": "Neuer Wall 10",
+              "city": "Hamburg",
+              "postalCode": "20354",
+              "country": "DE"
+            },
+            "name": "Anna Brawner",
+            "phone": "020143647453",
+            "email": "ab@dr.com"
           }
-        }
-      ],
-      "taxInclusive": false,
-      "options": {
+        ];
+      }
 
-      },
-      "email": "test@test.com",
-      "shipFrom": {
-        "address": {
-          "country": country
-        }
-      },
-     "shipTo": { // TODO Need to work without
-        "address": {
-          "line1": "10380 bren road west",
-          "country": country,
-          "city": "minnetonka",
-          "state": "MN",
-          "postalCode": "55446"
-        },
-        "email": "test@test.com",
-        "name": "test test",
-        "phone": "6519895326"
-      },
-      "billTo": { // TODO Need to work without
-       "address": {
-         "line1": "10380 bren road west",
-         "country": country,
-         "city": "minnetonka",
-         "state": "MN",
-         "postalCode": "55446"
-       },
-       "email": "test@test.com",
-       "name": "test test",
-       "phone": "6519895326"
-     },
-      /*"billTo": { // TODO Need to work without
-        "address": {
-          "country": country,
-        },
-      }*/
-    };
-
-    const addStoredCredits = getURLParamOrDefault('addStoredCredits','false');
-    if (addStoredCredits === 'true') {
-      body.options.storeCredits = [
-        {
-          "amount": 100,
-          "name": "Gift Card",
-          "upstreamId": "7654-2345-0987-123456-1",
-          //"iconUrl": "https://test.com/logo.png",
-          "lastFour": "7831"
-        },
-        {
-          "amount": 500,
-          "name": "Gift Card",
-          "upstreamId": "7654-2345-0987-123456-2",
-          //"iconUrl": "https://test.com/logo.png",
-          "lastFour": "7831"
-        }
-      ];
+      return fetch('/drop-in/checkout-sessions' , {method: 'POST', headers: {contentType: 'application/json'}, body: JSON.stringify(body)}).then(data => data.json()).then(data => {
+        return data.id;
+      });
     }
 
-    const customerId = getURLParamOrDefault('customerId',''); // NOTE. 1234567890 has a stored credit card
-    if (customerId.length > 0) {
-      body.customerId = customerId;
-    }
+    function onLoad() {
+      let isIE = !!window.MSInputMethodContext && !!document.documentMode;
+      //console.log(isIE);
+      if(navigator.userAgent.indexOf('MSIE')!==-1
+              || navigator.appVersion.indexOf('Trident/') > -1){
+        isIE = true;
+        /* Microsoft Internet Explorer detected in. */
+      }
+      if(!isIE) {
+        let urlParams = new URLSearchParams(window.location.search);
 
-    const addShippingOptions = getURLParamOrDefault('addShippingMethods','true');
-    if (addShippingOptions === 'true') {
-      body.options.shippingMethods = [
-        {
-          "amount": 5,
-          "description": "Standard Shipping",
-          "serviceLevel": "SG"
-        },
-        {
-          "amount": 15,
-          "description": "Next Day Air",
-          "serviceLevel": "ND"
+        if(urlParams.get('sourceId')) {
+          responseLog('Shopper has returned from redirect. <br/> sourceId ' + urlParams.get('sourceId') + ' can now be used for payment');
         }
-      ];
-    }
 
-    const addSavedAddress = getURLParamOrDefault('addSavedAddress','true');
-    if (addSavedAddress === 'true') {
-      body.options.addresses = [
-        {
-          "address": {
-            "line1": "10380 Bren Rd W",
-            "city": "Minnetonka",
-            "postalCode": "55129",
-            "state": "MN",
-            "country": "US"
-          },
-          "name": "John Smith",
-          "phone": "952-111-1111",
-          "email": "jsmith@dr.com"
-        },
-        {
-          "address": {
-            "line1": "10-123 1/2 MAIN STREET NW",
-            "city": "MONTREAL",
-            "postalCode": "H3Z 2Y7",
-            "state": "QC",
-            "country": "CA"
-          },
-          "name": "John Jones",
-          "phone": "9055438570",
-          "email": "jj@dr.com"
-        },
-        {
-          "address": {
-            "line1": "Neuer Wall 10",
-            "city": "Hamburg",
-            "postalCode": "20354",
-            "country": "DE"
-          },
-          "name": "Anna Brawner",
-          "phone": "020143647453",
-          "email": "ab@dr.com"
-        }
-      ];
-    }
+      }
 
-    return fetch('/drop-in/checkout-sessions' , {method: 'POST', headers: {contentType: 'application/json'}, body: JSON.stringify(body)}).then(data => data.json()).then(data => {
-      return data.id;
-    });
-  }
+      // pk_hc_b230cec5ef7c44a992af0bcf180ccfaf
+      const apiKey = getURLParamOrDefault('apiKey','pk_sys_c2608001bba7477eae22808e1eb138db');
+      // let apiKey = 'pk_test_d6b3712c81c640288142f204a88f3de5'; // NOTE: Use this key for paypal for test mode / to display mock page
+      //let apiKey = 'cc203ec2d74e4002a7e341abd6df6eb5'; // DoDJS15
 
-  function onLoad() {
-    let isIE = !!window.MSInputMethodContext && !!document.documentMode;
-    //console.log(isIE);
-    if(navigator.userAgent.indexOf('MSIE')!==-1
-            || navigator.appVersion.indexOf('Trident/') > -1){
-      isIE = true;
-      /* Microsoft Internet Explorer detected in. */
-    }
-    if(!isIE) {
-      let urlParams = new URLSearchParams(window.location.search);
+      const locale = getURLParamOrDefault('locale','en-US');
+      const instanceOptions = { 'locale': locale};
+      digitalRiverPayments = new DigitalRiver(apiKey, instanceOptions);
 
-      if(urlParams.get('sourceId')) {
-        responseLog('Shopper has returned from redirect. <br/> sourceId ' + urlParams.get('sourceId') + ' can now be used for payment');
+      if (getUseEnteredBillingAddressParam() !== 'true') {
+        initializeElements();
       }
 
     }
 
-    // pk_hc_b230cec5ef7c44a992af0bcf180ccfaf
-    const apiKey = getURLParamOrDefault('apiKey','pk_sys_c2608001bba7477eae22808e1eb138db');
-    // let apiKey = 'pk_test_d6b3712c81c640288142f204a88f3de5'; // NOTE: Use this key for paypal for test mode / to display mock page
-    //let apiKey = 'cc203ec2d74e4002a7e341abd6df6eb5'; // DoDJS15
+    window.onload = onLoad;
 
-    const locale = getURLParamOrDefault('locale','en-US');
-    const instanceOptions = { 'locale': locale};
-    digitalRiverPayments = new DigitalRiver(apiKey, instanceOptions);
-
-    if (getUseEnteredBillingAddressParam() !== 'true') {
-      initializeElements();
+    function responseLog(msg) {
+      response.innerHTML += msg + '<br/><br/>';
     }
 
-  }
 
-  window.onload = onLoad;
+    // TO Get session
+    const apiDomain = 'https://api.digitalriver.com';
+    const testApiDomain = 'https://dispatch-test.digitalriver.com';
+    const apiBasePath = apiDomain + '/v1/shoppers/me';
+    const testApiBasePath = testApiDomain + '/v1/shoppers/me';
+    const authString = 'Basic YWNjMjg2NDkzZDU1NDYyNWFkYTA1NWYzYWExN2YzYjQ6YmM0N2Y5YmNmYzBhNGViZmI4M2Q3Njg0YTdkYzRkNWY=';
 
-  function responseLog(msg) {
-    response.innerHTML += msg + '<br/><br/>';
-  }
-
-
-  // TO Get session
-  const apiDomain = 'https://api.digitalriver.com';
-  const testApiDomain = 'https://dispatch-test.digitalriver.com';
-  const apiBasePath = apiDomain + '/v1/shoppers/me';
-  const testApiBasePath = testApiDomain + '/v1/shoppers/me';
-  const authString = 'Basic YWNjMjg2NDkzZDU1NDYyNWFkYTA1NWYzYWExN2YzYjQ6YmM0N2Y5YmNmYzBhNGViZmI4M2Q3Njg0YTdkYzRkNWY=';
-
-</script>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-        crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
-        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-        crossorigin="anonymous"></script>
-</body>
-</html>
+  </script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+          integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+          crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+          integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+          crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+          integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+          crossorigin="anonymous"></script>
+  </body>
+  </html>

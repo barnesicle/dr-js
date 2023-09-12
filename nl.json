@@ -93,7 +93,8 @@
     "landedCostDeliveryNote1": "Geen extra importkosten bij levering",
     "landedCostDeliveryNote2": "Invoerrechten geïnd bij levering",
     "estimatedDeliveryDateColon": "Geschatte levertijd:",
-    "shippingAddressDifferent" : "Verzendadres is anders dan facturering."
+    "shippingAddressDifferent" : "Verzendadres is anders dan facturering.",
+    "marketingOptIn": "E-mail me met nieuws en aanbiedingen"
   },
   "error": {
     "shipToNotSupported": "Kan niet naar deze locatie leveren. Gebruik een ander adres.",
@@ -108,7 +109,8 @@
     "createOrderFailed": "Er kan geen bestelling aangemaakt worden. Probeer het nog een keer.",
     "sessionUpdateNotAllowed": "Er is iets fout gegaan. Sluit het popup-venster en probeer het opnieuw!",
     "orderNotComplete" : "Uw bestelling is niet compleet",
-    "notSaved" : "Uw gegevens zijn niet opgeslagen. Probeer het opnieuw."
+    "notSaved" : "Uw gegevens zijn niet opgeslagen. Probeer het opnieuw.",
+    "tryAnotherPaymentMethod": "Betaling mislukt. Probeer het opnieuw of gebruik een andere betaalmethode."
   },
   "country": {
     "Argentina": "Argentinië",

@@ -93,7 +93,8 @@
     "landedCostDeliveryNote1": "No additional import charges upon delivery",
     "landedCostDeliveryNote2": "Import charges collected upon delivery",
     "estimatedDeliveryDateColon": "Estimated delivery date:",
-    "shippingAddressDifferent" : "Shipping address is different than billing."
+    "shippingAddressDifferent" : "Shipping address is different than billing.",
+    "marketingOptIn": "Email me with news and offers"
   },
   "error": {
     "shipToNotSupported": "Cannot ship to this location. Please use a different address.",
@@ -108,7 +109,8 @@
     "createOrderFailed": "Unable to create order. Please try again.",
     "sessionUpdateNotAllowed": "Something went wrong. Please close the modal and try again!",
     "orderNotComplete" : "Your order is not complete",
-    "notSaved" : "Your data was not saved. Please try again."
+    "notSaved" : "Your data was not saved. Please try again.",
+    "tryAnotherPaymentMethod": "Payment failed. Please try again or use another payment method."
   },
   "country": {
     "Argentina": "Argentina",

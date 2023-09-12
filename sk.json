@@ -93,7 +93,8 @@
     "landedCostDeliveryNote1": "Žiadne dodatočné poplatky pri doručení",
     "landedCostDeliveryNote2": "Dovozné poplatky sa vyberajú pri doručení",
     "estimatedDeliveryDateColon": "Predpokladaný dátum doručenia:",
-    "shippingAddressDifferent" : "Adresa doručenia sa odlišuje od fakturačnej adresy"
+    "shippingAddressDifferent" : "Adresa doručenia sa odlišuje od fakturačnej adresy",
+    "marketingOptIn": "Pošlite mi e-mail s novinkami a ponukami"
   },
   "error": {
     "shipToNotSupported": "Nie je možné odoslať na toto miesto. Prosím, použite inú adresu.",
@@ -108,7 +109,8 @@
     "createOrderFailed": "Nie je možné vytvoriť objednávku. Prosím, skúste to znova.",
     "sessionUpdateNotAllowed": "Niečo sa pokazilo. Zatvorte tento modál a skúste to znova!",
     "orderNotComplete" : "Vaša objednávka nie je kompletná",
-    "notSaved" : "Vaše údaje neboli uložené. Prosím skúste znova."
+    "notSaved" : "Vaše údaje neboli uložené. Prosím skúste znova.",
+    "tryAnotherPaymentMethod": "Platba zlyhala. Skúste to znova alebo použite iný spôsob platby."
   },
   "country": {
     "Argentina": "Argentína",

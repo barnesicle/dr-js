@@ -11,7 +11,8 @@
     "billingInfo": "Rechnungsinformationen",
     "orderSummary": "Zusammenfassung der Bestellung",
     "storedTaxIdentifiers": "Gespeicherte Steuernummern",
-    "thankYou": "Vielen Dank!"
+    "thankYou": "Vielen Dank!",
+    "customerInfo": "Customer Information"
   },
   "orderSummaryTable": {
     "orderTotal": "Gesamtbestellwert",
@@ -93,7 +94,9 @@
     "landedCostDeliveryNote1": "Keine zusätzlichen Einfuhrabgaben bei Lieferung",
     "landedCostDeliveryNote2": "Einfuhrabgaben werden bei Lieferung erhoben",
     "estimatedDeliveryDateColon": "Voraussichtliches Lieferdatum:",
-    "shippingAddressDifferent" : "Lieferadresse stimmt nicht mit der Rechnungsadress e überein."
+    "shippingAddressDifferent" : "Lieferadresse stimmt nicht mit der Rechnungsadress e überein.",
+    "purchaseForBusiness" : "Sie kaufen im Namen eines Unternehmens?",
+    "marketingOptIn": "Senden Sie mir eine E-Mail mit Neuigkeiten und Angeboten"
   },
   "error": {
     "shipToNotSupported": "Der Versand an diesen Ort ist nicht möglich. Bitte verwenden Sie eine andere Adresse.",
@@ -108,7 +111,8 @@
     "createOrderFailed": "Bestellung kann nicht erstellt werden. Bitte versuchen Sie es erneut.",
     "sessionUpdateNotAllowed": "Etwas ist schiefgegangen. Bitte schließen Sie das Popup-Fenster und versuchen Sie es erneut!",
     "orderNotComplete" : "Ihre Bestellung ist nicht vollständig",
-    "notSaved" : "Ihre Daten wurden nicht gespeichert. Bitte versuche es erneut."
+    "notSaved" : "Ihre Daten wurden nicht gespeichert. Bitte versuche es erneut.",
+    "tryAnotherPaymentMethod": "Bezahlung fehlgeschlagen. Bitte versuchen Sie es erneut oder verwenden Sie eine andere Zahlungsmethode."
   },
   "country": {
     "Argentina": "Argentinien",

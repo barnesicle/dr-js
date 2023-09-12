@@ -26,7 +26,8 @@
     "includesVatOf": "Inklusive moms på",
     "storeCredits": "Butikskreditter",
     "remainingBalance": "Restbeløb",
-    "unpaid": "Ubetalt"
+    "unpaid": "Ubetalt",
+    "tryAnotherPaymentMethod": "Betaling mislykkedes. Prøv venligst igen, eller brug en anden betalingsmetode."
   },
   "placeholder": {
     "firstName": "Fornavn",
@@ -93,7 +94,8 @@
     "landedCostDeliveryNote1": "Der påløber ikke yderligere importafgifter ved levering",
     "landedCostDeliveryNote2": "Importafgifter opkrævet ved levering",
     "estimatedDeliveryDateColon": "Anslået leveringsdato:",
-    "shippingAddressDifferent" : "Forsendelsesadressen er forskellig fra fakturaadressen."
+    "shippingAddressDifferent" : "Forsendelsesadressen er forskellig fra fakturaadressen.",
+    "marketingOptIn": "Email mig med nyheder og tilbud"
   },
   "error": {
     "shipToNotSupported": "Kan ikke sende til denne lokation. Brug en anden adresse.",

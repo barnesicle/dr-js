@@ -93,7 +93,8 @@
     "landedCostDeliveryNote1": "收貨時沒有額外的進口費用",
     "landedCostDeliveryNote2": "收貨時已收取進口費用",
     "estimatedDeliveryDateColon": "估計送貨日期：",
-    "shippingAddressDifferent" : "送貨地址和帳單地址不同。"
+    "shippingAddressDifferent" : "送貨地址和帳單地址不同。",
+    "marketingOptIn": "通過電子郵件向我發送最新消息和優惠"
   },
   "error": {
     "shipToNotSupported": "無法運送到此地點。請使用其他地址。",
@@ -108,7 +109,8 @@
     "createOrderFailed": "無法建立訂單。請再試一次。",
     "sessionUpdateNotAllowed": "發生錯誤。請關閉強制回應然後再試一次！",
     "orderNotComplete" : "您的訂單尚未完成",
-    "notSaved" : "您的数据未保存。 请再试一次。"
+    "notSaved" : "您的数据未保存。 请再试一次。",
+    "tryAnotherPaymentMethod": "支付失敗。 請重試或使用其他付款方式。"
   },
   "country": {
     "Argentina": "阿根廷",

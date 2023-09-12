@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dynamic Pricing demo</title>
+    <style>
+        body {
+            margin: 3rem;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 5rem;
+            justify-content: center;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        #products {
+            display:grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap:4rem;
+        }
+        .product {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap:1rem;
+            place-items: center;
+        }
+        .product img {
+            height: 10rem;
+            width: 10rem;
+            border: 1px solid #777;
+        }
+        #loadMoreContainer {
+            grid-column-start: 1;
+            grid-column-end: 4;
+            display: flex;
+            flex-direction: column;
+            align-content: center;
+            margin: 4rem 0;
+        }
+        #loadMore {
+            border:none;
+            background-color:#fff;
+            text-decoration:underline;
+            cursor: pointer;
+        }
+        #log {
+            white-space: pre;
+            border: 1px solid #777;
+        }
+
+        #currency-selector {
+            margin: 2rem 0;
+        }
+    </style>
+    <link href="css/DynamicPricing.css" rel="stylesheet"/>
+</head>
+<body>
+    <div id="Content">
+        <h1>
+            Dynamic Pricing proposed client code solution
+        </h1>
+        <h2>Product Category</h2>
+        <div id="currency-selector"></div>
+
+        <div id="products">
+        </div>
+
+        <div id="loadMoreContainer"><button id="loadMore">Load more products</button></div>
+    </div>
+
+    <script>
+
+        let productIndex = 0;
+
+        addMockedProducts(4, 1);
+        document.getElementById('loadMore').addEventListener('click', loadMoreProducts);
+
+
+        async function loadMoreProducts() {
+            await addMockedProducts(4);
+        }
+
+        async function addMockedProducts(numOfProducts) {
+            const productsContainer = document.getElementById('products');
+            for(let i = 0; i < numOfProducts; i++) {
+                const initialPrice = `${Math.floor(Math.random() * 12500)}.00`;
+                productIndex++;
+
+                productsContainer.innerHTML += `
+                        <div class="product">
+                            <img src="https://nayemdevs.com/wp-content/uploads/2020/03/default-product-image.png"/>
+                            <div class="price" data-dr-original-price="${initialPrice}"></div>
+                            <div class="productName"><a href="#">Product ${productIndex}</a></div>
+                            <button>buy now</button>
+                        </div>
+                        `
+
+            }
+            return;
+        }
+
+        function addToLog(data) {
+            const log = document.getElementById('log');
+            log.innerHTML = JSON.stringify(data, null, 4) + '\n\n' +  log.innerHTML;
+        }
+    </script>
+
+    <script id="DR-Dynamic-Pricing">
+        const nonProdKey = 'pk_test_ecdb241a24e748d498d7dc5f92aff843';
+        const craigsKey = 'pk_test_7f830d3287db4bd184d212e692d9b779'
+        const prodKey = 'pk_df9cbed32e65434e9d146433d47c47ce';
+        (function () {
+            var s = document.createElement('script');
+            s.type = 'text/javascript';
+            s.async = true;
+            s.setAttribute('data-dr-apiKey', craigsKey)
+            // optional - defaults to 'DR-currencySelector'
+            s.setAttribute('data-dr-currency-selector', 'currency-selector');
+            // optional - defaults to browser language
+            //s.setAttribute('data-dr-default-country', 'FR');
+            s.src = 'DynamicPricing.js';
+
+            document.getElementsByTagName('head')[0].appendChild(s);
+        })();
+    </script>
+</body>
+</html>

@@ -1,1 +1,614 @@
-@charset "utf-8";.DR-row{margin-bottom:1rem}.DR-card{border-bottom:1px solid rgba(0,0,0,.26)}.DR-card:first-of-type{border-top:1px solid rgba(0,0,0,.26)}.DR-error-message,.DR-msts-create-account-hidden,div[id^=dr-accordion-]{display:none}#DR-stored-payment-methods h3,#DR-unstored-payment-methods h3{font-size:1.25rem}#DR-stored-payment-methods{margin-bottom:35px}.DR-card-header h5{margin:0}.DR-card-header .DR-logo-button{background-color:transparent;border:0;border-left:1px solid rgba(0,0,0,.26);border-right:1px solid rgba(0,0,0,.26);width:100%;padding:1rem;text-align:left;font-size:1rem;font-weight:400;color:rgba(0,0,0,.75);font-family:inherit;cursor:pointer}.DR-card-header .DR-logo-button[aria-expanded=true]{color:#1264a3}.DR-card-header .DR-logo-button:focus{box-shadow:0 0 .2rem .2rem rgba(18,100,163,.2);outline:none}.DR-card-header .DR-logo-button:after{content:"";width:0;height:0;border:5px solid transparent;border-top:none;border-bottom:6px solid #1264a3;display:block;float:right;margin-top:6px}.DR-card-header .DR-logo-button-without-expand:after{border:none}.DR-card-header .DR-logo-button[aria-expanded=aria-expanded]:after,.DR-card-header .DR-logo-button[aria-expanded=false]:after{border-top:6px solid rgba(0,0,0,.26);border-bottom:none}.DR-collapse{transition:opacity .5s ease-in-out;opacity:0;height:0;visibility:hidden;border:0;overflow:hidden;padding:0 1rem;border-left:1px solid rgba(0,0,0,.26);border-right:1px solid rgba(0,0,0,.26)}.DR-card-header .DR-logo-button-without-expand{cursor:default}.DR-collapse.DR-show{transition:opacity .5s ease-in-out;opacity:1;border-top:1px solid rgba(0,0,0,.26);padding:1rem;height:auto;visibility:visible}.DR-button-text{text-transform:uppercase}.DR-collapse button,.DR-invoice-attribute-button,.DR-primary-button,.DR-secondary-button{background-color:#1264a3;width:100%;padding:1rem;font-size:1rem;font-weight:400;font-family:inherit;border:none;border-top:none!important;text-align:center;color:#fff;border-radius:.25rem;cursor:pointer;height:56px;outline:none;margin:.5rem 0}.DR-secondary-button{background-color:grey}.DR-button-small{height:32px;padding:.5rem;font-size:.9rem}.DR-invoice-attribute-button:disabled{opacity:.5}.DR-collapse button:focus{box-shadow:0 0 .2rem .2rem rgba(18,100,163,.4)}.DR-collapse iframe{display:none}.DR-collapse.DR-show iframe{display:block}.DR-card .DRElement,.DR-invoice-attribute-field .DRElement,.DR-msts-field .DRElement,.DR-offline-refund-parent.DRElement,.DR-stored-remove,.DR-tax-identifier-field .DRElement{border:1px solid rgba(0,0,0,.26)}.DR-spinner{margin:0 auto;width:5rem;text-align:center}.DR-spinner>div{width:1rem;height:1rem;background-color:#fff;border-radius:100%;display:block;float:left;margin:auto .25rem;animation:sk-bouncedelay 1.4s ease-in-out infinite both}.DR-spinnerText{text-indent:-9999px;display:block;height:0}.DR-spinner .DR-bounce1{animation-delay:-.32s}.DR-spinner .DR-bounce2{animation-delay:-.16s}.DR-spinner-overlay:before{content:"";display:block;position:absolute;left:50%;top:50%;height:60px;width:60px;margin:0 auto;animation:rotation .6s linear infinite;border:6px solid rgba(0,163,255,.15);border-top-color:rgba(0,163,255,.8);border-radius:100%;z-index:5}@keyframes rotation{0%{transform:rotate(0deg)}to{transform:rotate(359deg)}}.DR-payment-method-logo{height:32px}.DR-logo-button{display:flex;justify-content:space-between;align-items:center}.DR-payment-method-name-with-image{justify-self:self-start;flex-grow:2;margin:0 1rem}.DR-Legal-Footer{padding:10px}.DR-Legal-Footer div{padding-top:10px}.DR-Legal-Footer-Link{padding-right:20px;display:inline-block}@keyframes sk-bouncedelay{0%,80%,to{transform:scale(0)}40%{transform:scale(1)}}.DR-Card-Brands{padding-bottom:5px}.DR-Card-Brand{padding:0 5px 5px 0;opacity:.25}.DR-Card-Brand-Selected{opacity:1}.DR-error-message{color:#c70039}.DR-card-number{margin:0 .2rem .5rem}.DR-card-cvv,.DR-card-expiration{margin:.5rem 0 1rem}.DR-width-half{width:50%}.DR-width-half:first-of-type{margin-right:.5rem}.DR-flex-column,.DR-invoice-attribute-container .DR-msts-container,.DR-mandate,.DR-offline-refund-row,.DR-pay-button-container,.DR-payment-disclosure,.DR-tax-identifier-container,.DR-terms{display:flex;flex-direction:column}.DR-agree-terms-row,.DR-dynamic-terms,.DR-flex-row,.DR-mandate-row,.DR-offline-refund-fields,.DR-offline-refund-success,.DR-payment-disclosure-row,.DR-terms-row{display:flex;flex-direction:row}.DR-mandate-row,.DR-payment-disclosure-row,.DR-terms-row{margin-bottom:1rem}.DR-agree-terms-content,.DR-mandate-content,.DR-payment-disclosure-content,.DR-terms-content{padding:5px}.DR-dynamic-terms input{margin:8px}.DR-dynamic-terms-container{margin-right:.5em;height:32px;min-width:36px;text-align:right}.DR-payment-description{padding:.5em;border-bottom:1px solid rgba(0,0,0,.26);margin-bottom:1rem}.DR-mandate-checkbox,.DR-payment-disclosure-checkbox,.DR-terms-checkbox{align-self:center}.DR-mandate-ideal .DR-mandate-checkbox{align-self:start;margin-top:.4em}.DR-agree-terms-row{padding-left:1rem}.DR-agree-terms-content{padding:.5rem}.DR-standard-padding{padding:8px 0}.DR-title{font-weight:700;font-size:1.5rem;margin-bottom:10px}.DR-button-secondary,.DR-pay-button{margin:.3rem}.DR-prevent-click{pointer-events:none}.DR-offline-refund-success{align-items:center;justify-content:center;height:100%}.DR-offline-refund-button{padding:1em 2em;text-transform:uppercase;background:transparent;border:2px solid;color:currentColor;border-radius:4px;box-shadow:2px 2px 5px 1px rgba(0,0,0,.1)}.DR-offline-refund-fields{padding-bottom:8px}.DR-offline-refund-parent{width:100%}.DR-offline-refund-label{width:40%}.DR-offline-refund-error{color:red;text-align:center;padding:8px}.DR-stored-added{display:flex;justify-content:space-between}.DR-stored-remove{border-radius:.25rem;padding:4px}.DR-disclosure-title-container{display:flex;flex-direction:row;margin:0 .5rem}.DR-disclosure-title{margin-right:.5rem}.DR-disclosure-select{margin-bottom:10px}.DR-selected-terms-creditInstallment{border-top:1px solid rgba(0,0,0,.26);margin-top:.5rem}.DR-wallet-items{display:flex;flex-direction:row}.DR-wallet-item{padding:.3rem}.DR-form{padding:1em;display:grid}.DR-address-container{display:grid;grid-template-columns:repeat(2,50%)}.DR-address-row{padding-right:.4rem;padding-left:.4rem}.DR-form input[type=text],.DR-form select{display:block;height:3.5em;padding:.75em;border:1px solid rgba(0,0,0,.26);box-sizing:border-box}.DR-address-item,.DR-shipping-choice{width:100%}.DR-address-row{margin-bottom:1em}.DR-shipping-choice{display:grid;grid-template-columns:repeat(2,50%)}.DR-shipping-choice-error{color:red;text-align:center;padding:8px}.custom-select-container{position:relative;box-sizing:border-box}.custom-select-container *{box-sizing:border-box}.custom-select-container.is-disabled{opacity:.333}.DR-invoice-attribute-container .custom-select-opener,.DR-invoice-attribute-container .custom-select-panel{background-color:#fff;border:1px solid rgba(0,0,0,.26)}.DR-invoice-attribute-container .custom-select-opener{border-bottom:none;padding:.5em;display:flex;flex-direction:row;align-items:center;justify-content:space-between;cursor:pointer;width:100%;outline-color:transparent}.DR-invoice-attribute-container .custom-select-opener:after{content:"\A";width:0;height:0;border-left:.5em solid transparent;border-right:.5em solid transparent;border-top:.5em solid;margin:.5em .25em;float:right}.DR-invoice-attribute-container .custom-select-container select{visibility:hidden;position:absolute;top:0;left:0}.DR-invoice-attribute-container .custom-select-panel{border-top:none;max-height:0;overflow:hidden;position:absolute;top:100%;z-index:1;width:100%;cursor:pointer}.DR-invoice-attribute-container .custom-select-container.is-open .custom-select-panel{max-height:200px;overflow-y:auto}.DR-invoice-attribute-container .custom-select-option{padding:.5em}.DR-invoice-attribute-container .custom-select-option.is-selected:after{content:"✔";padding-left:.5em;margin:auto 0}.DR-invoice-attribute-container .custom-select-container{display:flex;flex-direction:row}.DR-invoice-attribute-container .custom-select-img{width:100px;margin:auto .5em auto 0}.DR-invoice-attribute-container .custom-select-text{margin:auto 0}.DR-shipping-address-selection{padding:.5rem;display:flex;flex-direction:column}.DR-required-field,.DR-validation-error-message{color:#c70039}.DR-saved-address-radio{display:flex;align-self:center;padding-right:.5rem}.DR-saved-address-selection{display:flex;flex-direction:row;padding-bottom:.5rem}.DR-saved-address{display:flex;flex-direction:column}.DR-address-heading,.DR-saved-address-header,.DR-shipping-choice-heading,.DR-wallet-header{font-weight:700;font-size:1.1rem;padding:.2rem}.DR-address-heading-and-button{display:flex;flex-direction:row;justify-content:space-between;width:100%;align-items:center}.DR-validation-error-highlight{border-color:#dc3545;outline:0;box-shadow:0 0 0 .2rem rgba(220,53,69,.31)}.DR-single-choice{padding:.5rem}.DR-shipping-choice-amount{text-align:right}.DR-thank-you-container{text-align:center}.DR-thank-you-content{display:flex;flex-direction:column;align-items:center;padding:.5rem;border:1px solid rgba(0,0,0,.12)}.DR-thank-you-content div{text-align:center}
+/*!****************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/css/DigitalRiver.css ***!
+  \****************************************************************************/
+@charset "utf-8";
+.DR-row {
+    margin-bottom: 1rem;
+}
+.DR-card {
+    border-bottom: 1px solid rgba(0,0,0,.26);
+}
+.DR-card:first-of-type {
+    border-top: 1px solid rgba(0,0,0,.26);
+}
+div[id^='dr-accordion-'], .DR-msts-create-account-hidden, .DR-error-message {
+    display: none;
+}
+#DR-stored-payment-methods h3, #DR-unstored-payment-methods h3 {
+    font-size: 1.25rem;
+}
+#DR-stored-payment-methods {
+    margin-bottom: 35px;
+}
+.DR-card-header h5 {
+    margin:0;
+}
+.DR-card-header .DR-logo-button {
+    background-color: transparent;
+    border: 0;
+    border-left: 1px solid rgba(0,0,0,.26);
+    border-right: 1px solid rgba(0,0,0,.26);
+    width: 100%;
+    padding: 1rem;
+    text-align: left;
+    font-size: 1rem;
+    font-weight: 400;
+    color: rgba(0,0,0,.75);
+    font-family: inherit;
+    cursor: pointer;
+}
+.DR-card-header .DR-logo-button[aria-expanded='true'] {
+    color: #1264A3;
+}
+
+.DR-card-header .DR-logo-button:focus {
+    box-shadow: 0 0 0.2rem 0.2rem rgba(18, 100, 163, 0.2);
+    outline: none;
+}
+.DR-card-header .DR-logo-button:after {
+    content:'';
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 6px solid #1264A3;
+    border-top:none;
+    display:block;
+    float:right;
+    margin-top:6px;
+}
+.DR-card-header .DR-logo-button-without-expand:after {
+    border: none;
+}
+.DR-card-header .DR-logo-button[aria-expanded='false']:after,
+.DR-card-header .DR-logo-button[aria-expanded='aria-expanded']:after{
+    border-top: 6px solid rgba(0,0,0,.26);
+    border-bottom:none;
+}
+.DR-collapse {
+    transition: opacity .5s ease-in-out;
+    opacity:0;
+    height: 0;
+    visibility: hidden;
+    border: 0;
+    overflow: hidden;
+    padding: 0 1rem;
+    border-left:1px solid rgba(0,0,0,.26);
+    border-right:1px solid rgba(0,0,0,.26);
+}
+.DR-card-header .DR-logo-button-without-expand {
+    cursor: default;
+}
+.DR-collapse.DR-show {
+    transition: opacity .5s ease-in-out;
+    opacity:1;
+    border-top: 1px solid rgba(0,0,0,.26);
+    padding:1rem;
+    height: auto;
+    visibility:visible;
+}
+.DR-button-text {
+    text-transform: uppercase;
+}
+#DR-skipPaymentSection {
+    border: 1px solid rgba(0,0,0,.26);
+    padding:1rem;
+    height: auto;
+}
+.DR-collapse button, .DR-invoice-attribute-button, .DR-primary-button, .DR-secondary-button, #DR-skipPaymentSection button {
+    background-color: #1264A3;
+    width: 100%;
+    padding: 1rem;
+    font-size: 1rem;
+    font-weight: 400;
+    font-family: inherit;
+    border: none;
+    border-top: none !important;
+    text-align: center;
+    color: #fff;
+    border-radius: .25rem;
+    cursor: pointer;
+    height: 56px;
+    outline: none;
+    margin: .5rem 0;
+}
+.DR-secondary-button {
+    background-color: gray;
+}
+
+.DR-button-small {
+    height: 32px;
+    padding: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.DR-invoice-attribute-button:disabled {
+    opacity:.5;
+}
+.DR-collapse button:focus {
+    box-shadow: 0 0 0.2rem 0.2rem rgba(18, 100, 163, 0.4);
+}
+.DR-collapse iframe {
+    display:none
+}
+.DR-collapse.DR-show iframe {
+    display:block;
+}
+.DR-offline-refund-parent.DRElement, .DR-card .DRElement, .DR-msts-field .DRElement, .DR-tax-identifier-field .DRElement, .DR-invoice-attribute-field .DRElement, .DR-stored-remove {
+    border: 1px solid rgba(0,0,0,.26);
+}
+.DR-spinner {
+    margin: 0 auto;
+    width: 5rem;
+    text-align: center;
+}
+.DR-spinner > div {
+    width: 1rem;
+    height: 1rem;
+    background-color: #fff;
+    border-radius: 100%;
+    display: block;
+    float:left;
+    margin: auto .25rem;
+    animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+}
+.DR-spinnerText {
+    text-indent: -9999px;
+    display:block;
+    height:0;
+}
+.DR-spinner .DR-bounce1 {
+    animation-delay: -.32s;
+}
+.DR-spinner .DR-bounce2 {
+    animation-delay: -.16s;
+}
+.DR-spinner-overlay::before {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    height:60px;
+    width:60px;
+    margin:0 auto;
+    animation: rotation .6s infinite linear;
+    border-left:6px solid rgba(0,163,255,.15);
+    border-right:6px solid rgba(0,163,255,.15);
+    border-bottom:6px solid rgba(0,163,255,.15);
+    border-top:6px solid rgba(0,163,255,.8);
+    border-radius:100%;
+    z-index: 5;
+}
+@keyframes rotation {
+    from {transform: rotate(0deg);}
+    to {transform: rotate(359deg);}
+}
+.DR-payment-method-logo {
+    height: 32px;
+}
+.DR-logo-button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.DR-payment-method-name-with-image {
+    justify-self: self-start;
+    flex-grow: 2;
+    margin: 0 1rem;
+}
+.DR-Legal-Footer {
+    padding: 10px;
+}
+.DR-Legal-Footer div {
+    padding-top: 10px;
+}
+.DR-Legal-Footer-Link {
+    padding-right: 20px;
+    display:inline-block;
+}
+@keyframes sk-bouncedelay {
+    0%, 80%, 100% {
+        transform: scale(0);
+    }
+    40% {
+        transform: scale(1);
+    }
+}
+.DR-Card-Brands {
+    padding-bottom: 5px;
+}
+.DR-Card-Brand {
+    padding: 0 5px 5px 0;
+    opacity: .25;
+}
+.DR-Card-Brand-Selected {
+    opacity: 1;
+}
+.DR-error-message {
+    color: #C70039;
+}
+.DR-card-number {
+    margin: 0 .2rem .5rem .2rem;
+}
+.DR-card-expiration, .DR-card-cvv {
+    margin: .5rem 0 1rem 0;
+}
+.DR-width-half {
+    width: 50%;
+}
+.DR-width-half:first-of-type {
+    margin-right: .5rem;
+}
+.DR-mandate, .DR-terms, .DR-payment-disclosure, .DR-flex-column, .DR-tax-identifier-container, .DR-invoice-attribute-container .DR-msts-container, .DR-pay-button-container, .DR-offline-refund-row {
+    display:flex;
+    flex-direction: column;
+}
+.DR-mandate-row, .DR-terms-row, .DR-agree-terms-row, .DR-payment-disclosure-row, .DR-flex-row, .DR-dynamic-terms, .DR-offline-refund-success, .DR-offline-refund-fields {
+    display:flex;
+    flex-direction: row;
+}
+.DR-mandate-row, .DR-terms-row, .DR-payment-disclosure-row {
+    margin-bottom: 1rem;
+}
+.DR-mandate-content, .DR-terms-content, .DR-agree-terms-content, .DR-payment-disclosure-content {
+    padding: 5px;
+}
+.DR-dynamic-terms input {
+    margin: 8px;
+}
+.DR-dynamic-terms-container {
+    margin-right: .5em;
+    height: 32px;
+    min-width: 36px;
+    text-align: right;
+}
+.DR-payment-description {
+    padding: .5em;
+    border-bottom: 1px solid rgba(0,0,0,.26);
+    margin-bottom: 1rem;
+}
+.DR-mandate-checkbox, .DR-terms-checkbox, .DR-payment-disclosure-checkbox {
+    align-self: center;
+}
+.DR-mandate-ideal .DR-mandate-checkbox {
+    align-self: start;
+    margin-top: .4em;
+}
+.DR-agree-terms-row {
+    padding-left: 1rem;
+}
+.DR-agree-terms-content {
+    padding: .5rem;
+}
+.DR-standard-padding {
+    padding: 8px 0;
+}
+.DR-title {
+    font-weight: bold;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+.DR-payment-method-name-and-logos-container {
+    justify-content: space-between;
+    width: 100%;
+}
+.DR-payment-method-name-and-logo {
+    width: 65%;
+}
+.DR-payment-method-secondary-logo-container {
+    width: 30%;
+    margin-right: 1em;
+    display: flex;
+    justify-content: flex-end;
+}
+.DR-pay-button, .DR-button-secondary {
+    margin: .3rem
+}
+.DR-prevent-click {
+    pointer-events: none;
+}
+.DR-offline-refund-success {
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+.DR-offline-refund-button {
+    padding: 1em 2em;
+    text-transform: uppercase;
+    background: transparent;
+    border: 2px solid currentColor;
+    color: currentColor;
+    border-radius: 4px;
+    box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, .1);
+}
+.DR-offline-refund-fields {
+    padding-bottom: 8px;
+}
+.DR-offline-refund-parent {
+    width: 100%
+}
+.DR-offline-refund-label {
+    width: 40%;
+}
+.DR-offline-refund-error {
+    color: red;
+    text-align: center;
+    padding: 8px;
+}
+.DR-stored-added {
+    display: flex;
+    justify-content: space-between;
+}
+.DR-stored-remove {
+    border-radius: .25rem;
+    padding: 4px;
+}
+.DR-disclosure-title-container {
+    display: flex;
+    flex-direction: row;
+    margin: 0 0.5rem;
+}
+.DR-disclosure-title {
+    margin-right: 0.5rem;
+}
+.DR-disclosure-select {
+    margin-bottom: 10px;
+}
+.DR-selected-terms-creditInstallment {
+    border-top: 1px solid rgba(0,0,0,.26);
+    margin-top: 0.5rem;
+}
+.DR-wallet-items {
+    display: flex;
+    flex-direction: row;
+}
+.DR-wallet-item {
+    padding: 0.3rem;
+}
+.DR-form {
+    padding: 1em;
+    display: grid;
+}
+.DR-taxExemption-container {
+    display: grid;
+}
+.DR-address-container {
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+}
+.DR-address-row {
+    padding-right: 0.4rem;
+    padding-left: 0.4rem;
+    margin-bottom: 1.0em;
+}
+.DR-form input[type='text'], .DR-form input[type='file'], .DR-form input[type='date'], .DR-form select {
+    display: block;
+    height: 3.5em;
+    padding: .75em;
+    border: 1px solid rgba(0,0,0,.26);
+    box-sizing: border-box;
+}
+.DR-address-item, .DR-shipping-choice {
+    width: 100%;
+}
+.DR-addressOne-row {
+    padding: 0.375em;
+    margin-bottom: 1.0em;
+    grid-column: 1/span 2;
+}
+.DR-shipping-choice {
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+}
+.DR-shipping-choice-error, .DR-tax-identifier-error, .DR-invoice-attribute-error {
+    color: red;
+    text-align: center;
+    padding: 8px;
+}
+.custom-select-container {
+    position: relative;
+    box-sizing: border-box;
+}
+.custom-select-container * {
+    box-sizing: border-box;
+}
+.custom-select-container.is-disabled {
+    opacity: .333;
+}
+.DR-invoice-attribute-container .custom-select-opener,
+.DR-invoice-attribute-container .custom-select-panel {
+    background-color: #fff;
+    border: 1px solid rgba(0,0,0,.26);
+}
+.DR-invoice-attribute-container .custom-select-opener {
+    border-bottom: none;
+    padding: 0.5em;
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    width: 100%;
+    outline-color: transparent;
+}
+.DR-invoice-attribute-container .custom-select-opener::after {
+    content:"\A";
+    width: 0;
+    height: 0;
+    border-left: .5em solid transparent;
+    border-right:.5em solid transparent;
+    border-top: .5em solid currentColor;
+    margin: .5em .25em;
+    float: right;
+}
+.DR-invoice-attribute-container .custom-select-container select {
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.DR-invoice-attribute-container .custom-select-panel {
+    border-top:none;
+    max-height: 0;
+    overflow: hidden;
+    position: absolute;
+    top: 100%;
+    z-index: 1;
+    width: 100%;
+    cursor: pointer;
+}
+.DR-invoice-attribute-container .custom-select-container.is-open .custom-select-panel {
+    max-height: 200px;
+    overflow-y: auto
+}
+.DR-invoice-attribute-container .custom-select-option {
+    padding: 0.5em;
+}
+.DR-invoice-attribute-container .custom-select-option.is-selected::after {
+    content: "✔";
+    padding-left: 0.5em;
+    margin: auto 0;
+}
+.DR-invoice-attribute-container .custom-select-container {
+    display:flex;
+    flex-direction: row;
+}
+.DR-invoice-attribute-container .custom-select-img {
+    width: 100px;
+    margin: auto .5em auto 0;
+}
+.DR-invoice-attribute-container .custom-select-text {
+    margin: auto 0;
+}
+.DR-shipping-address-selection {
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+}
+.DR-shipping-customerType-selection {
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+}
+.DR-shipping-consents-emailPromotionsOptIn-selection {
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+}
+.DR-validation-error-message, .DR-required-field {
+    color: #C70039;
+}
+.DR-saved-address-radio {
+    display: flex;
+    align-self: center;
+    padding-right: 0.5rem;
+}
+.DR-saved-address-selection {
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 0.5rem;
+}
+.DR-saved-address {
+    display: flex;
+    flex-direction: column;
+}
+.DR-saved-address-header {
+    font-weight: bold;
+    font-size: 1.1rem;
+    padding: 0.2rem;
+}
+.DR-address-heading, .DR-shipping-choice-heading, .DR-wallet-header, .DR-tax-exemption-heading {
+    font-weight: bold;
+    font-size: 1.1rem;
+    padding: 0.2rem;
+}
+.DR-address-heading-and-button {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+}
+.DR-validation-error-highlight {
+    border-color: #dc3545;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.31);
+}
+.DR-single-choice {
+    padding: 0.5rem;
+}
+.DR-shipping-choice-amount {
+    text-align: right;
+}
+.DR-thank-you-container {
+    text-align: center;
+}
+.DR-thank-you-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.5rem;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+}
+.DR-thank-you-content div {
+    text-align: center;
+}
+
+.DR-tax-exemption-fields {
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+}
+.DR-tax-exemption-row > input, .DR-tax-exemption-row > select {
+    width: 100%;
+}
+.DR-tax-exemption-row:last-child {
+    grid-column: 1 / 3;
+}
+.DR-amazon-pay-button {
+    height: 100% !important;
+    width: 100% !important;
+}
+.DR-order-summary-sku-image {
+    padding: 0.5rem;
+    width: 70px;
+    height: 70px;
+}
+.DR-order-summary-sku-name {
+    display: flex;
+    flex-direction: column;
+}
+.DR-order-summary-item-details {
+    display: flex;
+    flex-direction: row;
+}
+.DR-order-summary-sku-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 0.5rem;
+}
+.DR-order-summary-sku-quantity {
+    font-size: 0.8rem;
+}
+.DR-order-summary-item-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-bottom: 0.5rem;
+}
+.DR-order-summary-total {
+    font-weight: bold;
+    padding-bottom: 0;
+}
+.DR-order-summary-heading {
+    font-weight: bold;
+    font-size: 1.1rem;
+    padding: 0.2rem;
+}
+.DR-order-summary-vat {
+    font-size: 0.8rem;
+    text-align: right;
+}
+
+/*# sourceMappingURL=DigitalRiver.css.map*/

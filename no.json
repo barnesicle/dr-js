@@ -93,7 +93,8 @@
     "landedCostDeliveryNote1": "Ingen ekstra importgebyrer ved levering",
     "landedCostDeliveryNote2": "Importgebyrer krevd inn ved levering",
     "estimatedDeliveryDateColon": "Estimert leveringsdato:",
-    "shippingAddressDifferent" : "Forsendelsesadresse er forskjellig fra fakturaadresse."
+    "shippingAddressDifferent" : "Forsendelsesadresse er forskjellig fra fakturaadresse.",
+    "marketingOptIn": "Send meg en e-post med nyheter og tilbud"
   },
   "error": {
     "shipToNotSupported": "Kan ikke sende til dette stedet. Bruk en annen adresse.",
@@ -109,7 +110,8 @@
     "sessionUpdateNotAllowed": "Noe gikk galt. Lukk modulen og prøv på nytt!",
     "cardSecurityCodeInvalid": "Oppgi en gyldig sikkerhetskode for kortet.",
     "orderNotComplete" : "Bestillingen din er ikke komplett",
-    "notSaved" : "Dataene dine ble ikke lagret. Vær så snill, prøv på nytt."
+    "notSaved" : "Dataene dine ble ikke lagret. Vær så snill, prøv på nytt.",
+    "tryAnotherPaymentMethod": "Betalingen feilet. Prøv igjen eller bruk en annen betalingsmåte."
   },
   "country": {
     "Argentina": "Argentina",

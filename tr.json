@@ -93,7 +93,8 @@
     "landedCostDeliveryNote1": "Teslimat sırasında ek ithalat ücretleri alınmaz",
     "landedCostDeliveryNote2": "Teslimat sırasında tahsil edilen ithalat ücretleri",
     "estimatedDeliveryDateColon": "Tahmini teslim tarihi:",
-    "shippingAddressDifferent" : "Nakliye adresi fatura adresinden farklı."
+    "shippingAddressDifferent" : "Nakliye adresi fatura adresinden farklı.",
+    "marketingOptIn": "Haberler ve tekliflerle bana e-posta gönder"
   },
   "error": {
     "shipToNotSupported": "Bu konuma gönderim yapılamıyor. Lütfen farklı bir adres kullanın.",
@@ -108,7 +109,8 @@
     "createOrderFailed": "Sipariş oluşturulamıyor. Lütfen yeniden deneyin.",
     "sessionUpdateNotAllowed": "Bir şeyler ters gitti. Lütfen açılır pencereyi kapatıp tekrar deneyin!",
     "orderNotComplete" : "siparişiniz tamamlanmadı",
-    "notSaved" : "Verileriniz kaydedilmedi. Lütfen tekrar deneyin."
+    "notSaved" : "Verileriniz kaydedilmedi. Lütfen tekrar deneyin.",
+    "tryAnotherPaymentMethod": "Ödeme başarısız. Lütfen tekrar deneyin veya başka bir ödeme yöntemi kullanın."
   },
   "country": {
     "Argentina": "Arjantin",

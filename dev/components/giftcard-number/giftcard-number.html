@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Gift Card Number</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script id="giftcardnumber-js" src="giftcard-number.js"></script>
+    <!--this is where custom styles will be loaded-->
+    <style id="customStyles">
+        body {
+            background: transparent
+        }
+    </style>
+</head>
+
+<body>
+<script>
+    document.getElementById('giftcardnumber-js').addEventListener('load', addInputHtmlToDom());
+
+    window.onload = function() {
+        document.getElementById('giftcardnumber').addEventListener('animationstart', handleAutofill, false);
+    };
+</script>
+</body>
+</html>

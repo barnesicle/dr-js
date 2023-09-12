@@ -26,7 +26,8 @@
     "includesVatOf": "Včetně DPH",
     "storeCredits": "Uložit kredity",
     "remainingBalance": "Zůstatek",
-    "unpaid": "Nezaplaceno"
+    "unpaid": "Nezaplaceno",
+    "tryAnotherPaymentMethod": "Platba selhala. Zkuste to znovu nebo použijte jinou platební metodu."
   },
   "placeholder": {
     "firstName": "Křestní jméno",
@@ -93,7 +94,8 @@
     "landedCostDeliveryNote1": "Žádné další dovozní poplatky při dodávce",
     "landedCostDeliveryNote2": "Dovozní poplatky hrazené po dodávce",
     "estimatedDeliveryDateColon": "Odhadované datum doručení:",
-    "shippingAddressDifferent" : "Zasilatelská adresa se liší od fakturační."
+    "shippingAddressDifferent" : "Zasilatelská adresa se liší od fakturační.",
+    "marketingOptIn": "Pošlete mi e-mail s novinkami a nabídkami"
   },
   "error": {
     "shipToNotSupported": "Nelze dodat do tohoto místa. Použijte jinou adresu.",

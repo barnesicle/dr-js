@@ -93,7 +93,8 @@
     "landedCostDeliveryNote1": "Inga ytterligare importavgifter vid leverans",
     "landedCostDeliveryNote2": "Importavgifter betalas i samband med leverans",
     "estimatedDeliveryDateColon": "Beräknat leveransdatum:",
-    "shippingAddressDifferent" : "Leveransadressen överensstämmer inte med aktureri ngsadressen."
+    "shippingAddressDifferent" : "Leveransadressen överensstämmer inte med aktureri ngsadressen.",
+    "marketingOptIn": "Maila mig med nyheter och erbjudanden"
   },
   "error": {
     "shipToNotSupported": "Det går inte att leverera till den här adressen. Ange en annan adress.",
@@ -108,7 +109,8 @@
     "createOrderFailed": "Vi kan inte skapa någon order. Försök igen.",
     "sessionUpdateNotAllowed": "Något gick fel. Stäng fönstret och försök igen!",
     "orderNotComplete" : "Din beställning är inte komplett",
-    "notSaved" : "Din data sparades inte. Var god försök igen."
+    "notSaved" : "Din data sparades inte. Var god försök igen.",
+    "tryAnotherPaymentMethod": "Betalning misslyckades. Försök igen eller använd en annan betalningsmetod."
   },
   "country": {
     "Argentina": "Argentina",

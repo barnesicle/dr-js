@@ -113,6 +113,8 @@
 <div id="content">
     <div>
         <button id="create">Create invoiceAttribute element</button>
+        <button id="createIndividual">Create individual invoiceAttribute element</button>
+        <button id="createBusiness">Create business invoiceAttribute element</button>
         <button id="mount">Mount invoiceAttribute element</button>
         <button id="unmount">Unmount invoiceAttribute element</button>
         <button id="destroy">Destroy invoiceAttribute element</button>
@@ -206,10 +208,6 @@
             options.invoiceAttribute.email = email;
         }
 
-        invoiceAttribute = drJS.createElement('invoiceAttribute', options);
-
-        invoiceAttribute.mount('invoiceAttribute');
-
         // helper functions
         function addContentToLog(content) {
             const log = document.getElementById('log');
@@ -228,6 +226,19 @@
 
         document.getElementById('create').addEventListener('click', () => {
             invoiceAttribute = drJS.createElement('invoiceAttribute', options);
+            addEvents()
+
+        });
+        document.getElementById('createIndividual').addEventListener('click', () => {
+            options.invoiceAttribute.type = 'individual';
+            invoiceAttribute = drJS.createElement('invoiceAttribute', options);
+            addEvents()
+
+        });
+        document.getElementById('createBusiness').addEventListener('click', () => {
+            options.invoiceAttribute.type = 'business';
+            invoiceAttribute = drJS.createElement('invoiceAttribute', options);
+            addEvents()
 
         });
         document.getElementById('mount').addEventListener('click', () => {
@@ -239,21 +250,24 @@
         document.getElementById('destroy').addEventListener('click', () => {
             invoiceAttribute.destroy();
         });
-        invoiceAttribute.on('ready', function (event) {
-            addContentToLog( event.elementType + ' ready received \n\n' + JSON.stringify(event, null, 4));
-        });
-        invoiceAttribute.on('complete', function (event) {
-            addContentToLog( event.elementType + ' complete received \n\n' + JSON.stringify(event, null, 4));
-        });
-        invoiceAttribute.on('change', function (event) {
-            addContentToLog( event.elementType + ' change received \n\n' + JSON.stringify(event, null, 4));
-        });
-        invoiceAttribute.on('blur', function (event) {
-            addContentToLog( event.elementType + ' blur received \n\n' + JSON.stringify(event, null, 4));
-        });
-        invoiceAttribute.on('focus', function (event) {
-            addContentToLog( event.elementType + ' focus received \n\n' + JSON.stringify(event, null, 4));
-        });
+
+        function addEvents() {
+            invoiceAttribute.on('ready', function (event) {
+                addContentToLog( event.elementType + ' ready received \n\n' + JSON.stringify(event, null, 4));
+            });
+            invoiceAttribute.on('complete', function (event) {
+                addContentToLog( event.elementType + ' complete received \n\n' + JSON.stringify(event, null, 4));
+            });
+            invoiceAttribute.on('change', function (event) {
+                addContentToLog( event.elementType + ' change received \n\n' + JSON.stringify(event, null, 4));
+            });
+            invoiceAttribute.on('blur', function (event) {
+                addContentToLog( event.elementType + ' blur received \n\n' + JSON.stringify(event, null, 4));
+            });
+            invoiceAttribute.on('focus', function (event) {
+                addContentToLog( event.elementType + ' focus received \n\n' + JSON.stringify(event, null, 4));
+            });
+        }
     })
 
 

@@ -9,21 +9,21 @@
             font-family: apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif;
             margin: 4em;
         }
-        #complianceContainer {
+        #complianceLocaleEntityContainer, #complianceLanguageCountryContainer {
             color: #777;
             font-size: .75em;
             margin: 2em;
             padding: 2em;
         }
-        #complianceContainer .DR-Legal-Footer-Link {
+        #complianceLocaleEntityContainer .DR-Legal-Footer-Link, #complianceLanguageCountryContainer .DR-Legal-Footer-Link {
             padding-right: 1em;
             color: #135eee;
         }
-        #complianceContainer .dr_resellerDisclosure {
+        #complianceLocaleEntityContainer .dr_resellerDisclosure, #complianceLanguageCountryContainer .dr_resellerDisclosure {
             color: #135eee;
         }
     </style>
-<script defer src="dropInStyles.js"></script><script defer src="DigitalRiver.js"></script><link href="css/DigitalRiver.css" rel="stylesheet"></head>
+<script defer src="DigitalRiver.js"></script></head>
 <body>
 <h1>Compliance Element Example</h1>
 
@@ -44,6 +44,9 @@
 <label for="entity">Entity (ex: DR_IRELAND-ENTITY):</label>
 <input id="entity" name="entity" type="text" value=""/>
 <br />
+<label for="jpCommerceLawPageUrl">jpCommerceLawPageUrl (optional, for JP only):</label>
+<input id="jpCommerceLawPageUrl" name="jpCommerceLawPageUrl" type="text" value=""/>
+<br/>
 <button id="createComplianceLocaleEntity">Create Compliance Element</button>
 <div id="complianceLocaleEntityContainer"></div>
 
@@ -61,6 +64,10 @@
 <br />
 <label for="businessEntityCode">businessEntityCode (ex: DR_IRELAND-ENTITY):</label>
 <input id="businessEntityCode" name="businessEntityCode" type="text" value=""/>
+<br/>
+<br />
+<label for="jpCommerceLawPageUrl2">jpCommerceLawPageUrl (optional, for JP only):</label>
+<input id="jpCommerceLawPageUrl2" name="jpCommerceLawPageUrl" type="text" value=""/>
 <br/>
 <button id="createComplianceLanguageCountry">Create Compliance Element</button>
 <div id="complianceLanguageCountryContainer"></div>
@@ -86,7 +93,10 @@
                 entity // entity determines what content the compliance element will display
             }
         }
-
+        const jpCommerceLawPageUrl = document.getElementById('jpCommerceLawPageUrl').value
+        if(jpCommerceLawPageUrl !== '') {
+            complianceOptions.compliance.jpCommerceLawPageUrl = jpCommerceLawPageUrl;
+        }
         // if we haven't already created it, we will create it. if we have, we'll update instead.
         if(document.getElementById('complianceLocaleEntityContainer').childNodes.length === 0) {
             console.log('creating compliance element')
@@ -114,6 +124,10 @@
                 language, // language determines which language the compliance element content will be displayed in
                 country // country determines what content the compliance element will display
             }
+        }
+        const jpCommerceLawPageUrl = document.getElementById('jpCommerceLawPageUrl2').value
+        if(jpCommerceLawPageUrl !== '') {
+            complianceOptions.compliance.jpCommerceLawPageUrl = jpCommerceLawPageUrl;
         }
         if(document.getElementById('businessEntityCode').value !== '') {
             complianceOptions.compliance.businessEntityCode = document.getElementById('businessEntityCode').value;
