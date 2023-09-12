@@ -9448,7 +9448,8 @@ function mountDropin(controller, configuration, createSource, createElement, ins
                 });
               });
             }
-            // TODO For Apple PAy story!
+            // TODO DO NOT MERGE: For Apple PAy story!
+
             if ((paymentMethod.type === 'googlePay' || paymentMethod.type === 'applePay') && ((0,_dropin_mandate_content__WEBPACK_IMPORTED_MODULE_36__.isMandateDisplayed)(paymentMethod) || (0,_dropin_terms__WEBPACK_IMPORTED_MODULE_27__.isTermsDisplayed)(paymentMethod))) {
               (0,_dropin_google_pay__WEBPACK_IMPORTED_MODULE_37__.addSendUpdateEventsForGooglePay)(configuration, paymentMethod, controller, availablePaymentMethod, paymentMethodResponse, locale, _component);
             }
