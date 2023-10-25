@@ -11,7 +11,8 @@
     "billingInfo": "账单信息",
     "orderSummary": "订单摘要",
     "storedTaxIdentifiers": "储存的纳税人识别号",
-    "thankYou": "感谢您"
+    "thankYou": "感谢您",
+    "customerInfo": "客户信息"
   },
   "orderSummaryTable": {
     "orderTotal": "订单金额总计",
@@ -94,7 +95,8 @@
     "landedCostDeliveryNote2": "交货时已收取进口税费",
     "estimatedDeliveryDateColon": "预计交货日期：",
     "shippingAddressDifferent" : "配送地址与账单地址不同。",
-    "marketingOptIn": "通过电子邮件向我发送最新消息和优惠"
+    "marketingOptIn": "通过电子邮件向我发送最新消息和优惠",
+    "purchaseForBusiness": "为企业采购？"
   },
   "error": {
     "shipToNotSupported": "无法配送至此位置。请使用其他地址。",

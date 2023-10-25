@@ -10,8 +10,8 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "clearRedirectData": function() { return /* binding */ clearRedirectData; },
-/* harmony export */   "setRedirectWindowData": function() { return /* binding */ setRedirectWindowData; }
+/* harmony export */   clearRedirectData: function() { return /* binding */ clearRedirectData; },
+/* harmony export */   setRedirectWindowData: function() { return /* binding */ setRedirectWindowData; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/asyncToGenerator */ "./node_modules/@babel/runtime-corejs3/helpers/esm/asyncToGenerator.js");
 /* harmony import */ var _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/regenerator */ "./node_modules/@babel/runtime-corejs3/regenerator/index.js");
@@ -7560,12 +7560,12 @@ var __webpack_exports__ = {};
   \********************************************************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "REDIRECT_STORAGE_ACTION_KEY": function() { return /* binding */ REDIRECT_STORAGE_ACTION_KEY; },
-/* harmony export */   "REDIRECT_STORAGE_SESSION_AUTHENTICATION_ID": function() { return /* binding */ REDIRECT_STORAGE_SESSION_AUTHENTICATION_ID; },
-/* harmony export */   "REDIRECT_STORAGE_SOURCE_AUTHENTICATION_ID": function() { return /* binding */ REDIRECT_STORAGE_SOURCE_AUTHENTICATION_ID; },
-/* harmony export */   "createHandleSessionAuthenticationStorageEvent": function() { return /* binding */ createHandleSessionAuthenticationStorageEvent; },
-/* harmony export */   "createHandleSourceAuthenticationStorageEvent": function() { return /* binding */ createHandleSourceAuthenticationStorageEvent; },
-/* harmony export */   "createHandleStorageEvent": function() { return /* binding */ createHandleStorageEvent; }
+/* harmony export */   REDIRECT_STORAGE_ACTION_KEY: function() { return /* binding */ REDIRECT_STORAGE_ACTION_KEY; },
+/* harmony export */   REDIRECT_STORAGE_SESSION_AUTHENTICATION_ID: function() { return /* binding */ REDIRECT_STORAGE_SESSION_AUTHENTICATION_ID; },
+/* harmony export */   REDIRECT_STORAGE_SOURCE_AUTHENTICATION_ID: function() { return /* binding */ REDIRECT_STORAGE_SOURCE_AUTHENTICATION_ID; },
+/* harmony export */   createHandleSessionAuthenticationStorageEvent: function() { return /* binding */ createHandleSessionAuthenticationStorageEvent; },
+/* harmony export */   createHandleSourceAuthenticationStorageEvent: function() { return /* binding */ createHandleSourceAuthenticationStorageEvent; },
+/* harmony export */   createHandleStorageEvent: function() { return /* binding */ createHandleStorageEvent; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/includes */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/includes.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_0__);

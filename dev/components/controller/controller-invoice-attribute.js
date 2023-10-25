@@ -10,7 +10,7 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "config": function() { return /* binding */ config; }
+/* harmony export */   config: function() { return /* binding */ config; }
 /* harmony export */ });
 // Holds any configuration data that changes depending on environment
 var config = {
@@ -66,11 +66,11 @@ var config = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "handleNetworkTimeoutError": function() { return /* binding */ handleNetworkTimeoutError; },
-/* harmony export */   "handleNoNetworkError": function() { return /* binding */ handleNoNetworkError; },
-/* harmony export */   "handleServiceCatch": function() { return /* binding */ handleServiceCatch; },
-/* harmony export */   "handleSingleError": function() { return /* binding */ handleSingleError; },
-/* harmony export */   "handleUnauthorizedError": function() { return /* binding */ handleUnauthorizedError; }
+/* harmony export */   handleNetworkTimeoutError: function() { return /* binding */ handleNetworkTimeoutError; },
+/* harmony export */   handleNoNetworkError: function() { return /* binding */ handleNoNetworkError; },
+/* harmony export */   handleServiceCatch: function() { return /* binding */ handleServiceCatch; },
+/* harmony export */   handleSingleError: function() { return /* binding */ handleSingleError; },
+/* harmony export */   handleUnauthorizedError: function() { return /* binding */ handleUnauthorizedError; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/promise */ "./node_modules/@babel/runtime-corejs3/core-js-stable/promise.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_0__);
@@ -160,9 +160,9 @@ function handleServiceCatch(error) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "invoiceAttributeRequest": function() { return /* binding */ invoiceAttributeRequest; },
-/* harmony export */   "paymentServiceGetRequest": function() { return /* binding */ paymentServiceGetRequest; },
-/* harmony export */   "paymentServiceRequest": function() { return /* binding */ paymentServiceRequest; }
+/* harmony export */   invoiceAttributeRequest: function() { return /* binding */ invoiceAttributeRequest; },
+/* harmony export */   paymentServiceGetRequest: function() { return /* binding */ paymentServiceGetRequest; },
+/* harmony export */   paymentServiceRequest: function() { return /* binding */ paymentServiceRequest; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_json_stringify__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/json/stringify */ "./node_modules/@babel/runtime-corejs3/core-js-stable/json/stringify.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_json_stringify__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_json_stringify__WEBPACK_IMPORTED_MODULE_0__);
@@ -6322,8 +6322,12 @@ const isXHRAdapterSupported = typeof XMLHttpRequest !== 'undefined';
       }
     }
 
-    if (_utils_js__WEBPACK_IMPORTED_MODULE_2__["default"].isFormData(requestData) && (_platform_index_js__WEBPACK_IMPORTED_MODULE_3__["default"].isStandardBrowserEnv || _platform_index_js__WEBPACK_IMPORTED_MODULE_3__["default"].isStandardBrowserWebWorkerEnv)) {
-      requestHeaders.setContentType(false); // Let the browser set it
+    if (_utils_js__WEBPACK_IMPORTED_MODULE_2__["default"].isFormData(requestData)) {
+      if (_platform_index_js__WEBPACK_IMPORTED_MODULE_3__["default"].isStandardBrowserEnv || _platform_index_js__WEBPACK_IMPORTED_MODULE_3__["default"].isStandardBrowserWebWorkerEnv) {
+        requestHeaders.setContentType(false); // Let the browser set it
+      } else {
+        requestHeaders.setContentType('multipart/form-data;', false); // mobile/desktop app frameworks
+      }
     }
 
     let request = new XMLHttpRequest();
@@ -6897,11 +6901,17 @@ class Axios {
       }, false);
     }
 
-    if (paramsSerializer !== undefined) {
-      _helpers_validator_js__WEBPACK_IMPORTED_MODULE_0__["default"].assertOptions(paramsSerializer, {
-        encode: validators.function,
-        serialize: validators.function
-      }, true);
+    if (paramsSerializer != null) {
+      if (_utils_js__WEBPACK_IMPORTED_MODULE_3__["default"].isFunction(paramsSerializer)) {
+        config.paramsSerializer = {
+          serialize: paramsSerializer
+        }
+      } else {
+        _helpers_validator_js__WEBPACK_IMPORTED_MODULE_0__["default"].assertOptions(paramsSerializer, {
+          encode: validators.function,
+          serialize: validators.function
+        }, true);
+      }
     }
 
     // Set config.method
@@ -7193,9 +7203,7 @@ function parseTokens(str) {
   return tokens;
 }
 
-function isValidHeaderName(str) {
-  return /^[-_a-zA-Z]+$/.test(str.trim());
-}
+const isValidHeaderName = (str) => /^[-_a-zA-Z0-9^`|~,!#$%&'*+.]+$/.test(str.trim());
 
 function matchHeaderValue(context, value, header, filter, isHeaderNameFilter) {
   if (_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isFunction(filter)) {
@@ -7791,7 +7799,7 @@ function mergeConfig(config1, config2) {
     headers: (a, b) => mergeDeepProperties(headersToObject(a), headersToObject(b), true)
   };
 
-  _utils_js__WEBPACK_IMPORTED_MODULE_1__["default"].forEach(Object.keys(config1).concat(Object.keys(config2)), function computeConfigValue(prop) {
+  _utils_js__WEBPACK_IMPORTED_MODULE_1__["default"].forEach(Object.keys(Object.assign({}, config1, config2)), function computeConfigValue(prop) {
     const merge = mergeMap[prop] || mergeDeepProperties;
     const configValue = merge(config1[prop], config2[prop], prop);
     (_utils_js__WEBPACK_IMPORTED_MODULE_1__["default"].isUndefined(configValue) && merge !== mergeDirectKeys) || (config[prop] = configValue);
@@ -8105,9 +8113,9 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "VERSION": function() { return /* binding */ VERSION; }
+/* harmony export */   VERSION: function() { return /* binding */ VERSION; }
 /* harmony export */ });
-const VERSION = "1.3.3";
+const VERSION = "1.4.0";
 
 /***/ }),
 
@@ -9297,6 +9305,21 @@ function assertOptions(options, schema, allowUnknown) {
 
 /***/ }),
 
+/***/ "./node_modules/axios/lib/platform/browser/classes/Blob.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/axios/lib/platform/browser/classes/Blob.js ***!
+  \*****************************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+
+
+/* harmony default export */ __webpack_exports__["default"] = (typeof Blob !== 'undefined' ? Blob : null);
+
+
+/***/ }),
+
 /***/ "./node_modules/axios/lib/platform/browser/classes/FormData.js":
 /*!*********************************************************************!*\
   !*** ./node_modules/axios/lib/platform/browser/classes/FormData.js ***!
@@ -9339,6 +9362,8 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _classes_URLSearchParams_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./classes/URLSearchParams.js */ "./node_modules/axios/lib/platform/browser/classes/URLSearchParams.js");
 /* harmony import */ var _classes_FormData_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./classes/FormData.js */ "./node_modules/axios/lib/platform/browser/classes/FormData.js");
+/* harmony import */ var _classes_Blob_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./classes/Blob.js */ "./node_modules/axios/lib/platform/browser/classes/Blob.js");
+
 
 
 
@@ -9396,7 +9421,7 @@ const isStandardBrowserEnv = (() => {
   classes: {
     URLSearchParams: _classes_URLSearchParams_js__WEBPACK_IMPORTED_MODULE_0__["default"],
     FormData: _classes_FormData_js__WEBPACK_IMPORTED_MODULE_1__["default"],
-    Blob
+    Blob: _classes_Blob_js__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   isStandardBrowserEnv,
   isStandardBrowserWebWorkerEnv,
@@ -9605,12 +9630,16 @@ const isStream = (val) => isObject(val) && isFunction(val.pipe);
  * @returns {boolean} True if value is an FormData, otherwise false
  */
 const isFormData = (thing) => {
-  const pattern = '[object FormData]';
+  let kind;
   return thing && (
-    (typeof FormData === 'function' && thing instanceof FormData) ||
-    toString.call(thing) === pattern ||
-    (isFunction(thing.toString) && thing.toString() === pattern)
-  );
+    (typeof FormData === 'function' && thing instanceof FormData) || (
+      isFunction(thing.append) && (
+        (kind = kindOf(thing)) === 'formdata' ||
+        // detect form-data instance
+        (kind === 'object' && isFunction(thing.toString) && thing.toString() === '[object FormData]')
+      )
+    )
+  )
 }
 
 /**
@@ -10075,6 +10104,11 @@ const toJSONObject = (obj) => {
   return visit(obj, 0);
 }
 
+const isAsyncFn = kindOfTest('AsyncFunction');
+
+const isThenable = (thing) =>
+  thing && (isObject(thing) || isFunction(thing)) && isFunction(thing.then) && isFunction(thing.catch);
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   isArray,
   isArrayBuffer,
@@ -10124,7 +10158,9 @@ const toJSONObject = (obj) => {
   ALPHABET,
   generateString,
   isSpecCompliantForm,
-  toJSONObject
+  toJSONObject,
+  isAsyncFn,
+  isThenable
 });
 
 
@@ -10219,8 +10255,8 @@ var __webpack_exports__ = {};
   \***********************************************************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "chooseInvoiceAttributeCatchMessage": function() { return /* binding */ chooseInvoiceAttributeCatchMessage; },
-/* harmony export */   "runGetInvoiceAttributeAndHandleResponse": function() { return /* binding */ runGetInvoiceAttributeAndHandleResponse; }
+/* harmony export */   chooseInvoiceAttributeCatchMessage: function() { return /* binding */ chooseInvoiceAttributeCatchMessage; },
+/* harmony export */   runGetInvoiceAttributeAndHandleResponse: function() { return /* binding */ runGetInvoiceAttributeAndHandleResponse; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/includes */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/includes.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_0__);

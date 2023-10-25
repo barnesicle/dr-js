@@ -11,7 +11,8 @@
     "billingInfo": "帳單資訊",
     "orderSummary": "訂單摘要",
     "storedTaxIdentifiers": "已儲存的稅務識別碼",
-    "thankYou": "感謝您"
+    "thankYou": "感謝您",
+    "customerInfo": "客戶資訊"
   },
   "orderSummaryTable": {
     "orderTotal": "訂單總額",
@@ -94,7 +95,8 @@
     "landedCostDeliveryNote2": "交貨時已收取進口費用",
     "estimatedDeliveryDateColon": "預計交貨日期：",
     "shippingAddressDifferent" : "配送地址與帳單地址不同。",
-    "marketingOptIn": "通過電子郵件向我發送最新消息和優惠"
+    "marketingOptIn": "通過電子郵件向我發送最新消息和優惠",
+    "purchaseForBusiness": "為企業採購嗎？"
   },
   "error": {
     "shipToNotSupported": "無法配送到這個地點。請使用其他地址。",

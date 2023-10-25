@@ -894,9 +894,23 @@
         buttonColor: "light",
         buttonLanguage: "en"
       },
-      waitOnClick: true
+      waitOnClick: true,
+      agreementData: getAgreementData()
     };
 
+  }
+
+  function getAgreementData() {
+    const useAgreementData = getURLParamOrDefault('agreementData','false');
+    if (useAgreementData === 'true') {
+      return {
+        useMandate: true,
+        mandate: {
+          terms: "These are the terms you agreed to"
+        },
+        futureUse: true
+      }
+    }
   }
 
   function getURLParamOrDefault(name, defaultValue) {
@@ -1007,7 +1021,8 @@
         buttonColor: "dark",
         buttonLanguage: "en"
       },
-      waitOnClick: true
+      waitOnClick: true,
+      agreementData: getAgreementData()
     });
 
     updatedAppleInfo = {

@@ -76,7 +76,7 @@ var __webpack_exports__ = {};
   \*******************************************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "getGeneralErrorMessageByLocale": function() { return /* binding */ getGeneralErrorMessageByLocale; }
+/* harmony export */   getGeneralErrorMessageByLocale: function() { return /* binding */ getGeneralErrorMessageByLocale; }
 /* harmony export */ });
 /* harmony import */ var _google_pay_translations_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./google-pay-translations.json */ "./src/app/components/google-pay/google-pay-translations.json");
 

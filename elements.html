@@ -49,34 +49,29 @@
 
               <div style="max-width: 600px; min-height: 300px">
 
-                  <div id="loading-container" style="display: block">
-                    Loading....
-                  </div>
-
-                  <div id="wallet-container" style="display: none">
+                  <div id="wallet-container" style="display: block">
 
                   </div>
 
-                  <div id="address-container" style="display: none">
+                  <div id="address-container" style="display: block">
 
                   </div>
-                  <div id="shipping-container" style="display: none">
-
-                  </div>
-
-                  <div id="tax-container" style="display: none">
+                  <div id="shipping-container" style="display: block">
 
                   </div>
 
-                  <div id="invoice-attribute-container" style="display: none">
+                  <div id="tax-container" style="display: block">
 
                   </div>
 
-                  <div id="payment-container" style="display: none">
+                  <div id="invoice-attribute-container" style="display: block">
 
                   </div>
 
-                <div id="tax-exemption-container" style="display: none">
+                  <div id="payment-container" style="display: block">
+
+                  </div>
+                <div id="tax-exemption-container" style="display: block">
 
                 </div>
 
@@ -134,253 +129,37 @@
     let sessionClientSecret = ''; // Gets set from API and passed into create source for 3DS
 
     let position = 0;
+    let displayShipping = true;
+    let showTaxIdentifiers = false;
     let changeData;
-    let readyData;
     let isSkip = false;
 
     function onNextButtonClick() {
       console.log('NEXT')
       isSkip = false;
-      /*displayCorrectElement(() => {
+      displayCorrectElement(() => {
         position = position + 1;
-      })*/
-
-      navigate(position, () => {
-        return ++position;
       })
-
     }
 
     function onPreviousButtonClick() {
       console.log('PREVIOUS')
       isSkip = false;
-      /*displayCorrectElement(() => {
+      displayCorrectElement(() => {
         --position;
-      })*/
-      navigate(position, () => {
-        return --position;
       })
     }
 
   function onSkipButtonClick() {
     console.log('SKIP')
-    /*displayCorrectElement(() => {
+    displayCorrectElement(() => {
       position = position + 1;
       isSkip = true;
-    })*/
-    navigate(position, () => {
-      return ++position;
-    }, true)
+    })
   }
 
-  const elementInstances = [
-
-    {
-      element: 'address',
-      domId: 'address-container',
-      canSkip: () => { return false; }, // Default
-      getInstance: () => {
-        return addressElement;
-      },
-      displayAnotherElement: 'wallet'
-    },
-
-    {
-      element: 'tax-exemption',
-      domId: 'tax-exemption-container',
-      canSkip: () => { return true; },
-      show: () => {
-        return readyData?.customerId?.length > 0;
-      },
-      getInstance: () => {
-        return taxExemptionElement;
-      }
-    },
-    {
-      element: 'taxidentifier',
-      domId: 'tax-container',
-      canSkip: () => { return true; },
-      show: () => {
-        return readyData.showTaxIdentifiers;
-      },
-      getInstance: () => {
-        return invoiceAttributeElement;
-      }
-    },
-    {
-      element: 'invoice-attribute',
-      domId: 'invoice-attribute-container',
-      canSkip: () => { return typeof changeData.invoiceAttributeRequired !== 'undefined' && changeData.invoiceAttributeRequired === true; },
-      show: () => {
-        return changeData?.showInvoiceAttribute;
-      },
-      getInstance: () => {
-        return invoiceAttributeElement;
-      }
-    },
-    {
-      element: 'wallet', // TODO Make it display at the same time as the others? Could make getInstance return an array when address element is displaying?
-      domId: 'wallet-container',
-      show() {
-        return false;
-      },
-      getInstance: () => {
-        return walletElement;
-      }
-    },
-    {
-      element: 'shipping',
-      domId: 'shipping-container',
-
-      getInstance: () => {
-        return shippingChoice;
-      }
-    },
-    {
-      element: 'payment',
-      domId: 'payment-container',
-      getInstance: () => {
-        return paymentElement;
-      }
-    },
-    /*{
-      element: 'order-summary',
-      domId: 'order-details-container',
-      getInstance: () => {
-        return orderSummaryElement;
-      }
-    },*/
-    {
-      element: 'thankyou',
-      domId: 'order-details-container',
-      getInstance: () => {
-        return thankYouElement;
-      },
-      buttons: () => {
-        return {
-          next: false,
-          previous: false
-        }
-      }
-    }
-  ]
-
-    function getElementInstances() {
-      return elementInstances.filter( e => typeof e.show === 'undefined' || e.show() )
-    }
-
-
-    /*function getNextElement(position, changePosition) {
-
-        const nextElement = elementInstances[position];
-
-        if (typeof nextElement.show === 'undefined' || nextElement.show()) {
-          return {
-            position: position,
-            element: nextElement
-          }
-        } else {
-          const newPosition = changePosition();
-
-          if (newPosition === position) {
-            return getNextElement(newPosition + 1, changePosition)
-          }
-
-          return getNextElement(newPosition, changePosition)
-        }
-
-    }*/
-
-    function showLoading() {
-      document.getElementById('loading-container').style.display = 'block';
-    }
-
-    function hideLoading() {
-      document.getElementById('loading-container').style.display = 'none';
-    }
-
-    async function navigate(currentPosition, changePosition, skipDone = false) {
-
-      console.log('getElementInstances()', getElementInstances())
-
-      const currentElement = getElementInstances()[currentPosition];
-
-      console.log('currentElement', currentElement)
-
-      const currentInstance = currentElement.getInstance();
-
-      // Check if there is a done function
-      if (!skipDone && currentInstance.done) {
-        // TODO Loading
-        showLoading();
-        const result = await currentInstance.done();
-        hideLoading();
-
-        if (!result) {
-          console.log(getElementInstances()[currentPosition].element + ' VALIDATION FAILED');
-          return;
-        }
-      }
-
-      const position = changePosition()
-
-      // TODO Could also just filter out the elements that do not need to get displayed to remove this kind of logic.
-      //const nextElement = getNextElement(position, changePosition);
-      const nextElement = getElementInstances()[position];
-
-      console.log('navigate', currentElement, position, nextElement)
-      getElementInstances().forEach( (e, index) => {
-
-        if (nextElement && e.element === nextElement.element) {
-          document.getElementById(e.domId).style.display = 'block'
-
-          if (nextElement.displayAnotherElement) {
-            const theOtherElement = elementInstances.find( e => e.element === nextElement.displayAnotherElement)
-            document.getElementById( theOtherElement.domId).style.display = 'block'
-          }
-
-        } else {
-          document.getElementById(e.domId).style.display = 'none'
-
-          if (e.displayAnotherElement) {
-            const theOtherElement = elementInstances.find( el => el.element === e.displayAnotherElement)
-            document.getElementById(theOtherElement.domId).style.display = 'none'
-          }
-
-        }
-      })
-
-
-      if (nextElement.buttons) {
-        const buttonOptions = nextElement.buttons();
-        document.getElementById('nextButton').style.display = buttonOptions.next === true ? 'block' : 'none';
-        document.getElementById('previousButton').style.display = buttonOptions.previous === true ? 'block' : 'none';
-      } else {
-
-        if (nextElement.canSkip && nextElement.canSkip()) {
-          document.getElementById('skipButton').style.display = 'block';
-        } else {
-          document.getElementById('skipButton').style.display = 'none';
-        }
-
-        if (position === 0) {
-          document.getElementById('previousButton').style.display = 'none';
-        } else {
-          document.getElementById('previousButton').style.display = 'block';
-        }
-
-        if (typeof elementInstances[position + 1] === 'undefined') {
-          document.getElementById('nextButton').style.display = 'none';
-        } else {
-          document.getElementById('nextButton').style.display = 'block';
-        }
-
-      }
-
-    }
-
     // NOTE: We could provide a 'button' element so we can manage the order and the button state for the clients. We can also just have one element that mounts them all?
-    /*async function displayCorrectElement(fn) {
+    async function displayCorrectElement(fn) {
       fn();
       const customerId = getURLParamOrDefault('customerId','');
       // const customerId = getURLParamOrDefault('customerId','f10ddefa73525bfb7df84e80646b3425dcf19d57');
@@ -390,11 +169,11 @@
 
       console.log('Display with position...', position)
       if (position === 0) {
-        /!*
+        /*
         Tax exemption test Url
         SECRET_KEY=sk_test_b4c88995e8e247538274eca66ecb2bdb npm run server
         http://localhost:8080/v1/elements.html?customerId=f10ddefa73525bfb7df84e80646b3425dcf19d57&apiKey=pk_test_10fdcec992dd4500ad891a233fed0fca&skuId=sku_test_10
-        *!/
+        */
         document.getElementById('nextButton').style.display = 'inline-block';
         document.getElementById('address-container').style.display = 'none';
         document.getElementById('tax-exemption-container').style.display = 'block';
@@ -438,7 +217,6 @@
         document.getElementById('address-container').style.display = 'none';
         document.getElementById('tax-container').style.display = 'none';
         document.getElementById('invoice-attribute-container').style.display = 'none';
-        document.getElementById('previousButton').style.display = 'block';
 
         if (displayShipping) {
           document.getElementById('shipping-container').style.display = 'block';
@@ -446,18 +224,7 @@
         } else {
           displayCorrectElement(fn);
         }
-
       } else if (position === 3) {
-
-        if (displayShipping) {
-          console.log('Validating shipping....')
-          const shippingState = await shippingChoice.done();
-          if (!shippingState) {
-            console.log('SHIPPING ELEMENT VALIDATION FAILED')
-            --position;
-            return;
-          }
-        }
 
         if (!showTaxIdentifiers) {
           displayCorrectElement(fn);
@@ -535,7 +302,7 @@
         document.getElementById('previousButton').style.display = 'none';
         document.getElementById('invoice-attribute-container').style.display = 'none';
       }
-    }*/
+    }
 
     function mockFetch() {
       return new Promise(function(resolve) {
@@ -582,42 +349,40 @@
         checkoutSessionId: await createDropinCheckoutSession(),
         redirectUrl: redirectUrlQueryParam === 'true' ? redirectUrl : undefined,
         onReady: function (data) {
-          readyData = data;
           console.log('onReady', data);
-          //displayCorrectElement(() => {});
-
-          //navigate(position, () => { return position}, true )
-
-        },
-        onChange: function (data) {
-          console.log('onChange', position, data, data.totalAmount, data.currency);
-          changeData = data;
-
-          if (position ===  getElementInstances().findIndex( e => e.element === 'thankyou')) {
-            return;
+          if (data.requiresShipping === false) { // NOTE: This is so users do not have to show the shipping element if it is not necessary
+            // If is false, the step should ignore the shipping step
+            //displayShipping = false;
           }
-
-          navigate(position, () => { return position}, true )
-
-          document.getElementById("loading-container").style.display = 'none';
+          if (data.showTaxIdentifiers) {
+            showTaxIdentifiers = data.showTaxIdentifiers;
+          }
+          displayCorrectElement(() => {});
         },
         onSuccess: function (data) {
           console.log('Success data', data);
 
           // TODO API call to server to verify state of order
 
-          //displayCorrectElement(() => {  position = 6; });
-
-          console.log("onSuccess BEFORE", position, getElementInstances().findIndex( e => e.element === 'thankyou'), )
-
-          navigate(position, () => {
-            position = getElementInstances().findIndex( e => e.element === 'thankyou');
-            return position;
-          }, true)
-
+          displayCorrectElement(() => {  position = 6; });
           //document.getElementById('order-id').innerText = data.order.id;
         },
+        onChange: function (data) {
+          console.log('onChange', data, data.totalAmount, data.currency);
+          changeData = data;
+          const locale = data.locale.replace('_', '-');
+          /*document.getElementById('total').innerText =  new Intl.NumberFormat(locale, { style: 'currency', currency: data.currency }).format(data.totalAmount);
+          document.getElementById('shipping').innerText =  new Intl.NumberFormat(locale, { style: 'currency', currency: data.currency }).format(data.totalShipping);
+          document.getElementById('tax').innerText =  new Intl.NumberFormat(locale, { style: 'currency', currency: data.currency }).format(data.totalTax);
+          document.getElementById('subtotal').innerText =  new Intl.NumberFormat(locale, { style: 'currency', currency: data.currency }).format(data.subtotal);
 
+          document.getElementById('items').innerHTML = data.items.map( i => {
+            return `<div>
+              <img style="height: 30px; width: 30px" src="${i.sku.image}"/> ${i.sku.name} - ${new Intl.NumberFormat(locale, { style: 'currency', currency: data.currency }).format(i.amount)}
+            </div>`
+          });*/
+
+        }
       }
 
       elements = digitalRiverPayments.components(configuration);
@@ -678,21 +443,20 @@
                 "state":state,
                 "country": country
               }
-            },
-
+            }
           }
         ],
         "taxInclusive": false,
         "options": {
 
         },
-        /*"shipFrom": {
+        "shipFrom": {
           "address": {
             "country": country
           }
-        },*/
+        },
         //"shoppingCountry" : 'US', // TODO
-     "shipTo": { // TODO Need to work without
+       /*"shipTo": { // TODO Need to work without
           "address": {
             "line1": "10380 bren road west",
             "country": country,
@@ -704,7 +468,7 @@
           "name": "test test",
           "phone": "6519895326"
         },
-       /* "billTo": { // TODO Need to work without
+        "billTo": { // TODO Need to work without
          "address": {
            "line1": "10380 bren road west",
            "country": country,
@@ -716,21 +480,16 @@
          "name": "test test",
          "phone": "6519895326"
        },*/
+        /*"billTo": { // TODO Need to work without
+          "address": {
+            "country": country,
+          },
+        }*/
       };
 
       if(shoppingCountry.length > 0 ){
         body.shoppingCountry = shoppingCountry;
       }
-
-      const subscription = getURLParamOrDefault('subscription','false');
-      if (subscription === 'true') {
-        body.items[0].subscriptionInfo = {
-            "terms": "Subscription terms accepted by the customer",
-              "autoRenewal": true,
-              "freeTrial": false
-        }
-      }
-
       const addStoredCredits = getURLParamOrDefault('addStoredCredits','false');
       if (addStoredCredits === 'true') {
         body.options.storeCredits = [

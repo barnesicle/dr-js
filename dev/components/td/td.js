@@ -10,7 +10,7 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "isTestApiKey": function() { return /* binding */ isTestApiKey; }
+/* harmony export */   isTestApiKey: function() { return /* binding */ isTestApiKey; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_starts_with__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/starts-with */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/starts-with.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_starts_with__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_starts_with__WEBPACK_IMPORTED_MODULE_0__);
@@ -31,7 +31,7 @@ function isTestApiKey(apiKey) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "config": function() { return /* binding */ config; }
+/* harmony export */   config: function() { return /* binding */ config; }
 /* harmony export */ });
 // Holds any configuration data that changes depending on environment
 var config = {
@@ -87,7 +87,7 @@ var config = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "getAccertifyConfig": function() { return /* binding */ getAccertifyConfig; }
+/* harmony export */   getAccertifyConfig: function() { return /* binding */ getAccertifyConfig; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/concat */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/concat.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_0__);
@@ -145,9 +145,9 @@ function determineDispatchKey(isTestKey) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "addAccertifyScript": function() { return /* binding */ addAccertifyScript; },
-/* harmony export */   "getAccertifyId": function() { return /* binding */ getAccertifyId; },
-/* harmony export */   "isAccertifyLoaded": function() { return /* binding */ isAccertifyLoaded; }
+/* harmony export */   addAccertifyScript: function() { return /* binding */ addAccertifyScript; },
+/* harmony export */   getAccertifyId: function() { return /* binding */ getAccertifyId; },
+/* harmony export */   isAccertifyLoaded: function() { return /* binding */ isAccertifyLoaded; }
 /* harmony export */ });
 /* harmony import */ var _api_key_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../api-key-utils */ "./src/app/components/api-key-utils.js");
 
@@ -194,13 +194,13 @@ function getAccertifyId(window) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "checkToSendEvent": function() { return /* binding */ checkToSendEvent; },
-/* harmony export */   "getParentDomain": function() { return /* binding */ getParentDomain; },
-/* harmony export */   "isShallowEquivalent": function() { return /* binding */ isShallowEquivalent; },
-/* harmony export */   "removeExtraCharacters": function() { return /* binding */ removeExtraCharacters; },
-/* harmony export */   "spacesAdded": function() { return /* binding */ spacesAdded; },
-/* harmony export */   "stripLetters": function() { return /* binding */ stripLetters; },
-/* harmony export */   "stripLettersAndAddForwardSlash": function() { return /* binding */ stripLettersAndAddForwardSlash; }
+/* harmony export */   checkToSendEvent: function() { return /* binding */ checkToSendEvent; },
+/* harmony export */   getParentDomain: function() { return /* binding */ getParentDomain; },
+/* harmony export */   isShallowEquivalent: function() { return /* binding */ isShallowEquivalent; },
+/* harmony export */   removeExtraCharacters: function() { return /* binding */ removeExtraCharacters; },
+/* harmony export */   spacesAdded: function() { return /* binding */ spacesAdded; },
+/* harmony export */   stripLetters: function() { return /* binding */ stripLetters; },
+/* harmony export */   stripLettersAndAddForwardSlash: function() { return /* binding */ stripLettersAndAddForwardSlash; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_json_stringify__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/json/stringify */ "./node_modules/@babel/runtime-corejs3/core-js-stable/json/stringify.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_json_stringify__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_json_stringify__WEBPACK_IMPORTED_MODULE_0__);
@@ -312,8 +312,8 @@ function removeExtraCharacters(value, maxLength) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "createBeaconIDCookie": function() { return /* binding */ createBeaconIDCookie; },
-/* harmony export */   "manageBeaconIDCookie": function() { return /* binding */ manageBeaconIDCookie; }
+/* harmony export */   createBeaconIDCookie: function() { return /* binding */ createBeaconIDCookie; },
+/* harmony export */   manageBeaconIDCookie: function() { return /* binding */ manageBeaconIDCookie; }
 /* harmony export */ });
 /* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uuid */ "./node_modules/uuid/dist/esm-browser/v4.js");
 
@@ -358,9 +358,9 @@ function addOneWeekToDate(date) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "collectAllData": function() { return /* binding */ collectAllData; },
-/* harmony export */   "determineBeaconURL": function() { return /* binding */ determineBeaconURL; },
-/* harmony export */   "sendBeaconData": function() { return /* binding */ sendBeaconData; }
+/* harmony export */   collectAllData: function() { return /* binding */ collectAllData; },
+/* harmony export */   determineBeaconURL: function() { return /* binding */ determineBeaconURL; },
+/* harmony export */   sendBeaconData: function() { return /* binding */ sendBeaconData; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/promise */ "./node_modules/@babel/runtime-corejs3/core-js-stable/promise.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_0__);
@@ -412,10 +412,10 @@ function determineBeaconURL(apiKey) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "client": function() { return /* binding */ client; },
-/* harmony export */   "listener": function() { return /* binding */ listener; },
-/* harmony export */   "on": function() { return /* binding */ _on; },
-/* harmony export */   "send": function() { return /* binding */ _send; }
+/* harmony export */   client: function() { return /* binding */ client; },
+/* harmony export */   listener: function() { return /* binding */ listener; },
+/* harmony export */   on: function() { return /* binding */ _on; },
+/* harmony export */   send: function() { return /* binding */ _send; }
 /* harmony export */ });
 /* harmony import */ var post_robot__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! post-robot */ "./node_modules/post-robot/index.js");
 /* harmony import */ var post_robot__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(post_robot__WEBPACK_IMPORTED_MODULE_0__);
@@ -6867,9 +6867,9 @@ module.exports = parent;
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "PROTOCOL": function() { return /* binding */ PROTOCOL; },
-/* harmony export */   "WILDCARD": function() { return /* binding */ WILDCARD; },
-/* harmony export */   "WINDOW_TYPE": function() { return /* binding */ WINDOW_TYPE; }
+/* harmony export */   PROTOCOL: function() { return /* binding */ PROTOCOL; },
+/* harmony export */   WILDCARD: function() { return /* binding */ WILDCARD; },
+/* harmony export */   WINDOW_TYPE: function() { return /* binding */ WINDOW_TYPE; }
 /* harmony export */ });
 var PROTOCOL = {
   MOCK: 'mock:',
@@ -6893,64 +6893,64 @@ var WINDOW_TYPE = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "PROTOCOL": function() { return /* reexport safe */ _constants__WEBPACK_IMPORTED_MODULE_2__.PROTOCOL; },
-/* harmony export */   "TYPES": function() { return /* reexport safe */ _types__WEBPACK_IMPORTED_MODULE_1__.TYPES; },
-/* harmony export */   "WILDCARD": function() { return /* reexport safe */ _constants__WEBPACK_IMPORTED_MODULE_2__.WILDCARD; },
-/* harmony export */   "WINDOW_TYPE": function() { return /* reexport safe */ _constants__WEBPACK_IMPORTED_MODULE_2__.WINDOW_TYPE; },
-/* harmony export */   "assertSameDomain": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.assertSameDomain; },
-/* harmony export */   "canReadFromWindow": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.canReadFromWindow; },
-/* harmony export */   "closeWindow": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.closeWindow; },
-/* harmony export */   "findChildFrameByName": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.findChildFrameByName; },
-/* harmony export */   "findFrameByName": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.findFrameByName; },
-/* harmony export */   "getActualDomain": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getActualDomain; },
-/* harmony export */   "getActualProtocol": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getActualProtocol; },
-/* harmony export */   "getAllChildFrames": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getAllChildFrames; },
-/* harmony export */   "getAllFramesInWindow": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getAllFramesInWindow; },
-/* harmony export */   "getAllWindows": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getAllWindows; },
-/* harmony export */   "getAncestor": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getAncestor; },
-/* harmony export */   "getAncestors": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getAncestors; },
-/* harmony export */   "getDistanceFromTop": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getDistanceFromTop; },
-/* harmony export */   "getDomain": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getDomain; },
-/* harmony export */   "getDomainFromUrl": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getDomainFromUrl; },
-/* harmony export */   "getFrameByName": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getFrameByName; },
-/* harmony export */   "getFrameForWindow": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getFrameForWindow; },
-/* harmony export */   "getFrames": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getFrames; },
-/* harmony export */   "getNextOpener": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getNextOpener; },
-/* harmony export */   "getNthParent": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getNthParent; },
-/* harmony export */   "getNthParentFromTop": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getNthParentFromTop; },
-/* harmony export */   "getOpener": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getOpener; },
-/* harmony export */   "getParent": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getParent; },
-/* harmony export */   "getParents": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getParents; },
-/* harmony export */   "getProtocol": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getProtocol; },
-/* harmony export */   "getTop": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getTop; },
-/* harmony export */   "getUltimateTop": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getUltimateTop; },
-/* harmony export */   "getUserAgent": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getUserAgent; },
-/* harmony export */   "isAboutProtocol": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isAboutProtocol; },
-/* harmony export */   "isActuallySameDomain": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isActuallySameDomain; },
-/* harmony export */   "isAncestor": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isAncestor; },
-/* harmony export */   "isAncestorParent": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isAncestorParent; },
-/* harmony export */   "isBlankDomain": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isBlankDomain; },
-/* harmony export */   "isBrowser": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isBrowser; },
-/* harmony export */   "isCurrentDomain": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isCurrentDomain; },
-/* harmony export */   "isFileProtocol": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isFileProtocol; },
-/* harmony export */   "isFrameWindowClosed": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isFrameWindowClosed; },
-/* harmony export */   "isFullpage": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isFullpage; },
-/* harmony export */   "isIframe": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isIframe; },
-/* harmony export */   "isMockDomain": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isMockDomain; },
-/* harmony export */   "isMockProtocol": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isMockProtocol; },
-/* harmony export */   "isOpener": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isOpener; },
-/* harmony export */   "isParent": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isParent; },
-/* harmony export */   "isPopup": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isPopup; },
-/* harmony export */   "isSameDomain": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isSameDomain; },
-/* harmony export */   "isSameTopWindow": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isSameTopWindow; },
-/* harmony export */   "isTop": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isTop; },
-/* harmony export */   "isWindow": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isWindow; },
-/* harmony export */   "isWindowClosed": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isWindowClosed; },
-/* harmony export */   "linkFrameWindow": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.linkFrameWindow; },
-/* harmony export */   "matchDomain": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.matchDomain; },
-/* harmony export */   "normalizeMockUrl": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.normalizeMockUrl; },
-/* harmony export */   "onCloseWindow": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.onCloseWindow; },
-/* harmony export */   "stringifyDomainPattern": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.stringifyDomainPattern; }
+/* harmony export */   PROTOCOL: function() { return /* reexport safe */ _constants__WEBPACK_IMPORTED_MODULE_2__.PROTOCOL; },
+/* harmony export */   TYPES: function() { return /* reexport safe */ _types__WEBPACK_IMPORTED_MODULE_1__.TYPES; },
+/* harmony export */   WILDCARD: function() { return /* reexport safe */ _constants__WEBPACK_IMPORTED_MODULE_2__.WILDCARD; },
+/* harmony export */   WINDOW_TYPE: function() { return /* reexport safe */ _constants__WEBPACK_IMPORTED_MODULE_2__.WINDOW_TYPE; },
+/* harmony export */   assertSameDomain: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.assertSameDomain; },
+/* harmony export */   canReadFromWindow: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.canReadFromWindow; },
+/* harmony export */   closeWindow: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.closeWindow; },
+/* harmony export */   findChildFrameByName: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.findChildFrameByName; },
+/* harmony export */   findFrameByName: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.findFrameByName; },
+/* harmony export */   getActualDomain: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getActualDomain; },
+/* harmony export */   getActualProtocol: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getActualProtocol; },
+/* harmony export */   getAllChildFrames: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getAllChildFrames; },
+/* harmony export */   getAllFramesInWindow: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getAllFramesInWindow; },
+/* harmony export */   getAllWindows: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getAllWindows; },
+/* harmony export */   getAncestor: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getAncestor; },
+/* harmony export */   getAncestors: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getAncestors; },
+/* harmony export */   getDistanceFromTop: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getDistanceFromTop; },
+/* harmony export */   getDomain: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getDomain; },
+/* harmony export */   getDomainFromUrl: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getDomainFromUrl; },
+/* harmony export */   getFrameByName: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getFrameByName; },
+/* harmony export */   getFrameForWindow: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getFrameForWindow; },
+/* harmony export */   getFrames: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getFrames; },
+/* harmony export */   getNextOpener: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getNextOpener; },
+/* harmony export */   getNthParent: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getNthParent; },
+/* harmony export */   getNthParentFromTop: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getNthParentFromTop; },
+/* harmony export */   getOpener: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getOpener; },
+/* harmony export */   getParent: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getParent; },
+/* harmony export */   getParents: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getParents; },
+/* harmony export */   getProtocol: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getProtocol; },
+/* harmony export */   getTop: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getTop; },
+/* harmony export */   getUltimateTop: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getUltimateTop; },
+/* harmony export */   getUserAgent: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getUserAgent; },
+/* harmony export */   isAboutProtocol: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isAboutProtocol; },
+/* harmony export */   isActuallySameDomain: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isActuallySameDomain; },
+/* harmony export */   isAncestor: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isAncestor; },
+/* harmony export */   isAncestorParent: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isAncestorParent; },
+/* harmony export */   isBlankDomain: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isBlankDomain; },
+/* harmony export */   isBrowser: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isBrowser; },
+/* harmony export */   isCurrentDomain: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isCurrentDomain; },
+/* harmony export */   isFileProtocol: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isFileProtocol; },
+/* harmony export */   isFrameWindowClosed: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isFrameWindowClosed; },
+/* harmony export */   isFullpage: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isFullpage; },
+/* harmony export */   isIframe: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isIframe; },
+/* harmony export */   isMockDomain: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isMockDomain; },
+/* harmony export */   isMockProtocol: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isMockProtocol; },
+/* harmony export */   isOpener: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isOpener; },
+/* harmony export */   isParent: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isParent; },
+/* harmony export */   isPopup: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isPopup; },
+/* harmony export */   isSameDomain: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isSameDomain; },
+/* harmony export */   isSameTopWindow: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isSameTopWindow; },
+/* harmony export */   isTop: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isTop; },
+/* harmony export */   isWindow: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isWindow; },
+/* harmony export */   isWindowClosed: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isWindowClosed; },
+/* harmony export */   linkFrameWindow: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.linkFrameWindow; },
+/* harmony export */   matchDomain: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.matchDomain; },
+/* harmony export */   normalizeMockUrl: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.normalizeMockUrl; },
+/* harmony export */   onCloseWindow: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.onCloseWindow; },
+/* harmony export */   stringifyDomainPattern: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.stringifyDomainPattern; }
 /* harmony export */ });
 /* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils */ "./node_modules/cross-domain-utils/dist/module/utils.js");
 /* harmony import */ var _types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./types */ "./node_modules/cross-domain-utils/dist/module/types.js");
@@ -6970,7 +6970,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "TYPES": function() { return /* binding */ TYPES; }
+/* harmony export */   TYPES: function() { return /* binding */ TYPES; }
 /* harmony export */ });
 // export something to force webpack to see this as an ES module
 var TYPES = true;
@@ -6986,8 +6986,8 @@ var TYPES = true;
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "isRegex": function() { return /* binding */ isRegex; },
-/* harmony export */   "noop": function() { return /* binding */ noop; }
+/* harmony export */   isRegex: function() { return /* binding */ isRegex; },
+/* harmony export */   noop: function() { return /* binding */ noop; }
 /* harmony export */ });
 function isRegex(item) {
   // $FlowFixMe method-unbinding
@@ -7008,60 +7008,60 @@ function noop() {// pass
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "assertSameDomain": function() { return /* binding */ assertSameDomain; },
-/* harmony export */   "canReadFromWindow": function() { return /* binding */ canReadFromWindow; },
-/* harmony export */   "closeWindow": function() { return /* binding */ closeWindow; },
-/* harmony export */   "findChildFrameByName": function() { return /* binding */ findChildFrameByName; },
-/* harmony export */   "findFrameByName": function() { return /* binding */ findFrameByName; },
-/* harmony export */   "getActualDomain": function() { return /* binding */ getActualDomain; },
-/* harmony export */   "getActualProtocol": function() { return /* binding */ getActualProtocol; },
-/* harmony export */   "getAllChildFrames": function() { return /* binding */ getAllChildFrames; },
-/* harmony export */   "getAllFramesInWindow": function() { return /* binding */ getAllFramesInWindow; },
-/* harmony export */   "getAllWindows": function() { return /* binding */ getAllWindows; },
-/* harmony export */   "getAncestor": function() { return /* binding */ getAncestor; },
-/* harmony export */   "getAncestors": function() { return /* binding */ getAncestors; },
-/* harmony export */   "getDistanceFromTop": function() { return /* binding */ getDistanceFromTop; },
-/* harmony export */   "getDomain": function() { return /* binding */ getDomain; },
-/* harmony export */   "getDomainFromUrl": function() { return /* binding */ getDomainFromUrl; },
-/* harmony export */   "getFrameByName": function() { return /* binding */ getFrameByName; },
-/* harmony export */   "getFrameForWindow": function() { return /* binding */ getFrameForWindow; },
-/* harmony export */   "getFrames": function() { return /* binding */ getFrames; },
-/* harmony export */   "getNextOpener": function() { return /* binding */ getNextOpener; },
-/* harmony export */   "getNthParent": function() { return /* binding */ getNthParent; },
-/* harmony export */   "getNthParentFromTop": function() { return /* binding */ getNthParentFromTop; },
-/* harmony export */   "getOpener": function() { return /* binding */ getOpener; },
-/* harmony export */   "getParent": function() { return /* binding */ getParent; },
-/* harmony export */   "getParents": function() { return /* binding */ getParents; },
-/* harmony export */   "getProtocol": function() { return /* binding */ getProtocol; },
-/* harmony export */   "getTop": function() { return /* binding */ getTop; },
-/* harmony export */   "getUltimateTop": function() { return /* binding */ getUltimateTop; },
-/* harmony export */   "getUserAgent": function() { return /* binding */ getUserAgent; },
-/* harmony export */   "isAboutProtocol": function() { return /* binding */ isAboutProtocol; },
-/* harmony export */   "isActuallySameDomain": function() { return /* binding */ isActuallySameDomain; },
-/* harmony export */   "isAncestor": function() { return /* binding */ isAncestor; },
-/* harmony export */   "isAncestorParent": function() { return /* binding */ isAncestorParent; },
-/* harmony export */   "isBlankDomain": function() { return /* binding */ isBlankDomain; },
-/* harmony export */   "isBrowser": function() { return /* binding */ isBrowser; },
-/* harmony export */   "isCurrentDomain": function() { return /* binding */ isCurrentDomain; },
-/* harmony export */   "isFileProtocol": function() { return /* binding */ isFileProtocol; },
-/* harmony export */   "isFrameWindowClosed": function() { return /* binding */ isFrameWindowClosed; },
-/* harmony export */   "isFullpage": function() { return /* binding */ isFullpage; },
-/* harmony export */   "isIframe": function() { return /* binding */ isIframe; },
-/* harmony export */   "isMockDomain": function() { return /* binding */ isMockDomain; },
-/* harmony export */   "isMockProtocol": function() { return /* binding */ isMockProtocol; },
-/* harmony export */   "isOpener": function() { return /* binding */ isOpener; },
-/* harmony export */   "isParent": function() { return /* binding */ isParent; },
-/* harmony export */   "isPopup": function() { return /* binding */ isPopup; },
-/* harmony export */   "isSameDomain": function() { return /* binding */ isSameDomain; },
-/* harmony export */   "isSameTopWindow": function() { return /* binding */ isSameTopWindow; },
-/* harmony export */   "isTop": function() { return /* binding */ isTop; },
-/* harmony export */   "isWindow": function() { return /* binding */ isWindow; },
-/* harmony export */   "isWindowClosed": function() { return /* binding */ isWindowClosed; },
-/* harmony export */   "linkFrameWindow": function() { return /* binding */ linkFrameWindow; },
-/* harmony export */   "matchDomain": function() { return /* binding */ matchDomain; },
-/* harmony export */   "normalizeMockUrl": function() { return /* binding */ normalizeMockUrl; },
-/* harmony export */   "onCloseWindow": function() { return /* binding */ onCloseWindow; },
-/* harmony export */   "stringifyDomainPattern": function() { return /* binding */ stringifyDomainPattern; }
+/* harmony export */   assertSameDomain: function() { return /* binding */ assertSameDomain; },
+/* harmony export */   canReadFromWindow: function() { return /* binding */ canReadFromWindow; },
+/* harmony export */   closeWindow: function() { return /* binding */ closeWindow; },
+/* harmony export */   findChildFrameByName: function() { return /* binding */ findChildFrameByName; },
+/* harmony export */   findFrameByName: function() { return /* binding */ findFrameByName; },
+/* harmony export */   getActualDomain: function() { return /* binding */ getActualDomain; },
+/* harmony export */   getActualProtocol: function() { return /* binding */ getActualProtocol; },
+/* harmony export */   getAllChildFrames: function() { return /* binding */ getAllChildFrames; },
+/* harmony export */   getAllFramesInWindow: function() { return /* binding */ getAllFramesInWindow; },
+/* harmony export */   getAllWindows: function() { return /* binding */ getAllWindows; },
+/* harmony export */   getAncestor: function() { return /* binding */ getAncestor; },
+/* harmony export */   getAncestors: function() { return /* binding */ getAncestors; },
+/* harmony export */   getDistanceFromTop: function() { return /* binding */ getDistanceFromTop; },
+/* harmony export */   getDomain: function() { return /* binding */ getDomain; },
+/* harmony export */   getDomainFromUrl: function() { return /* binding */ getDomainFromUrl; },
+/* harmony export */   getFrameByName: function() { return /* binding */ getFrameByName; },
+/* harmony export */   getFrameForWindow: function() { return /* binding */ getFrameForWindow; },
+/* harmony export */   getFrames: function() { return /* binding */ getFrames; },
+/* harmony export */   getNextOpener: function() { return /* binding */ getNextOpener; },
+/* harmony export */   getNthParent: function() { return /* binding */ getNthParent; },
+/* harmony export */   getNthParentFromTop: function() { return /* binding */ getNthParentFromTop; },
+/* harmony export */   getOpener: function() { return /* binding */ getOpener; },
+/* harmony export */   getParent: function() { return /* binding */ getParent; },
+/* harmony export */   getParents: function() { return /* binding */ getParents; },
+/* harmony export */   getProtocol: function() { return /* binding */ getProtocol; },
+/* harmony export */   getTop: function() { return /* binding */ getTop; },
+/* harmony export */   getUltimateTop: function() { return /* binding */ getUltimateTop; },
+/* harmony export */   getUserAgent: function() { return /* binding */ getUserAgent; },
+/* harmony export */   isAboutProtocol: function() { return /* binding */ isAboutProtocol; },
+/* harmony export */   isActuallySameDomain: function() { return /* binding */ isActuallySameDomain; },
+/* harmony export */   isAncestor: function() { return /* binding */ isAncestor; },
+/* harmony export */   isAncestorParent: function() { return /* binding */ isAncestorParent; },
+/* harmony export */   isBlankDomain: function() { return /* binding */ isBlankDomain; },
+/* harmony export */   isBrowser: function() { return /* binding */ isBrowser; },
+/* harmony export */   isCurrentDomain: function() { return /* binding */ isCurrentDomain; },
+/* harmony export */   isFileProtocol: function() { return /* binding */ isFileProtocol; },
+/* harmony export */   isFrameWindowClosed: function() { return /* binding */ isFrameWindowClosed; },
+/* harmony export */   isFullpage: function() { return /* binding */ isFullpage; },
+/* harmony export */   isIframe: function() { return /* binding */ isIframe; },
+/* harmony export */   isMockDomain: function() { return /* binding */ isMockDomain; },
+/* harmony export */   isMockProtocol: function() { return /* binding */ isMockProtocol; },
+/* harmony export */   isOpener: function() { return /* binding */ isOpener; },
+/* harmony export */   isParent: function() { return /* binding */ isParent; },
+/* harmony export */   isPopup: function() { return /* binding */ isPopup; },
+/* harmony export */   isSameDomain: function() { return /* binding */ isSameDomain; },
+/* harmony export */   isSameTopWindow: function() { return /* binding */ isSameTopWindow; },
+/* harmony export */   isTop: function() { return /* binding */ isTop; },
+/* harmony export */   isWindow: function() { return /* binding */ isWindow; },
+/* harmony export */   isWindowClosed: function() { return /* binding */ isWindowClosed; },
+/* harmony export */   linkFrameWindow: function() { return /* binding */ linkFrameWindow; },
+/* harmony export */   matchDomain: function() { return /* binding */ matchDomain; },
+/* harmony export */   normalizeMockUrl: function() { return /* binding */ normalizeMockUrl; },
+/* harmony export */   onCloseWindow: function() { return /* binding */ onCloseWindow; },
+/* harmony export */   stringifyDomainPattern: function() { return /* binding */ stringifyDomainPattern; }
 /* harmony export */ });
 /* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./util */ "./node_modules/cross-domain-utils/dist/module/util.js");
 /* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./constants */ "./node_modules/cross-domain-utils/dist/module/constants.js");
@@ -9394,52 +9394,52 @@ return Promise$1;
         };
         __nested_webpack_require_418__.p = "";
         return __nested_webpack_require_418__(__nested_webpack_require_418__.s = 0);
-    }([ function(module, __webpack_exports__, __nested_webpack_require_2826__) {
+    }([ function(module, __nested_webpack_exports__, __nested_webpack_require_2826__) {
         "use strict";
-        __nested_webpack_require_2826__.r(__webpack_exports__);
-        __nested_webpack_require_2826__.d(__webpack_exports__, "Promise", (function() {
+        __nested_webpack_require_2826__.r(__nested_webpack_exports__);
+        __nested_webpack_require_2826__.d(__nested_webpack_exports__, "Promise", (function() {
             return promise_ZalgoPromise;
         }));
-        __nested_webpack_require_2826__.d(__webpack_exports__, "TYPES", (function() {
+        __nested_webpack_require_2826__.d(__nested_webpack_exports__, "TYPES", (function() {
             return src_types_TYPES_0;
         }));
-        __nested_webpack_require_2826__.d(__webpack_exports__, "ProxyWindow", (function() {
+        __nested_webpack_require_2826__.d(__nested_webpack_exports__, "ProxyWindow", (function() {
             return window_ProxyWindow;
         }));
-        __nested_webpack_require_2826__.d(__webpack_exports__, "setup", (function() {
+        __nested_webpack_require_2826__.d(__nested_webpack_exports__, "setup", (function() {
             return setup;
         }));
-        __nested_webpack_require_2826__.d(__webpack_exports__, "destroy", (function() {
+        __nested_webpack_require_2826__.d(__nested_webpack_exports__, "destroy", (function() {
             return destroy;
         }));
-        __nested_webpack_require_2826__.d(__webpack_exports__, "serializeMessage", (function() {
+        __nested_webpack_require_2826__.d(__nested_webpack_exports__, "serializeMessage", (function() {
             return setup_serializeMessage;
         }));
-        __nested_webpack_require_2826__.d(__webpack_exports__, "deserializeMessage", (function() {
+        __nested_webpack_require_2826__.d(__nested_webpack_exports__, "deserializeMessage", (function() {
             return setup_deserializeMessage;
         }));
-        __nested_webpack_require_2826__.d(__webpack_exports__, "createProxyWindow", (function() {
+        __nested_webpack_require_2826__.d(__nested_webpack_exports__, "createProxyWindow", (function() {
             return createProxyWindow;
         }));
-        __nested_webpack_require_2826__.d(__webpack_exports__, "toProxyWindow", (function() {
+        __nested_webpack_require_2826__.d(__nested_webpack_exports__, "toProxyWindow", (function() {
             return setup_toProxyWindow;
         }));
-        __nested_webpack_require_2826__.d(__webpack_exports__, "on", (function() {
+        __nested_webpack_require_2826__.d(__nested_webpack_exports__, "on", (function() {
             return on_on;
         }));
-        __nested_webpack_require_2826__.d(__webpack_exports__, "once", (function() {
+        __nested_webpack_require_2826__.d(__nested_webpack_exports__, "once", (function() {
             return on_once;
         }));
-        __nested_webpack_require_2826__.d(__webpack_exports__, "send", (function() {
+        __nested_webpack_require_2826__.d(__nested_webpack_exports__, "send", (function() {
             return send_send;
         }));
-        __nested_webpack_require_2826__.d(__webpack_exports__, "markWindowKnown", (function() {
+        __nested_webpack_require_2826__.d(__nested_webpack_exports__, "markWindowKnown", (function() {
             return markWindowKnown;
         }));
-        __nested_webpack_require_2826__.d(__webpack_exports__, "cleanUpWindow", (function() {
+        __nested_webpack_require_2826__.d(__nested_webpack_exports__, "cleanUpWindow", (function() {
             return cleanUpWindow;
         }));
-        __nested_webpack_require_2826__.d(__webpack_exports__, "bridge", (function() {}));
+        __nested_webpack_require_2826__.d(__nested_webpack_exports__, "bridge", (function() {}));
         function isRegex(item) {
             return "[object RegExp]" === {}.toString.call(item);
         }
@@ -11741,7 +11741,7 @@ function rng() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "unsafeStringify": function() { return /* binding */ unsafeStringify; }
+/* harmony export */   unsafeStringify: function() { return /* binding */ unsafeStringify; }
 /* harmony export */ });
 /* harmony import */ var _validate_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./validate.js */ "./node_modules/uuid/dist/esm-browser/validate.js");
 
@@ -12140,8 +12140,12 @@ const isXHRAdapterSupported = typeof XMLHttpRequest !== 'undefined';
       }
     }
 
-    if (_utils_js__WEBPACK_IMPORTED_MODULE_2__["default"].isFormData(requestData) && (_platform_index_js__WEBPACK_IMPORTED_MODULE_3__["default"].isStandardBrowserEnv || _platform_index_js__WEBPACK_IMPORTED_MODULE_3__["default"].isStandardBrowserWebWorkerEnv)) {
-      requestHeaders.setContentType(false); // Let the browser set it
+    if (_utils_js__WEBPACK_IMPORTED_MODULE_2__["default"].isFormData(requestData)) {
+      if (_platform_index_js__WEBPACK_IMPORTED_MODULE_3__["default"].isStandardBrowserEnv || _platform_index_js__WEBPACK_IMPORTED_MODULE_3__["default"].isStandardBrowserWebWorkerEnv) {
+        requestHeaders.setContentType(false); // Let the browser set it
+      } else {
+        requestHeaders.setContentType('multipart/form-data;', false); // mobile/desktop app frameworks
+      }
     }
 
     let request = new XMLHttpRequest();
@@ -12715,11 +12719,17 @@ class Axios {
       }, false);
     }
 
-    if (paramsSerializer !== undefined) {
-      _helpers_validator_js__WEBPACK_IMPORTED_MODULE_0__["default"].assertOptions(paramsSerializer, {
-        encode: validators.function,
-        serialize: validators.function
-      }, true);
+    if (paramsSerializer != null) {
+      if (_utils_js__WEBPACK_IMPORTED_MODULE_3__["default"].isFunction(paramsSerializer)) {
+        config.paramsSerializer = {
+          serialize: paramsSerializer
+        }
+      } else {
+        _helpers_validator_js__WEBPACK_IMPORTED_MODULE_0__["default"].assertOptions(paramsSerializer, {
+          encode: validators.function,
+          serialize: validators.function
+        }, true);
+      }
     }
 
     // Set config.method
@@ -13011,9 +13021,7 @@ function parseTokens(str) {
   return tokens;
 }
 
-function isValidHeaderName(str) {
-  return /^[-_a-zA-Z]+$/.test(str.trim());
-}
+const isValidHeaderName = (str) => /^[-_a-zA-Z0-9^`|~,!#$%&'*+.]+$/.test(str.trim());
 
 function matchHeaderValue(context, value, header, filter, isHeaderNameFilter) {
   if (_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isFunction(filter)) {
@@ -13609,7 +13617,7 @@ function mergeConfig(config1, config2) {
     headers: (a, b) => mergeDeepProperties(headersToObject(a), headersToObject(b), true)
   };
 
-  _utils_js__WEBPACK_IMPORTED_MODULE_1__["default"].forEach(Object.keys(config1).concat(Object.keys(config2)), function computeConfigValue(prop) {
+  _utils_js__WEBPACK_IMPORTED_MODULE_1__["default"].forEach(Object.keys(Object.assign({}, config1, config2)), function computeConfigValue(prop) {
     const merge = mergeMap[prop] || mergeDeepProperties;
     const configValue = merge(config1[prop], config2[prop], prop);
     (_utils_js__WEBPACK_IMPORTED_MODULE_1__["default"].isUndefined(configValue) && merge !== mergeDirectKeys) || (config[prop] = configValue);
@@ -13923,9 +13931,9 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "VERSION": function() { return /* binding */ VERSION; }
+/* harmony export */   VERSION: function() { return /* binding */ VERSION; }
 /* harmony export */ });
-const VERSION = "1.3.3";
+const VERSION = "1.4.0";
 
 /***/ }),
 
@@ -15115,6 +15123,21 @@ function assertOptions(options, schema, allowUnknown) {
 
 /***/ }),
 
+/***/ "./node_modules/axios/lib/platform/browser/classes/Blob.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/axios/lib/platform/browser/classes/Blob.js ***!
+  \*****************************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+
+
+/* harmony default export */ __webpack_exports__["default"] = (typeof Blob !== 'undefined' ? Blob : null);
+
+
+/***/ }),
+
 /***/ "./node_modules/axios/lib/platform/browser/classes/FormData.js":
 /*!*********************************************************************!*\
   !*** ./node_modules/axios/lib/platform/browser/classes/FormData.js ***!
@@ -15157,6 +15180,8 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _classes_URLSearchParams_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./classes/URLSearchParams.js */ "./node_modules/axios/lib/platform/browser/classes/URLSearchParams.js");
 /* harmony import */ var _classes_FormData_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./classes/FormData.js */ "./node_modules/axios/lib/platform/browser/classes/FormData.js");
+/* harmony import */ var _classes_Blob_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./classes/Blob.js */ "./node_modules/axios/lib/platform/browser/classes/Blob.js");
+
 
 
 
@@ -15214,7 +15239,7 @@ const isStandardBrowserEnv = (() => {
   classes: {
     URLSearchParams: _classes_URLSearchParams_js__WEBPACK_IMPORTED_MODULE_0__["default"],
     FormData: _classes_FormData_js__WEBPACK_IMPORTED_MODULE_1__["default"],
-    Blob
+    Blob: _classes_Blob_js__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   isStandardBrowserEnv,
   isStandardBrowserWebWorkerEnv,
@@ -15423,12 +15448,16 @@ const isStream = (val) => isObject(val) && isFunction(val.pipe);
  * @returns {boolean} True if value is an FormData, otherwise false
  */
 const isFormData = (thing) => {
-  const pattern = '[object FormData]';
+  let kind;
   return thing && (
-    (typeof FormData === 'function' && thing instanceof FormData) ||
-    toString.call(thing) === pattern ||
-    (isFunction(thing.toString) && thing.toString() === pattern)
-  );
+    (typeof FormData === 'function' && thing instanceof FormData) || (
+      isFunction(thing.append) && (
+        (kind = kindOf(thing)) === 'formdata' ||
+        // detect form-data instance
+        (kind === 'object' && isFunction(thing.toString) && thing.toString() === '[object FormData]')
+      )
+    )
+  )
 }
 
 /**
@@ -15893,6 +15922,11 @@ const toJSONObject = (obj) => {
   return visit(obj, 0);
 }
 
+const isAsyncFn = kindOfTest('AsyncFunction');
+
+const isThenable = (thing) =>
+  thing && (isObject(thing) || isFunction(thing)) && isFunction(thing.then) && isFunction(thing.catch);
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   isArray,
   isArrayBuffer,
@@ -15942,7 +15976,9 @@ const toJSONObject = (obj) => {
   ALPHABET,
   generateString,
   isSpecCompliantForm,
-  toJSONObject
+  toJSONObject,
+  isAsyncFn,
+  isThenable
 });
 
 
@@ -16034,10 +16070,13 @@ const toJSONObject = (obj) => {
 /******/ 		var document = __webpack_require__.g.document;
 /******/ 		if (!scriptUrl && document) {
 /******/ 			if (document.currentScript)
-/******/ 				scriptUrl = document.currentScript.src
+/******/ 				scriptUrl = document.currentScript.src;
 /******/ 			if (!scriptUrl) {
 /******/ 				var scripts = document.getElementsByTagName("script");
-/******/ 				if(scripts.length) scriptUrl = scripts[scripts.length - 1].src
+/******/ 				if(scripts.length) {
+/******/ 					var i = scripts.length - 1;
+/******/ 					while (i > -1 && !scriptUrl) scriptUrl = scripts[i--].src;
+/******/ 				}
 /******/ 			}
 /******/ 		}
 /******/ 		// When supporting browsers where an automatic publicPath is not supported you must specify an output.publicPath manually via configuration
@@ -16057,12 +16096,12 @@ var __webpack_exports__ = {};
   \*************************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "convertArrayToString": function() { return /* binding */ convertArrayToString; },
-/* harmony export */   "extractFirstValueFromArray": function() { return /* binding */ extractFirstValueFromArray; },
-/* harmony export */   "handleBeaconData": function() { return /* binding */ handleBeaconData; },
-/* harmony export */   "handleBeaconInitialData": function() { return /* binding */ handleBeaconInitialData; },
-/* harmony export */   "updateFingerPrintProperties": function() { return /* binding */ updateFingerPrintProperties; },
-/* harmony export */   "verifyPropertyType": function() { return /* binding */ verifyPropertyType; }
+/* harmony export */   convertArrayToString: function() { return /* binding */ convertArrayToString; },
+/* harmony export */   extractFirstValueFromArray: function() { return /* binding */ extractFirstValueFromArray; },
+/* harmony export */   handleBeaconData: function() { return /* binding */ handleBeaconData; },
+/* harmony export */   handleBeaconInitialData: function() { return /* binding */ handleBeaconInitialData; },
+/* harmony export */   updateFingerPrintProperties: function() { return /* binding */ updateFingerPrintProperties; },
+/* harmony export */   verifyPropertyType: function() { return /* binding */ verifyPropertyType; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/typeof */ "./node_modules/@babel/runtime-corejs3/helpers/esm/typeof.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_json_stringify__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/json/stringify */ "./node_modules/@babel/runtime-corejs3/core-js-stable/json/stringify.js");

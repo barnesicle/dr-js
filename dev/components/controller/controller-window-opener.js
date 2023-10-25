@@ -39,7 +39,7 @@ var __webpack_exports__ = {};
   \*******************************************************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "openWindow": function() { return /* binding */ openWindow; }
+/* harmony export */   openWindow: function() { return /* binding */ openWindow; }
 /* harmony export */ });
 function openWindow(url) {
   return window.open(url, '_blank');

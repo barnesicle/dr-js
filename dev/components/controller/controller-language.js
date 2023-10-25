@@ -39,7 +39,7 @@ var __webpack_exports__ = {};
   \**************************************************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "getLanguageFromLocale": function() { return /* binding */ getLanguageFromLocale; }
+/* harmony export */   getLanguageFromLocale: function() { return /* binding */ getLanguageFromLocale; }
 /* harmony export */ });
 function getLanguageFromLocale(locale) {
   return locale.split('-')[0];

@@ -10,12 +10,12 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "REDIRECT_STORAGE_ACTION_KEY": function() { return /* binding */ REDIRECT_STORAGE_ACTION_KEY; },
-/* harmony export */   "REDIRECT_STORAGE_SESSION_AUTHENTICATION_ID": function() { return /* binding */ REDIRECT_STORAGE_SESSION_AUTHENTICATION_ID; },
-/* harmony export */   "REDIRECT_STORAGE_SOURCE_AUTHENTICATION_ID": function() { return /* binding */ REDIRECT_STORAGE_SOURCE_AUTHENTICATION_ID; },
-/* harmony export */   "createHandleSessionAuthenticationStorageEvent": function() { return /* binding */ createHandleSessionAuthenticationStorageEvent; },
-/* harmony export */   "createHandleSourceAuthenticationStorageEvent": function() { return /* binding */ createHandleSourceAuthenticationStorageEvent; },
-/* harmony export */   "createHandleStorageEvent": function() { return /* binding */ createHandleStorageEvent; }
+/* harmony export */   REDIRECT_STORAGE_ACTION_KEY: function() { return /* binding */ REDIRECT_STORAGE_ACTION_KEY; },
+/* harmony export */   REDIRECT_STORAGE_SESSION_AUTHENTICATION_ID: function() { return /* binding */ REDIRECT_STORAGE_SESSION_AUTHENTICATION_ID; },
+/* harmony export */   REDIRECT_STORAGE_SOURCE_AUTHENTICATION_ID: function() { return /* binding */ REDIRECT_STORAGE_SOURCE_AUTHENTICATION_ID; },
+/* harmony export */   createHandleSessionAuthenticationStorageEvent: function() { return /* binding */ createHandleSessionAuthenticationStorageEvent; },
+/* harmony export */   createHandleSourceAuthenticationStorageEvent: function() { return /* binding */ createHandleSourceAuthenticationStorageEvent; },
+/* harmony export */   createHandleStorageEvent: function() { return /* binding */ createHandleStorageEvent; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/includes */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/includes.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_0__);
@@ -102,13 +102,13 @@ function createHandleSessionAuthenticationStorageEvent(components, clientEmitter
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "getActionFromQueryString": function() { return /* binding */ getActionFromQueryString; },
-/* harmony export */   "getComponentIdFromQueryString": function() { return /* binding */ getComponentIdFromQueryString; },
-/* harmony export */   "getControllerIdFromQueryString": function() { return /* binding */ getControllerIdFromQueryString; },
-/* harmony export */   "getQueryParameter": function() { return /* binding */ getQueryParameter; },
-/* harmony export */   "getSessionAuthenticationIdFromQueryString": function() { return /* binding */ getSessionAuthenticationIdFromQueryString; },
-/* harmony export */   "getSourceAuthenticationIdFromQueryString": function() { return /* binding */ getSourceAuthenticationIdFromQueryString; },
-/* harmony export */   "getTypeFromQueryString": function() { return /* binding */ getTypeFromQueryString; }
+/* harmony export */   getActionFromQueryString: function() { return /* binding */ getActionFromQueryString; },
+/* harmony export */   getComponentIdFromQueryString: function() { return /* binding */ getComponentIdFromQueryString; },
+/* harmony export */   getControllerIdFromQueryString: function() { return /* binding */ getControllerIdFromQueryString; },
+/* harmony export */   getQueryParameter: function() { return /* binding */ getQueryParameter; },
+/* harmony export */   getSessionAuthenticationIdFromQueryString: function() { return /* binding */ getSessionAuthenticationIdFromQueryString; },
+/* harmony export */   getSourceAuthenticationIdFromQueryString: function() { return /* binding */ getSourceAuthenticationIdFromQueryString; },
+/* harmony export */   getTypeFromQueryString: function() { return /* binding */ getTypeFromQueryString; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_slice__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/slice */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/slice.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_slice__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_slice__WEBPACK_IMPORTED_MODULE_0__);
@@ -193,8 +193,8 @@ function getSessionAuthenticationIdFromQueryString(queryString) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "clearRedirectData": function() { return /* binding */ clearRedirectData; },
-/* harmony export */   "setRedirectWindowData": function() { return /* binding */ setRedirectWindowData; }
+/* harmony export */   clearRedirectData: function() { return /* binding */ clearRedirectData; },
+/* harmony export */   setRedirectWindowData: function() { return /* binding */ setRedirectWindowData; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/asyncToGenerator */ "./node_modules/@babel/runtime-corejs3/helpers/esm/asyncToGenerator.js");
 /* harmony import */ var _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/regenerator */ "./node_modules/@babel/runtime-corejs3/regenerator/index.js");
@@ -7761,10 +7761,13 @@ function _asyncToGenerator(fn) {
 /******/ 		var document = __webpack_require__.g.document;
 /******/ 		if (!scriptUrl && document) {
 /******/ 			if (document.currentScript)
-/******/ 				scriptUrl = document.currentScript.src
+/******/ 				scriptUrl = document.currentScript.src;
 /******/ 			if (!scriptUrl) {
 /******/ 				var scripts = document.getElementsByTagName("script");
-/******/ 				if(scripts.length) scriptUrl = scripts[scripts.length - 1].src
+/******/ 				if(scripts.length) {
+/******/ 					var i = scripts.length - 1;
+/******/ 					while (i > -1 && !scriptUrl) scriptUrl = scripts[i--].src;
+/******/ 				}
 /******/ 			}
 /******/ 		}
 /******/ 		// When supporting browsers where an automatic publicPath is not supported you must specify an output.publicPath manually via configuration

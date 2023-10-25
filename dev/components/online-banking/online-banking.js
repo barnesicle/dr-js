@@ -10,11 +10,11 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "getAriaLabel": function() { return /* binding */ getAriaLabel; },
-/* harmony export */   "getIframeTitle": function() { return /* binding */ getIframeTitle; },
-/* harmony export */   "setAriaInvalid": function() { return /* binding */ setAriaInvalid; },
-/* harmony export */   "setAriaLabel": function() { return /* binding */ setAriaLabel; },
-/* harmony export */   "setLabelText": function() { return /* binding */ setLabelText; }
+/* harmony export */   getAriaLabel: function() { return /* binding */ getAriaLabel; },
+/* harmony export */   getIframeTitle: function() { return /* binding */ getIframeTitle; },
+/* harmony export */   setAriaInvalid: function() { return /* binding */ setAriaInvalid; },
+/* harmony export */   setAriaLabel: function() { return /* binding */ setAriaLabel; },
+/* harmony export */   setLabelText: function() { return /* binding */ setLabelText; }
 /* harmony export */ });
 /* harmony import */ var _localization_localized_messages__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./localization/localized-messages */ "./src/app/components/localization/localized-messages.js");
 /* harmony import */ var _json_accessibility_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../json/accessibility.json */ "./src/json/accessibility.json");
@@ -84,7 +84,7 @@ function setLabelText(el, locale, componentType) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "config": function() { return /* binding */ config; }
+/* harmony export */   config: function() { return /* binding */ config; }
 /* harmony export */ });
 // Holds any configuration data that changes depending on environment
 var config = {
@@ -140,16 +140,16 @@ var config = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "addBrowserInfoToSourceRequest": function() { return /* binding */ addBrowserInfoToSourceRequest; },
-/* harmony export */   "chooseCreateSourceCatchMessage": function() { return /* binding */ chooseCreateSourceCatchMessage; },
-/* harmony export */   "formatComponentTriggerErrors": function() { return /* binding */ formatComponentTriggerErrors; },
-/* harmony export */   "handleAdyenError": function() { return /* binding */ handleAdyenError; },
-/* harmony export */   "handleCreateSourceValidation": function() { return /* binding */ handleCreateSourceValidation; },
-/* harmony export */   "handlePaymentServiceThen": function() { return /* binding */ handlePaymentServiceThen; },
-/* harmony export */   "retrieveSourceAndHandleResponse": function() { return /* binding */ retrieveSourceAndHandleResponse; },
-/* harmony export */   "runCreateSourceAndHandleResponse": function() { return /* binding */ runCreateSourceAndHandleResponse; },
-/* harmony export */   "runCreateSourceAndHandleResponseForAdyen": function() { return /* binding */ runCreateSourceAndHandleResponseForAdyen; },
-/* harmony export */   "updateSourceAndHandleResponse": function() { return /* binding */ updateSourceAndHandleResponse; }
+/* harmony export */   addBrowserInfoToSourceRequest: function() { return /* binding */ addBrowserInfoToSourceRequest; },
+/* harmony export */   chooseCreateSourceCatchMessage: function() { return /* binding */ chooseCreateSourceCatchMessage; },
+/* harmony export */   formatComponentTriggerErrors: function() { return /* binding */ formatComponentTriggerErrors; },
+/* harmony export */   handleAdyenError: function() { return /* binding */ handleAdyenError; },
+/* harmony export */   handleCreateSourceValidation: function() { return /* binding */ handleCreateSourceValidation; },
+/* harmony export */   handlePaymentServiceThen: function() { return /* binding */ handlePaymentServiceThen; },
+/* harmony export */   retrieveSourceAndHandleResponse: function() { return /* binding */ retrieveSourceAndHandleResponse; },
+/* harmony export */   runCreateSourceAndHandleResponse: function() { return /* binding */ runCreateSourceAndHandleResponse; },
+/* harmony export */   runCreateSourceAndHandleResponseForAdyen: function() { return /* binding */ runCreateSourceAndHandleResponseForAdyen; },
+/* harmony export */   updateSourceAndHandleResponse: function() { return /* binding */ updateSourceAndHandleResponse; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/for-each */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/for-each.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_0__);
@@ -465,7 +465,7 @@ function formatFailedSourceError(source) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "getLanguageFromLocale": function() { return /* binding */ getLanguageFromLocale; }
+/* harmony export */   getLanguageFromLocale: function() { return /* binding */ getLanguageFromLocale; }
 /* harmony export */ });
 function getLanguageFromLocale(locale) {
   return locale.split('-')[0];
@@ -482,9 +482,9 @@ function getLanguageFromLocale(locale) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "countryHasEntity": function() { return /* binding */ countryHasEntity; },
-/* harmony export */   "getEntityForCountry": function() { return /* binding */ getEntityForCountry; },
-/* harmony export */   "runGetCountrySpecsAndHandleResponse": function() { return /* binding */ runGetCountrySpecsAndHandleResponse; }
+/* harmony export */   countryHasEntity: function() { return /* binding */ countryHasEntity; },
+/* harmony export */   getEntityForCountry: function() { return /* binding */ getEntityForCountry; },
+/* harmony export */   runGetCountrySpecsAndHandleResponse: function() { return /* binding */ runGetCountrySpecsAndHandleResponse; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/concat */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/concat.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_0__);
@@ -585,7 +585,7 @@ function runGetCountrySpecsAndHandleResponse(apiKey, country, sellingEntity) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "openWindow": function() { return /* binding */ openWindow; }
+/* harmony export */   openWindow: function() { return /* binding */ openWindow; }
 /* harmony export */ });
 function openWindow(url) {
   return window.open(url, '_blank');
@@ -602,7 +602,7 @@ function openWindow(url) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "generateInstanceData": function() { return /* binding */ generateInstanceData; }
+/* harmony export */   generateInstanceData: function() { return /* binding */ generateInstanceData; }
 /* harmony export */ });
 /**
  * generateInstanceData assembles arguments into an object which it returns
@@ -636,11 +636,11 @@ function generateInstanceData(controllerEmitter, componentData, getPaymentOption
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "creditCardLengthByBrand": function() { return /* binding */ creditCardLengthByBrand; },
-/* harmony export */   "creditCardSpacesByBrand": function() { return /* binding */ creditCardSpacesByBrand; },
-/* harmony export */   "detectType": function() { return /* binding */ detectType; },
-/* harmony export */   "formatLength": function() { return /* binding */ formatLength; },
-/* harmony export */   "validateCreditCardLength": function() { return /* binding */ validateCreditCardLength; }
+/* harmony export */   creditCardLengthByBrand: function() { return /* binding */ creditCardLengthByBrand; },
+/* harmony export */   creditCardSpacesByBrand: function() { return /* binding */ creditCardSpacesByBrand; },
+/* harmony export */   detectType: function() { return /* binding */ detectType; },
+/* harmony export */   formatLength: function() { return /* binding */ formatLength; },
+/* harmony export */   validateCreditCardLength: function() { return /* binding */ validateCreditCardLength; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/for-each */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/for-each.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_0__);
@@ -899,10 +899,10 @@ function getPrefix(value, prefix) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "createCreditCard": function() { return /* binding */ createCreditCard; },
-/* harmony export */   "createElements": function() { return /* binding */ createElements; },
-/* harmony export */   "handleCreditCardEvent": function() { return /* binding */ handleCreditCardEvent; },
-/* harmony export */   "mountCreditCard": function() { return /* binding */ mountCreditCard; }
+/* harmony export */   createCreditCard: function() { return /* binding */ createCreditCard; },
+/* harmony export */   createElements: function() { return /* binding */ createElements; },
+/* harmony export */   handleCreditCardEvent: function() { return /* binding */ handleCreditCardEvent; },
+/* harmony export */   mountCreditCard: function() { return /* binding */ mountCreditCard; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/defineProperty */ "./node_modules/@babel/runtime-corejs3/helpers/esm/defineProperty.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_map__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/map */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/map.js");
@@ -1290,8 +1290,8 @@ function updateCard(elements, element, details) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "convertLengthToPlaceholderText": function() { return /* binding */ convertLengthToPlaceholderText; },
-/* harmony export */   "getLengthOfCVV": function() { return /* binding */ getLengthOfCVV; }
+/* harmony export */   convertLengthToPlaceholderText: function() { return /* binding */ convertLengthToPlaceholderText; },
+/* harmony export */   getLengthOfCVV: function() { return /* binding */ getLengthOfCVV; }
 /* harmony export */ });
 /* harmony import */ var _validator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../validator */ "./src/app/components/validator.js");
 
@@ -1326,7 +1326,7 @@ function getLengthOfCVV(event) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "createEvent": function() { return /* binding */ createEvent; }
+/* harmony export */   createEvent: function() { return /* binding */ createEvent; }
 /* harmony export */ });
 function createEvent(type) {
   if (typeof Event === 'function') {
@@ -1349,7 +1349,7 @@ function createEvent(type) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "sendCreateSourceRequest": function() { return /* binding */ sendCreateSourceRequest; }
+/* harmony export */   sendCreateSourceRequest: function() { return /* binding */ sendCreateSourceRequest; }
 /* harmony export */ });
 /* harmony import */ var _input_events__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./input-events */ "./src/app/components/input-events.js");
 /* harmony import */ var _td_td_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./td/td-utils */ "./src/app/components/td/td-utils.js");
@@ -1415,7 +1415,7 @@ function sendCreateSourceRequest(controllerEmitter, componentData, responseData,
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "getGeneralErrorMessageByLocale": function() { return /* binding */ getGeneralErrorMessageByLocale; }
+/* harmony export */   getGeneralErrorMessageByLocale: function() { return /* binding */ getGeneralErrorMessageByLocale; }
 /* harmony export */ });
 /* harmony import */ var _google_pay_translations_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./google-pay-translations.json */ "./src/app/components/google-pay/google-pay-translations.json");
 
@@ -1437,20 +1437,20 @@ function getGeneralErrorMessageByLocale(locale) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "addContainerToDom": function() { return /* binding */ addContainerToDom; },
-/* harmony export */   "createAndMountIBAN": function() { return /* binding */ createAndMountIBAN; },
-/* harmony export */   "createIdeal": function() { return /* binding */ createIdeal; },
-/* harmony export */   "determineMandateCheckboxErrorId": function() { return /* binding */ determineMandateCheckboxErrorId; },
-/* harmony export */   "determineMandateCheckboxId": function() { return /* binding */ determineMandateCheckboxId; },
-/* harmony export */   "determineMandateTextId": function() { return /* binding */ determineMandateTextId; },
-/* harmony export */   "emitComponentReady": function() { return /* binding */ emitComponentReady; },
-/* harmony export */   "getMandateValue": function() { return /* binding */ getMandateValue; },
-/* harmony export */   "handleFieldChange": function() { return /* binding */ handleFieldChange; },
-/* harmony export */   "handleMandateChange": function() { return /* binding */ handleMandateChange; },
-/* harmony export */   "handleOnChangeEvent": function() { return /* binding */ handleOnChangeEvent; },
-/* harmony export */   "handleOptions": function() { return /* binding */ handleOptions; },
-/* harmony export */   "mountElement": function() { return /* binding */ mountElement; },
-/* harmony export */   "unmountElement": function() { return /* binding */ unmountElement; }
+/* harmony export */   addContainerToDom: function() { return /* binding */ addContainerToDom; },
+/* harmony export */   createAndMountIBAN: function() { return /* binding */ createAndMountIBAN; },
+/* harmony export */   createIdeal: function() { return /* binding */ createIdeal; },
+/* harmony export */   determineMandateCheckboxErrorId: function() { return /* binding */ determineMandateCheckboxErrorId; },
+/* harmony export */   determineMandateCheckboxId: function() { return /* binding */ determineMandateCheckboxId; },
+/* harmony export */   determineMandateTextId: function() { return /* binding */ determineMandateTextId; },
+/* harmony export */   emitComponentReady: function() { return /* binding */ emitComponentReady; },
+/* harmony export */   getMandateValue: function() { return /* binding */ getMandateValue; },
+/* harmony export */   handleFieldChange: function() { return /* binding */ handleFieldChange; },
+/* harmony export */   handleMandateChange: function() { return /* binding */ handleMandateChange; },
+/* harmony export */   handleOnChangeEvent: function() { return /* binding */ handleOnChangeEvent; },
+/* harmony export */   handleOptions: function() { return /* binding */ handleOptions; },
+/* harmony export */   mountElement: function() { return /* binding */ mountElement; },
+/* harmony export */   unmountElement: function() { return /* binding */ unmountElement; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/promise */ "./node_modules/@babel/runtime-corejs3/core-js-stable/promise.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_0__);
@@ -1750,13 +1750,13 @@ function updateIBANErrorMessages(ibanElement) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "applyErrorMessageToEvent": function() { return /* binding */ applyErrorMessageToEvent; },
-/* harmony export */   "applyInputAriaInvalidIndicatorToEvent": function() { return /* binding */ applyInputAriaInvalidIndicatorToEvent; },
-/* harmony export */   "applyInputStylesToEvent": function() { return /* binding */ applyInputStylesToEvent; },
-/* harmony export */   "handleEvent": function() { return /* binding */ handleEvent; },
-/* harmony export */   "handleReturnKeyEvent": function() { return /* binding */ handleReturnKeyEvent; },
-/* harmony export */   "runEventOnElement": function() { return /* binding */ runEventOnElement; },
-/* harmony export */   "sendEventData": function() { return /* binding */ sendEventData; }
+/* harmony export */   applyErrorMessageToEvent: function() { return /* binding */ applyErrorMessageToEvent; },
+/* harmony export */   applyInputAriaInvalidIndicatorToEvent: function() { return /* binding */ applyInputAriaInvalidIndicatorToEvent; },
+/* harmony export */   applyInputStylesToEvent: function() { return /* binding */ applyInputStylesToEvent; },
+/* harmony export */   handleEvent: function() { return /* binding */ handleEvent; },
+/* harmony export */   handleReturnKeyEvent: function() { return /* binding */ handleReturnKeyEvent; },
+/* harmony export */   runEventOnElement: function() { return /* binding */ runEventOnElement; },
+/* harmony export */   sendEventData: function() { return /* binding */ sendEventData; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/typeof */ "./node_modules/@babel/runtime-corejs3/helpers/esm/typeof.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/object/assign */ "./node_modules/@babel/runtime-corejs3/core-js-stable/object/assign.js");
@@ -2139,18 +2139,18 @@ function runEventOnElement(event, triggerData) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "DEFAULT_COUNTRY": function() { return /* binding */ DEFAULT_COUNTRY; },
-/* harmony export */   "DEFAULT_LANGUAGE": function() { return /* binding */ DEFAULT_LANGUAGE; },
-/* harmony export */   "DEFAULT_LOCALE": function() { return /* binding */ DEFAULT_LOCALE; },
-/* harmony export */   "forceCasingOfLocale": function() { return /* binding */ forceCasingOfLocale; },
-/* harmony export */   "getCountryFromLocale": function() { return /* binding */ getCountryFromLocale; },
-/* harmony export */   "getLanguageFromLocale": function() { return /* binding */ getLanguageFromLocale; },
-/* harmony export */   "getLanguageMap": function() { return /* binding */ getLanguageMap; },
-/* harmony export */   "getLocaleFromCountry": function() { return /* binding */ getLocaleFromCountry; },
-/* harmony export */   "getLocaleFromLanguage": function() { return /* binding */ getLocaleFromLanguage; },
-/* harmony export */   "getLocaleMessage": function() { return /* binding */ getLocaleMessage; },
-/* harmony export */   "getMappedLocale": function() { return /* binding */ getMappedLocale; },
-/* harmony export */   "localeMessagesContainsClientProvidedLocale": function() { return /* binding */ localeMessagesContainsClientProvidedLocale; }
+/* harmony export */   DEFAULT_COUNTRY: function() { return /* binding */ DEFAULT_COUNTRY; },
+/* harmony export */   DEFAULT_LANGUAGE: function() { return /* binding */ DEFAULT_LANGUAGE; },
+/* harmony export */   DEFAULT_LOCALE: function() { return /* binding */ DEFAULT_LOCALE; },
+/* harmony export */   forceCasingOfLocale: function() { return /* binding */ forceCasingOfLocale; },
+/* harmony export */   getCountryFromLocale: function() { return /* binding */ getCountryFromLocale; },
+/* harmony export */   getLanguageFromLocale: function() { return /* binding */ getLanguageFromLocale; },
+/* harmony export */   getLanguageMap: function() { return /* binding */ getLanguageMap; },
+/* harmony export */   getLocaleFromCountry: function() { return /* binding */ getLocaleFromCountry; },
+/* harmony export */   getLocaleFromLanguage: function() { return /* binding */ getLocaleFromLanguage; },
+/* harmony export */   getLocaleMessage: function() { return /* binding */ getLocaleMessage; },
+/* harmony export */   getMappedLocale: function() { return /* binding */ getMappedLocale; },
+/* harmony export */   localeMessagesContainsClientProvidedLocale: function() { return /* binding */ localeMessagesContainsClientProvidedLocale; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/slicedToArray */ "./node_modules/@babel/runtime-corejs3/helpers/esm/slicedToArray.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/filter */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/filter.js");
@@ -2349,12 +2349,12 @@ function getCountryFromLocale(locale) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "applyOptions": function() { return /* binding */ applyOptions; },
-/* harmony export */   "isValidColor": function() { return /* binding */ isValidColor; },
-/* harmony export */   "mergeOptions": function() { return /* binding */ mergeOptions; },
-/* harmony export */   "sanitizeOptions": function() { return /* binding */ sanitizeOptions; },
-/* harmony export */   "sanitizeOptionsForGoogleApplePay": function() { return /* binding */ sanitizeOptionsForGoogleApplePay; },
-/* harmony export */   "sanitizeOptionsForType": function() { return /* binding */ sanitizeOptionsForType; }
+/* harmony export */   applyOptions: function() { return /* binding */ applyOptions; },
+/* harmony export */   isValidColor: function() { return /* binding */ isValidColor; },
+/* harmony export */   mergeOptions: function() { return /* binding */ mergeOptions; },
+/* harmony export */   sanitizeOptions: function() { return /* binding */ sanitizeOptions; },
+/* harmony export */   sanitizeOptionsForGoogleApplePay: function() { return /* binding */ sanitizeOptionsForGoogleApplePay; },
+/* harmony export */   sanitizeOptionsForType: function() { return /* binding */ sanitizeOptionsForType; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/typeof */ "./node_modules/@babel/runtime-corejs3/helpers/esm/typeof.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_array_is_array__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/array/is-array */ "./node_modules/@babel/runtime-corejs3/core-js-stable/array/is-array.js");
@@ -2514,18 +2514,18 @@ function mergeOptions(options, newOptions) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "createCompleteFunction": function() { return /* binding */ createCompleteFunction; },
-/* harmony export */   "createDisplayItems": function() { return /* binding */ createDisplayItems; },
-/* harmony export */   "emitComponentCancelled": function() { return /* binding */ emitComponentCancelled; },
-/* harmony export */   "emitComponentReady": function() { return /* binding */ emitComponentReady; },
-/* harmony export */   "getGoogleDefaultShippingOptions": function() { return /* binding */ getGoogleDefaultShippingOptions; },
-/* harmony export */   "getGoogleTransactionInfo": function() { return /* binding */ getGoogleTransactionInfo; },
-/* harmony export */   "onPayButtonClick": function() { return /* binding */ onPayButtonClick; },
-/* harmony export */   "processPayment": function() { return /* binding */ processPayment; },
-/* harmony export */   "sendClickEvent": function() { return /* binding */ sendClickEvent; },
-/* harmony export */   "sendShippingAddressChangeEvent": function() { return /* binding */ sendShippingAddressChangeEvent; },
-/* harmony export */   "sendShippingOptionChangeEvent": function() { return /* binding */ sendShippingOptionChangeEvent; },
-/* harmony export */   "waitForClientUpdateWithFunction": function() { return /* binding */ waitForClientUpdateWithFunction; }
+/* harmony export */   createCompleteFunction: function() { return /* binding */ createCompleteFunction; },
+/* harmony export */   createDisplayItems: function() { return /* binding */ createDisplayItems; },
+/* harmony export */   emitComponentCancelled: function() { return /* binding */ emitComponentCancelled; },
+/* harmony export */   emitComponentReady: function() { return /* binding */ emitComponentReady; },
+/* harmony export */   getGoogleDefaultShippingOptions: function() { return /* binding */ getGoogleDefaultShippingOptions; },
+/* harmony export */   getGoogleTransactionInfo: function() { return /* binding */ getGoogleTransactionInfo; },
+/* harmony export */   onPayButtonClick: function() { return /* binding */ onPayButtonClick; },
+/* harmony export */   processPayment: function() { return /* binding */ processPayment; },
+/* harmony export */   sendClickEvent: function() { return /* binding */ sendClickEvent; },
+/* harmony export */   sendShippingAddressChangeEvent: function() { return /* binding */ sendShippingAddressChangeEvent; },
+/* harmony export */   sendShippingOptionChangeEvent: function() { return /* binding */ sendShippingOptionChangeEvent; },
+/* harmony export */   waitForClientUpdateWithFunction: function() { return /* binding */ waitForClientUpdateWithFunction; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/asyncToGenerator */ "./node_modules/@babel/runtime-corejs3/helpers/esm/asyncToGenerator.js");
 /* harmony import */ var _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/regenerator */ "./node_modules/@babel/runtime-corejs3/regenerator/index.js");
@@ -2827,21 +2827,21 @@ function getGoogleDefaultShippingOptions(paymentOptions) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "completePaymentWithFailure": function() { return /* binding */ completePaymentWithFailure; },
-/* harmony export */   "completePaymentWithSuccess": function() { return /* binding */ completePaymentWithSuccess; },
-/* harmony export */   "convertClientShippingAddressErrorsForPaymentRequestUpdateEvent": function() { return /* binding */ convertClientShippingAddressErrorsForPaymentRequestUpdateEvent; },
-/* harmony export */   "convertDisplayOptions": function() { return /* binding */ convertDisplayOptions; },
-/* harmony export */   "convertPaymentRequestApiShippingAddressForEvent": function() { return /* binding */ convertPaymentRequestApiShippingAddressForEvent; },
-/* harmony export */   "convertShippingOptions": function() { return /* binding */ convertShippingOptions; },
-/* harmony export */   "getDetailsFromOptions": function() { return /* binding */ getDetailsFromOptions; },
-/* harmony export */   "onBuyClicked": function() { return /* binding */ onBuyClicked; },
-/* harmony export */   "paymentRequestApiResponseToPaymentServiceRequest": function() { return /* binding */ paymentRequestApiResponseToPaymentServiceRequest; },
-/* harmony export */   "processClickEvent": function() { return /* binding */ processClickEvent; },
-/* harmony export */   "shippingAddressChange": function() { return /* binding */ shippingAddressChange; },
-/* harmony export */   "shippingOptionChange": function() { return /* binding */ shippingOptionChange; },
-/* harmony export */   "splitName": function() { return /* binding */ splitName; },
-/* harmony export */   "toSourceEventData": function() { return /* binding */ toSourceEventData; },
-/* harmony export */   "updateShippingOptionsSelectedAttribute": function() { return /* binding */ updateShippingOptionsSelectedAttribute; }
+/* harmony export */   completePaymentWithFailure: function() { return /* binding */ completePaymentWithFailure; },
+/* harmony export */   completePaymentWithSuccess: function() { return /* binding */ completePaymentWithSuccess; },
+/* harmony export */   convertClientShippingAddressErrorsForPaymentRequestUpdateEvent: function() { return /* binding */ convertClientShippingAddressErrorsForPaymentRequestUpdateEvent; },
+/* harmony export */   convertDisplayOptions: function() { return /* binding */ convertDisplayOptions; },
+/* harmony export */   convertPaymentRequestApiShippingAddressForEvent: function() { return /* binding */ convertPaymentRequestApiShippingAddressForEvent; },
+/* harmony export */   convertShippingOptions: function() { return /* binding */ convertShippingOptions; },
+/* harmony export */   getDetailsFromOptions: function() { return /* binding */ getDetailsFromOptions; },
+/* harmony export */   onBuyClicked: function() { return /* binding */ onBuyClicked; },
+/* harmony export */   paymentRequestApiResponseToPaymentServiceRequest: function() { return /* binding */ paymentRequestApiResponseToPaymentServiceRequest; },
+/* harmony export */   processClickEvent: function() { return /* binding */ processClickEvent; },
+/* harmony export */   shippingAddressChange: function() { return /* binding */ shippingAddressChange; },
+/* harmony export */   shippingOptionChange: function() { return /* binding */ shippingOptionChange; },
+/* harmony export */   splitName: function() { return /* binding */ splitName; },
+/* harmony export */   toSourceEventData: function() { return /* binding */ toSourceEventData; },
+/* harmony export */   updateShippingOptionsSelectedAttribute: function() { return /* binding */ updateShippingOptionsSelectedAttribute; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/promise */ "./node_modules/@babel/runtime-corejs3/core-js-stable/promise.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_0__);
@@ -3185,7 +3185,7 @@ function updateShippingOptionsSelectedAttribute(paymentOptions) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "generateComponentData": function() { return /* binding */ generateComponentData; }
+/* harmony export */   generateComponentData: function() { return /* binding */ generateComponentData; }
 /* harmony export */ });
 /* harmony import */ var _client_createComponent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../client/createComponent */ "./src/client/createComponent.js");
 
@@ -3241,14 +3241,14 @@ function generateComponentData(type, id, controllerId) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "addGetComponentData": function() { return /* binding */ addGetComponentData; },
-/* harmony export */   "addGetComponentDataByValue": function() { return /* binding */ addGetComponentDataByValue; },
-/* harmony export */   "addHandleOptions": function() { return /* binding */ addHandleOptions; },
-/* harmony export */   "addHandleOptionsWithComponentId": function() { return /* binding */ addHandleOptionsWithComponentId; },
-/* harmony export */   "addTriggerEvent": function() { return /* binding */ addTriggerEvent; },
-/* harmony export */   "mountComponent": function() { return /* binding */ mountComponent; },
-/* harmony export */   "mountComponentFromClient": function() { return /* binding */ mountComponentFromClient; },
-/* harmony export */   "saveCreditCardNumberData": function() { return /* binding */ saveCreditCardNumberData; }
+/* harmony export */   addGetComponentData: function() { return /* binding */ addGetComponentData; },
+/* harmony export */   addGetComponentDataByValue: function() { return /* binding */ addGetComponentDataByValue; },
+/* harmony export */   addHandleOptions: function() { return /* binding */ addHandleOptions; },
+/* harmony export */   addHandleOptionsWithComponentId: function() { return /* binding */ addHandleOptionsWithComponentId; },
+/* harmony export */   addTriggerEvent: function() { return /* binding */ addTriggerEvent; },
+/* harmony export */   mountComponent: function() { return /* binding */ mountComponent; },
+/* harmony export */   mountComponentFromClient: function() { return /* binding */ mountComponentFromClient; },
+/* harmony export */   saveCreditCardNumberData: function() { return /* binding */ saveCreditCardNumberData; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/promise */ "./node_modules/@babel/runtime-corejs3/core-js-stable/promise.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_0__);
@@ -3413,13 +3413,13 @@ function saveCreditCardNumberData(controllerListener, saveData) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "getActionFromQueryString": function() { return /* binding */ getActionFromQueryString; },
-/* harmony export */   "getComponentIdFromQueryString": function() { return /* binding */ getComponentIdFromQueryString; },
-/* harmony export */   "getControllerIdFromQueryString": function() { return /* binding */ getControllerIdFromQueryString; },
-/* harmony export */   "getQueryParameter": function() { return /* binding */ getQueryParameter; },
-/* harmony export */   "getSessionAuthenticationIdFromQueryString": function() { return /* binding */ getSessionAuthenticationIdFromQueryString; },
-/* harmony export */   "getSourceAuthenticationIdFromQueryString": function() { return /* binding */ getSourceAuthenticationIdFromQueryString; },
-/* harmony export */   "getTypeFromQueryString": function() { return /* binding */ getTypeFromQueryString; }
+/* harmony export */   getActionFromQueryString: function() { return /* binding */ getActionFromQueryString; },
+/* harmony export */   getComponentIdFromQueryString: function() { return /* binding */ getComponentIdFromQueryString; },
+/* harmony export */   getControllerIdFromQueryString: function() { return /* binding */ getControllerIdFromQueryString; },
+/* harmony export */   getQueryParameter: function() { return /* binding */ getQueryParameter; },
+/* harmony export */   getSessionAuthenticationIdFromQueryString: function() { return /* binding */ getSessionAuthenticationIdFromQueryString; },
+/* harmony export */   getSourceAuthenticationIdFromQueryString: function() { return /* binding */ getSourceAuthenticationIdFromQueryString; },
+/* harmony export */   getTypeFromQueryString: function() { return /* binding */ getTypeFromQueryString; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_slice__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/slice */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/slice.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_slice__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_slice__WEBPACK_IMPORTED_MODULE_0__);
@@ -3504,8 +3504,8 @@ function getSessionAuthenticationIdFromQueryString(queryString) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "sanitizeInput": function() { return /* binding */ sanitizeInput; },
-/* harmony export */   "sanitizeInputForPaymentApi": function() { return /* binding */ sanitizeInputForPaymentApi; }
+/* harmony export */   sanitizeInput: function() { return /* binding */ sanitizeInput; },
+/* harmony export */   sanitizeInputForPaymentApi: function() { return /* binding */ sanitizeInputForPaymentApi; }
 /* harmony export */ });
 var restrictedSymbolPattern = new RegExp(/["'`{};<>%]/);
 var paymentApiRestrictedSymbolPattern = new RegExp(/["'`{};<>]/);
@@ -3551,8 +3551,8 @@ function sanitizeInputForPaymentApi(input) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "sendBeaconEventDetails": function() { return /* binding */ sendBeaconEventDetails; },
-/* harmony export */   "sendBeaconEventToController": function() { return /* binding */ sendBeaconEventToController; }
+/* harmony export */   sendBeaconEventDetails: function() { return /* binding */ sendBeaconEventDetails; },
+/* harmony export */   sendBeaconEventToController: function() { return /* binding */ sendBeaconEventToController; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/object/assign */ "./node_modules/@babel/runtime-corejs3/core-js-stable/object/assign.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_0__);
@@ -3647,13 +3647,13 @@ function sendBeaconEventToController(beaconWindow, eventName, sourceId, fingerPr
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "checkToSendEvent": function() { return /* binding */ checkToSendEvent; },
-/* harmony export */   "getParentDomain": function() { return /* binding */ getParentDomain; },
-/* harmony export */   "isShallowEquivalent": function() { return /* binding */ isShallowEquivalent; },
-/* harmony export */   "removeExtraCharacters": function() { return /* binding */ removeExtraCharacters; },
-/* harmony export */   "spacesAdded": function() { return /* binding */ spacesAdded; },
-/* harmony export */   "stripLetters": function() { return /* binding */ stripLetters; },
-/* harmony export */   "stripLettersAndAddForwardSlash": function() { return /* binding */ stripLettersAndAddForwardSlash; }
+/* harmony export */   checkToSendEvent: function() { return /* binding */ checkToSendEvent; },
+/* harmony export */   getParentDomain: function() { return /* binding */ getParentDomain; },
+/* harmony export */   isShallowEquivalent: function() { return /* binding */ isShallowEquivalent; },
+/* harmony export */   removeExtraCharacters: function() { return /* binding */ removeExtraCharacters; },
+/* harmony export */   spacesAdded: function() { return /* binding */ spacesAdded; },
+/* harmony export */   stripLetters: function() { return /* binding */ stripLetters; },
+/* harmony export */   stripLettersAndAddForwardSlash: function() { return /* binding */ stripLettersAndAddForwardSlash; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_json_stringify__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/json/stringify */ "./node_modules/@babel/runtime-corejs3/core-js-stable/json/stringify.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_json_stringify__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_json_stringify__WEBPACK_IMPORTED_MODULE_0__);
@@ -3765,7 +3765,7 @@ function removeExtraCharacters(value, maxLength) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "csvLength": function() { return /* binding */ csvLength; }
+/* harmony export */   csvLength: function() { return /* binding */ csvLength; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_parse_int__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/parse-int */ "./node_modules/@babel/runtime-corejs3/core-js-stable/parse-int.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_parse_int__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_parse_int__WEBPACK_IMPORTED_MODULE_0__);
@@ -4069,16 +4069,16 @@ function validateGiftCardPin(value) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "canClientCreateComponent": function() { return /* binding */ canClientCreateComponent; },
-/* harmony export */   "canMountMoreThanOne": function() { return /* binding */ canMountMoreThanOne; },
-/* harmony export */   "config": function() { return /* binding */ config; },
-/* harmony export */   "getComponentConfig": function() { return /* binding */ getComponentConfig; },
-/* harmony export */   "getComponentCreate": function() { return /* binding */ getComponentCreate; },
-/* harmony export */   "getIframeSrc": function() { return /* binding */ getIframeSrc; },
-/* harmony export */   "isClientSideComponent": function() { return /* binding */ isClientSideComponent; },
-/* harmony export */   "isValidComponent": function() { return /* binding */ isValidComponent; },
-/* harmony export */   "shouldAddBaseClass": function() { return /* binding */ shouldAddBaseClass; },
-/* harmony export */   "shouldAddEmptyClass": function() { return /* binding */ shouldAddEmptyClass; }
+/* harmony export */   canClientCreateComponent: function() { return /* binding */ canClientCreateComponent; },
+/* harmony export */   canMountMoreThanOne: function() { return /* binding */ canMountMoreThanOne; },
+/* harmony export */   config: function() { return /* binding */ config; },
+/* harmony export */   getComponentConfig: function() { return /* binding */ getComponentConfig; },
+/* harmony export */   getComponentCreate: function() { return /* binding */ getComponentCreate; },
+/* harmony export */   getIframeSrc: function() { return /* binding */ getIframeSrc; },
+/* harmony export */   isClientSideComponent: function() { return /* binding */ isClientSideComponent; },
+/* harmony export */   isValidComponent: function() { return /* binding */ isValidComponent; },
+/* harmony export */   shouldAddBaseClass: function() { return /* binding */ shouldAddBaseClass; },
+/* harmony export */   shouldAddEmptyClass: function() { return /* binding */ shouldAddEmptyClass; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/filter */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/filter.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_0__);
@@ -4291,7 +4291,7 @@ function shouldAddBaseClass(key) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "fieldKey": function() { return /* binding */ fieldKey; }
+/* harmony export */   fieldKey: function() { return /* binding */ fieldKey; }
 /* harmony export */ });
 /* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./config */ "./src/app/config.js");
 
@@ -4314,7 +4314,7 @@ function fieldKey(type, id) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "LOGGING_APPLICATION_KEY": function() { return /* binding */ LOGGING_APPLICATION_KEY; }
+/* harmony export */   LOGGING_APPLICATION_KEY: function() { return /* binding */ LOGGING_APPLICATION_KEY; }
 /* harmony export */ });
 var LOGGING_APPLICATION_KEY = 'drJSApplicationId';
 
@@ -4329,9 +4329,9 @@ var LOGGING_APPLICATION_KEY = 'drJSApplicationId';
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "invoiceAttributeRequest": function() { return /* binding */ invoiceAttributeRequest; },
-/* harmony export */   "paymentServiceGetRequest": function() { return /* binding */ paymentServiceGetRequest; },
-/* harmony export */   "paymentServiceRequest": function() { return /* binding */ paymentServiceRequest; }
+/* harmony export */   invoiceAttributeRequest: function() { return /* binding */ invoiceAttributeRequest; },
+/* harmony export */   paymentServiceGetRequest: function() { return /* binding */ paymentServiceGetRequest; },
+/* harmony export */   paymentServiceRequest: function() { return /* binding */ paymentServiceRequest; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_json_stringify__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/json/stringify */ "./node_modules/@babel/runtime-corejs3/core-js-stable/json/stringify.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_json_stringify__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_json_stringify__WEBPACK_IMPORTED_MODULE_0__);
@@ -4404,24 +4404,24 @@ var generateAuthHeader = function generateAuthHeader(apiKey) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "collectClientData": function() { return /* binding */ collectClientData; },
-/* harmony export */   "getBattery": function() { return /* binding */ getBattery; },
-/* harmony export */   "getColorDepth": function() { return /* binding */ getColorDepth; },
-/* harmony export */   "getHRef": function() { return /* binding */ getHRef; },
-/* harmony export */   "getJavaEnabled": function() { return /* binding */ getJavaEnabled; },
-/* harmony export */   "getNetworkDownlink": function() { return /* binding */ getNetworkDownlink; },
-/* harmony export */   "getNetworkEffectiveType": function() { return /* binding */ getNetworkEffectiveType; },
-/* harmony export */   "getNetworkRoundTrip": function() { return /* binding */ getNetworkRoundTrip; },
-/* harmony export */   "getScreenHeight": function() { return /* binding */ getScreenHeight; },
-/* harmony export */   "getScreenResolution": function() { return /* binding */ getScreenResolution; },
-/* harmony export */   "getScreenWidth": function() { return /* binding */ getScreenWidth; },
-/* harmony export */   "getTimeZoneOffset": function() { return /* binding */ getTimeZoneOffset; },
-/* harmony export */   "getTimestamp": function() { return /* binding */ getTimestamp; },
-/* harmony export */   "getTouch": function() { return /* binding */ getTouch; },
-/* harmony export */   "getUserLocale": function() { return /* binding */ getUserLocale; },
-/* harmony export */   "getWindowHeight": function() { return /* binding */ getWindowHeight; },
-/* harmony export */   "getWindowNavigator": function() { return /* binding */ getWindowNavigator; },
-/* harmony export */   "getWindowWidth": function() { return /* binding */ getWindowWidth; }
+/* harmony export */   collectClientData: function() { return /* binding */ collectClientData; },
+/* harmony export */   getBattery: function() { return /* binding */ getBattery; },
+/* harmony export */   getColorDepth: function() { return /* binding */ getColorDepth; },
+/* harmony export */   getHRef: function() { return /* binding */ getHRef; },
+/* harmony export */   getJavaEnabled: function() { return /* binding */ getJavaEnabled; },
+/* harmony export */   getNetworkDownlink: function() { return /* binding */ getNetworkDownlink; },
+/* harmony export */   getNetworkEffectiveType: function() { return /* binding */ getNetworkEffectiveType; },
+/* harmony export */   getNetworkRoundTrip: function() { return /* binding */ getNetworkRoundTrip; },
+/* harmony export */   getScreenHeight: function() { return /* binding */ getScreenHeight; },
+/* harmony export */   getScreenResolution: function() { return /* binding */ getScreenResolution; },
+/* harmony export */   getScreenWidth: function() { return /* binding */ getScreenWidth; },
+/* harmony export */   getTimeZoneOffset: function() { return /* binding */ getTimeZoneOffset; },
+/* harmony export */   getTimestamp: function() { return /* binding */ getTimestamp; },
+/* harmony export */   getTouch: function() { return /* binding */ getTouch; },
+/* harmony export */   getUserLocale: function() { return /* binding */ getUserLocale; },
+/* harmony export */   getWindowHeight: function() { return /* binding */ getWindowHeight; },
+/* harmony export */   getWindowNavigator: function() { return /* binding */ getWindowNavigator; },
+/* harmony export */   getWindowWidth: function() { return /* binding */ getWindowWidth; }
 /* harmony export */ });
 function collectClientData(window) {
   return {
@@ -4521,62 +4521,68 @@ function getHRef(window) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "handleCreateSourceResponse": function() { return /* binding */ handleCreateSourceResponse; }
+/* harmony export */   handleCreateSourceResponse: function() { return /* binding */ handleCreateSourceResponse; }
 /* harmony export */ });
-/* harmony import */ var _babel_runtime_corejs3_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/toConsumableArray */ "./node_modules/@babel/runtime-corejs3/helpers/esm/toConsumableArray.js");
-/* harmony import */ var _babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/defineProperty */ "./node_modules/@babel/runtime-corejs3/helpers/esm/defineProperty.js");
-/* harmony import */ var _babel_runtime_corejs3_helpers_typeof__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/typeof */ "./node_modules/@babel/runtime-corejs3/helpers/esm/typeof.js");
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_bind__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/bind */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/bind.js");
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_bind__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_bind__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/includes */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/includes.js");
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/object/assign */ "./node_modules/@babel/runtime-corejs3/core-js-stable/object/assign.js");
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/promise */ "./node_modules/@babel/runtime-corejs3/core-js-stable/promise.js");
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_map__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/map */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/map.js");
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_map__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_map__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/filter */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/filter.js");
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/object/keys */ "./node_modules/@babel/runtime-corejs3/core-js-stable/object/keys.js");
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_9__);
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/for-each */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/for-each.js");
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_10__);
-/* harmony import */ var _dataStore_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./dataStore.js */ "./src/client/dataStore.js");
-/* harmony import */ var _createSource_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./createSource.js */ "./src/client/createSource.js");
-/* harmony import */ var _complianceData__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./complianceData */ "./src/client/complianceData.js");
-/* harmony import */ var _createComponent_js__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./createComponent.js */ "./src/client/createComponent.js");
-/* harmony import */ var _app_components_td_td_utils__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../app/components/td/td-utils */ "./src/app/components/td/td-utils.js");
-/* harmony import */ var _elementsv2_localization_schema_en_json__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./elementsv2/localization/schema/en.json */ "./src/client/elementsv2/localization/schema/en.json");
-/* harmony import */ var _createController_js__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./createController.js */ "./src/client/createController.js");
-/* harmony import */ var _app_components_config__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ../app/components/config */ "./src/app/components/config.js");
-/* harmony import */ var _DigitalRiverPaymentRequest__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./DigitalRiverPaymentRequest */ "./src/client/DigitalRiverPaymentRequest.js");
-/* harmony import */ var _beacon_beacon_client_data__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ../beacon/beacon-client-data */ "./src/beacon/beacon-client-data.js");
-/* harmony import */ var _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ../post-robot-wrapper */ "./src/post-robot-wrapper.js");
-/* harmony import */ var _app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ../app/components/localization/localized-messages */ "./src/app/components/localization/localized-messages.js");
-/* harmony import */ var _create_dropin__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./create-dropin */ "./src/client/create-dropin.js");
-/* harmony import */ var _fetch_payment_methods__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./fetch-payment-methods */ "./src/client/fetch-payment-methods.js");
-/* harmony import */ var _authenticate_source__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./authenticate-source */ "./src/client/authenticate-source.js");
-/* harmony import */ var _korean_card_utils__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./korean-card-utils */ "./src/client/korean-card-utils.js");
-/* harmony import */ var _app_config__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ../app/config */ "./src/app/config.js");
-/* harmony import */ var _send_handle_next_action__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./send-handle-next-action */ "./src/client/send-handle-next-action.js");
-/* harmony import */ var _app_components_controller_controller_window_opener__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ../app/components/controller/controller-window-opener */ "./src/app/components/controller/controller-window-opener.js");
-/* harmony import */ var _elementsv2_checkout_sessions_api__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./elementsv2/checkout-sessions-api */ "./src/client/elementsv2/checkout-sessions-api.js");
-/* harmony import */ var _elementsv2_payment_payment_mount__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./elementsv2/payment/payment-mount */ "./src/client/elementsv2/payment/payment-mount.js");
-/* harmony import */ var _elementsv2_shippingchoice_shipping_choice_mount__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./elementsv2/shippingchoice/shipping-choice-mount */ "./src/client/elementsv2/shippingchoice/shipping-choice-mount.js");
-/* harmony import */ var _elementsv2_address_address_mount__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./elementsv2/address/address-mount */ "./src/client/elementsv2/address/address-mount.js");
-/* harmony import */ var _elementsv2_address_address_utils__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./elementsv2/address/address-utils */ "./src/client/elementsv2/address/address-utils.js");
-/* harmony import */ var _elementsv2_storage__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ./elementsv2/storage */ "./src/client/elementsv2/storage.js");
-/* harmony import */ var _elementsv2_payment_error_text_translations__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ./elementsv2/payment/error-text-translations */ "./src/client/elementsv2/payment/error-text-translations.js");
-/* harmony import */ var _elementsv2_address_address_country_spec__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ./elementsv2/address/address-country-spec */ "./src/client/elementsv2/address/address-country-spec.js");
-/* harmony import */ var _elementsv2_wallet_wallet_mount__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! ./elementsv2/wallet/wallet-mount */ "./src/client/elementsv2/wallet/wallet-mount.js");
-/* harmony import */ var _elementsv2_thankyou_thankyou_mount__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! ./elementsv2/thankyou/thankyou-mount */ "./src/client/elementsv2/thankyou/thankyou-mount.js");
-/* harmony import */ var _elementsv2_compliance_compliance_mount__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__(/*! ./elementsv2/compliance/compliance-mount */ "./src/client/elementsv2/compliance/compliance-mount.js");
-/* harmony import */ var _elementsv2_tax_identifer_tax_identifier_mount__WEBPACK_IMPORTED_MODULE_41__ = __webpack_require__(/*! ./elementsv2/tax-identifer/tax-identifier-mount */ "./src/client/elementsv2/tax-identifer/tax-identifier-mount.js");
-/* harmony import */ var _elementsv2_invoice_attribute_invoice_attribute_mount__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__(/*! ./elementsv2/invoice-attribute/invoice-attribute-mount */ "./src/client/elementsv2/invoice-attribute/invoice-attribute-mount.js");
-/* harmony import */ var _elementsv2_taxexemption_taxexemption_mount__WEBPACK_IMPORTED_MODULE_43__ = __webpack_require__(/*! ./elementsv2/taxexemption/taxexemption-mount */ "./src/client/elementsv2/taxexemption/taxexemption-mount.js");
-/* harmony import */ var _elementsv2_order_summary_order_summary_mount__WEBPACK_IMPORTED_MODULE_44__ = __webpack_require__(/*! ./elementsv2/order-summary/order-summary-mount */ "./src/client/elementsv2/order-summary/order-summary-mount.js");
-/* harmony import */ var _elementsv2_localization_languages__WEBPACK_IMPORTED_MODULE_45__ = __webpack_require__(/*! ./elementsv2/localization/languages */ "./src/client/elementsv2/localization/languages.js");
+/* harmony import */ var _babel_runtime_corejs3_helpers_objectSpread2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/objectSpread2 */ "./node_modules/@babel/runtime-corejs3/helpers/esm/objectSpread2.js");
+/* harmony import */ var _babel_runtime_corejs3_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/toConsumableArray */ "./node_modules/@babel/runtime-corejs3/helpers/esm/toConsumableArray.js");
+/* harmony import */ var _babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/defineProperty */ "./node_modules/@babel/runtime-corejs3/helpers/esm/defineProperty.js");
+/* harmony import */ var _babel_runtime_corejs3_helpers_typeof__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/typeof */ "./node_modules/@babel/runtime-corejs3/helpers/esm/typeof.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_bind__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/bind */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/bind.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_bind__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_bind__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/includes */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/includes.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/object/assign */ "./node_modules/@babel/runtime-corejs3/core-js-stable/object/assign.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/promise */ "./node_modules/@babel/runtime-corejs3/core-js-stable/promise.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_map__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/map */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/map.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_map__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_map__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/filter */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/filter.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/object/keys */ "./node_modules/@babel/runtime-corejs3/core-js-stable/object/keys.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/for-each */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/for-each.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_11__);
+/* harmony import */ var _dataStore_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./dataStore.js */ "./src/client/dataStore.js");
+/* harmony import */ var _createSource_js__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./createSource.js */ "./src/client/createSource.js");
+/* harmony import */ var _complianceData__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./complianceData */ "./src/client/complianceData.js");
+/* harmony import */ var _createComponent_js__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./createComponent.js */ "./src/client/createComponent.js");
+/* harmony import */ var _app_components_td_td_utils__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../app/components/td/td-utils */ "./src/app/components/td/td-utils.js");
+/* harmony import */ var _elementsv2_localization_schema_en_json__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./elementsv2/localization/schema/en.json */ "./src/client/elementsv2/localization/schema/en.json");
+/* harmony import */ var _createController_js__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./createController.js */ "./src/client/createController.js");
+/* harmony import */ var _app_components_config__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ../app/components/config */ "./src/app/components/config.js");
+/* harmony import */ var _DigitalRiverPaymentRequest__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./DigitalRiverPaymentRequest */ "./src/client/DigitalRiverPaymentRequest.js");
+/* harmony import */ var _beacon_beacon_client_data__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ../beacon/beacon-client-data */ "./src/beacon/beacon-client-data.js");
+/* harmony import */ var _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ../post-robot-wrapper */ "./src/post-robot-wrapper.js");
+/* harmony import */ var _app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ../app/components/localization/localized-messages */ "./src/app/components/localization/localized-messages.js");
+/* harmony import */ var _create_dropin__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./create-dropin */ "./src/client/create-dropin.js");
+/* harmony import */ var _fetch_payment_methods__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./fetch-payment-methods */ "./src/client/fetch-payment-methods.js");
+/* harmony import */ var _authenticate_source__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./authenticate-source */ "./src/client/authenticate-source.js");
+/* harmony import */ var _korean_card_utils__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./korean-card-utils */ "./src/client/korean-card-utils.js");
+/* harmony import */ var _app_config__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ../app/config */ "./src/app/config.js");
+/* harmony import */ var _send_handle_next_action__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./send-handle-next-action */ "./src/client/send-handle-next-action.js");
+/* harmony import */ var _app_components_controller_controller_window_opener__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ../app/components/controller/controller-window-opener */ "./src/app/components/controller/controller-window-opener.js");
+/* harmony import */ var _elementsv2_checkout_sessions_api__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./elementsv2/checkout-sessions-api */ "./src/client/elementsv2/checkout-sessions-api.js");
+/* harmony import */ var _elementsv2_payment_payment_mount__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./elementsv2/payment/payment-mount */ "./src/client/elementsv2/payment/payment-mount.js");
+/* harmony import */ var _elementsv2_shippingchoice_shipping_choice_mount__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./elementsv2/shippingchoice/shipping-choice-mount */ "./src/client/elementsv2/shippingchoice/shipping-choice-mount.js");
+/* harmony import */ var _elementsv2_address_address_mount__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./elementsv2/address/address-mount */ "./src/client/elementsv2/address/address-mount.js");
+/* harmony import */ var _elementsv2_address_address_utils__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ./elementsv2/address/address-utils */ "./src/client/elementsv2/address/address-utils.js");
+/* harmony import */ var _elementsv2_storage__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ./elementsv2/storage */ "./src/client/elementsv2/storage.js");
+/* harmony import */ var _elementsv2_payment_error_text_translations__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ./elementsv2/payment/error-text-translations */ "./src/client/elementsv2/payment/error-text-translations.js");
+/* harmony import */ var _elementsv2_address_address_country_spec__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! ./elementsv2/address/address-country-spec */ "./src/client/elementsv2/address/address-country-spec.js");
+/* harmony import */ var _elementsv2_wallet_wallet_mount__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! ./elementsv2/wallet/wallet-mount */ "./src/client/elementsv2/wallet/wallet-mount.js");
+/* harmony import */ var _elementsv2_thankyou_thankyou_mount__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__(/*! ./elementsv2/thankyou/thankyou-mount */ "./src/client/elementsv2/thankyou/thankyou-mount.js");
+/* harmony import */ var _elementsv2_compliance_compliance_mount__WEBPACK_IMPORTED_MODULE_41__ = __webpack_require__(/*! ./elementsv2/compliance/compliance-mount */ "./src/client/elementsv2/compliance/compliance-mount.js");
+/* harmony import */ var _elementsv2_tax_identifer_tax_identifier_mount__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__(/*! ./elementsv2/tax-identifer/tax-identifier-mount */ "./src/client/elementsv2/tax-identifer/tax-identifier-mount.js");
+/* harmony import */ var _elementsv2_invoice_attribute_invoice_attribute_mount__WEBPACK_IMPORTED_MODULE_43__ = __webpack_require__(/*! ./elementsv2/invoice-attribute/invoice-attribute-mount */ "./src/client/elementsv2/invoice-attribute/invoice-attribute-mount.js");
+/* harmony import */ var _elementsv2_taxexemption_taxexemption_mount__WEBPACK_IMPORTED_MODULE_44__ = __webpack_require__(/*! ./elementsv2/taxexemption/taxexemption-mount */ "./src/client/elementsv2/taxexemption/taxexemption-mount.js");
+/* harmony import */ var _elementsv2_order_summary_order_summary_mount__WEBPACK_IMPORTED_MODULE_45__ = __webpack_require__(/*! ./elementsv2/order-summary/order-summary-mount */ "./src/client/elementsv2/order-summary/order-summary-mount.js");
+/* harmony import */ var _elementsv2_localization_languages__WEBPACK_IMPORTED_MODULE_46__ = __webpack_require__(/*! ./elementsv2/localization/languages */ "./src/client/elementsv2/localization/languages.js");
+/* harmony import */ var _elementsv2_cookie__WEBPACK_IMPORTED_MODULE_47__ = __webpack_require__(/*! ./elementsv2/cookie */ "./src/client/elementsv2/cookie.js");
+/* harmony import */ var _elementsv2_api_utils__WEBPACK_IMPORTED_MODULE_48__ = __webpack_require__(/*! ./elementsv2/api-utils */ "./src/client/elementsv2/api-utils.js");
+
+
+
 
 
 
@@ -4633,13 +4639,13 @@ function updateInstanceOptionsWithDefaults(instanceOptions) {
     instanceOptions = {};
   }
   if (localeNotProvided(instanceOptions)) {
-    instanceOptions.locale = _app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_22__.DEFAULT_LOCALE;
+    instanceOptions.locale = _app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_23__.DEFAULT_LOCALE;
   } else if (instanceOptions.locale.length === 2) {
-    instanceOptions.locale = (0,_app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_22__.getLocaleFromLanguage)(instanceOptions.locale);
-  } else if (!(0,_app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_22__.localeMessagesContainsClientProvidedLocale)((0,_app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_22__.forceCasingOfLocale)(instanceOptions))) {
-    instanceOptions.locale = _app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_22__.DEFAULT_LOCALE;
+    instanceOptions.locale = (0,_app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_23__.getLocaleFromLanguage)(instanceOptions.locale);
+  } else if (!(0,_app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_23__.localeMessagesContainsClientProvidedLocale)((0,_app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_23__.forceCasingOfLocale)(instanceOptions))) {
+    instanceOptions.locale = _app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_23__.DEFAULT_LOCALE;
   } else {
-    instanceOptions.locale = (0,_app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_22__.forceCasingOfLocale)(instanceOptions);
+    instanceOptions.locale = (0,_app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_23__.forceCasingOfLocale)(instanceOptions);
   }
   if (typeof instanceOptions.customerID === 'undefined') {
     instanceOptions.customerID = '';
@@ -4659,39 +4665,41 @@ function DigitalRiver(apiKey, providedInstanceOptions) {
   }
   var instanceOptions = updateInstanceOptionsWithDefaults(providedInstanceOptions);
   this.Compliance = {
-    getDetails: _babel_runtime_corejs3_core_js_stable_instance_bind__WEBPACK_IMPORTED_MODULE_3___default()(getDetails).call(getDetails, instanceOptions)
+    getDetails: _babel_runtime_corejs3_core_js_stable_instance_bind__WEBPACK_IMPORTED_MODULE_4___default()(getDetails).call(getDetails, instanceOptions)
   };
 
   // creating controller component
-  var component = (0,_createController_js__WEBPACK_IMPORTED_MODULE_17__.createController)(document.body, 'controller');
+  var component = (0,_createController_js__WEBPACK_IMPORTED_MODULE_18__.createController)(document.body, 'controller');
 
   // creating beacon component
-  var beaconComponent = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_14__.createOrExtractBeaconController)();
+  //let beaconComponent = createOrExtractBeaconController();
 
   // creating 3dsecure component
-  var dr3dsecure = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_14__.createOrExtractAdyenController)();
-  this.key = _dataStore_js__WEBPACK_IMPORTED_MODULE_11__["default"].create({
+  var dr3dsecure = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_15__.createOrExtractAdyenController)();
+  this.key = _dataStore_js__WEBPACK_IMPORTED_MODULE_12__["default"].create({
     apiKey: apiKey,
     controller: component,
     components: {},
     customEvents: [],
     instanceOptions: instanceOptions
   });
-  (0,_createController_js__WEBPACK_IMPORTED_MODULE_17__.registerControllerEvents)(this.key, (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_14__.getComponentWindow)(component.id), _app_components_config__WEBPACK_IMPORTED_MODULE_18__.config.domain);
-  (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_14__.sendApiKey)(component.id, 'sendInitialData', {
+  (0,_createController_js__WEBPACK_IMPORTED_MODULE_18__.registerControllerEvents)(this.key, (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_15__.getComponentWindow)(component.id), _app_components_config__WEBPACK_IMPORTED_MODULE_19__.config.domain);
+  (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_15__.sendApiKey)(component.id, 'sendInitialData', {
     apiKey: apiKey,
-    browserInfo: (0,_beacon_beacon_client_data__WEBPACK_IMPORTED_MODULE_20__.collectClientData)(window),
+    browserInfo: {},
     instanceOptions: instanceOptions,
     controllerId: component.id
   });
-  (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_14__.sendApiKey)(beaconComponent.id, 'sendBeaconInitialData', {
+
+  /*sendApiKey(beaconComponent.id, 'sendBeaconInitialData', {
     apiKey: apiKey,
     customerID: instanceOptions.customerID
-  }).then(function () {
-    return (0,_app_components_td_td_utils__WEBPACK_IMPORTED_MODULE_15__.sendBeaconEventDetails)(beaconComponent.id, 'controller_loaded');
-  });
-  (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_14__.sendInitalize3dSecure)(dr3dsecure.id, apiKey);
-  (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_14__.updateOverlay)('DRPayment3ds', '0px', '');
+  }).then(() => {
+    return sendBeaconEventDetails(beaconComponent.id, 'controller_loaded');
+  });*/
+
+  (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_15__.sendInitalize3dSecure)(dr3dsecure.id, apiKey);
+  (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_15__.updateOverlay)('DRPayment3ds', '0px', '');
 }
 function shouldSendCreateSourceBeaconEvent(response) {
   return typeof response !== 'undefined' && response.source !== null && typeof response.source.id !== 'undefined';
@@ -4705,36 +4713,36 @@ function shouldSendCreateSourceBeaconEvent(response) {
  */
 
 function createSourceForAllPaymentMethods(sourceRequest, componentInstanceOrSourceData) {
-  var _dataStore$get = _dataStore_js__WEBPACK_IMPORTED_MODULE_11__["default"].get(this.key),
+  var _dataStore$get = _dataStore_js__WEBPACK_IMPORTED_MODULE_12__["default"].get(this.key),
     controller = _dataStore$get.controller;
   if (!controller) {
     throw new Error('Cannot create source without a controller');
   }
-  var beaconComponent = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_14__.createOrExtractBeaconController)();
+  var beaconComponent = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_15__.createOrExtractBeaconController)();
   if (typeof sourceRequest === 'undefined') {
     // In this case the componentInstance is actually the source data
-    if ((0,_babel_runtime_corejs3_helpers_typeof__WEBPACK_IMPORTED_MODULE_2__["default"])(componentInstanceOrSourceData) !== 'object') {
+    if ((0,_babel_runtime_corejs3_helpers_typeof__WEBPACK_IMPORTED_MODULE_3__["default"])(componentInstanceOrSourceData) !== 'object') {
       throw new Error('Please provide Source creation details to the createSource method.');
     }
-    if ((0,_korean_card_utils__WEBPACK_IMPORTED_MODULE_26__.isKoreanCard)(componentInstanceOrSourceData)) {
+    if ((0,_korean_card_utils__WEBPACK_IMPORTED_MODULE_27__.isKoreanCard)(componentInstanceOrSourceData)) {
       var key = this.key;
       var self = this;
-      return (0,_korean_card_utils__WEBPACK_IMPORTED_MODULE_26__.handleKoreanCard)(self, key, componentInstanceOrSourceData, controller, {
+      return (0,_korean_card_utils__WEBPACK_IMPORTED_MODULE_27__.handleKoreanCard)(self, key, componentInstanceOrSourceData, controller, {
         type: ''
       }, beaconComponent, handleCreateSource);
     }
     return handleCreateSource(controller.id, '', componentInstanceOrSourceData, beaconComponent);
   } else {
-    if ((0,_babel_runtime_corejs3_helpers_typeof__WEBPACK_IMPORTED_MODULE_2__["default"])(componentInstanceOrSourceData) !== 'object') {
+    if ((0,_babel_runtime_corejs3_helpers_typeof__WEBPACK_IMPORTED_MODULE_3__["default"])(componentInstanceOrSourceData) !== 'object') {
       throw new Error('Please provide a valid component to the createSource method');
     }
-    if ((0,_babel_runtime_corejs3_helpers_typeof__WEBPACK_IMPORTED_MODULE_2__["default"])(sourceRequest) !== 'object') {
+    if ((0,_babel_runtime_corejs3_helpers_typeof__WEBPACK_IMPORTED_MODULE_3__["default"])(sourceRequest) !== 'object') {
       throw new Error('Please provide Source creation details to the createSource method');
     }
-    if ((0,_korean_card_utils__WEBPACK_IMPORTED_MODULE_26__.isKoreanCard)(sourceRequest)) {
+    if ((0,_korean_card_utils__WEBPACK_IMPORTED_MODULE_27__.isKoreanCard)(sourceRequest)) {
       var _key = this.key;
       var _self = this;
-      return (0,_korean_card_utils__WEBPACK_IMPORTED_MODULE_26__.handleKoreanCard)(_self, _key, sourceRequest, controller, componentInstanceOrSourceData, beaconComponent, handleCreateSource);
+      return (0,_korean_card_utils__WEBPACK_IMPORTED_MODULE_27__.handleKoreanCard)(_self, _key, sourceRequest, controller, componentInstanceOrSourceData, beaconComponent, handleCreateSource);
     }
     return handleCreateSource(controller.id, componentInstanceOrSourceData.type, sourceRequest, beaconComponent);
   }
@@ -4742,34 +4750,34 @@ function createSourceForAllPaymentMethods(sourceRequest, componentInstanceOrSour
 function handleCreateSourceResponse(response, controllerId, beaconComponent) {
   if (typeof response !== 'undefined' && response.source !== null && hasRequiresAction(response.source)) {
     // creating Adyen component
-    var adyenComponent = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_14__.createOrExtractAdyenController)();
+    var adyenComponent = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_15__.createOrExtractAdyenController)();
     var action = response.source.nextAction.action;
     if (action !== 'do_3ds_redirect') {
-      (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_14__.updateOverlay)('DRPayment3ds', '100%', 'rgba(0,0,0,0.3)');
+      (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_15__.updateOverlay)('DRPayment3ds', '100%', 'rgba(0,0,0,0.3)');
     }
     if (is3DSAction(action)) {
       return handle3DSAction(adyenComponent, controllerId, response.source, getRedirectWindowWhenCorrectAction(action)).then(function (responseData) {
         if (shouldSendCreateSourceBeaconEvent(responseData)) {
-          (0,_app_components_td_td_utils__WEBPACK_IMPORTED_MODULE_15__.sendBeaconEventDetails)(beaconComponent.id, 'source', response.source.id);
+          (0,_app_components_td_td_utils__WEBPACK_IMPORTED_MODULE_16__.sendBeaconEventDetails)(beaconComponent.id, 'source', response.source.id);
         }
         return responseData;
       });
     } else {
       // nothing can be done for now
       if (shouldSendCreateSourceBeaconEvent(response)) {
-        (0,_app_components_td_td_utils__WEBPACK_IMPORTED_MODULE_15__.sendBeaconEventDetails)(beaconComponent.id, 'source', response.source.id);
+        (0,_app_components_td_td_utils__WEBPACK_IMPORTED_MODULE_16__.sendBeaconEventDetails)(beaconComponent.id, 'source', response.source.id);
       }
       return response;
     }
   } else {
     if (shouldSendCreateSourceBeaconEvent(response)) {
-      (0,_app_components_td_td_utils__WEBPACK_IMPORTED_MODULE_15__.sendBeaconEventDetails)(beaconComponent.id, 'source', response.source.id);
+      (0,_app_components_td_td_utils__WEBPACK_IMPORTED_MODULE_16__.sendBeaconEventDetails)(beaconComponent.id, 'source', response.source.id);
     }
     return response;
   }
 }
 function handleCreateSource(controllerId, componentType, sourceRequest, beaconComponent) {
-  return (0,_createSource_js__WEBPACK_IMPORTED_MODULE_12__.createSource)(controllerId, componentType, sourceRequest).then(function (response) {
+  return (0,_createSource_js__WEBPACK_IMPORTED_MODULE_13__.createSource)(controllerId, componentType, sourceRequest).then(function (response) {
     return handleCreateSourceResponse(response, controllerId, beaconComponent);
   });
 }
@@ -4784,7 +4792,7 @@ DigitalRiver.prototype.createSource = function (componentInstanceOrSourceData, s
   return createSourceForAllPaymentMethods.call(this, sourceRequest, componentInstanceOrSourceData);
 };
 function getSecretFromSessionClientSecret(sessionClientSecret) {
-  if (_babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_4___default()(sessionClientSecret).call(sessionClientSecret, '_')) {
+  if (_babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_5___default()(sessionClientSecret).call(sessionClientSecret, '_')) {
     return sessionClientSecret.split('_')[0];
   } else {
     return sessionClientSecret;
@@ -4803,7 +4811,7 @@ DigitalRiver.prototype.createCreditCardSource = function (sessionClientSecret, e
   }
 
   // Copy source request so it does not modify the clients request
-  var updatedSourceRequest = _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_5___default()({}, sourceRequest);
+  var updatedSourceRequest = _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_6___default()({}, sourceRequest);
   updatedSourceRequest.sessionId = getSecretFromSessionClientSecret(sessionClientSecret);
   if (typeof updatedSourceRequest.creditCard === 'undefined') {
     updatedSourceRequest.creditCard = {};
@@ -4820,12 +4828,12 @@ DigitalRiver.prototype.retrieveSource = function (sourceId, sourceClientSecret) 
   if (!sourceId) {
     throw new Error('You must provide a sourceId');
   }
-  var _dataStore$get2 = _dataStore_js__WEBPACK_IMPORTED_MODULE_11__["default"].get(this.key),
+  var _dataStore$get2 = _dataStore_js__WEBPACK_IMPORTED_MODULE_12__["default"].get(this.key),
     controller = _dataStore$get2.controller;
   if (!controller) {
     throw new Error('Cannot retrieve source without a controller');
   }
-  var controllerWindow = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_14__.getComponentWindow)(controller.id);
+  var controllerWindow = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_15__.getComponentWindow)(controller.id);
   if (!controllerWindow) {
     throw new Error("Unable to locate controller '".concat(controller.id, "'"));
   }
@@ -4833,7 +4841,7 @@ DigitalRiver.prototype.retrieveSource = function (sourceId, sourceClientSecret) 
     sourceId: sourceId,
     sourceClientSecret: sourceClientSecret.split('_')[1]
   };
-  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_21__["default"].send(controllerWindow, 'retrieveSource', data, {
+  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_22__["default"].send(controllerWindow, 'retrieveSource', data, {
     timeout: 10000
   }).then(function (response) {
     return response.data;
@@ -4846,24 +4854,24 @@ DigitalRiver.prototype.retrieveSource = function (sourceId, sourceClientSecret) 
  * @param sourceData
  */
 DigitalRiver.prototype.updateSource = function (cardExpirationElement, sourceData) {
-  var _dataStore$get3 = _dataStore_js__WEBPACK_IMPORTED_MODULE_11__["default"].get(this.key),
+  var _dataStore$get3 = _dataStore_js__WEBPACK_IMPORTED_MODULE_12__["default"].get(this.key),
     controller = _dataStore$get3.controller,
     instanceOptions = _dataStore$get3.instanceOptions;
   if (!controller) {
     throw new Error('Cannot update source without a controller');
   }
-  var controllerWindow = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_14__.getComponentWindow)(controller.id);
+  var controllerWindow = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_15__.getComponentWindow)(controller.id);
   if (!controllerWindow) {
     throw new Error("Unable to locate controller '".concat(controller.id, "'"));
   }
   if (typeof sourceData === 'undefined') {
     // In this case the firstArg (cardExpirationElement) is actually sourceData
     // because client did not provide optional element
-    sourceData = _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_5___default()({}, cardExpirationElement);
+    sourceData = _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_6___default()({}, cardExpirationElement);
     cardExpirationElement = undefined;
   } else {
     if (cardExpirationElement.type !== 'cardexpiration') {
-      return _babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_6___default().resolve({
+      return _babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_7___default().resolve({
         'error': {
           'type': 'bad_request',
           'errors': [{
@@ -4891,7 +4899,7 @@ DigitalRiver.prototype.updateSource = function (cardExpirationElement, sourceDat
     });
   }
   if (errors.length > 0) {
-    return _babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_6___default().resolve({
+    return _babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_7___default().resolve({
       'error': {
         'type': 'bad_request',
         'errors': errors
@@ -4904,25 +4912,25 @@ DigitalRiver.prototype.updateSource = function (cardExpirationElement, sourceDat
     cardExpirationElement: cardExpirationElement,
     locale: instanceOptions.locale
   };
-  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_21__["default"].send(controllerWindow, 'updateSource', data, {
+  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_22__["default"].send(controllerWindow, 'updateSource', data, {
     timeout: 10000
   }).then(function (response) {
     return response.data;
   });
 };
 DigitalRiver.prototype.retrieveOnlineBankingBanks = function (country, currency) {
-  var _dataStore$get4 = _dataStore_js__WEBPACK_IMPORTED_MODULE_11__["default"].get(this.key),
+  var _dataStore$get4 = _dataStore_js__WEBPACK_IMPORTED_MODULE_12__["default"].get(this.key),
     controller = _dataStore$get4.controller;
   if (!controller) {
     throw new Error('Cannot get banks without a controller');
   }
-  var controllerWindow = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_14__.getComponentWindow)(controller.id);
+  var controllerWindow = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_15__.getComponentWindow)(controller.id);
   if (!controllerWindow) {
     throw new Error("Unable to locate controller '".concat(controller.id, "'"));
   }
 
   // Send message to Controller Frame to get banks
-  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_21__["default"].send(controllerWindow, 'getOnlineBankingBanks', {
+  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_22__["default"].send(controllerWindow, 'getOnlineBankingBanks', {
     country: country,
     currency: currency
   }, {
@@ -4939,7 +4947,7 @@ function onlineBankingDoesNotHaveRequiredFields(options) {
 }
 DigitalRiver.prototype.retrieveAvailablePaymentMethods = function () {
   var paymentMethodOptions = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  var _dataStore$get5 = _dataStore_js__WEBPACK_IMPORTED_MODULE_11__["default"].get(this.key),
+  var _dataStore$get5 = _dataStore_js__WEBPACK_IMPORTED_MODULE_12__["default"].get(this.key),
     controller = _dataStore$get5.controller,
     instanceOptions = _dataStore$get5.instanceOptions;
   var _paymentMethodOptions = paymentMethodOptions.sessionId,
@@ -4954,10 +4962,10 @@ DigitalRiver.prototype.retrieveAvailablePaymentMethods = function () {
     supportsRecurring = _paymentMethodOptions5 === void 0 ? null : _paymentMethodOptions5,
     _paymentMethodOptions6 = paymentMethodOptions.supportsStorage,
     supportsStorage = _paymentMethodOptions6 === void 0 ? null : _paymentMethodOptions6;
-  return (0,_fetch_payment_methods__WEBPACK_IMPORTED_MODULE_24__.getPaymentMethods)(controller.id, sessionId, country, currency, instanceOptions.locale, supportsStorage, null, supportsRecurring, supportsFreeTrial);
+  return (0,_fetch_payment_methods__WEBPACK_IMPORTED_MODULE_25__.getPaymentMethods)(controller.id, sessionId, country, currency, instanceOptions.locale, supportsStorage, null, supportsRecurring, supportsFreeTrial);
 };
 function getRedirectWindowWhenCorrectAction(action) {
-  return action === 'do_3ds_redirect' ? (0,_app_components_controller_controller_window_opener__WEBPACK_IMPORTED_MODULE_29__.openWindow)('') : undefined;
+  return action === 'do_3ds_redirect' ? (0,_app_components_controller_controller_window_opener__WEBPACK_IMPORTED_MODULE_30__.openWindow)('') : undefined;
 }
 
 /**
@@ -4972,19 +4980,19 @@ function getRedirectWindowWhenCorrectAction(action) {
  */
 DigitalRiver.prototype.authenticateSource = function (componentInstanceOrSourceInfo, sourceInfo) {
   var sourceData = typeof sourceInfo === 'undefined' ? componentInstanceOrSourceInfo : sourceInfo;
-  var _dataStore$get6 = _dataStore_js__WEBPACK_IMPORTED_MODULE_11__["default"].get(this.key),
+  var _dataStore$get6 = _dataStore_js__WEBPACK_IMPORTED_MODULE_12__["default"].get(this.key),
     controller = _dataStore$get6.controller;
   var sessionId = sourceData.sessionId,
     sourceId = sourceData.sourceId,
     sourceClientSecret = sourceData.sourceClientSecret;
-  return (0,_authenticate_source__WEBPACK_IMPORTED_MODULE_25__.getAuthenticateSource)(controller.id, sessionId, sourceId, sourceClientSecret, componentInstanceOrSourceInfo).then(function (sourceResponse) {
+  return (0,_authenticate_source__WEBPACK_IMPORTED_MODULE_26__.getAuthenticateSource)(controller.id, sessionId, sourceId, sourceClientSecret, componentInstanceOrSourceInfo).then(function (sourceResponse) {
     sourceResponse.requestType = 'authenticateSource';
     if (hasRequiresAction(sourceResponse)) {
       // creating Adyen component
-      var adyenComponent = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_14__.createOrExtractAdyenController)();
+      var adyenComponent = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_15__.createOrExtractAdyenController)();
       var action = sourceResponse.nextAction.action;
       if (action !== 'do_3ds_redirect') {
-        (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_14__.updateOverlay)('DRPayment3ds', '100%', 'rgba(0,0,0,0.3)');
+        (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_15__.updateOverlay)('DRPayment3ds', '100%', 'rgba(0,0,0,0.3)');
       }
       if (is3DSAction(action)) {
         return handle3DSAction(adyenComponent, controller.id, sourceResponse, getRedirectWindowWhenCorrectAction(action));
@@ -4997,27 +5005,27 @@ DigitalRiver.prototype.authenticateSource = function (componentInstanceOrSourceI
   });
 };
 function handle3DSAction(adyenComponent, controllerId, source, redirectWindow) {
-  return new (_babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_6___default())(function (resolve) {
+  return new (_babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_7___default())(function (resolve) {
     if (typeof redirectWindow !== 'undefined') {
       redirectWindow.location.replace(source.nextAction.data.redirectUrl);
     }
-    return (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_14__.sendAdyen3dDetails)(adyenComponent.id, controllerId, source, resolve, redirectWindow);
+    return (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_15__.sendAdyen3dDetails)(adyenComponent.id, controllerId, source, resolve, redirectWindow);
   }).then(function (responseData) {
-    (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_14__.updateOverlay)('DRPayment3ds', '0px', '');
+    (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_15__.updateOverlay)('DRPayment3ds', '0px', '');
     return responseData;
   });
 }
 DigitalRiver.prototype.handleNextAction = function (nextActionData) {
-  var _dataStore$get7 = _dataStore_js__WEBPACK_IMPORTED_MODULE_11__["default"].get(this.key),
+  var _dataStore$get7 = _dataStore_js__WEBPACK_IMPORTED_MODULE_12__["default"].get(this.key),
     controller = _dataStore$get7.controller;
-  return (0,_send_handle_next_action__WEBPACK_IMPORTED_MODULE_28__.sendHandleNextAction)(controller.id, nextActionData).then(function (sourceResponse) {
+  return (0,_send_handle_next_action__WEBPACK_IMPORTED_MODULE_29__.sendHandleNextAction)(controller.id, nextActionData).then(function (sourceResponse) {
     sourceResponse.requestType = 'handleNextAction'; // authenticateSource
     if (hasRequiresAction(sourceResponse)) {
       // creating Adyen component
-      var adyenComponent = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_14__.createOrExtractAdyenController)();
+      var adyenComponent = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_15__.createOrExtractAdyenController)();
       var action = sourceResponse.nextAction.action;
       if (action !== 'do_3ds_redirect') {
-        (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_14__.updateOverlay)('DRPayment3ds', '100%', 'rgba(0,0,0,0.3)');
+        (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_15__.updateOverlay)('DRPayment3ds', '100%', 'rgba(0,0,0,0.3)');
       }
       if (is3DSAction(action)) {
         return handle3DSAction(adyenComponent, controller.id, sourceResponse, getRedirectWindowWhenCorrectAction(action));
@@ -5043,34 +5051,34 @@ function hasRequiresAction(response) {
  */
 DigitalRiver.prototype.createElement = function (type, options) {
   var formattedType = type.toLowerCase();
-  if (!(0,_app_config__WEBPACK_IMPORTED_MODULE_27__.canClientCreateComponent)(formattedType)) {
+  if (!(0,_app_config__WEBPACK_IMPORTED_MODULE_28__.canClientCreateComponent)(formattedType)) {
     throw new Error("Invalid element type '".concat(type, "'"));
   }
-  var _dataStore$get8 = _dataStore_js__WEBPACK_IMPORTED_MODULE_11__["default"].get(this.key),
+  var _dataStore$get8 = _dataStore_js__WEBPACK_IMPORTED_MODULE_12__["default"].get(this.key),
     components = _dataStore$get8.components,
     controller = _dataStore$get8.controller;
-  if (components[formattedType] && !(0,_app_config__WEBPACK_IMPORTED_MODULE_27__.canMountMoreThanOne)(formattedType)) {
+  if (components[formattedType] && !(0,_app_config__WEBPACK_IMPORTED_MODULE_28__.canMountMoreThanOne)(formattedType)) {
     throw new Error("Failed to create element. Only one element of type '".concat(type, "' allowed per instance."));
   }
-  if (type === 'googlepay' && !(options instanceof _DigitalRiverPaymentRequest__WEBPACK_IMPORTED_MODULE_19__["default"])) {
+  if (type === 'googlepay' && !(options instanceof _DigitalRiverPaymentRequest__WEBPACK_IMPORTED_MODULE_20__["default"])) {
     throw new Error('Use paymentRequest() to create options for google.');
   }
   if (type === 'onlinebanking' && onlineBankingDoesNotHaveRequiredFields(options)) {
     throw new Error('Element Creation Error: For onlineBanking, currency and country are required.');
   }
   var component;
-  if (options instanceof _DigitalRiverPaymentRequest__WEBPACK_IMPORTED_MODULE_19__["default"]) {
+  if (options instanceof _DigitalRiverPaymentRequest__WEBPACK_IMPORTED_MODULE_20__["default"]) {
     options = options.getData();
   }
-  if ((0,_app_config__WEBPACK_IMPORTED_MODULE_27__.isClientSideComponent)(formattedType)) {
-    component = (0,_app_config__WEBPACK_IMPORTED_MODULE_27__.getComponentCreate)(formattedType).create(controller.id, this.key, options);
+  if ((0,_app_config__WEBPACK_IMPORTED_MODULE_28__.isClientSideComponent)(formattedType)) {
+    component = (0,_app_config__WEBPACK_IMPORTED_MODULE_28__.getComponentCreate)(formattedType).create(controller.id, this.key, options);
   } else {
-    component = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_14__.createComponent)(formattedType, controller.id, this.key, options);
+    component = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_15__.createComponent)(formattedType, controller.id, this.key, options);
   }
   // Add component/element id to component map
-  var data = _dataStore_js__WEBPACK_IMPORTED_MODULE_11__["default"].get(component.key);
-  data.components = _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_5___default()({}, data.components, (0,_babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1__["default"])({}, formattedType, component.id));
-  (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_14__.registerComponentWithController)(controller.id, component, options);
+  var data = _dataStore_js__WEBPACK_IMPORTED_MODULE_12__["default"].get(component.key);
+  data.components = _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_6___default()({}, data.components, (0,_babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_2__["default"])({}, formattedType, component.id));
+  (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_15__.registerComponentWithController)(controller.id, component, options);
   return component;
 };
 
@@ -5079,27 +5087,27 @@ DigitalRiver.prototype.createElement = function (type, options) {
  * @param {object} data of the request
  */
 DigitalRiver.prototype.paymentRequest = function (data) {
-  return new _DigitalRiverPaymentRequest__WEBPACK_IMPORTED_MODULE_19__["default"](data);
+  return new _DigitalRiverPaymentRequest__WEBPACK_IMPORTED_MODULE_20__["default"](data);
 };
 function getDetails(entityValue, userLocale) {
   if (!userLocale) {
     userLocale = this.locale;
   }
-  return (0,_complianceData__WEBPACK_IMPORTED_MODULE_13__.complianceGetDetails)(entityValue, userLocale);
+  return (0,_complianceData__WEBPACK_IMPORTED_MODULE_14__.complianceGetDetails)(entityValue, userLocale);
 }
 DigitalRiver.prototype.retrieveKonbiniStores = function () {
-  var _dataStore$get9 = _dataStore_js__WEBPACK_IMPORTED_MODULE_11__["default"].get(this.key),
+  var _dataStore$get9 = _dataStore_js__WEBPACK_IMPORTED_MODULE_12__["default"].get(this.key),
     controller = _dataStore$get9.controller;
   if (!controller) {
     throw new Error('Cannot get stores without a controller');
   }
-  var controllerWindow = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_14__.getComponentWindow)(controller.id);
+  var controllerWindow = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_15__.getComponentWindow)(controller.id);
   if (!controllerWindow) {
     throw new Error("Unable to locate controller '".concat(controller.id, "'"));
   }
 
   // Send message to Controller Frame to get banks
-  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_21__["default"].send(controllerWindow, 'getKonbiniStores', {}).then(function (response) {
+  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_22__["default"].send(controllerWindow, 'getKonbiniStores', {}).then(function (response) {
     // This is a Post Robot Response object so you have to get the data out
     return response.data;
   }).catch(function () {
@@ -5109,10 +5117,10 @@ DigitalRiver.prototype.retrieveKonbiniStores = function () {
 function removeUnsupportedPaymentMethods(storedPaymentMethods) {
   var _context, _context2, _context3;
   var allowedPaymentMethodsTypes = ['payPal', 'creditCard', 'storeCredit'];
-  var allowedBrands = _babel_runtime_corejs3_core_js_stable_instance_map__WEBPACK_IMPORTED_MODULE_7___default()(_context = (0,_create_dropin__WEBPACK_IMPORTED_MODULE_23__.getLogoDetails)()).call(_context, function (logoDetails) {
+  var allowedBrands = _babel_runtime_corejs3_core_js_stable_instance_map__WEBPACK_IMPORTED_MODULE_8___default()(_context = (0,_create_dropin__WEBPACK_IMPORTED_MODULE_24__.getLogoDetails)()).call(_context, function (logoDetails) {
     return logoDetails.brand.toLowerCase();
   });
-  return _babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_8___default()(_context2 = _babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_8___default()(_context3 = _babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_8___default()(storedPaymentMethods).call(storedPaymentMethods, function (pm) {
+  return _babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_9___default()(_context2 = _babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_9___default()(_context3 = _babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_9___default()(storedPaymentMethods).call(storedPaymentMethods, function (pm) {
     if (typeof pm.type === 'undefined' || typeof pm.id === 'undefined') {
       console.warn('Stored payment method is missing required data');
       return false;
@@ -5126,14 +5134,14 @@ function removeUnsupportedPaymentMethods(storedPaymentMethods) {
       return true;
     }
   })).call(_context3, function (pm) {
-    if (_babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_4___default()(allowedPaymentMethodsTypes).call(allowedPaymentMethodsTypes, pm.type)) {
+    if (_babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_5___default()(allowedPaymentMethodsTypes).call(allowedPaymentMethodsTypes, pm.type)) {
       return true;
     } else {
       console.warn('An unsupported stored payment has been provided.', pm.type);
       return false;
     }
   })).call(_context2, function (pm) {
-    if (pm.type === 'creditCard' && !_babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_4___default()(allowedBrands).call(allowedBrands, pm.brand.toLowerCase())) {
+    if (pm.type === 'creditCard' && !_babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_5___default()(allowedBrands).call(allowedBrands, pm.brand.toLowerCase())) {
       console.warn('An unsupported stored credit card brand has been provided', pm.brand);
       return false;
     } else {
@@ -5154,7 +5162,7 @@ function validateBillingAddressFields(billingAddress) {
   if (typeof billingAddress.phoneNumber === 'undefined' || billingAddress.phoneNumber.length === 0) {
     throw Error('Please provide a billingAddress.phoneNumber');
   }
-  if (typeof billingAddress.address === 'undefined' || _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_9___default()(billingAddress.address).length === 0) {
+  if (typeof billingAddress.address === 'undefined' || _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_10___default()(billingAddress.address).length === 0) {
     throw Error('Please provide a billingAddress.address');
   }
   if (typeof billingAddress.address.line1 === 'undefined' || billingAddress.address.line1.length === 0) {
@@ -5185,9 +5193,9 @@ function validatePaymentMethodConfigurationHasDuplicateEntries(options) {
   }
   if (typeof options.paymentMethodConfiguration.enabledPaymentMethods !== 'undefined' && options.paymentMethodConfiguration.enabledPaymentMethods.length > 0 && typeof options.paymentMethodConfiguration.disabledPaymentMethods !== 'undefined' && options.paymentMethodConfiguration.disabledPaymentMethods.length > 0) {
     var _context4;
-    var enabledPaymentMethods = (0,_babel_runtime_corejs3_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__["default"])(options.paymentMethodConfiguration.enabledPaymentMethods);
-    _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_10___default()(_context4 = options.paymentMethodConfiguration.disabledPaymentMethods).call(_context4, function (dpm) {
-      if (_babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_4___default()(enabledPaymentMethods).call(enabledPaymentMethods, dpm)) {
+    var enabledPaymentMethods = (0,_babel_runtime_corejs3_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_1__["default"])(options.paymentMethodConfiguration.enabledPaymentMethods);
+    _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_11___default()(_context4 = options.paymentMethodConfiguration.disabledPaymentMethods).call(_context4, function (dpm) {
+      if (_babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_5___default()(enabledPaymentMethods).call(enabledPaymentMethods, dpm)) {
         throw Error("Payment method ".concat(dpm, " cannot be enabled and disabled."));
       }
     });
@@ -5195,10 +5203,10 @@ function validatePaymentMethodConfigurationHasDuplicateEntries(options) {
 }
 DigitalRiver.prototype.createDropin = function (configuration) {
   var _context5, _context6;
-  if (!(0,_create_dropin__WEBPACK_IMPORTED_MODULE_23__.isManagePaymentMethodsMode)(configuration) && (typeof configuration.sessionId === 'undefined' || configuration.sessionId.length === 0)) {
+  if (!(0,_create_dropin__WEBPACK_IMPORTED_MODULE_24__.isManagePaymentMethodsMode)(configuration) && (typeof configuration.sessionId === 'undefined' || configuration.sessionId.length === 0)) {
     throw Error('Please provide a sessionId');
   }
-  if ((typeof configuration.billingAddress === 'undefined' || _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_9___default()(configuration.billingAddress).length === 0) && (0,_create_dropin__WEBPACK_IMPORTED_MODULE_23__.isManagePaymentMethodsMode)(configuration) && (typeof configuration.sessionId === 'undefined' || configuration.sessionId.length === 0)) {
+  if ((typeof configuration.billingAddress === 'undefined' || _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_10___default()(configuration.billingAddress).length === 0) && (0,_create_dropin__WEBPACK_IMPORTED_MODULE_24__.isManagePaymentMethodsMode)(configuration) && (typeof configuration.sessionId === 'undefined' || configuration.sessionId.length === 0)) {
     throw Error('Please provide a billingAddress');
   }
   if (typeof configuration.billingAddress !== 'undefined') {
@@ -5209,17 +5217,17 @@ DigitalRiver.prototype.createDropin = function (configuration) {
   }
   validatePaymentMethodConfigurationHasDuplicateEntries(configuration);
   var key = this.key;
-  var createElement = _babel_runtime_corejs3_core_js_stable_instance_bind__WEBPACK_IMPORTED_MODULE_3___default()(_context5 = this.createElement).call(_context5, this);
-  var createSource = _babel_runtime_corejs3_core_js_stable_instance_bind__WEBPACK_IMPORTED_MODULE_3___default()(_context6 = this.createSource).call(_context6, this);
-  var complianceDetails = _complianceData__WEBPACK_IMPORTED_MODULE_13__.complianceGetDetails;
-  var _dataStore$get10 = _dataStore_js__WEBPACK_IMPORTED_MODULE_11__["default"].get(key),
+  var createElement = _babel_runtime_corejs3_core_js_stable_instance_bind__WEBPACK_IMPORTED_MODULE_4___default()(_context5 = this.createElement).call(_context5, this);
+  var createSource = _babel_runtime_corejs3_core_js_stable_instance_bind__WEBPACK_IMPORTED_MODULE_4___default()(_context6 = this.createSource).call(_context6, this);
+  var complianceDetails = _complianceData__WEBPACK_IMPORTED_MODULE_14__.complianceGetDetails;
+  var _dataStore$get10 = _dataStore_js__WEBPACK_IMPORTED_MODULE_12__["default"].get(key),
     controller = _dataStore$get10.controller,
     instanceOptions = _dataStore$get10.instanceOptions;
   var paymentMethodsMounted = [];
   var legalFooterComponent = {};
   return {
-    mount: (0,_create_dropin__WEBPACK_IMPORTED_MODULE_23__.mountDropin)(controller, configuration, createSource, createElement, instanceOptions, complianceDetails, paymentMethodsMounted, false, legalFooterComponent),
-    refresh: (0,_create_dropin__WEBPACK_IMPORTED_MODULE_23__.mountDropin)(controller, configuration, createSource, createElement, instanceOptions, complianceDetails, paymentMethodsMounted, true, legalFooterComponent)
+    mount: (0,_create_dropin__WEBPACK_IMPORTED_MODULE_24__.mountDropin)(controller, configuration, createSource, createElement, instanceOptions, complianceDetails, paymentMethodsMounted, false, legalFooterComponent),
+    refresh: (0,_create_dropin__WEBPACK_IMPORTED_MODULE_24__.mountDropin)(controller, configuration, createSource, createElement, instanceOptions, complianceDetails, paymentMethodsMounted, true, legalFooterComponent)
   };
 };
 DigitalRiver.prototype.components = function (configuration) {
@@ -5228,72 +5236,61 @@ DigitalRiver.prototype.components = function (configuration) {
     throw Error('You must provide a checkoutSessionId');
   }
   var key = this.key;
-  var createDropin = _babel_runtime_corejs3_core_js_stable_instance_bind__WEBPACK_IMPORTED_MODULE_3___default()(_context7 = this.createDropin).call(_context7, this);
-  var createElement = _babel_runtime_corejs3_core_js_stable_instance_bind__WEBPACK_IMPORTED_MODULE_3___default()(_context8 = this.createElement).call(_context8, this);
-  var getDetails = _babel_runtime_corejs3_core_js_stable_instance_bind__WEBPACK_IMPORTED_MODULE_3___default()(_context9 = this.Compliance.getDetails).call(_context9, this);
-  var handleNextAction = _babel_runtime_corejs3_core_js_stable_instance_bind__WEBPACK_IMPORTED_MODULE_3___default()(_context10 = this.handleNextAction).call(_context10, this);
-  var _dataStore$get11 = _dataStore_js__WEBPACK_IMPORTED_MODULE_11__["default"].get(key),
+  var createDropin = _babel_runtime_corejs3_core_js_stable_instance_bind__WEBPACK_IMPORTED_MODULE_4___default()(_context7 = this.createDropin).call(_context7, this);
+  var createElement = _babel_runtime_corejs3_core_js_stable_instance_bind__WEBPACK_IMPORTED_MODULE_4___default()(_context8 = this.createElement).call(_context8, this);
+  var getDetails = _babel_runtime_corejs3_core_js_stable_instance_bind__WEBPACK_IMPORTED_MODULE_4___default()(_context9 = this.Compliance.getDetails).call(_context9, this);
+  var handleNextAction = _babel_runtime_corejs3_core_js_stable_instance_bind__WEBPACK_IMPORTED_MODULE_4___default()(_context10 = this.handleNextAction).call(_context10, this);
+  var _dataStore$get11 = _dataStore_js__WEBPACK_IMPORTED_MODULE_12__["default"].get(key),
     apiKey = _dataStore$get11.apiKey,
     controller = _dataStore$get11.controller,
     instanceOptions = _dataStore$get11.instanceOptions;
-  var storage = (0,_elementsv2_storage__WEBPACK_IMPORTED_MODULE_35__.createStorage)(apiKey, controller, instanceOptions, configuration);
-  (0,_elementsv2_payment_error_text_translations__WEBPACK_IMPORTED_MODULE_36__.getLocalizedErrors)(controller.id, (0,_elementsv2_localization_languages__WEBPACK_IMPORTED_MODULE_45__.getLanguageFromLocaleForLanguageFile)(instanceOptions.locale).toLowerCase()).then(function (res) {
+  var storage = (0,_elementsv2_storage__WEBPACK_IMPORTED_MODULE_36__.createStorage)(apiKey, controller, instanceOptions, configuration);
+  (0,_elementsv2_payment_error_text_translations__WEBPACK_IMPORTED_MODULE_37__.getLocalizedErrors)(controller.id, (0,_elementsv2_localization_languages__WEBPACK_IMPORTED_MODULE_46__.getLanguageFromLocaleForLanguageFile)(instanceOptions.locale).toLowerCase()).then(function (res) {
     storage.translations = res;
   });
-  storage.jsonSchematranslations = _elementsv2_localization_schema_en_json__WEBPACK_IMPORTED_MODULE_16__;
-  (0,_elementsv2_address_address_country_spec__WEBPACK_IMPORTED_MODULE_37__.getLocalizedJsonSchema)(controller.id, (0,_elementsv2_address_address_utils__WEBPACK_IMPORTED_MODULE_34__.getLanguageFromLocaleForCountrySpec)(instanceOptions.locale).toLowerCase()).then(function (res) {
+  storage.jsonSchematranslations = _elementsv2_localization_schema_en_json__WEBPACK_IMPORTED_MODULE_17__;
+  (0,_elementsv2_address_address_country_spec__WEBPACK_IMPORTED_MODULE_38__.getLocalizedJsonSchema)(controller.id, (0,_elementsv2_address_address_utils__WEBPACK_IMPORTED_MODULE_35__.getLanguageFromLocaleForCountrySpec)(instanceOptions.locale).toLowerCase()).then(function (res) {
     storage.jsonSchematranslations = res;
   });
-  var getCookieValue = function getCookieValue(name) {
-    var value = '; ' + document.cookie;
-    var parts = value.split('; ' + name + '=');
-    if (parts.length === 2) {
-      return parts.pop().split(';').shift();
-    } else {
-      return undefined;
-    }
-  };
-  var fingerPrintFromCookie = getCookieValue('DRFID');
-  (0,_elementsv2_checkout_sessions_api__WEBPACK_IMPORTED_MODULE_30__.getDropinCheckout)(configuration.checkoutSessionId, apiKey, fingerPrintFromCookie).then(function (data) {
-    return data.json();
-  }).then(function (data) {
+  var fingerPrintFromCookie = (0,_elementsv2_cookie__WEBPACK_IMPORTED_MODULE_47__.getCookieValue)(_elementsv2_cookie__WEBPACK_IMPORTED_MODULE_47__.COOKIE_KEY);
+  (0,_elementsv2_checkout_sessions_api__WEBPACK_IMPORTED_MODULE_31__.getDropinCheckout)(configuration.checkoutSessionId, apiKey, fingerPrintFromCookie).then(_elementsv2_api_utils__WEBPACK_IMPORTED_MODULE_48__.readResponseJSON).then(function (data) {
     var fingerprint = data.fingerprint;
     var sessionId = data.payment.session.id;
     storage.fingerprint = fingerprint;
     storage.paymentSessionId = sessionId;
     storage.checkoutData = data;
-    document.cookie = encodeURIComponent('DRFID') + '=' + encodeURIComponent(storage.fingerprint);
+    document.cookie = (0,_elementsv2_cookie__WEBPACK_IMPORTED_MODULE_47__.createCookie)(storage);
     if (typeof configuration.onReady !== 'undefined') {
       var _data$optionalTaxIden, _data$requiredTaxIden;
-      configuration.onReady({
+      configuration.onReady((0,_babel_runtime_corejs3_helpers_objectSpread2__WEBPACK_IMPORTED_MODULE_0__["default"])((0,_babel_runtime_corejs3_helpers_objectSpread2__WEBPACK_IMPORTED_MODULE_0__["default"])({}, data), {}, {
         requiresShipping: data.requiresShipping,
         showTaxIdentifiers: (data === null || data === void 0 ? void 0 : (_data$optionalTaxIden = data.optionalTaxIdentifiers) === null || _data$optionalTaxIden === void 0 ? void 0 : _data$optionalTaxIden.length) > 0 || (data === null || data === void 0 ? void 0 : (_data$requiredTaxIden = data.requiredTaxIdentifiers) === null || _data$requiredTaxIden === void 0 ? void 0 : _data$requiredTaxIden.length) > 0
-      });
+      }));
     }
     storage.fireClientOnChange();
   });
   return {
     createComponent: function createComponent(elementName) {
       if (elementName === 'payment') {
-        return (0,_elementsv2_payment_payment_mount__WEBPACK_IMPORTED_MODULE_31__.payment)(key, configuration, storage, createDropin, handleNextAction, createElement);
+        return (0,_elementsv2_payment_payment_mount__WEBPACK_IMPORTED_MODULE_32__.payment)(key, configuration, storage, createDropin, handleNextAction, createElement);
       } else if (elementName === 'shipping') {
-        return (0,_elementsv2_shippingchoice_shipping_choice_mount__WEBPACK_IMPORTED_MODULE_32__.shippingChoice)(key, configuration, storage);
+        return (0,_elementsv2_shippingchoice_shipping_choice_mount__WEBPACK_IMPORTED_MODULE_33__.shippingChoice)(key, configuration, storage);
       } else if (elementName === 'address') {
-        return (0,_elementsv2_address_address_mount__WEBPACK_IMPORTED_MODULE_33__.address)(key, configuration, storage);
+        return (0,_elementsv2_address_address_mount__WEBPACK_IMPORTED_MODULE_34__.address)(key, configuration, storage);
       } else if (elementName === 'wallet') {
-        return (0,_elementsv2_wallet_wallet_mount__WEBPACK_IMPORTED_MODULE_38__.wallet)(key, configuration, storage, createElement);
+        return (0,_elementsv2_wallet_wallet_mount__WEBPACK_IMPORTED_MODULE_39__.wallet)(key, configuration, storage, createElement);
       } else if (elementName === 'thankyou') {
-        return (0,_elementsv2_thankyou_thankyou_mount__WEBPACK_IMPORTED_MODULE_39__.thankYou)(key, configuration, storage);
+        return (0,_elementsv2_thankyou_thankyou_mount__WEBPACK_IMPORTED_MODULE_40__.thankYou)(key, configuration, storage);
       } else if (elementName === 'compliance') {
-        return (0,_elementsv2_compliance_compliance_mount__WEBPACK_IMPORTED_MODULE_40__.compliance)(key, configuration, storage, getDetails);
+        return (0,_elementsv2_compliance_compliance_mount__WEBPACK_IMPORTED_MODULE_41__.compliance)(key, configuration, storage, getDetails);
       } else if (elementName === 'taxidentifier') {
-        return (0,_elementsv2_tax_identifer_tax_identifier_mount__WEBPACK_IMPORTED_MODULE_41__.taxIdentifier)(key, configuration, storage, createElement);
+        return (0,_elementsv2_tax_identifer_tax_identifier_mount__WEBPACK_IMPORTED_MODULE_42__.taxIdentifier)(key, configuration, storage, createElement);
       } else if (elementName === 'taxexemption') {
-        return (0,_elementsv2_taxexemption_taxexemption_mount__WEBPACK_IMPORTED_MODULE_43__.taxExemption)(key, configuration, storage);
+        return (0,_elementsv2_taxexemption_taxexemption_mount__WEBPACK_IMPORTED_MODULE_44__.taxExemption)(key, configuration, storage);
       } else if (elementName === 'invoiceattribute') {
-        return (0,_elementsv2_invoice_attribute_invoice_attribute_mount__WEBPACK_IMPORTED_MODULE_42__.invoiceAttribute)(key, configuration, storage, createElement);
+        return (0,_elementsv2_invoice_attribute_invoice_attribute_mount__WEBPACK_IMPORTED_MODULE_43__.invoiceAttribute)(key, configuration, storage, createElement);
       } else if (elementName === 'ordersummary') {
-        return (0,_elementsv2_order_summary_order_summary_mount__WEBPACK_IMPORTED_MODULE_44__.orderSummary)(key, configuration, storage);
+        return (0,_elementsv2_order_summary_order_summary_mount__WEBPACK_IMPORTED_MODULE_45__.orderSummary)(key, configuration, storage);
       } else {
         throw Error('Unsupported element ' + elementName);
       }
@@ -5398,15 +5395,15 @@ DigitalRiverPaymentRequest.prototype.getData = function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "activateAmazon": function() { return /* binding */ activateAmazon; },
-/* harmony export */   "addButton": function() { return /* binding */ addButton; },
-/* harmony export */   "createAmazonPay": function() { return /* binding */ createAmazonPay; },
-/* harmony export */   "emitComponentReady": function() { return /* binding */ emitComponentReady; },
-/* harmony export */   "getAmazonRegionalData": function() { return /* binding */ getAmazonRegionalData; },
-/* harmony export */   "getElement": function() { return /* binding */ getElement; },
-/* harmony export */   "handleOptions": function() { return /* binding */ handleOptions; },
-/* harmony export */   "mountElement": function() { return /* binding */ mountElement; },
-/* harmony export */   "onPaymentEvent": function() { return /* binding */ onPaymentEvent; }
+/* harmony export */   activateAmazon: function() { return /* binding */ activateAmazon; },
+/* harmony export */   addButton: function() { return /* binding */ addButton; },
+/* harmony export */   createAmazonPay: function() { return /* binding */ createAmazonPay; },
+/* harmony export */   emitComponentReady: function() { return /* binding */ emitComponentReady; },
+/* harmony export */   getAmazonRegionalData: function() { return /* binding */ getAmazonRegionalData; },
+/* harmony export */   getElement: function() { return /* binding */ getElement; },
+/* harmony export */   handleOptions: function() { return /* binding */ handleOptions; },
+/* harmony export */   mountElement: function() { return /* binding */ mountElement; },
+/* harmony export */   onPaymentEvent: function() { return /* binding */ onPaymentEvent; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/asyncToGenerator */ "./node_modules/@babel/runtime-corejs3/helpers/esm/asyncToGenerator.js");
 /* harmony import */ var _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/regenerator */ "./node_modules/@babel/runtime-corejs3/regenerator/index.js");
@@ -5784,24 +5781,24 @@ function getCheckoutLanguage() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "appleResponseToPaymentService": function() { return /* binding */ appleResponseToPaymentService; },
-/* harmony export */   "convertClientErrorToAppleFormat": function() { return /* binding */ convertClientErrorToAppleFormat; },
-/* harmony export */   "convertDisplayItemsToLineItems": function() { return /* binding */ convertDisplayItemsToLineItems; },
-/* harmony export */   "convertFieldNameToAppleFormat": function() { return /* binding */ convertFieldNameToAppleFormat; },
-/* harmony export */   "convertShippingOptions": function() { return /* binding */ convertShippingOptions; },
-/* harmony export */   "convertTotalToAppleFormat": function() { return /* binding */ convertTotalToAppleFormat; },
-/* harmony export */   "createAppleCompleteFunction": function() { return /* binding */ createAppleCompleteFunction; },
-/* harmony export */   "createApplePayButton": function() { return /* binding */ createApplePayButton; },
-/* harmony export */   "getApplePaySession": function() { return /* binding */ getApplePaySession; },
-/* harmony export */   "modifyShippingOptions": function() { return /* binding */ modifyShippingOptions; },
-/* harmony export */   "paymentSourceToEventData": function() { return /* binding */ paymentSourceToEventData; },
-/* harmony export */   "paymentSourceToEventDataForSession": function() { return /* binding */ paymentSourceToEventDataForSession; },
-/* harmony export */   "sendAppleClickEvent": function() { return /* binding */ sendAppleClickEvent; },
-/* harmony export */   "sendShippingAddressChangeEvent": function() { return /* binding */ sendShippingAddressChangeEvent; },
-/* harmony export */   "sendShippingMethodChangeEvent": function() { return /* binding */ sendShippingMethodChangeEvent; },
-/* harmony export */   "setApplePayPaymentRequest": function() { return /* binding */ setApplePayPaymentRequest; },
-/* harmony export */   "shippingAddressSourceToEventData": function() { return /* binding */ shippingAddressSourceToEventData; },
-/* harmony export */   "updateShippingOptions": function() { return /* binding */ updateShippingOptions; }
+/* harmony export */   appleResponseToPaymentService: function() { return /* binding */ appleResponseToPaymentService; },
+/* harmony export */   convertClientErrorToAppleFormat: function() { return /* binding */ convertClientErrorToAppleFormat; },
+/* harmony export */   convertDisplayItemsToLineItems: function() { return /* binding */ convertDisplayItemsToLineItems; },
+/* harmony export */   convertFieldNameToAppleFormat: function() { return /* binding */ convertFieldNameToAppleFormat; },
+/* harmony export */   convertShippingOptions: function() { return /* binding */ convertShippingOptions; },
+/* harmony export */   convertTotalToAppleFormat: function() { return /* binding */ convertTotalToAppleFormat; },
+/* harmony export */   createAppleCompleteFunction: function() { return /* binding */ createAppleCompleteFunction; },
+/* harmony export */   createApplePayButton: function() { return /* binding */ createApplePayButton; },
+/* harmony export */   getApplePaySession: function() { return /* binding */ getApplePaySession; },
+/* harmony export */   modifyShippingOptions: function() { return /* binding */ modifyShippingOptions; },
+/* harmony export */   paymentSourceToEventData: function() { return /* binding */ paymentSourceToEventData; },
+/* harmony export */   paymentSourceToEventDataForSession: function() { return /* binding */ paymentSourceToEventDataForSession; },
+/* harmony export */   sendAppleClickEvent: function() { return /* binding */ sendAppleClickEvent; },
+/* harmony export */   sendShippingAddressChangeEvent: function() { return /* binding */ sendShippingAddressChangeEvent; },
+/* harmony export */   sendShippingMethodChangeEvent: function() { return /* binding */ sendShippingMethodChangeEvent; },
+/* harmony export */   setApplePayPaymentRequest: function() { return /* binding */ setApplePayPaymentRequest; },
+/* harmony export */   shippingAddressSourceToEventData: function() { return /* binding */ shippingAddressSourceToEventData; },
+/* harmony export */   updateShippingOptions: function() { return /* binding */ updateShippingOptions; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/typeof */ "./node_modules/@babel/runtime-corejs3/helpers/esm/typeof.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_find_index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/find-index */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/find-index.js");
@@ -6379,16 +6376,16 @@ function sendAppleClickEvent(instanceData) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "applePaymentCanMakePayment": function() { return /* binding */ applePaymentCanMakePayment; },
-/* harmony export */   "createApplePay": function() { return /* binding */ createApplePay; },
-/* harmony export */   "getPaymentServiceData": function() { return /* binding */ getPaymentServiceData; },
-/* harmony export */   "handleValidateMerchant": function() { return /* binding */ handleValidateMerchant; },
-/* harmony export */   "paymentAuthorization": function() { return /* binding */ paymentAuthorization; },
-/* harmony export */   "processAppleClickEvent": function() { return /* binding */ processAppleClickEvent; },
-/* harmony export */   "processPayment": function() { return /* binding */ processPayment; },
-/* harmony export */   "shippingAddressChange": function() { return /* binding */ shippingAddressChange; },
-/* harmony export */   "shippingOptionChange": function() { return /* binding */ shippingOptionChange; },
-/* harmony export */   "validateMerchant": function() { return /* binding */ validateMerchant; }
+/* harmony export */   applePaymentCanMakePayment: function() { return /* binding */ applePaymentCanMakePayment; },
+/* harmony export */   createApplePay: function() { return /* binding */ createApplePay; },
+/* harmony export */   getPaymentServiceData: function() { return /* binding */ getPaymentServiceData; },
+/* harmony export */   handleValidateMerchant: function() { return /* binding */ handleValidateMerchant; },
+/* harmony export */   paymentAuthorization: function() { return /* binding */ paymentAuthorization; },
+/* harmony export */   processAppleClickEvent: function() { return /* binding */ processAppleClickEvent; },
+/* harmony export */   processPayment: function() { return /* binding */ processPayment; },
+/* harmony export */   shippingAddressChange: function() { return /* binding */ shippingAddressChange; },
+/* harmony export */   shippingOptionChange: function() { return /* binding */ shippingOptionChange; },
+/* harmony export */   validateMerchant: function() { return /* binding */ validateMerchant; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/promise */ "./node_modules/@babel/runtime-corejs3/core-js-stable/promise.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_0__);
@@ -6421,7 +6418,6 @@ function isSessionMode(instanceData) {
   return typeof instanceData.options.sessionId !== 'undefined';
 }
 function getPaymentServiceData(instanceData, appleResponseData) {
-  // TODO If it is a futureUse / or there is a mandate in the options? Look at how googlePay  works
   var agreementData = instanceData.options.agreementData;
   var hasAgreementDataBeenProvided = typeof agreementData !== 'undefined' && agreementData !== null;
   var useMandate = hasAgreementDataBeenProvided && agreementData.useMandate === true;
@@ -6732,7 +6728,7 @@ function createApplePay() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "getAuthenticateSource": function() { return /* binding */ getAuthenticateSource; }
+/* harmony export */   getAuthenticateSource: function() { return /* binding */ getAuthenticateSource; }
 /* harmony export */ });
 /* harmony import */ var _createComponent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./createComponent */ "./src/client/createComponent.js");
 /* harmony import */ var _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../post-robot-wrapper */ "./src/post-robot-wrapper.js");
@@ -6779,16 +6775,16 @@ function getAuthenticateSource(controllerId, sessionId, sourceId, sourceClientSe
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "complianceGetDetails": function() { return /* binding */ complianceGetDetails; },
-/* harmony export */   "getActiveAcceptance": function() { return /* binding */ getActiveAcceptance; },
-/* harmony export */   "getAgreeToTerms": function() { return /* binding */ getAgreeToTerms; },
-/* harmony export */   "getAutoRenewPlanTerms": function() { return /* binding */ getAutoRenewPlanTerms; },
-/* harmony export */   "getConfirmDisclosure": function() { return /* binding */ getConfirmDisclosure; },
-/* harmony export */   "isCompanyNameValid": function() { return /* binding */ isCompanyNameValid; },
-/* harmony export */   "isEulaValid": function() { return /* binding */ isEulaValid; },
-/* harmony export */   "isTermsOfUseValid": function() { return /* binding */ isTermsOfUseValid; },
-/* harmony export */   "localizedText": function() { return /* binding */ localizedText; },
-/* harmony export */   "stripOutDoublePeriods": function() { return /* binding */ stripOutDoublePeriods; }
+/* harmony export */   complianceGetDetails: function() { return /* binding */ complianceGetDetails; },
+/* harmony export */   getActiveAcceptance: function() { return /* binding */ getActiveAcceptance; },
+/* harmony export */   getAgreeToTerms: function() { return /* binding */ getAgreeToTerms; },
+/* harmony export */   getAutoRenewPlanTerms: function() { return /* binding */ getAutoRenewPlanTerms; },
+/* harmony export */   getConfirmDisclosure: function() { return /* binding */ getConfirmDisclosure; },
+/* harmony export */   isCompanyNameValid: function() { return /* binding */ isCompanyNameValid; },
+/* harmony export */   isEulaValid: function() { return /* binding */ isEulaValid; },
+/* harmony export */   isTermsOfUseValid: function() { return /* binding */ isTermsOfUseValid; },
+/* harmony export */   localizedText: function() { return /* binding */ localizedText; },
+/* harmony export */   stripOutDoublePeriods: function() { return /* binding */ stripOutDoublePeriods; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/slicedToArray */ "./node_modules/@babel/runtime-corejs3/helpers/esm/slicedToArray.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_keys__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/keys */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/keys.js");
@@ -7066,10 +7062,10 @@ function getActiveAcceptance(locale, businessEntityId, paymentMethodType, button
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "getBusinessEntityNameFromCode": function() { return /* binding */ getBusinessEntityNameFromCode; },
-/* harmony export */   "getLegalLinkTypes": function() { return /* binding */ getLegalLinkTypes; },
-/* harmony export */   "getRequiredLegalLinks": function() { return /* binding */ getRequiredLegalLinks; },
-/* harmony export */   "handleComplianceOptions": function() { return /* binding */ handleComplianceOptions; }
+/* harmony export */   getBusinessEntityNameFromCode: function() { return /* binding */ getBusinessEntityNameFromCode; },
+/* harmony export */   getLegalLinkTypes: function() { return /* binding */ getLegalLinkTypes; },
+/* harmony export */   getRequiredLegalLinks: function() { return /* binding */ getRequiredLegalLinks; },
+/* harmony export */   handleComplianceOptions: function() { return /* binding */ handleComplianceOptions; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/typeof */ "./node_modules/@babel/runtime-corejs3/helpers/esm/typeof.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/for-each */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/for-each.js");
@@ -7830,7 +7826,7 @@ var countryLegalRequirements = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "createCompliance": function() { return /* binding */ createCompliance; }
+/* harmony export */   createCompliance: function() { return /* binding */ createCompliance; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/concat */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/concat.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_0__);
@@ -8051,7 +8047,7 @@ function createCompliance() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "getCurrencyFromCountry": function() { return /* binding */ getCurrencyFromCountry; }
+/* harmony export */   getCurrencyFromCountry: function() { return /* binding */ getCurrencyFromCountry; }
 /* harmony export */ });
 var data = {
   AD: 'EUR',
@@ -8324,34 +8320,35 @@ function getCurrencyFromCountry(country) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "addSourceDataToOptions": function() { return /* binding */ addSourceDataToOptions; },
-/* harmony export */   "addStandaloneButtonOptions": function() { return /* binding */ addStandaloneButtonOptions; },
-/* harmony export */   "createHeaderDiv": function() { return /* binding */ createHeaderDiv; },
-/* harmony export */   "createSourceData": function() { return /* binding */ createSourceData; },
-/* harmony export */   "determinePaymentDisclosureCheckboxErrorId": function() { return /* binding */ determinePaymentDisclosureCheckboxErrorId; },
-/* harmony export */   "determinePaymentDisclosureCheckboxId": function() { return /* binding */ determinePaymentDisclosureCheckboxId; },
-/* harmony export */   "determinePaymentDisclosureTextId": function() { return /* binding */ determinePaymentDisclosureTextId; },
-/* harmony export */   "displaySavePaymentAgreement": function() { return /* binding */ displaySavePaymentAgreement; },
-/* harmony export */   "filterLogosByCurrency": function() { return /* binding */ filterLogosByCurrency; },
-/* harmony export */   "getExpandFirstPaymentMethodOption": function() { return /* binding */ getExpandFirstPaymentMethodOption; },
-/* harmony export */   "getFlow": function() { return /* binding */ getFlow; },
-/* harmony export */   "getLogoDetails": function() { return /* binding */ getLogoDetails; },
-/* harmony export */   "getPayPalDefaultStyle": function() { return /* binding */ getPayPalDefaultStyle; },
-/* harmony export */   "getRecurringModel": function() { return /* binding */ getRecurringModel; },
-/* harmony export */   "getSessionPaymentRequest": function() { return /* binding */ getSessionPaymentRequest; },
-/* harmony export */   "getStoredId": function() { return /* binding */ getStoredId; },
-/* harmony export */   "getSubmitButtonByPaymentMethodType": function() { return /* binding */ getSubmitButtonByPaymentMethodType; },
-/* harmony export */   "getSupportStorageForAPICall": function() { return /* binding */ getSupportStorageForAPICall; },
-/* harmony export */   "getUsage": function() { return /* binding */ getUsage; },
-/* harmony export */   "handleRedirectSource": function() { return /* binding */ handleRedirectSource; },
-/* harmony export */   "isManagePaymentMethodsMode": function() { return /* binding */ isManagePaymentMethodsMode; },
-/* harmony export */   "isRedirectCancelUrlProvided": function() { return /* binding */ isRedirectCancelUrlProvided; },
-/* harmony export */   "isRedirectDisabled": function() { return /* binding */ isRedirectDisabled; },
-/* harmony export */   "isRedirectReturnUrlProvided": function() { return /* binding */ isRedirectReturnUrlProvided; },
-/* harmony export */   "mountDropin": function() { return /* binding */ mountDropin; },
-/* harmony export */   "shouldSkipShowingPaymentMethods": function() { return /* binding */ shouldSkipShowingPaymentMethods; },
-/* harmony export */   "supportedPaymentMethods": function() { return /* binding */ supportedPaymentMethods; },
-/* harmony export */   "updateButton": function() { return /* binding */ updateButton; }
+/* harmony export */   addSourceDataToOptions: function() { return /* binding */ addSourceDataToOptions; },
+/* harmony export */   addStandaloneButtonOptions: function() { return /* binding */ addStandaloneButtonOptions; },
+/* harmony export */   createHeaderDiv: function() { return /* binding */ createHeaderDiv; },
+/* harmony export */   createSourceData: function() { return /* binding */ createSourceData; },
+/* harmony export */   determinePaymentDisclosureCheckboxErrorId: function() { return /* binding */ determinePaymentDisclosureCheckboxErrorId; },
+/* harmony export */   determinePaymentDisclosureCheckboxId: function() { return /* binding */ determinePaymentDisclosureCheckboxId; },
+/* harmony export */   determinePaymentDisclosureTextId: function() { return /* binding */ determinePaymentDisclosureTextId; },
+/* harmony export */   displaySavePaymentAgreement: function() { return /* binding */ displaySavePaymentAgreement; },
+/* harmony export */   filterLogosByCurrency: function() { return /* binding */ filterLogosByCurrency; },
+/* harmony export */   getExpandFirstPaymentMethodOption: function() { return /* binding */ getExpandFirstPaymentMethodOption; },
+/* harmony export */   getFlow: function() { return /* binding */ getFlow; },
+/* harmony export */   getLogoDetails: function() { return /* binding */ getLogoDetails; },
+/* harmony export */   getPayPalDefaultStyle: function() { return /* binding */ getPayPalDefaultStyle; },
+/* harmony export */   getRecurringModel: function() { return /* binding */ getRecurringModel; },
+/* harmony export */   getSessionPaymentRequest: function() { return /* binding */ getSessionPaymentRequest; },
+/* harmony export */   getStoredId: function() { return /* binding */ getStoredId; },
+/* harmony export */   getSubmitButtonByPaymentMethodType: function() { return /* binding */ getSubmitButtonByPaymentMethodType; },
+/* harmony export */   getSupportStorageForAPICall: function() { return /* binding */ getSupportStorageForAPICall; },
+/* harmony export */   getUsage: function() { return /* binding */ getUsage; },
+/* harmony export */   handleRedirectSource: function() { return /* binding */ handleRedirectSource; },
+/* harmony export */   isManagePaymentMethodsMode: function() { return /* binding */ isManagePaymentMethodsMode; },
+/* harmony export */   isRedirectCancelUrlProvided: function() { return /* binding */ isRedirectCancelUrlProvided; },
+/* harmony export */   isRedirectDisabled: function() { return /* binding */ isRedirectDisabled; },
+/* harmony export */   isRedirectDisabledPaypal: function() { return /* binding */ isRedirectDisabledPaypal; },
+/* harmony export */   isRedirectReturnUrlProvided: function() { return /* binding */ isRedirectReturnUrlProvided; },
+/* harmony export */   mountDropin: function() { return /* binding */ mountDropin; },
+/* harmony export */   shouldSkipShowingPaymentMethods: function() { return /* binding */ shouldSkipShowingPaymentMethods; },
+/* harmony export */   supportedPaymentMethods: function() { return /* binding */ supportedPaymentMethods; },
+/* harmony export */   updateButton: function() { return /* binding */ updateButton; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/toConsumableArray */ "./node_modules/@babel/runtime-corejs3/helpers/esm/toConsumableArray.js");
 /* harmony import */ var _babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/defineProperty */ "./node_modules/@babel/runtime-corejs3/helpers/esm/defineProperty.js");
@@ -8403,7 +8400,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _dropin_button_text__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./dropin/button-text */ "./src/client/dropin/button-text.js");
 /* harmony import */ var _dropin_legalFooter__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ./dropin/legalFooter */ "./src/client/dropin/legalFooter.js");
 /* harmony import */ var _dropin_mandate_content__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ./dropin/mandate-content */ "./src/client/dropin/mandate-content.js");
-/* harmony import */ var _dropin_google_pay__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ./dropin/google-pay */ "./src/client/dropin/google-pay.js");
+/* harmony import */ var _dropin_mandate_google_apple_pay__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ./dropin/mandate-google-apple-pay */ "./src/client/dropin/mandate-google-apple-pay.js");
 
 
 
@@ -8681,7 +8678,7 @@ function supportedPaymentMethods(locale) {
     standaloneButton: false,
     onlyButton: true
   }, {
-    name: 'BNP Paribas',
+    name: 'Findomestic',
     code: 'bnpParibas',
     type: 'bnpParibas',
     needsPayButton: true,
@@ -8777,7 +8774,7 @@ function addSourceDataToOptions(configuration, componentOptionsOrPaymentRequest,
     componentOptionsOrPaymentRequest.style = paymentMethod.defaultStyle;
   }
   componentOptionsOrPaymentRequest.sourceData = createSourceData(configuration, paymentMethod, controller.id, availablePaymentMethod, sessionInformation, locale);
-  componentOptionsOrPaymentRequest.isRedirectDisabled = isRedirectDisabled(configuration);
+  componentOptionsOrPaymentRequest.isRedirectDisabled = isRedirectDisabledPaypal(configuration);
   return componentOptionsOrPaymentRequest;
 }
 function getComponentOptions(componentOptionsKey, configuration) {
@@ -8817,6 +8814,9 @@ function isManagePaymentMethodsMode(configuration) {
 }
 function isRedirectDisabled(configuration) {
   return typeof configuration.options !== 'undefined' && typeof configuration.options.redirect !== 'undefined' && typeof configuration.options.redirect.disableAutomaticRedirects !== 'undefined' ? configuration.options.redirect.disableAutomaticRedirects : false;
+}
+function isRedirectDisabledPaypal(configuration) {
+  return typeof configuration.options !== 'undefined' && typeof configuration.options.redirect !== 'undefined' && typeof configuration.options.redirect.disableAutomaticRedirectsPaypal !== 'undefined' ? configuration.options.redirect.disableAutomaticRedirectsPaypal : false;
 }
 function getReturnUrl(configuration) {
   return configuration.options.redirect.returnUrl;
@@ -9023,173 +9023,6 @@ function mountDropin(controller, configuration, createSource, createElement, ins
     configuration.sessionId = typeof overrideSessionId !== 'undefined' ? overrideSessionId : configuration.sessionId;
     return (0,_fetch_payment_methods__WEBPACK_IMPORTED_MODULE_17__.getPaymentMethods)(controller.id, configuration.sessionId, country, null, locale, getSupportStorageForAPICall(configuration), recurringModel).then(function (paymentMethodResponse) {
       var _context9, _context14;
-      /*paymentMethodResponse.paymentMethods.push({
-        "type": "bnpParibas",
-        "flow": "redirect",
-        "supportsRecurring": false,
-        "supportsFreeTrial": true,
-        "images": {
-          "iconImage": "https://ui1.img.digitalrivercontent.net/Storefront/images/paymentMethodLogos/pmt_con_mascotte_dropin.jpg"
-        },
-        "terms": [
-          {
-            "id": "117463",
-            "name": "9.55% - 10.25% for Variable Time (40 Months) - DEV TEST",
-            "code": "7629",
-            "durationMonths": 40,
-            "monthlyPaymentAmount": 8.79,
-            "monthlyPaymentWithFeesAmount": 8.79,
-            "orderTotal": 300.0,
-            "totalRepayable": 351.47,
-            "creditChargeAmount": 51.47,
-            "originationFeeAmount": 0.0,
-            "administrationFeeAmount": 0.0,
-            "nominalApr": 9.55,
-            "effectiveApr": 9.9793014862719,
-            "disclosures": [
-              {
-                "id": "58425",
-                "locale": "fr_FR",
-                "description": " 117463 Requisiti per il finanziamento Residenza in Italia Età compresa fra i 18 e i 75 anni Procedura di Identificazione ai fini della Normativa Antiriciclaggio se richiesto Per i cittadini italiani: carta identità, patente o passaporto; Per i cittadini stranieri/extracomunitari: documento di soggiorno; Per i cittadini appartenenti all’U.E.: carta di identità, certificato di residenza contestuale, attestazione di regolarità di soggiorno o attestazione di iscrizione anagrafica Tessera Sanitaria con codice fiscale Disponibilità di un conto corrente bancario o postale per il pagamento delle rate Se lavoratore dipendente: ultima busta paga; Se pensionato: cedolino pensione, modello Obis o CU; Se libero professionista: ultima dichiarazione dei redditi Firma online il contratto di finanziamento con la Firma Digitale e Invia i documenti necessari alla valutazione della tua richiesta con il servizio di upload Al termine della compilazione del modulo, Findomestic restituirà in tempo reale una di queste due risposte:Pratica presa in carico da Findomestic Rifiutata In caso di pratica, firma online il contratto di finanziamento con la Firma Digitale e invia i documenti necessari alla valutazione della tua richiesta con il servizio di upload.  Non appena Findomestic avrà verificato i documenti, ti verrà comunicato via mail l'esito della pratica."
-              }
-            ],
-            "localizedText": {
-              "description": "40 rate mensili TAN fisso 0.0955, TAEG 0.099793014862719"
-            }
-          },
-          {
-            "id": "117205",
-            "name": "9.55% - 10.25% for Variable Time (40 Months)",
-            "code": "13731",
-            "durationMonths": 40,
-            "monthlyPaymentAmount": 8.79,
-            "monthlyPaymentWithFeesAmount": 8.79,
-            "orderTotal": 300.0,
-            "totalRepayable": 351.47,
-            "creditChargeAmount": 51.47,
-            "originationFeeAmount": 0.0,
-            "administrationFeeAmount": 0.0,
-            "nominalApr": 9.55,
-            "effectiveApr": 9.9793014862719,
-            "disclosures": [
-              {
-                "id": "58425",
-                "locale": "fr_FR",
-                "description": "117205 Requisiti per il finanziamento Residenza in Italia Età compresa fra i 18 e i 75 anni Procedura di Identificazione ai fini della Normativa Antiriciclaggio se richiesto Per i cittadini italiani: carta identità, patente o passaporto; Per i cittadini stranieri/extracomunitari: documento di soggiorno; Per i cittadini appartenenti all’U.E.: carta di identità, certificato di residenza contestuale, attestazione di regolarità di soggiorno o attestazione di iscrizione anagrafica Tessera Sanitaria con codice fiscale Disponibilità di un conto corrente bancario o postale per il pagamento delle rate Se lavoratore dipendente: ultima busta paga; Se pensionato: cedolino pensione, modello Obis o CU; Se libero professionista: ultima dichiarazione dei redditi Firma online il contratto di finanziamento con la Firma Digitale e Invia i documenti necessari alla valutazione della tua richiesta con il servizio di upload Al termine della compilazione del modulo, Findomestic restituirà in tempo reale una di queste due risposte:Pratica presa in carico da Findomestic Rifiutata In caso di pratica, firma online il contratto di finanziamento con la Firma Digitale e invia i documenti necessari alla valutazione della tua richiesta con il servizio di upload.  Non appena Findomestic avrà verificato i documenti, ti verrà comunicato via mail l'esito della pratica."
-              }
-            ],
-            "localizedText": {
-              "description": "40 rate mensili TAN fisso 0.0955, TAEG 0.099793014862719"
-            }
-          },
-          {
-            "id": "117204",
-            "name": "9.55% - 10.25% for Variable Time (30 Months)",
-            "code": "13731",
-            "durationMonths": 30,
-            "monthlyPaymentAmount": 11.29,
-            "monthlyPaymentWithFeesAmount": 11.29,
-            "orderTotal": 300.0,
-            "totalRepayable": 338.43,
-            "creditChargeAmount": 38.43,
-            "originationFeeAmount": 0.0,
-            "administrationFeeAmount": 0.0,
-            "nominalApr": 9.55,
-            "effectiveApr": 9.9793014862719,
-            "disclosures": [
-              {
-                "id": "58425",
-                "locale": "fr_FR",
-                "description": "117204 Requisiti per il finanziamento Residenza in Italia Età compresa fra i 18 e i 75 anni Procedura di Identificazione ai fini della Normativa Antiriciclaggio se richiesto Per i cittadini italiani: carta identità, patente o passaporto; Per i cittadini stranieri/extracomunitari: documento di soggiorno; Per i cittadini appartenenti all’U.E.: carta di identità, certificato di residenza contestuale, attestazione di regolarità di soggiorno o attestazione di iscrizione anagrafica Tessera Sanitaria con codice fiscale Disponibilità di un conto corrente bancario o postale per il pagamento delle rate Se lavoratore dipendente: ultima busta paga; Se pensionato: cedolino pensione, modello Obis o CU; Se libero professionista: ultima dichiarazione dei redditi Firma online il contratto di finanziamento con la Firma Digitale e Invia i documenti necessari alla valutazione della tua richiesta con il servizio di upload Al termine della compilazione del modulo, Findomestic restituirà in tempo reale una di queste due risposte:Pratica presa in carico da Findomestic Rifiutata In caso di pratica, firma online il contratto di finanziamento con la Firma Digitale e invia i documenti necessari alla valutazione della tua richiesta con il servizio di upload.  Non appena Findomestic avrà verificato i documenti, ti verrà comunicato via mail l'esito della pratica."
-              }
-            ],
-            "localizedText": {
-              "description": "30 rate mensili TAN fisso 0.0955, TAEG 0.099793014862719"
-            }
-          },
-          {
-            "id": "117203",
-            "name": "9.55% - 10.25% for Variable Time (20 Months)",
-            "code": "13731",
-            "durationMonths": 20,
-            "monthlyPaymentAmount": 16.29,
-            "monthlyPaymentWithFeesAmount": 16.29,
-            "orderTotal": 300.0,
-            "totalRepayable": 325.7,
-            "creditChargeAmount": 25.7,
-            "originationFeeAmount": 0.0,
-            "administrationFeeAmount": 0.0,
-            "nominalApr": 9.55,
-            "effectiveApr": 9.9793014862719,
-            "disclosures": [
-              {
-                "id": "58425",
-                "locale": "fr_FR",
-                "description": "117203 Requisiti per il finanziamento Residenza in Italia Età compresa fra i 18 e i 75 anni Procedura di Identificazione ai fini della Normativa Antiriciclaggio se richiesto Per i cittadini italiani: carta identità, patente o passaporto; Per i cittadini stranieri/extracomunitari: documento di soggiorno; Per i cittadini appartenenti all’U.E.: carta di identità, certificato di residenza contestuale, attestazione di regolarità di soggiorno o attestazione di iscrizione anagrafica Tessera Sanitaria con codice fiscale Disponibilità di un conto corrente bancario o postale per il pagamento delle rate Se lavoratore dipendente: ultima busta paga; Se pensionato: cedolino pensione, modello Obis o CU; Se libero professionista: ultima dichiarazione dei redditi Firma online il contratto di finanziamento con la Firma Digitale e Invia i documenti necessari alla valutazione della tua richiesta con il servizio di upload Al termine della compilazione del modulo, Findomestic restituirà in tempo reale una di queste due risposte:Pratica presa in carico da Findomestic Rifiutata In caso di pratica, firma online il contratto di finanziamento con la Firma Digitale e invia i documenti necessari alla valutazione della tua richiesta con il servizio di upload.  Non appena Findomestic avrà verificato i documenti, ti verrà comunicato via mail l'esito della pratica."
-              }
-            ],
-            "localizedText": {
-              "description": "20 rate mensili TAN fisso 0.0955, TAEG 0.099793014862719"
-            }
-          },
-          {
-            "id": "117202",
-            "name": "0% for 20 Month",
-            "code": "8150",
-            "durationMonths": 20,
-            "monthlyPaymentAmount": 15.0,
-            "monthlyPaymentWithFeesAmount": 15.0,
-            "orderTotal": 300.0,
-            "totalRepayable": 300.0,
-            "creditChargeAmount": 0.0,
-            "originationFeeAmount": 0.0,
-            "administrationFeeAmount": 0.0,
-            "nominalApr": 0.0,
-            "effectiveApr": 0.0,
-            "disclosures": [
-              {
-                "id": "58425",
-                "locale": "fr_FR",
-                "description": "117202 Requisiti per il finanziamento Residenza in Italia Età compresa fra i 18 e i 75 anni Procedura di Identificazione ai fini della Normativa Antiriciclaggio se richiesto Per i cittadini italiani: carta identità, patente o passaporto; Per i cittadini stranieri/extracomunitari: documento di soggiorno; Per i cittadini appartenenti all’U.E.: carta di identità, certificato di residenza contestuale, attestazione di regolarità di soggiorno o attestazione di iscrizione anagrafica Tessera Sanitaria con codice fiscale Disponibilità di un conto corrente bancario o postale per il pagamento delle rate Se lavoratore dipendente: ultima busta paga; Se pensionato: cedolino pensione, modello Obis o CU; Se libero professionista: ultima dichiarazione dei redditi Firma online il contratto di finanziamento con la Firma Digitale e Invia i documenti necessari alla valutazione della tua richiesta con il servizio di upload Al termine della compilazione del modulo, Findomestic restituirà in tempo reale una di queste due risposte:Pratica presa in carico da Findomestic Rifiutata In caso di pratica, firma online il contratto di finanziamento con la Firma Digitale e invia i documenti necessari alla valutazione della tua richiesta con il servizio di upload.  Non appena Findomestic avrà verificato i documenti, ti verrà comunicato via mail l'esito della pratica."
-              }
-            ],
-            "localizedText": {
-              "description": "20 rate mensili TAN fisso 0.0, TAEG 0"
-            }
-          },
-          {
-            "id": "117055",
-            "name": "0% for 10 Month",
-            "code": "8149",
-            "durationMonths": 10,
-            "monthlyPaymentAmount": 30.0,
-            "monthlyPaymentWithFeesAmount": 30.0,
-            "orderTotal": 300.0,
-            "totalRepayable": 300.0,
-            "creditChargeAmount": 0.0,
-            "originationFeeAmount": 0.0,
-            "administrationFeeAmount": 0.0,
-            "nominalApr": 0.0,
-            "effectiveApr": 0.0,
-            "disclosures": [
-              {
-                "id": "58425",
-                "locale": "fr_FR",
-                "description": "117055 Requisiti per il finanziamento Residenza in Italia Età compresa fra i 18 e i 75 anni Procedura di Identificazione ai fini della Normativa Antiriciclaggio se richiesto Per i cittadini italiani: carta identità, patente o passaporto; Per i cittadini stranieri/extracomunitari: documento di soggiorno; Per i cittadini appartenenti all’U.E.: carta di identità, certificato di residenza contestuale, attestazione di regolarità di soggiorno o attestazione di iscrizione anagrafica Tessera Sanitaria con codice fiscale Disponibilità di un conto corrente bancario o postale per il pagamento delle rate Se lavoratore dipendente: ultima busta paga; Se pensionato: cedolino pensione, modello Obis o CU; Se libero professionista: ultima dichiarazione dei redditi Firma online il contratto di finanziamento con la Firma Digitale e Invia i documenti necessari alla valutazione della tua richiesta con il servizio di upload Al termine della compilazione del modulo, Findomestic restituirà in tempo reale una di queste due risposte:Pratica presa in carico da Findomestic Rifiutata In caso di pratica, firma online il contratto di finanziamento con la Firma Digitale e invia i documenti necessari alla valutazione della tua richiesta con il servizio di upload.  Non appena Findomestic avrà verificato i documenti, ti verrà comunicato via mail l'esito della pratica."
-              }
-            ],
-            "localizedText": {
-              "description": "10 rate mensili TAN fisso 0.0, TAEG 0"
-            }
-          }
-        ],
-        "supportsStorage": false,
-        "displayName": "BNP Paribas",
-        "localizedDisplayName": "Findomestic",
-        "paymentDisclosure": "Payment Disclosure description Test",
-        "requiresDisclosureAcceptance": false
-      })*/
-
       var componentsReadyStatus = [];
       var shouldSkipShowingPmtMethods = shouldSkipShowingPaymentMethods(paymentMethodResponse.sessionInformation, configuration);
       if (typeof paymentMethodResponse.paymentMethods === 'undefined' || paymentMethodResponse.paymentMethods.length === 0 || shouldSkipShowingPmtMethods) {
@@ -9311,6 +9144,7 @@ function mountDropin(controller, configuration, createSource, createElement, ins
               delete componentOptionsOrPaymentRequest.style;
               component.mountedComponent.update(componentOptionsOrPaymentRequest);
             }
+            (0,_dropin_mandate_google_apple_pay__WEBPACK_IMPORTED_MODULE_37__.addMandateAndTermsButtonListeners)(paymentMethod, configuration, controller, availablePaymentMethod, paymentMethodResponse, locale, component.mountedComponent);
             componentsMounted[paymentMethod.code] = component.mountedComponent;
             availablePaymentMethod.addedToDOM = true;
             return;
@@ -9448,11 +9282,7 @@ function mountDropin(controller, configuration, createSource, createElement, ins
                 });
               });
             }
-            // TODO DO NOT MERGE: For Apple PAy story!
-
-            if ((paymentMethod.type === 'googlePay' || paymentMethod.type === 'applePay') && ((0,_dropin_mandate_content__WEBPACK_IMPORTED_MODULE_36__.isMandateDisplayed)(paymentMethod) || (0,_dropin_terms__WEBPACK_IMPORTED_MODULE_27__.isTermsDisplayed)(paymentMethod))) {
-              (0,_dropin_google_pay__WEBPACK_IMPORTED_MODULE_37__.addSendUpdateEventsForGooglePay)(configuration, paymentMethod, controller, availablePaymentMethod, paymentMethodResponse, locale, _component);
-            }
+            (0,_dropin_mandate_google_apple_pay__WEBPACK_IMPORTED_MODULE_37__.addMandateAndTermsButtonListeners)(paymentMethod, configuration, controller, availablePaymentMethod, paymentMethodResponse, locale, _component);
           } catch (e) {
             clearComponentFromDOM(paymentMethodParent, headerId, bodyId);
             availablePaymentMethod.addedToDOM = false;
@@ -9774,23 +9604,6 @@ function findTitleSelectForPaymentMethod(paymentMethod) {
 function findSalutationForPaymentMethod(paymentMethod) {
   return findTitleSelectForPaymentMethod(paymentMethod).value;
 }
-function runClientMethodsBasedOnPaymentMethod(paymentMethod, createSource, sourceData, configuration, submitButton, selectedText, paymentMethodFromAPI, controllerId, componentsMounted, shouldSkipShowingPmtMethods) {
-  if (paymentMethod.justRequiresSource && paymentMethod.onlyButton) {
-    createSource(sourceData).then(function (response) {
-      (0,_dropin_events__WEBPACK_IMPORTED_MODULE_18__.runClientProvidedCompleteEvents)(configuration, response, submitButton, selectedText, paymentMethodFromAPI);
-    });
-  } else if (paymentMethodFromAPI.flow === 'redirect') {
-    handleRedirectSource(controllerId, configuration, paymentMethod, createSource, sourceData, componentsMounted, selectedText, paymentMethodFromAPI);
-  } else {
-    if (shouldSkipShowingPmtMethods) {
-      (0,_dropin_events__WEBPACK_IMPORTED_MODULE_18__.runClientProvidedCompleteEvents)(configuration, {}, submitButton, selectedText, paymentMethodFromAPI);
-    } else {
-      createSource(componentsMounted[paymentMethod.code], sourceData).then(function (response) {
-        (0,_dropin_events__WEBPACK_IMPORTED_MODULE_18__.runClientProvidedCompleteEvents)(configuration, response, submitButton, selectedText, paymentMethodFromAPI);
-      });
-    }
-  }
-}
 function createSubmitButton(controllerId, configuration, createSource, componentsMounted, paymentMethod, submitButtonId, paymentMethodFromAPI, sessionInformation, locale, hasPaymentDisclosure, requiresDisclosureAcceptance, shouldSkipShowingPmtMethods) {
   var spinnerAltText = (0,_app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_20__.getLocaleMessage)(locale, 'processingYourRequest');
   var requireStorageValidation = isManagePaymentMethodsMode(configuration);
@@ -9919,7 +9732,21 @@ function createSubmitButton(controllerId, configuration, createSource, component
       }
     }
     updateButton(event.target, (0,_css_class_utils__WEBPACK_IMPORTED_MODULE_19__.createCssSpinner)(spinnerAltText), true);
-    runClientMethodsBasedOnPaymentMethod(paymentMethod, createSource, sourceData, configuration, submitButton, selectedText, paymentMethodFromAPI, controllerId, componentsMounted, shouldSkipShowingPmtMethods);
+    if (paymentMethod.justRequiresSource && paymentMethod.onlyButton) {
+      createSource(sourceData).then(function (response) {
+        (0,_dropin_events__WEBPACK_IMPORTED_MODULE_18__.runClientProvidedCompleteEvents)(configuration, response, submitButton, selectedText, paymentMethodFromAPI);
+      });
+    } else if (paymentMethodFromAPI.flow === 'redirect') {
+      handleRedirectSource(controllerId, configuration, paymentMethod, createSource, sourceData, componentsMounted, selectedText, paymentMethodFromAPI);
+    } else {
+      if (shouldSkipShowingPmtMethods) {
+        (0,_dropin_events__WEBPACK_IMPORTED_MODULE_18__.runClientProvidedCompleteEvents)(configuration, {}, submitButton, selectedText, paymentMethodFromAPI);
+      } else {
+        createSource(componentsMounted[paymentMethod.code], sourceData).then(function (response) {
+          (0,_dropin_events__WEBPACK_IMPORTED_MODULE_18__.runClientProvidedCompleteEvents)(configuration, response, submitButton, selectedText, paymentMethodFromAPI);
+        });
+      }
+    }
   };
   return submitButton;
 }
@@ -10139,30 +9966,30 @@ function getLogoDetails() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "createComponent": function() { return /* binding */ createComponent; },
-/* harmony export */   "createOrExtractAdyenController": function() { return /* binding */ createOrExtractAdyenController; },
-/* harmony export */   "createOrExtractBeaconController": function() { return /* binding */ createOrExtractBeaconController; },
-/* harmony export */   "createOverlayDiv": function() { return /* binding */ createOverlayDiv; },
-/* harmony export */   "destroy": function() { return /* binding */ destroy; },
-/* harmony export */   "findWindow": function() { return /* binding */ findWindow; },
-/* harmony export */   "generateComponentId": function() { return /* binding */ generateComponentId; },
-/* harmony export */   "getComponentIFrame": function() { return /* binding */ getComponentIFrame; },
-/* harmony export */   "getComponentURL": function() { return /* binding */ getComponentURL; },
-/* harmony export */   "getComponentWindow": function() { return /* binding */ getComponentWindow; },
-/* harmony export */   "getComponentsBasePath": function() { return /* binding */ getComponentsBasePath; },
-/* harmony export */   "googlePayCanMakePayment": function() { return /* binding */ googlePayCanMakePayment; },
-/* harmony export */   "mount": function() { return /* binding */ mount; },
-/* harmony export */   "onEventHandler": function() { return /* binding */ onEventHandler; },
-/* harmony export */   "registerComponentWithController": function() { return /* binding */ registerComponentWithController; },
-/* harmony export */   "sendAdyen3dDetails": function() { return /* binding */ sendAdyen3dDetails; },
-/* harmony export */   "sendAdyenAction": function() { return /* binding */ sendAdyenAction; },
-/* harmony export */   "sendApiKey": function() { return /* binding */ sendApiKey; },
-/* harmony export */   "sendInitalize3dSecure": function() { return /* binding */ sendInitalize3dSecure; },
-/* harmony export */   "sendOptions": function() { return /* binding */ sendOptions; },
-/* harmony export */   "triggerEvent": function() { return /* binding */ triggerEvent; },
-/* harmony export */   "unmount": function() { return /* binding */ unmount; },
-/* harmony export */   "update": function() { return /* binding */ update; },
-/* harmony export */   "updateOverlay": function() { return /* binding */ updateOverlay; }
+/* harmony export */   createComponent: function() { return /* binding */ createComponent; },
+/* harmony export */   createOrExtractAdyenController: function() { return /* binding */ createOrExtractAdyenController; },
+/* harmony export */   createOrExtractBeaconController: function() { return /* binding */ createOrExtractBeaconController; },
+/* harmony export */   createOverlayDiv: function() { return /* binding */ createOverlayDiv; },
+/* harmony export */   destroy: function() { return /* binding */ destroy; },
+/* harmony export */   findWindow: function() { return /* binding */ findWindow; },
+/* harmony export */   generateComponentId: function() { return /* binding */ generateComponentId; },
+/* harmony export */   getComponentIFrame: function() { return /* binding */ getComponentIFrame; },
+/* harmony export */   getComponentURL: function() { return /* binding */ getComponentURL; },
+/* harmony export */   getComponentWindow: function() { return /* binding */ getComponentWindow; },
+/* harmony export */   getComponentsBasePath: function() { return /* binding */ getComponentsBasePath; },
+/* harmony export */   googlePayCanMakePayment: function() { return /* binding */ googlePayCanMakePayment; },
+/* harmony export */   mount: function() { return /* binding */ mount; },
+/* harmony export */   onEventHandler: function() { return /* binding */ onEventHandler; },
+/* harmony export */   registerComponentWithController: function() { return /* binding */ registerComponentWithController; },
+/* harmony export */   sendAdyen3dDetails: function() { return /* binding */ sendAdyen3dDetails; },
+/* harmony export */   sendAdyenAction: function() { return /* binding */ sendAdyenAction; },
+/* harmony export */   sendApiKey: function() { return /* binding */ sendApiKey; },
+/* harmony export */   sendInitalize3dSecure: function() { return /* binding */ sendInitalize3dSecure; },
+/* harmony export */   sendOptions: function() { return /* binding */ sendOptions; },
+/* harmony export */   triggerEvent: function() { return /* binding */ triggerEvent; },
+/* harmony export */   unmount: function() { return /* binding */ unmount; },
+/* harmony export */   update: function() { return /* binding */ update; },
+/* harmony export */   updateOverlay: function() { return /* binding */ updateOverlay; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_index_of__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/index-of */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/index-of.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_index_of__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_index_of__WEBPACK_IMPORTED_MODULE_0__);
@@ -10582,7 +10409,8 @@ function sendApiKey(controllerId, eventName, data) {
     throw new Error("Unable to locate controller '".concat(controllerId, "'"));
   }
   // Send component Id to the controller, we return a promise but you don't really need to wait?
-  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_6__["default"].send(controllerWindow, eventName, data).catch(function () {
+  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_6__["default"].send(controllerWindow, eventName, data).catch(function (error) {
+    console.error('API KEY ERROR', error);
     throw new Error('Sending apiKey error');
   });
 }
@@ -10765,8 +10593,8 @@ function updateOverlay(overlayId, height, bgColor) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "createController": function() { return /* binding */ createController; },
-/* harmony export */   "registerControllerEvents": function() { return /* binding */ registerControllerEvents; }
+/* harmony export */   createController: function() { return /* binding */ createController; },
+/* harmony export */   registerControllerEvents: function() { return /* binding */ registerControllerEvents; }
 /* harmony export */ });
 /* harmony import */ var _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../post-robot-wrapper */ "./src/post-robot-wrapper.js");
 /* harmony import */ var _createComponent__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./createComponent */ "./src/client/createComponent.js");
@@ -10823,7 +10651,7 @@ function registerControllerEvents(key, controllerWindow, domain) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "createFrame": function() { return /* binding */ createFrame; }
+/* harmony export */   createFrame: function() { return /* binding */ createFrame; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/object/assign */ "./node_modules/@babel/runtime-corejs3/core-js-stable/object/assign.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_0__);
@@ -10924,8 +10752,8 @@ function createFrame(type, node, src, attributes, elementHeight, locale, id, nam
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "createSource": function() { return /* binding */ createSource; },
-/* harmony export */   "createSourceWithAdyen": function() { return /* binding */ createSourceWithAdyen; }
+/* harmony export */   createSource: function() { return /* binding */ createSource; },
+/* harmony export */   createSourceWithAdyen: function() { return /* binding */ createSourceWithAdyen; }
 /* harmony export */ });
 /* harmony import */ var _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../post-robot-wrapper */ "./src/post-robot-wrapper.js");
 /* harmony import */ var _beacon_beacon_client_data__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../beacon/beacon-client-data */ "./src/beacon/beacon-client-data.js");
@@ -11002,15 +10830,15 @@ function createSourceWithAdyen(controllerId, data, clientData) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "applyActiveClasses": function() { return /* binding */ applyActiveClasses; },
-/* harmony export */   "convertToAlphaColor": function() { return /* binding */ convertToAlphaColor; },
-/* harmony export */   "createCssSpinner": function() { return /* binding */ createCssSpinner; },
-/* harmony export */   "formatStyleCss": function() { return /* binding */ formatStyleCss; },
-/* harmony export */   "getActiveClasses": function() { return /* binding */ getActiveClasses; },
-/* harmony export */   "getCssClasses": function() { return /* binding */ getCssClasses; },
-/* harmony export */   "getElementHeight": function() { return /* binding */ getElementHeight; },
-/* harmony export */   "removeClasses": function() { return /* binding */ removeClasses; },
-/* harmony export */   "setSelectStyles": function() { return /* binding */ setSelectStyles; }
+/* harmony export */   applyActiveClasses: function() { return /* binding */ applyActiveClasses; },
+/* harmony export */   convertToAlphaColor: function() { return /* binding */ convertToAlphaColor; },
+/* harmony export */   createCssSpinner: function() { return /* binding */ createCssSpinner; },
+/* harmony export */   formatStyleCss: function() { return /* binding */ formatStyleCss; },
+/* harmony export */   getActiveClasses: function() { return /* binding */ getActiveClasses; },
+/* harmony export */   getCssClasses: function() { return /* binding */ getCssClasses; },
+/* harmony export */   getElementHeight: function() { return /* binding */ getElementHeight; },
+/* harmony export */   removeClasses: function() { return /* binding */ removeClasses; },
+/* harmony export */   setSelectStyles: function() { return /* binding */ setSelectStyles; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/slicedToArray */ "./node_modules/@babel/runtime-corejs3/helpers/esm/slicedToArray.js");
 /* harmony import */ var _babel_runtime_corejs3_helpers_typeof__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/typeof */ "./node_modules/@babel/runtime-corejs3/helpers/esm/typeof.js");
@@ -11354,7 +11182,7 @@ function getAll() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "getBPayContent": function() { return /* binding */ getBPayContent; }
+/* harmony export */   getBPayContent: function() { return /* binding */ getBPayContent; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/concat */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/concat.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_0__);
@@ -11385,7 +11213,7 @@ function getBPayContent(source, locale) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "getBoletoBancarioContent": function() { return /* binding */ getBoletoBancarioContent; }
+/* harmony export */   getBoletoBancarioContent: function() { return /* binding */ getBoletoBancarioContent; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/concat */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/concat.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_0__);
@@ -11410,7 +11238,7 @@ function getBoletoBancarioContent(source) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "getDelayedPaymentInstructionsLocalizedStrings": function() { return /* binding */ getDelayedPaymentInstructionsLocalizedStrings; }
+/* harmony export */   getDelayedPaymentInstructionsLocalizedStrings: function() { return /* binding */ getDelayedPaymentInstructionsLocalizedStrings; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/for-each */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/for-each.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_0__);
@@ -11442,12 +11270,12 @@ function getDelayedPaymentInstructionsLocalizedStrings(titles, locale) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "addContainerToDom": function() { return /* binding */ addContainerToDom; },
-/* harmony export */   "createDelayedPaymentInstructions": function() { return /* binding */ createDelayedPaymentInstructions; },
-/* harmony export */   "emitComponentReady": function() { return /* binding */ emitComponentReady; },
-/* harmony export */   "handleOptions": function() { return /* binding */ handleOptions; },
-/* harmony export */   "mountElement": function() { return /* binding */ mountElement; },
-/* harmony export */   "unmountElement": function() { return /* binding */ unmountElement; }
+/* harmony export */   addContainerToDom: function() { return /* binding */ addContainerToDom; },
+/* harmony export */   createDelayedPaymentInstructions: function() { return /* binding */ createDelayedPaymentInstructions; },
+/* harmony export */   emitComponentReady: function() { return /* binding */ emitComponentReady; },
+/* harmony export */   handleOptions: function() { return /* binding */ handleOptions; },
+/* harmony export */   mountElement: function() { return /* binding */ mountElement; },
+/* harmony export */   unmountElement: function() { return /* binding */ unmountElement; }
 /* harmony export */ });
 /* harmony import */ var _createComponent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../createComponent */ "./src/client/createComponent.js");
 /* harmony import */ var _app_components_options__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../app/components/options */ "./src/app/components/options.js");
@@ -11613,7 +11441,7 @@ function getInstructionsByType(source, locale) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "getKonbiniContent": function() { return /* binding */ getKonbiniContent; }
+/* harmony export */   getKonbiniContent: function() { return /* binding */ getKonbiniContent; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/concat */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/concat.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_0__);
@@ -11646,7 +11474,7 @@ function getKonbiniContent(source, locale) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "getWireTransferContent": function() { return /* binding */ getWireTransferContent; }
+/* harmony export */   getWireTransferContent: function() { return /* binding */ getWireTransferContent; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/concat */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/concat.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_0__);
@@ -11686,12 +11514,12 @@ function getWireTransferContent(source, locale) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "createCancelEvent": function() { return /* binding */ createCancelEvent; },
-/* harmony export */   "isReadyForStorage": function() { return /* binding */ isReadyForStorage; },
-/* harmony export */   "registerRedirectOnComplete": function() { return /* binding */ registerRedirectOnComplete; },
-/* harmony export */   "runClientProvidedCancelEvent": function() { return /* binding */ runClientProvidedCancelEvent; },
-/* harmony export */   "runClientProvidedCompleteEvents": function() { return /* binding */ runClientProvidedCompleteEvents; },
-/* harmony export */   "sendRedirectSourceData": function() { return /* binding */ sendRedirectSourceData; }
+/* harmony export */   createCancelEvent: function() { return /* binding */ createCancelEvent; },
+/* harmony export */   isReadyForStorage: function() { return /* binding */ isReadyForStorage; },
+/* harmony export */   registerRedirectOnComplete: function() { return /* binding */ registerRedirectOnComplete; },
+/* harmony export */   runClientProvidedCancelEvent: function() { return /* binding */ runClientProvidedCancelEvent; },
+/* harmony export */   runClientProvidedCompleteEvents: function() { return /* binding */ runClientProvidedCompleteEvents; },
+/* harmony export */   sendRedirectSourceData: function() { return /* binding */ sendRedirectSourceData; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_find__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/find */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/find.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_find__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_find__WEBPACK_IMPORTED_MODULE_0__);
@@ -11807,7 +11635,7 @@ function runClientProvidedCancelEvent(options, paymentMethodType, buttonElement,
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "determineButtonConfigurationText": function() { return /* binding */ determineButtonConfigurationText; }
+/* harmony export */   determineButtonConfigurationText: function() { return /* binding */ determineButtonConfigurationText; }
 /* harmony export */ });
 /* harmony import */ var _button_text__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./button-text */ "./src/client/dropin/button-text.js");
 
@@ -11833,7 +11661,7 @@ function determineButtonConfigurationText(configuration, locale) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "getButtonTextByLocale": function() { return /* binding */ getButtonTextByLocale; }
+/* harmony export */   getButtonTextByLocale: function() { return /* binding */ getButtonTextByLocale; }
 /* harmony export */ });
 /* harmony import */ var _json_buttons_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../json/buttons.json */ "./src/json/buttons.json");
 /* harmony import */ var _app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../app/components/localization/localized-messages */ "./src/app/components/localization/localized-messages.js");
@@ -11870,7 +11698,7 @@ function getButtonTextByLocale(locale, code) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "getCheckboxValue": function() { return /* binding */ getCheckboxValue; }
+/* harmony export */   getCheckboxValue: function() { return /* binding */ getCheckboxValue; }
 /* harmony export */ });
 function getCheckboxValue(domElementId) {
   return document.getElementById(domElementId).checked;
@@ -11887,9 +11715,9 @@ function getCheckboxValue(domElementId) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "addTerms": function() { return /* binding */ addTerms; },
-/* harmony export */   "determineDynamicTermsCheckboxErrorId": function() { return /* binding */ determineDynamicTermsCheckboxErrorId; },
-/* harmony export */   "getSelectTitleErrorMessage": function() { return /* binding */ getSelectTitleErrorMessage; }
+/* harmony export */   addTerms: function() { return /* binding */ addTerms; },
+/* harmony export */   determineDynamicTermsCheckboxErrorId: function() { return /* binding */ determineDynamicTermsCheckboxErrorId; },
+/* harmony export */   getSelectTitleErrorMessage: function() { return /* binding */ getSelectTitleErrorMessage; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/for-each */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/for-each.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_0__);
@@ -11957,8 +11785,6 @@ function addTerms(bodyParent, availablePaymentMethod, paymentMethod, locale) {
       termIconContainer.appendChild(termIcon);
       termRowContainer.appendChild(termIconContainer);
     }
-
-    // Note: Description can be undefined but is going to get fixed.
     var termText = document.createElement('label');
     termText.innerText = description;
     termText.setAttribute('for', termLabelId);
@@ -11991,49 +11817,6 @@ function getSelectTitleErrorMessage() {
 
 /***/ }),
 
-/***/ "./src/client/dropin/google-pay.js":
-/*!*****************************************!*\
-  !*** ./src/client/dropin/google-pay.js ***!
-  \*****************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "addSendUpdateEventsForGooglePay": function() { return /* binding */ addSendUpdateEventsForGooglePay; }
-/* harmony export */ });
-/* harmony import */ var _terms__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./terms */ "./src/client/dropin/terms.js");
-/* harmony import */ var _mandate_content__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./mandate-content */ "./src/client/dropin/mandate-content.js");
-/* harmony import */ var _create_dropin__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../create-dropin */ "./src/client/create-dropin.js");
-
-
-
-function addSendUpdateEventsForGooglePay(configuration, paymentMethod, controller, availablePaymentMethod, paymentMethodResponse, locale, component) {
-  if ((0,_terms__WEBPACK_IMPORTED_MODULE_0__.isTermsDisplayed)(paymentMethod)) {
-    (0,_terms__WEBPACK_IMPORTED_MODULE_0__.getTermsCheckboxDOMElement)(paymentMethod).addEventListener('change', changeCallback(configuration, paymentMethod, controller, availablePaymentMethod, paymentMethodResponse, locale, component));
-  }
-  if ((0,_mandate_content__WEBPACK_IMPORTED_MODULE_1__.isMandateDisplayed)(paymentMethod)) {
-    (0,_mandate_content__WEBPACK_IMPORTED_MODULE_1__.getMandateCheckboxDOMElement)(paymentMethod).addEventListener('change', changeCallback(configuration, paymentMethod, controller, availablePaymentMethod, paymentMethodResponse, locale, component));
-  }
-}
-function changeCallback(configuration, paymentMethod, controller, availablePaymentMethod, paymentMethodResponse, locale, component) {
-  return function () {
-    var source = (0,_create_dropin__WEBPACK_IMPORTED_MODULE_2__.createSourceData)(configuration, paymentMethod, controller.id, availablePaymentMethod, paymentMethodResponse.sessionInformation, locale);
-    var agreementData = typeof source.mandate === 'undefined' ? {
-      useMandate: false
-    } : {
-      useMandate: true,
-      mandate: source.mandate,
-      futureUse: source.futureUse
-    };
-    component.update({
-      agreementData: agreementData
-    });
-  };
-}
-
-/***/ }),
-
 /***/ "./src/client/dropin/legalFooter.js":
 /*!******************************************!*\
   !*** ./src/client/dropin/legalFooter.js ***!
@@ -12043,7 +11826,7 @@ function changeCallback(configuration, paymentMethod, controller, availablePayme
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "handleLegalFooter": function() { return /* binding */ handleLegalFooter; }
+/* harmony export */   handleLegalFooter: function() { return /* binding */ handleLegalFooter; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/asyncToGenerator */ "./node_modules/@babel/runtime-corejs3/helpers/esm/asyncToGenerator.js");
 /* harmony import */ var _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/regenerator */ "./node_modules/@babel/runtime-corejs3/regenerator/index.js");
@@ -12116,13 +11899,13 @@ function _handleLegalFooter() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "createMandate": function() { return /* binding */ createMandate; },
-/* harmony export */   "createMandateSourceObject": function() { return /* binding */ createMandateSourceObject; },
-/* harmony export */   "determineMandateCheckboxErrorId": function() { return /* binding */ determineMandateCheckboxErrorId; },
-/* harmony export */   "determineMandateCheckboxId": function() { return /* binding */ determineMandateCheckboxId; },
-/* harmony export */   "determineMandateTextId": function() { return /* binding */ determineMandateTextId; },
-/* harmony export */   "getMandateCheckboxDOMElement": function() { return /* binding */ getMandateCheckboxDOMElement; },
-/* harmony export */   "isMandateDisplayed": function() { return /* binding */ isMandateDisplayed; }
+/* harmony export */   createMandate: function() { return /* binding */ createMandate; },
+/* harmony export */   createMandateSourceObject: function() { return /* binding */ createMandateSourceObject; },
+/* harmony export */   determineMandateCheckboxErrorId: function() { return /* binding */ determineMandateCheckboxErrorId; },
+/* harmony export */   determineMandateCheckboxId: function() { return /* binding */ determineMandateCheckboxId; },
+/* harmony export */   determineMandateTextId: function() { return /* binding */ determineMandateTextId; },
+/* harmony export */   getMandateCheckboxDOMElement: function() { return /* binding */ getMandateCheckboxDOMElement; },
+/* harmony export */   isMandateDisplayed: function() { return /* binding */ isMandateDisplayed; }
 /* harmony export */ });
 /* harmony import */ var _terms__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./terms */ "./src/client/dropin/terms.js");
 /* harmony import */ var _mandate__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../mandate */ "./src/client/mandate.js");
@@ -12191,6 +11974,55 @@ function getMandateValue(locale) {
 
 /***/ }),
 
+/***/ "./src/client/dropin/mandate-google-apple-pay.js":
+/*!*******************************************************!*\
+  !*** ./src/client/dropin/mandate-google-apple-pay.js ***!
+  \*******************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   addMandateAndTermsButtonListeners: function() { return /* binding */ addMandateAndTermsButtonListeners; },
+/* harmony export */   addSendUpdateEventsForGooglePay: function() { return /* binding */ addSendUpdateEventsForGooglePay; }
+/* harmony export */ });
+/* harmony import */ var _terms__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./terms */ "./src/client/dropin/terms.js");
+/* harmony import */ var _mandate_content__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./mandate-content */ "./src/client/dropin/mandate-content.js");
+/* harmony import */ var _create_dropin__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../create-dropin */ "./src/client/create-dropin.js");
+
+
+
+function addSendUpdateEventsForGooglePay(configuration, paymentMethod, controller, availablePaymentMethod, paymentMethodResponse, locale, component) {
+  if ((0,_terms__WEBPACK_IMPORTED_MODULE_0__.isTermsDisplayed)(paymentMethod)) {
+    (0,_terms__WEBPACK_IMPORTED_MODULE_0__.getTermsCheckboxDOMElement)(paymentMethod).addEventListener('change', changeCallback(configuration, paymentMethod, controller, availablePaymentMethod, paymentMethodResponse, locale, component));
+  }
+  if ((0,_mandate_content__WEBPACK_IMPORTED_MODULE_1__.isMandateDisplayed)(paymentMethod)) {
+    (0,_mandate_content__WEBPACK_IMPORTED_MODULE_1__.getMandateCheckboxDOMElement)(paymentMethod).addEventListener('change', changeCallback(configuration, paymentMethod, controller, availablePaymentMethod, paymentMethodResponse, locale, component));
+  }
+}
+function changeCallback(configuration, paymentMethod, controller, availablePaymentMethod, paymentMethodResponse, locale, component) {
+  return function () {
+    var source = (0,_create_dropin__WEBPACK_IMPORTED_MODULE_2__.createSourceData)(configuration, paymentMethod, controller.id, availablePaymentMethod, paymentMethodResponse.sessionInformation, locale);
+    var agreementData = typeof source.mandate === 'undefined' ? {
+      useMandate: false
+    } : {
+      useMandate: true,
+      mandate: source.mandate,
+      futureUse: source.futureUse
+    };
+    component.update({
+      agreementData: agreementData
+    });
+  };
+}
+function addMandateAndTermsButtonListeners(paymentMethod, configuration, controller, availablePaymentMethod, paymentMethodResponse, locale, component) {
+  if ((paymentMethod.type === 'googlePay' || paymentMethod.type === 'applePay') && ((0,_mandate_content__WEBPACK_IMPORTED_MODULE_1__.isMandateDisplayed)(paymentMethod) || (0,_terms__WEBPACK_IMPORTED_MODULE_0__.isTermsDisplayed)(paymentMethod))) {
+    addSendUpdateEventsForGooglePay(configuration, paymentMethod, controller, availablePaymentMethod, paymentMethodResponse, locale, component);
+  }
+}
+
+/***/ }),
+
 /***/ "./src/client/dropin/stored-payment-methods.js":
 /*!*****************************************************!*\
   !*** ./src/client/dropin/stored-payment-methods.js ***!
@@ -12200,12 +12032,12 @@ function getMandateValue(locale) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "formatAmountBasedOnCurrency": function() { return /* binding */ formatAmountBasedOnCurrency; },
-/* harmony export */   "getAddedButton": function() { return /* binding */ getAddedButton; },
-/* harmony export */   "getIconImage": function() { return /* binding */ getIconImage; },
-/* harmony export */   "isStoreCredit": function() { return /* binding */ isStoreCredit; },
-/* harmony export */   "isStoredPaymentMethod": function() { return /* binding */ isStoredPaymentMethod; },
-/* harmony export */   "runOnUpdateRequired": function() { return /* binding */ runOnUpdateRequired; }
+/* harmony export */   formatAmountBasedOnCurrency: function() { return /* binding */ formatAmountBasedOnCurrency; },
+/* harmony export */   getAddedButton: function() { return /* binding */ getAddedButton; },
+/* harmony export */   getIconImage: function() { return /* binding */ getIconImage; },
+/* harmony export */   isStoreCredit: function() { return /* binding */ isStoreCredit; },
+/* harmony export */   isStoredPaymentMethod: function() { return /* binding */ isStoredPaymentMethod; },
+/* harmony export */   runOnUpdateRequired: function() { return /* binding */ runOnUpdateRequired; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_find__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/find */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/find.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_find__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_find__WEBPACK_IMPORTED_MODULE_0__);
@@ -12297,22 +12129,22 @@ function isStoreCredit(type) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "addChangeEventToCheckbox": function() { return /* binding */ addChangeEventToCheckbox; },
-/* harmony export */   "createTermsOfSale": function() { return /* binding */ createTermsOfSale; },
-/* harmony export */   "createTermsOfSaleNotRecurring": function() { return /* binding */ createTermsOfSaleNotRecurring; },
-/* harmony export */   "createTermsOfSaleRecurring": function() { return /* binding */ createTermsOfSaleRecurring; },
-/* harmony export */   "createTermsSourceObject": function() { return /* binding */ createTermsSourceObject; },
-/* harmony export */   "determineTermsCheckboxErrorId": function() { return /* binding */ determineTermsCheckboxErrorId; },
-/* harmony export */   "determineTermsCheckboxId": function() { return /* binding */ determineTermsCheckboxId; },
-/* harmony export */   "determineTermsTextId": function() { return /* binding */ determineTermsTextId; },
-/* harmony export */   "displayShowTermsOfSaleDisclosure": function() { return /* binding */ displayShowTermsOfSaleDisclosure; },
-/* harmony export */   "getAgreeToTermsValue": function() { return /* binding */ getAgreeToTermsValue; },
-/* harmony export */   "getCountry": function() { return /* binding */ getCountry; },
-/* harmony export */   "getSellingEntity": function() { return /* binding */ getSellingEntity; },
-/* harmony export */   "getTermsCheckboxDOMElement": function() { return /* binding */ getTermsCheckboxDOMElement; },
-/* harmony export */   "getTermsOfSaleDisclosureValue": function() { return /* binding */ getTermsOfSaleDisclosureValue; },
-/* harmony export */   "isTermsDisplayed": function() { return /* binding */ isTermsDisplayed; },
-/* harmony export */   "isTermsOfSaleDisclosureMode": function() { return /* binding */ isTermsOfSaleDisclosureMode; }
+/* harmony export */   addChangeEventToCheckbox: function() { return /* binding */ addChangeEventToCheckbox; },
+/* harmony export */   createTermsOfSale: function() { return /* binding */ createTermsOfSale; },
+/* harmony export */   createTermsOfSaleNotRecurring: function() { return /* binding */ createTermsOfSaleNotRecurring; },
+/* harmony export */   createTermsOfSaleRecurring: function() { return /* binding */ createTermsOfSaleRecurring; },
+/* harmony export */   createTermsSourceObject: function() { return /* binding */ createTermsSourceObject; },
+/* harmony export */   determineTermsCheckboxErrorId: function() { return /* binding */ determineTermsCheckboxErrorId; },
+/* harmony export */   determineTermsCheckboxId: function() { return /* binding */ determineTermsCheckboxId; },
+/* harmony export */   determineTermsTextId: function() { return /* binding */ determineTermsTextId; },
+/* harmony export */   displayShowTermsOfSaleDisclosure: function() { return /* binding */ displayShowTermsOfSaleDisclosure; },
+/* harmony export */   getAgreeToTermsValue: function() { return /* binding */ getAgreeToTermsValue; },
+/* harmony export */   getCountry: function() { return /* binding */ getCountry; },
+/* harmony export */   getSellingEntity: function() { return /* binding */ getSellingEntity; },
+/* harmony export */   getTermsCheckboxDOMElement: function() { return /* binding */ getTermsCheckboxDOMElement; },
+/* harmony export */   getTermsOfSaleDisclosureValue: function() { return /* binding */ getTermsOfSaleDisclosureValue; },
+/* harmony export */   isTermsDisplayed: function() { return /* binding */ isTermsDisplayed; },
+/* harmony export */   isTermsOfSaleDisclosureMode: function() { return /* binding */ isTermsOfSaleDisclosureMode; }
 /* harmony export */ });
 /* harmony import */ var _complianceData__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../complianceData */ "./src/client/complianceData.js");
 /* harmony import */ var _stored_payment_methods__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./stored-payment-methods */ "./src/client/dropin/stored-payment-methods.js");
@@ -12505,7 +12337,7 @@ function getTermsCheckboxDOMElement(paymentMethod) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "appendAddress": function() { return /* binding */ appendAddress; }
+/* harmony export */   appendAddress: function() { return /* binding */ appendAddress; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/defineProperty */ "./node_modules/@babel/runtime-corejs3/helpers/esm/defineProperty.js");
 /* harmony import */ var _babel_runtime_corejs3_helpers_objectSpread2__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/objectSpread2 */ "./node_modules/@babel/runtime-corejs3/helpers/esm/objectSpread2.js");
@@ -12525,10 +12357,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_values__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/object/values */ "./node_modules/@babel/runtime-corejs3/core-js-stable/object/values.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_values__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_object_values__WEBPACK_IMPORTED_MODULE_11__);
 /* harmony import */ var preact__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! preact */ "./node_modules/preact/dist/preact.module.js");
-/* harmony import */ var _address_translations_utils__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./address-translations-utils */ "./src/client/elementsv2/address/address-translations-utils.js");
-/* harmony import */ var parse_full_name__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! parse-full-name */ "./node_modules/parse-full-name/index.js");
-/* harmony import */ var _address_mount__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./address-mount */ "./src/client/elementsv2/address/address-mount.js");
-
+/* harmony import */ var parse_full_name__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! parse-full-name */ "./node_modules/parse-full-name/index.js");
+/* harmony import */ var _address_mount__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./address-mount */ "./src/client/elementsv2/address/address-mount.js");
 
 
 
@@ -12626,7 +12456,7 @@ function AddressTypeSelection(props) {
 function CustomerTypeSelection(props) {
   return (0,preact__WEBPACK_IMPORTED_MODULE_12__.h)("div", {
     className: 'DR-shipping-customerType-selection'
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_12__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_12__.h)("input", {
+  }, props.isAllowBusinessPurchases && (0,preact__WEBPACK_IMPORTED_MODULE_12__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_12__.h)("input", {
     id: "DR-shipping-customerType-choice",
     name: 'address-customerType',
     type: 'checkbox',
@@ -12639,7 +12469,7 @@ function CustomerTypeSelection(props) {
 function EmailPromotionsOptInSelection(props) {
   return (0,preact__WEBPACK_IMPORTED_MODULE_12__.h)("div", {
     className: 'DR-shipping-consents-emailPromotionsOptIn-selection'
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_12__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_12__.h)("input", {
+  }, props.isEmailPromotionsOptInDisplay && (0,preact__WEBPACK_IMPORTED_MODULE_12__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_12__.h)("input", {
     id: "DR-shipping-consents-emailPromotionsOptIn",
     name: 'consents-emailPromotionsOptIn',
     type: 'checkbox',
@@ -12737,7 +12567,7 @@ var AddressElement = /*#__PURE__*/function (_Component) {
       _this.props.handleShippingAddressTypeChange(!event.target.checked);
     };
     _this.handleCustomerTypeChange = function (event) {
-      _this.props.handlecustomerTypeChange(event.target.checked);
+      _this.props.handleCustomerTypeChange(event.target.checked);
     };
     _this.handleEmailPromotionsOptInChange = function (event) {
       _this.props.handleEmailPromotionsOptInChange(event.target.checked);
@@ -12757,7 +12587,7 @@ var AddressElement = /*#__PURE__*/function (_Component) {
       var _context3, _savedAddress$address, _savedAddress$address2, _savedAddress$address3;
       var savedAddress = _this.props.savedAddresses[index];
       var addressType = _this.state.savedAddressType;
-      var parsedName = (0,parse_full_name__WEBPACK_IMPORTED_MODULE_14__.parseFullName)(savedAddress.name);
+      var parsedName = (0,parse_full_name__WEBPACK_IMPORTED_MODULE_13__.parseFullName)(savedAddress.name);
       var countryCodes = _babel_runtime_corejs3_core_js_stable_instance_map__WEBPACK_IMPORTED_MODULE_7___default()(_context3 = _this.props.billingAddressSchema.country.enum).call(_context3, function (country) {
         return country.countryCode;
       });
@@ -12770,7 +12600,7 @@ var AddressElement = /*#__PURE__*/function (_Component) {
         phone: savedAddress.phone,
         firstName: parsedName.first,
         lastName: parsedName.last
-      }), (0,_address_mount__WEBPACK_IMPORTED_MODULE_15__.defaultError)());
+      }), (0,_address_mount__WEBPACK_IMPORTED_MODULE_14__.defaultError)());
     };
     _this.state = {
       savedAddressType: ''
@@ -12789,8 +12619,10 @@ var AddressElement = /*#__PURE__*/function (_Component) {
       var shippingRequiredFields = this.props.shippingRequiredFields;
       var savedAddressesExistsForUser = ((_this$props$savedAddr = this.props.savedAddresses) === null || _this$props$savedAddr === void 0 ? void 0 : _this$props$savedAddr.length) > 0;
       var billingAddressOnlyMode = this.props.billingAddressOnlyMode;
-      var isShowSavedAddressesMode = savedAddressType.length > 0 ? true : false;
+      var isShowSavedAddressesMode = savedAddressType.length > 0;
       var shoppingCountry = this.props.shoppingCountry;
+      var emailAddressType = this.props.useBillingAddress ? 'billingAddress' : 'shippingAddress';
+      var emailAddressSchema = this.props.useBillingAddress ? this.props.billingAddressSchema : this.props.shippingAddressSchema;
       return (0,preact__WEBPACK_IMPORTED_MODULE_12__.h)("div", {
         className: 'DR-addresses-container DR-form'
       }, !isShowSavedAddressesMode && (0,preact__WEBPACK_IMPORTED_MODULE_12__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_12__.h)(CustomerInformationHeader, {
@@ -12799,8 +12631,8 @@ var AddressElement = /*#__PURE__*/function (_Component) {
         isShowSavedAddressesMode: isShowSavedAddressesMode,
         onClick: this.showSavedAddresses
       }), (0,preact__WEBPACK_IMPORTED_MODULE_12__.h)(AddressFromSchema, {
-        addressType: 'shippingAddress',
-        schema: this.props.shippingAddressSchema,
+        addressType: emailAddressType,
+        schema: emailAddressSchema,
         addressOrder: this.props.emailAddressOrder,
         requiredFields: this.props.emailRequiredField,
         translations: this.props.translations,
@@ -12809,7 +12641,8 @@ var AddressElement = /*#__PURE__*/function (_Component) {
         getAddress: this.props.getAddress
       }), (0,preact__WEBPACK_IMPORTED_MODULE_12__.h)(EmailPromotionsOptInSelection, {
         translations: this.props.translations,
-        onChange: this.handleEmailPromotionsOptInChange
+        onChange: this.handleEmailPromotionsOptInChange,
+        isEmailPromotionsOptInDisplay: this.props.isEmailPromotionsOptInDisplay
       })), !billingAddressOnlyMode && (0,preact__WEBPACK_IMPORTED_MODULE_12__.h)(ShippingAddressHeader, {
         translations: this.props.translations,
         savedAddressesExistsForUser: savedAddressesExistsForUser,
@@ -12851,9 +12684,10 @@ var AddressElement = /*#__PURE__*/function (_Component) {
         getAddress: this.props.getAddress
       })), !isCustomerTypeBusinessFromCheckoutData && (0,preact__WEBPACK_IMPORTED_MODULE_12__.h)(CustomerTypeSelection, {
         translations: this.props.translations,
-        onChange: this.handleCustomerTypeChange
+        onChange: this.handleCustomerTypeChange,
+        isAllowBusinessPurchases: this.props.isAllowBusinessPurchases
       }), this.props.taxInclusive && this.props.isEURowMessageDisplay && (0,preact__WEBPACK_IMPORTED_MODULE_12__.h)("div", null, this.props.translations.misc.pricesNotIncludeTaxesMsg), ((_this$props$errors = this.props.errors) === null || _this$props$errors === void 0 ? void 0 : (_this$props$errors$ma = _this$props$errors.main) === null || _this$props$errors$ma === void 0 ? void 0 : _this$props$errors$ma.length) > 0 && (0,preact__WEBPACK_IMPORTED_MODULE_12__.h)("div", {
-        className: 'DR-validation-error-message'
+        className: 'DR-validation-error-message DR-wallet-error'
       }, this.props.errors.main));
     }
   }]);
@@ -13017,7 +12851,7 @@ function appendAddress(id, options) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "getLocalizedJsonSchema": function() { return /* binding */ getLocalizedJsonSchema; }
+/* harmony export */   getLocalizedJsonSchema: function() { return /* binding */ getLocalizedJsonSchema; }
 /* harmony export */ });
 /* harmony import */ var _createComponent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../createComponent */ "./src/client/createComponent.js");
 /* harmony import */ var _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../post-robot-wrapper */ "./src/post-robot-wrapper.js");
@@ -13043,8 +12877,8 @@ function getLocalizedJsonSchema(controllerId, locale) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "address": function() { return /* binding */ address; },
-/* harmony export */   "defaultError": function() { return /* binding */ defaultError; }
+/* harmony export */   address: function() { return /* binding */ address; },
+/* harmony export */   defaultError: function() { return /* binding */ defaultError; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/asyncToGenerator */ "./node_modules/@babel/runtime-corejs3/helpers/esm/asyncToGenerator.js");
 /* harmony import */ var _babel_runtime_corejs3_helpers_objectSpread2__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/objectSpread2 */ "./node_modules/@babel/runtime-corejs3/helpers/esm/objectSpread2.js");
@@ -13056,20 +12890,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/includes */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/includes.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/object/assign */ "./node_modules/@babel/runtime-corejs3/core-js-stable/object/assign.js");
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_map__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/map */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/map.js");
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_map__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_map__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_json_stringify__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/json/stringify */ "./node_modules/@babel/runtime-corejs3/core-js-stable/json/stringify.js");
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_json_stringify__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_json_stringify__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/filter */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/filter.js");
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_9__);
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_values__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/object/values */ "./node_modules/@babel/runtime-corejs3/core-js-stable/object/values.js");
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_values__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_object_values__WEBPACK_IMPORTED_MODULE_10__);
-/* harmony import */ var _Address__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./Address */ "./src/client/elementsv2/address/Address.jsx");
-/* harmony import */ var _checkout_sessions_api__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../checkout-sessions-api */ "./src/client/elementsv2/checkout-sessions-api.js");
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../utils */ "./src/client/elementsv2/utils.js");
-/* harmony import */ var _address_utils__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./address-utils */ "./src/client/elementsv2/address/address-utils.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_index_of__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/index-of */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/index-of.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_index_of__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_index_of__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/object/assign */ "./node_modules/@babel/runtime-corejs3/core-js-stable/object/assign.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_map__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/map */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/map.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_map__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_map__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_json_stringify__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/json/stringify */ "./node_modules/@babel/runtime-corejs3/core-js-stable/json/stringify.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_json_stringify__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_json_stringify__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/filter */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/filter.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_values__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/object/values */ "./node_modules/@babel/runtime-corejs3/core-js-stable/object/values.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_values__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_object_values__WEBPACK_IMPORTED_MODULE_11__);
+/* harmony import */ var _Address__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./Address */ "./src/client/elementsv2/address/Address.jsx");
+/* harmony import */ var _checkout_sessions_api__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../checkout-sessions-api */ "./src/client/elementsv2/checkout-sessions-api.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../utils */ "./src/client/elementsv2/utils.js");
+/* harmony import */ var _address_utils__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./address-utils */ "./src/client/elementsv2/address/address-utils.js");
+
 
 
 
@@ -13181,31 +13018,52 @@ function validateInputAgainstSchema(type, properties, requiredFields, storage, e
     }
   });
 }
-function getBillingRequiredFields(billingAddressSchemaRaw) {
+function getBillingRequiredFields(billingAddressSchemaRaw, checkoutData, shippingAddressTypeSameAsBilling) {
+  var _checkoutData$options, _context2;
   var billingRequiredFields = JSON.parse(billingAddressSchemaRaw).required;
   billingRequiredFields.push(
   // TODO REMOVE WHEN COMING FROM API
-  'phone', 'firstName', 'lastName');
+  'firstName', 'lastName');
+  if (checkoutData !== null && checkoutData !== void 0 && (_checkoutData$options = checkoutData.options) !== null && _checkoutData$options !== void 0 && _checkoutData$options.requiredFields && _babel_runtime_corejs3_core_js_stable_instance_index_of__WEBPACK_IMPORTED_MODULE_6___default()(_context2 = checkoutData.options.requiredFields).call(_context2, 'billTo.phone') > -1) {
+    billingRequiredFields.push('phone');
+  }
+  if (checkoutData.customerType === 'business') {
+    billingRequiredFields.push('organization');
+  }
+  if (useBillingAddress(checkoutData, shippingAddressTypeSameAsBilling)) {
+    billingRequiredFields.push('email');
+  }
   return billingRequiredFields;
 }
-function getShippingRequiredFields(shippingAddressSchemaRaw) {
+function getShippingRequiredFields(shippingAddressSchemaRaw, checkoutData, shippingAddressTypeSameAsBilling) {
+  var _checkoutData$options2, _context3;
   var shippingRequiredFields = JSON.parse(shippingAddressSchemaRaw).required;
   shippingRequiredFields.push(
   // TODO REMOVE WHEN COMING FROM API
-  'phone', 'firstName', 'lastName');
+  // 'phone',
+  'firstName', 'lastName');
+  if (checkoutData !== null && checkoutData !== void 0 && (_checkoutData$options2 = checkoutData.options) !== null && _checkoutData$options2 !== void 0 && _checkoutData$options2.requiredFields && _babel_runtime_corejs3_core_js_stable_instance_index_of__WEBPACK_IMPORTED_MODULE_6___default()(_context3 = checkoutData.options.requiredFields).call(_context3, 'shipTo.phone') > -1) {
+    shippingRequiredFields.push('phone');
+  }
+  if (checkoutData.customerType === 'business') {
+    shippingRequiredFields.push('organization');
+  }
+  if (!useBillingAddress(checkoutData, shippingAddressTypeSameAsBilling)) {
+    shippingRequiredFields.push('email');
+  }
   return shippingRequiredFields;
 }
 function addressWithValidProperties(address) {
   var notAValidAddressAPIProperty = ['email', 'firstName', 'lastName', 'phone', 'name', 'address', 'organization'];
-  var newAddress = _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_6___default()({}, address);
+  var newAddress = _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_7___default()({}, address);
   _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_3___default()(notAValidAddressAPIProperty).call(notAValidAddressAPIProperty, function (i) {
     return delete newAddress[i];
   });
   return newAddress;
 }
 function setValueWhenOnlySingleEnumValue(schema, storage, addressType) {
-  var _context2;
-  _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_3___default()(_context2 = _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_4___default()(schema)).call(_context2, function (key) {
+  var _context4;
+  _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_3___default()(_context4 = _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_4___default()(schema)).call(_context4, function (key) {
     var property = schema[key];
     if (typeof property.enum !== 'undefined' && property.enum.length === 1) {
       storage[addressType][key] = property.enum[0].countryCode;
@@ -13214,26 +13072,32 @@ function setValueWhenOnlySingleEnumValue(schema, storage, addressType) {
 }
 var BILLING_ADDRESS_TYPE = 'billingAddress';
 var SHIPPING_ADDRESS_TYPE = 'shippingAddress';
-function shouldDisplaySchema(checkoutData) {
-  return typeof checkoutData !== 'undefined' && checkoutData.shippingAddressSchema && checkoutData.billingAddressSchema;
-}
 function setErrorMessageAndRemount(storage, callApiAndMount, errorMessage) {
   callApiAndMount(storage.checkoutData, (0,_babel_runtime_corejs3_helpers_objectSpread2__WEBPACK_IMPORTED_MODULE_1__["default"])((0,_babel_runtime_corejs3_helpers_objectSpread2__WEBPACK_IMPORTED_MODULE_1__["default"])({}, defaultError()), {}, {
     main: errorMessage
   }));
 }
+function useBillingAddress(checkoutData, shippingAddressTypeSameAsBilling) {
+  if ((0,_address_utils__WEBPACK_IMPORTED_MODULE_15__.billingAddressOnlyMode)(checkoutData)) {
+    return true;
+  }
+  if (!shippingAddressTypeSameAsBilling) {
+    return true;
+  }
+  return false;
+}
 function getBillingAddressToUse(checkoutData, storage) {
-  if ((0,_address_utils__WEBPACK_IMPORTED_MODULE_14__.billingAddressOnlyMode)(checkoutData)) {
+  if (useBillingAddress(checkoutData, storage.shippingAddressTypeSameAsBilling)) {
     return storage.billingAddress;
   }
-  return storage.shippingAddressTypeSameAsBilling ? storage.shippingAddress : storage.billingAddress;
+  return storage.shippingAddress;
 }
 var getFieldsByCountry = function getFieldsByCountry(combinedFields, countryFieldByCountry) {
-  var _context3;
-  _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_3___default()(_context3 = _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_4___default()(combinedFields)).call(_context3, function (key) {
+  var _context5;
+  _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_3___default()(_context5 = _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_4___default()(combinedFields)).call(_context5, function (key) {
     if (key in combinedFields && key in countryFieldByCountry) {
-      var _context4;
-      _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_3___default()(_context4 = _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_4___default()(countryFieldByCountry[key])).call(_context4, function (attr) {
+      var _context6;
+      _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_3___default()(_context6 = _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_4___default()(countryFieldByCountry[key])).call(_context6, function (attr) {
         combinedFields[key][attr] = countryFieldByCountry[key][attr];
       });
     }
@@ -13244,7 +13108,7 @@ var getFieldsByCountry = function getFieldsByCountry(combinedFields, countryFiel
   return combinedFields;
 };
 var getOrderFields = function getOrderFields(splitAddressFormat) {
-  var orderFields = _babel_runtime_corejs3_core_js_stable_instance_map__WEBPACK_IMPORTED_MODULE_7___default()(splitAddressFormat).call(splitAddressFormat, function (str) {
+  var orderFields = _babel_runtime_corejs3_core_js_stable_instance_map__WEBPACK_IMPORTED_MODULE_8___default()(splitAddressFormat).call(splitAddressFormat, function (str) {
     var regex = /\{(.+?)\}/g;
     var matches = [];
     var match;
@@ -13261,7 +13125,7 @@ var getOrderFields = function getOrderFields(splitAddressFormat) {
   return orderFields;
 };
 var getJsonSchemaByCountry = function getJsonSchemaByCountry(country, addressType, checkoutData, storage) {
-  addressType = (0,_address_utils__WEBPACK_IMPORTED_MODULE_14__.billingAddressOnlyMode)(checkoutData) ? 'billingOnly' : addressType;
+  addressType = (0,_address_utils__WEBPACK_IMPORTED_MODULE_15__.billingAddressOnlyMode)(checkoutData) ? 'billingOnly' : addressType;
   var defaultSchema = {
     '$schema': 'http://json-schema.org/draft-07/schema#',
     'title': 'Address',
@@ -13269,22 +13133,22 @@ var getJsonSchemaByCountry = function getJsonSchemaByCountry(country, addressTyp
     'properties': {},
     'required': []
   };
-  var countryFields = checkoutData.shoppingCountry && storage.jsonSchematranslations.countries[checkoutData.shoppingCountry] && country == '' ? storage.jsonSchematranslations.countries[checkoutData.shoppingCountry] : storage.jsonSchematranslations.countries[country ? country : 'US'];
+  var countryFields = checkoutData.shoppingCountry && storage.jsonSchematranslations.countries[checkoutData.shoppingCountry] && country === '' ? storage.jsonSchematranslations.countries[checkoutData.shoppingCountry] : storage.jsonSchematranslations.countries[country ? country : 'US'];
   var addressFormat = (storage.isCustomerTypeBusiness || checkoutData.customerType === 'business') && countryFields.addresses ? countryFields.addresses[addressType].format.business : countryFields.addresses[addressType].format.individual;
   var countryFieldByCountry = countryFields.fields;
-  var combinedFields = JSON.parse(_babel_runtime_corejs3_core_js_stable_json_stringify__WEBPACK_IMPORTED_MODULE_8___default()(storage.jsonSchematranslations.defaultFields));
+  var combinedFields = JSON.parse(_babel_runtime_corejs3_core_js_stable_json_stringify__WEBPACK_IMPORTED_MODULE_9___default()(storage.jsonSchematranslations.defaultFields));
   combinedFields = getFieldsByCountry(combinedFields, countryFieldByCountry);
   var regex = /_/g;
   var splitAddressFormat = addressFormat.split(regex);
   var orderedField = getOrderFields(splitAddressFormat);
-  var customerType = checkoutData.customerType === ' business' || storage.isCustomerTypeBusiness ? 'business' : 'individual';
+  var customerType = checkoutData.customerType === 'business' || storage.isCustomerTypeBusiness ? 'business' : 'individual';
   var requiredFields = countryFields.addresses[addressType].requiredFields[customerType];
-  requiredFields = _babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_9___default()(requiredFields).call(requiredFields, function (field) {
+  requiredFields = _babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_10___default()(requiredFields).call(requiredFields, function (field) {
     return field !== 'email';
   });
   defaultSchema['required'] = requiredFields;
   defaultSchema['properties'] = combinedFields;
-  defaultSchema['properties']['country']['enum'] = checkoutData.shoppingCountry && storage.jsonSchematranslations.countries[checkoutData.shoppingCountry] && addressType == 'shipping' ? new Array(storage.jsonSchematranslations.countries[checkoutData.shoppingCountry]) : _babel_runtime_corejs3_core_js_stable_object_values__WEBPACK_IMPORTED_MODULE_10___default()(storage.jsonSchematranslations.countries);
+  defaultSchema['properties']['country']['enum'] = checkoutData.shoppingCountry && storage.jsonSchematranslations.countries[checkoutData.shoppingCountry] && addressType === 'shipping' ? new Array(storage.jsonSchematranslations.countries[checkoutData.shoppingCountry]) : _babel_runtime_corejs3_core_js_stable_object_values__WEBPACK_IMPORTED_MODULE_11___default()(storage.jsonSchematranslations.countries);
   defaultSchema['orderedField'] = orderedField;
   return defaultSchema;
 };
@@ -13296,81 +13160,82 @@ function address(key, configuration, storage) {
   storage.shippingAddressTypeSameAsBilling = true;
   storage.isCustomerTypeBusiness = false;
   storage.isEmailPromotionsOptIn = false;
+  storage.isAllowBusinessPurchases = false;
+  storage.isEmailPromotionsOptInDisplay = false;
   var callApiAndMount = /*#__PURE__*/function () {
     var _ref = (0,_babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee(checkoutData, errors) {
-      var _checkoutData$options, billingAddressSchemaRaw, shippingAddressSchemaRaw, billingAddressSchemaProperties, shippingAddressSchemaProperties, shippingRequiredFields, billingRequiredFields, isEURowMessageDisplay;
-      return _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee$(_context5) {
-        while (1) switch (_context5.prev = _context5.next) {
+      var _checkoutData$options3, _checkoutData$options4, _checkoutData$options5, _checkoutData$options6;
+      var billingAddressSchemaRaw, shippingAddressSchemaRaw, billingAddressSchemaProperties, shippingAddressSchemaProperties, shippingRequiredFields, billingRequiredFields, isEURowMessageDisplay, isAllowBusinessPurchases;
+      return _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee$(_context7) {
+        while (1) switch (_context7.prev = _context7.next) {
           case 0:
-            if (shouldDisplaySchema(checkoutData)) {
-              billingAddressSchemaRaw = getJsonSchemaByCountry((0,_address_utils__WEBPACK_IMPORTED_MODULE_14__.billingAddressOnlyMode)(checkoutData) ? storage['billingOnly']['selectedCountry'] ? storage['billingOnly']['selectedCountry'] : '' : storage['billingAddress']['selectedCountry'] ? storage['billingAddress']['selectedCountry'] : '', 'billing', checkoutData, storage);
-              shippingAddressSchemaRaw = getJsonSchemaByCountry(storage['shippingAddress']['selectedCountry'] ? storage['shippingAddress']['selectedCountry'] : '', 'shipping', checkoutData, storage);
-              billingAddressSchemaProperties = getBillingAddressSchemaProperties(_babel_runtime_corejs3_core_js_stable_json_stringify__WEBPACK_IMPORTED_MODULE_8___default()(billingAddressSchemaRaw));
-              shippingAddressSchemaProperties = getShippingAddressSchemaProperties(_babel_runtime_corejs3_core_js_stable_json_stringify__WEBPACK_IMPORTED_MODULE_8___default()(shippingAddressSchemaRaw));
-              shippingRequiredFields = getShippingRequiredFields(_babel_runtime_corejs3_core_js_stable_json_stringify__WEBPACK_IMPORTED_MODULE_8___default()(shippingAddressSchemaRaw));
-              billingRequiredFields = getBillingRequiredFields(_babel_runtime_corejs3_core_js_stable_json_stringify__WEBPACK_IMPORTED_MODULE_8___default()(billingAddressSchemaRaw));
-              if (checkoutData.customerType === 'business') {
-                shippingRequiredFields.push('organization');
-                billingRequiredFields.push('organization');
-              }
-              isEURowMessageDisplay = checkoutData.billTo && checkoutData.billTo.address && checkoutData.billTo.address.country != 'US' || checkoutData.shipTo && checkoutData.shipTo.address && checkoutData.shipTo.address.country != 'US';
-              (0,_Address__WEBPACK_IMPORTED_MODULE_11__.appendAddress)(nodeToKeep, {
-                errors: typeof errors === 'undefined' ? defaultError() : errors,
-                billingAddressOnlyMode: (0,_address_utils__WEBPACK_IMPORTED_MODULE_14__.billingAddressOnlyMode)(checkoutData),
-                savedAddresses: checkoutData === null || checkoutData === void 0 ? void 0 : (_checkoutData$options = checkoutData.options) === null || _checkoutData$options === void 0 ? void 0 : _checkoutData$options.addresses,
-                translations: storage.translations,
-                emailAddressOrder: ['email'],
-                emailRequiredField: ['email'],
-                shippingAddressSchema: shippingAddressSchemaProperties,
-                billingAddressSchema: billingAddressSchemaProperties,
-                shippingRequiredFields: shippingRequiredFields,
-                billingRequiredFields: billingRequiredFields,
-                shippingAddressOrder: shippingAddressSchemaRaw.orderedField,
-                billingAddressOrder: billingAddressSchemaRaw.orderedField,
-                taxInclusive: checkoutData.taxInclusive,
-                isEURowMessageDisplay: isEURowMessageDisplay,
-                isShippingAddressSameAsBilling: storage.shippingAddressTypeSameAsBilling,
-                isHaveCustomerId: checkoutData.customerId,
-                shoppingCountry: checkoutData.shoppingCountry ? checkoutData.shoppingCountry : '',
-                isCustomerTypeBusiness: storage.isCustomerTypeBusiness,
-                isEmailPromotionsOptIn: storage.isEmailPromotionsOptIn ? storage.isEmailPromotionsOptIn : false,
-                isCustomerTypeBusinessFromCheckoutData: checkoutData.customerType === 'business' ? true : false,
-                updateAddress: function updateAddress(addressType, address) {
-                  storage[addressType] = address;
-                },
-                getAddress: function getAddress(addressType) {
-                  return storage[addressType];
-                },
-                handleShippingAddressTypeChange: function handleShippingAddressTypeChange(selected) {
-                  storage.shippingAddressTypeSameAsBilling = selected;
-                  callApiAndMount(checkoutData);
-                },
-                handlecustomerTypeChange: function handlecustomerTypeChange(selected) {
-                  storage.isCustomerTypeBusiness = selected;
-                  callApiAndMount(checkoutData);
-                },
-                handleEmailPromotionsOptInChange: function handleEmailPromotionsOptInChange(checked) {
-                  storage.isEmailPromotionsOptIn = checked;
-                  callApiAndMount(checkoutData);
-                },
-                updateErrors: function updateErrors(errors) {
-                  callApiAndMount(checkoutData, errors);
-                },
-                updateAddressAndErrors: function updateAddressAndErrors(addressType, address, errors) {
-                  storage[addressType] = address;
-                  var countrySelected = address.country;
-                  if ((0,_address_utils__WEBPACK_IMPORTED_MODULE_14__.billingAddressOnlyMode)(checkoutData)) {
-                    storage['billingOnly']['selectedCountry'] = countrySelected;
-                  } else {
-                    storage[addressType]['selectedCountry'] = countrySelected;
-                  }
-                  callApiAndMount(checkoutData, errors);
+            billingAddressSchemaRaw = getJsonSchemaByCountry((0,_address_utils__WEBPACK_IMPORTED_MODULE_15__.getBillingCountry)(checkoutData, storage), 'billing', checkoutData, storage);
+            shippingAddressSchemaRaw = getJsonSchemaByCountry((0,_address_utils__WEBPACK_IMPORTED_MODULE_15__.getShippingCountry)(storage), 'shipping', checkoutData, storage);
+            billingAddressSchemaProperties = getBillingAddressSchemaProperties(_babel_runtime_corejs3_core_js_stable_json_stringify__WEBPACK_IMPORTED_MODULE_9___default()(billingAddressSchemaRaw));
+            shippingAddressSchemaProperties = getShippingAddressSchemaProperties(_babel_runtime_corejs3_core_js_stable_json_stringify__WEBPACK_IMPORTED_MODULE_9___default()(shippingAddressSchemaRaw));
+            shippingRequiredFields = getShippingRequiredFields(_babel_runtime_corejs3_core_js_stable_json_stringify__WEBPACK_IMPORTED_MODULE_9___default()(shippingAddressSchemaRaw), checkoutData, storage.shippingAddressTypeSameAsBilling);
+            billingRequiredFields = getBillingRequiredFields(_babel_runtime_corejs3_core_js_stable_json_stringify__WEBPACK_IMPORTED_MODULE_9___default()(billingAddressSchemaRaw), checkoutData, storage.shippingAddressTypeSameAsBilling);
+            isEURowMessageDisplay = checkoutData.billTo && checkoutData.billTo.address && checkoutData.billTo.address.country !== 'US' || checkoutData.shipTo && checkoutData.shipTo.address && checkoutData.shipTo.address.country !== 'US';
+            isAllowBusinessPurchases = checkoutData.options && checkoutData.options.customOptions && checkoutData.options.customOptions.allowBusinessPurchases;
+            (0,_Address__WEBPACK_IMPORTED_MODULE_12__.appendAddress)(nodeToKeep, {
+              errors: typeof errors === 'undefined' ? defaultError() : errors,
+              billingAddressOnlyMode: (0,_address_utils__WEBPACK_IMPORTED_MODULE_15__.billingAddressOnlyMode)(checkoutData),
+              useBillingAddress: useBillingAddress(checkoutData, storage.shippingAddressTypeSameAsBilling),
+              savedAddresses: checkoutData === null || checkoutData === void 0 ? void 0 : (_checkoutData$options3 = checkoutData.options) === null || _checkoutData$options3 === void 0 ? void 0 : _checkoutData$options3.addresses,
+              translations: storage.translations,
+              emailAddressOrder: ['email'],
+              emailRequiredField: ['email'],
+              shippingAddressSchema: shippingAddressSchemaProperties,
+              billingAddressSchema: billingAddressSchemaProperties,
+              shippingRequiredFields: shippingRequiredFields,
+              billingRequiredFields: billingRequiredFields,
+              shippingAddressOrder: shippingAddressSchemaRaw.orderedField,
+              billingAddressOrder: billingAddressSchemaRaw.orderedField,
+              taxInclusive: checkoutData.taxInclusive,
+              isEURowMessageDisplay: isEURowMessageDisplay,
+              isShippingAddressSameAsBilling: storage.shippingAddressTypeSameAsBilling,
+              isHaveCustomerId: checkoutData.customerId,
+              shoppingCountry: checkoutData.shoppingCountry ? checkoutData.shoppingCountry : '',
+              isCustomerTypeBusiness: storage.isCustomerTypeBusiness,
+              isEmailPromotionsOptIn: storage.isEmailPromotionsOptIn ? storage.isEmailPromotionsOptIn : false,
+              isEmailPromotionsOptInDisplay: checkoutData !== null && checkoutData !== void 0 && (_checkoutData$options4 = checkoutData.options) !== null && _checkoutData$options4 !== void 0 && (_checkoutData$options5 = _checkoutData$options4.consents) !== null && _checkoutData$options5 !== void 0 && (_checkoutData$options6 = _checkoutData$options5.emailPromotions) !== null && _checkoutData$options6 !== void 0 && _checkoutData$options6.enabled ? true : false,
+              isCustomerTypeBusinessFromCheckoutData: checkoutData.customerType === 'business',
+              isAllowBusinessPurchases: isAllowBusinessPurchases,
+              updateAddress: function updateAddress(addressType, address) {
+                storage[addressType] = address;
+              },
+              getAddress: function getAddress(addressType) {
+                return storage[addressType];
+              },
+              handleShippingAddressTypeChange: function handleShippingAddressTypeChange(selected) {
+                storage.shippingAddressTypeSameAsBilling = selected;
+                callApiAndMount(checkoutData);
+              },
+              handleCustomerTypeChange: function handleCustomerTypeChange(selected) {
+                storage.isCustomerTypeBusiness = selected;
+                callApiAndMount(checkoutData);
+              },
+              handleEmailPromotionsOptInChange: function handleEmailPromotionsOptInChange(checked) {
+                storage.isEmailPromotionsOptIn = checked;
+                callApiAndMount(checkoutData);
+              },
+              updateErrors: function updateErrors(errors) {
+                callApiAndMount(checkoutData, errors);
+              },
+              updateAddressAndErrors: function updateAddressAndErrors(addressType, address, errors) {
+                storage[addressType] = address;
+                var countrySelected = address.country;
+                if ((0,_address_utils__WEBPACK_IMPORTED_MODULE_15__.billingAddressOnlyMode)(checkoutData)) {
+                  storage['billingOnly']['selectedCountry'] = countrySelected;
+                } else {
+                  storage[addressType]['selectedCountry'] = countrySelected;
                 }
-              });
-            }
-          case 1:
+                callApiAndMount(checkoutData, errors);
+              }
+            });
+          case 9:
           case "end":
-            return _context5.stop();
+            return _context7.stop();
         }
       }, _callee);
     }));
@@ -13380,37 +13245,28 @@ function address(key, configuration, storage) {
   }();
   return {
     mount: function mount(node) {
-      nodeToKeep = (0,_utils__WEBPACK_IMPORTED_MODULE_13__.validateClientDomElement)(node);
+      nodeToKeep = (0,_utils__WEBPACK_IMPORTED_MODULE_14__.validateClientDomElement)(node);
       storage.subscribers.push(callApiAndMount);
-      (0,_utils__WEBPACK_IMPORTED_MODULE_13__.waitForRequiredDataOnAddress)(storage).then(function () {
+      (0,_utils__WEBPACK_IMPORTED_MODULE_14__.waitForRequiredDataOnAddress)(storage).then(function () {
         callApiAndMount(storage.checkoutData);
       });
     },
     done: function () {
       var _done = (0,_babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee2() {
+        var _checkoutData$options7, _checkoutData$options8, _checkoutData$options9;
         var errors, checkoutData, billingAddressSchemaRaw, shippingAddressSchemaRaw, billingRequiredFields, shippingRequiredFields, billingAddressProperties, shippingAddressProperties, billingCountryPreSelected, billingAddressToUse, billingAddressFromState, shippingAddressFromState, address, response;
-        return _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee2$(_context6) {
-          while (1) switch (_context6.prev = _context6.next) {
+        return _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee2$(_context8) {
+          while (1) switch (_context8.prev = _context8.next) {
             case 0:
               errors = defaultError();
               checkoutData = storage.checkoutData;
-              if (shouldDisplaySchema(checkoutData)) {
-                _context6.next = 4;
-                break;
-              }
-              return _context6.abrupt("return", true);
-            case 4:
               setErrorMessageAndRemount(storage, callApiAndMount, '');
-              billingAddressSchemaRaw = getJsonSchemaByCountry((0,_address_utils__WEBPACK_IMPORTED_MODULE_14__.billingAddressOnlyMode)(checkoutData) ? storage['billingOnly']['selectedCountry'] ? storage['billingOnly']['selectedCountry'] : '' : storage['billingAddress']['selectedCountry'] ? storage['billingAddress']['selectedCountry'] : '', 'billing', checkoutData, storage);
-              shippingAddressSchemaRaw = getJsonSchemaByCountry(storage['shippingAddress']['selectedCountry'] ? storage['shippingAddress']['selectedCountry'] : '', 'shipping', checkoutData, storage);
-              billingRequiredFields = getBillingRequiredFields(_babel_runtime_corejs3_core_js_stable_json_stringify__WEBPACK_IMPORTED_MODULE_8___default()(billingAddressSchemaRaw));
-              shippingRequiredFields = getShippingRequiredFields(_babel_runtime_corejs3_core_js_stable_json_stringify__WEBPACK_IMPORTED_MODULE_8___default()(shippingAddressSchemaRaw));
-              if (checkoutData.customerType === 'business') {
-                shippingRequiredFields.push('organization');
-                billingRequiredFields.push('organization');
-              }
-              billingAddressProperties = getBillingAddressSchemaProperties(_babel_runtime_corejs3_core_js_stable_json_stringify__WEBPACK_IMPORTED_MODULE_8___default()(billingAddressSchemaRaw));
-              shippingAddressProperties = getShippingAddressSchemaProperties(_babel_runtime_corejs3_core_js_stable_json_stringify__WEBPACK_IMPORTED_MODULE_8___default()(shippingAddressSchemaRaw));
+              billingAddressSchemaRaw = getJsonSchemaByCountry((0,_address_utils__WEBPACK_IMPORTED_MODULE_15__.getBillingCountry)(checkoutData, storage), 'billing', checkoutData, storage);
+              shippingAddressSchemaRaw = getJsonSchemaByCountry((0,_address_utils__WEBPACK_IMPORTED_MODULE_15__.getShippingCountry)(storage), 'shipping', checkoutData, storage);
+              billingRequiredFields = getBillingRequiredFields(_babel_runtime_corejs3_core_js_stable_json_stringify__WEBPACK_IMPORTED_MODULE_9___default()(billingAddressSchemaRaw), checkoutData, storage.shippingAddressTypeSameAsBilling);
+              shippingRequiredFields = getShippingRequiredFields(_babel_runtime_corejs3_core_js_stable_json_stringify__WEBPACK_IMPORTED_MODULE_9___default()(shippingAddressSchemaRaw), checkoutData, storage.shippingAddressTypeSameAsBilling);
+              billingAddressProperties = getBillingAddressSchemaProperties(_babel_runtime_corejs3_core_js_stable_json_stringify__WEBPACK_IMPORTED_MODULE_9___default()(billingAddressSchemaRaw));
+              shippingAddressProperties = getShippingAddressSchemaProperties(_babel_runtime_corejs3_core_js_stable_json_stringify__WEBPACK_IMPORTED_MODULE_9___default()(shippingAddressSchemaRaw));
               if (checkoutData.requiresShipping === true) {
                 setValueWhenOnlySingleEnumValue(shippingAddressProperties, storage, SHIPPING_ADDRESS_TYPE);
                 validateInputAgainstSchema(SHIPPING_ADDRESS_TYPE, shippingAddressProperties, shippingRequiredFields, storage, errors);
@@ -13428,33 +13284,33 @@ function address(key, configuration, storage) {
 
               // If not valid, then notify UI
               if (!(_babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_4___default()(errors.shippingAddress).length > 0 || _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_4___default()(errors.billingAddress).length > 0)) {
-                _context6.next = 17;
+                _context8.next = 14;
                 break;
               }
               callApiAndMount(storage.checkoutData, errors);
-              return _context6.abrupt("return", false);
-            case 17:
+              return _context8.abrupt("return", false);
+            case 14:
               billingAddressToUse = getBillingAddressToUse(checkoutData, storage);
               billingAddressFromState = addressWithValidProperties(billingAddressToUse);
               shippingAddressFromState = addressWithValidProperties(storage.shippingAddress);
               address = {
-                'email': storage.shippingAddress.email,
+                'email': billingAddressToUse.email,
                 'billTo': {
                   'address': billingAddressFromState,
                   'organization': shippingAddressFromState.organization,
-                  'email': storage.shippingAddress.email,
+                  'email': billingAddressToUse.email,
                   'name': billingAddressToUse.firstName + ' ' + billingAddressToUse.lastName,
                   'phone': billingAddressToUse.phone
                 },
                 'shipTo': {
                   'address': shippingAddressFromState,
                   'organization': shippingAddressFromState.organization,
-                  'email': storage.shippingAddress.email,
+                  'email': billingAddressToUse.email,
                   'name': storage.shippingAddress.firstName + ' ' + storage.shippingAddress.lastName,
                   'phone': storage.shippingAddress.phone
                 },
                 'consents': {
-                  emailPromotionsOptIn: storage.isEmailPromotionsOptIn
+                  emailPromotionsOptIn: checkoutData !== null && checkoutData !== void 0 && (_checkoutData$options7 = checkoutData.options) !== null && _checkoutData$options7 !== void 0 && (_checkoutData$options8 = _checkoutData$options7.consents) !== null && _checkoutData$options8 !== void 0 && (_checkoutData$options9 = _checkoutData$options8.emailPromotions) !== null && _checkoutData$options9 !== void 0 && _checkoutData$options9.enabled ? true : false
                 }
               };
               delete address.shipTo.address.selectedCountry;
@@ -13462,30 +13318,30 @@ function address(key, configuration, storage) {
               if (checkoutData.requiresShipping === false) {
                 delete address.shipTo;
               }
-              _context6.prev = 24;
-              _context6.next = 27;
-              return (0,_checkout_sessions_api__WEBPACK_IMPORTED_MODULE_12__.attachAddressToDropinCheckout)(address, configuration.checkoutSessionId, storage.fingerprint, storage.apiKey);
-            case 27:
-              response = _context6.sent;
+              _context8.prev = 21;
+              _context8.next = 24;
+              return (0,_checkout_sessions_api__WEBPACK_IMPORTED_MODULE_13__.attachAddressToDropinCheckout)(address, configuration.checkoutSessionId, storage.fingerprint, storage.apiKey);
+            case 24:
+              response = _context8.sent;
               if (!(response.status !== 200)) {
-                _context6.next = 31;
+                _context8.next = 28;
                 break;
               }
               setErrorMessageAndRemount(storage, callApiAndMount, storage.translations.error.notSaved);
-              return _context6.abrupt("return", false);
-            case 31:
+              return _context8.abrupt("return", false);
+            case 28:
               storage.notify();
-              return _context6.abrupt("return", true);
-            case 35:
-              _context6.prev = 35;
-              _context6.t0 = _context6["catch"](24);
+              return _context8.abrupt("return", true);
+            case 32:
+              _context8.prev = 32;
+              _context8.t0 = _context8["catch"](21);
               setErrorMessageAndRemount(storage, callApiAndMount, storage.translations.error.notSaved);
-              return _context6.abrupt("return", false);
-            case 39:
+              return _context8.abrupt("return", false);
+            case 36:
             case "end":
-              return _context6.stop();
+              return _context8.stop();
           }
-        }, _callee2, null, [[24, 35]]);
+        }, _callee2, null, [[21, 32]]);
       }));
       function done() {
         return _done.apply(this, arguments);
@@ -13506,8 +13362,8 @@ function address(key, configuration, storage) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "getPlaceholderTranslationByKey": function() { return /* binding */ getPlaceholderTranslationByKey; },
-/* harmony export */   "mapAddressTranslationKey": function() { return /* binding */ mapAddressTranslationKey; }
+/* harmony export */   getPlaceholderTranslationByKey: function() { return /* binding */ getPlaceholderTranslationByKey; },
+/* harmony export */   mapAddressTranslationKey: function() { return /* binding */ mapAddressTranslationKey; }
 /* harmony export */ });
 function getPlaceholderTranslationByKey(key, translations) {
   var translation = translations.placeholder[mapAddressTranslationKey(key)];
@@ -13541,8 +13397,10 @@ function mapAddressTranslationKey(key) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "billingAddressOnlyMode": function() { return /* binding */ billingAddressOnlyMode; },
-/* harmony export */   "getLanguageFromLocaleForCountrySpec": function() { return /* binding */ getLanguageFromLocaleForCountrySpec; }
+/* harmony export */   billingAddressOnlyMode: function() { return /* binding */ billingAddressOnlyMode; },
+/* harmony export */   getBillingCountry: function() { return /* binding */ getBillingCountry; },
+/* harmony export */   getLanguageFromLocaleForCountrySpec: function() { return /* binding */ getLanguageFromLocaleForCountrySpec; },
+/* harmony export */   getShippingCountry: function() { return /* binding */ getShippingCountry; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/slicedToArray */ "./node_modules/@babel/runtime-corejs3/helpers/esm/slicedToArray.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_find__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/find */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/find.js");
@@ -13554,6 +13412,17 @@ __webpack_require__.r(__webpack_exports__);
 
 function billingAddressOnlyMode(checkoutData) {
   return checkoutData.requiresShipping === false;
+}
+function getShippingCountry(storage) {
+  return storage['shippingAddress']['selectedCountry'] ? storage['shippingAddress']['selectedCountry'] : '';
+}
+function getBillingCountry(checkoutData, storage) {
+  if (billingAddressOnlyMode(checkoutData) && storage['billingOnly']['selectedCountry']) {
+    return storage['billingOnly']['selectedCountry'];
+  } else if (storage['billingAddress']['selectedCountry']) {
+    return storage['billingAddress']['selectedCountry'];
+  }
+  return '';
 }
 function getLanguageMapForCountrySpec() {
   return {
@@ -13604,6 +13473,23 @@ function getLanguageFromLocaleForCountrySpec(locale) {
 
 /***/ }),
 
+/***/ "./src/client/elementsv2/api-utils.js":
+/*!********************************************!*\
+  !*** ./src/client/elementsv2/api-utils.js ***!
+  \********************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   readResponseJSON: function() { return /* binding */ readResponseJSON; }
+/* harmony export */ });
+function readResponseJSON(response) {
+  return response.json();
+}
+
+/***/ }),
+
 /***/ "./src/client/elementsv2/checkout-sessions-api.js":
 /*!********************************************************!*\
   !*** ./src/client/elementsv2/checkout-sessions-api.js ***!
@@ -13613,18 +13499,18 @@ function getLanguageFromLocaleForCountrySpec(locale) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "attachAddressToDropinCheckout": function() { return /* binding */ attachAddressToDropinCheckout; },
-/* harmony export */   "attachInvoiceAttributeToDropinCheckout": function() { return /* binding */ attachInvoiceAttributeToDropinCheckout; },
-/* harmony export */   "attachShippingChoiceToDropinCheckout": function() { return /* binding */ attachShippingChoiceToDropinCheckout; },
-/* harmony export */   "attachSourceToDropinCheckout": function() { return /* binding */ attachSourceToDropinCheckout; },
-/* harmony export */   "attachStoreCreditToDropinCheckout": function() { return /* binding */ attachStoreCreditToDropinCheckout; },
-/* harmony export */   "attachTaxCertificateToDropinCheckout": function() { return /* binding */ attachTaxCertificateToDropinCheckout; },
-/* harmony export */   "attachTaxIdentifierToDropinCheckout": function() { return /* binding */ attachTaxIdentifierToDropinCheckout; },
-/* harmony export */   "cloneDropinCheckout": function() { return /* binding */ cloneDropinCheckout; },
-/* harmony export */   "createDropinCheckoutOrder": function() { return /* binding */ createDropinCheckoutOrder; },
-/* harmony export */   "detachSourceToDropinCheckout": function() { return /* binding */ detachSourceToDropinCheckout; },
-/* harmony export */   "getDropinCheckout": function() { return /* binding */ getDropinCheckout; },
-/* harmony export */   "uploadFile": function() { return /* binding */ uploadFile; }
+/* harmony export */   attachAddressToDropinCheckout: function() { return /* binding */ attachAddressToDropinCheckout; },
+/* harmony export */   attachInvoiceAttributeToDropinCheckout: function() { return /* binding */ attachInvoiceAttributeToDropinCheckout; },
+/* harmony export */   attachShippingChoiceToDropinCheckout: function() { return /* binding */ attachShippingChoiceToDropinCheckout; },
+/* harmony export */   attachSourceToDropinCheckout: function() { return /* binding */ attachSourceToDropinCheckout; },
+/* harmony export */   attachStoreCreditToDropinCheckout: function() { return /* binding */ attachStoreCreditToDropinCheckout; },
+/* harmony export */   attachTaxCertificateToDropinCheckout: function() { return /* binding */ attachTaxCertificateToDropinCheckout; },
+/* harmony export */   attachTaxIdentifierToDropinCheckout: function() { return /* binding */ attachTaxIdentifierToDropinCheckout; },
+/* harmony export */   cloneDropinCheckout: function() { return /* binding */ cloneDropinCheckout; },
+/* harmony export */   createDropinCheckoutOrder: function() { return /* binding */ createDropinCheckoutOrder; },
+/* harmony export */   detachSourceToDropinCheckout: function() { return /* binding */ detachSourceToDropinCheckout; },
+/* harmony export */   getDropinCheckout: function() { return /* binding */ getDropinCheckout; },
+/* harmony export */   uploadFile: function() { return /* binding */ uploadFile; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_json_stringify__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/json/stringify */ "./node_modules/@babel/runtime-corejs3/core-js-stable/json/stringify.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_json_stringify__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_json_stringify__WEBPACK_IMPORTED_MODULE_0__);
@@ -13632,8 +13518,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_1__);
 
 
+// eslint-disable-next-line no-undef
+var API_URL = "https://api.digitalriver.com" || 0;
 function getDropinCheckout(sessionId, apiKey, fingerprint) {
-  return fetch('https://api.digitalriver.com/drop-in/checkout-sessions/' + sessionId, {
+  return fetch(API_URL + '/drop-in/checkout-sessions/' + sessionId, {
     headers: {
       Authorization: 'bearer ' + apiKey,
       fingerprint: fingerprint
@@ -13641,7 +13529,7 @@ function getDropinCheckout(sessionId, apiKey, fingerprint) {
   });
 }
 function cloneDropinCheckout(sessionId, fingerprint, apiKey) {
-  return fetch('https://api.digitalriver.com/drop-in/checkout-sessions/' + sessionId + '/clone', {
+  return fetch(API_URL + '/drop-in/checkout-sessions/' + sessionId + '/clone', {
     method: 'POST',
     body: _babel_runtime_corejs3_core_js_stable_json_stringify__WEBPACK_IMPORTED_MODULE_0___default()({}),
     headers: {
@@ -13654,7 +13542,7 @@ function cloneDropinCheckout(sessionId, fingerprint, apiKey) {
 }
 function attachSourceToDropinCheckout(sessionId, sourceId, fingerprint, apiKey) {
   var saveForLater = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : false;
-  return fetch('https://api.digitalriver.com/drop-in/checkout-sessions/' + sessionId + '/sources/' + sourceId + '?saveForLater=' + saveForLater, {
+  return fetch(API_URL + '/drop-in/checkout-sessions/' + sessionId + '/sources/' + sourceId + '?saveForLater=' + saveForLater, {
     method: 'POST',
     body: _babel_runtime_corejs3_core_js_stable_json_stringify__WEBPACK_IMPORTED_MODULE_0___default()({}),
     headers: {
@@ -13666,7 +13554,7 @@ function attachSourceToDropinCheckout(sessionId, sourceId, fingerprint, apiKey) 
   });
 }
 function detachSourceToDropinCheckout(sessionId, sourceId, fingerprint, apiKey) {
-  return fetch('https://api.digitalriver.com/drop-in/checkout-sessions/' + sessionId + '/sources/' + sourceId, {
+  return fetch(API_URL + '/drop-in/checkout-sessions/' + sessionId + '/sources/' + sourceId, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
@@ -13678,7 +13566,7 @@ function detachSourceToDropinCheckout(sessionId, sourceId, fingerprint, apiKey) 
 }
 function attachStoreCreditToDropinCheckout(sessionId, upstreamId, fingerprint, apiKey) {
   var _context;
-  return fetch(_babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_1___default()(_context = "https://api.digitalriver.com/drop-in/checkout-sessions/".concat(sessionId, "/store-credit/")).call(_context, upstreamId), {
+  return fetch(API_URL + _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_1___default()(_context = "/drop-in/checkout-sessions/".concat(sessionId, "/store-credit/")).call(_context, upstreamId), {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -13689,7 +13577,7 @@ function attachStoreCreditToDropinCheckout(sessionId, upstreamId, fingerprint, a
   });
 }
 function attachShippingChoiceToDropinCheckout(shippingChoice, sessionId, fingerprint, apiKey) {
-  return fetch('https://api.digitalriver.com/drop-in/checkout-sessions/' + sessionId, {
+  return fetch(API_URL + '/drop-in/checkout-sessions/' + sessionId, {
     method: 'POST',
     body: _babel_runtime_corejs3_core_js_stable_json_stringify__WEBPACK_IMPORTED_MODULE_0___default()(shippingChoice),
     headers: {
@@ -13701,7 +13589,7 @@ function attachShippingChoiceToDropinCheckout(shippingChoice, sessionId, fingerp
   });
 }
 function attachAddressToDropinCheckout(address, sessionId, fingerprint, apiKey) {
-  return fetch('https://api.digitalriver.com/drop-in/checkout-sessions/' + sessionId, {
+  return fetch(API_URL + '/drop-in/checkout-sessions/' + sessionId, {
     method: 'POST',
     body: _babel_runtime_corejs3_core_js_stable_json_stringify__WEBPACK_IMPORTED_MODULE_0___default()(address),
     headers: {
@@ -13713,7 +13601,7 @@ function attachAddressToDropinCheckout(address, sessionId, fingerprint, apiKey) 
   });
 }
 function attachTaxIdentifierToDropinCheckout(taxIdentifier, sessionId, fingerprint, apiKey) {
-  return fetch('https://api.digitalriver.com/drop-in/checkout-sessions/' + sessionId, {
+  return fetch(API_URL + '/drop-in/checkout-sessions/' + sessionId, {
     method: 'POST',
     body: _babel_runtime_corejs3_core_js_stable_json_stringify__WEBPACK_IMPORTED_MODULE_0___default()(taxIdentifier),
     headers: {
@@ -13725,7 +13613,7 @@ function attachTaxIdentifierToDropinCheckout(taxIdentifier, sessionId, fingerpri
   });
 }
 function attachTaxCertificateToDropinCheckout(taxCertificate, sessionId, fingerprint, apiKey) {
-  return fetch('https://api.digitalriver.com/drop-in/checkout-sessions/' + sessionId, {
+  return fetch(API_URL + '/drop-in/checkout-sessions/' + sessionId, {
     method: 'POST',
     body: _babel_runtime_corejs3_core_js_stable_json_stringify__WEBPACK_IMPORTED_MODULE_0___default()(taxCertificate),
     headers: {
@@ -13737,7 +13625,7 @@ function attachTaxCertificateToDropinCheckout(taxCertificate, sessionId, fingerp
   });
 }
 function attachInvoiceAttributeToDropinCheckout(invoiceAttribute, sessionId, fingerprint, apiKey) {
-  return fetch('https://api.digitalriver.com/drop-in/checkout-sessions/' + sessionId, {
+  return fetch(API_URL + '/drop-in/checkout-sessions/' + sessionId, {
     method: 'POST',
     body: _babel_runtime_corejs3_core_js_stable_json_stringify__WEBPACK_IMPORTED_MODULE_0___default()(invoiceAttribute),
     headers: {
@@ -13749,7 +13637,7 @@ function attachInvoiceAttributeToDropinCheckout(invoiceAttribute, sessionId, fin
   });
 }
 function createDropinCheckoutOrder(sessionId, fingerprint, apiKey) {
-  return fetch('https://api.digitalriver.com/drop-in/orders', {
+  return fetch(API_URL + '/drop-in/orders', {
     method: 'POST',
     body: _babel_runtime_corejs3_core_js_stable_json_stringify__WEBPACK_IMPORTED_MODULE_0___default()({
       checkoutSessionId: sessionId
@@ -13763,7 +13651,7 @@ function createDropinCheckoutOrder(sessionId, fingerprint, apiKey) {
   });
 }
 function uploadFile(file, sessionId, fingerprint, apiKey) {
-  return fetch('https://api.digitalriver.com/drop-in/checkout-sessions/' + sessionId + '/files', {
+  return fetch(API_URL + '/drop-in/checkout-sessions/' + sessionId + '/files', {
     method: 'POST',
     body: _babel_runtime_corejs3_core_js_stable_json_stringify__WEBPACK_IMPORTED_MODULE_0___default()(file),
     headers: {
@@ -13774,10 +13662,6 @@ function uploadFile(file, sessionId, fingerprint, apiKey) {
     }
   });
 }
-
-/*export function deleteDropinCheckoutOrder(sessionId, orderId, fingerprint, apiKey) {
-  return fetch('https://api.digitalriver.com/drop-in/orders/' + orderId, {method: 'DELETE', body: JSON.stringify({ checkoutSessionId: sessionId }), headers: {'Content-Type': 'application/json', Accept: 'application/json', Authorization: 'bearer ' + apiKey, fingerprint: fingerprint}});
-}*/
 
 /***/ }),
 
@@ -13790,7 +13674,7 @@ function uploadFile(file, sessionId, fingerprint, apiKey) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "appendCompliance": function() { return /* binding */ appendCompliance; }
+/* harmony export */   appendCompliance: function() { return /* binding */ appendCompliance; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/classCallCheck */ "./node_modules/@babel/runtime-corejs3/helpers/esm/classCallCheck.js");
 /* harmony import */ var _babel_runtime_corejs3_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/createClass */ "./node_modules/@babel/runtime-corejs3/helpers/esm/createClass.js");
@@ -13846,7 +13730,7 @@ function appendCompliance(id, options) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "compliance": function() { return /* binding */ compliance; }
+/* harmony export */   compliance: function() { return /* binding */ compliance; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/asyncToGenerator */ "./node_modules/@babel/runtime-corejs3/helpers/esm/asyncToGenerator.js");
 /* harmony import */ var _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/regenerator */ "./node_modules/@babel/runtime-corejs3/regenerator/index.js");
@@ -13933,6 +13817,35 @@ function compliance(key, configuration, storage, getDetails) {
 
 /***/ }),
 
+/***/ "./src/client/elementsv2/cookie.js":
+/*!*****************************************!*\
+  !*** ./src/client/elementsv2/cookie.js ***!
+  \*****************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   COOKIE_KEY: function() { return /* binding */ COOKIE_KEY; },
+/* harmony export */   createCookie: function() { return /* binding */ createCookie; },
+/* harmony export */   getCookieValue: function() { return /* binding */ getCookieValue; }
+/* harmony export */ });
+var COOKIE_KEY = 'DRFID';
+function getCookieValue(name) {
+  var value = '; ' + document.cookie;
+  var parts = value.split('; ' + name + '=');
+  if (parts.length === 2) {
+    return parts.pop().split(';').shift();
+  } else {
+    return undefined;
+  }
+}
+function createCookie(storage) {
+  return encodeURIComponent(COOKIE_KEY) + '=' + encodeURIComponent(storage.fingerprint);
+}
+
+/***/ }),
+
 /***/ "./src/client/elementsv2/invoice-attribute/invoice-attribute-mount.js":
 /*!****************************************************************************!*\
   !*** ./src/client/elementsv2/invoice-attribute/invoice-attribute-mount.js ***!
@@ -13942,7 +13855,7 @@ function compliance(key, configuration, storage, getDetails) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "invoiceAttribute": function() { return /* binding */ invoiceAttribute; }
+/* harmony export */   invoiceAttribute: function() { return /* binding */ invoiceAttribute; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/asyncToGenerator */ "./node_modules/@babel/runtime-corejs3/helpers/esm/asyncToGenerator.js");
 /* harmony import */ var _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/regenerator */ "./node_modules/@babel/runtime-corejs3/regenerator/index.js");
@@ -14087,17 +14000,18 @@ function invoiceAttribute(key, configuration, storage, createElement) {
               errorDiv.innerHTML = storage.translations.error.notSaved;
               return _context3.abrupt("return", false);
             case 21:
+              storage.notify();
               return _context3.abrupt("return", true);
-            case 24:
-              _context3.prev = 24;
+            case 25:
+              _context3.prev = 25;
               _context3.t0 = _context3["catch"](2);
               errorDiv.innerHTML = storage.translations.error.notSaved;
               return _context3.abrupt("return", false);
-            case 28:
+            case 29:
             case "end":
               return _context3.stop();
           }
-        }, _callee3, null, [[2, 24]]);
+        }, _callee3, null, [[2, 25]]);
       }));
       function done() {
         return _done.apply(this, arguments);
@@ -14118,7 +14032,7 @@ function invoiceAttribute(key, configuration, storage, createElement) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "getLanguageFromLocaleForLanguageFile": function() { return /* binding */ getLanguageFromLocaleForLanguageFile; }
+/* harmony export */   getLanguageFromLocaleForLanguageFile: function() { return /* binding */ getLanguageFromLocaleForLanguageFile; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/slicedToArray */ "./node_modules/@babel/runtime-corejs3/helpers/esm/slicedToArray.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_find__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/find */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/find.js");
@@ -14187,7 +14101,7 @@ function getLanguageMap() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "appendOrderSummary": function() { return /* binding */ appendOrderSummary; }
+/* harmony export */   appendOrderSummary: function() { return /* binding */ appendOrderSummary; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/classCallCheck */ "./node_modules/@babel/runtime-corejs3/helpers/esm/classCallCheck.js");
 /* harmony import */ var _babel_runtime_corejs3_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/createClass */ "./node_modules/@babel/runtime-corejs3/helpers/esm/createClass.js");
@@ -14303,7 +14217,7 @@ function appendOrderSummary(id, options) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "orderSummary": function() { return /* binding */ orderSummary; }
+/* harmony export */   orderSummary: function() { return /* binding */ orderSummary; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/asyncToGenerator */ "./node_modules/@babel/runtime-corejs3/helpers/esm/asyncToGenerator.js");
 /* harmony import */ var _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/regenerator */ "./node_modules/@babel/runtime-corejs3/regenerator/index.js");
@@ -14363,7 +14277,7 @@ function orderSummary(key, configuration, storage) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "getStoredPaymentMethods": function() { return /* binding */ getStoredPaymentMethods; }
+/* harmony export */   getStoredPaymentMethods: function() { return /* binding */ getStoredPaymentMethods; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/toConsumableArray */ "./node_modules/@babel/runtime-corejs3/helpers/esm/toConsumableArray.js");
 /* harmony import */ var _babel_runtime_corejs3_helpers_objectSpread2__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/objectSpread2 */ "./node_modules/@babel/runtime-corejs3/helpers/esm/objectSpread2.js");
@@ -14436,7 +14350,7 @@ function getStoredPaymentMethods(storage) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "getLocalizedErrors": function() { return /* binding */ getLocalizedErrors; }
+/* harmony export */   getLocalizedErrors: function() { return /* binding */ getLocalizedErrors; }
 /* harmony export */ });
 /* harmony import */ var _createComponent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../createComponent */ "./src/client/createComponent.js");
 /* harmony import */ var _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../post-robot-wrapper */ "./src/post-robot-wrapper.js");
@@ -14466,9 +14380,9 @@ function getLocalizedErrors(controllerId, country) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "handleAfterSourceCreated": function() { return /* binding */ handleAfterSourceCreated; },
-/* harmony export */   "handleRedirectComplete": function() { return /* binding */ handleRedirectComplete; },
-/* harmony export */   "handleRedirectResponse": function() { return /* binding */ handleRedirectResponse; }
+/* harmony export */   handleAfterSourceCreated: function() { return /* binding */ handleAfterSourceCreated; },
+/* harmony export */   handleRedirectComplete: function() { return /* binding */ handleRedirectComplete; },
+/* harmony export */   handleRedirectResponse: function() { return /* binding */ handleRedirectResponse; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/asyncToGenerator */ "./node_modules/@babel/runtime-corejs3/helpers/esm/asyncToGenerator.js");
 /* harmony import */ var _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/regenerator */ "./node_modules/@babel/runtime-corejs3/regenerator/index.js");
@@ -14676,15 +14590,15 @@ function handleRedirectResponse(controller, storage) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "createOnCancel": function() { return /* binding */ createOnCancel; },
-/* harmony export */   "createOnError": function() { return /* binding */ createOnError; },
-/* harmony export */   "createOnReady": function() { return /* binding */ createOnReady; },
-/* harmony export */   "createOnSuccess": function() { return /* binding */ createOnSuccess; },
-/* harmony export */   "createOnUpdateRequired": function() { return /* binding */ createOnUpdateRequired; },
-/* harmony export */   "removePaymentElementSpinner": function() { return /* binding */ removePaymentElementSpinner; },
-/* harmony export */   "setErrorMessage": function() { return /* binding */ setErrorMessage; },
-/* harmony export */   "setPendingRedirectMessage": function() { return /* binding */ setPendingRedirectMessage; },
-/* harmony export */   "showSpinnerOverlay": function() { return /* binding */ showSpinnerOverlay; }
+/* harmony export */   createOnCancel: function() { return /* binding */ createOnCancel; },
+/* harmony export */   createOnError: function() { return /* binding */ createOnError; },
+/* harmony export */   createOnReady: function() { return /* binding */ createOnReady; },
+/* harmony export */   createOnSuccess: function() { return /* binding */ createOnSuccess; },
+/* harmony export */   createOnUpdateRequired: function() { return /* binding */ createOnUpdateRequired; },
+/* harmony export */   removePaymentElementSpinner: function() { return /* binding */ removePaymentElementSpinner; },
+/* harmony export */   setErrorMessage: function() { return /* binding */ setErrorMessage; },
+/* harmony export */   setPendingRedirectMessage: function() { return /* binding */ setPendingRedirectMessage; },
+/* harmony export */   showSpinnerOverlay: function() { return /* binding */ showSpinnerOverlay; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/asyncToGenerator */ "./node_modules/@babel/runtime-corejs3/helpers/esm/asyncToGenerator.js");
 /* harmony import */ var _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/regenerator */ "./node_modules/@babel/runtime-corejs3/regenerator/index.js");
@@ -15047,7 +14961,7 @@ function setErrorMessage(errorMessage) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "payment": function() { return /* binding */ payment; }
+/* harmony export */   payment: function() { return /* binding */ payment; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/asyncToGenerator */ "./node_modules/@babel/runtime-corejs3/helpers/esm/asyncToGenerator.js");
 /* harmony import */ var _babel_runtime_corejs3_helpers_objectSpread2__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/objectSpread2 */ "./node_modules/@babel/runtime-corejs3/helpers/esm/objectSpread2.js");
@@ -15095,7 +15009,6 @@ function payment(key, configuration, storage, createDropin, handleNextAction, cr
       return _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee$(_context) {
         while (1) switch (_context.prev = _context.next) {
           case 0:
-            console.log('!!!!!!!!PAYMENT MOUNT', mountedVersion.instance, storage.checkoutData);
             dropinOnCancel = (0,_payment_events__WEBPACK_IMPORTED_MODULE_5__.createOnCancel)(storage);
             checkoutSession = storage.checkoutData;
             sessionId = storage.checkoutData.payment.session.id;
@@ -15118,7 +15031,8 @@ function payment(key, configuration, storage, createDropin, handleNextAction, cr
                   showTermsOfSaleDisclosure: true,
                   showSavePaymentAgreement: isLoggedIn,
                   redirect: {
-                    disableAutomaticRedirects: true
+                    disableAutomaticRedirects: true,
+                    disableAutomaticRedirectsPaypal: true
                   },
                   storedPaymentMethods: storedPaymentMethods,
                   consents: determineConsents(checkoutSession)
@@ -15138,7 +15052,7 @@ function payment(key, configuration, storage, createDropin, handleNextAction, cr
               mountedVersion.data.shippingChoice = shippingChoice;
               mountedVersion.instance.refresh(nodeToKeep, sessionId);
             }
-          case 9:
+          case 8:
           case "end":
             return _context.stop();
         }
@@ -15170,7 +15084,7 @@ function payment(key, configuration, storage, createDropin, handleNextAction, cr
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "appendShippingChoiceElement": function() { return /* binding */ appendShippingChoiceElement; }
+/* harmony export */   appendShippingChoiceElement: function() { return /* binding */ appendShippingChoiceElement; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/asyncToGenerator */ "./node_modules/@babel/runtime-corejs3/helpers/esm/asyncToGenerator.js");
 /* harmony import */ var _babel_runtime_corejs3_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/classCallCheck */ "./node_modules/@babel/runtime-corejs3/helpers/esm/classCallCheck.js");
@@ -15238,9 +15152,8 @@ var ShippingChoiceElement = /*#__PURE__*/function (_Component) {
         className: 'DR-shipping-choice-heading'
       }, this.props.translations.misc.shippingMethodColon), !hasShippingMethods && (0,preact__WEBPACK_IMPORTED_MODULE_7__.h)("div", {
         className: 'DR-no-shipping-methods'
-      }, this.props.translations.error.noAvailableShippingMethods), hasShippingMethods && (0,preact__WEBPACK_IMPORTED_MODULE_7__.h)(preact__WEBPACK_IMPORTED_MODULE_7__.Fragment, null, _babel_runtime_corejs3_core_js_stable_instance_map__WEBPACK_IMPORTED_MODULE_5___default()(_context2 = this.props.shippingMethods).call(_context2, function (shippingMethod) {
-        var _this2$props$selected;
-        var checked = ((_this2$props$selected = _this2.props.selectedShippingChoice) === null || _this2$props$selected === void 0 ? void 0 : _this2$props$selected.description) === shippingMethod.description;
+      }, this.props.translations.error.noAvailableShippingMethods), hasShippingMethods && (0,preact__WEBPACK_IMPORTED_MODULE_7__.h)(preact__WEBPACK_IMPORTED_MODULE_7__.Fragment, null, _babel_runtime_corejs3_core_js_stable_instance_map__WEBPACK_IMPORTED_MODULE_5___default()(_context2 = this.props.shippingMethods).call(_context2, function (shippingMethod, index) {
+        var checked = isChecked(_this2.props.selectedShippingChoice, shippingMethod, index);
         var displayAmount = new Intl.NumberFormat(_this2.props.locale, {
           style: 'currency',
           currency: _this2.props.currency
@@ -15269,6 +15182,16 @@ var ShippingChoiceElement = /*#__PURE__*/function (_Component) {
   }]);
   return ShippingChoiceElement;
 }(preact__WEBPACK_IMPORTED_MODULE_7__.Component);
+function isChecked(selectedShippingChoice, currentShippingMethod, index) {
+  if (typeof selectedShippingChoice === 'undefined' && index === 0) {
+    return true;
+  }
+  if ((selectedShippingChoice === null || selectedShippingChoice === void 0 ? void 0 : selectedShippingChoice.description) === currentShippingMethod.description) {
+    return true;
+  } else {
+    return false;
+  }
+}
 function appendShippingChoiceElement(id, options) {
   return (0,preact__WEBPACK_IMPORTED_MODULE_7__.render)((0,preact__WEBPACK_IMPORTED_MODULE_7__.h)(ShippingChoiceElement, options), id);
 }
@@ -15284,7 +15207,7 @@ function appendShippingChoiceElement(id, options) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "shippingChoice": function() { return /* binding */ shippingChoice; }
+/* harmony export */   shippingChoice: function() { return /* binding */ shippingChoice; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/asyncToGenerator */ "./node_modules/@babel/runtime-corejs3/helpers/esm/asyncToGenerator.js");
 /* harmony import */ var _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/regenerator */ "./node_modules/@babel/runtime-corejs3/regenerator/index.js");
@@ -15303,6 +15226,7 @@ function shippingChoice(key, configuration, storage) {
   var _dataStore$get = _dataStore__WEBPACK_IMPORTED_MODULE_2__["default"].get(key),
     apiKey = _dataStore$get.apiKey;
   var nodeToKeep;
+  var instanceData = {};
   var callApiAndMount = /*#__PURE__*/function () {
     var _ref = (0,_babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee2(data, error) {
       var _data$options;
@@ -15317,33 +15241,18 @@ function shippingChoice(key, configuration, storage) {
               currency: data.currency,
               translations: storage.translations,
               shippingMethods: shippingMethods,
-              selectedShippingChoice: data.shippingChoice,
+              selectedShippingChoice: instanceData.shippingChoiceDetails || data.shippingChoice,
               onShippingMethodSelected: function () {
                 var _onShippingMethodSelected = (0,_babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee(shippingChoiceDetails) {
-                  var shippingChoice, errorMessage;
                   return _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee$(_context) {
                     while (1) switch (_context.prev = _context.next) {
                       case 0:
-                        shippingChoice = {
-                          'shippingChoice': shippingChoiceDetails
-                        };
-                        _context.prev = 1;
-                        _context.next = 4;
-                        return (0,_checkout_sessions_api__WEBPACK_IMPORTED_MODULE_4__.attachShippingChoiceToDropinCheckout)(shippingChoice, configuration.checkoutSessionId, storage.fingerprint, apiKey);
-                      case 4:
-                        storage.notify();
-                        _context.next = 11;
-                        break;
-                      case 7:
-                        _context.prev = 7;
-                        _context.t0 = _context["catch"](1);
-                        errorMessage = storage.translations.error.notSaved;
-                        callApiAndMount(data, errorMessage);
-                      case 11:
+                        instanceData.shippingChoiceDetails = shippingChoiceDetails;
+                      case 1:
                       case "end":
                         return _context.stop();
                     }
-                  }, _callee, null, [[1, 7]]);
+                  }, _callee);
                 }));
                 function onShippingMethodSelected(_x3) {
                   return _onShippingMethodSelected.apply(this, arguments);
@@ -15368,7 +15277,39 @@ function shippingChoice(key, configuration, storage) {
       (0,_utils__WEBPACK_IMPORTED_MODULE_5__.waitForRequiredData)(storage).then(function () {
         callApiAndMount(storage.checkoutData);
       });
-    }
+    },
+    done: function () {
+      var _done = (0,_babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee3() {
+        var shippingChoice, errorMessage;
+        return _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee3$(_context3) {
+          while (1) switch (_context3.prev = _context3.next) {
+            case 0:
+              shippingChoice = {
+                'shippingChoice': instanceData.shippingChoiceDetails
+              };
+              _context3.prev = 1;
+              _context3.next = 4;
+              return (0,_checkout_sessions_api__WEBPACK_IMPORTED_MODULE_4__.attachShippingChoiceToDropinCheckout)(shippingChoice, configuration.checkoutSessionId, storage.fingerprint, apiKey);
+            case 4:
+              storage.notify();
+              return _context3.abrupt("return", true);
+            case 8:
+              _context3.prev = 8;
+              _context3.t0 = _context3["catch"](1);
+              errorMessage = storage.translations.error.notSaved;
+              callApiAndMount(storage.checkoutData, errorMessage);
+              return _context3.abrupt("return", false);
+            case 13:
+            case "end":
+              return _context3.stop();
+          }
+        }, _callee3, null, [[1, 8]]);
+      }));
+      function done() {
+        return _done.apply(this, arguments);
+      }
+      return done;
+    }()
   };
 }
 
@@ -15383,8 +15324,8 @@ function shippingChoice(key, configuration, storage) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "createCompleteEvent": function() { return /* binding */ createCompleteEvent; },
-/* harmony export */   "createStorage": function() { return /* binding */ createStorage; }
+/* harmony export */   createCompleteEvent: function() { return /* binding */ createCompleteEvent; },
+/* harmony export */   createStorage: function() { return /* binding */ createStorage; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_helpers_objectSpread2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/objectSpread2 */ "./node_modules/@babel/runtime-corejs3/helpers/esm/objectSpread2.js");
 /* harmony import */ var _babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/asyncToGenerator */ "./node_modules/@babel/runtime-corejs3/helpers/esm/asyncToGenerator.js");
@@ -15540,7 +15481,7 @@ function createStorage(apiKey, controller, instanceOptions, configuration) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "taxIdentifier": function() { return /* binding */ taxIdentifier; }
+/* harmony export */   taxIdentifier: function() { return /* binding */ taxIdentifier; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/asyncToGenerator */ "./node_modules/@babel/runtime-corejs3/helpers/esm/asyncToGenerator.js");
 /* harmony import */ var _babel_runtime_corejs3_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/slicedToArray */ "./node_modules/@babel/runtime-corejs3/helpers/esm/slicedToArray.js");
@@ -15728,7 +15669,7 @@ function taxIdentifier(key, configuration, storage, createElement) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "appendTaxExemption": function() { return /* binding */ appendTaxExemption; }
+/* harmony export */   appendTaxExemption: function() { return /* binding */ appendTaxExemption; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/defineProperty */ "./node_modules/@babel/runtime-corejs3/helpers/esm/defineProperty.js");
 /* harmony import */ var _babel_runtime_corejs3_helpers_objectSpread2__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/objectSpread2 */ "./node_modules/@babel/runtime-corejs3/helpers/esm/objectSpread2.js");
@@ -16005,8 +15946,8 @@ function appendTaxExemption(id, options) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "defaultError": function() { return /* binding */ defaultError; },
-/* harmony export */   "taxExemption": function() { return /* binding */ taxExemption; }
+/* harmony export */   defaultError: function() { return /* binding */ defaultError; },
+/* harmony export */   taxExemption: function() { return /* binding */ taxExemption; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/asyncToGenerator */ "./node_modules/@babel/runtime-corejs3/helpers/esm/asyncToGenerator.js");
 /* harmony import */ var _babel_runtime_corejs3_helpers_objectSpread2__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/objectSpread2 */ "./node_modules/@babel/runtime-corejs3/helpers/esm/objectSpread2.js");
@@ -16231,7 +16172,7 @@ function taxExemption(key, configuration, storage) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "convertFileToBase64": function() { return /* binding */ convertFileToBase64; }
+/* harmony export */   convertFileToBase64: function() { return /* binding */ convertFileToBase64; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/promise */ "./node_modules/@babel/runtime-corejs3/core-js-stable/promise.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_0__);
@@ -16263,7 +16204,7 @@ function convertFileToBase64(file) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "appendThankYou": function() { return /* binding */ appendThankYou; }
+/* harmony export */   appendThankYou: function() { return /* binding */ appendThankYou; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/classCallCheck */ "./node_modules/@babel/runtime-corejs3/helpers/esm/classCallCheck.js");
 /* harmony import */ var _babel_runtime_corejs3_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/createClass */ "./node_modules/@babel/runtime-corejs3/helpers/esm/createClass.js");
@@ -16318,7 +16259,7 @@ function appendThankYou(id, options) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "thankYou": function() { return /* binding */ thankYou; }
+/* harmony export */   thankYou: function() { return /* binding */ thankYou; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/asyncToGenerator */ "./node_modules/@babel/runtime-corejs3/helpers/esm/asyncToGenerator.js");
 /* harmony import */ var _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/regenerator */ "./node_modules/@babel/runtime-corejs3/regenerator/index.js");
@@ -16379,11 +16320,11 @@ function thankYou(key, configuration, storage) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "createWhenExists": function() { return /* binding */ createWhenExists; },
-/* harmony export */   "dataChangedThatRequiresRecheck": function() { return /* binding */ dataChangedThatRequiresRecheck; },
-/* harmony export */   "validateClientDomElement": function() { return /* binding */ validateClientDomElement; },
-/* harmony export */   "waitForRequiredData": function() { return /* binding */ waitForRequiredData; },
-/* harmony export */   "waitForRequiredDataOnAddress": function() { return /* binding */ waitForRequiredDataOnAddress; }
+/* harmony export */   createWhenExists: function() { return /* binding */ createWhenExists; },
+/* harmony export */   dataChangedThatRequiresRecheck: function() { return /* binding */ dataChangedThatRequiresRecheck; },
+/* harmony export */   validateClientDomElement: function() { return /* binding */ validateClientDomElement; },
+/* harmony export */   waitForRequiredData: function() { return /* binding */ waitForRequiredData; },
+/* harmony export */   waitForRequiredDataOnAddress: function() { return /* binding */ waitForRequiredDataOnAddress; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/promise */ "./node_modules/@babel/runtime-corejs3/core-js-stable/promise.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_0__);
@@ -16463,7 +16404,7 @@ function dataChangedThatRequiresRecheck(storage, storedCustomerType, storedPayme
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "appendWallet": function() { return /* binding */ appendWallet; }
+/* harmony export */   appendWallet: function() { return /* binding */ appendWallet; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/asyncToGenerator */ "./node_modules/@babel/runtime-corejs3/helpers/esm/asyncToGenerator.js");
 /* harmony import */ var _babel_runtime_corejs3_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/classCallCheck */ "./node_modules/@babel/runtime-corejs3/helpers/esm/classCallCheck.js");
@@ -16592,6 +16533,7 @@ var WalletElement = /*#__PURE__*/function (_Component) {
             });
             if (elementCreated !== null && typeof elementCreated !== 'undefined' && elementCreated.componentInstance) {
               // In case the element fails or canMakePayment returns false...
+
               _this2.addElementToStorage(elementCreated);
               elementCreated.componentInstance.on('shippingaddresschange', /*#__PURE__*/function () {
                 var _ref = (0,_babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_5___default().mark(function _callee(details) {
@@ -16682,7 +16624,7 @@ var WalletElement = /*#__PURE__*/function (_Component) {
           className: 'DR-wallet-item'
         });
       })), (error === null || error === void 0 ? void 0 : error.length) > 0 && (0,preact__WEBPACK_IMPORTED_MODULE_11__.h)("div", {
-        className: 'DR-error-message'
+        className: 'DR-wallet-error'
       }, error));
     }
   }]);
@@ -16703,11 +16645,11 @@ function appendWallet(id, options) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "ApplePayComponent": function() { return /* binding */ ApplePayComponent; },
-/* harmony export */   "GooglePayComponent": function() { return /* binding */ GooglePayComponent; },
-/* harmony export */   "PayPalComponent": function() { return /* binding */ PayPalComponent; },
-/* harmony export */   "paymentMethodDetails": function() { return /* binding */ paymentMethodDetails; },
-/* harmony export */   "prettyNumber": function() { return /* binding */ prettyNumber; }
+/* harmony export */   ApplePayComponent: function() { return /* binding */ ApplePayComponent; },
+/* harmony export */   GooglePayComponent: function() { return /* binding */ GooglePayComponent; },
+/* harmony export */   PayPalComponent: function() { return /* binding */ PayPalComponent; },
+/* harmony export */   paymentMethodDetails: function() { return /* binding */ paymentMethodDetails; },
+/* harmony export */   prettyNumber: function() { return /* binding */ prettyNumber; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_parse_float__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/parse-float */ "./node_modules/@babel/runtime-corejs3/core-js-stable/parse-float.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_parse_float__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_parse_float__WEBPACK_IMPORTED_MODULE_0__);
@@ -16744,11 +16686,12 @@ function createPaymentRequest(locale, paymentSessionId, checkoutData, sessionInf
 function getShippingMethods(checkoutData, locale) {
   var _checkoutData$options, _checkoutData$options2;
   return (_checkoutData$options = checkoutData.options) === null || _checkoutData$options === void 0 ? void 0 : (_checkoutData$options2 = _checkoutData$options.shippingMethods) === null || _checkoutData$options2 === void 0 ? void 0 : _babel_runtime_corejs3_core_js_stable_instance_map__WEBPACK_IMPORTED_MODULE_1___default()(_checkoutData$options2).call(_checkoutData$options2, function (sm, index) {
+    var _checkoutData$shippin;
     return {
       id: index.toString(),
       label: sm.description,
       amount: sm.amount,
-      selected: (checkoutData === null || checkoutData === void 0 ? void 0 : checkoutData.shippingChoice.description) === sm.description,
+      selected: (checkoutData === null || checkoutData === void 0 ? void 0 : (_checkoutData$shippin = checkoutData.shippingChoice) === null || _checkoutData$shippin === void 0 ? void 0 : _checkoutData$shippin.description) === sm.description,
       detail: new Intl.NumberFormat(locale, {
         style: 'currency',
         currency: checkoutData.currency
@@ -16817,8 +16760,8 @@ function PayPalComponent(props) {
     };
   });
   if (checkoutData.requiresShipping) {
-    var _checkoutData$shippin, _checkoutData$shippin2;
-    paymentRequest.sourceData.payPal.shippingAmount = checkoutData.taxInclusive ? prettyNumber(((_checkoutData$shippin = checkoutData.shippingChoice) === null || _checkoutData$shippin === void 0 ? void 0 : _checkoutData$shippin.amount) + ((_checkoutData$shippin2 = checkoutData.shippingChoice) === null || _checkoutData$shippin2 === void 0 ? void 0 : _checkoutData$shippin2.taxAmount)) : checkoutData.totalShipping;
+    var _checkoutData$shippin2, _checkoutData$shippin3;
+    paymentRequest.sourceData.payPal.shippingAmount = checkoutData.taxInclusive ? prettyNumber(((_checkoutData$shippin2 = checkoutData.shippingChoice) === null || _checkoutData$shippin2 === void 0 ? void 0 : _checkoutData$shippin2.amount) + ((_checkoutData$shippin3 = checkoutData.shippingChoice) === null || _checkoutData$shippin3 === void 0 ? void 0 : _checkoutData$shippin3.taxAmount)) : checkoutData.totalShipping;
   }
   paymentRequest.sourceData.payPal.taxAmount = checkoutData.totalTax;
   var component = props.createElement('paypal', paymentRequest);
@@ -16857,16 +16800,21 @@ function paymentMethodDetails() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "createAttachShippingAddressToCheckoutSession": function() { return /* binding */ createAttachShippingAddressToCheckoutSession; },
-/* harmony export */   "createAttachShippingChoiceToCheckoutSession": function() { return /* binding */ createAttachShippingChoiceToCheckoutSession; },
-/* harmony export */   "createProcessSourceData": function() { return /* binding */ createProcessSourceData; }
+/* harmony export */   createAttachShippingAddressToCheckoutSession: function() { return /* binding */ createAttachShippingAddressToCheckoutSession; },
+/* harmony export */   createAttachShippingChoiceToCheckoutSession: function() { return /* binding */ createAttachShippingChoiceToCheckoutSession; },
+/* harmony export */   createProcessSourceData: function() { return /* binding */ createProcessSourceData; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/asyncToGenerator */ "./node_modules/@babel/runtime-corejs3/helpers/esm/asyncToGenerator.js");
-/* harmony import */ var _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/regenerator */ "./node_modules/@babel/runtime-corejs3/regenerator/index.js");
-/* harmony import */ var _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _checkout_sessions_api__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../checkout-sessions-api */ "./src/client/elementsv2/checkout-sessions-api.js");
-/* harmony import */ var _payment_payment_events__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../payment/payment-events */ "./src/client/elementsv2/payment/payment-events.js");
-/* harmony import */ var _payment_payment_api_call__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../payment/payment-api-call */ "./src/client/elementsv2/payment/payment-api-call.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_trim__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/trim */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/trim.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_trim__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_trim__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime-corejs3/regenerator */ "./node_modules/@babel/runtime-corejs3/regenerator/index.js");
+/* harmony import */ var _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _checkout_sessions_api__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../checkout-sessions-api */ "./src/client/elementsv2/checkout-sessions-api.js");
+/* harmony import */ var _payment_payment_events__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../payment/payment-events */ "./src/client/elementsv2/payment/payment-events.js");
+/* harmony import */ var _payment_payment_api_call__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../payment/payment-api-call */ "./src/client/elementsv2/payment/payment-api-call.js");
+/* harmony import */ var _api_utils__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../api-utils */ "./src/client/elementsv2/api-utils.js");
+
+
 
 
 
@@ -16874,61 +16822,70 @@ __webpack_require__.r(__webpack_exports__);
 
 function createProcessSourceData(storage, callApiAndMount, configuration) {
   return /*#__PURE__*/function () {
-    var _ref = (0,_babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee(sourceData) {
-      var _sourceData$contactIn, address, data, order;
-      return _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee$(_context) {
+    var _ref = (0,_babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee(sourceEventData) {
+      var _sourceEventData$cont, address, _address, data, order;
+      return _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee$(_context) {
         while (1) switch (_context.prev = _context.next) {
           case 0:
-            storage.data = sourceData;
+            storage.data = sourceEventData;
             callApiAndMount(storage.checkoutData);
             _context.prev = 2;
-            if (!sourceData.shippingAddress) {
-              _context.next = 7;
+            if (!sourceEventData.shippingAddress) {
+              _context.next = 9;
               break;
             }
             address = {
-              email: sourceData === null || sourceData === void 0 ? void 0 : (_sourceData$contactIn = sourceData.contactInformation) === null || _sourceData$contactIn === void 0 ? void 0 : _sourceData$contactIn.email,
-              shipTo: getAddressFromSourceData(sourceData.shippingAddress)
+              email: sourceEventData === null || sourceEventData === void 0 ? void 0 : (_sourceEventData$cont = sourceEventData.contactInformation) === null || _sourceEventData$cont === void 0 ? void 0 : _sourceEventData$cont.email,
+              shipTo: getAddressFromSourceData(sourceEventData.shippingAddress)
             };
             _context.next = 7;
-            return (0,_checkout_sessions_api__WEBPACK_IMPORTED_MODULE_2__.attachAddressToDropinCheckout)(address, configuration.checkoutSessionId, storage.fingerprint, storage.apiKey);
+            return (0,_checkout_sessions_api__WEBPACK_IMPORTED_MODULE_3__.attachAddressToDropinCheckout)(address, configuration.checkoutSessionId, storage.fingerprint, storage.apiKey);
           case 7:
-            if (sourceData.elementType === 'paypal') {
-              (0,_payment_payment_events__WEBPACK_IMPORTED_MODULE_3__.showSpinnerOverlay)();
+            _context.next = 12;
+            break;
+          case 9:
+            _address = {
+              email: sourceEventData.contactInformation.email
+            };
+            _context.next = 12;
+            return (0,_checkout_sessions_api__WEBPACK_IMPORTED_MODULE_3__.attachAddressToDropinCheckout)(_address, configuration.checkoutSessionId, storage.fingerprint, storage.apiKey);
+          case 12:
+            if (sourceEventData.elementType === 'paypal') {
+              (0,_payment_payment_events__WEBPACK_IMPORTED_MODULE_4__.showSpinnerOverlay)();
             }
-            _context.next = 10;
-            return (0,_payment_payment_api_call__WEBPACK_IMPORTED_MODULE_4__.handleAfterSourceCreated)(configuration, storage, storage.apiKey);
-          case 10:
+            _context.next = 15;
+            return (0,_payment_payment_api_call__WEBPACK_IMPORTED_MODULE_5__.handleAfterSourceCreated)(configuration, storage, storage.apiKey);
+          case 15:
             data = _context.sent;
             if (!data.status) {
-              _context.next = 14;
+              _context.next = 19;
               break;
             }
             callApiAndMount(storage.checkoutData, storage.translations.error.notSaved);
             return _context.abrupt("return", {
               status: false
             });
-          case 14:
+          case 19:
             storage.orderCreationData = data;
+            storage.notify(storage.checkoutData);
             order = data.order;
             storage.complete({
               order: order
             });
-            storage.notify(storage.checkoutData);
             return _context.abrupt("return", {
               status: true
             });
-          case 21:
-            _context.prev = 21;
+          case 26:
+            _context.prev = 26;
             _context.t0 = _context["catch"](2);
             return _context.abrupt("return", {
               status: false
             });
-          case 24:
+          case 29:
           case "end":
             return _context.stop();
         }
-      }, _callee, null, [[2, 21]]);
+      }, _callee, null, [[2, 26]]);
     }));
     return function (_x) {
       return _ref.apply(this, arguments);
@@ -16937,9 +16894,9 @@ function createProcessSourceData(storage, callApiAndMount, configuration) {
 }
 function createAttachShippingChoiceToCheckoutSession(checkoutData, configuration, storage) {
   return /*#__PURE__*/function () {
-    var _ref2 = (0,_babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee2(id) {
+    var _ref2 = (0,_babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee2(id) {
       var shippingChoice, checkout;
-      return _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee2$(_context2) {
+      return _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee2$(_context2) {
         while (1) switch (_context2.prev = _context2.next) {
           case 0:
             shippingChoice = {
@@ -16947,29 +16904,25 @@ function createAttachShippingChoiceToCheckoutSession(checkoutData, configuration
             };
             _context2.prev = 1;
             _context2.next = 4;
-            return (0,_checkout_sessions_api__WEBPACK_IMPORTED_MODULE_2__.attachShippingChoiceToDropinCheckout)(shippingChoice, configuration.checkoutSessionId, storage.fingerprint, storage.apiKey);
+            return (0,_checkout_sessions_api__WEBPACK_IMPORTED_MODULE_3__.attachShippingChoiceToDropinCheckout)(shippingChoice, configuration.checkoutSessionId, storage.fingerprint, storage.apiKey).then(_api_utils__WEBPACK_IMPORTED_MODULE_6__.readResponseJSON);
           case 4:
-            _context2.next = 6;
-            return (0,_checkout_sessions_api__WEBPACK_IMPORTED_MODULE_2__.getDropinCheckout)(configuration.checkoutSessionId, storage.apiKey, storage.fingerprint).then(function (data) {
-              return data.json();
-            });
-          case 6:
             checkout = _context2.sent;
+            storage.checkoutData = checkout;
             return _context2.abrupt("return", {
               status: true,
               data: checkout
             });
-          case 10:
-            _context2.prev = 10;
+          case 9:
+            _context2.prev = 9;
             _context2.t0 = _context2["catch"](1);
             return _context2.abrupt("return", {
               status: false
             });
-          case 13:
+          case 12:
           case "end":
             return _context2.stop();
         }
-      }, _callee2, null, [[1, 10]]);
+      }, _callee2, null, [[1, 9]]);
     }));
     return function (_x2) {
       return _ref2.apply(this, arguments);
@@ -16978,39 +16931,35 @@ function createAttachShippingChoiceToCheckoutSession(checkoutData, configuration
 }
 function createAttachShippingAddressToCheckoutSession(configuration, storage) {
   return /*#__PURE__*/function () {
-    var _ref3 = (0,_babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee3(address) {
-      var response, checkoutResponse, checkout;
-      return _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee3$(_context3) {
+    var _ref3 = (0,_babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee3(address) {
+      var checkoutResponse;
+      return _babel_runtime_corejs3_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee3$(_context3) {
         while (1) switch (_context3.prev = _context3.next) {
           case 0:
             _context3.prev = 0;
             _context3.next = 3;
-            return (0,_checkout_sessions_api__WEBPACK_IMPORTED_MODULE_2__.attachAddressToDropinCheckout)(address, configuration.checkoutSessionId, storage.fingerprint, storage.apiKey);
+            return (0,_checkout_sessions_api__WEBPACK_IMPORTED_MODULE_3__.attachAddressToDropinCheckout)(address, configuration.checkoutSessionId, storage.fingerprint, storage.apiKey);
           case 3:
-            response = _context3.sent;
-            _context3.next = 6;
-            return (0,_checkout_sessions_api__WEBPACK_IMPORTED_MODULE_2__.getDropinCheckout)(configuration.checkoutSessionId, storage.apiKey, storage.fingerprint);
-          case 6:
             checkoutResponse = _context3.sent;
-            _context3.next = 9;
+            _context3.next = 6;
             return checkoutResponse.json();
-          case 9:
-            checkout = _context3.sent;
+          case 6:
+            storage.checkoutData = _context3.sent;
             return _context3.abrupt("return", {
-              status: response.status === 200 && checkoutResponse.status === 200,
-              data: checkout
+              status: checkoutResponse.status === 200,
+              data: storage.checkoutData
             });
-          case 13:
-            _context3.prev = 13;
+          case 10:
+            _context3.prev = 10;
             _context3.t0 = _context3["catch"](0);
             return _context3.abrupt("return", {
               status: false
             });
-          case 16:
+          case 13:
           case "end":
             return _context3.stop();
         }
-      }, _callee3, null, [[0, 13]]);
+      }, _callee3, null, [[0, 10]]);
     }));
     return function (_x3) {
       return _ref3.apply(this, arguments);
@@ -17018,10 +16967,11 @@ function createAttachShippingAddressToCheckoutSession(configuration, storage) {
   }();
 }
 function getAddressFromSourceData(addressFromSource) {
+  var _context4;
   return {
     email: addressFromSource.email,
     phone: addressFromSource.phone,
-    name: addressFromSource.firstName + ' ' + addressFromSource.lastName,
+    name: _babel_runtime_corejs3_core_js_stable_instance_trim__WEBPACK_IMPORTED_MODULE_1___default()(_context4 = addressFromSource.firstName + ' ' + addressFromSource.lastName).call(_context4),
     address: {
       line1: addressFromSource.address.line1,
       line2: addressFromSource.address.line2,
@@ -17044,7 +16994,7 @@ function getAddressFromSourceData(addressFromSource) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "wallet": function() { return /* binding */ wallet; }
+/* harmony export */   wallet: function() { return /* binding */ wallet; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_helpers_objectSpread2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/objectSpread2 */ "./node_modules/@babel/runtime-corejs3/helpers/esm/objectSpread2.js");
 /* harmony import */ var _babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/asyncToGenerator */ "./node_modules/@babel/runtime-corejs3/helpers/esm/asyncToGenerator.js");
@@ -17055,6 +17005,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _fetch_payment_methods__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../fetch-payment-methods */ "./src/client/fetch-payment-methods.js");
 /* harmony import */ var _checkout_sessions_api__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../checkout-sessions-api */ "./src/client/elementsv2/checkout-sessions-api.js");
 /* harmony import */ var _wallet_events__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./wallet-events */ "./src/client/elementsv2/wallet/wallet-events.js");
+/* harmony import */ var _api_utils__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../api-utils */ "./src/client/elementsv2/api-utils.js");
+
 
 
 
@@ -17084,14 +17036,11 @@ function wallet(key, configuration, storage, createElement) {
               'shippingChoice': checkoutData.options.shippingMethods[0]
             };
             _context.next = 5;
-            return (0,_checkout_sessions_api__WEBPACK_IMPORTED_MODULE_6__.attachShippingChoiceToDropinCheckout)(shippingChoice, configuration.checkoutSessionId, storage.fingerprint, storage.apiKey);
+            return (0,_checkout_sessions_api__WEBPACK_IMPORTED_MODULE_6__.attachShippingChoiceToDropinCheckout)(shippingChoice, configuration.checkoutSessionId, storage.fingerprint, storage.apiKey).then(_api_utils__WEBPACK_IMPORTED_MODULE_8__.readResponseJSON);
           case 5:
-            _context.next = 7;
-            return (0,_checkout_sessions_api__WEBPACK_IMPORTED_MODULE_6__.getDropinCheckout)(configuration.checkoutSessionId, storage.apiKey, storage.fingerprint).then(function (data) {
-              return data.json();
-            });
-          case 7:
             checkout = _context.sent;
+            storage.checkoutData = checkout;
+            storage.notify(storage.checkoutData);
             callApiAndMount(checkout);
             return _context.abrupt("return");
           case 10:
@@ -17155,13 +17104,13 @@ function wallet(key, configuration, storage, createElement) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "applyCSSClassesBasedOnEvent": function() { return /* binding */ applyCSSClassesBasedOnEvent; },
-/* harmony export */   "handleChangeEvent": function() { return /* binding */ handleChangeEvent; },
-/* harmony export */   "processEvent": function() { return /* binding */ processEvent; },
-/* harmony export */   "processNonCreditCardEvents": function() { return /* binding */ processNonCreditCardEvents; },
-/* harmony export */   "removeEventsForComponent": function() { return /* binding */ removeEventsForComponent; },
-/* harmony export */   "wrapUpdateWith": function() { return /* binding */ wrapUpdateWith; },
-/* harmony export */   "wrapUpdateWithShippingAddress": function() { return /* binding */ wrapUpdateWithShippingAddress; }
+/* harmony export */   applyCSSClassesBasedOnEvent: function() { return /* binding */ applyCSSClassesBasedOnEvent; },
+/* harmony export */   handleChangeEvent: function() { return /* binding */ handleChangeEvent; },
+/* harmony export */   processEvent: function() { return /* binding */ processEvent; },
+/* harmony export */   processNonCreditCardEvents: function() { return /* binding */ processNonCreditCardEvents; },
+/* harmony export */   removeEventsForComponent: function() { return /* binding */ removeEventsForComponent; },
+/* harmony export */   wrapUpdateWith: function() { return /* binding */ wrapUpdateWith; },
+/* harmony export */   wrapUpdateWithShippingAddress: function() { return /* binding */ wrapUpdateWithShippingAddress; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_array_is_array__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/array/is-array */ "./node_modules/@babel/runtime-corejs3/core-js-stable/array/is-array.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_array_is_array__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_array_is_array__WEBPACK_IMPORTED_MODULE_0__);
@@ -17388,7 +17337,7 @@ function removeEventsForComponent(key, id) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "getPaymentMethods": function() { return /* binding */ getPaymentMethods; }
+/* harmony export */   getPaymentMethods: function() { return /* binding */ getPaymentMethods; }
 /* harmony export */ });
 /* harmony import */ var _createComponent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./createComponent */ "./src/client/createComponent.js");
 /* harmony import */ var _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../post-robot-wrapper */ "./src/post-robot-wrapper.js");
@@ -17440,18 +17389,18 @@ function getPaymentMethods(controllerId, sessionId, country, currency, locale, s
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "addFieldDetailsToState": function() { return /* binding */ addFieldDetailsToState; },
-/* harmony export */   "canRenderInvoiceAttribute": function() { return /* binding */ canRenderInvoiceAttribute; },
-/* harmony export */   "countryIsTaiwan": function() { return /* binding */ countryIsTaiwan; },
-/* harmony export */   "countrySpecProvided": function() { return /* binding */ countrySpecProvided; },
-/* harmony export */   "formatTypesForReadyEvent": function() { return /* binding */ formatTypesForReadyEvent; },
-/* harmony export */   "getDynamicInputType": function() { return /* binding */ getDynamicInputType; },
-/* harmony export */   "getFieldKey": function() { return /* binding */ getFieldKey; },
-/* harmony export */   "getSelectedInvoiceTypeForShopperType": function() { return /* binding */ getSelectedInvoiceTypeForShopperType; },
-/* harmony export */   "invoiceAttributeTypeFound": function() { return /* binding */ invoiceAttributeTypeFound; },
-/* harmony export */   "isTaiwanAgreementValid": function() { return /* binding */ isTaiwanAgreementValid; },
-/* harmony export */   "isTypeBusiness": function() { return /* binding */ isTypeBusiness; },
-/* harmony export */   "isTypeIndividual": function() { return /* binding */ isTypeIndividual; }
+/* harmony export */   addFieldDetailsToState: function() { return /* binding */ addFieldDetailsToState; },
+/* harmony export */   canRenderInvoiceAttribute: function() { return /* binding */ canRenderInvoiceAttribute; },
+/* harmony export */   countryIsTaiwan: function() { return /* binding */ countryIsTaiwan; },
+/* harmony export */   countrySpecProvided: function() { return /* binding */ countrySpecProvided; },
+/* harmony export */   formatTypesForReadyEvent: function() { return /* binding */ formatTypesForReadyEvent; },
+/* harmony export */   getDynamicInputType: function() { return /* binding */ getDynamicInputType; },
+/* harmony export */   getFieldKey: function() { return /* binding */ getFieldKey; },
+/* harmony export */   getSelectedInvoiceTypeForShopperType: function() { return /* binding */ getSelectedInvoiceTypeForShopperType; },
+/* harmony export */   invoiceAttributeTypeFound: function() { return /* binding */ invoiceAttributeTypeFound; },
+/* harmony export */   isTaiwanAgreementValid: function() { return /* binding */ isTaiwanAgreementValid; },
+/* harmony export */   isTypeBusiness: function() { return /* binding */ isTypeBusiness; },
+/* harmony export */   isTypeIndividual: function() { return /* binding */ isTypeIndividual; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_map__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/map */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/map.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_map__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_map__WEBPACK_IMPORTED_MODULE_0__);
@@ -17597,17 +17546,17 @@ function getDynamicInputType(field) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "addContainerToDom": function() { return /* binding */ addContainerToDom; },
-/* harmony export */   "componentTriggerEvent": function() { return /* binding */ componentTriggerEvent; },
-/* harmony export */   "createElements": function() { return /* binding */ createElements; },
-/* harmony export */   "createInvoiceAttribute": function() { return /* binding */ createInvoiceAttribute; },
-/* harmony export */   "createPurchaseContainerForType": function() { return /* binding */ createPurchaseContainerForType; },
-/* harmony export */   "emitComponentReady": function() { return /* binding */ emitComponentReady; },
-/* harmony export */   "handleFieldChange": function() { return /* binding */ handleFieldChange; },
-/* harmony export */   "handleFieldReady": function() { return /* binding */ handleFieldReady; },
-/* harmony export */   "handleOptions": function() { return /* binding */ handleOptions; },
-/* harmony export */   "mountElement": function() { return /* binding */ mountElement; },
-/* harmony export */   "unmountElement": function() { return /* binding */ unmountElement; }
+/* harmony export */   addContainerToDom: function() { return /* binding */ addContainerToDom; },
+/* harmony export */   componentTriggerEvent: function() { return /* binding */ componentTriggerEvent; },
+/* harmony export */   createElements: function() { return /* binding */ createElements; },
+/* harmony export */   createInvoiceAttribute: function() { return /* binding */ createInvoiceAttribute; },
+/* harmony export */   createPurchaseContainerForType: function() { return /* binding */ createPurchaseContainerForType; },
+/* harmony export */   emitComponentReady: function() { return /* binding */ emitComponentReady; },
+/* harmony export */   handleFieldChange: function() { return /* binding */ handleFieldChange; },
+/* harmony export */   handleFieldReady: function() { return /* binding */ handleFieldReady; },
+/* harmony export */   handleOptions: function() { return /* binding */ handleOptions; },
+/* harmony export */   mountElement: function() { return /* binding */ mountElement; },
+/* harmony export */   unmountElement: function() { return /* binding */ unmountElement; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/defineProperty */ "./node_modules/@babel/runtime-corejs3/helpers/esm/defineProperty.js");
 /* harmony import */ var _babel_runtime_corejs3_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/asyncToGenerator */ "./node_modules/@babel/runtime-corejs3/helpers/esm/asyncToGenerator.js");
@@ -18347,9 +18296,9 @@ function createSubmitButton(componentData) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "createKoreanCard": function() { return /* binding */ createKoreanCard; },
-/* harmony export */   "handleKoreanCard": function() { return /* binding */ handleKoreanCard; },
-/* harmony export */   "isKoreanCard": function() { return /* binding */ isKoreanCard; }
+/* harmony export */   createKoreanCard: function() { return /* binding */ createKoreanCard; },
+/* harmony export */   handleKoreanCard: function() { return /* binding */ handleKoreanCard; },
+/* harmony export */   isKoreanCard: function() { return /* binding */ isKoreanCard; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/object/assign */ "./node_modules/@babel/runtime-corejs3/core-js-stable/object/assign.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_0__);
@@ -18449,10 +18398,10 @@ function isKoreanCard(sourceRequest) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "getAddNewPaymentText": function() { return /* binding */ getAddNewPaymentText; },
-/* harmony export */   "getMandateByLocale": function() { return /* binding */ getMandateByLocale; },
-/* harmony export */   "getMustAcceptTermsText": function() { return /* binding */ getMustAcceptTermsText; },
-/* harmony export */   "getSaveCardMandateText": function() { return /* binding */ getSaveCardMandateText; }
+/* harmony export */   getAddNewPaymentText: function() { return /* binding */ getAddNewPaymentText; },
+/* harmony export */   getMandateByLocale: function() { return /* binding */ getMandateByLocale; },
+/* harmony export */   getMustAcceptTermsText: function() { return /* binding */ getMustAcceptTermsText; },
+/* harmony export */   getSaveCardMandateText: function() { return /* binding */ getSaveCardMandateText; }
 /* harmony export */ });
 /* harmony import */ var _json_mandate_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../json/mandate.json */ "./src/json/mandate.json");
 /* harmony import */ var _app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../app/components/localization/localized-messages */ "./src/app/components/localization/localized-messages.js");
@@ -18492,7 +18441,7 @@ function getMustAcceptTermsText(locale) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "getMSTSLocalizedStrings": function() { return /* binding */ getMSTSLocalizedStrings; }
+/* harmony export */   getMSTSLocalizedStrings: function() { return /* binding */ getMSTSLocalizedStrings; }
 /* harmony export */ });
 /* harmony import */ var _msts_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./msts.json */ "./src/client/msts/msts.json");
 /* harmony import */ var _app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../app/components/localization/localized-messages */ "./src/app/components/localization/localized-messages.js");
@@ -18522,8 +18471,8 @@ function getMSTSLocalizedStrings(title, locale) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "createApplyNowButton": function() { return /* binding */ createApplyNowButton; },
-/* harmony export */   "getMSTSEnrollmentURL": function() { return /* binding */ getMSTSEnrollmentURL; }
+/* harmony export */   createApplyNowButton: function() { return /* binding */ createApplyNowButton; },
+/* harmony export */   getMSTSEnrollmentURL: function() { return /* binding */ getMSTSEnrollmentURL; }
 /* harmony export */ });
 /* harmony import */ var _app_components_controller_controller_window_opener__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../app/components/controller/controller-window-opener */ "./src/app/components/controller/controller-window-opener.js");
 /* harmony import */ var _dropin_button_text__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../dropin/button-text */ "./src/client/dropin/button-text.js");
@@ -18557,18 +18506,18 @@ function createApplyNowButton(url, locale) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "addContainerToDom": function() { return /* binding */ addContainerToDom; },
-/* harmony export */   "addHandleGetValue": function() { return /* binding */ addHandleGetValue; },
-/* harmony export */   "createElements": function() { return /* binding */ createElements; },
-/* harmony export */   "createMSTS": function() { return /* binding */ createMSTS; },
-/* harmony export */   "emitComponentReady": function() { return /* binding */ emitComponentReady; },
-/* harmony export */   "handleFieldBlur": function() { return /* binding */ handleFieldBlur; },
-/* harmony export */   "handleFieldChange": function() { return /* binding */ handleFieldChange; },
-/* harmony export */   "handleFieldFocus": function() { return /* binding */ handleFieldFocus; },
-/* harmony export */   "handleFieldReady": function() { return /* binding */ handleFieldReady; },
-/* harmony export */   "handleOptions": function() { return /* binding */ handleOptions; },
-/* harmony export */   "mountElement": function() { return /* binding */ mountElement; },
-/* harmony export */   "unmountElement": function() { return /* binding */ unmountElement; }
+/* harmony export */   addContainerToDom: function() { return /* binding */ addContainerToDom; },
+/* harmony export */   addHandleGetValue: function() { return /* binding */ addHandleGetValue; },
+/* harmony export */   createElements: function() { return /* binding */ createElements; },
+/* harmony export */   createMSTS: function() { return /* binding */ createMSTS; },
+/* harmony export */   emitComponentReady: function() { return /* binding */ emitComponentReady; },
+/* harmony export */   handleFieldBlur: function() { return /* binding */ handleFieldBlur; },
+/* harmony export */   handleFieldChange: function() { return /* binding */ handleFieldChange; },
+/* harmony export */   handleFieldFocus: function() { return /* binding */ handleFieldFocus; },
+/* harmony export */   handleFieldReady: function() { return /* binding */ handleFieldReady; },
+/* harmony export */   handleOptions: function() { return /* binding */ handleOptions; },
+/* harmony export */   mountElement: function() { return /* binding */ mountElement; },
+/* harmony export */   unmountElement: function() { return /* binding */ unmountElement; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/defineProperty */ "./node_modules/@babel/runtime-corejs3/helpers/esm/defineProperty.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/for-each */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/for-each.js");
@@ -18937,23 +18886,23 @@ function addHandleGetValue(controllerListener, componentData, elements) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "addContainerToDom": function() { return /* binding */ addContainerToDom; },
-/* harmony export */   "addHandleGetValue": function() { return /* binding */ addHandleGetValue; },
-/* harmony export */   "addHandleOptions": function() { return /* binding */ addHandleOptions; },
-/* harmony export */   "createElements": function() { return /* binding */ createElements; },
-/* harmony export */   "createOfflineRefund": function() { return /* binding */ createOfflineRefund; },
-/* harmony export */   "emitComponentReady": function() { return /* binding */ emitComponentReady; },
-/* harmony export */   "getComponentData": function() { return /* binding */ getComponentData; },
-/* harmony export */   "getElementsState": function() { return /* binding */ getElementsState; },
-/* harmony export */   "handleFieldBlur": function() { return /* binding */ handleFieldBlur; },
-/* harmony export */   "handleFieldChange": function() { return /* binding */ handleFieldChange; },
-/* harmony export */   "handleFieldFocus": function() { return /* binding */ handleFieldFocus; },
-/* harmony export */   "handleFieldReady": function() { return /* binding */ handleFieldReady; },
-/* harmony export */   "handleFormSubmit": function() { return /* binding */ handleFormSubmit; },
-/* harmony export */   "handleOptions": function() { return /* binding */ handleOptions; },
-/* harmony export */   "mountElement": function() { return /* binding */ mountElement; },
-/* harmony export */   "processRefund": function() { return /* binding */ processRefund; },
-/* harmony export */   "unmountElement": function() { return /* binding */ unmountElement; }
+/* harmony export */   addContainerToDom: function() { return /* binding */ addContainerToDom; },
+/* harmony export */   addHandleGetValue: function() { return /* binding */ addHandleGetValue; },
+/* harmony export */   addHandleOptions: function() { return /* binding */ addHandleOptions; },
+/* harmony export */   createElements: function() { return /* binding */ createElements; },
+/* harmony export */   createOfflineRefund: function() { return /* binding */ createOfflineRefund; },
+/* harmony export */   emitComponentReady: function() { return /* binding */ emitComponentReady; },
+/* harmony export */   getComponentData: function() { return /* binding */ getComponentData; },
+/* harmony export */   getElementsState: function() { return /* binding */ getElementsState; },
+/* harmony export */   handleFieldBlur: function() { return /* binding */ handleFieldBlur; },
+/* harmony export */   handleFieldChange: function() { return /* binding */ handleFieldChange; },
+/* harmony export */   handleFieldFocus: function() { return /* binding */ handleFieldFocus; },
+/* harmony export */   handleFieldReady: function() { return /* binding */ handleFieldReady; },
+/* harmony export */   handleFormSubmit: function() { return /* binding */ handleFormSubmit; },
+/* harmony export */   handleOptions: function() { return /* binding */ handleOptions; },
+/* harmony export */   mountElement: function() { return /* binding */ mountElement; },
+/* harmony export */   processRefund: function() { return /* binding */ processRefund; },
+/* harmony export */   unmountElement: function() { return /* binding */ unmountElement; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/defineProperty */ "./node_modules/@babel/runtime-corejs3/helpers/esm/defineProperty.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/concat */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/concat.js");
@@ -19402,7 +19351,7 @@ function processRefund(controllerId, refundToken) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "sendHandleNextAction": function() { return /* binding */ sendHandleNextAction; }
+/* harmony export */   sendHandleNextAction: function() { return /* binding */ sendHandleNextAction; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/object/assign */ "./node_modules/@babel/runtime-corejs3/core-js-stable/object/assign.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_0__);
@@ -19443,7 +19392,7 @@ function sendHandleNextAction(controllerId, data) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "filterByObjectPropertyValue": function() { return /* binding */ filterByObjectPropertyValue; }
+/* harmony export */   filterByObjectPropertyValue: function() { return /* binding */ filterByObjectPropertyValue; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/filter */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/filter.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_0__);
@@ -19472,8 +19421,8 @@ function filterByObjectPropertyValue(dataArray, filterProperty, filterValue) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "getLocalizedStrings": function() { return /* binding */ getLocalizedStrings; },
-/* harmony export */   "getTaxSpecificStrings": function() { return /* binding */ getTaxSpecificStrings; }
+/* harmony export */   getLocalizedStrings: function() { return /* binding */ getLocalizedStrings; },
+/* harmony export */   getTaxSpecificStrings: function() { return /* binding */ getTaxSpecificStrings; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/object/keys */ "./node_modules/@babel/runtime-corejs3/core-js-stable/object/keys.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_0__);
@@ -19511,18 +19460,18 @@ function getLocalizedStrings(locale) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "addContainerToDom": function() { return /* binding */ addContainerToDom; },
-/* harmony export */   "addHandleOptions": function() { return /* binding */ addHandleOptions; },
-/* harmony export */   "createElements": function() { return /* binding */ createElements; },
-/* harmony export */   "createTaxIdentifier": function() { return /* binding */ createTaxIdentifier; },
-/* harmony export */   "emitComponentReady": function() { return /* binding */ emitComponentReady; },
-/* harmony export */   "handleFieldBlur": function() { return /* binding */ handleFieldBlur; },
-/* harmony export */   "handleFieldChange": function() { return /* binding */ handleFieldChange; },
-/* harmony export */   "handleFieldFocus": function() { return /* binding */ handleFieldFocus; },
-/* harmony export */   "handleFieldReady": function() { return /* binding */ handleFieldReady; },
-/* harmony export */   "handleOptions": function() { return /* binding */ handleOptions; },
-/* harmony export */   "mountElement": function() { return /* binding */ mountElement; },
-/* harmony export */   "unmountElement": function() { return /* binding */ unmountElement; }
+/* harmony export */   addContainerToDom: function() { return /* binding */ addContainerToDom; },
+/* harmony export */   addHandleOptions: function() { return /* binding */ addHandleOptions; },
+/* harmony export */   createElements: function() { return /* binding */ createElements; },
+/* harmony export */   createTaxIdentifier: function() { return /* binding */ createTaxIdentifier; },
+/* harmony export */   emitComponentReady: function() { return /* binding */ emitComponentReady; },
+/* harmony export */   handleFieldBlur: function() { return /* binding */ handleFieldBlur; },
+/* harmony export */   handleFieldChange: function() { return /* binding */ handleFieldChange; },
+/* harmony export */   handleFieldFocus: function() { return /* binding */ handleFieldFocus; },
+/* harmony export */   handleFieldReady: function() { return /* binding */ handleFieldReady; },
+/* harmony export */   handleOptions: function() { return /* binding */ handleOptions; },
+/* harmony export */   mountElement: function() { return /* binding */ mountElement; },
+/* harmony export */   unmountElement: function() { return /* binding */ unmountElement; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/defineProperty */ "./node_modules/@babel/runtime-corejs3/helpers/esm/defineProperty.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/filter */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/filter.js");
@@ -20148,8 +20097,8 @@ function addHandleOptions(controllerListener, handleOptions) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "getRedirectReceiverURL": function() { return /* binding */ getRedirectReceiverURL; },
-/* harmony export */   "isValidHttpUrl": function() { return /* binding */ isValidHttpUrl; }
+/* harmony export */   getRedirectReceiverURL: function() { return /* binding */ getRedirectReceiverURL; },
+/* harmony export */   isValidHttpUrl: function() { return /* binding */ isValidHttpUrl; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/concat */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/concat.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_concat__WEBPACK_IMPORTED_MODULE_0__);
@@ -20184,10 +20133,10 @@ function isValidHttpUrl(string) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "client": function() { return /* binding */ client; },
-/* harmony export */   "listener": function() { return /* binding */ listener; },
-/* harmony export */   "on": function() { return /* binding */ _on; },
-/* harmony export */   "send": function() { return /* binding */ _send; }
+/* harmony export */   client: function() { return /* binding */ client; },
+/* harmony export */   listener: function() { return /* binding */ listener; },
+/* harmony export */   on: function() { return /* binding */ _on; },
+/* harmony export */   send: function() { return /* binding */ _send; }
 /* harmony export */ });
 /* harmony import */ var post_robot__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! post-robot */ "./node_modules/post-robot/index.js");
 /* harmony import */ var post_robot__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(post_robot__WEBPACK_IMPORTED_MODULE_0__);
@@ -20237,10 +20186,10 @@ function _on(name, data, callback) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "getComplianceData": function() { return /* binding */ getComplianceData; },
-/* harmony export */   "removeDOMElement": function() { return /* binding */ removeDOMElement; },
-/* harmony export */   "removeLastCharacterFromString": function() { return /* binding */ removeLastCharacterFromString; },
-/* harmony export */   "setElementErrorMessage": function() { return /* binding */ setElementErrorMessage; }
+/* harmony export */   getComplianceData: function() { return /* binding */ getComplianceData; },
+/* harmony export */   removeDOMElement: function() { return /* binding */ removeDOMElement; },
+/* harmony export */   removeLastCharacterFromString: function() { return /* binding */ removeLastCharacterFromString; },
+/* harmony export */   setElementErrorMessage: function() { return /* binding */ setElementErrorMessage; }
 /* harmony export */ });
 function setElementErrorMessage(id, message) {
   message === '' ? document.getElementById(id).style.display = 'none' : document.getElementById(id).style.display = 'block';
@@ -31845,9 +31794,9 @@ module.exports = path.URL;
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "PROTOCOL": function() { return /* binding */ PROTOCOL; },
-/* harmony export */   "WILDCARD": function() { return /* binding */ WILDCARD; },
-/* harmony export */   "WINDOW_TYPE": function() { return /* binding */ WINDOW_TYPE; }
+/* harmony export */   PROTOCOL: function() { return /* binding */ PROTOCOL; },
+/* harmony export */   WILDCARD: function() { return /* binding */ WILDCARD; },
+/* harmony export */   WINDOW_TYPE: function() { return /* binding */ WINDOW_TYPE; }
 /* harmony export */ });
 var PROTOCOL = {
   MOCK: 'mock:',
@@ -31871,64 +31820,64 @@ var WINDOW_TYPE = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "PROTOCOL": function() { return /* reexport safe */ _constants__WEBPACK_IMPORTED_MODULE_2__.PROTOCOL; },
-/* harmony export */   "TYPES": function() { return /* reexport safe */ _types__WEBPACK_IMPORTED_MODULE_1__.TYPES; },
-/* harmony export */   "WILDCARD": function() { return /* reexport safe */ _constants__WEBPACK_IMPORTED_MODULE_2__.WILDCARD; },
-/* harmony export */   "WINDOW_TYPE": function() { return /* reexport safe */ _constants__WEBPACK_IMPORTED_MODULE_2__.WINDOW_TYPE; },
-/* harmony export */   "assertSameDomain": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.assertSameDomain; },
-/* harmony export */   "canReadFromWindow": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.canReadFromWindow; },
-/* harmony export */   "closeWindow": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.closeWindow; },
-/* harmony export */   "findChildFrameByName": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.findChildFrameByName; },
-/* harmony export */   "findFrameByName": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.findFrameByName; },
-/* harmony export */   "getActualDomain": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getActualDomain; },
-/* harmony export */   "getActualProtocol": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getActualProtocol; },
-/* harmony export */   "getAllChildFrames": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getAllChildFrames; },
-/* harmony export */   "getAllFramesInWindow": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getAllFramesInWindow; },
-/* harmony export */   "getAllWindows": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getAllWindows; },
-/* harmony export */   "getAncestor": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getAncestor; },
-/* harmony export */   "getAncestors": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getAncestors; },
-/* harmony export */   "getDistanceFromTop": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getDistanceFromTop; },
-/* harmony export */   "getDomain": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getDomain; },
-/* harmony export */   "getDomainFromUrl": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getDomainFromUrl; },
-/* harmony export */   "getFrameByName": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getFrameByName; },
-/* harmony export */   "getFrameForWindow": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getFrameForWindow; },
-/* harmony export */   "getFrames": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getFrames; },
-/* harmony export */   "getNextOpener": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getNextOpener; },
-/* harmony export */   "getNthParent": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getNthParent; },
-/* harmony export */   "getNthParentFromTop": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getNthParentFromTop; },
-/* harmony export */   "getOpener": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getOpener; },
-/* harmony export */   "getParent": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getParent; },
-/* harmony export */   "getParents": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getParents; },
-/* harmony export */   "getProtocol": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getProtocol; },
-/* harmony export */   "getTop": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getTop; },
-/* harmony export */   "getUltimateTop": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getUltimateTop; },
-/* harmony export */   "getUserAgent": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getUserAgent; },
-/* harmony export */   "isAboutProtocol": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isAboutProtocol; },
-/* harmony export */   "isActuallySameDomain": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isActuallySameDomain; },
-/* harmony export */   "isAncestor": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isAncestor; },
-/* harmony export */   "isAncestorParent": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isAncestorParent; },
-/* harmony export */   "isBlankDomain": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isBlankDomain; },
-/* harmony export */   "isBrowser": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isBrowser; },
-/* harmony export */   "isCurrentDomain": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isCurrentDomain; },
-/* harmony export */   "isFileProtocol": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isFileProtocol; },
-/* harmony export */   "isFrameWindowClosed": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isFrameWindowClosed; },
-/* harmony export */   "isFullpage": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isFullpage; },
-/* harmony export */   "isIframe": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isIframe; },
-/* harmony export */   "isMockDomain": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isMockDomain; },
-/* harmony export */   "isMockProtocol": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isMockProtocol; },
-/* harmony export */   "isOpener": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isOpener; },
-/* harmony export */   "isParent": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isParent; },
-/* harmony export */   "isPopup": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isPopup; },
-/* harmony export */   "isSameDomain": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isSameDomain; },
-/* harmony export */   "isSameTopWindow": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isSameTopWindow; },
-/* harmony export */   "isTop": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isTop; },
-/* harmony export */   "isWindow": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isWindow; },
-/* harmony export */   "isWindowClosed": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isWindowClosed; },
-/* harmony export */   "linkFrameWindow": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.linkFrameWindow; },
-/* harmony export */   "matchDomain": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.matchDomain; },
-/* harmony export */   "normalizeMockUrl": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.normalizeMockUrl; },
-/* harmony export */   "onCloseWindow": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.onCloseWindow; },
-/* harmony export */   "stringifyDomainPattern": function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.stringifyDomainPattern; }
+/* harmony export */   PROTOCOL: function() { return /* reexport safe */ _constants__WEBPACK_IMPORTED_MODULE_2__.PROTOCOL; },
+/* harmony export */   TYPES: function() { return /* reexport safe */ _types__WEBPACK_IMPORTED_MODULE_1__.TYPES; },
+/* harmony export */   WILDCARD: function() { return /* reexport safe */ _constants__WEBPACK_IMPORTED_MODULE_2__.WILDCARD; },
+/* harmony export */   WINDOW_TYPE: function() { return /* reexport safe */ _constants__WEBPACK_IMPORTED_MODULE_2__.WINDOW_TYPE; },
+/* harmony export */   assertSameDomain: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.assertSameDomain; },
+/* harmony export */   canReadFromWindow: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.canReadFromWindow; },
+/* harmony export */   closeWindow: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.closeWindow; },
+/* harmony export */   findChildFrameByName: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.findChildFrameByName; },
+/* harmony export */   findFrameByName: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.findFrameByName; },
+/* harmony export */   getActualDomain: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getActualDomain; },
+/* harmony export */   getActualProtocol: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getActualProtocol; },
+/* harmony export */   getAllChildFrames: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getAllChildFrames; },
+/* harmony export */   getAllFramesInWindow: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getAllFramesInWindow; },
+/* harmony export */   getAllWindows: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getAllWindows; },
+/* harmony export */   getAncestor: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getAncestor; },
+/* harmony export */   getAncestors: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getAncestors; },
+/* harmony export */   getDistanceFromTop: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getDistanceFromTop; },
+/* harmony export */   getDomain: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getDomain; },
+/* harmony export */   getDomainFromUrl: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getDomainFromUrl; },
+/* harmony export */   getFrameByName: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getFrameByName; },
+/* harmony export */   getFrameForWindow: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getFrameForWindow; },
+/* harmony export */   getFrames: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getFrames; },
+/* harmony export */   getNextOpener: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getNextOpener; },
+/* harmony export */   getNthParent: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getNthParent; },
+/* harmony export */   getNthParentFromTop: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getNthParentFromTop; },
+/* harmony export */   getOpener: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getOpener; },
+/* harmony export */   getParent: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getParent; },
+/* harmony export */   getParents: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getParents; },
+/* harmony export */   getProtocol: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getProtocol; },
+/* harmony export */   getTop: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getTop; },
+/* harmony export */   getUltimateTop: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getUltimateTop; },
+/* harmony export */   getUserAgent: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.getUserAgent; },
+/* harmony export */   isAboutProtocol: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isAboutProtocol; },
+/* harmony export */   isActuallySameDomain: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isActuallySameDomain; },
+/* harmony export */   isAncestor: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isAncestor; },
+/* harmony export */   isAncestorParent: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isAncestorParent; },
+/* harmony export */   isBlankDomain: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isBlankDomain; },
+/* harmony export */   isBrowser: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isBrowser; },
+/* harmony export */   isCurrentDomain: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isCurrentDomain; },
+/* harmony export */   isFileProtocol: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isFileProtocol; },
+/* harmony export */   isFrameWindowClosed: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isFrameWindowClosed; },
+/* harmony export */   isFullpage: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isFullpage; },
+/* harmony export */   isIframe: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isIframe; },
+/* harmony export */   isMockDomain: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isMockDomain; },
+/* harmony export */   isMockProtocol: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isMockProtocol; },
+/* harmony export */   isOpener: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isOpener; },
+/* harmony export */   isParent: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isParent; },
+/* harmony export */   isPopup: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isPopup; },
+/* harmony export */   isSameDomain: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isSameDomain; },
+/* harmony export */   isSameTopWindow: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isSameTopWindow; },
+/* harmony export */   isTop: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isTop; },
+/* harmony export */   isWindow: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isWindow; },
+/* harmony export */   isWindowClosed: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.isWindowClosed; },
+/* harmony export */   linkFrameWindow: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.linkFrameWindow; },
+/* harmony export */   matchDomain: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.matchDomain; },
+/* harmony export */   normalizeMockUrl: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.normalizeMockUrl; },
+/* harmony export */   onCloseWindow: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.onCloseWindow; },
+/* harmony export */   stringifyDomainPattern: function() { return /* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_0__.stringifyDomainPattern; }
 /* harmony export */ });
 /* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils */ "./node_modules/cross-domain-utils/dist/module/utils.js");
 /* harmony import */ var _types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./types */ "./node_modules/cross-domain-utils/dist/module/types.js");
@@ -31948,7 +31897,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "TYPES": function() { return /* binding */ TYPES; }
+/* harmony export */   TYPES: function() { return /* binding */ TYPES; }
 /* harmony export */ });
 // export something to force webpack to see this as an ES module
 var TYPES = true;
@@ -31964,8 +31913,8 @@ var TYPES = true;
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "isRegex": function() { return /* binding */ isRegex; },
-/* harmony export */   "noop": function() { return /* binding */ noop; }
+/* harmony export */   isRegex: function() { return /* binding */ isRegex; },
+/* harmony export */   noop: function() { return /* binding */ noop; }
 /* harmony export */ });
 function isRegex(item) {
   // $FlowFixMe method-unbinding
@@ -31986,60 +31935,60 @@ function noop() {// pass
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "assertSameDomain": function() { return /* binding */ assertSameDomain; },
-/* harmony export */   "canReadFromWindow": function() { return /* binding */ canReadFromWindow; },
-/* harmony export */   "closeWindow": function() { return /* binding */ closeWindow; },
-/* harmony export */   "findChildFrameByName": function() { return /* binding */ findChildFrameByName; },
-/* harmony export */   "findFrameByName": function() { return /* binding */ findFrameByName; },
-/* harmony export */   "getActualDomain": function() { return /* binding */ getActualDomain; },
-/* harmony export */   "getActualProtocol": function() { return /* binding */ getActualProtocol; },
-/* harmony export */   "getAllChildFrames": function() { return /* binding */ getAllChildFrames; },
-/* harmony export */   "getAllFramesInWindow": function() { return /* binding */ getAllFramesInWindow; },
-/* harmony export */   "getAllWindows": function() { return /* binding */ getAllWindows; },
-/* harmony export */   "getAncestor": function() { return /* binding */ getAncestor; },
-/* harmony export */   "getAncestors": function() { return /* binding */ getAncestors; },
-/* harmony export */   "getDistanceFromTop": function() { return /* binding */ getDistanceFromTop; },
-/* harmony export */   "getDomain": function() { return /* binding */ getDomain; },
-/* harmony export */   "getDomainFromUrl": function() { return /* binding */ getDomainFromUrl; },
-/* harmony export */   "getFrameByName": function() { return /* binding */ getFrameByName; },
-/* harmony export */   "getFrameForWindow": function() { return /* binding */ getFrameForWindow; },
-/* harmony export */   "getFrames": function() { return /* binding */ getFrames; },
-/* harmony export */   "getNextOpener": function() { return /* binding */ getNextOpener; },
-/* harmony export */   "getNthParent": function() { return /* binding */ getNthParent; },
-/* harmony export */   "getNthParentFromTop": function() { return /* binding */ getNthParentFromTop; },
-/* harmony export */   "getOpener": function() { return /* binding */ getOpener; },
-/* harmony export */   "getParent": function() { return /* binding */ getParent; },
-/* harmony export */   "getParents": function() { return /* binding */ getParents; },
-/* harmony export */   "getProtocol": function() { return /* binding */ getProtocol; },
-/* harmony export */   "getTop": function() { return /* binding */ getTop; },
-/* harmony export */   "getUltimateTop": function() { return /* binding */ getUltimateTop; },
-/* harmony export */   "getUserAgent": function() { return /* binding */ getUserAgent; },
-/* harmony export */   "isAboutProtocol": function() { return /* binding */ isAboutProtocol; },
-/* harmony export */   "isActuallySameDomain": function() { return /* binding */ isActuallySameDomain; },
-/* harmony export */   "isAncestor": function() { return /* binding */ isAncestor; },
-/* harmony export */   "isAncestorParent": function() { return /* binding */ isAncestorParent; },
-/* harmony export */   "isBlankDomain": function() { return /* binding */ isBlankDomain; },
-/* harmony export */   "isBrowser": function() { return /* binding */ isBrowser; },
-/* harmony export */   "isCurrentDomain": function() { return /* binding */ isCurrentDomain; },
-/* harmony export */   "isFileProtocol": function() { return /* binding */ isFileProtocol; },
-/* harmony export */   "isFrameWindowClosed": function() { return /* binding */ isFrameWindowClosed; },
-/* harmony export */   "isFullpage": function() { return /* binding */ isFullpage; },
-/* harmony export */   "isIframe": function() { return /* binding */ isIframe; },
-/* harmony export */   "isMockDomain": function() { return /* binding */ isMockDomain; },
-/* harmony export */   "isMockProtocol": function() { return /* binding */ isMockProtocol; },
-/* harmony export */   "isOpener": function() { return /* binding */ isOpener; },
-/* harmony export */   "isParent": function() { return /* binding */ isParent; },
-/* harmony export */   "isPopup": function() { return /* binding */ isPopup; },
-/* harmony export */   "isSameDomain": function() { return /* binding */ isSameDomain; },
-/* harmony export */   "isSameTopWindow": function() { return /* binding */ isSameTopWindow; },
-/* harmony export */   "isTop": function() { return /* binding */ isTop; },
-/* harmony export */   "isWindow": function() { return /* binding */ isWindow; },
-/* harmony export */   "isWindowClosed": function() { return /* binding */ isWindowClosed; },
-/* harmony export */   "linkFrameWindow": function() { return /* binding */ linkFrameWindow; },
-/* harmony export */   "matchDomain": function() { return /* binding */ matchDomain; },
-/* harmony export */   "normalizeMockUrl": function() { return /* binding */ normalizeMockUrl; },
-/* harmony export */   "onCloseWindow": function() { return /* binding */ onCloseWindow; },
-/* harmony export */   "stringifyDomainPattern": function() { return /* binding */ stringifyDomainPattern; }
+/* harmony export */   assertSameDomain: function() { return /* binding */ assertSameDomain; },
+/* harmony export */   canReadFromWindow: function() { return /* binding */ canReadFromWindow; },
+/* harmony export */   closeWindow: function() { return /* binding */ closeWindow; },
+/* harmony export */   findChildFrameByName: function() { return /* binding */ findChildFrameByName; },
+/* harmony export */   findFrameByName: function() { return /* binding */ findFrameByName; },
+/* harmony export */   getActualDomain: function() { return /* binding */ getActualDomain; },
+/* harmony export */   getActualProtocol: function() { return /* binding */ getActualProtocol; },
+/* harmony export */   getAllChildFrames: function() { return /* binding */ getAllChildFrames; },
+/* harmony export */   getAllFramesInWindow: function() { return /* binding */ getAllFramesInWindow; },
+/* harmony export */   getAllWindows: function() { return /* binding */ getAllWindows; },
+/* harmony export */   getAncestor: function() { return /* binding */ getAncestor; },
+/* harmony export */   getAncestors: function() { return /* binding */ getAncestors; },
+/* harmony export */   getDistanceFromTop: function() { return /* binding */ getDistanceFromTop; },
+/* harmony export */   getDomain: function() { return /* binding */ getDomain; },
+/* harmony export */   getDomainFromUrl: function() { return /* binding */ getDomainFromUrl; },
+/* harmony export */   getFrameByName: function() { return /* binding */ getFrameByName; },
+/* harmony export */   getFrameForWindow: function() { return /* binding */ getFrameForWindow; },
+/* harmony export */   getFrames: function() { return /* binding */ getFrames; },
+/* harmony export */   getNextOpener: function() { return /* binding */ getNextOpener; },
+/* harmony export */   getNthParent: function() { return /* binding */ getNthParent; },
+/* harmony export */   getNthParentFromTop: function() { return /* binding */ getNthParentFromTop; },
+/* harmony export */   getOpener: function() { return /* binding */ getOpener; },
+/* harmony export */   getParent: function() { return /* binding */ getParent; },
+/* harmony export */   getParents: function() { return /* binding */ getParents; },
+/* harmony export */   getProtocol: function() { return /* binding */ getProtocol; },
+/* harmony export */   getTop: function() { return /* binding */ getTop; },
+/* harmony export */   getUltimateTop: function() { return /* binding */ getUltimateTop; },
+/* harmony export */   getUserAgent: function() { return /* binding */ getUserAgent; },
+/* harmony export */   isAboutProtocol: function() { return /* binding */ isAboutProtocol; },
+/* harmony export */   isActuallySameDomain: function() { return /* binding */ isActuallySameDomain; },
+/* harmony export */   isAncestor: function() { return /* binding */ isAncestor; },
+/* harmony export */   isAncestorParent: function() { return /* binding */ isAncestorParent; },
+/* harmony export */   isBlankDomain: function() { return /* binding */ isBlankDomain; },
+/* harmony export */   isBrowser: function() { return /* binding */ isBrowser; },
+/* harmony export */   isCurrentDomain: function() { return /* binding */ isCurrentDomain; },
+/* harmony export */   isFileProtocol: function() { return /* binding */ isFileProtocol; },
+/* harmony export */   isFrameWindowClosed: function() { return /* binding */ isFrameWindowClosed; },
+/* harmony export */   isFullpage: function() { return /* binding */ isFullpage; },
+/* harmony export */   isIframe: function() { return /* binding */ isIframe; },
+/* harmony export */   isMockDomain: function() { return /* binding */ isMockDomain; },
+/* harmony export */   isMockProtocol: function() { return /* binding */ isMockProtocol; },
+/* harmony export */   isOpener: function() { return /* binding */ isOpener; },
+/* harmony export */   isParent: function() { return /* binding */ isParent; },
+/* harmony export */   isPopup: function() { return /* binding */ isPopup; },
+/* harmony export */   isSameDomain: function() { return /* binding */ isSameDomain; },
+/* harmony export */   isSameTopWindow: function() { return /* binding */ isSameTopWindow; },
+/* harmony export */   isTop: function() { return /* binding */ isTop; },
+/* harmony export */   isWindow: function() { return /* binding */ isWindow; },
+/* harmony export */   isWindowClosed: function() { return /* binding */ isWindowClosed; },
+/* harmony export */   linkFrameWindow: function() { return /* binding */ linkFrameWindow; },
+/* harmony export */   matchDomain: function() { return /* binding */ matchDomain; },
+/* harmony export */   normalizeMockUrl: function() { return /* binding */ normalizeMockUrl; },
+/* harmony export */   onCloseWindow: function() { return /* binding */ onCloseWindow; },
+/* harmony export */   stringifyDomainPattern: function() { return /* binding */ stringifyDomainPattern; }
 /* harmony export */ });
 /* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./util */ "./node_modules/cross-domain-utils/dist/module/util.js");
 /* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./constants */ "./node_modules/cross-domain-utils/dist/module/constants.js");
@@ -37047,52 +36996,52 @@ exports.parseFullName = function parseFullName(
         };
         __nested_webpack_require_418__.p = "";
         return __nested_webpack_require_418__(__nested_webpack_require_418__.s = 0);
-    }([ function(module, __webpack_exports__, __nested_webpack_require_2826__) {
+    }([ function(module, __nested_webpack_exports__, __nested_webpack_require_2826__) {
         "use strict";
-        __nested_webpack_require_2826__.r(__webpack_exports__);
-        __nested_webpack_require_2826__.d(__webpack_exports__, "Promise", (function() {
+        __nested_webpack_require_2826__.r(__nested_webpack_exports__);
+        __nested_webpack_require_2826__.d(__nested_webpack_exports__, "Promise", (function() {
             return promise_ZalgoPromise;
         }));
-        __nested_webpack_require_2826__.d(__webpack_exports__, "TYPES", (function() {
+        __nested_webpack_require_2826__.d(__nested_webpack_exports__, "TYPES", (function() {
             return src_types_TYPES_0;
         }));
-        __nested_webpack_require_2826__.d(__webpack_exports__, "ProxyWindow", (function() {
+        __nested_webpack_require_2826__.d(__nested_webpack_exports__, "ProxyWindow", (function() {
             return window_ProxyWindow;
         }));
-        __nested_webpack_require_2826__.d(__webpack_exports__, "setup", (function() {
+        __nested_webpack_require_2826__.d(__nested_webpack_exports__, "setup", (function() {
             return setup;
         }));
-        __nested_webpack_require_2826__.d(__webpack_exports__, "destroy", (function() {
+        __nested_webpack_require_2826__.d(__nested_webpack_exports__, "destroy", (function() {
             return destroy;
         }));
-        __nested_webpack_require_2826__.d(__webpack_exports__, "serializeMessage", (function() {
+        __nested_webpack_require_2826__.d(__nested_webpack_exports__, "serializeMessage", (function() {
             return setup_serializeMessage;
         }));
-        __nested_webpack_require_2826__.d(__webpack_exports__, "deserializeMessage", (function() {
+        __nested_webpack_require_2826__.d(__nested_webpack_exports__, "deserializeMessage", (function() {
             return setup_deserializeMessage;
         }));
-        __nested_webpack_require_2826__.d(__webpack_exports__, "createProxyWindow", (function() {
+        __nested_webpack_require_2826__.d(__nested_webpack_exports__, "createProxyWindow", (function() {
             return createProxyWindow;
         }));
-        __nested_webpack_require_2826__.d(__webpack_exports__, "toProxyWindow", (function() {
+        __nested_webpack_require_2826__.d(__nested_webpack_exports__, "toProxyWindow", (function() {
             return setup_toProxyWindow;
         }));
-        __nested_webpack_require_2826__.d(__webpack_exports__, "on", (function() {
+        __nested_webpack_require_2826__.d(__nested_webpack_exports__, "on", (function() {
             return on_on;
         }));
-        __nested_webpack_require_2826__.d(__webpack_exports__, "once", (function() {
+        __nested_webpack_require_2826__.d(__nested_webpack_exports__, "once", (function() {
             return on_once;
         }));
-        __nested_webpack_require_2826__.d(__webpack_exports__, "send", (function() {
+        __nested_webpack_require_2826__.d(__nested_webpack_exports__, "send", (function() {
             return send_send;
         }));
-        __nested_webpack_require_2826__.d(__webpack_exports__, "markWindowKnown", (function() {
+        __nested_webpack_require_2826__.d(__nested_webpack_exports__, "markWindowKnown", (function() {
             return markWindowKnown;
         }));
-        __nested_webpack_require_2826__.d(__webpack_exports__, "cleanUpWindow", (function() {
+        __nested_webpack_require_2826__.d(__nested_webpack_exports__, "cleanUpWindow", (function() {
             return cleanUpWindow;
         }));
-        __nested_webpack_require_2826__.d(__webpack_exports__, "bridge", (function() {}));
+        __nested_webpack_require_2826__.d(__nested_webpack_exports__, "bridge", (function() {}));
         function isRegex(item) {
             return "[object RegExp]" === {}.toString.call(item);
         }
@@ -39335,21 +39284,21 @@ module.exports["default"] = module.exports; // eslint-disable-line import/no-com
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Component": function() { return /* binding */ x; },
-/* harmony export */   "Fragment": function() { return /* binding */ _; },
-/* harmony export */   "cloneElement": function() { return /* binding */ F; },
-/* harmony export */   "createContext": function() { return /* binding */ G; },
-/* harmony export */   "createElement": function() { return /* binding */ y; },
-/* harmony export */   "createRef": function() { return /* binding */ d; },
-/* harmony export */   "h": function() { return /* binding */ y; },
-/* harmony export */   "hydrate": function() { return /* binding */ E; },
-/* harmony export */   "isValidElement": function() { return /* binding */ i; },
-/* harmony export */   "options": function() { return /* binding */ l; },
-/* harmony export */   "render": function() { return /* binding */ D; },
-/* harmony export */   "toChildArray": function() { return /* binding */ j; }
+/* harmony export */   Component: function() { return /* binding */ b; },
+/* harmony export */   Fragment: function() { return /* binding */ k; },
+/* harmony export */   cloneElement: function() { return /* binding */ F; },
+/* harmony export */   createContext: function() { return /* binding */ G; },
+/* harmony export */   createElement: function() { return /* binding */ y; },
+/* harmony export */   createRef: function() { return /* binding */ _; },
+/* harmony export */   h: function() { return /* binding */ y; },
+/* harmony export */   hydrate: function() { return /* binding */ E; },
+/* harmony export */   isValidElement: function() { return /* binding */ i; },
+/* harmony export */   options: function() { return /* binding */ l; },
+/* harmony export */   render: function() { return /* binding */ D; },
+/* harmony export */   toChildArray: function() { return /* binding */ S; }
 /* harmony export */ });
 /* provided dependency */ var Promise = __webpack_require__(/*! es6-promise */ "./node_modules/es6-promise/dist/es6-promise.js");
-var n,l,u,i,t,r,o,f,e,c={},s=[],a=/acit|ex(?:s|g|n|p|$)|rph|grid|ows|mnc|ntw|ine[ch]|zoo|^ord|itera/i;function h(n,l){for(var u in l)n[u]=l[u];return n}function v(n){var l=n.parentNode;l&&l.removeChild(n)}function y(l,u,i){var t,r,o,f={};for(o in u)"key"==o?t=u[o]:"ref"==o?r=u[o]:f[o]=u[o];if(arguments.length>2&&(f.children=arguments.length>3?n.call(arguments,2):i),"function"==typeof l&&null!=l.defaultProps)for(o in l.defaultProps)void 0===f[o]&&(f[o]=l.defaultProps[o]);return p(l,f,t,r,null)}function p(n,i,t,r,o){var f={type:n,props:i,key:t,ref:r,__k:null,__:null,__b:0,__e:null,__d:void 0,__c:null,__h:null,constructor:void 0,__v:null==o?++u:o};return null==o&&null!=l.vnode&&l.vnode(f),f}function d(){return{current:null}}function _(n){return n.children}function k(n,l,u,i,t){var r;for(r in u)"children"===r||"key"===r||r in l||g(n,r,null,u[r],i);for(r in l)t&&"function"!=typeof l[r]||"children"===r||"key"===r||"value"===r||"checked"===r||u[r]===l[r]||g(n,r,l[r],u[r],i)}function b(n,l,u){"-"===l[0]?n.setProperty(l,null==u?"":u):n[l]=null==u?"":"number"!=typeof u||a.test(l)?u:u+"px"}function g(n,l,u,i,t){var r;n:if("style"===l)if("string"==typeof u)n.style.cssText=u;else{if("string"==typeof i&&(n.style.cssText=i=""),i)for(l in i)u&&l in u||b(n.style,l,"");if(u)for(l in u)i&&u[l]===i[l]||b(n.style,l,u[l])}else if("o"===l[0]&&"n"===l[1])r=l!==(l=l.replace(/Capture$/,"")),l=l.toLowerCase()in n?l.toLowerCase().slice(2):l.slice(2),n.l||(n.l={}),n.l[l+r]=u,u?i||n.addEventListener(l,r?w:m,r):n.removeEventListener(l,r?w:m,r);else if("dangerouslySetInnerHTML"!==l){if(t)l=l.replace(/xlink(H|:h)/,"h").replace(/sName$/,"s");else if("width"!==l&&"height"!==l&&"href"!==l&&"list"!==l&&"form"!==l&&"tabIndex"!==l&&"download"!==l&&l in n)try{n[l]=null==u?"":u;break n}catch(n){}"function"==typeof u||(null==u||!1===u&&-1==l.indexOf("-")?n.removeAttribute(l):n.setAttribute(l,u))}}function m(n){t=!0;try{return this.l[n.type+!1](l.event?l.event(n):n)}finally{t=!1}}function w(n){t=!0;try{return this.l[n.type+!0](l.event?l.event(n):n)}finally{t=!1}}function x(n,l){this.props=n,this.context=l}function A(n,l){if(null==l)return n.__?A(n.__,n.__.__k.indexOf(n)+1):null;for(var u;l<n.__k.length;l++)if(null!=(u=n.__k[l])&&null!=u.__e)return u.__e;return"function"==typeof n.type?A(n):null}function P(n){var l,u;if(null!=(n=n.__)&&null!=n.__c){for(n.__e=n.__c.base=null,l=0;l<n.__k.length;l++)if(null!=(u=n.__k[l])&&null!=u.__e){n.__e=n.__c.base=u.__e;break}return P(n)}}function C(n){t?setTimeout(n):f(n)}function T(n){(!n.__d&&(n.__d=!0)&&r.push(n)&&!$.__r++||o!==l.debounceRendering)&&((o=l.debounceRendering)||C)($)}function $(){var n,l,u,i,t,o,f,e;for(r.sort(function(n,l){return n.__v.__b-l.__v.__b});n=r.shift();)n.__d&&(l=r.length,i=void 0,t=void 0,f=(o=(u=n).__v).__e,(e=u.__P)&&(i=[],(t=h({},o)).__v=o.__v+1,M(e,o,t,u.__n,void 0!==e.ownerSVGElement,null!=o.__h?[f]:null,i,null==f?A(o):f,o.__h),N(i,o),o.__e!=f&&P(o)),r.length>l&&r.sort(function(n,l){return n.__v.__b-l.__v.__b}));$.__r=0}function H(n,l,u,i,t,r,o,f,e,a){var h,v,y,d,k,b,g,m=i&&i.__k||s,w=m.length;for(u.__k=[],h=0;h<l.length;h++)if(null!=(d=u.__k[h]=null==(d=l[h])||"boolean"==typeof d?null:"string"==typeof d||"number"==typeof d||"bigint"==typeof d?p(null,d,null,null,d):Array.isArray(d)?p(_,{children:d},null,null,null):d.__b>0?p(d.type,d.props,d.key,d.ref?d.ref:null,d.__v):d)){if(d.__=u,d.__b=u.__b+1,null===(y=m[h])||y&&d.key==y.key&&d.type===y.type)m[h]=void 0;else for(v=0;v<w;v++){if((y=m[v])&&d.key==y.key&&d.type===y.type){m[v]=void 0;break}y=null}M(n,d,y=y||c,t,r,o,f,e,a),k=d.__e,(v=d.ref)&&y.ref!=v&&(g||(g=[]),y.ref&&g.push(y.ref,null,d),g.push(v,d.__c||k,d)),null!=k?(null==b&&(b=k),"function"==typeof d.type&&d.__k===y.__k?d.__d=e=I(d,e,n):e=z(n,d,y,m,k,e),"function"==typeof u.type&&(u.__d=e)):e&&y.__e==e&&e.parentNode!=n&&(e=A(y))}for(u.__e=b,h=w;h--;)null!=m[h]&&("function"==typeof u.type&&null!=m[h].__e&&m[h].__e==u.__d&&(u.__d=L(i).nextSibling),q(m[h],m[h]));if(g)for(h=0;h<g.length;h++)S(g[h],g[++h],g[++h])}function I(n,l,u){for(var i,t=n.__k,r=0;t&&r<t.length;r++)(i=t[r])&&(i.__=n,l="function"==typeof i.type?I(i,l,u):z(u,i,i,t,i.__e,l));return l}function j(n,l){return l=l||[],null==n||"boolean"==typeof n||(Array.isArray(n)?n.some(function(n){j(n,l)}):l.push(n)),l}function z(n,l,u,i,t,r){var o,f,e;if(void 0!==l.__d)o=l.__d,l.__d=void 0;else if(null==u||t!=r||null==t.parentNode)n:if(null==r||r.parentNode!==n)n.appendChild(t),o=null;else{for(f=r,e=0;(f=f.nextSibling)&&e<i.length;e+=1)if(f==t)break n;n.insertBefore(t,r),o=r}return void 0!==o?o:t.nextSibling}function L(n){var l,u,i;if(null==n.type||"string"==typeof n.type)return n.__e;if(n.__k)for(l=n.__k.length-1;l>=0;l--)if((u=n.__k[l])&&(i=L(u)))return i;return null}function M(n,u,i,t,r,o,f,e,c){var s,a,v,y,p,d,k,b,g,m,w,A,P,C,T,$=u.type;if(void 0!==u.constructor)return null;null!=i.__h&&(c=i.__h,e=u.__e=i.__e,u.__h=null,o=[e]),(s=l.__b)&&s(u);try{n:if("function"==typeof $){if(b=u.props,g=(s=$.contextType)&&t[s.__c],m=s?g?g.props.value:s.__:t,i.__c?k=(a=u.__c=i.__c).__=a.__E:("prototype"in $&&$.prototype.render?u.__c=a=new $(b,m):(u.__c=a=new x(b,m),a.constructor=$,a.render=B),g&&g.sub(a),a.props=b,a.state||(a.state={}),a.context=m,a.__n=t,v=a.__d=!0,a.__h=[],a._sb=[]),null==a.__s&&(a.__s=a.state),null!=$.getDerivedStateFromProps&&(a.__s==a.state&&(a.__s=h({},a.__s)),h(a.__s,$.getDerivedStateFromProps(b,a.__s))),y=a.props,p=a.state,a.__v=u,v)null==$.getDerivedStateFromProps&&null!=a.componentWillMount&&a.componentWillMount(),null!=a.componentDidMount&&a.__h.push(a.componentDidMount);else{if(null==$.getDerivedStateFromProps&&b!==y&&null!=a.componentWillReceiveProps&&a.componentWillReceiveProps(b,m),!a.__e&&null!=a.shouldComponentUpdate&&!1===a.shouldComponentUpdate(b,a.__s,m)||u.__v===i.__v){for(u.__v!==i.__v&&(a.props=b,a.state=a.__s,a.__d=!1),u.__e=i.__e,u.__k=i.__k,u.__k.forEach(function(n){n&&(n.__=u)}),w=0;w<a._sb.length;w++)a.__h.push(a._sb[w]);a._sb=[],a.__h.length&&f.push(a);break n}null!=a.componentWillUpdate&&a.componentWillUpdate(b,a.__s,m),null!=a.componentDidUpdate&&a.__h.push(function(){a.componentDidUpdate(y,p,d)})}if(a.context=m,a.props=b,a.__P=n,A=l.__r,P=0,"prototype"in $&&$.prototype.render){for(a.state=a.__s,a.__d=!1,A&&A(u),s=a.render(a.props,a.state,a.context),C=0;C<a._sb.length;C++)a.__h.push(a._sb[C]);a._sb=[]}else do{a.__d=!1,A&&A(u),s=a.render(a.props,a.state,a.context),a.state=a.__s}while(a.__d&&++P<25);a.state=a.__s,null!=a.getChildContext&&(t=h(h({},t),a.getChildContext())),v||null==a.getSnapshotBeforeUpdate||(d=a.getSnapshotBeforeUpdate(y,p)),T=null!=s&&s.type===_&&null==s.key?s.props.children:s,H(n,Array.isArray(T)?T:[T],u,i,t,r,o,f,e,c),a.base=u.__e,u.__h=null,a.__h.length&&f.push(a),k&&(a.__E=a.__=null),a.__e=!1}else null==o&&u.__v===i.__v?(u.__k=i.__k,u.__e=i.__e):u.__e=O(i.__e,u,i,t,r,o,f,c);(s=l.diffed)&&s(u)}catch(n){u.__v=null,(c||null!=o)&&(u.__e=e,u.__h=!!c,o[o.indexOf(e)]=null),l.__e(n,u,i)}}function N(n,u){l.__c&&l.__c(u,n),n.some(function(u){try{n=u.__h,u.__h=[],n.some(function(n){n.call(u)})}catch(n){l.__e(n,u.__v)}})}function O(l,u,i,t,r,o,f,e){var s,a,h,y=i.props,p=u.props,d=u.type,_=0;if("svg"===d&&(r=!0),null!=o)for(;_<o.length;_++)if((s=o[_])&&"setAttribute"in s==!!d&&(d?s.localName===d:3===s.nodeType)){l=s,o[_]=null;break}if(null==l){if(null===d)return document.createTextNode(p);l=r?document.createElementNS("http://www.w3.org/2000/svg",d):document.createElement(d,p.is&&p),o=null,e=!1}if(null===d)y===p||e&&l.data===p||(l.data=p);else{if(o=o&&n.call(l.childNodes),a=(y=i.props||c).dangerouslySetInnerHTML,h=p.dangerouslySetInnerHTML,!e){if(null!=o)for(y={},_=0;_<l.attributes.length;_++)y[l.attributes[_].name]=l.attributes[_].value;(h||a)&&(h&&(a&&h.__html==a.__html||h.__html===l.innerHTML)||(l.innerHTML=h&&h.__html||""))}if(k(l,p,y,r,e),h)u.__k=[];else if(_=u.props.children,H(l,Array.isArray(_)?_:[_],u,i,t,r&&"foreignObject"!==d,o,f,o?o[0]:i.__k&&A(i,0),e),null!=o)for(_=o.length;_--;)null!=o[_]&&v(o[_]);e||("value"in p&&void 0!==(_=p.value)&&(_!==l.value||"progress"===d&&!_||"option"===d&&_!==y.value)&&g(l,"value",_,y.value,!1),"checked"in p&&void 0!==(_=p.checked)&&_!==l.checked&&g(l,"checked",_,y.checked,!1))}return l}function S(n,u,i){try{"function"==typeof n?n(u):n.current=u}catch(n){l.__e(n,i)}}function q(n,u,i){var t,r;if(l.unmount&&l.unmount(n),(t=n.ref)&&(t.current&&t.current!==n.__e||S(t,null,u)),null!=(t=n.__c)){if(t.componentWillUnmount)try{t.componentWillUnmount()}catch(n){l.__e(n,u)}t.base=t.__P=null,n.__c=void 0}if(t=n.__k)for(r=0;r<t.length;r++)t[r]&&q(t[r],u,i||"function"!=typeof n.type);i||null==n.__e||v(n.__e),n.__=n.__e=n.__d=void 0}function B(n,l,u){return this.constructor(n,u)}function D(u,i,t){var r,o,f;l.__&&l.__(u,i),o=(r="function"==typeof t)?null:t&&t.__k||i.__k,f=[],M(i,u=(!r&&t||i).__k=y(_,null,[u]),o||c,c,void 0!==i.ownerSVGElement,!r&&t?[t]:o?null:i.firstChild?n.call(i.childNodes):null,f,!r&&t?t:o?o.__e:i.firstChild,r),N(f,u)}function E(n,l){D(n,l,E)}function F(l,u,i){var t,r,o,f=h({},l.props);for(o in u)"key"==o?t=u[o]:"ref"==o?r=u[o]:f[o]=u[o];return arguments.length>2&&(f.children=arguments.length>3?n.call(arguments,2):i),p(l.type,f,t||l.key,r||l.ref,null)}function G(n,l){var u={__c:l="__cC"+e++,__:n,Consumer:function(n,l){return n.children(l)},Provider:function(n){var u,i;return this.getChildContext||(u=[],(i={})[l]=this,this.getChildContext=function(){return i},this.shouldComponentUpdate=function(n){this.props.value!==n.value&&u.some(function(n){n.__e=!0,T(n)})},this.sub=function(n){u.push(n);var l=n.componentWillUnmount;n.componentWillUnmount=function(){u.splice(u.indexOf(n),1),l&&l.call(n)}}),n.children}};return u.Provider.__=u.Consumer.contextType=u}n=s.slice,l={__e:function(n,l,u,i){for(var t,r,o;l=l.__;)if((t=l.__c)&&!t.__)try{if((r=t.constructor)&&null!=r.getDerivedStateFromError&&(t.setState(r.getDerivedStateFromError(n)),o=t.__d),null!=t.componentDidCatch&&(t.componentDidCatch(n,i||{}),o=t.__d),o)return t.__E=t}catch(l){n=l}throw n}},u=0,i=function(n){return null!=n&&void 0===n.constructor},t=!1,x.prototype.setState=function(n,l){var u;u=null!=this.__s&&this.__s!==this.state?this.__s:this.__s=h({},this.state),"function"==typeof n&&(n=n(h({},u),this.props)),n&&h(u,n),null!=n&&this.__v&&(l&&this._sb.push(l),T(this))},x.prototype.forceUpdate=function(n){this.__v&&(this.__e=!0,n&&this.__h.push(n),T(this))},x.prototype.render=_,r=[],f="function"==typeof Promise?Promise.prototype.then.bind(Promise.resolve()):setTimeout,$.__r=0,e=0;
+var n,l,u,i,t,o,r,f,e,c={},s=[],a=/acit|ex(?:s|g|n|p|$)|rph|grid|ows|mnc|ntw|ine[ch]|zoo|^ord|itera/i,v=Array.isArray;function h(n,l){for(var u in l)n[u]=l[u];return n}function p(n){var l=n.parentNode;l&&l.removeChild(n)}function y(l,u,i){var t,o,r,f={};for(r in u)"key"==r?t=u[r]:"ref"==r?o=u[r]:f[r]=u[r];if(arguments.length>2&&(f.children=arguments.length>3?n.call(arguments,2):i),"function"==typeof l&&null!=l.defaultProps)for(r in l.defaultProps)void 0===f[r]&&(f[r]=l.defaultProps[r]);return d(l,f,t,o,null)}function d(n,i,t,o,r){var f={type:n,props:i,key:t,ref:o,__k:null,__:null,__b:0,__e:null,__d:void 0,__c:null,__h:null,constructor:void 0,__v:null==r?++u:r};return null==r&&null!=l.vnode&&l.vnode(f),f}function _(){return{current:null}}function k(n){return n.children}function b(n,l){this.props=n,this.context=l}function g(n,l){if(null==l)return n.__?g(n.__,n.__.__k.indexOf(n)+1):null;for(var u;l<n.__k.length;l++)if(null!=(u=n.__k[l])&&null!=u.__e)return u.__e;return"function"==typeof n.type?g(n):null}function m(n){var l,u;if(null!=(n=n.__)&&null!=n.__c){for(n.__e=n.__c.base=null,l=0;l<n.__k.length;l++)if(null!=(u=n.__k[l])&&null!=u.__e){n.__e=n.__c.base=u.__e;break}return m(n)}}function w(n){(!n.__d&&(n.__d=!0)&&t.push(n)&&!x.__r++||o!==l.debounceRendering)&&((o=l.debounceRendering)||r)(x)}function x(){var n,l,u,i,o,r,e,c;for(t.sort(f);n=t.shift();)n.__d&&(l=t.length,i=void 0,o=void 0,e=(r=(u=n).__v).__e,(c=u.__P)&&(i=[],(o=h({},r)).__v=r.__v+1,L(c,r,o,u.__n,void 0!==c.ownerSVGElement,null!=r.__h?[e]:null,i,null==e?g(r):e,r.__h),M(i,r),r.__e!=e&&m(r)),t.length>l&&t.sort(f));x.__r=0}function P(n,l,u,i,t,o,r,f,e,a){var h,p,y,_,b,m,w,x=i&&i.__k||s,P=x.length;for(u.__k=[],h=0;h<l.length;h++)if(null!=(_=u.__k[h]=null==(_=l[h])||"boolean"==typeof _||"function"==typeof _?null:"string"==typeof _||"number"==typeof _||"bigint"==typeof _?d(null,_,null,null,_):v(_)?d(k,{children:_},null,null,null):_.__b>0?d(_.type,_.props,_.key,_.ref?_.ref:null,_.__v):_)){if(_.__=u,_.__b=u.__b+1,null===(y=x[h])||y&&_.key==y.key&&_.type===y.type)x[h]=void 0;else for(p=0;p<P;p++){if((y=x[p])&&_.key==y.key&&_.type===y.type){x[p]=void 0;break}y=null}L(n,_,y=y||c,t,o,r,f,e,a),b=_.__e,(p=_.ref)&&y.ref!=p&&(w||(w=[]),y.ref&&w.push(y.ref,null,_),w.push(p,_.__c||b,_)),null!=b?(null==m&&(m=b),"function"==typeof _.type&&_.__k===y.__k?_.__d=e=C(_,e,n):e=$(n,_,y,x,b,e),"function"==typeof u.type&&(u.__d=e)):e&&y.__e==e&&e.parentNode!=n&&(e=g(y))}for(u.__e=m,h=P;h--;)null!=x[h]&&("function"==typeof u.type&&null!=x[h].__e&&x[h].__e==u.__d&&(u.__d=A(i).nextSibling),q(x[h],x[h]));if(w)for(h=0;h<w.length;h++)O(w[h],w[++h],w[++h])}function C(n,l,u){for(var i,t=n.__k,o=0;t&&o<t.length;o++)(i=t[o])&&(i.__=n,l="function"==typeof i.type?C(i,l,u):$(u,i,i,t,i.__e,l));return l}function S(n,l){return l=l||[],null==n||"boolean"==typeof n||(v(n)?n.some(function(n){S(n,l)}):l.push(n)),l}function $(n,l,u,i,t,o){var r,f,e;if(void 0!==l.__d)r=l.__d,l.__d=void 0;else if(null==u||t!=o||null==t.parentNode)n:if(null==o||o.parentNode!==n)n.appendChild(t),r=null;else{for(f=o,e=0;(f=f.nextSibling)&&e<i.length;e+=1)if(f==t)break n;n.insertBefore(t,o),r=o}return void 0!==r?r:t.nextSibling}function A(n){var l,u,i;if(null==n.type||"string"==typeof n.type)return n.__e;if(n.__k)for(l=n.__k.length-1;l>=0;l--)if((u=n.__k[l])&&(i=A(u)))return i;return null}function H(n,l,u,i,t){var o;for(o in u)"children"===o||"key"===o||o in l||T(n,o,null,u[o],i);for(o in l)t&&"function"!=typeof l[o]||"children"===o||"key"===o||"value"===o||"checked"===o||u[o]===l[o]||T(n,o,l[o],u[o],i)}function I(n,l,u){"-"===l[0]?n.setProperty(l,null==u?"":u):n[l]=null==u?"":"number"!=typeof u||a.test(l)?u:u+"px"}function T(n,l,u,i,t){var o;n:if("style"===l)if("string"==typeof u)n.style.cssText=u;else{if("string"==typeof i&&(n.style.cssText=i=""),i)for(l in i)u&&l in u||I(n.style,l,"");if(u)for(l in u)i&&u[l]===i[l]||I(n.style,l,u[l])}else if("o"===l[0]&&"n"===l[1])o=l!==(l=l.replace(/Capture$/,"")),l=l.toLowerCase()in n?l.toLowerCase().slice(2):l.slice(2),n.l||(n.l={}),n.l[l+o]=u,u?i||n.addEventListener(l,o?z:j,o):n.removeEventListener(l,o?z:j,o);else if("dangerouslySetInnerHTML"!==l){if(t)l=l.replace(/xlink(H|:h)/,"h").replace(/sName$/,"s");else if("width"!==l&&"height"!==l&&"href"!==l&&"list"!==l&&"form"!==l&&"tabIndex"!==l&&"download"!==l&&"rowSpan"!==l&&"colSpan"!==l&&l in n)try{n[l]=null==u?"":u;break n}catch(n){}"function"==typeof u||(null==u||!1===u&&"-"!==l[4]?n.removeAttribute(l):n.setAttribute(l,u))}}function j(n){return this.l[n.type+!1](l.event?l.event(n):n)}function z(n){return this.l[n.type+!0](l.event?l.event(n):n)}function L(n,u,i,t,o,r,f,e,c){var s,a,p,y,d,_,g,m,w,x,C,S,$,A,H,I=u.type;if(void 0!==u.constructor)return null;null!=i.__h&&(c=i.__h,e=u.__e=i.__e,u.__h=null,r=[e]),(s=l.__b)&&s(u);try{n:if("function"==typeof I){if(m=u.props,w=(s=I.contextType)&&t[s.__c],x=s?w?w.props.value:s.__:t,i.__c?g=(a=u.__c=i.__c).__=a.__E:("prototype"in I&&I.prototype.render?u.__c=a=new I(m,x):(u.__c=a=new b(m,x),a.constructor=I,a.render=B),w&&w.sub(a),a.props=m,a.state||(a.state={}),a.context=x,a.__n=t,p=a.__d=!0,a.__h=[],a._sb=[]),null==a.__s&&(a.__s=a.state),null!=I.getDerivedStateFromProps&&(a.__s==a.state&&(a.__s=h({},a.__s)),h(a.__s,I.getDerivedStateFromProps(m,a.__s))),y=a.props,d=a.state,a.__v=u,p)null==I.getDerivedStateFromProps&&null!=a.componentWillMount&&a.componentWillMount(),null!=a.componentDidMount&&a.__h.push(a.componentDidMount);else{if(null==I.getDerivedStateFromProps&&m!==y&&null!=a.componentWillReceiveProps&&a.componentWillReceiveProps(m,x),!a.__e&&null!=a.shouldComponentUpdate&&!1===a.shouldComponentUpdate(m,a.__s,x)||u.__v===i.__v){for(u.__v!==i.__v&&(a.props=m,a.state=a.__s,a.__d=!1),a.__e=!1,u.__e=i.__e,u.__k=i.__k,u.__k.forEach(function(n){n&&(n.__=u)}),C=0;C<a._sb.length;C++)a.__h.push(a._sb[C]);a._sb=[],a.__h.length&&f.push(a);break n}null!=a.componentWillUpdate&&a.componentWillUpdate(m,a.__s,x),null!=a.componentDidUpdate&&a.__h.push(function(){a.componentDidUpdate(y,d,_)})}if(a.context=x,a.props=m,a.__P=n,S=l.__r,$=0,"prototype"in I&&I.prototype.render){for(a.state=a.__s,a.__d=!1,S&&S(u),s=a.render(a.props,a.state,a.context),A=0;A<a._sb.length;A++)a.__h.push(a._sb[A]);a._sb=[]}else do{a.__d=!1,S&&S(u),s=a.render(a.props,a.state,a.context),a.state=a.__s}while(a.__d&&++$<25);a.state=a.__s,null!=a.getChildContext&&(t=h(h({},t),a.getChildContext())),p||null==a.getSnapshotBeforeUpdate||(_=a.getSnapshotBeforeUpdate(y,d)),P(n,v(H=null!=s&&s.type===k&&null==s.key?s.props.children:s)?H:[H],u,i,t,o,r,f,e,c),a.base=u.__e,u.__h=null,a.__h.length&&f.push(a),g&&(a.__E=a.__=null),a.__e=!1}else null==r&&u.__v===i.__v?(u.__k=i.__k,u.__e=i.__e):u.__e=N(i.__e,u,i,t,o,r,f,c);(s=l.diffed)&&s(u)}catch(n){u.__v=null,(c||null!=r)&&(u.__e=e,u.__h=!!c,r[r.indexOf(e)]=null),l.__e(n,u,i)}}function M(n,u){l.__c&&l.__c(u,n),n.some(function(u){try{n=u.__h,u.__h=[],n.some(function(n){n.call(u)})}catch(n){l.__e(n,u.__v)}})}function N(l,u,i,t,o,r,f,e){var s,a,h,y=i.props,d=u.props,_=u.type,k=0;if("svg"===_&&(o=!0),null!=r)for(;k<r.length;k++)if((s=r[k])&&"setAttribute"in s==!!_&&(_?s.localName===_:3===s.nodeType)){l=s,r[k]=null;break}if(null==l){if(null===_)return document.createTextNode(d);l=o?document.createElementNS("http://www.w3.org/2000/svg",_):document.createElement(_,d.is&&d),r=null,e=!1}if(null===_)y===d||e&&l.data===d||(l.data=d);else{if(r=r&&n.call(l.childNodes),a=(y=i.props||c).dangerouslySetInnerHTML,h=d.dangerouslySetInnerHTML,!e){if(null!=r)for(y={},k=0;k<l.attributes.length;k++)y[l.attributes[k].name]=l.attributes[k].value;(h||a)&&(h&&(a&&h.__html==a.__html||h.__html===l.innerHTML)||(l.innerHTML=h&&h.__html||""))}if(H(l,d,y,o,e),h)u.__k=[];else if(P(l,v(k=u.props.children)?k:[k],u,i,t,o&&"foreignObject"!==_,r,f,r?r[0]:i.__k&&g(i,0),e),null!=r)for(k=r.length;k--;)null!=r[k]&&p(r[k]);e||("value"in d&&void 0!==(k=d.value)&&(k!==l.value||"progress"===_&&!k||"option"===_&&k!==y.value)&&T(l,"value",k,y.value,!1),"checked"in d&&void 0!==(k=d.checked)&&k!==l.checked&&T(l,"checked",k,y.checked,!1))}return l}function O(n,u,i){try{"function"==typeof n?n(u):n.current=u}catch(n){l.__e(n,i)}}function q(n,u,i){var t,o;if(l.unmount&&l.unmount(n),(t=n.ref)&&(t.current&&t.current!==n.__e||O(t,null,u)),null!=(t=n.__c)){if(t.componentWillUnmount)try{t.componentWillUnmount()}catch(n){l.__e(n,u)}t.base=t.__P=null,n.__c=void 0}if(t=n.__k)for(o=0;o<t.length;o++)t[o]&&q(t[o],u,i||"function"!=typeof n.type);i||null==n.__e||p(n.__e),n.__=n.__e=n.__d=void 0}function B(n,l,u){return this.constructor(n,u)}function D(u,i,t){var o,r,f;l.__&&l.__(u,i),r=(o="function"==typeof t)?null:t&&t.__k||i.__k,f=[],L(i,u=(!o&&t||i).__k=y(k,null,[u]),r||c,c,void 0!==i.ownerSVGElement,!o&&t?[t]:r?null:i.firstChild?n.call(i.childNodes):null,f,!o&&t?t:r?r.__e:i.firstChild,o),M(f,u)}function E(n,l){D(n,l,E)}function F(l,u,i){var t,o,r,f,e=h({},l.props);for(r in l.type&&l.type.defaultProps&&(f=l.type.defaultProps),u)"key"==r?t=u[r]:"ref"==r?o=u[r]:e[r]=void 0===u[r]&&void 0!==f?f[r]:u[r];return arguments.length>2&&(e.children=arguments.length>3?n.call(arguments,2):i),d(l.type,e,t||l.key,o||l.ref,null)}function G(n,l){var u={__c:l="__cC"+e++,__:n,Consumer:function(n,l){return n.children(l)},Provider:function(n){var u,i;return this.getChildContext||(u=[],(i={})[l]=this,this.getChildContext=function(){return i},this.shouldComponentUpdate=function(n){this.props.value!==n.value&&u.some(function(n){n.__e=!0,w(n)})},this.sub=function(n){u.push(n);var l=n.componentWillUnmount;n.componentWillUnmount=function(){u.splice(u.indexOf(n),1),l&&l.call(n)}}),n.children}};return u.Provider.__=u.Consumer.contextType=u}n=s.slice,l={__e:function(n,l,u,i){for(var t,o,r;l=l.__;)if((t=l.__c)&&!t.__)try{if((o=t.constructor)&&null!=o.getDerivedStateFromError&&(t.setState(o.getDerivedStateFromError(n)),r=t.__d),null!=t.componentDidCatch&&(t.componentDidCatch(n,i||{}),r=t.__d),r)return t.__E=t}catch(l){n=l}throw n}},u=0,i=function(n){return null!=n&&void 0===n.constructor},b.prototype.setState=function(n,l){var u;u=null!=this.__s&&this.__s!==this.state?this.__s:this.__s=h({},this.state),"function"==typeof n&&(n=n(h({},u),this.props)),n&&h(u,n),null!=n&&this.__v&&(l&&this._sb.push(l),w(this))},b.prototype.forceUpdate=function(n){this.__v&&(this.__e=!0,n&&this.__h.push(n),w(this))},b.prototype.render=k,t=[],r="function"==typeof Promise?Promise.prototype.then.bind(Promise.resolve()):setTimeout,f=function(n,l){return n.__v.__b-l.__v.__b},x.__r=0,e=0;
 //# sourceMappingURL=preact.module.js.map
 
 
@@ -39417,24 +39366,19 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 
 var stylesInDOM = [];
-
 function getIndexByIdentifier(identifier) {
   var result = -1;
-
   for (var i = 0; i < stylesInDOM.length; i++) {
     if (stylesInDOM[i].identifier === identifier) {
       result = i;
       break;
     }
   }
-
   return result;
 }
-
 function modulesToDom(list, options) {
   var idCountMap = {};
   var identifiers = [];
-
   for (var i = 0; i < list.length; i++) {
     var item = list[i];
     var id = options.base ? item[0] + options.base : item[0];
@@ -39449,7 +39393,6 @@ function modulesToDom(list, options) {
       supports: item[4],
       layer: item[5]
     };
-
     if (indexByIdentifier !== -1) {
       stylesInDOM[indexByIdentifier].references++;
       stylesInDOM[indexByIdentifier].updater(obj);
@@ -39462,59 +39405,45 @@ function modulesToDom(list, options) {
         references: 1
       });
     }
-
     identifiers.push(identifier);
   }
-
   return identifiers;
 }
-
 function addElementStyle(obj, options) {
   var api = options.domAPI(options);
   api.update(obj);
-
   var updater = function updater(newObj) {
     if (newObj) {
       if (newObj.css === obj.css && newObj.media === obj.media && newObj.sourceMap === obj.sourceMap && newObj.supports === obj.supports && newObj.layer === obj.layer) {
         return;
       }
-
       api.update(obj = newObj);
     } else {
       api.remove();
     }
   };
-
   return updater;
 }
-
 module.exports = function (list, options) {
   options = options || {};
   list = list || [];
   var lastIdentifiers = modulesToDom(list, options);
   return function update(newList) {
     newList = newList || [];
-
     for (var i = 0; i < lastIdentifiers.length; i++) {
       var identifier = lastIdentifiers[i];
       var index = getIndexByIdentifier(identifier);
       stylesInDOM[index].references--;
     }
-
     var newLastIdentifiers = modulesToDom(newList, options);
-
     for (var _i = 0; _i < lastIdentifiers.length; _i++) {
       var _identifier = lastIdentifiers[_i];
-
       var _index = getIndexByIdentifier(_identifier);
-
       if (stylesInDOM[_index].references === 0) {
         stylesInDOM[_index].updater();
-
         stylesInDOM.splice(_index, 1);
       }
     }
-
     lastIdentifiers = newLastIdentifiers;
   };
 };
@@ -39531,12 +39460,13 @@ module.exports = function (list, options) {
 
 
 var memo = {};
-/* istanbul ignore next  */
 
+/* istanbul ignore next  */
 function getTarget(target) {
   if (typeof memo[target] === "undefined") {
-    var styleTarget = document.querySelector(target); // Special case to return head of iframe instead of iframe itself
+    var styleTarget = document.querySelector(target);
 
+    // Special case to return head of iframe instead of iframe itself
     if (window.HTMLIFrameElement && styleTarget instanceof window.HTMLIFrameElement) {
       try {
         // This will throw an exception if access to iframe is blocked
@@ -39547,25 +39477,19 @@ function getTarget(target) {
         styleTarget = null;
       }
     }
-
     memo[target] = styleTarget;
   }
-
   return memo[target];
 }
+
 /* istanbul ignore next  */
-
-
 function insertBySelector(insert, style) {
   var target = getTarget(insert);
-
   if (!target) {
     throw new Error("Couldn't find a style target. This probably means that the value for the 'insert' parameter is invalid.");
   }
-
   target.appendChild(style);
 }
-
 module.exports = insertBySelector;
 
 /***/ }),
@@ -39586,7 +39510,6 @@ function insertStyleElement(options) {
   options.insert(element, options.options);
   return element;
 }
-
 module.exports = insertStyleElement;
 
 /***/ }),
@@ -39603,12 +39526,10 @@ module.exports = insertStyleElement;
 /* istanbul ignore next  */
 function setAttributesWithoutAttributes(styleElement) {
   var nonce =  true ? __webpack_require__.nc : 0;
-
   if (nonce) {
     styleElement.setAttribute("nonce", nonce);
   }
 }
-
 module.exports = setAttributesWithoutAttributes;
 
 /***/ }),
@@ -39625,59 +39546,51 @@ module.exports = setAttributesWithoutAttributes;
 /* istanbul ignore next  */
 function apply(styleElement, options, obj) {
   var css = "";
-
   if (obj.supports) {
     css += "@supports (".concat(obj.supports, ") {");
   }
-
   if (obj.media) {
     css += "@media ".concat(obj.media, " {");
   }
-
   var needLayer = typeof obj.layer !== "undefined";
-
   if (needLayer) {
     css += "@layer".concat(obj.layer.length > 0 ? " ".concat(obj.layer) : "", " {");
   }
-
   css += obj.css;
-
   if (needLayer) {
     css += "}";
   }
-
   if (obj.media) {
     css += "}";
   }
-
   if (obj.supports) {
     css += "}";
   }
-
   var sourceMap = obj.sourceMap;
-
   if (sourceMap && typeof btoa !== "undefined") {
     css += "\n/*# sourceMappingURL=data:application/json;base64,".concat(btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))), " */");
-  } // For old IE
+  }
 
+  // For old IE
   /* istanbul ignore if  */
-
-
   options.styleTagTransform(css, styleElement, options.options);
 }
-
 function removeStyleElement(styleElement) {
   // istanbul ignore if
   if (styleElement.parentNode === null) {
     return false;
   }
-
   styleElement.parentNode.removeChild(styleElement);
 }
+
 /* istanbul ignore next  */
-
-
 function domAPI(options) {
+  if (typeof document === "undefined") {
+    return {
+      update: function update() {},
+      remove: function remove() {}
+    };
+  }
   var styleElement = options.insertStyleElement(options);
   return {
     update: function update(obj) {
@@ -39688,7 +39601,6 @@ function domAPI(options) {
     }
   };
 }
-
 module.exports = domAPI;
 
 /***/ }),
@@ -39710,11 +39622,9 @@ function styleTagTransform(css, styleElement) {
     while (styleElement.firstChild) {
       styleElement.removeChild(styleElement.firstChild);
     }
-
     styleElement.appendChild(document.createTextNode(css));
   }
 }
-
 module.exports = styleTagTransform;
 
 /***/ }),
@@ -39787,7 +39697,7 @@ function rng() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "unsafeStringify": function() { return /* binding */ unsafeStringify; }
+/* harmony export */   unsafeStringify: function() { return /* binding */ unsafeStringify; }
 /* harmony export */ });
 /* harmony import */ var _validate_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./validate.js */ "./node_modules/uuid/dist/esm-browser/validate.js");
 
@@ -41778,8 +41688,12 @@ const isXHRAdapterSupported = typeof XMLHttpRequest !== 'undefined';
       }
     }
 
-    if (_utils_js__WEBPACK_IMPORTED_MODULE_2__["default"].isFormData(requestData) && (_platform_index_js__WEBPACK_IMPORTED_MODULE_3__["default"].isStandardBrowserEnv || _platform_index_js__WEBPACK_IMPORTED_MODULE_3__["default"].isStandardBrowserWebWorkerEnv)) {
-      requestHeaders.setContentType(false); // Let the browser set it
+    if (_utils_js__WEBPACK_IMPORTED_MODULE_2__["default"].isFormData(requestData)) {
+      if (_platform_index_js__WEBPACK_IMPORTED_MODULE_3__["default"].isStandardBrowserEnv || _platform_index_js__WEBPACK_IMPORTED_MODULE_3__["default"].isStandardBrowserWebWorkerEnv) {
+        requestHeaders.setContentType(false); // Let the browser set it
+      } else {
+        requestHeaders.setContentType('multipart/form-data;', false); // mobile/desktop app frameworks
+      }
     }
 
     let request = new XMLHttpRequest();
@@ -42353,11 +42267,17 @@ class Axios {
       }, false);
     }
 
-    if (paramsSerializer !== undefined) {
-      _helpers_validator_js__WEBPACK_IMPORTED_MODULE_0__["default"].assertOptions(paramsSerializer, {
-        encode: validators.function,
-        serialize: validators.function
-      }, true);
+    if (paramsSerializer != null) {
+      if (_utils_js__WEBPACK_IMPORTED_MODULE_3__["default"].isFunction(paramsSerializer)) {
+        config.paramsSerializer = {
+          serialize: paramsSerializer
+        }
+      } else {
+        _helpers_validator_js__WEBPACK_IMPORTED_MODULE_0__["default"].assertOptions(paramsSerializer, {
+          encode: validators.function,
+          serialize: validators.function
+        }, true);
+      }
     }
 
     // Set config.method
@@ -42649,9 +42569,7 @@ function parseTokens(str) {
   return tokens;
 }
 
-function isValidHeaderName(str) {
-  return /^[-_a-zA-Z]+$/.test(str.trim());
-}
+const isValidHeaderName = (str) => /^[-_a-zA-Z0-9^`|~,!#$%&'*+.]+$/.test(str.trim());
 
 function matchHeaderValue(context, value, header, filter, isHeaderNameFilter) {
   if (_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isFunction(filter)) {
@@ -43247,7 +43165,7 @@ function mergeConfig(config1, config2) {
     headers: (a, b) => mergeDeepProperties(headersToObject(a), headersToObject(b), true)
   };
 
-  _utils_js__WEBPACK_IMPORTED_MODULE_1__["default"].forEach(Object.keys(config1).concat(Object.keys(config2)), function computeConfigValue(prop) {
+  _utils_js__WEBPACK_IMPORTED_MODULE_1__["default"].forEach(Object.keys(Object.assign({}, config1, config2)), function computeConfigValue(prop) {
     const merge = mergeMap[prop] || mergeDeepProperties;
     const configValue = merge(config1[prop], config2[prop], prop);
     (_utils_js__WEBPACK_IMPORTED_MODULE_1__["default"].isUndefined(configValue) && merge !== mergeDirectKeys) || (config[prop] = configValue);
@@ -43561,9 +43479,9 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "VERSION": function() { return /* binding */ VERSION; }
+/* harmony export */   VERSION: function() { return /* binding */ VERSION; }
 /* harmony export */ });
-const VERSION = "1.3.3";
+const VERSION = "1.4.0";
 
 /***/ }),
 
@@ -44753,6 +44671,21 @@ function assertOptions(options, schema, allowUnknown) {
 
 /***/ }),
 
+/***/ "./node_modules/axios/lib/platform/browser/classes/Blob.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/axios/lib/platform/browser/classes/Blob.js ***!
+  \*****************************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+
+
+/* harmony default export */ __webpack_exports__["default"] = (typeof Blob !== 'undefined' ? Blob : null);
+
+
+/***/ }),
+
 /***/ "./node_modules/axios/lib/platform/browser/classes/FormData.js":
 /*!*********************************************************************!*\
   !*** ./node_modules/axios/lib/platform/browser/classes/FormData.js ***!
@@ -44795,6 +44728,8 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _classes_URLSearchParams_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./classes/URLSearchParams.js */ "./node_modules/axios/lib/platform/browser/classes/URLSearchParams.js");
 /* harmony import */ var _classes_FormData_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./classes/FormData.js */ "./node_modules/axios/lib/platform/browser/classes/FormData.js");
+/* harmony import */ var _classes_Blob_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./classes/Blob.js */ "./node_modules/axios/lib/platform/browser/classes/Blob.js");
+
 
 
 
@@ -44852,7 +44787,7 @@ const isStandardBrowserEnv = (() => {
   classes: {
     URLSearchParams: _classes_URLSearchParams_js__WEBPACK_IMPORTED_MODULE_0__["default"],
     FormData: _classes_FormData_js__WEBPACK_IMPORTED_MODULE_1__["default"],
-    Blob
+    Blob: _classes_Blob_js__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   isStandardBrowserEnv,
   isStandardBrowserWebWorkerEnv,
@@ -45061,12 +44996,16 @@ const isStream = (val) => isObject(val) && isFunction(val.pipe);
  * @returns {boolean} True if value is an FormData, otherwise false
  */
 const isFormData = (thing) => {
-  const pattern = '[object FormData]';
+  let kind;
   return thing && (
-    (typeof FormData === 'function' && thing instanceof FormData) ||
-    toString.call(thing) === pattern ||
-    (isFunction(thing.toString) && thing.toString() === pattern)
-  );
+    (typeof FormData === 'function' && thing instanceof FormData) || (
+      isFunction(thing.append) && (
+        (kind = kindOf(thing)) === 'formdata' ||
+        // detect form-data instance
+        (kind === 'object' && isFunction(thing.toString) && thing.toString() === '[object FormData]')
+      )
+    )
+  )
 }
 
 /**
@@ -45531,6 +45470,11 @@ const toJSONObject = (obj) => {
   return visit(obj, 0);
 }
 
+const isAsyncFn = kindOfTest('AsyncFunction');
+
+const isThenable = (thing) =>
+  thing && (isObject(thing) || isFunction(thing)) && isFunction(thing.then) && isFunction(thing.catch);
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   isArray,
   isArrayBuffer,
@@ -45580,7 +45524,9 @@ const toJSONObject = (obj) => {
   ALPHABET,
   generateString,
   isSpecCompliantForm,
-  toJSONObject
+  toJSONObject,
+  isAsyncFn,
+  isThenable
 });
 
 
@@ -45703,7 +45649,7 @@ module.exports = JSON.parse('{"ar-EG":{"buttons":{"continue":"للمتابعة "
 /***/ (function(module) {
 
 "use strict";
-module.exports = JSON.parse('{"details":{"ar_EG":{"cancellationRights":"حق الإلغاء","cookiePolicy":"ملفات كوكيز","legalNotice":"ملحوظة قانونية","privacyPolicy":"سياسة الخصوصية","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> هو الموزع والموزع المعتمد للمنتجات والخدمات المقدمة في هذا المتجر.","termsOfSale":"شروط البيع","confirmDisclosure":"بإرسال طلبي فإنني أوافق على <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">شروط البيع</a> و<a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">سياسة الخصوصية</a> لدى {businessEntityName}.","consentsCompanyName":"من {companyName}","consentsEula":" <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">اتفاقية ترخيص المستخدم</a>","consentsTermsOfUse":" <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">شروط البيع</a>","californiaPrivacyRights":"حقوقك فيما يتعلق بالخصوصية في كاليفورنيا","autoRenewPlanTermsBegin":"بإتمامك لعملية الشراء، فإنك تفوض شركة Digital River لتجديد الترخيص أو الاشتراك الذي اشتريته تلقائيًا لشروط التجديد المتعاقبة كما هو موضح في تفاصيل المنتج. في نهاية الفترة المحددة، سنقوم تلقائيًا بتحصيل المبلغ باستخدام وسيلة الدفع المخزنة الخاصة بك بالسعر الحالي الساري في ذلك الوقت (بالإضافة إلى الضريبة) لكل فترة تجديد إضافية حتى تقوم بالإلغاء. سنرسل إليك رسالة تذكير على البريد الإلكتروني مرة واحدة على الأقل قبل كل تجديد لتذكيرك بالتجديد القادم، وقد نقوم بتغيير سعر التجديد لمدة التجديد القادمة، وذلك بعد إخطارك بشكل مسبق عن طريق البريد الإلكتروني.سوف تسري <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">شروط البيع</a> و <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">سياسة الخصوصية</a> الخاصة بشركة Digital River","autoRenewPlanTermsEnd":" .على كل عملية تجديد. يمكنك إلغاء نظام التجديد التلقائي في أي وقت من خلال اتباع التعليمات الواردة في رسالة البريد الإلكتروني التأكيدية الخاصة بطلبك.<br/><br/>أوافق على أنه يجوز لشركة Digital River حفظ معلومات الدفع الخاصة بي لعمليات الشراء المستقبلية بما في ذلك تنفيذ أي عمليات تجديد اشتراك لاحقة قد تحدث بعد تاريخ هذا الطلب.","agreeToTerms":"لقد اطلعت على الشروط والرسوم وأوافق عليها.","idealRecurringAgreement":"بالنقر فوق المربع، فإنك تأذن لشركة Digital River بتحصيل دفعتك الأولى عبر iDEAL واستخدام رقم IBAN الخاص بك لتحصيل مدفوعات الاشتراك اللاحقة عن طريق الخصم المباشر من SEPA. يمكنك مراجعة معلومات الخصم المباشر ل SEPA بعد إرسال الطلب. <br/><br/>كجزء من حقوقك، يحق لك استرداد الأموال من البنك الذي تتعامل معه بموجب شروط وأحكام اتفاقك مع البنك الذي تتعامل معه. يجب أن تتم المطالبة برد المبلغ في غضون 8 أسابيع بدءا من التاريخ الذي تم فيه الخصم من حسابك. ","invoiceAgreement":"أوافق على السماح لشركة Digital River Taiwan بالتعامل مع المسائل المتعلقة بالفاتورة الإلكترونية نيابةً عني لتسريع عملية الإرجاع / استرداد","warrantyInformation":"معلومات الكفالة","japaneseCommerceLaw":"قانون المعاملات التجارية"},"cs_CZ":{"cancellationRights":"Oprávnění ke zrušení","cookiePolicy":"Cookies","legalNotice":"Právní dokument","privacyPolicy":"Zásady zachování soukromí","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> je autorizovaným prodejcem a obchodníkem s produkty a službami, které tento obchod nabízí.","termsOfSale":"Prodejní podmínky","confirmDisclosure":"Odesláním své objednávky vyjadřuji souhlas s <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">prodejními podmínkami</a> a <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">ochranou soukromí</a> {businessEntityName}.","consentsEula":" a <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Licenční smlouva koncového uživatele</a>","consentsTermsOfUse":" a <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Podmínky použití</a>","consentsCompanyName":" z {companyName}","californiaPrivacyRights":"Vaše práva na ochranu soukromí v Kalifornii","autoRenewPlanTermsBegin":"Dokončením nákupu opravňujete společnost Digital River k automatickému obnovení zakoupené licence nebo předplatného na další období, jak je popsáno v podrobnostech o produktu. Na konci zvoleného období vám automaticky podle uložených platebních údajů strhneme aktuální cenu (plus daň) za každé další období obnovení, dokud jej nezrušíte. Nejméně jednou před každým obnovením vám zašleme e-mailem upomínku na nadcházející obnovení a cenu za obnovení můžeme změnit pro každý následující termín obnovení na základě písemného upozornění na tuto změnu zaslaného e-mailem. <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Prodejní podmínky</a> společnosti Digital River a její <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">zásady pro ochranu osobních údajů</a>","autoRenewPlanTermsEnd":" se budou vztahovat na každý případ obnovení předplatného nebo licence. Plán automatického obnovení můžete kdykoli zrušit na základě pokynů uvedených v e-mailu s potvrzením objednávky.<br/><br/>Souhlasím, aby společnost Digital River ukládala moje platební údaje pro budoucí nákupy, včetně zpracování dalších obnovení předplatného, k nimž může dojít po datu této objednávky.","agreeToTerms":"Přečetl jsem si dříve uvedené podmínky a účtované poplatky a souhlasím s nimi.","idealRecurringAgreement":"Kliknutím na toto políčko udělujete společnosti Digital River oprávnění k inkasu první platby prostřednictvím iDEAL a k inkasu dalších plateb předplatného prostřednictvím SEPA inkasa pomocí vašeho IBAN. Informace o přímém inkasu SEPA si můžete zkontrolovat po odeslání objednávky. <br/><br/>Součástí vašich práv je nárok na proplacení od vaší banky podle podmínek vaší smlouvy s bankou. Žádost o proplacení musí být podána v průběhu 8 týdnů od data, ke kterému došlo k zúčtování částky na vrub vašeho účtu. ","invoiceAgreement":"Souhlasím, že povolím společnosti Digital River Taiwan řešit za mě záležitosti související s elektronickou fakturou, aby byl zrychlen proces vrácení peněz.","warrantyInformation":"Informace o záruce","japaneseCommerceLaw":"Zákon o obchodních transakcích"},"da_DK":{"cancellationRights":"Fortrydelsesret","cookiePolicy":"Cookies","legalNotice":"Juridisk note","privacyPolicy":"Retningslinjer for personbeskyttelse","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> er den autoriserede forhandler af de produkter og tjenesteydelser, der tilbydes i denne forretning.","termsOfSale":"Salgsvilkår","confirmDisclosure":"Ved at indsende min bestilling, accepterer jeg <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Salgsvilkårene</a> og <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Politikken om beskyttelse af personlige oplysninger</a> på {businessEntityName}.","consentsEula":" og den <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Slutbruger-licensaftale</a>","consentsTermsOfUse":" og den <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Brugsbetingelser</a>","consentsCompanyName":" af {companyName}","californiaPrivacyRights":"Dine privatlivsrettigheder i Californien","autoRenewPlanTermsBegin":"Når du gennemfører købet, giver du Digital River tilladelse til at forny din købte licens eller dit købte abonnement løbende i henhold til de betingelser, der er beskrevet under produktdetaljerne. I slutningen af den valgte periode opkræver vi automatisk dine gemte betalingsoplysninger til den på det tidspunkt gældende pris (plus moms) for hver yderligere fornyelsesperiode, indtil du annullerer. Vi sender dig mindst én e-mail med en påmindelse om hver kommende fornyelse og forbeholder os ligeledes retten til at ændre prisen for kommende fornyelser. Du vil modtage en e-mail med en orientering om eventuelle ændringer, før de træder i kraft. Digital Rivers <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Salgsvilkår</a> og <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Fortrolighedspolitik</a>","autoRenewPlanTermsEnd":" finder anvendelser for hver enkelt fornyelse. Du kan til enhver tid annullere den automatiske fornyelse ved at følge anvisningerne, der fremgår af e-mailen med ordrebekræftelsen.<br><br>Jeg giver mit samtykke til, at Digital River gemmer mine betalingsoplysninger til brug ved fremtidige køb samt til brug ved fornyelse af abonnementer efter denne ordredato.","klarnaCreditActiveAcceptance":"Ved at klikke BETAL NU vil du blive præsenteret for forskellige betalingsmetoder som Klarna tilbyder. Ved at fortsætte accepterer jeg <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/da_dk/user\\">vilkår for Klarnas Shopping Tjeneste</a> og bekræfter, at jeg har læst <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/da_dk/privacy\\">fortroligheds</a>- og <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/da_dk/cookie_purchase\\">cookiemeddelelsen</a>. <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/da_dk/invoice?credit_time=30\\">Vilkår</a>","klarnaCreditRecurringActiveAcceptance":"Ved at klikke BETAL NU vil du blive præsenteret for forskellige betalingsmetoder som Klarna tilbyder. Ved at fortsætte accepterer jeg <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/da_dk/user\\">vilkår for Klarnas Shopping Tjeneste</a> og bekræfter, at jeg har læst <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/da_dk/privacy\\">fortroligheds</a>- og <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/da_dk/cookie_purchase\\">cookiemeddelelsen</a>. <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/da_dk/invoice?credit_time=30\\">Vilkår</a>","agreeToTerms":"Jeg har læst og accepterer ovenstående vilkår og priser.","idealRecurringAgreement":"Ved at klikke på feltet giver du Digital River tilladelse til at opkræve din første betaling via iDEAL og bruge dit IBAN-nummer til at opkræve de efterfølgende abonnementsbetalinger via SEPA-automatindbetaling. Du kan gennemgå dine SEPA Direct Debit-oplysninger efter ordreafgivelse. <br/><br/>Du har krav på en refusion fra din bank på de vilkår og betingelser, der følger af din aftale med banken. Refusion skal kræves senest 8 uger fra den dato, kontoen blev debiteret. ","invoiceAgreement":"Jeg accepterer at lade Digital River Taiwan håndtere de e-faktura relaterede spørgsmål på mine vegne for at fremskynde returnerings-/tilbagebetalingsprocessen.","mstsActiveAcceptance":"Ved at vælge {payNow} vil du blive omdirigeret til at logge ind på din TreviPay-konto, fuldføre to-faktor-godkendelse for at godkende dit køb.<span class=\\"{createAccountButtonTextClass}\\"><br /><br />Vælg Tilmeld NU for at oprette en TreviPay-konto.</span><br /><br />ANSVARSFRASKRIVELSE<br /><br />* Alle købsprogramkonti og kreditlinjer under betalingsvilkårsprogrammet er udstedt af Multi Service Technology Solutions, Inc., et Florida USA indbygget selskab (\\"MSTS\\").<br /><br />* {businessEntityName} er ikke part i købsprogramkontoholderaftalen. {businessEntityName} er hverken långiver eller mægler for de kreditlinjer, der er udstedt under betalingsvilkårsprogrammet.<br /><br />Alle ansøgninger og dine kvalifikationer vil blive gennemgået og afgjort af TreviPay. HER er et link til <a href=\\"https://www.trevipay.com/privacy-center/\\" target=\\"_blank\\">TreviPay’ privatlivscenter</a>.","warrantyInformation":"Garantioplysninger","japaneseCommerceLaw":"Lov om erhvervstransaktioner"},"de_AT":{"cancellationRights":"Widerrufsrecht","cookiePolicy":"Cookies","legalNotice":"Impressum","privacyPolicy":"Datenschutzrichtlinien","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> ist der autorisierte Wiederverkäufer und Händler der Produkte und Dienstleistungen die in diesem Shop angeboten werden.","termsOfSale":"Verkaufsbedingungen","confirmDisclosure":"Durch Einreichen meiner Bestellung stimme ich den <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Verkaufsbedingungen</a> und den <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Datenschutzrichtlinien</a> von {businessEntityName} zu.","consentsEula":" und die <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Endbenutzer-Lizenzvereinbarung</a>","consentsTermsOfUse":" und die <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Nutzungsbedingungen</a>","consentsCompanyName":" von {companyName}","californiaPrivacyRights":"Ihre Datenschutzrechte in Kalifornien","autoRenewPlanTermsBegin":"Mit dem Abschluss Ihres Kaufs ermächtigen Sie Digital River, Ihre gekaufte Lizenz oder Ihr Abonnement automatisch um die in den Produktdetails beschriebenen Verlängerungszeiträume zu verlängern. Am Ende des ausgewählten Zeitraums belasten wir Ihre gespeicherten Zahlungsinformationen automatisch mit dem dann gültigen Preis (zzgl. Steuern) für jeden weiteren Verlängerungszeitraum, bis Sie kündigen. Wir schicken Ihnen vor jeder Verlängerung per E-Mail mindestens eine Erinnerung an die bevorstehende Verlängerung, und wir können den Verlängerungspreis für anstehende Verlängerungslaufzeiten ändern, indem wir Sie per E-Mail über die anstehende Änderung informieren. Die <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Verkaufsbedingungen</a> und die <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Datenschutzerklärung</a> von Digital River","autoRenewPlanTermsEnd":" gelten für jede Verlängerungstransaktion. Sie können Ihren Plan mit automatischer Verlängerung jederzeit stornieren; befolgen Sie hierzu die Anweisungen in Ihrer Bestätigungs-E-Mail <br><br>Ich bin einverstanden, dass Digital River meine Zahlungsinformationen für zukünftige Käufe speichert, einschließlich der Verarbeitung späterer Abonnementverlängerungen nach dem Datum dieser Bestellung.","klarnaCreditActiveAcceptance":"Wenn Sie JETZT BEZAHLEN drücken, werden Ihnen die von Klarna angebotenen Zahlungsarten vorgestellt. Indem Sie fortfahre, akzeptiere Sie die <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/de_at/user\\">Bedingungen für den Klarna Shopping Service</a> und bestätige, dass Sie die <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/de_at/privacy\\">Datenschutzerklärung</a> und den <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/de_de/cookie_purchase\\">Hinweis zu Cookies</a> gelesen habe. <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/de_at/direct_debit-read_more\\">Geschäftsbedingungen Impressum</a>","klarnaCreditRecurringActiveAcceptance":"Wenn Sie JETZT BEZAHLEN drücken, werden Ihnen die von Klarna angebotenen Zahlungsarten vorgestellt. Indem Sie fortfahre, akzeptiere Sie die <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/de_at/user\\">Bedingungen für den Klarna Shopping Service</a> und bestätige, dass Sie die <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/de_at/privacy\\">Datenschutzerklärung</a> und den <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/de_de/cookie_purchase\\">Hinweis zu Cookies</a> gelesen habe. <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/de_at/direct_debit-read_more\\">Geschäftsbedingungen Impressum</a>","agreeToTerms":"Ich habe die oben aufgeführten Geschäftsbedingungen und Preise gelesen und stimme ihnen zu.","idealRecurringAgreement":"Wenn Sie das Kästchen anklicken, ermächtigen Sie Digital River, Ihre erste Zahlung über iDEAL einzuziehen und Ihre IBAN zu verwenden, um die weiteren Zahlungen für das Abonnement per SEPA-Lastschrift einzuziehen. Sie können Ihre SEPA-Lastschriftinformationen nach der Bestellung überprüfen. <br/><br/>Im Rahmen Ihrer Rechte haben Sie gemäß den Bestimmungen in der Vereinbarung mit Ihrer Bank Anspruch auf eine Erstattung. Eine Erstattung muss innerhalb von acht Wochen ab dem Datum der Belastung Ihres Kontos angefordert werden. ","invoiceAgreement":"Jeg accepterer at lade Digital River Taiwan håndtere de e-faktura relaterede spørgsmål på mine vegne for at fremskynde returnerings-/tilbagebetalingsprocessen.","warrantyInformation":"Garantieinformationen","japaneseCommerceLaw":"Gesetz über den Handelstransaktionsverkehr"},"de_CH":{"cancellationRights":"Widerrufsrecht","cookiePolicy":"Cookies","legalNotice":"Impressum","privacyPolicy":"Datenschutzrichtlinien","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> ist der autorisierte Wiederverkäufer und Händler der Produkte und Dienstleistungen die in diesem Shop angeboten werden.","termsOfSale":"Verkaufsbedingungen","confirmDisclosure":"Durch Einreichen meiner Bestellung stimme ich den <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Verkaufsbedingungen</a> und den <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Datenschutzrichtlinien</a> von {businessEntityName} zu.","consentsEula":" und die <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Endbenutzer-Lizenzvereinbarung</a>","consentsTermsOfUse":" und die <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Nutzungsbedingungen</a>","consentsCompanyName":" von {companyName}","californiaPrivacyRights":"Ihre Datenschutzrechte in Kalifornien","autoRenewPlanTermsBegin":"Mit dem Abschluss Ihres Kaufs ermächtigen Sie Digital River, Ihre gekaufte Lizenz oder Ihr Abonnement automatisch um die in den Produktdetails beschriebenen Verlängerungszeiträume zu verlängern. Am Ende des ausgewählten Zeitraums belasten wir Ihre gespeicherten Zahlungsinformationen automatisch mit dem dann gültigen Preis (zzgl. Steuern) für jeden weiteren Verlängerungszeitraum, bis Sie kündigen. Wir schicken Ihnen vor jeder Verlängerung per E-Mail mindestens eine Erinnerung an die bevorstehende Verlängerung, und wir können den Verlängerungspreis für anstehende Verlängerungslaufzeiten ändern, indem wir Sie per E-Mail über die anstehende Änderung informieren. Die <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Verkaufsbedingungen</a> und die <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Datenschutzerklärung</a> von Digital River","autoRenewPlanTermsEnd":" gelten für jede Verlängerungstransaktion. Sie können Ihren Plan mit automatischer Verlängerung jederzeit stornieren; befolgen Sie hierzu die Anweisungen in Ihrer Bestätigungs-E-Mail <br><br>Ich bin einverstanden, dass Digital River meine Zahlungsinformationen für zukünftige Käufe speichert, einschließlich der Verarbeitung späterer Abonnementverlängerungen nach dem Datum dieser Bestellung.","klarnaCreditActiveAcceptance":"Wenn Sie JETZT KAUFEN drücken, werden Ihnen die von Klarna angebotenen Zahlungsarten vorgestellt. Indem ich fortfahre, akzeptiere ich die <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/de_ch/user\\">Bedingungen für den Klarna Shopping Service</a> und bestätige, dass ich die <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/de_ch/privacy_bp\\">Datenschutzerklärung</a> und den <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/de_de/cookie_purchase\\">Hinweis zu Cookies</a> gelesen habe. <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/de_ch/invoice?credit_time=30\\">Bedingungen</a>","klarnaCreditRecurringActiveAcceptance":"Wenn Sie JETZT KAUFEN drücken, werden Ihnen die von Klarna angebotenen Zahlungsarten vorgestellt. Indem ich fortfahre, akzeptiere ich die <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/de_ch/user\\">Bedingungen für den Klarna Shopping Service</a> und bestätige, dass ich die <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/de_ch/privacy_bp\\">Datenschutzerklärung</a> und den <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/de_de/cookie_purchase\\">Hinweis zu Cookies</a> gelesen habe. <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/de_ch/invoice?credit_time=30\\">Bedingungen</a>","agreeToTerms":"Ich habe die oben aufgeführten Geschäftsbedingungen und Preise gelesen und stimme ihnen zu.","idealRecurringAgreement":"Wenn Sie das Kästchen anklicken, ermächtigen Sie Digital River, Ihre erste Zahlung über iDEAL einzuziehen und Ihre IBAN zu verwenden, um die weiteren Zahlungen für das Abonnement per SEPA-Lastschrift einzuziehen. Sie können Ihre SEPA-Lastschriftinformationen nach der Bestellung überprüfen. <br/><br/>Im Rahmen Ihrer Rechte haben Sie gemäß den Bestimmungen in der Vereinbarung mit Ihrer Bank Anspruch auf eine Erstattung. Eine Erstattung muss innerhalb von acht Wochen ab dem Datum der Belastung Ihres Kontos angefordert werden. ","invoiceAgreement":"Jeg accepterer at lade Digital River Taiwan håndtere de e-faktura relaterede spørgsmål på mine vegne for at fremskynde returnerings-/tilbagebetalingsprocessen.","warrantyInformation":"Garantieinformationen","japaneseCommerceLaw":"Gesetz über den Handelstransaktionsverkehr"},"de_DE":{"cancellationRights":"Widerrufsrecht","cookiePolicy":"Cookies","legalNotice":"Impressum","privacyPolicy":"Datenschutzrichtlinien","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> ist der autorisierte Wiederverkäufer und Händler der Produkte und Dienstleistungen die in diesem Shop angeboten werden.","termsOfSale":"Verkaufsbedingungen","confirmDisclosure":"Durch Einreichen meiner Bestellung stimme ich den <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Verkaufsbedingungen</a> und den <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Datenschutzrichtlinien</a> von {businessEntityName} zu.","consentsEula":" und die <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Endbenutzer-Lizenzvereinbarung</a>","consentsTermsOfUse":" und die <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Nutzungsbedingungen</a>","consentsCompanyName":" von {companyName}","californiaPrivacyRights":"Ihre Datenschutzrechte in Kalifornien","autoRenewPlanTermsBegin":"Mit dem Abschluss Ihres Kaufs ermächtigen Sie Digital River, Ihre gekaufte Lizenz oder Ihr Abonnement automatisch um die in den Produktdetails beschriebenen Verlängerungszeiträume zu verlängern. Am Ende des ausgewählten Zeitraums belasten wir Ihre gespeicherten Zahlungsinformationen automatisch mit dem dann gültigen Preis (zzgl. Steuern) für jeden weiteren Verlängerungszeitraum, bis Sie kündigen. Wir schicken Ihnen vor jeder Verlängerung per E-Mail mindestens eine Erinnerung an die bevorstehende Verlängerung, und wir können den Verlängerungspreis für anstehende Verlängerungslaufzeiten ändern, indem wir Sie per E-Mail über die anstehende Änderung informieren. Die <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Verkaufsbedingungen</a> und die <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Datenschutzerklärung</a> von Digital River","autoRenewPlanTermsEnd":" gelten für jede Verlängerungstransaktion. Sie können Ihren Plan mit automatischer Verlängerung jederzeit stornieren; befolgen Sie hierzu die Anweisungen in Ihrer Bestätigungs-E-Mail <br><br>Ich bin einverstanden, dass Digital River meine Zahlungsinformationen für zukünftige Käufe speichert, einschließlich der Verarbeitung späterer Abonnementverlängerungen nach dem Datum dieser Bestellung.","klarnaCreditActiveAcceptance":"Wenn Sie JETZT BEZAHLEN drücken, werden Ihnen die von Klarna angebotenen Zahlungsarten vorgestellt. Indem ich fortfahre, akzeptiere ich die <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/de_de/user\\">Bedingungen für den Klarna Shopping Service</a> und bestätige, dass ich die <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/de_de/privacy\\">Datenschutzerklärung</a> und den <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/de_de/cookie_purchase\\">Hinweis zu Cookies</a> gelesen habe. <a target=\\"_blank\\" href=\\"https://www.klarna.com/de/impressum\\">Impressum</a>. <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/de_de/invoice?credit_time=30\\">Bedingungen</a>","klarnaCreditRecurringActiveAcceptance":"Wenn Sie JETZT BEZAHLEN drücken, werden Ihnen die von Klarna angebotenen Zahlungsarten vorgestellt. Indem ich fortfahre, akzeptiere ich die <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/de_de/user\\">Bedingungen für den Klarna Shopping Service</a> und bestätige, dass ich die <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/de_de/privacy\\">Datenschutzerklärung</a> und den <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/de_de/cookie_purchase\\">Hinweis zu Cookies</a> gelesen habe. <a target=\\"_blank\\" href=\\"https://www.klarna.com/de/impressum\\">Impressum</a>. <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/de_de/invoice?credit_time=30\\">Bedingungen</a>","agreeToTerms":"Ich habe die oben aufgeführten Geschäftsbedingungen und Preise gelesen und stimme ihnen zu.","idealRecurringAgreement":"Wenn Sie das Kästchen anklicken, ermächtigen Sie Digital River, Ihre erste Zahlung über iDEAL einzuziehen und Ihre IBAN zu verwenden, um die weiteren Zahlungen für das Abonnement per SEPA-Lastschrift einzuziehen. Sie können Ihre SEPA-Lastschriftinformationen nach der Bestellung überprüfen. <br/><br/>Im Rahmen Ihrer Rechte haben Sie gemäß den Bestimmungen in der Vereinbarung mit Ihrer Bank Anspruch auf eine Erstattung. Eine Erstattung muss innerhalb von acht Wochen ab dem Datum der Belastung Ihres Kontos angefordert werden. ","invoiceAgreement":"Jeg accepterer at lade Digital River Taiwan håndtere de e-faktura relaterede spørgsmål på mine vegne for at fremskynde returnerings-/tilbagebetalingsprocessen.","mstsActiveAcceptance":"Wählen Sie {payNow}, um sich bei TreviPay anzumelden, die Zwei-Faktor-Authentifizierung abzuschließen und den Kauf zu bestätigen.<span class=\\"{createAccountButtonTextClass}\\"><br /><br />Wählen Sie Jetzt registrieren um ein TreviPay-Konto zu erstellen.</span><br /><br />Haftungsausschluss<br /><br />* Alle Konten und Kreditlinien des Kaufprogramms im Rahmen des Zahlungsbedingungen-Programms werden von Multi Service Technology Solutions, Inc., einem in Florida, USA, eingetragenen Unternehmen („MSTS“), ausgestellt.<br /><br />* {businessEntityName} ist keine Partei des Kontoinhabervertrags für das Kaufprogramm. {businessEntityName} ist weder Kreditgeber noch Makler für die im Rahmen des Zahlungsbedingungen-Programms ausgegebenen Kreditlinien<br /><br />Alle Bewerbungen und Ihre Qualifikationen werden von TreviPay geprüft und entschieden. <a href=\\"https://www.trevipay.com/privacy-center/\\" target=\\"_blank\\">TreviPay Privacy Center.</a>","warrantyInformation":"Garantieinformationen","japaneseCommerceLaw":"Gesetz über den Handelstransaktionsverkehr"},"el_GR":{"cancellationRights":"Δικαίωμα Ακύρωσης","cookiePolicy":"Cookies","legalNotice":"Νομική Σημείωση","privacyPolicy":"Πολιτική Ιδιωτικού Απορρήτου","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> είναι ο εξουσιοδοτημένος μεταπωλητής και έμπορος των προϊόντων και υπηρεσιών, που προσφέρονται σε αυτό το κατάστημα.","termsOfSale":"Όροι Πώλησης","confirmDisclosure":"Υποβάλλοντας την παραγγελία μου, συμφωνώ με τους <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Όρους πώλησης</a> και την <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Πολιτική ιδιωτικού απορρήτου</a> της {businessEntityName}.","consentsEula":"και η <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Συμφωνία Χρήσης για τον Τελικό Χρήστη</a>","consentsTermsOfUse":"και οι <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Όροι Χρήσης</a>","consentsCompanyName":" της {companyName}","californiaPrivacyRights":"Τα δικαιώματα ιδιωτικότητας σας στην Καλιφόρνια","autoRenewPlanTermsBegin":"Ολοκληρώνοντας την αγορά σας, εξουσιοδοτείτε την Digital River να ανανεώνει αυτόματα την άδεια χρήσης ή τη συνδρομή που έχετε αγοράσει για διαδοχικά χρονικά διαστήματα ανανέωσης, όπως περιγράφεται στις λεπτομέρειες του προϊόντος. Στο τέλος της επιλεγμένης περιόδου, θα χρεώσουμε αυτόματα τα στοιχεία πληρωμής που έχετε αποθηκεύσει στην εκάστοτε ισχύουσα τρέχουσα τιμή (συν τους φόρους) για κάθε πρόσθετη περίοδο ανανέωσης, έως ότου ζητήσετε ακύρωση. Θα σας στέλνουμε τουλάχιστον μία φορά ένα e-mail υπενθύμισης πριν από κάθε ανανέωση προς υπενθύμιση της επικείμενης ανανέωσης, και ενδέχεται να αλλάξουμε την τιμή ανανέωσης για κάθε επόμενο διάστημα ανανέωσης ειδοποιώντας σας από πριν για την αλλαγή μέσω e-mail. Οι <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Όροι πώλησης</a> και η <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Πολιτική ιδιωτικού απορρήτου</a> της Digital River","autoRenewPlanTermsEnd":" ισχύουν σε κάθε πράξη ανανέωσης.. Μπορείτε να ακυρώσετε ανά πάσα στιγμή το πρόγραμμα αυτόματης ανανέωσης ακολουθώντας τις οδηγίες που υπάρχουν στο e-mail επιβεβαίωσης της παραγγελίας σας.<br><br>Συμφωνώ να επιτρέπεται στην Digital River να αποθηκεύει τα στοιχεία πληρωμής μου για μελλοντικές αγορές, συμπεριλαμβανομένης της επεξεργασίας τυχόν επομένων ανανεώσεων συνδρομής που μπορεί να πραγματοποιηθούν μετά την ημερομηνία της παρούσας παραγγελίας.","agreeToTerms":"Έχω διαβάσει και συμφωνώ με τους όρους και τις χρεώσεις πιο πάνω.","idealRecurringAgreement":"Κάνοντας κλικ στο πλαίσιο, εξουσιοδοτείτε την Digital River να εισπράξει την πρώτη σας πληρωμή μέσω iDEAL και να χρησιμοποιήσει το IBAN σας για να εισπράξει τις επόμενες πληρωμές συνδρομής μέσω άμεσης χρέωσης SEPA. Μπορείτε να επανεξετάσετε τις πληροφορίες σας για την άμεση χρέωση SEPA μετά την υποβολή της παραγγελίας. <br/><br/>Ως μέρος των δικαιωμάτων σας, δικαιούστε να απαιτήσετε επιστροφή χρημάτων από την τράπεζά σας σύμφωνα με τους όρους και τις προϋποθέσεις της μεταξύ σας συμφωνίας. Επιστροφή χρημάτων πρέπει να αξιωθεί εντός 8 εβδομάδων από την ημερομηνία χρέωσης του λογαριασμού σας. ","invoiceAgreement":"Συμφωνώ να επιτρέψω στην Digital River Taiwan να χειριστεί τα θέματα που σχετίζονται με το ηλεκτρονικό τιμολόγιο εκ μέρους μου, προκειμένου να επιταχυνθεί η διαδικασία επιστροφής/επιστροφής χρημάτων.","warrantyInformation":"Πληροφορίες εγγύησης","japaneseCommerceLaw":"Νόμος Εμπορικών Συναλλαγών"},"en_AU":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> is the authorised retailer and merchant providing e-commerce services for this shop.","termsOfSale":"Terms of Sale","confirmDisclosure":"By submitting my order, I agree to the <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and the <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> of {businessEntityName}.","consentsEula":" and the <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">End User License Agreement</a>","consentsTermsOfUse":" and the <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Terms of Use</a>","consentsCompanyName":" of {companyName}","californiaPrivacyRights":"Your California Privacy Rights","autoRenewPlanTermsBegin":"By completing your purchase, you authorize Digital River to automatically renew your purchased license or subscription for successive renewal terms as described in the product details. At the end of the selected period, we will automatically charge your stored payment information at the then current price in effect (plus tax) for each additional renewal period until you cancel. We will send you an e-mail reminder at least once prior to each renewal to remind you of your upcoming renewal and may change the renewal price for any upcoming renewal term by providing you with prior notice of the change by e-mail. The Digital River <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a>","autoRenewPlanTermsEnd":"  will apply to each renewal transaction. You may cancel your auto-renewal plan at any time by following the instructions provided in your order confirmation email.<br/><br/>I agree that Digital River may store my payment information for future purchases including the processing of any subsequent subscription renewals which may occur following the date of this order.","klarnaCreditActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. By continuing I accept the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_au/user\\">Klarna Shopping Service</a> and confirm that I have read the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_au/privacy\\">Klarna\'s Privacy Statement</a>.","klarnaCreditRecurringActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. By continuing I accept the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_au/user\\">Klarna Shopping Service</a> and confirm that I have read the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_au/privacy\\">Klarna\'s Privacy Statement</a>.","agreeToTerms":"I have read and agree to the terms and charges above.","idealRecurringAgreement":"By clicking the box, you authorize Digital River to collect your first payment via iDEAL and use your IBAN to collect the subsequent subscription payments by SEPA direct debit. You can review your SEPA Direct Debit information after order submission. <br/><br/>As part of your rights, you are entitled to a refund from your bank under the terms and conditions of your agreement with your bank. A refund must be claimed within 8 weeks starting from the date on which your account was debited. ","invoiceAgreement":"I agree to allow Digital River Taiwan to handle the e-invoice related matters on my behalf to accelerate the return/refund process.","warrantyInformation":"Warranty Information","japaneseCommerceLaw":"Commercial Transaction Law"},"en_BE":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> is the authorised retailer and merchant providing e-commerce services for this shop.","termsOfSale":"Terms of Sale","confirmDisclosure":"By submitting my order, I agree to the <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and the <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> of {businessEntityName}.","consentsEula":" and the <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">End User License Agreement</a>","consentsTermsOfUse":" and the <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Terms of Use</a>","consentsCompanyName":" of {companyName}","californiaPrivacyRights":"Your California Privacy Rights","autoRenewPlanTermsBegin":"By completing your purchase, you authorize Digital River to automatically renew your purchased license or subscription for successive renewal terms as described in the product details. At the end of the selected period, we will automatically charge your stored payment information at the then current price in effect (plus tax) for each additional renewal period until you cancel. We will send you an e-mail reminder at least once prior to each renewal to remind you of your upcoming renewal and may change the renewal price for any upcoming renewal term by providing you with prior notice of the change by e-mail. The Digital River <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a>","autoRenewPlanTermsEnd":"  will apply to each renewal transaction. You may cancel your auto-renewal plan at any time by following the instructions provided in your order confirmation email.<br/><br/>I agree that Digital River may store my payment information for future purchases including the processing of any subsequent subscription renewals which may occur following the date of this order.","klarnaCreditActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. By continuing I accept the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_be/invoice?credit_time=30\\">Pay Later Terms</a> and the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_be/user\\">terms for the Klarna Shopping Service</a>, and confirm that I have read the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_be/privacy\\">Privacy Notice</a> and the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_gb/cookie_purchase\\">Cookie Notice</a>.","klarnaCreditRecurringActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. By continuing I accept the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_be/invoice?credit_time=30\\">Pay Later Terms</a> and the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_be/user\\">terms for the Klarna Shopping Service</a>, and confirm that I have read the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_be/privacy\\">Privacy Notice</a> and the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_gb/cookie_purchase\\">Cookie Notice</a>.","idealRecurringAgreement":"By clicking the box, you authorize Digital River to collect your first payment via iDEAL and use your IBAN to collect the subsequent subscription payments by SEPA direct debit. You can review your SEPA Direct Debit information after order submission. <br/><br/>As part of your rights, you are entitled to a refund from your bank under the terms and conditions of your agreement with your bank. A refund must be claimed within 8 weeks starting from the date on which your account was debited. ","invoiceAgreement":"I agree to allow Digital River Taiwan to handle the e-invoice related matters on my behalf to accelerate the return/refund process.","warrantyInformation":"Warranty Information","japaneseCommerceLaw":"Commercial Transaction Law"},"en_CA":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> is the authorised retailer and merchant providing e-commerce services for this shop.","termsOfSale":"Terms of Sale","confirmDisclosure":"By submitting my order, I agree to the <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and the <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> of {businessEntityName}.","consentsEula":" and the <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">End User License Agreement</a>","consentsTermsOfUse":" and the <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Terms of Use</a>","consentsCompanyName":" of {companyName}","californiaPrivacyRights":"Your California Privacy Rights","autoRenewPlanTermsBegin":"By completing your purchase, you authorize Digital River to automatically renew your purchased license or subscription for successive renewal terms as described in the product details. At the end of the selected period, we will automatically charge your stored payment information at the then current price in effect (plus tax) for each additional renewal period until you cancel. We will send you an e-mail reminder at least once prior to each renewal to remind you of your upcoming renewal and may change the renewal price for any upcoming renewal term by providing you with prior notice of the change by e-mail. The Digital River <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a>","autoRenewPlanTermsEnd":"  will apply to each renewal transaction. You may cancel your auto-renewal plan at any time by following the instructions provided in your order confirmation email.<br/><br/>I agree that Digital River may store my payment information for future purchases including the processing of any subsequent subscription renewals which may occur following the date of this order.","klarnaCreditActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. View the Privacy Notice and Klarna Shopping Service terms <a target=\\"_blank\\" href=\\"https://www.klarna.com/ca/legal/\\">here</a>.","klarnaCreditRecurringActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. View the Privacy Notice and Klarna Shopping Service terms <a target=\\"_blank\\" href=\\"https://www.klarna.com/ca/legal/\\">here</a>.","agreeToTerms":"I have read and agree to the terms and charges above.","idealRecurringAgreement":"By clicking the box, you authorize Digital River to collect your first payment via iDEAL and use your IBAN to collect the subsequent subscription payments by SEPA direct debit. You can review your SEPA Direct Debit information after order submission. <br/><br/>As part of your rights, you are entitled to a refund from your bank under the terms and conditions of your agreement with your bank. A refund must be claimed within 8 weeks starting from the date on which your account was debited. ","invoiceAgreement":"I agree to allow Digital River Taiwan to handle the e-invoice related matters on my behalf to accelerate the return/refund process.","warrantyInformation":"Warranty Information","japaneseCommerceLaw":"Commercial Transaction Law"},"en_CH":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> is the authorized reseller and merchant providing e-commerce services for this shop.","termsOfSale":"Terms of Sale","confirmDisclosure":"By submitting my order, I agree to the <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and the <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> of {businessEntityName}.","consentsEula":" and the <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">End User License Agreement</a>","consentsTermsOfUse":" and the <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Terms of Use</a>","consentsCompanyName":" of {companyName}","californiaPrivacyRights":"Your California Privacy Rights","autoRenewPlanTermsBegin":"By completing your purchase, you authorize Digital River to automatically renew your purchased license or subscription for successive renewal terms as described in the product details. At the end of the selected period, we will automatically charge your stored payment information at the then current price in effect (plus tax) for each additional renewal period until you cancel. We will send you an e-mail reminder at least once prior to each renewal to remind you of your upcoming renewal and may change the renewal price for any upcoming renewal term by providing you with prior notice of the change by e-mail. The Digital River <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a>","autoRenewPlanTermsEnd":"  will apply to each renewal transaction. You may cancel your auto-renewal plan at any time by following the instructions provided in your order confirmation email.<br/><br/>I agree that Digital River may store my payment information for future purchases including the processing of any subsequent subscription renewals which may occur following the date of this order.","klarnaCreditActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. By continuing I accept the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_ch/user\\">terms for the Klarna Shopping Service</a>, and confirm that I have read the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_ch/privacy_bp\\">Privacy Notice</a> and the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_gb/cookie_purchase\\">Cookie Notice</a>. <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_ch/invoice?credit_time=30\\">Terms & Conditions</a>","klarnaCreditRecurringActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. By continuing I accept the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_ch/user\\">terms for the Klarna Shopping Service</a>, and confirm that I have read the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_ch/privacy_bp\\">Privacy Notice</a> and the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_gb/cookie_purchase\\">Cookie Notice</a>. <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_ch/invoice?credit_time=30\\">Terms & Conditions</a>","agreeToTerms":"I have read and agree to the terms and charges above.","idealRecurringAgreement":"By clicking the box, you authorize Digital River to collect your first payment via iDEAL and use your IBAN to collect the subsequent subscription payments by SEPA direct debit. You can review your SEPA Direct Debit information after order submission. <br/><br/>As part of your rights, you are entitled to a refund from your bank under the terms and conditions of your agreement with your bank. A refund must be claimed within 8 weeks starting from the date on which your account was debited. ","invoiceAgreement":"I agree to allow Digital River Taiwan to handle the e-invoice related matters on my behalf to accelerate the return/refund process.","warrantyInformation":"Warranty Information","japaneseCommerceLaw":"Commercial Transaction Law"},"en_DK":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> is the authorised retailer and merchant providing e-commerce services for this shop.","termsOfSale":"Terms of Sale","confirmDisclosure":"By submitting my order, I agree to the <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and the <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> of {businessEntityName}.","consentsEula":" and the <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">End User License Agreement</a>","consentsTermsOfUse":" and the <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Terms of Use</a>","consentsCompanyName":" of {companyName}","autoRenewPlanTermsBegin":"By completing your purchase, you authorize Digital River to automatically renew your purchased license or subscription for successive renewal terms as described in the product details. At the end of the selected period, we will automatically charge your stored payment information at the then current price in effect (plus tax) for each additional renewal period until you cancel. We will send you an e-mail reminder at least once prior to each renewal to remind you of your upcoming renewal and may change the renewal price for any upcoming renewal term by providing you with prior notice of the change by e-mail. The Digital River <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a>","autoRenewPlanTermsEnd":"  will apply to each renewal transaction. You may cancel your auto-renewal plan at any time by following the instructions provided in your order confirmation email.<br/><br/>I agree that Digital River may store my payment information for future purchases including the processing of any subsequent subscription renewals which may occur following the date of this order.","californiaPrivacyRights":"Your California Privacy Rights","klarnaCreditActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. By continuing I accept the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_dk/user\\">terms for the Klarna Shopping Service</a>, and confirm that I have read the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_dk/privacy\\">Privacy Notice</a> and the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_dk/cookie_purchase\\">Cookie Notice</a>. <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_dk/invoice?credit_time=30\\">Terms & Conditions</a>","klarnaCreditRecurringActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. By continuing I accept the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_dk/user\\">terms for the Klarna Shopping Service</a>, and confirm that I have read the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_dk/privacy\\">Privacy Notice</a> and the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_dk/cookie_purchase\\">Cookie Notice</a>. <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_dk/invoice?credit_time=30\\">Terms & Conditions</a>","idealRecurringAgreement":"By clicking the box, you authorize Digital River to collect your first payment via iDEAL and use your IBAN to collect the subsequent subscription payments by SEPA direct debit. You can review your SEPA Direct Debit information after order submission. <br/><br/>As part of your rights, you are entitled to a refund from your bank under the terms and conditions of your agreement with your bank. A refund must be claimed within 8 weeks starting from the date on which your account was debited. ","invoiceAgreement":"I agree to allow Digital River Taiwan to handle the e-invoice related matters on my behalf to accelerate the return/refund process.","warrantyInformation":"Warranty Information","japaneseCommerceLaw":"Commercial Transaction Law"},"en_FI":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> is the authorised retailer and merchant providing e-commerce services for this shop.","termsOfSale":"Terms of Sale","confirmDisclosure":"By submitting my order, I agree to the <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and the <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> of {businessEntityName}.","consentsEula":" and the <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">End User License Agreement</a>","consentsTermsOfUse":" and the <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Terms of Use</a>","consentsCompanyName":" of {companyName}","autoRenewPlanTermsBegin":"By completing your purchase, you authorize Digital River to automatically renew your purchased license or subscription for successive renewal terms as described in the product details. At the end of the selected period, we will automatically charge your stored payment information at the then current price in effect (plus tax) for each additional renewal period until you cancel. We will send you an e-mail reminder at least once prior to each renewal to remind you of your upcoming renewal and may change the renewal price for any upcoming renewal term by providing you with prior notice of the change by e-mail. The Digital River <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a>","autoRenewPlanTermsEnd":"  will apply to each renewal transaction. You may cancel your auto-renewal plan at any time by following the instructions provided in your order confirmation email.<br/><br/>I agree that Digital River may store my payment information for future purchases including the processing of any subsequent subscription renewals which may occur following the date of this order.","californiaPrivacyRights":"Your California Privacy Rights","klarnaCreditActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. By continuing I accept the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_fi/user\\">terms for the Klarna Shopping Service</a>, and confirm that I have read the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_fi/privacy\\">Privacy Notice</a> and the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_fi/cookie_purchase\\">Cookie Notice</a>. <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_fi/invoice?credit_time=30\\">Terms & Conditions</a>","klarnaCreditRecurringActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. By continuing I accept the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_fi/user\\">terms for the Klarna Shopping Service</a>, and confirm that I have read the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_fi/privacy\\">Privacy Notice</a> and the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_fi/cookie_purchase\\">Cookie Notice</a>. <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_fi/invoice?credit_time=30\\">Terms & Conditions</a>","idealRecurringAgreement":"By clicking the box, you authorize Digital River to collect your first payment via iDEAL and use your IBAN to collect the subsequent subscription payments by SEPA direct debit. You can review your SEPA Direct Debit information after order submission. <br/><br/>As part of your rights, you are entitled to a refund from your bank under the terms and conditions of your agreement with your bank. A refund must be claimed within 8 weeks starting from the date on which your account was debited. ","invoiceAgreement":"I agree to allow Digital River Taiwan to handle the e-invoice related matters on my behalf to accelerate the return/refund process.","warrantyInformation":"Warranty Information","japaneseCommerceLaw":"Commercial Transaction Law"},"en_GB":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> is the authorised retailer and merchant providing e-commerce services for this shop.","termsOfSale":"Terms of Sale","confirmDisclosure":"By submitting my order, I agree to the <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and the <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> of {businessEntityName}.","consentsEula":" and the <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">End User License Agreement</a>","consentsTermsOfUse":" and the <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Terms of Use</a>","consentsCompanyName":" of {companyName}","californiaPrivacyRights":"Your California Privacy Rights","autoRenewPlanTermsBegin":"By completing your purchase, you authorize Digital River to automatically renew your purchased license or subscription for successive renewal terms as described in the product details. At the end of the selected period, we will automatically charge your stored payment information at the then current price in effect (plus tax) for each additional renewal period until you cancel. We will send you an e-mail reminder at least once prior to each renewal to remind you of your upcoming renewal and may change the renewal price for any upcoming renewal term by providing you with prior notice of the change by e-mail. The Digital River <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a>","autoRenewPlanTermsEnd":"  will apply to each renewal transaction. You may cancel your auto-renewal plan at any time by following the instructions provided in your order confirmation email.<br/><br/>I agree that Digital River may store my payment information for future purchases including the processing of any subsequent subscription renewals which may occur following the date of this order.","klarnaCreditActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. By continuing, I accept the terms of the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_gb/user\\">Klarna Shopping Service</a> and confirm that I have read the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_gb/privacy\\">Privacy Notice</a> and the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_gb/cookie_purchase\\">Cookie Notice</a>.","klarnaCreditRecurringActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. By continuing, I accept the terms of the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_gb/user\\">Klarna Shopping Service</a> and confirm that I have read the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_gb/privacy\\">Privacy Notice</a> and the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_gb/cookie_purchase\\">Cookie Notice</a>.","agreeToTerms":"I have read and agree to the terms and charges above.","idealRecurringAgreement":"By clicking the box, you authorize Digital River to collect your first payment via iDEAL and use your IBAN to collect the subsequent subscription payments by SEPA direct debit. You can review your SEPA Direct Debit information after order submission. <br/><br/>As part of your rights, you are entitled to a refund from your bank under the terms and conditions of your agreement with your bank. A refund must be claimed within 8 weeks starting from the date on which your account was debited. ","mstsActiveAcceptance":"Select {payNow} to login to TreviPay, complete Two-factor authentication and confirm purchase.<span class=\\"{createAccountButtonTextClass}\\"><br /><br />Select Enroll Now to create TreviPay Account.</span><br /><br />DISCLAIMER<br /><br />* All the purchase program accounts and credit lines under the Payment Terms program are issued by Multi Service Technology Solutions, Inc., a Florida USA incorporated company (“MSTS”).<br /><br />* {businessEntityName} is not a party to the Purchase Program Accountholder Agreement. {businessEntityName} is neither a lender nor a broker for the credit lines issued under the Payment Terms program<br /><br />All the applications and your qualifications will be reviewed and decided by TreviPay. <a href=\\"https://www.trevipay.com/privacy-center/\\" target=\\"_blank\\">TreviPay’s Privacy Center.</a>","invoiceAgreement":"I agree to allow Digital River Taiwan to handle the e-invoice related matters on my behalf to accelerate the return/refund process.","warrantyInformation":"Warranty Information","japaneseCommerceLaw":"Commercial Transaction Law"},"en_IE":{"californiaPrivacyRights":"Your California Privacy Rights","cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> is the authorised retailer and merchant providing e-commerce services for this shop.","termsOfSale":"Terms of Sale","confirmDisclosure":"By submitting my order, I agree to the <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and the <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> of {businessEntityName}.","consentsEula":" and the <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">End User License Agreement</a>","consentsTermsOfUse":" and the <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Terms of Use</a>","consentsCompanyName":" of {companyName}","autoRenewPlanTermsBegin":"By completing your purchase, you authorize Digital River to automatically renew your purchased license or subscription for successive renewal terms as described in the product details. At the end of the selected period, we will automatically charge your stored payment information at the then current price in effect (plus tax) for each additional renewal period until you cancel. We will send you an e-mail reminder at least once prior to each renewal to remind you of your upcoming renewal and may change the renewal price for any upcoming renewal term by providing you with prior notice of the change by e-mail. The Digital River <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a>","autoRenewPlanTermsEnd":"  will apply to each renewal transaction. You may cancel your auto-renewal plan at any time by following the instructions provided in your order confirmation email.<br/><br/>I agree that Digital River may store my payment information for future purchases including the processing of any subsequent subscription renewals which may occur following the date of this order.","klarnaCreditActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. By continuing I accept the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_ie/user\\">Klarna Shopping Service Terms</a>, and confirm that I have read the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_ie/cookie_purchase\\">Klarna Cookie Notice</a> and the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_ie/privacy\\">Klarna Privacy Notice</a>.","klarnaCreditRecurringActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. By continuing I accept the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_ie/user\\">Klarna Shopping Service Terms</a>, and confirm that I have read the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_ie/cookie_purchase\\">Klarna Cookie Notice</a> and the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_ie/privacy\\">Klarna Privacy Notice</a>.","agreeToTerms":"I have read and agree to the terms and charges above.","idealRecurringAgreement":"By clicking the box, you authorize Digital River to collect your first payment via iDEAL and use your IBAN to collect the subsequent subscription payments by SEPA direct debit. You can review your SEPA Direct Debit information after order submission. <br/><br/>As part of your rights, you are entitled to a refund from your bank under the terms and conditions of your agreement with your bank. A refund must be claimed within 8 weeks starting from the date on which your account was debited. ","mstsActiveAcceptance":"Select {payNow} to login to TreviPay, complete Two-factor authentication and confirm purchase.<span class=\\"{createAccountButtonTextClass}\\"><br /><br />Select Enroll Now to create TreviPay Account.</span><br /><br />DISCLAIMER<br /><br />* All the purchase program accounts and credit lines under the Payment Terms program are issued by Multi Service Technology Solutions, Inc., a Florida USA incorporated company (“MSTS”).<br /><br />* {businessEntityName} is not a party to the Purchase Program Accountholder Agreement. {businessEntityName} is neither a lender nor a broker for the credit lines issued under the Payment Terms program<br /><br />All the applications and your qualifications will be reviewed and decided by TreviPay. <a href=\\"https://www.trevipay.com/privacy-center/\\" target=\\"_blank\\">TreviPay’s Privacy Center.</a>","invoiceAgreement":"I agree to allow Digital River Taiwan to handle the e-invoice related matters on my behalf to accelerate the return/refund process.","warrantyInformation":"Warranty Information","japaneseCommerceLaw":"Commercial Transaction Law"},"en_IN":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> is the authorised retailer and merchant providing e-commerce services for this shop.","termsOfSale":"Terms of Sale","confirmDisclosure":"By submitting my order, I agree to the <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and the <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> of {businessEntityName}.","consentsEula":" and the <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">End User License Agreement</a>","consentsTermsOfUse":" and the <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Terms of Use</a>","consentsCompanyName":" of {companyName}","californiaPrivacyRights":"Your California Privacy Rights","autoRenewPlanTermsBegin":"By completing your purchase, you authorize Digital River to automatically renew your purchased license or subscription for successive renewal terms as described in the product details. At the end of the selected period, we will automatically charge your stored payment information at the then current price in effect (plus tax) for each additional renewal period until you cancel. We will send you an e-mail reminder at least once prior to each renewal to remind you of your upcoming renewal and may change the renewal price for any upcoming renewal term by providing you with prior notice of the change by e-mail. The Digital River <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a>","autoRenewPlanTermsEnd":"  will apply to each renewal transaction. You may cancel your auto-renewal plan at any time by following the instructions provided in your order confirmation email.<br/><br/>I agree that Digital River may store my payment information for future purchases including the processing of any subsequent subscription renewals which may occur following the date of this order.","klarnaCreditActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. By continuing I accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_in/user\\">Klarna\'s Services Terms</a> and confirm that I have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_in/privacy\\">Klarna\'s Privacy Policy</a>.","klarnaCreditRecurringActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. By continuing I accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_in/user\\">Klarna\'s Services Terms</a> and confirm that I have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_in/privacy\\">Klarna\'s Privacy Policy</a>.","agreeToTerms":"I have read and agree to the terms and charges above.","idealRecurringAgreement":"By clicking the box, you authorize Digital River to collect your first payment via iDEAL and use your IBAN to collect the subsequent subscription payments by SEPA direct debit. You can review your SEPA Direct Debit information after order submission. <br/><br/>As part of your rights, you are entitled to a refund from your bank under the terms and conditions of your agreement with your bank. A refund must be claimed within 8 weeks starting from the date on which your account was debited. ","invoiceAgreement":"I agree to allow Digital River Taiwan to handle the e-invoice related matters on my behalf to accelerate the return/refund process.","warrantyInformation":"Warranty Information","japaneseCommerceLaw":"Commercial Transaction Law"},"en_MY":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","termsOfSale":"Terms of Sale","confirmDisclosure":"By submitting my order, I agree to the <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and the <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> of {businessEntityName}.","consentsEula":" and the <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">End User License Agreement</a>","consentsTermsOfUse":" and the <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Terms of Use</a>","consentsCompanyName":" of {companyName}","californiaPrivacyRights":"Your California Privacy Rights","autoRenewPlanTermsBegin":"By completing your purchase, you authorize Digital River to automatically renew your purchased license or subscription for successive renewal terms as described in the product details. At the end of the selected period, we will automatically charge your stored payment information at the then current price in effect (plus tax) for each additional renewal period until you cancel. We will send you an e-mail reminder at least once prior to each renewal to remind you of your upcoming renewal and may change the renewal price for any upcoming renewal term by providing you with prior notice of the change by e-mail. The Digital River <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a>","autoRenewPlanTermsEnd":"  will apply to each renewal transaction. You may cancel your auto-renewal plan at any time by following the instructions provided in your order confirmation email.<br/><br/>I agree that Digital River may store my payment information for future purchases including the processing of any subsequent subscription renewals which may occur following the date of this order.","klarnaCreditActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. By continuing I accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_my/user\\">Klarna\'s Services Terms</a> and confirm that I have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_my/privacy\\">Klarna\'s Privacy Policy</a>.","klarnaCreditRecurringActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. By continuing I accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_my/user\\">Klarna\'s Services Terms</a> and confirm that I have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_my/privacy\\">Klarna\'s Privacy Policy</a>.","idealRecurringAgreement":"By clicking the box, you authorize Digital River to collect your first payment via iDEAL and use your IBAN to collect the subsequent subscription payments by SEPA direct debit. You can review your SEPA Direct Debit information after order submission. <br/><br/>As part of your rights, you are entitled to a refund from your bank under the terms and conditions of your agreement with your bank. A refund must be claimed within 8 weeks starting from the date on which your account was debited. ","invoiceAgreement":"I agree to allow Digital River Taiwan to handle the e-invoice related matters on my behalf to accelerate the return/refund process.","warrantyInformation":"Warranty Information","japaneseCommerceLaw":"Commercial Transaction Law"},"en_NL":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> is the authorised retailer and merchant providing e-commerce services for this shop.","termsOfSale":"Terms of Sale","confirmDisclosure":"By submitting my order, I agree to the <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and the <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> of {businessEntityName}.","consentsEula":" and the <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">End User License Agreement</a>","consentsTermsOfUse":" and the <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Terms of Use</a>","consentsCompanyName":" of {companyName}","californiaPrivacyRights":"Your California Privacy Rights","autoRenewPlanTermsBegin":"By completing your purchase, you authorize Digital River to automatically renew your purchased license or subscription for successive renewal terms as described in the product details. At the end of the selected period, we will automatically charge your stored payment information at the then current price in effect (plus tax) for each additional renewal period until you cancel. We will send you an e-mail reminder at least once prior to each renewal to remind you of your upcoming renewal and may change the renewal price for any upcoming renewal term by providing you with prior notice of the change by e-mail. The Digital River <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a>","autoRenewPlanTermsEnd":"  will apply to each renewal transaction. You may cancel your auto-renewal plan at any time by following the instructions provided in your order confirmation email.<br/><br/>I agree that Digital River may store my payment information for future purchases including the processing of any subsequent subscription renewals which may occur following the date of this order.","klarnaCreditActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. By continuing I accept the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_nl/user\\">terms for the Klarna Shopping Service</a>, and confirm that I have read the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_nl/privacy\\">Privacy Notice</a> and the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_nl/cookie_purchase\\">Cookie Notice</a>. <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_nl/invoice?credit_time=30\\">Terms & Conditions</a>","klarnaCreditRecurringActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. By continuing I accept the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_nl/user\\">terms for the Klarna Shopping Service</a>, and confirm that I have read the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_nl/privacy\\">Privacy Notice</a> and the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_nl/cookie_purchase\\">Cookie Notice</a>. <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_nl/invoice?credit_time=30\\">Terms & Conditions</a>","agreeToTerms":"I have read and agree to the terms and charges above.","idealRecurringAgreement":"By clicking the box, you authorize Digital River to collect your first payment via iDEAL and use your IBAN to collect the subsequent subscription payments by SEPA direct debit. You can review your SEPA Direct Debit information after order submission. <br/><br/>As part of your rights, you are entitled to a refund from your bank under the terms and conditions of your agreement with your bank. A refund must be claimed within 8 weeks starting from the date on which your account was debited. ","invoiceAgreement":"I agree to allow Digital River Taiwan to handle the e-invoice related matters on my behalf to accelerate the return/refund process.","warrantyInformation":"Warranty Information","japaneseCommerceLaw":"Commercial Transaction Law"},"en_NO":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> is the authorised retailer and merchant providing e-commerce services for this shop.","termsOfSale":"Terms of Sale","confirmDisclosure":"By submitting my order, I agree to the <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and the <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> of {businessEntityName}.","consentsEula":" and the <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">End User License Agreement</a>","consentsTermsOfUse":" and the <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Terms of Use</a>","consentsCompanyName":" of {companyName}","californiaPrivacyRights":"Your California Privacy Rights","autoRenewPlanTermsBegin":"By completing your purchase, you authorize Digital River to automatically renew your purchased license or subscription for successive renewal terms as described in the product details. At the end of the selected period, we will automatically charge your stored payment information at the then current price in effect (plus tax) for each additional renewal period until you cancel. We will send you an e-mail reminder at least once prior to each renewal to remind you of your upcoming renewal and may change the renewal price for any upcoming renewal term by providing you with prior notice of the change by e-mail. The Digital River <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a>","autoRenewPlanTermsEnd":"  will apply to each renewal transaction. You may cancel your auto-renewal plan at any time by following the instructions provided in your order confirmation email.<br/><br/>I agree that Digital River may store my payment information for future purchases including the processing of any subsequent subscription renewals which may occur following the date of this order.","klarnaCreditActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. By continuing I accept the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_no/user\\">terms for the Klarna Shopping Service</a>, and confirm that I have read the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_no/privacy\\">Privacy Notice</a> and the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_no/cookie_purchase\\">Cookie Notice</a>. <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_no/invoice?credit_time=30\\">Terms & Conditions</a>","klarnaCreditRecurringActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. By continuing I accept the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_no/user\\">terms for the Klarna Shopping Service</a>, and confirm that I have read the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_no/privacy\\">Privacy Notice</a> and the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_no/cookie_purchase\\">Cookie Notice</a>. <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_no/invoice?credit_time=30\\">Terms & Conditions</a>","idealRecurringAgreement":"By clicking the box, you authorize Digital River to collect your first payment via iDEAL and use your IBAN to collect the subsequent subscription payments by SEPA direct debit. You can review your SEPA Direct Debit information after order submission. <br/><br/>As part of your rights, you are entitled to a refund from your bank under the terms and conditions of your agreement with your bank. A refund must be claimed within 8 weeks starting from the date on which your account was debited. ","invoiceAgreement":"I agree to allow Digital River Taiwan to handle the e-invoice related matters on my behalf to accelerate the return/refund process.","warrantyInformation":"Warranty Information","japaneseCommerceLaw":"Commercial Transaction Law"},"en_NZ":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> is the authorised retailer and merchant providing e-commerce services for this shop.","termsOfSale":"Terms of Sale","confirmDisclosure":"By submitting my order, I agree to the <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and the <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> of {businessEntityName}.","consentsEula":" and the <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">End User License Agreement</a>","consentsTermsOfUse":" and the <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Terms of Use</a>","consentsCompanyName":" of {companyName}","californiaPrivacyRights":"Your California Privacy Rights","autoRenewPlanTermsBegin":"By completing your purchase, you authorize Digital River to automatically renew your purchased license or subscription for successive renewal terms as described in the product details. At the end of the selected period, we will automatically charge your stored payment information at the then current price in effect (plus tax) for each additional renewal period until you cancel. We will send you an e-mail reminder at least once prior to each renewal to remind you of your upcoming renewal and may change the renewal price for any upcoming renewal term by providing you with prior notice of the change by e-mail. The Digital River <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a>","autoRenewPlanTermsEnd":"  will apply to each renewal transaction. You may cancel your auto-renewal plan at any time by following the instructions provided in your order confirmation email.<br/><br/>I agree that Digital River may store my payment information for future purchases including the processing of any subsequent subscription renewals which may occur following the date of this order.","klarnaCreditActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. By continuing I accept the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_nz/paylaterin4\\">Pay in 4 Terms</a> and the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_nz/user\\">Klarna Shopping Terms</a> and confirm that I have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_nz/privacy\\">Klarna\'s Privacy Policy</a>. I am aware a credit check might be done <a target=\\"_blank\\" href=\\"https://www.klarna.com/nz/customer-service/does-klarna-perform-a-credit-check/\\">(FAQ)</a>.","klarnaCreditRecurringActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. By continuing I accept the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_nz/paylaterin4\\">Pay in 4 Terms</a> and the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_nz/user\\">Klarna Shopping Terms</a> and confirm that I have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_nz/privacy\\">Klarna\'s Privacy Policy</a>. I am aware a credit check might be done <a target=\\"_blank\\" href=\\"https://www.klarna.com/nz/customer-service/does-klarna-perform-a-credit-check/\\">(FAQ)</a>.","agreeToTerms":"I have read and agree to the terms and charges above.","idealRecurringAgreement":"By clicking the box, you authorize Digital River to collect your first payment via iDEAL and use your IBAN to collect the subsequent subscription payments by SEPA direct debit. You can review your SEPA Direct Debit information after order submission. <br/><br/>As part of your rights, you are entitled to a refund from your bank under the terms and conditions of your agreement with your bank. A refund must be claimed within 8 weeks starting from the date on which your account was debited. ","mstsActiveAcceptance":"By selecting {payNow} you will be redirected to login to your TreviPay account, complete two-factor authentication to authorize your purchase.<span class=\\"{createAccountButtonTextClass}\\"><br /><br />Select Enroll NOW to create TreviPay Account.</span><br /><br />DISCLAIMER<br /><br />* All the purchase program accounts and credit lines under the Payment Terms program are issued by Multi Service Technology Solutions, Inc., a Florida USA incorporated company (“MSTS”).<br /><br />* {businessEntityName} is not a party to the Purchase Program Accountholder Agreement. {businessEntityName} is neither a lender nor a broker for the credit lines issued under the Payment Terms program.<br /><br />All the applications and your qualifications will be reviewed and decided by TreviPay. HERE is a link to <a href=\\"https://www.trevipay.com/privacy-center/\\" target=\\"_blank\\">TreviPay’s Privacy Center</a>.","invoiceAgreement":"I agree to allow Digital River Taiwan to handle the e-invoice related matters on my behalf to accelerate the return/refund process.","warrantyInformation":"Warranty Information","japaneseCommerceLaw":"Commercial Transaction Law"},"en_PR":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> is the authorised retailer and merchant providing e-commerce services for this shop.","termsOfSale":"Terms of Sale","confirmDisclosure":"By submitting my order, I agree to the <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and the <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> of {businessEntityName}.","consentsEula":" and the <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">End User License Agreement</a>","consentsTermsOfUse":" and the <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Terms of Use</a>","consentsCompanyName":" of {companyName}","californiaPrivacyRights":"Your California Privacy Rights","autoRenewPlanTermsBegin":"By completing your purchase, you authorize Digital River to automatically renew your purchased license or subscription for successive renewal terms as described in the product details. At the end of the selected period, we will automatically charge your stored payment information at the then current price in effect (plus tax) for each additional renewal period until you cancel. We will send you an e-mail reminder at least once prior to each renewal to remind you of your upcoming renewal and may change the renewal price for any upcoming renewal term by providing you with prior notice of the change by e-mail. The Digital River <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a>","autoRenewPlanTermsEnd":"  will apply to each renewal transaction. You may cancel your auto-renewal plan at any time by following the instructions provided in your order confirmation email.<br/><br/>I agree that Digital River may store my payment information for future purchases including the processing of any subsequent subscription renewals which may occur following the date of this order.","klarnaCreditActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. By continuing I accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_pr/user\\">Klarna\'s Services Terms</a> and confirm that I have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_pr/privacy\\">Klarna\'s Privacy Policy</a>.","klarnaCreditRecurringActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. By continuing I accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_pr/user\\">Klarna\'s Services Terms</a> and confirm that I have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_pr/privacy\\">Klarna\'s Privacy Policy</a>.","agreeToTerms":"I have read and agree to the terms and charges above.","idealRecurringAgreement":"By clicking the box, you authorize Digital River to collect your first payment via iDEAL and use your IBAN to collect the subsequent subscription payments by SEPA direct debit. You can review your SEPA Direct Debit information after order submission. <br/><br/>As part of your rights, you are entitled to a refund from your bank under the terms and conditions of your agreement with your bank. A refund must be claimed within 8 weeks starting from the date on which your account was debited. ","invoiceAgreement":"I agree to allow Digital River Taiwan to handle the e-invoice related matters on my behalf to accelerate the return/refund process.","warrantyInformation":"Warranty Information","japaneseCommerceLaw":"Commercial Transaction Law"},"en_SE":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> is the authorised retailer and merchant providing e-commerce services for this shop.","termsOfSale":"Terms of Sale","confirmDisclosure":"By submitting my order, I agree to the <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and the <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> of {businessEntityName}.","consentsEula":" and the <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">End User License Agreement</a>","consentsTermsOfUse":" and the <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Terms of Use</a>","consentsCompanyName":" of {companyName}","californiaPrivacyRights":"Your California Privacy Rights","autoRenewPlanTermsBegin":"By completing your purchase, you authorize Digital River to automatically renew your purchased license or subscription for successive renewal terms as described in the product details. At the end of the selected period, we will automatically charge your stored payment information at the then current price in effect (plus tax) for each additional renewal period until you cancel. We will send you an e-mail reminder at least once prior to each renewal to remind you of your upcoming renewal and may change the renewal price for any upcoming renewal term by providing you with prior notice of the change by e-mail. The Digital River <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a>","autoRenewPlanTermsEnd":"  will apply to each renewal transaction. You may cancel your auto-renewal plan at any time by following the instructions provided in your order confirmation email.<br/><br/>I agree that Digital River may store my payment information for future purchases including the processing of any subsequent subscription renewals which may occur following the date of this order.","klarnaCreditActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. By continuing I accept the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_se/user\\">terms for the Klarna Shopping Service</a>, and confirm that I have read the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_se/privacy\\">Privacy Notice</a> and the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_se/cookie_purchase\\">Cookie Notice</a>. <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_se/invoice?credit_time=30\\">Terms & Conditions</a>","klarnaCreditRecurringActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. By continuing I accept the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_se/user\\">terms for the Klarna Shopping Service</a>, and confirm that I have read the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_se/privacy\\">Privacy Notice</a> and the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_se/cookie_purchase\\">Cookie Notice</a>. <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_se/invoice?credit_time=30\\">Terms & Conditions</a>","idealRecurringAgreement":"By clicking the box, you authorize Digital River to collect your first payment via iDEAL and use your IBAN to collect the subsequent subscription payments by SEPA direct debit. You can review your SEPA Direct Debit information after order submission. <br/><br/>As part of your rights, you are entitled to a refund from your bank under the terms and conditions of your agreement with your bank. A refund must be claimed within 8 weeks starting from the date on which your account was debited. ","invoiceAgreement":"I agree to allow Digital River Taiwan to handle the e-invoice related matters on my behalf to accelerate the return/refund process.","warrantyInformation":"Warranty Information","japaneseCommerceLaw":"Commercial Transaction Law"},"en_SG":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> is the authorised retailer and merchant providing e-commerce services for this shop.","termsOfSale":"Terms of Sale","confirmDisclosure":"By submitting my order, I agree to the <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and the <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> of {businessEntityName}.","consentsEula":" and the <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">End User License Agreement</a>","consentsTermsOfUse":" and the <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Terms of Use</a>","consentsCompanyName":" of {companyName}","californiaPrivacyRights":"Your California Privacy Rights","autoRenewPlanTermsBegin":"By completing your purchase, you authorize Digital River to automatically renew your purchased license or subscription for successive renewal terms as described in the product details. At the end of the selected period, we will automatically charge your stored payment information at the then current price in effect (plus tax) for each additional renewal period until you cancel. We will send you an e-mail reminder at least once prior to each renewal to remind you of your upcoming renewal and may change the renewal price for any upcoming renewal term by providing you with prior notice of the change by e-mail. The Digital River <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a>","autoRenewPlanTermsEnd":"  will apply to each renewal transaction. You may cancel your auto-renewal plan at any time by following the instructions provided in your order confirmation email.<br/><br/>I agree that Digital River may store my payment information for future purchases including the processing of any subsequent subscription renewals which may occur following the date of this order.","klarnaCreditActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. By continuing I accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_sg/user\\">Klarna\'s Services Terms</a> and confirm that I have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_sg/privacy\\">Klarna\'s Privacy Policy</a>.","klarnaCreditRecurringActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. By continuing I accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_sg/user\\">Klarna\'s Services Terms</a> and confirm that I have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_sg/privacy\\">Klarna\'s Privacy Policy</a>.","agreeToTerms":"I have read and agree to the terms and charges above.","idealRecurringAgreement":"By clicking the box, you authorize Digital River to collect your first payment via iDEAL and use your IBAN to collect the subsequent subscription payments by SEPA direct debit. You can review your SEPA Direct Debit information after order submission. <br/><br/>As part of your rights, you are entitled to a refund from your bank under the terms and conditions of your agreement with your bank. A refund must be claimed within 8 weeks starting from the date on which your account was debited. ","invoiceAgreement":"I agree to allow Digital River Taiwan to handle the e-invoice related matters on my behalf to accelerate the return/refund process.","warrantyInformation":"Warranty Information","japaneseCommerceLaw":"Commercial Transaction Law"},"en_US":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> is the authorized reseller and merchant providing e-commerce services for this shop.","termsOfSale":"Terms of Sale","confirmDisclosure":"By submitting my order, I agree to the <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and the <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> of {businessEntityName}.","consentsEula":" and the <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">End User License Agreement</a>","consentsTermsOfUse":" and the <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Terms of Use</a>","consentsCompanyName":" of {companyName}","californiaPrivacyRights":"Your California Privacy Rights","autoRenewPlanTermsBegin":"By completing your purchase, you authorize Digital River to automatically renew your purchased license or subscription for successive renewal terms as described in the product details. At the end of the selected period, we will automatically charge your stored payment information at the then current price in effect (plus tax) for each additional renewal period until you cancel. We will send you an e-mail reminder at least once prior to each renewal to remind you of your upcoming renewal and may change the renewal price for any upcoming renewal term by providing you with prior notice of the change by e-mail. The Digital River <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a>","autoRenewPlanTermsEnd":"  will apply to each renewal transaction. You may cancel your auto-renewal plan at any time by following the instructions provided in your order confirmation email.<br/><br/>I agree that Digital River may store my payment information for future purchases including the processing of any subsequent subscription renewals which may occur following the date of this order.","klarnaCreditActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. By continuing I accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_us/user\\">Klarna\'s Services Terms</a> and confirm that I have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_us/privacy\\">Klarna\'s Privacy Policy</a>.","klarnaCreditRecurringActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. By continuing I accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_us/user\\">Klarna\'s Services Terms</a> and confirm that I have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_us/privacy\\">Klarna\'s Privacy Policy</a>.","agreeToTerms":"I have read and agree to the terms and charges above.","idealRecurringAgreement":"By clicking the box, you authorize Digital River to collect your first payment via iDEAL and use your IBAN to collect the subsequent subscription payments by SEPA direct debit. You can review your SEPA Direct Debit information after order submission. <br/><br/>As part of your rights, you are entitled to a refund from your bank under the terms and conditions of your agreement with your bank. A refund must be claimed within 8 weeks starting from the date on which your account was debited. ","mstsActiveAcceptance":"Select {payNow} to login to TreviPay, complete Two-factor authentication and confirm purchase.<span class=\\"{createAccountButtonTextClass}\\"><br /><br />Select Enroll Now to create TreviPay Account.</span><br /><br />DISCLAIMER<br /><br />* All the purchase program accounts and credit lines under the Payment Terms program are issued by Multi Service Technology Solutions, Inc., a Florida USA incorporated company (“MSTS”).<br /><br />* {businessEntityName} is not a party to the Purchase Program Accountholder Agreement. {businessEntityName} is neither a lender nor a broker for the credit lines issued under the Payment Terms program<br /><br />All the applications and your qualifications will be reviewed and decided by TreviPay. <a href=\\"https://www.trevipay.com/privacy-center/\\" target=\\"_blank\\">TreviPay’s Privacy Center.</a>","invoiceAgreement":"I agree to allow Digital River Taiwan to handle the e-invoice related matters on my behalf to accelerate the return/refund process.","warrantyInformation":"Warranty Information","japaneseCommerceLaw":"Commercial Transaction Law"},"en_ZA":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> is the authorised retailer and merchant providing e-commerce services for this shop.","termsOfSale":"Terms of Sale","confirmDisclosure":"By submitting my order, I agree to the <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and the <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> of {businessEntityName}.","consentsEula":" and the <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">End User License Agreement</a>","consentsTermsOfUse":" and the <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Terms of Use</a>","consentsCompanyName":" of {companyName}","californiaPrivacyRights":"Your California Privacy Rights","autoRenewPlanTermsBegin":"By completing your purchase, you authorize Digital River to automatically renew your purchased license or subscription for successive renewal terms as described in the product details. At the end of the selected period, we will automatically charge your stored payment information at the then current price in effect (plus tax) for each additional renewal period until you cancel. We will send you an e-mail reminder at least once prior to each renewal to remind you of your upcoming renewal and may change the renewal price for any upcoming renewal term by providing you with prior notice of the change by e-mail. The Digital River <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a>","autoRenewPlanTermsEnd":"  will apply to each renewal transaction. You may cancel your auto-renewal plan at any time by following the instructions provided in your order confirmation email.<br/><br/>I agree that Digital River may store my payment information for future purchases including the processing of any subsequent subscription renewals which may occur following the date of this order.","klarnaCreditActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. By continuing I accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_za/user\\">Klarna\'s Services Terms</a> and confirm that I have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_za/privacy\\">Klarna\'s Privacy Policy</a>.","klarnaCreditRecurringActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. By continuing I accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_za/user\\">Klarna\'s Services Terms</a> and confirm that I have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_za/privacy\\">Klarna\'s Privacy Policy</a>.","agreeToTerms":"I have read and agree to the terms and charges above.","idealRecurringAgreement":"By clicking the box, you authorize Digital River to collect your first payment via iDEAL and use your IBAN to collect the subsequent subscription payments by SEPA direct debit. You can review your SEPA Direct Debit information after order submission. <br/><br/>As part of your rights, you are entitled to a refund from your bank under the terms and conditions of your agreement with your bank. A refund must be claimed within 8 weeks starting from the date on which your account was debited. ","invoiceAgreement":"I agree to allow Digital River Taiwan to handle the e-invoice related matters on my behalf to accelerate the return/refund process.","warrantyInformation":"Warranty Information","japaneseCommerceLaw":"Commercial Transaction Law"},"es_AR":{"cancellationRights":"Derechos de cancelación","cookiePolicy":"Cookies","legalNotice":"Aviso legal","privacyPolicy":"Política de privacidad","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> es el revendedor y comercializador autorizado de los productos ofrecidos en esta tienda.","termsOfSale":"Términos de la venta","confirmDisclosure":"Al enviar mi pedido, acepto los <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Términos de ventas</a> y la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Política de privacidad</a> de {businessEntityName}.","consentsEula":" y el <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Acuerdo de licencia del usuario final</a>","consentsTermsOfUse":" y los <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Condiciones de uso</a>","consentsCompanyName":" de {companyName}","californiaPrivacyRights":"Tus derechos de privacidad en California","autoRenewPlanTermsBegin":"Al completar su compra, autoriza a Digital River a renovar automáticamente su suscripción o licencia adquirida en plazos de renovación sucesivos, tal y como se describe en los detalles del producto. Al final del período seleccionado, se cargará automáticamente su información de pago almacenada, según el precio vigente en ese momento (más impuestos), para cada período de renovación adicional hasta su cancelación. Antes de cada renovación, le enviaremos al menos un recordatorio por correo electrónico para informarle de su próxima renovación. El precio de los sucesivos períodos de renovación puede cambiar, en cuyo caso se le notificará por correo electrónico con antelación. Los <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Términos de venta</a> y la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Política de confidencialidad</a> de Digital River","autoRenewPlanTermsEnd":" se aplicarán en todas las transacciones de renovación.Puede cancelar su plan de renovación automática en cualquier momento. Para ello, siga las instrucciones que encontrará en el correo de confirmación de su pedido.<br><br>Autorizo a Digital River a almacenar mi información de pago para futuras compras, incluido el procesamiento de cualquier renovación de suscripción que se produzca después de la fecha de este pedido.","agreeToTerms":"He leído y acepto los términos y cargos arriba detallados.","idealRecurringAgreement":"Al hacer clic en la casilla, autoriza a Digital River a cobrar su primer pago a través de iDEAL y a utilizar su IBAN para cobrar los siguientes pagos de la suscripción mediante domiciliación bancaria SEPA. Puede revisar la información de su adeudo directo SEPA después de enviar el pedido. <br/><br/>Tiene derecho a recibir un reembolso de su banco según los términos y condiciones de su acuerdo con su banco. Cualquier reembolso deberá solicitarse en un plazo máximo de 8 semanas desde la fecha en la que se realice el adeudo. ","invoiceAgreement":"Acepto permitir que Digital River Taiwan maneje los asuntos relacionados con la factura electrónica en mi nombre para acelerar el proceso de devolución/reembolso","warrantyInformation":"Información de garantía","japaneseCommerceLaw":"Ley de Transacciones Comerciales"},"es_CL":{"cancellationRights":"Derechos de cancelación","cookiePolicy":"Cookies","legalNotice":"Aviso legal","privacyPolicy":"Política de privacidad","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> es el revendedor y comercializador autorizado de los productos ofrecidos en esta tienda.","termsOfSale":"Términos de la venta","confirmDisclosure":"Al enviar mi pedido, acepto los <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Términos de ventas</a> y la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Política de privacidad</a> de {businessEntityName}.","consentsEula":" y el <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Acuerdo de licencia del usuario final</a>","consentsTermsOfUse":" y los <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Condiciones de uso</a>","consentsCompanyName":" de {companyName}","californiaPrivacyRights":"Tus derechos de privacidad en California","autoRenewPlanTermsBegin":"Al completar su compra, autoriza a Digital River a renovar automáticamente su suscripción o licencia adquirida en plazos de renovación sucesivos, tal y como se describe en los detalles del producto. Al final del período seleccionado, se cargará automáticamente su información de pago almacenada, según el precio vigente en ese momento (más impuestos), para cada período de renovación adicional hasta su cancelación. Antes de cada renovación, le enviaremos al menos un recordatorio por correo electrónico para informarle de su próxima renovación. El precio de los sucesivos períodos de renovación puede cambiar, en cuyo caso se le notificará por correo electrónico con antelación. Los <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Términos de venta</a> y la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Política de confidencialidad</a> de Digital River","autoRenewPlanTermsEnd":" se aplicarán en todas las transacciones de renovación.Puede cancelar su plan de renovación automática en cualquier momento. Para ello, siga las instrucciones que encontrará en el correo de confirmación de su pedido.<br><br>Autorizo a Digital River a almacenar mi información de pago para futuras compras, incluido el procesamiento de cualquier renovación de suscripción que se produzca después de la fecha de este pedido.","agreeToTerms":"He leído y acepto los términos y cargos arriba detallados.","idealRecurringAgreement":"Al hacer clic en la casilla, autoriza a Digital River a cobrar su primer pago a través de iDEAL y a utilizar su IBAN para cobrar los siguientes pagos de la suscripción mediante domiciliación bancaria SEPA. Puede revisar la información de su adeudo directo SEPA después de enviar el pedido. <br/><br/>Tiene derecho a recibir un reembolso de su banco según los términos y condiciones de su acuerdo con su banco. Cualquier reembolso deberá solicitarse en un plazo máximo de 8 semanas desde la fecha en la que se realice el adeudo. ","invoiceAgreement":"Acepto permitir que Digital River Taiwan maneje los asuntos relacionados con la factura electrónica en mi nombre para acelerar el proceso de devolución/reembolso","warrantyInformation":"Información de garantía","japaneseCommerceLaw":"Ley de Transacciones Comerciales"},"es_CO":{"cancellationRights":"Derechos de cancelación","cookiePolicy":"Cookies","legalNotice":"Aviso legal","privacyPolicy":"Política de privacidad","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> es el revendedor y comercializador autorizado de los productos ofrecidos en esta tienda.","termsOfSale":"Términos de la venta","confirmDisclosure":"Al enviar mi pedido, acepto los <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Términos de ventas</a> y la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Política de privacidad</a> de {businessEntityName}.","consentsEula":" y el <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Acuerdo de licencia del usuario final</a>","consentsTermsOfUse":" y los <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Condiciones de uso</a>","consentsCompanyName":" de {companyName}","californiaPrivacyRights":"Tus derechos de privacidad en California","autoRenewPlanTermsBegin":"Al completar su compra, autoriza a Digital River a renovar automáticamente su suscripción o licencia adquirida en plazos de renovación sucesivos, tal y como se describe en los detalles del producto. Al final del período seleccionado, se cargará automáticamente su información de pago almacenada, según el precio vigente en ese momento (más impuestos), para cada período de renovación adicional hasta su cancelación. Antes de cada renovación, le enviaremos al menos un recordatorio por correo electrónico para informarle de su próxima renovación. El precio de los sucesivos períodos de renovación puede cambiar, en cuyo caso se le notificará por correo electrónico con antelación. Los <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Términos de venta</a> y la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Política de confidencialidad</a> de Digital River","autoRenewPlanTermsEnd":" se aplicarán en todas las transacciones de renovación.Puede cancelar su plan de renovación automática en cualquier momento. Para ello, siga las instrucciones que encontrará en el correo de confirmación de su pedido.<br><br>Autorizo a Digital River a almacenar mi información de pago para futuras compras, incluido el procesamiento de cualquier renovación de suscripción que se produzca después de la fecha de este pedido.","agreeToTerms":"He leído y acepto los términos y cargos arriba detallados.","idealRecurringAgreement":"Al hacer clic en la casilla, autoriza a Digital River a cobrar su primer pago a través de iDEAL y a utilizar su IBAN para cobrar los siguientes pagos de la suscripción mediante domiciliación bancaria SEPA. Puede revisar la información de su adeudo directo SEPA después de enviar el pedido. <br/><br/>Tiene derecho a recibir un reembolso de su banco según los términos y condiciones de su acuerdo con su banco. Cualquier reembolso deberá solicitarse en un plazo máximo de 8 semanas desde la fecha en la que se realice el adeudo. ","invoiceAgreement":"Acepto permitir que Digital River Taiwan maneje los asuntos relacionados con la factura electrónica en mi nombre para acelerar el proceso de devolución/reembolso","warrantyInformation":"Información de garantía","japaneseCommerceLaw":"Ley de Transacciones Comerciales"},"es_EC":{"cancellationRights":"Derechos de cancelación","cookiePolicy":"Cookies","legalNotice":"Aviso legal","privacyPolicy":"Política de privacidad","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> es el revendedor y comercializador autorizado de los productos ofrecidos en esta tienda.","termsOfSale":"Términos de la venta","confirmDisclosure":"Al enviar mi pedido, acepto los <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Términos de ventas</a> y la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Política de privacidad</a> de {businessEntityName}.","consentsEula":" y el <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Acuerdo de licencia del usuario final</a>","consentsTermsOfUse":" y los <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Condiciones de uso</a>","consentsCompanyName":" de {companyName}","californiaPrivacyRights":"Tus derechos de privacidad en California","autoRenewPlanTermsBegin":"Al completar su compra, autoriza a Digital River a renovar automáticamente su suscripción o licencia adquirida en plazos de renovación sucesivos, tal y como se describe en los detalles del producto. Al final del período seleccionado, se cargará automáticamente su información de pago almacenada, según el precio vigente en ese momento (más impuestos), para cada período de renovación adicional hasta su cancelación. Antes de cada renovación, le enviaremos al menos un recordatorio por correo electrónico para informarle de su próxima renovación. El precio de los sucesivos períodos de renovación puede cambiar, en cuyo caso se le notificará por correo electrónico con antelación. Los <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Términos de venta</a> y la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Política de confidencialidad</a> de Digital River","autoRenewPlanTermsEnd":" se aplicarán en todas las transacciones de renovación.Puede cancelar su plan de renovación automática en cualquier momento. Para ello, siga las instrucciones que encontrará en el correo de confirmación de su pedido.<br><br>Autorizo a Digital River a almacenar mi información de pago para futuras compras, incluido el procesamiento de cualquier renovación de suscripción que se produzca después de la fecha de este pedido.","agreeToTerms":"He leído y acepto los términos y cargos arriba detallados.","idealRecurringAgreement":"Al hacer clic en la casilla, autoriza a Digital River a cobrar su primer pago a través de iDEAL y a utilizar su IBAN para cobrar los siguientes pagos de la suscripción mediante domiciliación bancaria SEPA. Puede revisar la información de su adeudo directo SEPA después de enviar el pedido. <br/><br/>Tiene derecho a recibir un reembolso de su banco según los términos y condiciones de su acuerdo con su banco. Cualquier reembolso deberá solicitarse en un plazo máximo de 8 semanas desde la fecha en la que se realice el adeudo. ","invoiceAgreement":"Acepto permitir que Digital River Taiwan maneje los asuntos relacionados con la factura electrónica en mi nombre para acelerar el proceso de devolución/reembolso","warrantyInformation":"Información de garantía","japaneseCommerceLaw":"Ley de Transacciones Comerciales"},"es_ES":{"cancellationRights":"Derechos de cancelación","cookiePolicy":"Cookies","legalNotice":"Aviso legal","privacyPolicy":"Política de confidencialidad","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> es el distribuidor y el vendedor autorizado de los productos y servicios ofrecidos en esta tienda virtual.","termsOfSale":"Condiciones de venta","confirmDisclosure":"Al enviar mi pedido, acepto los <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Términos de ventas</a> y la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Política de privacidad</a> de {businessEntityName}.","consentsEula":" y el <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Acuerdo de licencia del usuario final</a>","consentsTermsOfUse":" y los <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Condiciones de uso</a>","consentsCompanyName":" de {companyName}","californiaPrivacyRights":"Tus derechos de privacidad en California","autoRenewPlanTermsBegin":"Al completar su compra, autoriza a Digital River a renovar automáticamente su suscripción o licencia adquirida en plazos de renovación sucesivos, tal y como se describe en los detalles del producto. Al final del período seleccionado, se cargará automáticamente su información de pago almacenada, según el precio vigente en ese momento (más impuestos), para cada período de renovación adicional hasta su cancelación. Antes de cada renovación, le enviaremos al menos un recordatorio por correo electrónico para informarle de su próxima renovación. El precio de los sucesivos períodos de renovación puede cambiar, en cuyo caso se le notificará por correo electrónico con antelación. Los <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Términos de venta</a> y la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Política de confidencialidad</a> de Digital River","autoRenewPlanTermsEnd":" se aplicarán en todas las transacciones de renovación.Puede cancelar su plan de renovación automática en cualquier momento. Para ello, siga las instrucciones que encontrará en el correo de confirmación de su pedido.<br><br>Autorizo a Digital River a almacenar mi información de pago para futuras compras, incluido el procesamiento de cualquier renovación de suscripción que se produzca después de la fecha de este pedido.","klarnaCreditActiveAcceptance":"Al continuar, se le presentarán las opciones de pago proporcionadas por Klarna. Al continuar, acepto el <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/es_es/user\\">Servicio de Compras de Klarna</a> y confirmo que he leído el <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/es_es/privacy\\">Aviso de Privacidad</a> y el <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/es_es/cookie_purchase\\">Aviso de Cookies</a>.","klarnaCreditRecurringActiveAcceptance":"Al continuar, se le presentarán las opciones de pago proporcionadas por Klarna. Al continuar, acepto el <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/es_es/user\\">Servicio de Compras de Klarna</a> y confirmo que he leído el <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/es_es/privacy\\">Aviso de Privacidad</a> y el <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/es_es/cookie_purchase\\">Aviso de Cookies</a>.","agreeToTerms":"He leído y acepto las condiciones y los cobros anteriormente indicados.","idealRecurringAgreement":"Al hacer clic en la casilla, autoriza a Digital River a cobrar su primer pago a través de iDEAL y a utilizar su IBAN para cobrar los siguientes pagos de la suscripción mediante domiciliación bancaria SEPA. Puede revisar la información de su adeudo directo SEPA después de enviar el pedido. <br/><br/>Tiene derecho a recibir un reembolso de su banco según los términos y condiciones de su acuerdo con su banco. Cualquier reembolso deberá solicitarse en un plazo máximo de 8 semanas desde la fecha en la que se realice el adeudo. ","invoiceAgreement":"Acepto permitir que Digital River Taiwan maneje los asuntos relacionados con la factura electrónica en mi nombre para acelerar el proceso de devolución/reembolso","mstsActiveAcceptance":"Seleccione {payNow} para iniciar sesión en TreviPay, completar la autenticación de DOS factores y confirmar la compra.<span class=\\"{createAccountButtonTextClass}\\"><br /><br />Seleccione \'Regístrate ahora\' para crear una cuenta TreviPay.</span><br /><br />* Todas las cuentas del programa de compras y las líneas de crédito bajo el programa Condiciones de pago son emitidas por Multi Service Technology Solutions, Inc., una compañía incorporada en Florida USA (\\"MSTS\\")<br /><br />DESCARGO DE RESPONSABILIDAD<br /><br />* {businessEntityName} no es parte del Acuerdo de titulares de cuentas del Programa de compras. {businessEntityName} no es un prestamista ni un corredor de líneas de crédito emitidas bajo el programa Condiciones de pago.<br /><br />Todas las solicitudes y sus calificaciones serán revisadas y decididas por TreviPay. <a href=\\"https://www.trevipay.com/privacy-center/\\" target=\\"_blank\\">Aquí hay un enlace al Centro de privacidad de TreviPay.</a>","warrantyInformation":"Información de garantía","japaneseCommerceLaw":"Ley de Transacciones Comerciales"},"es_MX":{"cancellationRights":"Derechos de cancelación","cookiePolicy":"Cookies","legalNotice":"Aviso legal","privacyPolicy":"Política de privacidad","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> es el revendedor y comercializador autorizado de los productos ofrecidos en esta tienda.","termsOfSale":"Términos de la venta","confirmDisclosure":"Al enviar mi pedido, acepto los <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Términos de ventas</a> y la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Política de privacidad</a> de {businessEntityName}.","consentsEula":" y el <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Acuerdo de licencia del usuario final</a>","consentsTermsOfUse":" y los <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Términos de uso</a>","consentsCompanyName":" de {companyName}","californiaPrivacyRights":"Tus derechos de privacidad en California","autoRenewPlanTermsBegin":"Al completar su compra, autoriza a Digital River a renovar automáticamente su suscripción o licencia adquirida en plazos de renovación sucesivos, tal y como se describe en los detalles del producto. Al final del período seleccionado, se cargará automáticamente su información de pago almacenada, según el precio vigente en ese momento (más impuestos), para cada período de renovación adicional hasta su cancelación. Antes de cada renovación, le enviaremos al menos un recordatorio por correo electrónico para informarle de su próxima renovación. El precio de los sucesivos períodos de renovación puede cambiar, en cuyo caso se le notificará por correo electrónico con antelación. Los <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Términos de venta</a> y la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Política de confidencialidad</a> de Digital River","autoRenewPlanTermsEnd":" se aplicarán en todas las transacciones de renovación.Puede cancelar su plan de renovación automática en cualquier momento. Para ello, siga las instrucciones que encontrará en el correo de confirmación de su pedido.<br><br>Autorizo a Digital River a almacenar mi información de pago para futuras compras, incluido el procesamiento de cualquier renovación de suscripción que se produzca después de la fecha de este pedido.","agreeToTerms":"He leído y acepto los términos y cargos arriba detallados.","idealRecurringAgreement":"Al hacer clic en la casilla, autoriza a Digital River a cobrar su primer pago a través de iDEAL y a utilizar su IBAN para cobrar los siguientes pagos de la suscripción mediante domiciliación bancaria SEPA. Puede revisar la información de su adeudo directo SEPA después de enviar el pedido. <br/><br/>Tiene derecho a recibir un reembolso de su banco según los términos y condiciones de su acuerdo con su banco. Cualquier reembolso deberá solicitarse en un plazo máximo de 8 semanas desde la fecha en la que se realice el adeudo. ","invoiceAgreement":"Acepto permitir que Digital River Taiwan maneje los asuntos relacionados con la factura electrónica en mi nombre para acelerar el proceso de devolución/reembolso","mstsActiveAcceptance":"Seleccione {payNow} para iniciar sesión en TreviPay, completar la autenticación de DOS factores y confirmar la compra.<span class=\\"{createAccountButtonTextClass}\\"><br /><br />Seleccione \'Regístrate ahora\' para crear una cuenta TreviPay.</span><br /><br />* Todas las cuentas del programa de compras y las líneas de crédito bajo el programa Condiciones de pago son emitidas por Multi Service Technology Solutions, Inc., una compañía incorporada en Florida USA (\\"MSTS\\")<br /><br />DESCARGO DE RESPONSABILIDAD<br /><br />* {businessEntityName} no es parte del Acuerdo de titulares de cuentas del Programa de compras. {businessEntityName} no es un prestamista ni un corredor de líneas de crédito emitidas bajo el programa Condiciones de pago.<br /><br />Todas las solicitudes y sus calificaciones serán revisadas y decididas por TreviPay. <a href=\\"https://www.trevipay.com/privacy-center/\\" target=\\"_blank\\">Aquí hay un enlace al Centro de privacidad de TreviPay.</a>","warrantyInformation":"Información de garantía","japaneseCommerceLaw":"Ley de Transacciones Comerciales"},"es_PE":{"cancellationRights":"Derechos de cancelación","cookiePolicy":"Cookies","legalNotice":"Aviso legal","privacyPolicy":"Política de privacidad","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> es el revendedor y comercializador autorizado de los productos ofrecidos en esta tienda.","termsOfSale":"Términos de la venta","confirmDisclosure":"Al enviar mi pedido, acepto los <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Términos de ventas</a> y la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Política de privacidad</a> de {businessEntityName}.","consentsEula":" y el <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Acuerdo de licencia del usuario final</a>","consentsTermsOfUse":" y los <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Condiciones de uso</a>","consentsCompanyName":" de {companyName}","californiaPrivacyRights":"Tus derechos de privacidad en California","autoRenewPlanTermsBegin":"Al completar su compra, autoriza a Digital River a renovar automáticamente su suscripción o licencia adquirida en plazos de renovación sucesivos, tal y como se describe en los detalles del producto. Al final del período seleccionado, se cargará automáticamente su información de pago almacenada, según el precio vigente en ese momento (más impuestos), para cada período de renovación adicional hasta su cancelación. Antes de cada renovación, le enviaremos al menos un recordatorio por correo electrónico para informarle de su próxima renovación. El precio de los sucesivos períodos de renovación puede cambiar, en cuyo caso se le notificará por correo electrónico con antelación. Los <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Términos de venta</a> y la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Política de confidencialidad</a> de Digital River","autoRenewPlanTermsEnd":" se aplicarán en todas las transacciones de renovación.Puede cancelar su plan de renovación automática en cualquier momento. Para ello, siga las instrucciones que encontrará en el correo de confirmación de su pedido.<br><br>Autorizo a Digital River a almacenar mi información de pago para futuras compras, incluido el procesamiento de cualquier renovación de suscripción que se produzca después de la fecha de este pedido.","agreeToTerms":"He leído y acepto los términos y cargos arriba detallados.","idealRecurringAgreement":"Al hacer clic en la casilla, autoriza a Digital River a cobrar su primer pago a través de iDEAL y a utilizar su IBAN para cobrar los siguientes pagos de la suscripción mediante domiciliación bancaria SEPA. Puede revisar la información de su adeudo directo SEPA después de enviar el pedido. <br/><br/>Tiene derecho a recibir un reembolso de su banco según los términos y condiciones de su acuerdo con su banco. Cualquier reembolso deberá solicitarse en un plazo máximo de 8 semanas desde la fecha en la que se realice el adeudo. ","invoiceAgreement":"Acepto permitir que Digital River Taiwan maneje los asuntos relacionados con la factura electrónica en mi nombre para acelerar el proceso de devolución/reembolso","warrantyInformation":"Información de garantía","japaneseCommerceLaw":"Ley de Transacciones Comerciales"},"es_VE":{"cancellationRights":"Derechos de cancelación","cookiePolicy":"Cookies","legalNotice":"Aviso legal","privacyPolicy":"Política de privacidad","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> es el revendedor y comercializador autorizado de los productos ofrecidos en esta tienda.","termsOfSale":"Términos de la venta","confirmDisclosure":"Al enviar mi pedido, acepto los <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Términos de ventas</a> y la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Política de privacidad</a> de {businessEntityName}.","consentsEula":" y el <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Acuerdo de licencia del usuario final</a>","consentsTermsOfUse":" y los <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Condiciones de uso</a>","consentsCompanyName":" de {companyName}","californiaPrivacyRights":"Tus derechos de privacidad en California","autoRenewPlanTermsBegin":"Al completar su compra, autoriza a Digital River a renovar automáticamente su suscripción o licencia adquirida en plazos de renovación sucesivos, tal y como se describe en los detalles del producto. Al final del período seleccionado, se cargará automáticamente su información de pago almacenada, según el precio vigente en ese momento (más impuestos), para cada período de renovación adicional hasta su cancelación. Antes de cada renovación, le enviaremos al menos un recordatorio por correo electrónico para informarle de su próxima renovación. El precio de los sucesivos períodos de renovación puede cambiar, en cuyo caso se le notificará por correo electrónico con antelación. Los <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Términos de venta</a> y la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Política de confidencialidad</a> de Digital River","autoRenewPlanTermsEnd":" se aplicarán en todas las transacciones de renovación.Puede cancelar su plan de renovación automática en cualquier momento. Para ello, siga las instrucciones que encontrará en el correo de confirmación de su pedido.<br><br>Autorizo a Digital River a almacenar mi información de pago para futuras compras, incluido el procesamiento de cualquier renovación de suscripción que se produzca después de la fecha de este pedido.","agreeToTerms":"He leído y acepto los términos y cargos arriba detallados.","idealRecurringAgreement":"Al hacer clic en la casilla, autoriza a Digital River a cobrar su primer pago a través de iDEAL y a utilizar su IBAN para cobrar los siguientes pagos de la suscripción mediante domiciliación bancaria SEPA. Puede revisar la información de su adeudo directo SEPA después de enviar el pedido. <br/><br/>Tiene derecho a recibir un reembolso de su banco según los términos y condiciones de su acuerdo con su banco. Cualquier reembolso deberá solicitarse en un plazo máximo de 8 semanas desde la fecha en la que se realice el adeudo. ","invoiceAgreement":"Acepto permitir que Digital River Taiwan maneje los asuntos relacionados con la factura electrónica en mi nombre para acelerar el proceso de devolución/reembolso","warrantyInformation":"Información de garantía","japaneseCommerceLaw":"Ley de Transacciones Comerciales"},"et_EE":{"privacyPolicy":"Privaatsuspoliitika","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> on sellele kauplusele e-kaubanduse teenuseid osutav volitatud edasimüüja.","termsOfSale":"Tingimused","confirmDisclosure":"","autoRenewPlanTermsBegin":"","autoRenewPlanTermsEnd":"","warrantyInformation":"Garantii teave"},"fi_FI":{"cancellationRights":"Peruutusoikeus","cookiePolicy":"Evästeet","legalNotice":"Lainmukainen tiedotus","privacyPolicy":"Yksityisyyden suoja","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> on valtuutettu jälleenmyyjä, joka myy tässä kaupassa tarjolla olevia tuotteita ja palveluja.","termsOfSale":"Myyntiehdot","confirmDisclosure":"Lähettämällä tilaukseni hyväksyn {businessEntityName} <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Myyntiehdot</a> ja <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Tietosuojamenettelyn</a>.","consentsEula":" ja <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Loppukäyttäjän lisenssisopimus</a>","consentsTermsOfUse":" ja <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Käyttöehdot</a>","consentsCompanyName":" of {companyName}","californiaPrivacyRights":"Kalifornian yksityisyysoikeutesi","autoRenewPlanTermsBegin":"Suorittamalla ostoksesi valtuutat Digital Riverin uusimaan automaattisesti ostamasi lisenssin tai tilauksesi peräkkäisillä uusimisehdoilla tuotetiedoissa kuvatulla tavalla. Valitun jakson lopussa veloitamme automaattisesti tallennetut maksutietosi kulloinkin voimassa olevalla hinnalla (plus alv) jokaiselta uusintajaksolta, kunnes peruutat tilauksen. Lähetämme sinulle sähköpostimuistutuksen vähintään kerran ennen jokaista uusimista tulevasta uusimisesta muistuttamiseksi ja voimme muuttaa minkä tahansa tulevan automaattisen uusinnan hinnan ilmoittamalla sinulle etukäteen tulevasta muutoksesta. Digital Riverin <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">myyntiehdot</a> ja <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">yksityisyydensuojakäytäntö</a>","autoRenewPlanTermsEnd":" koskevat jokaista uusintaa. Voit peruuttaa automaattisen uusintasuunnitelman milloin tahansa tilauksesi mukana toimitetun vahvistussähköpostin ohjeiden mukaan.<br><br>Hyväksyn, että Digital River voi tallentaa maksutietoni tulevia ostoksia sekä tämän tilauksen jälkeen mahdollisesti tehtävien tilausuusintojen käsittelyä varten.","klarnaCreditActiveAcceptance":"Kun painat MAKSA NYT-painiketta, saat näkyviin Klarnan tarjoamat maksutavat. Jatkamalla hyväksyn <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/fi_fi/user\\">Klarnan shoppailupalvelun käyttöehdot</a> ja vahvistan lukeneeni <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/fi_fi/privacy\\">tietosuoja</a>- ja <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/fi_fi/cookie_purchase\\">evästekäytännön</a>. <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/fi_fi/invoice?credit_time=30\\">Ehdot</a>","klarnaCreditRecurringActiveAcceptance":"Kun painat MAKSA NYT-painiketta, saat näkyviin Klarnan tarjoamat maksutavat. Jatkamalla hyväksyn <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/fi_fi/user\\">Klarnan shoppailupalvelun käyttöehdot</a> ja vahvistan lukeneeni <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/fi_fi/privacy\\">tietosuoja</a>- ja <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/fi_fi/cookie_purchase\\">evästekäytännön</a>. <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/fi_fi/invoice?credit_time=30\\">Ehdot</a>","agreeToTerms":"Olen lukenut ja hyväksyn yllä olevat ehdot ja maksut.","invoiceAgreement":"Hyväksyn, että sallin Digital River Taiwanin hoitaa puolestani sähköiseen laskutukseen liittyvät asiat nopeuttaakseen palautus-/hyvitysprosessia.","warrantyInformation":"Takuuta koskevat tiedot","japaneseCommerceLaw":"Kaupallisia liiketoimia koskeva laki"},"fr_BE":{"cancellationRights":"Droits d\'annulation","cookiePolicy":"Témoins de connexion","legalNotice":"Mentions legales","privacyPolicy":"Politique de confidentialité","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> est le revendeur et marchand agréé pour les produits et services proposés au sein de ce magasin.","termsOfSale":"Conditions de vente","confirmDisclosure":"En envoyant ma commande, j’accepte les <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Conditions de vente</a> et la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Politique de confidentialité</a> de {businessEntityName}.","consentsEula":" et le <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Contrat de licence utilisateur final</a>","consentsTermsOfUse":" et les <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Conditions générales d&#39;utilisation</a>","consentsCompanyName":" de {companyName}","californiaPrivacyRights":"Vos droits de confidentialité en Californie","autoRenewPlanTermsBegin":"En effectuant votre achat, vous autorisez Digital River à renouveler automatiquement la licence ou l’abonnement que vous avez acheté pour les périodes de renouvellement successives décrites dans les informations du produit. À la fin de la période sélectionnée, nous facturerons automatiquement vos informations de paiement stockées au prix en vigueur (plus taxes) pour chaque période de renouvellement supplémentaire jusqu’à ce que vous l’annuliez. Au moins une fois avant chaque renouvellement, nous vous enverrons un rappel par courrier électronique pour vous rappeler le renouvellement imminent et nous pourrons modifier le prix de renouvellement pour toute période de renouvellement future en vous envoyant un préavis de modification par courrier électronique. Les <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Conditions de Vente</a> et la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Politique de confidentialité</a> de Digital River","autoRenewPlanTermsEnd":" s\'appliqueront à chaque transaction de renouvellement. Vous pouvez annuler votre plan de renouvellement automatique à tout moment en suivant les instructions fournies dans votre e-mail de confirmation de commande.<br/><br/>J\'accepte que Digital River puisse stocker mes informations de paiement pour des achats ultérieurs, y compris le traitement de tout renouvellement d\'abonnement à venir qui pourrait avoir lieu après la date de cette commande","klarnaCreditActiveAcceptance":"En procédant, les méthodes de paiement fournies par Klarna vous seront présentées. En continuant, j\'accepte les <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/fr_be/user\\">conditions générales d\'utilisation de l\'Expérience Shopping Klarna</a>, et du produit <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/fr_be/invoice?credit_time=30\\">Payer plus tard</a>, et confirme avoir lu l\'Avis de <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/fr_be/privacy\\">confidentialité et la Politique</a> en <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/fr_fr/cookie_purchase\\">matière de cookies</a>.","klarnaCreditRecurringActiveAcceptance":"En procédant, les méthodes de paiement fournies par Klarna vous seront présentées. En continuant, j\'accepte les <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/fr_be/user\\">conditions générales d\'utilisation de l\'Expérience Shopping Klarna</a>, et du produit <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/fr_be/invoice?credit_time=30\\">Payer plus tard</a>, et confirme avoir lu l\'Avis de <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/fr_be/privacy\\">confidentialité et la Politique</a> en <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/fr_fr/cookie_purchase\\">matière de cookies</a>.","agreeToTerms":"J\'ai lu et j\'accepte les Conditions générales de vente et les frais ci-dessus.","idealRecurringAgreement":"En cliquant sur la case, vous autorisez Digital River à percevoir votre premier paiement par iDEAL et à utiliser votre IBAN pour percevoir les paiements d\'abonnement suivants par prélèvement SEPA. Vous pouvez consulter les informations relatives à votre prélèvement SEPA après la soumission de votre commande. <br/><br/>Vous bénéficiez du droit d\'être remboursé par votre banque suivant les conditions décrites dans la convention que vous avez passée avec elle. Une demande de remboursement doit être présentée dans les 8 semaines suivant la date de débit de votre compte pour un prélèvement autorisé. ","invoiceAgreement":"J\'accepte de permettre à Digital River Taiwan de gérer les questions liées aux factures électroniques en mon nom afin d\'accélérer le processus de retour/remboursement.","warrantyInformation":"Informations sur la garantie","japaneseCommerceLaw":"Loi sur les transactions commerciales"},"fr_CA":{"cancellationRights":"Droits d\'annulation","cookiePolicy":"Témoins","legalNotice":"Mentions legales","privacyPolicy":"Politique sur la confidentialité","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> est le revendeur et commerçant autorisé fournissant les services de commerce électronique pour ce magasin.","termsOfSale":"Conditions de vente","confirmDisclosure":"En soumettant ma commande, j\'accepte les <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Conditions de vente</a> et la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Politique de confidentialité</a> de {businessEntityName}.","consentsEula":" et le <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Contrat de licence de l&#39;utilisateur final</a>","consentsTermsOfUse":" et les <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Conditions d&#39;utilisation</a>","consentsCompanyName":" de {companyName}","californiaPrivacyRights":"Vos droits à la vie privée en Californie","autoRenewPlanTermsBegin":"En effectuant votre achat, vous autorisez Digital River à renouveler automatiquement la licence ou l’abonnement que vous avez acheté pour les périodes de renouvellement successives décrites dans les informations du produit. À la fin de la période sélectionnée, nous facturerons automatiquement vos informations de paiement stockées au prix en vigueur (plus taxes) pour chaque période de renouvellement supplémentaire jusqu’à ce que vous l’annuliez. Au moins une fois avant chaque renouvellement, nous vous enverrons un rappel par courrier électronique pour vous rappeler le renouvellement imminent et nous pourrons modifier le prix de renouvellement pour toute période de renouvellement future en vous envoyant un préavis de modification par courrier électronique. Les <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Conditions de Vente</a> et la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Politique de confidentialité</a> de Digital River","autoRenewPlanTermsEnd":" s\'appliqueront à chaque transaction de renouvellement. Vous pouvez annuler votre plan de renouvellement automatique à tout moment en suivant les instructions fournies dans votre e-mail de confirmation de commande.<br/><br/>J\'accepte que Digital River puisse stocker mes informations de paiement pour des achats ultérieurs, y compris le traitement de tout renouvellement d\'abonnement à venir qui pourrait avoir lieu après la date de cette commande","klarnaCreditActiveAcceptance":"En continuant, vous serez présenté avec les options de paiement fournies par Klarna. Pour accéder aux conditions d\'utilisations de données et les conditions du service de magasinage Klarna, cliquer <a target=\\"_blank\\" href=\\"https://www.klarna.com/fr-ca/mentions-legales/\\">ici</a>.","klarnaCreditRecurringActiveAcceptance":"En continuant, vous serez présenté avec les options de paiement fournies par Klarna. Pour accéder aux conditions d\'utilisations de données et les conditions du service de magasinage Klarna, cliquer <a target=\\"_blank\\" href=\\"https://www.klarna.com/fr-ca/mentions-legales/\\">ici</a>.","agreeToTerms":"J’ai lu et j’accepte les conditions générales et les modalités tarifaires ci-dessus.","idealRecurringAgreement":"En cliquant sur la case, vous autorisez Digital River à percevoir votre premier paiement par iDEAL et à utiliser votre IBAN pour percevoir les paiements d\'abonnement suivants par prélèvement SEPA. Vous pouvez consulter les informations relatives à votre prélèvement SEPA après la soumission de votre commande. <br/><br/>Vous bénéficiez du droit d\'être remboursé par votre banque suivant les conditions décrites dans la convention que vous avez passée avec elle. Une demande de remboursement doit être présentée dans les 8 semaines suivant la date de débit de votre compte pour un prélèvement autorisé. ","mstsActiveAcceptance":"Sélectionnez {payNow} pour vous connecter à TreviPay, effectuer l\'identification à deux facteurs et confirmer l\'achat.<span class=\\"{createAccountButtonTextClass}\\"><br /><br />Sélectionnez \'Inscrivez-vous maintenant\' pour créer un compte TreviPay.</span><br /><br />AVERTISSEMENT<br /><br />* Tous les comptes du programme d’achat et les lignes de crédit dans le carde du programme de Modalités de Paiement sont émis par Multi Service Technology Solutions, Inc., une société constituée en Floride aux États-Unis (« MSTS »).<br /><br />* {businessEntityName} n’est pas partie à l\'Accord relatif aux Titulaires de compte du Programme d’achat. {businessEntityName} n’est ni un prêteur ni un courtier pour les lignes de crédit émises dans le cadre du programme des Modalités de Paiement<br /><br />Toutes les demandes et vos qualifications seront examinées et décidées par TreviPay. <a href=\\"https://www.trevipay.com/privacy-center/\\" target=\\"_blank\\">Voici un lien vers le Centre de confidentialité de TreviPay.</a>","invoiceAgreement":"J\'accepte de permettre à Digital River Taiwan de traiter les questions liées aux factures électroniques en mon nom afin d\'accélérer le processus de retour/remboursement.","warrantyInformation":"Informations de garantie","japaneseCommerceLaw":"Loi sur les transactions commerciales"},"fr_CH":{"cancellationRights":"Droits d\'annulation","cookiePolicy":"Témoins de connexion","legalNotice":"Mentions legales","privacyPolicy":"Politique de confidentialité","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> est le revendeur et marchand agréé pour les produits et services proposés au sein de ce magasin.","termsOfSale":"Conditions de vente","confirmDisclosure":"En envoyant ma commande, j\'accepte les <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Conditions de vente</a> et la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Politique de confidentialité</a> de {businessEntityName}.","consentsEula":" et le <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Contrat de licence utilisateur final</a>","consentsTermsOfUse":" et les <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Conditions générales d&#39;utilisation</a>","consentsCompanyName":" de {companyName}","californiaPrivacyRights":"Vos droits de confidentialité en Californie","autoRenewPlanTermsBegin":"En effectuant votre achat, vous autorisez Digital River à renouveler automatiquement la licence ou l’abonnement que vous avez acheté pour les périodes de renouvellement successives décrites dans les informations du produit. À la fin de la période sélectionnée, nous facturerons automatiquement vos informations de paiement stockées au prix en vigueur (plus taxes) pour chaque période de renouvellement supplémentaire jusqu’à ce que vous l’annuliez. Au moins une fois avant chaque renouvellement, nous vous enverrons un rappel par courrier électronique pour vous rappeler le renouvellement imminent et nous pourrons modifier le prix de renouvellement pour toute période de renouvellement future en vous envoyant un préavis de modification par courrier électronique. Les <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Conditions de Vente</a> et la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Politique de confidentialité</a> de Digital River","autoRenewPlanTermsEnd":" s\'appliqueront à chaque transaction de renouvellement. Vous pouvez annuler votre plan de renouvellement automatique à tout moment en suivant les instructions fournies dans votre e-mail de confirmation de commande.<br/><br/>J\'accepte que Digital River puisse stocker mes informations de paiement pour des achats ultérieurs, y compris le traitement de tout renouvellement d\'abonnement à venir qui pourrait avoir lieu après la date de cette commande","klarnaCreditActiveAcceptance":"En procédant, les méthodes de paiement fournies par Klarna vous seront présentées. En continuant, j\'accepte les <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/fr_ch/user\\">conditions générales d\'utilisation de l\'Expérience Shopping Klarna</a>, et confirme avoir lu l\'Avis de <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/fr_ch/privacy_bp\\">confidentialité et la Politique</a> en <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/fr_fr/cookie_purchase\\">matière de cookies</a>. <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/fr_ch/invoice?credit_time=30\\">Conditions</a>","klarnaCreditRecurringActiveAcceptance":"En procédant, les méthodes de paiement fournies par Klarna vous seront présentées. En continuant, j\'accepte les <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/fr_ch/user\\">conditions générales d\'utilisation de l\'Expérience Shopping Klarna</a>, et confirme avoir lu l\'Avis de <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/fr_ch/privacy_bp\\">confidentialité et la Politique</a> en <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/fr_fr/cookie_purchase\\">matière de cookies</a>. <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/fr_ch/invoice?credit_time=30\\">Conditions</a>","agreeToTerms":"J\'ai lu et j\'accepte les Conditions générales de vente et les frais ci-dessus.","idealRecurringAgreement":"En cliquant sur la case, vous autorisez Digital River à percevoir votre premier paiement par iDEAL et à utiliser votre IBAN pour percevoir les paiements d\'abonnement suivants par prélèvement SEPA. Vous pouvez consulter les informations relatives à votre prélèvement SEPA après la soumission de votre commande. <br/><br/>Vous bénéficiez du droit d\'être remboursé par votre banque suivant les conditions décrites dans la convention que vous avez passée avec elle. Une demande de remboursement doit être présentée dans les 8 semaines suivant la date de débit de votre compte pour un prélèvement autorisé. ","invoiceAgreement":"J\'accepte de permettre à Digital River Taiwan de traiter les questions relatives aux factures électroniques en mon nom afin d\'accélérer le processus de retour/remboursement.","warrantyInformation":"Informations sur la garantie","japaneseCommerceLaw":"Loi sur les transactions commerciales"},"fr_FR":{"cancellationRights":"Droits d\'annulation","cookiePolicy":"Témoins de connexion","legalNotice":"Mentions legales","privacyPolicy":"Politique de confidentialité","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> est le revendeur et marchand agréé pour les produits et services proposés au sein de ce magasin.","termsOfSale":"Conditions de vente","confirmDisclosure":"En envoyant ma commande, j\'accepte les <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Conditions de vente</a> et la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Politique de confidentialité</a> de {businessEntityName}.","consentsEula":" et le <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Contrat de licence utilisateur final</a>","consentsTermsOfUse":" et les <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Conditions générales d&#39;utilisation</a>","consentsCompanyName":" de {companyName}","californiaPrivacyRights":"Vos droits de confidentialité en Californie","autoRenewPlanTermsBegin":"En effectuant votre achat, vous autorisez Digital River à renouveler automatiquement la licence ou l’abonnement que vous avez acheté pour les périodes de renouvellement successives décrites dans les informations du produit. À la fin de la période sélectionnée, nous facturerons automatiquement vos informations de paiement stockées au prix en vigueur (plus taxes) pour chaque période de renouvellement supplémentaire jusqu’à ce que vous l’annuliez. Au moins une fois avant chaque renouvellement, nous vous enverrons un rappel par courrier électronique pour vous rappeler le renouvellement imminent et nous pourrons modifier le prix de renouvellement pour toute période de renouvellement future en vous envoyant un préavis de modification par courrier électronique. Les <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Conditions de Vente</a> et la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Politique de confidentialité</a> de Digital River","autoRenewPlanTermsEnd":" s\'appliqueront à chaque transaction de renouvellement. Vous pouvez annuler votre plan de renouvellement automatique à tout moment en suivant les instructions fournies dans votre e-mail de confirmation de commande.<br/><br/>J\'accepte que Digital River puisse stocker mes informations de paiement pour des achats ultérieurs, y compris le traitement de tout renouvellement d\'abonnement à venir qui pourrait avoir lieu après la date de cette commande","agreeToTerms":"J\'ai lu et j\'accepte les Conditions générales de vente et les frais ci-dessus.","idealRecurringAgreement":"En cliquant sur la case, vous autorisez Digital River à percevoir votre premier paiement par iDEAL et à utiliser votre IBAN pour percevoir les paiements d\'abonnement suivants par prélèvement SEPA. Vous pouvez consulter les informations relatives à votre prélèvement SEPA après la soumission de votre commande. <br/><br/>Vous bénéficiez du droit d\'être remboursé par votre banque suivant les conditions décrites dans la convention que vous avez passée avec elle. Une demande de remboursement doit être présentée dans les 8 semaines suivant la date de débit de votre compte pour un prélèvement autorisé. ","mstsActiveAcceptance":"Sélectionnez {payNow} pour vous connecter à TreviPay, effectuer l\'identification à deux facteurs et confirmer l\'achat.<span class=\\"{createAccountButtonTextClass}\\"><br /><br />Sélectionnez \'Inscrivez-vous maintenant\' pour créer un compte TreviPay.</span><br /><br />AVERTISSEMENT<br /><br />* Tous les comptes du programme d’achat et les lignes de crédit dans le carde du programme de Modalités de Paiement sont émis par Multi Service Technology Solutions, Inc., une société constituée en Floride aux États-Unis (« MSTS »).<br /><br />* {businessEntityName} n’est pas partie à l\'Accord relatif aux Titulaires de compte du Programme d’achat. {businessEntityName} n’est ni un prêteur ni un courtier pour les lignes de crédit émises dans le cadre du programme des Modalités de Paiement<br /><br />Toutes les demandes et vos qualifications seront examinées et décidées par TreviPay. <a href=\\"https://www.trevipay.com/privacy-center/\\" target=\\"_blank\\">Voici un lien vers le Centre de confidentialité de TreviPay.</a>","klarnaCreditActiveAcceptance":"En océdant, les méthodes de paiement fournies par Klarna vous seront présentées. En continuant, j’accepte <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/fr_fr/privacy\\">l’Avis de confidentialité de Klarna</a>, la <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/fr_fr/cookie_purchase\\">Politique d\'utilisation de cookies</a> et les <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/fr_fr/user\\">conditions générales d\'utilisation de l\'Expérience Shopping Klarna</a>.","klarnaCreditRecurringActiveAcceptance":"En océdant, les méthodes de paiement fournies par Klarna vous seront présentées. En continuant, j’accepte <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/fr_fr/privacy\\">l’Avis de confidentialité de Klarna</a>, la <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/fr_fr/cookie_purchase\\">Politique d\'utilisation de cookies</a> et les <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/fr_fr/user\\">conditions générales d\'utilisation de l\'Expérience Shopping Klarna</a>.","invoiceAgreement":"J\'accepte de permettre à Digital River Taiwan de gérer les questions liées aux factures électroniques en mon nom afin d\'accélérer le processus de retour/remboursement.","warrantyInformation":"Informations sur la garantie","japaneseCommerceLaw":"Loi sur les transactions commerciales"},"hu_HU":{"cancellationRights":"Rendelés törlésének lehetõsége","cookiePolicy":"Cookie-k","legalNotice":"Jogi nyilatkozat","privacyPolicy":"Adatvédelmi politika","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> az áruházban megvásárolható termékek és szolgáltatások hivatalos értékesítő partnere és forgalmazója.","termsOfSale":"Értékesítési feltételek","confirmDisclosure":"A rendelés elküldésével elfogadom a(z) {businessEntityName} <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Értékesítési feltételeit</a> és <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Adatvédelmi nyilatkozatát</a>.","consentsEula":" és <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Végfelhasználói licencszerződés</a>","consentsTermsOfUse":" és <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Felhasználási feltételek</a>","consentsCompanyName":" {companyName}","californiaPrivacyRights":"Kaliforniai adatvédelmi jogaid","autoRenewPlanTermsBegin":"A vásárlás befejezésével Ön engedélyezi a Digital River számára a megvásárolt licenc vagy előfizetés automatikus megújítását a termék részleteiben leírt egymást követő megújítási időszakokra. A kiválasztott időszak végén automatikusan megterheljük a tárolt fizetési eszközét az akkor érvényes árral (plusz adó) minden további megújítási időszakra, amíg lemondás nem történik. Minden megújítás előtt legalább egy emlékeztető e-mailt küldünk Önnek az esedékes meghosszabbításról. Az esedékes megújítási időszakra módosíthatjuk az előfizetési díjat, ez esetben a változásról előzetesen e-mailben értesítjük Önt. A Digital River <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Értékesítési feltételei</a> és <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Adatvédelmi irányelvei</a>","autoRenewPlanTermsEnd":" minden megújítás esetén érvényesek. Az automatikus megújítási csomagot bármikor lemondhatja, ehhez kövesse a megrendelést visszaigazoló e-mailben található utasításokat.<br/><br/>Hozzájárulok ahhoz, hogy a Digital River tárolja fizetési adataimat a jövőbeni vásárlásokhoz, beleértve az előfizetések esetleges megújítását, melyre e megrendelés dátumát.","agreeToTerms":"Elolvastam és elfogadom a fenti feltételeket és díjakat.","idealRecurringAgreement":"A négyzetre kattintva Ön felhatalmazza a Digital River-t, hogy az első fizetést iDEAL-on keresztül szedje be, és az IBAN-számlaszámát használja a további előfizetési díjak SEPA-alapú beszedésére. A SEPA beszedési információkat a megrendelés elküldése után tekintheti meg. <br/><br/>Ön a banktól a közte és Ön között fennálló megállapodás feltételeinek megfelelő visszatérítésre jogosult. A visszatérítési igényt a számla megterhelését követő 8 héten belül kell benyújtani. ","invoiceAgreement":"Egyetértek azzal, hogy a Digital River Taiwan kezelje az e-számlával kapcsolatos ügyeket helyettem, hogy gyorsítsa a visszatérítés/visszafizetés folyamatát.","warrantyInformation":"Jótállási információk","japaneseCommerceLaw":"Kereskedelmi törvény"},"it_CH":{"cancellationRights":"Diritto di recesso","cookiePolicy":"Cookie","legalNotice":"Avviso legale","privacyPolicy":"Tutela della privacy","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> è il rivenditore autorizzato e fornitore dei prodotti e dei servizi offerti all\'interno di questo negozio.","termsOfSale":"Condizioni di vendita","confirmDisclosure":"Inviando il mio ordine accetto le <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Condizioni di vendita</a> e l’<a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Informativa sulla privacy</a> di {businessEntityName}.","consentsEula":" e <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Contratto di licenza con l\'utente finale</a>","consentsTermsOfUse":" e <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Termini e condizioni di utilizzo</a>","consentsCompanyName":" di {companyName}","californiaPrivacyRights":"I tuoi diritti sulla privacy in California","autoRenewPlanTermsBegin":"Completando l\'acquisto, autorizzate Digital River a rinnovare automaticamente la licenza o l\'abbonamento acquistato per i termini di rinnovo successivi, come descritto nei dati del prodotto. Al termine del periodo selezionato, le informazioni di pagamento memorizzate verranno automaticamente addebitate al prezzo in vigore in quel momento (più le tasse) per ogni ulteriore periodo di rinnovo fino alla cancellazione. Riceverai almeno una e-mail di promemoria prima di ogni rinnovo per ricordarti la scadenza imminente e il prezzo, il quale potrebbe cambiare in base a eventuali nuovi termini di rinnovo ma sempre fornendoti preavviso della modifica via e-mail. Le <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Condizioni di vendita</a> e l\'<a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Informativa sulla privacy</a> di Digital River","autoRenewPlanTermsEnd":" sono valide per tutte le transazioni di rinnovo. È possibile annullare il rinnovo automatico in qualsiasi momento, seguendo le istruzioni fornite nell\'e-mail di conferma dell\'ordine.<br/><br/>Confermo che Digital River può conservare le mie informazioni di pagamento per effettuare acquisti futuri, compresa l\'elaborazione di rinnovi successivi dell\'abbonamento che possono verificarsi in seguito alla data del presente ordine.","agreeToTerms":"Il sottoscritto dichiara di aver letto e di accettare le condizioni e i costi indicati sopra.","idealRecurringAgreement":"Cliccando la casella, autorizzate Digital River a raccogliere il vostro primo pagamento tramite iDEAL e ad utilizzare il vostro IBAN per raccogliere i successivi pagamenti dell\'abbonamento tramite addebito diretto SEPA. Puoi rivedere le tue informazioni sull\'addebito diretto SEPA dopo l\'invio dell\'ordine. <br/><br/>Rientra tra i vostri diritti richiedere alla banca l\'eventuale rimborso, nei termini e nelle condizioni previsti dal vostro contratto con la banca. Un eventuale rimborso deve essere richiesto entro 8 settimane dalla data di addebito in conto. ","klarnaCreditActiveAcceptance":"Proseguendo, ti verranno presentate le opzioni di pagamento fornite da Klarna. Continuando accetto i <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/it_ch/user\\">termini del Klarna Shopping Service</a> e confermo di aver letto <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/it_ch/privacy_bp\\">l\'Informativa sulla privacy</a> e <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/it_it/cookie_purchase\\">l\'Informativa sui cookie</a>. <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/it_ch/invoice?credit_time=30\\">Termini</a>","klarnaCreditRecurringActiveAcceptance":"Proseguendo, ti verranno presentate le opzioni di pagamento fornite da Klarna. Continuando accetto i <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/it_ch/user\\">termini del Klarna Shopping Service</a> e confermo di aver letto <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/it_ch/privacy_bp\\">l\'Informativa sulla privacy</a> e <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/it_it/cookie_purchase\\">l\'Informativa sui cookie</a>. <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/it_ch/invoice?credit_time=30\\">Termini</a>","mstsActiveAcceptance":"Selezionare {payNow} per accedere a TreviPay, effettuare l\'autenticazione a due fattori e confermare l\'ordine.<span class=\\"{createAccountButtonTextClass}\\"><br /><br />Selezionare Iscriviti ora per creare un conto TreviPay.</span><br /><br />DISCLAIMER<br /><br />* Tutte le linee di credito e tutti gli account del programma di acquisto relativi al programma Termini di pagamento sono emessi da Multi Service Technology Solutions, Inc. (\\"MSTS\\"), una personalità giuridica con sede in Florida, USA.<br /><br />* {{businessEntityName} non è parte dell&#39;accordo dei titolari di account del Programma di acquisto. {businessEntityName} non costituisce né un prestatore né un mediatore delle linee di credito emesse dal programma Termini di pagamento.<br /><br />Tutte le domande e le qualifiche verranno esaminate e giudicate da TreviPay. <a href=\\"https://www.trevipay.com/privacy-center/\\" target=\\"_blank\\">Centro Privacy di TreviPay.</a>","invoiceAgreement":"Legge sul commercio","warrantyInformation":"Informazioni sulla Garanzia","japaneseCommerceLaw":""},"it_IT":{"cancellationRights":"Diritto di recesso","cookiePolicy":"Cookie","legalNotice":"Avviso legale","privacyPolicy":"Tutela della privacy","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> è il rivenditore autorizzato dei prodotti di venduti in questo negozio online.","termsOfSale":"Condizioni di vendita","confirmDisclosure":"Inviando il mio ordine accetto le <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Condizioni di vendita</a> e l’<a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Informativa sulla privacy</a> di {businessEntityName}.","consentsEula":" e <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Contratto di licenza con l\'utente finale</a>","consentsTermsOfUse":" e <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Termini e condizioni di utilizzo</a>","consentsCompanyName":" di {companyName}","californiaPrivacyRights":"I tuoi diritti sulla privacy in California","autoRenewPlanTermsBegin":"Completando l\'acquisto, autorizzate Digital River a rinnovare automaticamente la licenza o l\'abbonamento acquistato per i termini di rinnovo successivi, come descritto nei dati del prodotto. Al termine del periodo selezionato, le informazioni di pagamento memorizzate verranno automaticamente addebitate al prezzo in vigore in quel momento (più le tasse) per ogni ulteriore periodo di rinnovo fino alla cancellazione. Riceverai almeno una e-mail di promemoria prima di ogni rinnovo per ricordarti la scadenza imminente e il prezzo, il quale potrebbe cambiare in base a eventuali nuovi termini di rinnovo ma sempre fornendoti preavviso della modifica via e-mail. Le <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Condizioni di vendita</a> e l\'<a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Informativa sulla privacy</a> di Digital River","autoRenewPlanTermsEnd":" sono valide per tutte le transazioni di rinnovo. È possibile annullare il rinnovo automatico in qualsiasi momento, seguendo le istruzioni fornite nell\'e-mail di conferma dell\'ordine.<br/><br/>Confermo che Digital River può conservare le mie informazioni di pagamento per effettuare acquisti futuri, compresa l\'elaborazione di rinnovi successivi dell\'abbonamento che possono verificarsi in seguito alla data del presente ordine.","klarnaCreditActiveAcceptance":"Proseguendo, ti verranno presentate le opzioni di pagamento fornite da Klarna. Continuando, accetto i <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/it_it/user\\">Termini del Klarna Shopping Service</a> e l\'<a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/it_it/cookie_purchase\\">Informativa Cookie di Klarna</a>, e confermo di aver letto l\'<a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/it_it/privacy\\">Informativa Privacy di Klarna</a>.","klarnaCreditRecurringActiveAcceptance":"Proseguendo, ti verranno presentate le opzioni di pagamento fornite da Klarna. Continuando, accetto i <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/it_it/user\\">Termini del Klarna Shopping Service</a> e l\'<a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/it_it/cookie_purchase\\">Informativa Cookie di Klarna</a>, e confermo di aver letto l\'<a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/it_it/privacy\\">Informativa Privacy di Klarna</a>.","agreeToTerms":"Il sottoscritto dichiara di aver letto e di accettare le condizioni e i costi indicati sopra.","idealRecurringAgreement":"Cliccando la casella, autorizzate Digital River a raccogliere il vostro primo pagamento tramite iDEAL e ad utilizzare il vostro IBAN per raccogliere i successivi pagamenti dell\'abbonamento tramite addebito diretto SEPA. Puoi rivedere le tue informazioni sull\'addebito diretto SEPA dopo l\'invio dell\'ordine. <br/><br/>Rientra tra i vostri diritti richiedere alla banca l\'eventuale rimborso, nei termini e nelle condizioni previsti dal vostro contratto con la banca. Un eventuale rimborso deve essere richiesto entro 8 settimane dalla data di addebito in conto. ","mstsActiveAcceptance":"Selezionare {payNow} per accedere a TreviPay, effettuare l\'autenticazione a due fattori e confermare l\'ordine.<span class=\\"{createAccountButtonTextClass}\\"><br /><br />Selezionare Iscriviti ora per creare un conto TreviPay.</span><br /><br />DISCLAIMER<br /><br />* Tutte le linee di credito e tutti gli account del programma di acquisto relativi al programma Termini di pagamento sono emessi da Multi Service Technology Solutions, Inc. (\\"MSTS\\"), una personalità giuridica con sede in Florida, USA.<br /><br />* {{businessEntityName} non è parte dell&#39;accordo dei titolari di account del Programma di acquisto. {businessEntityName} non costituisce né un prestatore né un mediatore delle linee di credito emesse dal programma Termini di pagamento.<br /><br />Tutte le domande e le qualifiche verranno esaminate e giudicate da TreviPay. <a href=\\"https://www.trevipay.com/privacy-center/\\" target=\\"_blank\\">Centro Privacy di TreviPay.</a>","invoiceAgreement":"Accetto di consentire a Digital River Taiwan di gestire le questioni relative alla fatturazione elettronica per conto mio al fine di accelerare il processo di reso/rimborso.","warrantyInformation":"Informazioni sulla Garanzia","japaneseCommerceLaw":"Legge sulle transazioni commerciali"},"iw_IL":{"cancellationRights":"זכות ביטול הזמנה","cookiePolicy":"קובצי cookie","legalNotice":"הודעה משפטית","privacyPolicy":"מדיניות שמירה על פרטיות","resellerDisclosure":" <a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a>  הוא המפיץ והסוחר המורשה עבור חנוות מקוונת זו.","termsOfSale":"תנאי מכירה","confirmDisclosure":"ביצוע ההזמנה מהווה עדות לכך שאני מסכים <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">לתנאי המכירה</a> וכן <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">למדיניות הפרטיות</a> של {businessEntityName}.","autoRenewPlanTermsBegin":"בהשלמת הרכישה, הנך מאשר ל-Digital River חידוש אוטומטי של הרישיון או המנוי שרכשת עבור תנאי חידוש עוקבים כמתואר בפרטי המוצר. בתום התקופה שנבחרה, נחייב אוטומטית את פרטי התשלום המאוחסנים שלך במחיר הנוכחי בתוקף (בתוספת מס) עבור כל תקופת חידוש נוספת עד שתבטל. אנו נשלח לך תזכורת בדוא\\"ל לפחות פעם אחת לפני כל חידוש כדי להזכיר לך את החידוש המתקרב, ואנו עשויים לשנות את מחיר החידוש עבור כל מועד חידוש עתידי, וזאת לאחר מתן הודעה על השינוי באמצעות הדוא\\"ל.  <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">תנאי המכירה</a> ו-<a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">מדיניות ההגנה על הפרטיות</a> של Digital River ","autoRenewPlanTermsEnd":"יחולו על כל עסקת . באפשרותך לבטל את תוכנית החידוש האוטומטי בכל עת. לשם כך פעל על פי ההוראות הכלולות בהודעת הדוא\\"ל לאישור ההזמנה.<br /><br />אני מסכים לכך ש-Digital River רשאית לשמור את פרטי התשלום שלי לשימוש ברכישות עתידיות, ובכלל זה טיפול בחידושי מינוי נוספים שעשויים להתבצע לאחר תאריך ההזמנה הנוכחית.","agreeToTerms":"קראתי ואני מסכים לכל התנאים ולחיובים המפורטים לעיל.","idealRecurringAgreement":"על ידי לחיצה על התיבה, אתה מאשר לנהר הדיגיטלי לאסוף את התשלום הראשון שלך באמצעות iDEAL ולהשתמש IBAN שלך כדי לאסוף את תשלומי המנוי הבאים על ידי חיוב ישיר SEPA. באפשרותך לסקור את פרטי החיוב הישיר של SEPA לאחר שליחת ההזמנה. <br/><br/>כחלק מהזכויות שלך, אתה זכאי לקבל החזר מהבנק שלך בכפוף לתנאים ולהתניות הכלולים בהסכם שלך עם הבנק. יש להגיש דרישה לקבלת החזר בתוך 8 שבועות ממועד חיוב החשבון שלך. ","invoiceAgreement":"","warrantyInformation":"מידע על אחריות","japaneseCommerceLaw":""},"ja_JP":{"cancellationRights":"キャンセル権","cookiePolicy":"クッキー","legalNotice":"本サイトのご利用について","privacyPolicy":"プライバシーポリシー","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> は、このストアで提供される製品とサービスの認定再販業者および代理店です。","termsOfSale":"販売条件","confirmDisclosure":"注文の送信により、{businessEntityName}の<a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">売買条件</a>および<a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">プライバシーポリシー</a>に同意します。","consentsEula":" および <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">エンド ユーザー向け使用許諾契約書</a>","consentsTermsOfUse":" および <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">使用条件</a>","consentsCompanyName":" の {companyName}","californiaPrivacyRights":"カリフォルニアにおける個人情報保護権","autoRenewPlanTermsBegin":"購入を完了すると、製品に記載された詳細の通り、お客様が購入したライセンスまたはサブスクリプションをDigital Riverが継続的な更新条件で自動的に更新することを承認したとみなされます。選択した期間の終了後、キャンセルが行われるまで、追加の更新期間ごとに、その時点で有効な最新の価格（税抜）で、保存された支払い情報に対し自動的に請求が行われます。当社は、更新ごとに少なくとも1回、事前のリマインダーとして電子メールによるお知らせをお客様に送付いたします。また、当社は電子メールによる事前のお知らせをお客様に送付することにより、今後のいかなる更新期間についても更新価格を変更する場合がございます。 Digital Riverの<a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">「売買条件」</a>および<a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">「プライバシーポリシー」</a>","autoRenewPlanTermsEnd":"は、 更新取引ごとに適用されます。お客様は、ご注文確認のメールにて提供された手続きを通じて、お客様の自動更新プランをいつでもキャンセルすることができます。<br/><br/>私は、本注文日のあとに発生し得る今後のあらゆるサブスクリプション更新の処理を含む、将来的な製品購入のために、Digital Riverにより個人的な支払い情報が保管されることに同意します。","agreeToTerms":"私は上記の契約条件および料金を読んだ上で、これに同意します。","idealRecurringAgreement":"ボックスをクリックすることで、Digital Riverが初回の支払いをiDEALで回収し、IBANを使用して以降の購読料をSEPAダイレクトデビットで回収することを承認します。SEPA Direct Debitの情報は、注文送信後に確認することができます。<br/><br/>お客様の権利として、銀行との契約条件の下で、銀行からの払い戻しを受ける権利があります。払い戻しは、口座から引き落とされた日から8週間以内に請求する必要があります。","japaneseCommerceLaw":"特定商取引法に基づく表示","warrantyInformation":"保証情報","invoiceAgreement":"返品/返金のプロセスを加速させるために、デジタルリバー台湾に私の代わりにe請求関連の事項を処理させることに同意します。"},"ko_KR":{"cancellationRights":"취소 권한","cookiePolicy":"쿠키","legalNotice":"법적 고지","privacyPolicy":"개인정보 보호 정책","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> 은(는) 이 스토어에서 제품과 서비스를 제공하도록 인가된 리셀러 및 판매자입니다.","termsOfSale":"판매 조건","confirmDisclosure":"주문을 제출하면 {businessEntityName}의 <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">이용약관</a>과 <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">개인정보보호정책</a>에 동의한 것으로 간주됩니다.","consentsEula":" 그리고 <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">최종 사용자 라이센스 계약</a>","consentsTermsOfUse":" 그리고 <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">사용 약관</a>","consentsCompanyName":" 의 {companyName}","californiaPrivacyRights":"칼리포니아 개인정보 보호 권리","autoRenewPlanTermsBegin":"구매를 완료하면 Digital River가 제품 정보에 설명된 대로 갱신 기간 동안 구매한 라이선스나 구독을 자동으로 갱신하는 것을 승인하게 됩니다. 선택한 기간이 끝나면 귀하가 취소할 때까지 각 추가 갱신 기간에 유효한 당시 가격(세금 포함)으로 저장된 결제 정보에 자동으로 청구됩니다. Digital River는 다가오는 갱신을 알리기 위해 매 갱신 전에 최소한 한 번 이메일 알림을 보내고 이메일로 사전에 변경 통보를 해 향후 갱신 기간의 갱신 가격을 변경할 수 있습니다. 각 갱신에는 Digital River <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">이용약관</a>과 <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">개인정보취급방침</a>","autoRenewPlanTermsEnd":"이 적용됩니다. 주문 확인 이메일에 제공된 안내에 따라 언제든지 자동 갱신 계획을 취소할 수 있습니다.<br><br>Digital River가 이 주문 날짜 이후에 발생할 수 있는 모든 후속 구독 갱신의 처리를 포함한 미래의 구매를 위해 내 결제 정보를 보관하는 것에 동의합니다.","agreeToTerms":"상기 이용약관과 요금을 읽었고 이에 동의합니다.","idealRecurringAgreement":"상자를 클릭하면 디지털 리버가 iDEAL를 통해 첫 번째 결제를 수집하고 IBAN을 사용하여 SEPA 자동 이체로 후속 구독 료를 수령할 수 있는 권한을 부여합니다. 주문 제출 후 SEPA 자동 이불 정보를 검토할 수 있습니다. <br/><br/>사용자 권리의 일부로서 사용자는 은행과의 이용약관에 따라 은행으로부터 환불받을 수 있습니다. 환불은 계정에서 출금된 날짜로부터 8주 안에 요청되어야 합니다. ","invoiceAgreement":"환불/반품 과정을 가속화하기 위해, 디지털 리버 대만에게 전자 송장 관련 사항을 대신 처리할 수 있도록 허용하는 것에 동의합니다.","warrantyInformation":"보증 정보","japaneseCommerceLaw":"상업거래법"},"lt_LT":{"privacyPolicy":"Privatumo strategija","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> įgaliotasis mažmenininkas ir šios parduotuvės el. prekybos paslaugų didmenininkas.","termsOfSale":"Nuostatos ir sąlygos","confirmDisclosure":"","autoRenewPlanTermsBegin":"","autoRenewPlanTermsEnd":"","invoiceAgreement":"","warrantyInformation":"Informacija apie garantiją","japaneseCommerceLaw":"Komercinio sandorių teisė"},"lv_LV":{"privacyPolicy":"Konfidencialitātes politika","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> ir pilnvarots tālākpārdevējs un tirgotājs, kas šim veikalam nodrošina e-komecijas pakalpojumus.","termsOfSale":"Noteikumi un nosacījumi","confirmDisclosure":"","autoRenewPlanTermsBegin":"","autoRenewPlanTermsEnd":"","invoiceAgreement":"","warrantyInformation":"Informācija par garantiju"},"nl_BE":{"cancellationRights":"Recht op annulering","cookiePolicy":"Cookies","legalNotice":"Juridische kennisgeving","privacyPolicy":"Privacybeleid","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> is de erkende reseller die de producten en services voor deze store levert.","termsOfSale":"Algemene verkoopvoorwaarden","confirmDisclosure":"Door mijn bestelling in te dienen, ga ik akkoord met de <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Verkoopvoorwaarden</a> en het <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacybeleid</a> van {businessEntityName}.","consentsEula":" en het <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Eindgebruikerslicentieovereenkomst</a>","consentsTermsOfUse":" en het <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Gebruiksvoorwaarden</a>","consentsCompanyName":" van {companyName}","californiaPrivacyRights":"Uw privacyrechten in Californië","autoRenewPlanTermsBegin":"Door het voltooien van uw bestelling geeft u Digital River ook toestemming om uw gekochte licentie of abonnement automatisch te verlengen voor opeenvolgende verlengingsperioden zoals beschreven in de productgegevens. Aan het einde van de geselecteerde periode brengen we uw opgeslagen betalingsgegevens automatisch in rekening tegen de dan geldende prijs (plus btw) voor elke extra verlengingsperiode totdat u annuleert. Wij sturen u minstens één herinnerings-e-mail voorafgaand aan elke verlenging om u te attenderen op uw aanstaande verlenging en kunnen de prijs voor elke toekomstige verlengstermijn veranderen met voorafgaande kennisgeving van de verandering in een e-mail aan u. De <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Algemene verkoopvoorwaarden</a> en het <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacybeleid</a> van Digital River","autoRenewPlanTermsEnd":" zijn op elke verlenging van toepassing. U kunt uw automatische verlengingservice te allen tijde annuleren door de instructies op te volgen uit de bevestigings-e-mail van uw bestelling.<br><br>Ik ga ermee akkoord dat Digital River mijn betalingsgegevens bewaart voor latere aankopen, met inbegrip van de verwerking van alle eventuele abonnementsverlengingen die kunnen optreden na de datum van deze bestelling.","klarnaCreditActiveAcceptance":"Als je klikt op NU KOPEN, krijg je de door Klarna aangeboden betaalmethoden te zien. Door verder te gaan, accepteer ik de <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/nl_be/invoice?credit_time=30\\">voorwaarden voor Betaal later</a> en de <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/nl_be/user\\">algemene voorwaarden van Klarna\'s Shopping Service</a> en bevestig ik dat ik <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/nl_be/privacy\\">Klarna\'s Privacyverklaring</a> en <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/nl_nl/cookie_purchase\\">Cookieverklaring</a> heb gelezen.","klarnaCreditRecurringActiveAcceptance":"Als je klikt op NU KOPEN, krijg je de door Klarna aangeboden betaalmethoden te zien. Door verder te gaan, accepteer ik de <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/nl_be/invoice?credit_time=30\\">voorwaarden voor Betaal later</a> en de <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/nl_be/user\\">algemene voorwaarden van Klarna\'s Shopping Service</a> en bevestig ik dat ik <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/nl_be/privacy\\">Klarna\'s Privacyverklaring</a> en <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/nl_nl/cookie_purchase\\">Cookieverklaring</a> heb gelezen.","agreeToTerms":"Ik heb de voorwaarden en prijzen gelezen en ga ermee akkoord.","idealRecurringAgreement":"Door het vakje aan te klikken, machtigt u Digital River om uw eerste betaling via iDEAL te innen en uw IBAN te gebruiken om de volgende abonnementsbetalingen via SEPA-incasso te innen. U kunt uw SEPA-incasso-gegevens bekijken nadat u uw bestelling hebt ingediend. <br/><br/>U kunt een Europese incasso laten terugbetalen in overeenstemming met de algemene voorwaarden van uw overeenkomst met uw bank. Een terugbetaling moet worden aangevraagd binnen 8 weken na de datum waarop uw rekening werd gedebiteerd. ","invoiceAgreement":"Ik ga ermee akkoord om Digital River Taiwan toe te staan de e-factuurgerelateerde zaken namens mij af te handelen om het proces van retournering/terugbetaling te versnellen.","warrantyInformation":"garantie informatie","japaneseCommerceLaw":"Handelsrecht"},"nl_NL":{"cancellationRights":"Recht op annulering","cookiePolicy":"Cookies","legalNotice":"Juridische kennisgeving","privacyPolicy":"Privacybeleid","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> is de erkende reseller die de producten en services voor deze store levert.","termsOfSale":"Algemene verkoopvoorwaarden","confirmDisclosure":"Door mijn bestelling in te dienen, ga ik akkoord met de <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Verkoopvoorwaarden</a> en het <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacybeleid</a> van {businessEntityName}.","consentsEula":" en het <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Eindgebruikerslicentieovereenkomst</a>","consentsTermsOfUse":" en het <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Gebruiksvoorwaarden</a>","consentsCompanyName":" van {companyName}","californiaPrivacyRights":"Uw privacyrechten in Californië","autoRenewPlanTermsBegin":"Door het voltooien van uw bestelling geeft u Digital River ook toestemming om uw gekochte licentie of abonnement automatisch te verlengen voor opeenvolgende verlengingsperioden zoals beschreven in de productgegevens. Aan het einde van de geselecteerde periode brengen we uw opgeslagen betalingsgegevens automatisch in rekening tegen de dan geldende prijs (plus btw) voor elke extra verlengingsperiode totdat u annuleert. Wij sturen u minstens één herinnerings-e-mail voorafgaand aan elke verlenging om u te attenderen op uw aanstaande verlenging en kunnen de prijs voor elke toekomstige verlengstermijn veranderen met voorafgaande kennisgeving van de verandering in een e-mail aan u. De <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Algemene verkoopvoorwaarden</a> en het <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacybeleid</a> van Digital River","autoRenewPlanTermsEnd":" zijn op elke verlenging van toepassing. U kunt uw automatische verlengingservice te allen tijde annuleren door de instructies op te volgen uit de bevestigings-e-mail van uw bestelling.<br><br>Ik ga ermee akkoord dat Digital River mijn betalingsgegevens bewaart voor latere aankopen, met inbegrip van de verwerking van alle eventuele abonnementsverlengingen die kunnen optreden na de datum van deze bestelling.","klarnaCreditActiveAcceptance":"Als je klikt op NU BETALEN, krijg je de door Klarna aangeboden betaalmethoden te zien. Door verder te gaan, accepteer ik de <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/nl_nl/user\\">algemene voorwaarden van Klarna\'s Shopping Service</a> en bevestig ik dat ik <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/nl_nl/privacy\\">Klarna\'s Privacyverklaring</a> en <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/nl_nl/cookie_purchase\\">Cookieverklaring</a> heb gelezen. <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/nl_nl/invoice?credit_time=30\\">Algemene voorwaarden</a>","klarnaCreditRecurringActiveAcceptance":"Als je klikt op NU BETALEN, krijg je de door Klarna aangeboden betaalmethoden te zien. Door verder te gaan, accepteer ik de <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/nl_nl/user\\">algemene voorwaarden van Klarna\'s Shopping Service</a> en bevestig ik dat ik <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/nl_nl/privacy\\">Klarna\'s Privacyverklaring</a> en <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/nl_nl/cookie_purchase\\">Cookieverklaring</a> heb gelezen. <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/nl_nl/invoice?credit_time=30\\">Algemene voorwaarden</a>","agreeToTerms":"Ik heb de voorwaarden en prijzen gelezen en ga ermee akkoord.","idealRecurringAgreement":"Door het vakje aan te klikken, machtigt u Digital River om uw eerste betaling via iDEAL te innen en uw IBAN te gebruiken om de volgende abonnementsbetalingen via SEPA-incasso te innen. U kunt uw SEPA-incasso-gegevens bekijken nadat u uw bestelling hebt ingediend. <br/><br/>U kunt een Europese incasso laten terugbetalen in overeenstemming met de algemene voorwaarden van uw overeenkomst met uw bank. Een terugbetaling moet worden aangevraagd binnen 8 weken na de datum waarop uw rekening werd gedebiteerd. ","mstsActiveAcceptance":"Selecteer {payNow} om in te loggen bij TreviPay, de Twee-factor-authenticatie te voltooien en je aankoop te bevestigen.<span class=\\"{createAccountButtonTextClass}\\"><br /><br />Selecteer \'Meld je NU aan\' om een TreviPay account aan te maken.</span><br /><br />DISCLAIMER<br /><br />* Alle aankoopprogramma accounts en kredietlijnen onder het betalingsvoorwaarden programma zijn uitgegeven door Multi Service Technology Solutions, Inc., een in Florida USA gevestigde onderneming (\\"MSTS\\").<br /><br />* {businessEntityName} is geen partij bij de Purchase Program Accountholder Agreement. {businessEntityName} is noch een kredietverstrekker, noch een makelaar voor de kredietlijnen die zijn uitgegeven onder het betalingsvoorwaardenprogramma<br /><br />Alle aanmeldingen en uw kwalificaties worden beoordeeld en beslist door TreviPay. <a href=\\"https://www.trevipay.com/privacy-center/\\" target=\\"_blank\\">TreviPay Privacy Center.</a>","invoiceAgreement":"Ik ga akkoord om Digital River Taiwan toe te staan de e-factuur gerelateerde zaken namens mij af te handelen om het retour-/terugbetalingsproces te versnellen.","warrantyInformation":"garantie informatie","japaneseCommerceLaw":"Handelsrecht"},"no_NO":{"cancellationRights":"Rett til avbestilling","cookiePolicy":"Informasjonskapsler","legalNotice":"Juridiske bestemmelser","privacyPolicy":"Personvern","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> er den autoriserte selgeren og forhandleren av varene og tjenestene som tilbys i denne butikken.","termsOfSale":"Salgsbetingelser","confirmDisclosure":"Ved å sende inn min bestilling, samtykker jeg i <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Salgsbetingelsene</a> og <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Personvernpolitikken</a> for {businessEntityName}.","consentsEula":" og <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Sluttbrukerlisensavtale</a>","consentsTermsOfUse":" og <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Vilkår for bruk</a>","consentsCompanyName":" av {companyName}","californiaPrivacyRights":"Dine personvernrettigheter i California","autoRenewPlanTermsBegin":"Ved å fullføre kjøpet gir du din tillatelse til at Digital River automatisk fornyer lisenskjøpet eller abonnementet ditt for en påfølgende fornyet periode som beskrevet i produktinformasjonen. Når den valgte perioden er slutt, belaster vi betalingsalternativet du har lagret, automatisk med den gjeldende prisen (pluss avgift) for hver ny periode helt til du sier opp. Vi sender deg en e-postpåminnelse minst én gang før hver fornyelse for å minne deg om den kommende fornyelsen og kan endre fornyelsesprisen for hver fornyelsesdato dersom vi gir deg forvarsel om endringen i en e-post. Digital Rivers <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">salgsbetingelser</a> og <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">personvernbestemmelser</a>","autoRenewPlanTermsEnd":" vil gjelde for hver fornyelse. Du kan si opp den automatiske fornyelsen når som helst ved å følge anvisningene i din bekreftelses-e-post for bestillingen.<br/><br/>Jeg samtykker i at Digital River kan lagre min betalingsinformasjon for fremtidige kjøp inkludert behandling av eventuelle påfølgende abonnementsfornyelser som kan forekomme etter datoen for denne bestillingen.","klarnaCreditActiveAcceptance":"Ved å klikke på BETAL NÅ vil du bli presentert med ulike betalingsmetoder som Klarna tilbyr. Ved å fortsette aksepterer jeg <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/nb_no/user\\">vilkårene for Klarnas Shoppingtjeneste</a>, og bekrefter at jeg har lest <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/nb_no/privacy\\">retningslinjene for personvern</a> og <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/nb_no/cookie_purchase\\">informasjonskapsler</a>. <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/nb_no/invoice?credit_time=30\\">Vilkår</a>","klarnaCreditRecurringActiveAcceptance":"Ved å klikke på BETAL NÅ vil du bli presentert med ulike betalingsmetoder som Klarna tilbyr. Ved å fortsette aksepterer jeg <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/nb_no/user\\">vilkårene for Klarnas Shoppingtjeneste</a>, og bekrefter at jeg har lest <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/nb_no/privacy\\">retningslinjene for personvern</a> og <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/nb_no/cookie_purchase\\">informasjonskapsler</a>. <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/nb_no/invoice?credit_time=30\\">Vilkår</a>","agreeToTerms":"Jeg har lest og godtar betingelsene og kostnadene ovenfor.","invoiceAgreement":"Jeg samtykker i å tillate Digital River Taiwan å håndtere e-fakturarelaterte saker på mine vegne for å fremskynde retur-/refusjonsprosessen.","warrantyInformation":"Garantiinformasjon","japaneseCommerceLaw":"Lov om næringsdrift"},"pl_PL":{"cancellationRights":"Prawo do anulowania zamówienia","cookiePolicy":"Pliki cookie","legalNotice":"Nota prawna","privacyPolicy":"Polityka ochrony danych","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> to autoryzowany dystrybutor oraz sprzedawca produktów i usług dostępnych w naszym sklepie.","termsOfSale":"Warunki sprzedaży","confirmDisclosure":"Składając zamówienie, akceptuję <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Warunki sprzedaży</a> oraz <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Politykę prywatności</a> {businessEntityName}.","consentsEula":" i <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Umowa licencyjna dla klienta końcowego</a>","consentsTermsOfUse":" i <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Warunki korzystania z produktów</a>","consentsCompanyName":" z {companyName}","californiaPrivacyRights":"Twoje prawa do prywatności w Kalifornii","autoRenewPlanTermsBegin":"Dokonanie zakupu jest jednoznaczne z wyrażeniem zgody na automatyczne odnawianie przez firmę Digital River zakupionej licencji lub subskrypcji na kolejne okresy odnowienia opisane w szczegółach produktu. Na koniec wybranego okresu automatycznie pobierzemy Twoje zapisane płatności według obowiązującej w danym momencie ceny (plus podatek) za każdy kolejny okres odnowienia do momentu anulowania. Przed każdym odnowieniem wyślemy Ci co najmniej jedną przypominającą wiadomość e-mail, przy czym opłata za odnowienie licencji lub subskrypcji może ulec zmianie w kolejnym terminie odnowienia, jednak pod warunkiem, że powiadomimy Cię o zmianie za pośrednictwem poczty e-mail. Każda transakcja odnowienia licencji/subskrypcji podlega przepisom <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Regulaminu sprzedaży</a> oraz <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Polityki prywatności</a> firmy Digital River","autoRenewPlanTermsEnd":". W dowolnym momencie możesz anulować plan automatycznego odnawiania, postępując zgodnie z instrukcjami podanymi w wiadomości e-mail z potwierdzeniem zamówienia.<br/><br/>Wyrażam zgodę, aby Digital River przechowywała moje dane dotyczące płatności dla przyszłych zakupów, w tym przetwarzania przyszłych odnowień subskrypcji, jakie mogą pojawić się po dacie tego zamówienia.","agreeToTerms":"Znam i akceptuję powyższe warunki oraz opłaty.","idealRecurringAgreement":"Klikając to pole, upoważniasz Digital River do pobrania pierwszej płatności za pośrednictwem iDEAL i wykorzystania Twojego numeru IBAN do pobrania kolejnych płatności za subskrypcję w formie polecenia zapłaty SEPA. Po złożeniu zamówienia możesz sprawdzić informacje dotyczące Polecenia Zapłaty SEPA. <br/><br/>Zgodnie z przysługującymi uprawnieniami użytkownik jest upoważniony do uzyskania zwrotu od banku zgodnie z regulaminem oraz umową z bankiem. Żądanie zwrotu musi zostać zgłoszone w okresie 8 tygodni od daty obciążenia rachunku. ","mstsActiveAcceptance":"Wybierz opcję {payNow}, aby zalogować się do TreviPay, przeprowadzić dwustopniowe uwierzytelnienie i potwierdzić zakup.<span class=\\"{createAccountButtonTextClass}\\"><br /><br />Wybierz opcję Zarejestruj się TERAZ, aby utworzyć konto TreviPay.</span><br /><br />Wybierając opcję Zarejestruj się terazutworzysz swoje konto TreviPay<br /><br /><br /><br />ZRZECZENIE SIĘ<br /><br />* Wszystkie konta programu zakupów oraz linie kredytowe w ramach warunków płatności są wydawane przez Multi Service Technology Solutions, Inc., spółkę zarejestrowaną na Florydzie w USA („MSTS”).<br /><br />* {businessEntityName} nie jest stroną Umowy z właścicielem konta w ramach programu zakupów. {businessEntityName} nie jest pożyczkodawcą ani brokerem w zakresie linii kredytowych wydanych w ramach programu warunków i płatności.<br /><br />Wszystkie aplikacje i twoje kwalifikacje zostaną sprawdzone i rozstrzygnięte przez TreviPay. <a href=\\"https://www.trevipay.com/privacy-center/\\" target=\\"_blank\\">TUTAJ jest link do Centrum ochrony prywatności TreviPay.</a>","klarnaCreditActiveAcceptance":"Kontynuując, zostaną wyświetlone opcje płatności udostępnione przez Klarny. Kontynuując, potwierdzam zapoznanie się z <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/pl_pl/privacy\\">Polityką prywatności Klarny</a> i <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/pl_pl/cookie_purchase\\">polityką plików cookie Klarny</a> i akceptuję <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/pl_pl/user\\">Warunki zakupów Klarny</a>.","klarnaCreditRecurringActiveAcceptance":"Kontynuując, zostaną wyświetlone opcje płatności udostępnione przez Klarny. Kontynuując, potwierdzam zapoznanie się z <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/pl_pl/privacy\\">Polityką prywatności Klarny</a> i <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/pl_pl/cookie_purchase\\">polityką plików cookie Klarny</a> i akceptuję <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/pl_pl/user\\">Warunki zakupów Klarny</a>.","invoiceAgreement":"Zgadzam się, aby Digital River Taiwan zajmował się sprawami związanymi z e-fakturami w moim imieniu w celu przyspieszenia procesu zwrotu/zwrotu środków.","warrantyInformation":"Informacje o gwarancji","japaneseCommerceLaw":"Prawo handlowe"},"pt_BR":{"cancellationRights":"Regras de cancelamento","cookiePolicy":"Cookies","legalNotice":"Aviso legal","privacyPolicy":"Política de privacidade","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> é o revendedor e o distribuidor autorizado dos produtos e serviços oferecidos nesta loja.","termsOfSale":"Termos de vendas","confirmDisclosure":"Ao enviar meu pedido, eu concordo com os <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Termos de vendas</a> e com a <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Política de privacidade</a> de {businessEntityName}.","consentsEula":" e a <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Acordo de licença do usuário final</a>","consentsTermsOfUse":" e a <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Termos de uso</a>","consentsCompanyName":" de {companyName}","californiaPrivacyRights":"Seus direitos de privacidade na Califórni","autoRenewPlanTermsBegin":"Ao concluir sua compra, você autoriza a Digital River a renovar automaticamente sua licença ou assinatura comprada para períodos sucessivos de renovação, conforme descrito nos detalhes do produto. No final do período selecionado, cobraremos automaticamente suas informações de pagamento armazenadas pelo preço atual em vigor (mais impostos) para cada período de renovação adicional até que você realize o cancelamento. Enviaremos pelo menos um e-mail antes para lembrá-lo da renovação e comunicar sobre alterações no valor da renovação para o próximo período. Os <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Termos de venda</a> e a <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Política de privacidade</a> da Digital River","autoRenewPlanTermsEnd":" prevalecerão a cada operação de renovação.. Você pode cancelar seu plano de renovação automática a qualquer momento seguindo as instruções fornecidas em seu e-mail de confirmação de pedido.<br/><br/>Concordo que a Digital River armazene meus dados de pagamento para compras futuras incluindo o processamento de qualquer renovação de assinatura posterior que possa ocorrer após a data desse pedido.","agreeToTerms":"Li e concordo com os termos e cobranças acima.","idealRecurringAgreement":"Ao clicar na caixa, autoriza a Digital River a cobrar o seu primeiro pagamento através do iDEAL e a utilizar o seu IBAN para cobrar os pagamentos de subscrição subsequente por débito directo SEPA. Pode rever a sua informação sobre Débitos Directos SEPA após o envio da encomenda. <br/><br/>Como parte dos seus direitos, tem o direito a um reembolso por parte do seu banco, segundo os termos e condições do seu acordo com o este. Um reembolso deve ser solicitado no espaço de 8 semanas, a contar a partir da data em que a sua conta foi debitada. ","invoiceAgreement":"Eu concordo em permitir que a Digital River Taiwan lide com os assuntos relacionados à fatura eletrônica em meu nome para acelerar o processo de devolução/reembolso.","warrantyInformation":"Informações de garantia","japaneseCommerceLaw":"Lei de Transações Comerciais"},"pt_PT":{"cancellationRights":"Direito de Cancelamento","cookiePolicy":"Cookies","legalNotice":"Aviso Legal","privacyPolicy":"Política de privacidade","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> é o revendedor autorizado e o comerciante dos produtos e serviços disponibilizados nesta loja.","termsOfSale":"Termos de Venda","confirmDisclosure":"Ao submeter a minha encomenda, concordo com os <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Termos de Venda</a> e a <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\"  class=\\"dr_privacyPolicy\\">Política de Privacidade</a> de {businessEntityName}.","consentsEula":" e a <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Acordo de Licença de Utilizador Final</a>","consentsTermsOfUse":" e a <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Termos de Utilização</a>","consentsCompanyName":" de {companyName}","californiaPrivacyRights":"Seus direitos de privacidade na Califórnia","autoRenewPlanTermsBegin":"Ao finalizar a sua compra, autoriza a Digital River a renovar automaticamente a licença ou subscrição adquirida por períodos de renovação sucessivos conforme descrito nos detalhes do produto. No final do período selecionado, cobraremos automaticamente o preço em vigor à data (acrescido de impostos), utilizando as informações de pagamento armazenadas, por cada período de renovação adicional até que cancele. Enviar-lhe-emos, no mínimo, uma vez antes de cada renovação um lembrete por e-mail para o lembrar da sua próxima renovação e poderemos alterar o preço de renovação para qualquer período de renovação que se aproxime, fornecendo-lhe por e-mail um aviso prévio da alteração. \\"autoRenewPlanTermsEnd\\": \\" As <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Condições de Venda</a> e <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Política de Privacidade</a> da Digital River","autoRenewPlanTermsEnd":"  aplicam-se a cada transação de renovação. Poderá cancelar o seu plano de renovação automática em qualquer altura, seguindo as instruções fornecidas no e-mail de confirmação da sua encomenda.<br/><br/>Aceito que a Digital River poderá guardar a minha informação de pagamento para compras futuras, incluindo o processamento de quaisquer renovações subsequentes da subscrição que poderão ocorrer a seguir à data desta encomenda.","agreeToTerms":"Li e concordo com os termos e encargos acima mencionados.","idealRecurringAgreement":"Ao clicar na caixa, autoriza a Digital River a cobrar o seu primeiro pagamento através do iDEAL e a utilizar o seu IBAN para cobrar os pagamentos de subscrição subsequente por débito directo SEPA. Pode rever a sua informação sobre Débitos Directos SEPA após o envio da encomenda. <br/><br/>Como parte dos seus direitos, tem o direito a um reembolso por parte do seu banco, segundo os termos e condições do seu acordo com o este. Um reembolso deve ser solicitado no espaço de 8 semanas, a contar a partir da data em que a sua conta foi debitada. ","invoiceAgreement":"Eu concordo em permitir que a Digital River Taiwan lide com os assuntos relacionados à fatura eletrônica em meu nome para acelerar o processo de devolução/reembolso.","klarnaCreditActiveAcceptance":"Ao prosseguir, você verá as opções de pagamento fornecidas pela Klarna. Ao continuar, eu aceito a <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/pt_pt/cookie_purchase\\">Política de Cookies Klarna</a> e confirmo que li os <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/pt_pt/privacy\\">Termos de Privacidade</a>.","klarnaCreditRecurringActiveAcceptance":"Ao prosseguir, você verá as opções de pagamento fornecidas pela Klarna. Ao continuar, eu aceito a <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/pt_pt/cookie_purchase\\">Política de Cookies Klarna</a> e confirmo que li os <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/pt_pt/privacy\\">Termos de Privacidade</a>.","warrantyInformation":"Informações sobre a garantia","japaneseCommerceLaw":"Lei de Transações Comerciais"},"ro_RO":{"privacyPolicy":"Politică de confidenţialitate","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> este un vânzător şi comerciant cu amănuntul autorizat ce furnizează servicii de comerţ electronic pentru acest magazin.","termsOfSale":"Termeni şi condiţii","confirmDisclosure":"","autoRenewPlanTermsBegin":"","autoRenewPlanTermsEnd":"","warrantyInformation":"Informații privind garanția"},"ru_RU":{"cancellationRights":"Право отмены","cookiePolicy":"Cookie","legalNotice":"Юридическое уведомление","privacyPolicy":"Политика конфиденциальности","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> является авторизованным реселлером и продавцом продукции и услуг, предлагаемых в настоящем магазине.","termsOfSale":"Условия продажи","confirmDisclosure":"Подтверждая заказ, я соглашаюсь с <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Условиями продажи</a> и <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Политикой конфиденциальности</a> {businessEntityName}.","consentsEula":" и <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Лицензионное соглашение конечного пользователя</a>","consentsTermsOfUse":" и <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Условия использования</a>","consentsCompanyName":" {companyName}","californiaPrivacyRights":"Ваши права на конфиденциальность в Калифорнии","autoRenewPlanTermsBegin":"Выполняя покупку, вы уполномочиваете компанию Digital River автоматически продлевать приобретенную вами лицензию или подписку на следующий срок ее действия в соответствии с описанием продукции. По завершении выбранного периода мы автоматически спишем с указанного вами счета актуальную на тот момент стоимость (плюс налог) каждого дополнительного срока продления, если только вы не откажетесь от автоматического продления. Перед каждым продлением мы будем отправлять вам по электронной почте по меньшей мере одно уведомление с напоминанием о предстоящем продлении. Кроме того, по электронной почте мы также будем предварительно информировать вас о возможном изменении стоимости продления на следующий срок. <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Условия продажи</a> и <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Политика конфиденциальности</a> Digital River","autoRenewPlanTermsEnd":" распространяются на каждую процедуру продления. Вы можете в любое время отказаться от вашей программы автоматического продления, следуя указаниям в электронном письме с подтверждением заказа.<br/><br/>Я согласен (-на) на то, чтобы компания Digital River хранила мою информацию об оплате для совершения покупок в будущем, в том числе для обновления подписок, следующих после даты настоящего заказа.","agreeToTerms":"Я прочитал и согласен с Условиями и стоимостью, указанными выше.","idealRecurringAgreement":"Нажав на галочку, вы разрешаете Digital River собрать ваш первый платеж через iDEAL и использовать ваш IBAN для сбора последующих платежей за подписку путем прямого дебета SEPA. Вы можете просмотреть информацию о своем прямом дебете SEPA после отправки заказа. <br/><br/>Вы также имеете право на возмещение банком Ваших денежных средств согласно условиям и положениям заключенного с банком соглашения. Возмещение должно быть заявлено в течение 8 недель, начиная с даты списания средств с вашего счета. ","invoiceAgreement":"Я соглашаюсь разрешить Digital River Taiwan заниматься вопросами, связанными с электронными счетами, от моего имени, чтобы ускорить процесс возврата/возмещения.","warrantyInformation":"Информация о гарантии","japaneseCommerceLaw":"Закон о коммерческих операциях"},"sk_SK":{"cancellationRights":"Oprávnenie na zrušenie","cookiePolicy":"Cookies","legalNotice":"Právny dokument","privacyPolicy":"Politika ochrany osobných údajov","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> je predajca alebo veľkoobchod s produktmi a službami poskytovanými v tomto obchode.","termsOfSale":"Predajné podmienky","confirmDisclosure":"Odoslaním objednávky vyjadrujem svoj súhlas s <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">predajnými podmienkami</a> a <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">zásadami ochrany osobných údajov</a> spoločnosti {businessEntityName}.","consentsEula":" a <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Licenčná zmluva koncového používateľa</a>","consentsTermsOfUse":" a <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Podmienky používania</a>","consentsCompanyName":" och {companyName}","californiaPrivacyRights":"Vaše práva na ochranu súkromia v Kalifornii","autoRenewPlanTermsBegin":"Dokončením nákupu oprávňujete spoločnosť Digital River, aby automaticky obnovila zakúpenú licenciu alebo predplatné na ďalšie obdobia obnovenia, ako je opísané v podrobnostiach o výrobku. Na konci zvoleného obdobia automaticky zaúčtujeme vaše uložené platobné údaje za aktuálne platnú cenu (plus daň) pre každé ďalšie obdobie obnovenia dovtedy, kým ho nezrušíte. Pred každým obnovením vám minimálne raz zašleme e-mailové pripomenutie ako pripomienku nadchádzajúceho obnovenia a v prípade zmeny ceny obnovenia na nasledujúce obdobie obnovenia vám zašleme e-mailové oznámenie o tejto zmene. Na každú transakciu obnovenia sa uplatňujú <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">predajné podmienky</a> a <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">zásady ochrany osobných údajov</a> spoločnosti Digital River","autoRenewPlanTermsEnd":". Automatické obnovenie plánu môžete kedykoľvek zrušiť podľa pokynov v e-mailovom potvrdení objednávky.<br/><br/>Súhlasím s tým, aby spoločnosť Digital River ukladala moje platobné informácie na budúce nákupy vrátane spracovania všetkých obnovení predplatného, ku ktorým môže dôjsť po uplynutí tohto príkazu.","agreeToTerms":"Prečítal(a) som si uvedené informácie o podmienkach a cenách a súhlasím s nimi.","idealRecurringAgreement":"Kliknutím na toto políčko povoľujete spoločnosti Digital River inkasovať vašu prvú platbu prostredníctvom iDEAL a používať váš IBAN na inkaso ďalších platieb predplatného prostredníctvom SEPA inkasa. Po odoslaní objednávky si môžete skontrolovať svoje informácie o priamom inkase SEPA. <br/><br/>Na základe svojich práv môžete požiadať banku o vrátenie sumy v súlade so zmluvnými podmienkami svojej banky. O vrátenie peňazí je potrebné požiadať do 8 týždňov odo dňa odpísania sumy z vášho účtu. ","invoiceAgreement":"Súhlasím s tým, aby Digital River Taiwan zabezpečoval záležitosti súvisiace s e-faktúrami za mňa, s cieľom urýchliť proces vrátenia/odškodnenia.","warrantyInformation":"Informácie o záruke","japaneseCommerceLaw":"Zákon o obchodných transakciách"},"sl_SI":{"cancellationRights":"Pravica do odstopa","cookiePolicy":"Piškotki","legalNotice":"Pravno obvestilo","privacyPolicy":"Pravilnik o zasebnosti","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> je pooblaščen trgovec na debelo in drobno, ki ponuja storitve spletne prodaje za to trgovino.","termsOfSale":"Pogoji in določila","confirmDisclosure":"Z oddajo svojega naročila se strinjam s <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Pogoji prodaje</a> in <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Politiko zasebnosti</a> podjetja {businessEntityName}.","consentsEula":" in <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Licenčna pogodba za končnega uporabnika</a>","consentsTermsOfUse":" in <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Pogoji Prodaje</a>","consentsCompanyName":" od {companyName}","californiaPrivacyRights":"Vaše pravice do zasebnosti v Kaliforniji","autoRenewPlanTermsBegin":"S potrditvijo nakupa pooblaščate podjetje Digital River, da samodejno podaljšuje vašo kupljeno licenco ali naročnino za zaporedna podaljšanja, kot je opisano v podrobnostih izdelka. Ob koncu izbranega obdobja bomo samodejno zaračunali vaše shranjene plačilne podatke po trenutno veljavni ceni (z davkom) za vsako dodatno obdobje podaljšanja, dokler ne prekličete. Pred vsakim podaljšanjem vam bomo poslali opomnik po elektronski pošti, in lahko spremenimo ceno podaljšanja za prihajajoče obdobje, s predhodnim obvestilom o spremembi po elektronski pošti. Digital River <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Pogoji prodaje</a> in <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Politika zasebnosti</a> ","autoRenewPlanTermsEnd":" velja za vsako obnovitveno transakcijo. Avtomatični načrt podaljšanja lahko kadar koli prekličete tako, da sledite navodilom, navedenim v e-poštnem potrdilu naročila.<br/><br/>Strinjam se, da podjetje Digital River lahko shrani moje podatke o plačilu za prihodnje nakupe, vključno s procesiranjem morebitnih nadaljnjih podaljšanj naročnine, ki se lahko pojavijo po datumu tega naročila.","agreeToTerms":"Prebral(a) sem in se strinjam s pogoji in stroški zgoraj.","invoiceAgreement":"Strinjam se, da dovolim Digital River Taiwanu, da v mojem imenu obravnava zadeve, povezane z e-računi, da bi pospešil postopek vračila/povračila.","warrantyInformation":"Informacije o garanciji","japaneseCommerceLaw":"Zakon o gospodarskih pogodbah"},"sr_YU":{"privacyPolicy":"Pravilnik o poverljivosti","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> je ovlašćen za maloprodaju i trgovinu i pruža usluge e-trgovine za ovu prodavnicu.","termsOfSale":"Uslovi","confirmDisclosure":"","autoRenewPlanTermsBegin":"","autoRenewPlanTermsEnd":"","warrantyInformation":"Informacije o garanciji"},"sv_SE":{"cancellationRights":"Ångerrätt","cookiePolicy":"Cookies","legalNotice":"Juridisk information","privacyPolicy":"Sekretesspolicy","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> är den auktoriserade återförsäljaren av de produkter och tjänster som erbjuds i den här butiken.","termsOfSale":"Försäljningsvillkor","confirmDisclosure":"Genom att skicka ordern godkänner jag <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">köpvillkoren</a> och <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">sekretesspolicyn</a> för {businessEntityName}.","consentsEula":" och <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Licensavtal för användare</a>","consentsTermsOfUse":" och <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Användningsvillkor</a>","consentsCompanyName":" av {companyName}","californiaPrivacyRights":"Dina integritetsrättigheter i Kalifornien","autoRenewPlanTermsBegin":"Genom att slutföra köpet ger du Digital River tillåtelse att automatiskt förlänga den inköpta licensen eller prenumerationen för efterföljande perioder i enlighet med villkoren som beskrivs i produktdetaljerna. Vid slutet av den aktuella perioden dras automatiskt den kostnad (plus moms) som då gäller för nästa förlängningsperiod från ditt konto baserat på din angivna betalningsinformation. Detta sker tills du avbryter den automatiska förlängningen. Vi skickar minst en förlängningspåminnelse via e-post när det är dags att förlänga. Priset för kommande period kan komma att ändras, men vi meddelar dig i så fall via e-post. Digital Rivers <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">försäljningsvillkor</a> och <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">sekretesspolicy</a>","autoRenewPlanTermsEnd":" gäller för varje transaktion i samband med förlängning. Du kan när som helst avbryta den automatiska förlängningen genom att följa anvisningarna i orderbekräftelsemejlet.<br/><br/>Jag godkänner att Digital River sparar min betalningsinformation för framtida inköp, inklusive bearbetning av eventuellt efterföljande prenumerationsförlängningar som kan inträffa efter beställningsdatumet.","klarnaCreditActiveAcceptance":"Genom att klicka BETALA NU kommer du att bli presenterad med olika betalmetod tillhandahållna av Klarna. Genom att fortsätta accepterar jag <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/sv_se/user\\">villkoren för Klarnas Shoppingtjänst</a> samt bekräftar att jag har läst <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/sv_se/privacy\\">Klarnas Dataskyddsinformation</a> samt <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/sv_se/cookie_purchase\\">cookiepolicy</a>. <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/sv_se/invoice?credit_time=30\\">Villkor</a>","klarnaCreditRecurringActiveAcceptance":"Genom att klicka BETALA NU kommer du att bli presenterad med olika betalmetod tillhandahållna av Klarna. Genom att fortsätta accepterar jag <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/sv_se/user\\">villkoren för Klarnas Shoppingtjänst</a> samt bekräftar att jag har läst <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/sv_se/privacy\\">Klarnas Dataskyddsinformation</a> samt <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/sv_se/cookie_purchase\\">cookiepolicy</a>. <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/sv_se/invoice?credit_time=30\\">Villkor</a>","agreeToTerms":"Jag har läst och godkänner villkoren och beloppen ovan.","idealRecurringAgreement":"Genom att klicka i rutan godkänner du att Digital River tar emot din första betalning via iDEAL och använder ditt IBAN för att ta emot efterföljande prenumerationsbetalningar via SEPA-autogiro. Du kan granska din information om SEPA-direktdebitering efter att du har skickat din beställning. <br/><br/>Du har bland annat rätt till återbetalning från banken enligt villkoren i ditt avtal med banken. En återbetalning måste begäras inom åtta veckor från det datum då kontot debiterades. ","invoiceAgreement":"Jag samtycker till att Digital River Taiwan får hantera ärenden relaterade till e-fakturor åt mig för att påskynda återbetalningsprocessen.","warrantyInformation":"Garanti-information","japaneseCommerceLaw":"Lag om kommersiella transaktioner"},"th_TH":{"cancellationRights":"สิทธิ์ในการยกเลิก","cookiePolicy":"คุกกี้","legalNotice":"ข้อความสงวนสิทธิ์ทางกฎหมาย","privacyPolicy":"นโยบายการเก็บรักษาข้อมูลส่วนบุคคล","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> เป็นผู้ค้าและผู้จำหน่ายที่ได้รับอนุญาตสำหรับผลิตภัณฑ์และบริการที่นำเสนอภายในร้านค้าแห่งนี้","termsOfSale":"เงื่อนไขการขาย","confirmDisclosure":"ในการส่งคำสั่งซื้อของฉัน ฉันยอมรับ<a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">ข้อกำหนดการจำหน่าย</a>และ<a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">นโยบายความเป็นส่วนตัว</a>ของ {businessEntityName}","consentsEula":" และ <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">ข้อตกลงการใช้งานสำหรับผู้ใช้งานสุดท้าย</a>","consentsTermsOfUse":" และ <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">ข้อกำหนดการใช้งาน</a>","consentsCompanyName":" ของ {companyName}","californiaPrivacyRights":"สิทธิของคุณในความเป็นส่วนตัวในรัฐแคลิฟอร์เนีย","autoRenewPlanTermsBegin":"การดำเนินการสั่งซื้อให้เสร็จสมบูรณ์ถือว่าคุณได้อนุญาตให้ Digital River ดำเนินการต่ออายุสิทธิ์ใช้งานหรือการสมัครใช้บริการที่คุณสั่งซื้อโดยอัตโนมัติภายใต้เงื่อนไขการต่ออายุแบบต่อเนื่องตามที่อธิบายไว้ในรายละเอียดของผลิตภัณฑ์ เมื่อสิ้นสุดระยะเวลาที่เลือกแล้ว เราจะเรียกเก็บเงินโดยอัตโนมัติจากข้อมูลการชำระเงินที่จัดเก็บไว้ตามราคาปัจจุบันที่มีผล (รวมภาษี) สำหรับแต่ละช่วงเวลาการต่ออายุเพิ่มเติมจนกว่าคุณจะดำเนินการยกเลิก เราจะส่งอีเมลแจ้งเตือนล่วงหน้าอย่างน้อยหนึ่งครั้งก่อนการต่ออายุใหม่ทุกครั้งเพื่อแจ้งเตือนให้ดำเนินการต่ออายุที่ใกล้ครบกำหนด และอาจมีการเปลี่ยนแปลงราคาสำหรับการต่ออายุในครั้งต่อไปด้วย ซึ่งจะมีการแจ้งการเปลี่ยนแปลงดังกล่าวให้คุณทราบล่วงหน้าทางอีเมล Digital River\'s <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">ข้อกำหนดในการขาย</a> และ <a href=\\"{privacyPolicyUrl}\\" target= \\"_blank\\" class=\\"dr_privacyPolicy\\">นโยบายความเป็นส่วนตัว</a>","autoRenewPlanTermsEnd":" จะใช้กับการต่ออายุแต่ละครั้ง คุณสามารถยกเลิกแผนการต่ออายุอัตโนมัติได้ทุกเมื่อโดยปฏิบัติตามขั้นตอนที่ระบุไว้ในอีเมลยืนยันคำสั่งซื้อ","agreeToTerms":"ฉันได้อ่านและเห็นชอบในเงื่อนไขและค่าใช้จ่ายข้างต้นแล้ว","idealRecurringAgreement":"เมื่อคลิกที่กล่องคุณอนุญาตให้ Digital River เรียกเก็บเงินครั้งแรกผ่าน iDEAL และใช้ IBAN ของคุณเพื่อรวบรวมการชําระเงินการสมัครสมาชิกที่ตามมาโดยการหักบัญชีเงินฝากอัตโนมัติ SEPA คุณสามารถตรวจสอบข้อมูลการหักบัญชีเงินฝากอัตโนมัติ SEPA ของคุณหลังจากส่งคําสั่งซื้อ <br/><br/>คุณมีสิทธิ์ในการขอคืนเงินจากธนาคารของคุณภายใต้ข้อกำหนดและเงื่อนไขของข้อตกลงระหว่างคุณกับทางธนาคารของคุณ การใช้สิทธิ์ขอคืนเงินจะต้องดำเนินการภายใน 8 สัปดาห์นับจากวันที่ที่บัญชีของคุณถูกหัก ","invoiceAgreement":"ฉันยินยอมให้ Digital River Taiwan ดูแลเรื่องที่เกี่ยวข้องกับใบแจ้งหนี้อิเล็กทรอนิกส์ในนามของฉันเพื่อเร่งกระบวนการคืนเงิน/ส่งคืนสินค้า","warrantyInformation":"ข้อมูลการรับประกัน","japaneseCommerceLaw":"กฎหมายการธุรกิจทางพาณิชย์"},"tr_TR":{"cancellationRights":"İptal Hakkı","cookiePolicy":"Tanımlama Bilgileri","legalNotice":"Yasal Uyarı","privacyPolicy":"Gizlilik Politikası","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> bu mağazada ürünlerin ve servislerin önerilen yetkili satıcısı ve tüccarıdır.","termsOfSale":"Satış Şartları","confirmDisclosure":"Siparişimi göndererek {businessEntityName}’ye ait <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Satış Şartları</a> ve <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Gizlilik Politikası</a>’nı kabul ediyorum.","consentsEula":" ve <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Son Kullanıcı Lisans Anlaşması</a>","consentsTermsOfUse":" ve <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Kullanım Koşulları</a>","consentsCompanyName":" , {companyName}","californiaPrivacyRights":"Kaliforniya Gizlilik Haklarınız","autoRenewPlanTermsBegin":"Satın alma işleminizi tamamlayarak, satın aldığınız lisansın veya aboneliğin birbirini izleyen yenileme dönemlerinde Digital River tarafından ürün detaylarında açıklanan şekilde otomatik olarak yenilenmesi için de yetki vermiş olursunuz. Seçilen dönemin sonunda, her ek yenileme dönemi için kayıtlı ödeme bilgileriniz kullanılarak o sırada geçerli olan ücret (artı vergi) otomatik olarak tahsil edilecektir ve yetki siz iptal edene kadar geçerliliğini koruyacaktır. Her yenileme işleminden önce yaklaşmakta olan yenileme için size en az bir hatırlatma e-postası gönderilecektir ve ilerleyen zamanlarda, yenileme koşullarına bağlı olarak değişebilecek yenileme ücreti de tarafınıza önceden e-posta yoluyla bildirilecektir. Her yenileme işlemi için Digital River <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Satış Koşulları</a> ve <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Gizlilik Politikası</a>","autoRenewPlanTermsEnd":" geçerli olacaktır. Otomatik yenileme planınızı dilediğiniz zaman doğrulama e-postanızda bulunan talimatları izleyerek iptal edebilirsiniz.<br/><br/>Digital River\'ın ödeme bilgilerimi, bu sipariş tarihini takiben gerçekleşebilecek aboneliğin daha sonraki yenilenme işlemleri de dahil olmak üzere gelecekteki alışverişler için saklamasını kabul ediyorum.","agreeToTerms":"Yukarıdaki koşulları ve ücretleri okudum ve kabul ediyorum.","idealRecurringAgreement":"Kutuya tıklayarak Digital River\'a ilk ödemenizi iDEAL üzerinden tahsil etme yetkisi veriyorsunuz ve sonraki abonelik ödemelerini SEPA otomatik ödeme ile toplamak için IBAN\'ınızı kullanıyorsunuz. Sepa Otomatik Ödeme bilgilerinizi sipariş gönderimini inceledikten sonra inceleyebilirsiniz. <br/><br/>Haklarınızın bir parçası olarak, bankanızla olan anlaşmanızın hüküm ve şartlarına uygun biçimde bankanızdan geri ödeme alma hakkınız mevcuttur. Bir geri ödeme, hesabınızdan para çekildikten sonra 8 hafta içerisinde talep edilmelidir. ","invoiceAgreement":"Digital River Taiwan\'a, iade/iade sürecini hızlandırmak için benim adıma e-fatura ile ilgili konuları ele almasına izin veriyorum.","warrantyInformation":"Garanti Bilgileri","japaneseCommerceLaw":"Ticari İşlem Kanunu"},"zh_CN":{"cancellationRights":"取消订单权","cookiePolicy":"Cookie","legalNotice":"法律声明","privacyPolicy":"隐私政策","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> 是本商店提供的产品和服务的授权经销商和商家。","termsOfSale":"销售条款","confirmDisclosure":"通过提交我的订单，我同意{businessEntityName}的<a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">销售条款</a>和<a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">隐私政策</a>。","consentsEula":" 以及 <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">最终用户许可协议</a>","consentsTermsOfUse":" 以及 <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">使用条款</a>","consentsCompanyName":" 的 {companyName}","californiaPrivacyRights":"您在加利福尼亚的隐私权","autoRenewPlanTermsBegin":"您完成购买，即表明您授权Digital River自动续订您购买的许可证或订阅，并按照产品详细信息所述连续续期。在选定的续订期限结束时，我们将以现行有效价格(加税)自动根据您存储的支付信息收取每一次额外续期的费用，直至您取消续订。每一次续订前，我们将向您发送至少一封续订提醒邮件，且可能变更任何未来续订期的续订价格(会通过电子邮件提前告知您变更)。 Digital River<a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">销售条款</a>和<a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">隐私政策</a>","autoRenewPlanTermsEnd":" 适用于每一次续订交易。您可以随时取消自动续订计划，具体操作请参见您的订单确认信息电子邮件中提供的说明。<br/><br/>我同意Digital River保存我的支付信息，方便日后购买商品使用，包括自订单下达之日起，处理随后可能出现的任何续订。","agreeToTerms":"我已阅读并同意以上销售条款和费用。","idealRecurringAgreement":"通过点击方框，您授权Digital River通过iDEAL收取您的第一笔付款，并使用您的IBAN通过SEPA直接借记收取后续的订阅付款。您可以在提交订单后查看您的SEPA直接借记信息。<br/><br/>作为您权利的一部分，您可根据与开户银行所签订协议的各项条款和条件从您的开户银行获取退款。退款必须在你的账户被扣款之日起8周内提出。","invoiceAgreement":"我同意允许Digital River Taiwan代表我处理与电子发票相关的事项，以加速退款/退货过程。","warrantyInformation":"保修信息","japaneseCommerceLaw":"商事法"},"zh_HK":{"asWellAs":"以及","cancellationRights":"取消權利","cookiePolicy":"Cookies","legalNotice":"法律聲明","privacyPolicy":"隱私權政策","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> 是本商店內所提供產品及服務的授權轉售商和販售者。","termsOfSale":"銷售條款","confirmDisclosure":"通過提交我的訂單，我同意{businessEntityName}的<a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">銷售條款</a>和<a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">隱私政策</a>。","consentsEula":" <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">使用者授權合約</a>","consentsTermsOfUse":" <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">使用條款</a>","consentsCompanyName":"、{companyName} 的","californiaPrivacyRights":"你在加利福尼亞的私隱權","autoRenewPlanTermsBegin":"一旦完成購買，即表示您授權Digital River自動續訂您已購買的許可或訂閱，以符合產品詳細資料中所述的連續續訂條款。選定期限結束時，我們將自動按照當時有效的價格（及稅項）為每個額外的續訂期以您儲存的付款資料收取費用，直到您取消為止。每次續訂前，我們最少會發出一次電子郵件提醒您即將續訂。我們亦可能更改下次續訂的價格，並會事前以電子郵件通知。 Digital River<a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">銷售條款</a>與<a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">私隱政策</a>","autoRenewPlanTermsEnd":" 將適用於每次續訂交易。您可以根據訂單確認電郵中提供的指示隨時取消自動續訂計劃。<br/><br/>我同意Digital River儲存此帳戶及付款資訊，以供未來付款及本訂單日期後的任何續訂使用。","agreeToTerms":"我已閱讀並同意上述條款和收費。","invoiceAgreement":"我同意允許Digital River Taiwan代表我處理有關電子發票事宜，以加速退款/退貨過程。","warrantyInformation":"保修資訊","japaneseCommerceLaw":"商業交易法"},"zh_TW":{"asWellAs":"以及","cancellationRights":"取消權利","cookiePolicy":"Cookie","legalNotice":"法律聲明","privacyPolicy":"隱私權政策","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> 是本商店所提供商品及服務的授權經銷商及批發商。","termsOfSale":"銷售條款","confirmDisclosure":"貴方於提交訂單時，即表示同意 {businessEntityName} 的<a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">銷售條款</a>和<a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">隱私權政策</a>。","consentsEula":" <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">終端使用者授權同意書</a>","consentsTermsOfUse":" <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">使用規定</a>","consentsCompanyName":"、{companyName} 的","californiaPrivacyRights":"你的加州隱私權","autoRenewPlanTermsBegin":"完成購買表示您授權Digital River依據產品詳細資料中所述的連續更新條款自動更新您購買的授權或訂閱。除非您事先取消，否則在所選期間結束時我們將會依照已儲存的付款資訊自動向您收取該次額外續訂期間的費用（含稅）。每次續訂前，我們最少會發出一次電子郵件提醒您即將續訂。我們亦可能更改下次續訂的價格，並會事前以電子郵件通知。 Digital River<a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">銷售條款</a>與<a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">隱私權政策</a>","autoRenewPlanTermsEnd":" 將適用於每次的更新交易。您可以依據訂單確認信中提供的說明隨時取消自動續訂計畫。<br/><br/>我同意Digital River儲存此付款資訊，以供未來付款及本訂單日期後的任何續訂使用。","agreeToTerms":"我已經閱讀並同意上述條款與付款規定。","invoiceAgreement":"我同意辦理退貨退款時，由美商亞太數位潮流科技有限公司台灣分公司代為處理雲端發票相關事項，以加速退貨退款作業。","warrantyInformation":"保修資訊","japaneseCommerceLaw":"商業交易法"}},"locale":["ar_EG","cs_CZ","da_DK","de_AT","de_CH","de_DE","el_GR","en_AU","en_BE","en_CA","en_CH","en_DK","en_FI","en_GB","en_IE","en_IN","en_MY","en_NL","en_NO","en_NZ","en_PR","en_SE","en_SG","en_US","en_ZA","es_AR","es_CL","es_CO","es_EC","es_ES","es_MX","es_PE","es_VE","et_EE","fi_FI","fr_BE","fr_CA","fr_CH","fr_FR","hu_HU","it_CH","it_IT","iw_IL","ja_JP","ko_KR","lt_LT","lv_LV","nl_BE","nl_NL","no_NO","pl_PL","pt_BR","pt_PT","ro_RO","ru_RU","sk_SK","sl_SI","sr_YU","sv_SE","th_TH","tr_TR","zh_CN","zh_HK","zh_TW"],"entityCode":[{"code":"DRES_INC-ENTITY","name":"DR Education Services"},{"code":"DR_WP-ENTITY","name":"DR World Payments"},{"code":"DR_WPAB-ENTITY","name":"DR World Payments AB"},{"code":"C5_INC-ENTITY","name":"DR globalTech Inc."},{"code":"DR_BRAZIL-ENTITY","name":"Digital River Brazil"},{"code":"DR_CHINA-ENTITY","name":"Digital River China"},{"code":"DR_GMBH-ENTITY","name":"Digital River GmbH"},{"code":"DR_INC-ENTITY","name":"Digital River Inc."},{"code":"DR_INDIA-ENTITY","name":"eClickstore Trading Private Limited"},{"code":"DR_IRELAND-ENTITY","name":"Digital River Ireland Ltd."},{"code":"DR_JAPAN-ENTITY","name":"Digital River Japan"},{"code":"DR_KOREA-ENTITY","name":"Digital River Korea YH"},{"code":"DR_MEXICO-ENTITY","name":"Digital River Mexico"},{"code":"DR_RUSSIA-ENTITY","name":"Digital River Russia"},{"code":"DR_SARL-ENTITY","name":"Digital River, International SARL"},{"code":"DR_TAIWAN-ENTITY","name":"Digital River Taiwan"},{"code":"DR_UK-ENTITY","name":"Digital River UK Ltd."}],"keys":{"AS_WELL_AS":"asWellAs","AUTORENEWAL_PLAN_TERMS":"autoRenewPlanTerms","AUTORENEWAL_PLAN_TERMS_BEGIN":"autoRenewPlanTermsBegin","AUTORENEWAL_PLAN_TERMS_END":"autoRenewPlanTermsEnd","RESELLER_DISCLOSURE":"resellerDisclosure","TERMS_OF_SALE":"termsOfSale","PRIVACY_POLICY":"privacyPolicy","COOKIE_POLICY":"cookiePolicy","CANCELLATION_RIGHTS":"cancellationRights","CONFIRM_DISCLOSURE":"confirmDisclosure","CONSENTS_EULA":"consentsEula","CONSENTS_TERMS_OF_USE":"consentsTermsOfUse","CONSENTS_COMPANY_NAME":"consentsCompanyName","LEGAL_NOTICE":"legalNotice","CALIFORNIA_PRIVACY_RIGHTS":"californiaPrivacyRights","WARRANTY_INFORMATION":"warrantyInformation","AGREE_TO_TERMS":"agreeToTerms","IDEAL_RECURRING_AGREEMENT":"idealRecurringAgreement","INVOICE_AGREEMENT":"invoiceAgreement","JAPANESE_COMMERCE_LAW":"japaneseCommerceLaw"}}');
+module.exports = JSON.parse('{"details":{"ar_EG":{"cancellationRights":"حق الإلغاء","cookiePolicy":"ملفات كوكيز","legalNotice":"ملحوظة قانونية","privacyPolicy":"سياسة الخصوصية","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> هو الموزع والموزع المعتمد للمنتجات والخدمات المقدمة في هذا المتجر.","termsOfSale":"شروط البيع","confirmDisclosure":"بإرسال طلبي فإنني أوافق على <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">شروط البيع</a> و<a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">سياسة الخصوصية</a> لدى {businessEntityName}.","consentsCompanyName":"من {companyName}","consentsEula":" <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">اتفاقية ترخيص المستخدم</a>","consentsTermsOfUse":" <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">شروط البيع</a>","californiaPrivacyRights":"حقوقك فيما يتعلق بالخصوصية في كاليفورنيا","autoRenewPlanTermsBegin":"بإتمامك لعملية الشراء، فإنك تفوض شركة Digital River لتجديد الترخيص أو الاشتراك الذي اشتريته تلقائيًا لشروط التجديد المتعاقبة كما هو موضح في تفاصيل المنتج. في نهاية الفترة المحددة، سنقوم تلقائيًا بتحصيل المبلغ باستخدام وسيلة الدفع المخزنة الخاصة بك بالسعر الحالي الساري في ذلك الوقت (بالإضافة إلى الضريبة) لكل فترة تجديد إضافية حتى تقوم بالإلغاء. سنرسل إليك رسالة تذكير على البريد الإلكتروني مرة واحدة على الأقل قبل كل تجديد لتذكيرك بالتجديد القادم، وقد نقوم بتغيير سعر التجديد لمدة التجديد القادمة، وذلك بعد إخطارك بشكل مسبق عن طريق البريد الإلكتروني.سوف تسري <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">شروط البيع</a> و <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">سياسة الخصوصية</a> الخاصة بشركة Digital River","autoRenewPlanTermsEnd":" .على كل عملية تجديد. يمكنك إلغاء نظام التجديد التلقائي في أي وقت من خلال اتباع التعليمات الواردة في رسالة البريد الإلكتروني التأكيدية الخاصة بطلبك.<br/><br/>أوافق على أنه يجوز لشركة Digital River حفظ معلومات الدفع الخاصة بي لعمليات الشراء المستقبلية بما في ذلك تنفيذ أي عمليات تجديد اشتراك لاحقة قد تحدث بعد تاريخ هذا الطلب.","agreeToTerms":"لقد اطلعت على الشروط والرسوم وأوافق عليها.","idealRecurringAgreement":"بالنقر فوق المربع، فإنك تأذن لشركة Digital River بتحصيل دفعتك الأولى عبر iDEAL واستخدام رقم IBAN الخاص بك لتحصيل مدفوعات الاشتراك اللاحقة عن طريق الخصم المباشر من SEPA. يمكنك مراجعة معلومات الخصم المباشر ل SEPA بعد إرسال الطلب. <br/><br/>كجزء من حقوقك، يحق لك استرداد الأموال من البنك الذي تتعامل معه بموجب شروط وأحكام اتفاقك مع البنك الذي تتعامل معه. يجب أن تتم المطالبة برد المبلغ في غضون 8 أسابيع بدءا من التاريخ الذي تم فيه الخصم من حسابك. ","invoiceAgreement":"أوافق على السماح لشركة Digital River Taiwan بالتعامل مع المسائل المتعلقة بالفاتورة الإلكترونية نيابةً عني لتسريع عملية الإرجاع / استرداد","warrantyInformation":"معلومات الكفالة","japaneseCommerceLaw":"قانون المعاملات التجارية"},"cs_CZ":{"cancellationRights":"Oprávnění ke zrušení","cookiePolicy":"Cookies","legalNotice":"Právní dokument","privacyPolicy":"Zásady zachování soukromí","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> je autorizovaným prodejcem a obchodníkem s produkty a službami, které tento obchod nabízí.","termsOfSale":"Prodejní podmínky","confirmDisclosure":"Odesláním své objednávky vyjadřuji souhlas s <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">prodejními podmínkami</a> a <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">ochranou soukromí</a> {businessEntityName}.","consentsEula":" a <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Licenční smlouva koncového uživatele</a>","consentsTermsOfUse":" a <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Podmínky použití</a>","consentsCompanyName":" z {companyName}","californiaPrivacyRights":"Vaše práva na ochranu soukromí v Kalifornii","autoRenewPlanTermsBegin":"Dokončením nákupu opravňujete společnost Digital River k automatickému obnovení zakoupené licence nebo předplatného na další období, jak je popsáno v podrobnostech o produktu. Na konci zvoleného období vám automaticky podle uložených platebních údajů strhneme aktuální cenu (plus daň) za každé další období obnovení, dokud jej nezrušíte. Nejméně jednou před každým obnovením vám zašleme e-mailem upomínku na nadcházející obnovení a cenu za obnovení můžeme změnit pro každý následující termín obnovení na základě písemného upozornění na tuto změnu zaslaného e-mailem. <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Prodejní podmínky</a> společnosti Digital River a její <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">zásady pro ochranu osobních údajů</a>","autoRenewPlanTermsEnd":" se budou vztahovat na každý případ obnovení předplatného nebo licence. Plán automatického obnovení můžete kdykoli zrušit na základě pokynů uvedených v e-mailu s potvrzením objednávky.<br/><br/>Souhlasím, aby společnost Digital River ukládala moje platební údaje pro budoucí nákupy, včetně zpracování dalších obnovení předplatného, k nimž může dojít po datu této objednávky.","agreeToTerms":"Přečetl jsem si dříve uvedené podmínky a účtované poplatky a souhlasím s nimi.","idealRecurringAgreement":"Kliknutím na toto políčko udělujete společnosti Digital River oprávnění k inkasu první platby prostřednictvím iDEAL a k inkasu dalších plateb předplatného prostřednictvím SEPA inkasa pomocí vašeho IBAN. Informace o přímém inkasu SEPA si můžete zkontrolovat po odeslání objednávky. <br/><br/>Součástí vašich práv je nárok na proplacení od vaší banky podle podmínek vaší smlouvy s bankou. Žádost o proplacení musí být podána v průběhu 8 týdnů od data, ke kterému došlo k zúčtování částky na vrub vašeho účtu. ","invoiceAgreement":"Souhlasím, že povolím společnosti Digital River Taiwan řešit za mě záležitosti související s elektronickou fakturou, aby byl zrychlen proces vrácení peněz.","warrantyInformation":"Informace o záruce","japaneseCommerceLaw":"Zákon o obchodních transakcích"},"da_DK":{"cancellationRights":"Fortrydelsesret","cookiePolicy":"Cookies","legalNotice":"Juridisk note","privacyPolicy":"Retningslinjer for personbeskyttelse","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> er den autoriserede forhandler af de produkter og tjenesteydelser, der tilbydes i denne forretning.","termsOfSale":"Salgsvilkår","confirmDisclosure":"Ved at indsende min bestilling, accepterer jeg <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Salgsvilkårene</a> og <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Politikken om beskyttelse af personlige oplysninger</a> på {businessEntityName}.","consentsEula":" og den <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Slutbruger-licensaftale</a>","consentsTermsOfUse":" og den <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Brugsbetingelser</a>","consentsCompanyName":" af {companyName}","californiaPrivacyRights":"Dine privatlivsrettigheder i Californien","autoRenewPlanTermsBegin":"Når du gennemfører købet, giver du Digital River tilladelse til at forny din købte licens eller dit købte abonnement løbende i henhold til de betingelser, der er beskrevet under produktdetaljerne. I slutningen af den valgte periode opkræver vi automatisk dine gemte betalingsoplysninger til den på det tidspunkt gældende pris (plus moms) for hver yderligere fornyelsesperiode, indtil du annullerer. Vi sender dig mindst én e-mail med en påmindelse om hver kommende fornyelse og forbeholder os ligeledes retten til at ændre prisen for kommende fornyelser. Du vil modtage en e-mail med en orientering om eventuelle ændringer, før de træder i kraft. Digital Rivers <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Salgsvilkår</a> og <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Fortrolighedspolitik</a>","autoRenewPlanTermsEnd":" finder anvendelser for hver enkelt fornyelse. Du kan til enhver tid annullere den automatiske fornyelse ved at følge anvisningerne, der fremgår af e-mailen med ordrebekræftelsen.<br><br>Jeg giver mit samtykke til, at Digital River gemmer mine betalingsoplysninger til brug ved fremtidige køb samt til brug ved fornyelse af abonnementer efter denne ordredato.","klarnaCreditActiveAcceptance":"Ved at klikke BETAL NU vil du blive præsenteret for forskellige betalingsmetoder som Klarna tilbyder. Ved at fortsætte accepterer jeg <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/da_dk/user\\">vilkår for Klarnas Shopping Tjeneste</a> og bekræfter, at jeg har læst <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/da_dk/privacy\\">fortroligheds</a>- og <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/da_dk/cookie_purchase\\">cookiemeddelelsen</a>. <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/da_dk/invoice?credit_time=30\\">Vilkår</a>","klarnaCreditRecurringActiveAcceptance":"Ved at klikke BETAL NU vil du blive præsenteret for forskellige betalingsmetoder som Klarna tilbyder. Ved at fortsætte accepterer jeg <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/da_dk/user\\">vilkår for Klarnas Shopping Tjeneste</a> og bekræfter, at jeg har læst <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/da_dk/privacy\\">fortroligheds</a>- og <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/da_dk/cookie_purchase\\">cookiemeddelelsen</a>. <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/da_dk/invoice?credit_time=30\\">Vilkår</a>","agreeToTerms":"Jeg har læst og accepterer ovenstående vilkår og priser.","idealRecurringAgreement":"Ved at klikke på feltet giver du Digital River tilladelse til at opkræve din første betaling via iDEAL og bruge dit IBAN-nummer til at opkræve de efterfølgende abonnementsbetalinger via SEPA-automatindbetaling. Du kan gennemgå dine SEPA Direct Debit-oplysninger efter ordreafgivelse. <br/><br/>Du har krav på en refusion fra din bank på de vilkår og betingelser, der følger af din aftale med banken. Refusion skal kræves senest 8 uger fra den dato, kontoen blev debiteret. ","invoiceAgreement":"Jeg accepterer at lade Digital River Taiwan håndtere de e-faktura relaterede spørgsmål på mine vegne for at fremskynde returnerings-/tilbagebetalingsprocessen.","mstsActiveAcceptance":"Ved at vælge {payNow} vil du blive omdirigeret til at logge ind på din TreviPay-konto, fuldføre to-faktor-godkendelse for at godkende dit køb.<span class=\\"{createAccountButtonTextClass}\\"><br /><br />Vælg Tilmeld NU for at oprette en TreviPay-konto.</span><br /><br />ANSVARSFRASKRIVELSE<br /><br />* Alle købsprogramkonti og kreditlinjer under betalingsvilkårsprogrammet er udstedt af Multi Service Technology Solutions, Inc., et Florida USA indbygget selskab (\\"MSTS\\").<br /><br />* {businessEntityName} er ikke part i købsprogramkontoholderaftalen. {businessEntityName} er hverken långiver eller mægler for de kreditlinjer, der er udstedt under betalingsvilkårsprogrammet.<br /><br />Alle ansøgninger og dine kvalifikationer vil blive gennemgået og afgjort af TreviPay. HER er et link til <a href=\\"https://www.trevipay.com/privacy-center/\\" target=\\"_blank\\">TreviPay’ privatlivscenter</a>.","warrantyInformation":"Garantioplysninger","japaneseCommerceLaw":"Lov om erhvervstransaktioner"},"de_AT":{"cancellationRights":"Widerrufsrecht","cookiePolicy":"Cookies","legalNotice":"Impressum","privacyPolicy":"Datenschutzrichtlinien","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> ist der autorisierte Wiederverkäufer und Händler der Produkte und Dienstleistungen die in diesem Shop angeboten werden.","termsOfSale":"Verkaufsbedingungen","confirmDisclosure":"Durch Einreichen meiner Bestellung stimme ich den <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Verkaufsbedingungen</a> und den <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Datenschutzrichtlinien</a> von {businessEntityName} zu.","consentsEula":" und die <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Endbenutzer-Lizenzvereinbarung</a>","consentsTermsOfUse":" und die <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Nutzungsbedingungen</a>","consentsCompanyName":" von {companyName}","californiaPrivacyRights":"Ihre Datenschutzrechte in Kalifornien","autoRenewPlanTermsBegin":"Mit dem Abschluss Ihres Kaufs ermächtigen Sie Digital River, Ihre gekaufte Lizenz oder Ihr Abonnement automatisch um die in den Produktdetails beschriebenen Verlängerungszeiträume zu verlängern. Am Ende des ausgewählten Zeitraums belasten wir Ihre gespeicherten Zahlungsinformationen automatisch mit dem dann gültigen Preis (zzgl. Steuern) für jeden weiteren Verlängerungszeitraum, bis Sie kündigen. Wir schicken Ihnen vor jeder Verlängerung per E-Mail mindestens eine Erinnerung an die bevorstehende Verlängerung, und wir können den Verlängerungspreis für anstehende Verlängerungslaufzeiten ändern, indem wir Sie per E-Mail über die anstehende Änderung informieren. Die <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Verkaufsbedingungen</a> und die <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Datenschutzerklärung</a> von Digital River","autoRenewPlanTermsEnd":" gelten für jede Verlängerungstransaktion. Sie können Ihren Plan mit automatischer Verlängerung jederzeit stornieren; befolgen Sie hierzu die Anweisungen in Ihrer Bestätigungs-E-Mail <br><br>Ich bin einverstanden, dass Digital River meine Zahlungsinformationen für zukünftige Käufe speichert, einschließlich der Verarbeitung späterer Abonnementverlängerungen nach dem Datum dieser Bestellung.","klarnaCreditActiveAcceptance":"Wenn Sie JETZT BEZAHLEN drücken, werden Ihnen die von Klarna angebotenen Zahlungsarten vorgestellt. Indem Sie fortfahre, akzeptiere Sie die <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/de_at/user\\">Bedingungen für den Klarna Shopping Service</a> und bestätige, dass Sie die <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/de_at/privacy\\">Datenschutzerklärung</a> und den <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/de_de/cookie_purchase\\">Hinweis zu Cookies</a> gelesen habe. <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/de_at/direct_debit-read_more\\">Geschäftsbedingungen Impressum</a>","klarnaCreditRecurringActiveAcceptance":"Wenn Sie JETZT BEZAHLEN drücken, werden Ihnen die von Klarna angebotenen Zahlungsarten vorgestellt. Indem Sie fortfahre, akzeptiere Sie die <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/de_at/user\\">Bedingungen für den Klarna Shopping Service</a> und bestätige, dass Sie die <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/de_at/privacy\\">Datenschutzerklärung</a> und den <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/de_de/cookie_purchase\\">Hinweis zu Cookies</a> gelesen habe. <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/de_at/direct_debit-read_more\\">Geschäftsbedingungen Impressum</a>","agreeToTerms":"Ich habe die oben aufgeführten Geschäftsbedingungen und Preise gelesen und stimme ihnen zu.","idealRecurringAgreement":"Wenn Sie das Kästchen anklicken, ermächtigen Sie Digital River, Ihre erste Zahlung über iDEAL einzuziehen und Ihre IBAN zu verwenden, um die weiteren Zahlungen für das Abonnement per SEPA-Lastschrift einzuziehen. Sie können Ihre SEPA-Lastschriftinformationen nach der Bestellung überprüfen. <br/><br/>Im Rahmen Ihrer Rechte haben Sie gemäß den Bestimmungen in der Vereinbarung mit Ihrer Bank Anspruch auf eine Erstattung. Eine Erstattung muss innerhalb von acht Wochen ab dem Datum der Belastung Ihres Kontos angefordert werden. ","invoiceAgreement":"Jeg accepterer at lade Digital River Taiwan håndtere de e-faktura relaterede spørgsmål på mine vegne for at fremskynde returnerings-/tilbagebetalingsprocessen.","warrantyInformation":"Garantieinformationen","japaneseCommerceLaw":"Gesetz über den Handelstransaktionsverkehr"},"de_CH":{"cancellationRights":"Widerrufsrecht","cookiePolicy":"Cookies","legalNotice":"Impressum","privacyPolicy":"Datenschutzrichtlinien","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> ist der autorisierte Wiederverkäufer und Händler der Produkte und Dienstleistungen die in diesem Shop angeboten werden.","termsOfSale":"Verkaufsbedingungen","confirmDisclosure":"Durch Einreichen meiner Bestellung stimme ich den <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Verkaufsbedingungen</a> und den <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Datenschutzrichtlinien</a> von {businessEntityName} zu.","consentsEula":" und die <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Endbenutzer-Lizenzvereinbarung</a>","consentsTermsOfUse":" und die <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Nutzungsbedingungen</a>","consentsCompanyName":" von {companyName}","californiaPrivacyRights":"Ihre Datenschutzrechte in Kalifornien","autoRenewPlanTermsBegin":"Mit dem Abschluss Ihres Kaufs ermächtigen Sie Digital River, Ihre gekaufte Lizenz oder Ihr Abonnement automatisch um die in den Produktdetails beschriebenen Verlängerungszeiträume zu verlängern. Am Ende des ausgewählten Zeitraums belasten wir Ihre gespeicherten Zahlungsinformationen automatisch mit dem dann gültigen Preis (zzgl. Steuern) für jeden weiteren Verlängerungszeitraum, bis Sie kündigen. Wir schicken Ihnen vor jeder Verlängerung per E-Mail mindestens eine Erinnerung an die bevorstehende Verlängerung, und wir können den Verlängerungspreis für anstehende Verlängerungslaufzeiten ändern, indem wir Sie per E-Mail über die anstehende Änderung informieren. Die <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Verkaufsbedingungen</a> und die <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Datenschutzerklärung</a> von Digital River","autoRenewPlanTermsEnd":" gelten für jede Verlängerungstransaktion. Sie können Ihren Plan mit automatischer Verlängerung jederzeit stornieren; befolgen Sie hierzu die Anweisungen in Ihrer Bestätigungs-E-Mail <br><br>Ich bin einverstanden, dass Digital River meine Zahlungsinformationen für zukünftige Käufe speichert, einschließlich der Verarbeitung späterer Abonnementverlängerungen nach dem Datum dieser Bestellung.","klarnaCreditActiveAcceptance":"Wenn Sie JETZT KAUFEN drücken, werden Ihnen die von Klarna angebotenen Zahlungsarten vorgestellt. Indem ich fortfahre, akzeptiere ich die <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/de_ch/user\\">Bedingungen für den Klarna Shopping Service</a> und bestätige, dass ich die <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/de_ch/privacy_bp\\">Datenschutzerklärung</a> und den <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/de_de/cookie_purchase\\">Hinweis zu Cookies</a> gelesen habe. <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/de_ch/invoice?credit_time=30\\">Bedingungen</a>","klarnaCreditRecurringActiveAcceptance":"Wenn Sie JETZT KAUFEN drücken, werden Ihnen die von Klarna angebotenen Zahlungsarten vorgestellt. Indem ich fortfahre, akzeptiere ich die <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/de_ch/user\\">Bedingungen für den Klarna Shopping Service</a> und bestätige, dass ich die <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/de_ch/privacy_bp\\">Datenschutzerklärung</a> und den <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/de_de/cookie_purchase\\">Hinweis zu Cookies</a> gelesen habe. <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/de_ch/invoice?credit_time=30\\">Bedingungen</a>","agreeToTerms":"Ich habe die oben aufgeführten Geschäftsbedingungen und Preise gelesen und stimme ihnen zu.","idealRecurringAgreement":"Wenn Sie das Kästchen anklicken, ermächtigen Sie Digital River, Ihre erste Zahlung über iDEAL einzuziehen und Ihre IBAN zu verwenden, um die weiteren Zahlungen für das Abonnement per SEPA-Lastschrift einzuziehen. Sie können Ihre SEPA-Lastschriftinformationen nach der Bestellung überprüfen. <br/><br/>Im Rahmen Ihrer Rechte haben Sie gemäß den Bestimmungen in der Vereinbarung mit Ihrer Bank Anspruch auf eine Erstattung. Eine Erstattung muss innerhalb von acht Wochen ab dem Datum der Belastung Ihres Kontos angefordert werden. ","invoiceAgreement":"Jeg accepterer at lade Digital River Taiwan håndtere de e-faktura relaterede spørgsmål på mine vegne for at fremskynde returnerings-/tilbagebetalingsprocessen.","warrantyInformation":"Garantieinformationen","japaneseCommerceLaw":"Gesetz über den Handelstransaktionsverkehr"},"de_DE":{"cancellationRights":"Widerrufsrecht","cookiePolicy":"Cookies","legalNotice":"Impressum","privacyPolicy":"Datenschutzrichtlinien","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> ist der autorisierte Wiederverkäufer und Händler der Produkte und Dienstleistungen die in diesem Shop angeboten werden.","termsOfSale":"Verkaufsbedingungen","confirmDisclosure":"Durch Einreichen meiner Bestellung stimme ich den <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Verkaufsbedingungen</a> und den <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Datenschutzrichtlinien</a> von {businessEntityName} zu.","consentsEula":" und die <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Endbenutzer-Lizenzvereinbarung</a>","consentsTermsOfUse":" und die <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Nutzungsbedingungen</a>","consentsCompanyName":" von {companyName}","californiaPrivacyRights":"Ihre Datenschutzrechte in Kalifornien","autoRenewPlanTermsBegin":"Mit dem Abschluss Ihres Kaufs ermächtigen Sie Digital River, Ihre gekaufte Lizenz oder Ihr Abonnement automatisch um die in den Produktdetails beschriebenen Verlängerungszeiträume zu verlängern. Am Ende des ausgewählten Zeitraums belasten wir Ihre gespeicherten Zahlungsinformationen automatisch mit dem dann gültigen Preis (zzgl. Steuern) für jeden weiteren Verlängerungszeitraum, bis Sie kündigen. Wir schicken Ihnen vor jeder Verlängerung per E-Mail mindestens eine Erinnerung an die bevorstehende Verlängerung, und wir können den Verlängerungspreis für anstehende Verlängerungslaufzeiten ändern, indem wir Sie per E-Mail über die anstehende Änderung informieren. Die <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Verkaufsbedingungen</a> und die <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Datenschutzerklärung</a> von Digital River","autoRenewPlanTermsEnd":" gelten für jede Verlängerungstransaktion. Sie können Ihren Plan mit automatischer Verlängerung jederzeit stornieren; befolgen Sie hierzu die Anweisungen in Ihrer Bestätigungs-E-Mail <br><br>Ich bin einverstanden, dass Digital River meine Zahlungsinformationen für zukünftige Käufe speichert, einschließlich der Verarbeitung späterer Abonnementverlängerungen nach dem Datum dieser Bestellung.","klarnaCreditActiveAcceptance":"Wenn Sie JETZT BEZAHLEN drücken, werden Ihnen die von Klarna angebotenen Zahlungsarten vorgestellt. Indem ich fortfahre, akzeptiere ich die <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/de_de/user\\">Bedingungen für den Klarna Shopping Service</a> und bestätige, dass ich die <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/de_de/privacy\\">Datenschutzerklärung</a> und den <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/de_de/cookie_purchase\\">Hinweis zu Cookies</a> gelesen habe. <a target=\\"_blank\\" href=\\"https://www.klarna.com/de/impressum\\">Impressum</a>. <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/de_de/invoice?credit_time=30\\">Bedingungen</a>","klarnaCreditRecurringActiveAcceptance":"Wenn Sie JETZT BEZAHLEN drücken, werden Ihnen die von Klarna angebotenen Zahlungsarten vorgestellt. Indem ich fortfahre, akzeptiere ich die <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/de_de/user\\">Bedingungen für den Klarna Shopping Service</a> und bestätige, dass ich die <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/de_de/privacy\\">Datenschutzerklärung</a> und den <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/de_de/cookie_purchase\\">Hinweis zu Cookies</a> gelesen habe. <a target=\\"_blank\\" href=\\"https://www.klarna.com/de/impressum\\">Impressum</a>. <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/de_de/invoice?credit_time=30\\">Bedingungen</a>","agreeToTerms":"Ich habe die oben aufgeführten Geschäftsbedingungen und Preise gelesen und stimme ihnen zu.","idealRecurringAgreement":"Wenn Sie das Kästchen anklicken, ermächtigen Sie Digital River, Ihre erste Zahlung über iDEAL einzuziehen und Ihre IBAN zu verwenden, um die weiteren Zahlungen für das Abonnement per SEPA-Lastschrift einzuziehen. Sie können Ihre SEPA-Lastschriftinformationen nach der Bestellung überprüfen. <br/><br/>Im Rahmen Ihrer Rechte haben Sie gemäß den Bestimmungen in der Vereinbarung mit Ihrer Bank Anspruch auf eine Erstattung. Eine Erstattung muss innerhalb von acht Wochen ab dem Datum der Belastung Ihres Kontos angefordert werden. ","invoiceAgreement":"Jeg accepterer at lade Digital River Taiwan håndtere de e-faktura relaterede spørgsmål på mine vegne for at fremskynde returnerings-/tilbagebetalingsprocessen.","mstsActiveAcceptance":"Wählen Sie {payNow}, um sich bei TreviPay anzumelden, die Zwei-Faktor-Authentifizierung abzuschließen und den Kauf zu bestätigen.<span class=\\"{createAccountButtonTextClass}\\"><br /><br />Wählen Sie Jetzt registrieren um ein TreviPay-Konto zu erstellen.</span><br /><br />Haftungsausschluss<br /><br />* Alle Konten und Kreditlinien des Kaufprogramms im Rahmen des Zahlungsbedingungen-Programms werden von Multi Service Technology Solutions, Inc., einem in Florida, USA, eingetragenen Unternehmen („MSTS“), ausgestellt.<br /><br />* {businessEntityName} ist keine Partei des Kontoinhabervertrags für das Kaufprogramm. {businessEntityName} ist weder Kreditgeber noch Makler für die im Rahmen des Zahlungsbedingungen-Programms ausgegebenen Kreditlinien<br /><br />Alle Bewerbungen und Ihre Qualifikationen werden von TreviPay geprüft und entschieden. <a href=\\"https://www.trevipay.com/privacy-center/\\" target=\\"_blank\\">TreviPay Privacy Center.</a>","warrantyInformation":"Garantieinformationen","japaneseCommerceLaw":"Gesetz über den Handelstransaktionsverkehr"},"el_GR":{"cancellationRights":"Δικαίωμα Ακύρωσης","cookiePolicy":"Cookies","legalNotice":"Νομική Σημείωση","privacyPolicy":"Πολιτική Ιδιωτικού Απορρήτου","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> είναι ο εξουσιοδοτημένος μεταπωλητής και έμπορος των προϊόντων και υπηρεσιών, που προσφέρονται σε αυτό το κατάστημα.","termsOfSale":"Όροι Πώλησης","confirmDisclosure":"Υποβάλλοντας την παραγγελία μου, συμφωνώ με τους <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Όρους πώλησης</a> και την <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Πολιτική ιδιωτικού απορρήτου</a> της {businessEntityName}.","consentsEula":"και η <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Συμφωνία Χρήσης για τον Τελικό Χρήστη</a>","consentsTermsOfUse":"και οι <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Όροι Χρήσης</a>","consentsCompanyName":" της {companyName}","californiaPrivacyRights":"Τα δικαιώματα ιδιωτικότητας σας στην Καλιφόρνια","autoRenewPlanTermsBegin":"Ολοκληρώνοντας την αγορά σας, εξουσιοδοτείτε την Digital River να ανανεώνει αυτόματα την άδεια χρήσης ή τη συνδρομή που έχετε αγοράσει για διαδοχικά χρονικά διαστήματα ανανέωσης, όπως περιγράφεται στις λεπτομέρειες του προϊόντος. Στο τέλος της επιλεγμένης περιόδου, θα χρεώσουμε αυτόματα τα στοιχεία πληρωμής που έχετε αποθηκεύσει στην εκάστοτε ισχύουσα τρέχουσα τιμή (συν τους φόρους) για κάθε πρόσθετη περίοδο ανανέωσης, έως ότου ζητήσετε ακύρωση. Θα σας στέλνουμε τουλάχιστον μία φορά ένα e-mail υπενθύμισης πριν από κάθε ανανέωση προς υπενθύμιση της επικείμενης ανανέωσης, και ενδέχεται να αλλάξουμε την τιμή ανανέωσης για κάθε επόμενο διάστημα ανανέωσης ειδοποιώντας σας από πριν για την αλλαγή μέσω e-mail. Οι <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Όροι πώλησης</a> και η <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Πολιτική ιδιωτικού απορρήτου</a> της Digital River","autoRenewPlanTermsEnd":" ισχύουν σε κάθε πράξη ανανέωσης.. Μπορείτε να ακυρώσετε ανά πάσα στιγμή το πρόγραμμα αυτόματης ανανέωσης ακολουθώντας τις οδηγίες που υπάρχουν στο e-mail επιβεβαίωσης της παραγγελίας σας.<br><br>Συμφωνώ να επιτρέπεται στην Digital River να αποθηκεύει τα στοιχεία πληρωμής μου για μελλοντικές αγορές, συμπεριλαμβανομένης της επεξεργασίας τυχόν επομένων ανανεώσεων συνδρομής που μπορεί να πραγματοποιηθούν μετά την ημερομηνία της παρούσας παραγγελίας.","agreeToTerms":"Έχω διαβάσει και συμφωνώ με τους όρους και τις χρεώσεις πιο πάνω.","idealRecurringAgreement":"Κάνοντας κλικ στο πλαίσιο, εξουσιοδοτείτε την Digital River να εισπράξει την πρώτη σας πληρωμή μέσω iDEAL και να χρησιμοποιήσει το IBAN σας για να εισπράξει τις επόμενες πληρωμές συνδρομής μέσω άμεσης χρέωσης SEPA. Μπορείτε να επανεξετάσετε τις πληροφορίες σας για την άμεση χρέωση SEPA μετά την υποβολή της παραγγελίας. <br/><br/>Ως μέρος των δικαιωμάτων σας, δικαιούστε να απαιτήσετε επιστροφή χρημάτων από την τράπεζά σας σύμφωνα με τους όρους και τις προϋποθέσεις της μεταξύ σας συμφωνίας. Επιστροφή χρημάτων πρέπει να αξιωθεί εντός 8 εβδομάδων από την ημερομηνία χρέωσης του λογαριασμού σας. ","invoiceAgreement":"Συμφωνώ να επιτρέψω στην Digital River Taiwan να χειριστεί τα θέματα που σχετίζονται με το ηλεκτρονικό τιμολόγιο εκ μέρους μου, προκειμένου να επιταχυνθεί η διαδικασία επιστροφής/επιστροφής χρημάτων.","warrantyInformation":"Πληροφορίες εγγύησης","japaneseCommerceLaw":"Νόμος Εμπορικών Συναλλαγών"},"en_AU":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> is the authorised retailer and merchant providing e-commerce services for this shop.","termsOfSale":"Terms of Sale","confirmDisclosure":"By submitting my order, I agree to the <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and the <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> of {businessEntityName}.","consentsEula":" and the <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">End User License Agreement</a>","consentsTermsOfUse":" and the <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Terms of Use</a>","consentsCompanyName":" of {companyName}","californiaPrivacyRights":"Your California Privacy Rights","autoRenewPlanTermsBegin":"By completing your purchase, you authorize Digital River to automatically renew your purchased license or subscription for successive renewal terms as described in the product details. At the end of the selected period, we will automatically charge your stored payment information at the then current price in effect (plus tax) for each additional renewal period until you cancel. We will send you an e-mail reminder at least once prior to each renewal to remind you of your upcoming renewal and may change the renewal price for any upcoming renewal term by providing you with prior notice of the change by e-mail. The Digital River <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a>","autoRenewPlanTermsEnd":"  will apply to each renewal transaction. You may cancel your auto-renewal plan at any time by following the instructions provided in your order confirmation email.<br/><br/>I agree that Digital River may store my payment information for future purchases including the processing of any subsequent subscription renewals which may occur following the date of this order.","klarnaCreditActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. By continuing, I accept the terms of the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_au/user\\">Klarna Shopping Service</a> and confirm that I have read the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_au/privacy\\">Privacy Notice</a>.","klarnaCreditRecurringActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. By continuing, I accept the terms of the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_au/user\\">Klarna Shopping Service</a> and confirm that I have read the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_au/privacy\\">Privacy Notice</a>.","agreeToTerms":"I have read and agree to the terms and charges above.","idealRecurringAgreement":"By clicking the box, you authorize Digital River to collect your first payment via iDEAL and use your IBAN to collect the subsequent subscription payments by SEPA direct debit. You can review your SEPA Direct Debit information after order submission. <br/><br/>As part of your rights, you are entitled to a refund from your bank under the terms and conditions of your agreement with your bank. A refund must be claimed within 8 weeks starting from the date on which your account was debited. ","invoiceAgreement":"I agree to allow Digital River Taiwan to handle the e-invoice related matters on my behalf to accelerate the return/refund process.","warrantyInformation":"Warranty Information","japaneseCommerceLaw":"Commercial Transaction Law"},"en_BE":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> is the authorised retailer and merchant providing e-commerce services for this shop.","termsOfSale":"Terms of Sale","confirmDisclosure":"By submitting my order, I agree to the <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and the <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> of {businessEntityName}.","consentsEula":" and the <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">End User License Agreement</a>","consentsTermsOfUse":" and the <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Terms of Use</a>","consentsCompanyName":" of {companyName}","californiaPrivacyRights":"Your California Privacy Rights","autoRenewPlanTermsBegin":"By completing your purchase, you authorize Digital River to automatically renew your purchased license or subscription for successive renewal terms as described in the product details. At the end of the selected period, we will automatically charge your stored payment information at the then current price in effect (plus tax) for each additional renewal period until you cancel. We will send you an e-mail reminder at least once prior to each renewal to remind you of your upcoming renewal and may change the renewal price for any upcoming renewal term by providing you with prior notice of the change by e-mail. The Digital River <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a>","autoRenewPlanTermsEnd":"  will apply to each renewal transaction. You may cancel your auto-renewal plan at any time by following the instructions provided in your order confirmation email.<br/><br/>I agree that Digital River may store my payment information for future purchases including the processing of any subsequent subscription renewals which may occur following the date of this order.","klarnaCreditActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. By continuing I accept the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_be/invoice?credit_time=30\\">Pay Later Terms</a> and the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_be/user\\">terms for the Klarna Shopping Service</a>, and confirm that I have read the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_be/privacy\\">Privacy Notice</a> and the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_gb/cookie_purchase\\">Cookie Notice</a>.","klarnaCreditRecurringActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. By continuing I accept the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_be/invoice?credit_time=30\\">Pay Later Terms</a> and the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_be/user\\">terms for the Klarna Shopping Service</a>, and confirm that I have read the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_be/privacy\\">Privacy Notice</a> and the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_gb/cookie_purchase\\">Cookie Notice</a>.","idealRecurringAgreement":"By clicking the box, you authorize Digital River to collect your first payment via iDEAL and use your IBAN to collect the subsequent subscription payments by SEPA direct debit. You can review your SEPA Direct Debit information after order submission. <br/><br/>As part of your rights, you are entitled to a refund from your bank under the terms and conditions of your agreement with your bank. A refund must be claimed within 8 weeks starting from the date on which your account was debited. ","invoiceAgreement":"I agree to allow Digital River Taiwan to handle the e-invoice related matters on my behalf to accelerate the return/refund process.","warrantyInformation":"Warranty Information","japaneseCommerceLaw":"Commercial Transaction Law"},"en_CA":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> is the authorised retailer and merchant providing e-commerce services for this shop.","termsOfSale":"Terms of Sale","confirmDisclosure":"By submitting my order, I agree to the <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and the <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> of {businessEntityName}.","consentsEula":" and the <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">End User License Agreement</a>","consentsTermsOfUse":" and the <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Terms of Use</a>","consentsCompanyName":" of {companyName}","californiaPrivacyRights":"Your California Privacy Rights","autoRenewPlanTermsBegin":"By completing your purchase, you authorize Digital River to automatically renew your purchased license or subscription for successive renewal terms as described in the product details. At the end of the selected period, we will automatically charge your stored payment information at the then current price in effect (plus tax) for each additional renewal period until you cancel. We will send you an e-mail reminder at least once prior to each renewal to remind you of your upcoming renewal and may change the renewal price for any upcoming renewal term by providing you with prior notice of the change by e-mail. The Digital River <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a>","autoRenewPlanTermsEnd":"  will apply to each renewal transaction. You may cancel your auto-renewal plan at any time by following the instructions provided in your order confirmation email.<br/><br/>I agree that Digital River may store my payment information for future purchases including the processing of any subsequent subscription renewals which may occur following the date of this order.","klarnaCreditActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. View the Privacy Notice and Klarna Shopping Service terms <a target=\\"_blank\\" href=\\"https://www.klarna.com/ca/legal/\\">here</a>.","klarnaCreditRecurringActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. View the Privacy Notice and Klarna Shopping Service terms <a target=\\"_blank\\" href=\\"https://www.klarna.com/ca/legal/\\">here</a>.","agreeToTerms":"I have read and agree to the terms and charges above.","idealRecurringAgreement":"By clicking the box, you authorize Digital River to collect your first payment via iDEAL and use your IBAN to collect the subsequent subscription payments by SEPA direct debit. You can review your SEPA Direct Debit information after order submission. <br/><br/>As part of your rights, you are entitled to a refund from your bank under the terms and conditions of your agreement with your bank. A refund must be claimed within 8 weeks starting from the date on which your account was debited. ","invoiceAgreement":"I agree to allow Digital River Taiwan to handle the e-invoice related matters on my behalf to accelerate the return/refund process.","warrantyInformation":"Warranty Information","japaneseCommerceLaw":"Commercial Transaction Law"},"en_CH":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> is the authorized reseller and merchant providing e-commerce services for this shop.","termsOfSale":"Terms of Sale","confirmDisclosure":"By submitting my order, I agree to the <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and the <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> of {businessEntityName}.","consentsEula":" and the <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">End User License Agreement</a>","consentsTermsOfUse":" and the <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Terms of Use</a>","consentsCompanyName":" of {companyName}","californiaPrivacyRights":"Your California Privacy Rights","autoRenewPlanTermsBegin":"By completing your purchase, you authorize Digital River to automatically renew your purchased license or subscription for successive renewal terms as described in the product details. At the end of the selected period, we will automatically charge your stored payment information at the then current price in effect (plus tax) for each additional renewal period until you cancel. We will send you an e-mail reminder at least once prior to each renewal to remind you of your upcoming renewal and may change the renewal price for any upcoming renewal term by providing you with prior notice of the change by e-mail. The Digital River <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a>","autoRenewPlanTermsEnd":"  will apply to each renewal transaction. You may cancel your auto-renewal plan at any time by following the instructions provided in your order confirmation email.<br/><br/>I agree that Digital River may store my payment information for future purchases including the processing of any subsequent subscription renewals which may occur following the date of this order.","klarnaCreditActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. By continuing I accept the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_ch/user\\">terms for the Klarna Shopping Service</a>, and confirm that I have read the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_ch/privacy_bp\\">Privacy Notice</a> and the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_gb/cookie_purchase\\">Cookie Notice</a>. <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_ch/invoice?credit_time=30\\">Terms & Conditions</a>","klarnaCreditRecurringActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. By continuing I accept the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_ch/user\\">terms for the Klarna Shopping Service</a>, and confirm that I have read the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_ch/privacy_bp\\">Privacy Notice</a> and the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_gb/cookie_purchase\\">Cookie Notice</a>. <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_ch/invoice?credit_time=30\\">Terms & Conditions</a>","agreeToTerms":"I have read and agree to the terms and charges above.","idealRecurringAgreement":"By clicking the box, you authorize Digital River to collect your first payment via iDEAL and use your IBAN to collect the subsequent subscription payments by SEPA direct debit. You can review your SEPA Direct Debit information after order submission. <br/><br/>As part of your rights, you are entitled to a refund from your bank under the terms and conditions of your agreement with your bank. A refund must be claimed within 8 weeks starting from the date on which your account was debited. ","invoiceAgreement":"I agree to allow Digital River Taiwan to handle the e-invoice related matters on my behalf to accelerate the return/refund process.","warrantyInformation":"Warranty Information","japaneseCommerceLaw":"Commercial Transaction Law"},"en_DK":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> is the authorised retailer and merchant providing e-commerce services for this shop.","termsOfSale":"Terms of Sale","confirmDisclosure":"By submitting my order, I agree to the <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and the <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> of {businessEntityName}.","consentsEula":" and the <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">End User License Agreement</a>","consentsTermsOfUse":" and the <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Terms of Use</a>","consentsCompanyName":" of {companyName}","autoRenewPlanTermsBegin":"By completing your purchase, you authorize Digital River to automatically renew your purchased license or subscription for successive renewal terms as described in the product details. At the end of the selected period, we will automatically charge your stored payment information at the then current price in effect (plus tax) for each additional renewal period until you cancel. We will send you an e-mail reminder at least once prior to each renewal to remind you of your upcoming renewal and may change the renewal price for any upcoming renewal term by providing you with prior notice of the change by e-mail. The Digital River <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a>","autoRenewPlanTermsEnd":"  will apply to each renewal transaction. You may cancel your auto-renewal plan at any time by following the instructions provided in your order confirmation email.<br/><br/>I agree that Digital River may store my payment information for future purchases including the processing of any subsequent subscription renewals which may occur following the date of this order.","californiaPrivacyRights":"Your California Privacy Rights","klarnaCreditActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. By continuing I accept the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_dk/user\\">terms for the Klarna Shopping Service</a>, and confirm that I have read the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_dk/privacy\\">Privacy Notice</a> and the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_dk/cookie_purchase\\">Cookie Notice</a>. <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_dk/invoice?credit_time=30\\">Terms & Conditions</a>","klarnaCreditRecurringActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. By continuing I accept the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_dk/user\\">terms for the Klarna Shopping Service</a>, and confirm that I have read the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_dk/privacy\\">Privacy Notice</a> and the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_dk/cookie_purchase\\">Cookie Notice</a>. <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_dk/invoice?credit_time=30\\">Terms & Conditions</a>","idealRecurringAgreement":"By clicking the box, you authorize Digital River to collect your first payment via iDEAL and use your IBAN to collect the subsequent subscription payments by SEPA direct debit. You can review your SEPA Direct Debit information after order submission. <br/><br/>As part of your rights, you are entitled to a refund from your bank under the terms and conditions of your agreement with your bank. A refund must be claimed within 8 weeks starting from the date on which your account was debited. ","invoiceAgreement":"I agree to allow Digital River Taiwan to handle the e-invoice related matters on my behalf to accelerate the return/refund process.","warrantyInformation":"Warranty Information","japaneseCommerceLaw":"Commercial Transaction Law"},"en_FI":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> is the authorised retailer and merchant providing e-commerce services for this shop.","termsOfSale":"Terms of Sale","confirmDisclosure":"By submitting my order, I agree to the <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and the <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> of {businessEntityName}.","consentsEula":" and the <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">End User License Agreement</a>","consentsTermsOfUse":" and the <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Terms of Use</a>","consentsCompanyName":" of {companyName}","autoRenewPlanTermsBegin":"By completing your purchase, you authorize Digital River to automatically renew your purchased license or subscription for successive renewal terms as described in the product details. At the end of the selected period, we will automatically charge your stored payment information at the then current price in effect (plus tax) for each additional renewal period until you cancel. We will send you an e-mail reminder at least once prior to each renewal to remind you of your upcoming renewal and may change the renewal price for any upcoming renewal term by providing you with prior notice of the change by e-mail. The Digital River <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a>","autoRenewPlanTermsEnd":"  will apply to each renewal transaction. You may cancel your auto-renewal plan at any time by following the instructions provided in your order confirmation email.<br/><br/>I agree that Digital River may store my payment information for future purchases including the processing of any subsequent subscription renewals which may occur following the date of this order.","californiaPrivacyRights":"Your California Privacy Rights","klarnaCreditActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. By continuing I accept the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_fi/user\\">terms for the Klarna Shopping Service</a>, and confirm that I have read the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_fi/privacy\\">Privacy Notice</a> and the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_fi/cookie_purchase\\">Cookie Notice</a>. <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_fi/invoice?credit_time=30\\">Terms & Conditions</a>","klarnaCreditRecurringActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. By continuing I accept the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_fi/user\\">terms for the Klarna Shopping Service</a>, and confirm that I have read the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_fi/privacy\\">Privacy Notice</a> and the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_fi/cookie_purchase\\">Cookie Notice</a>. <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_fi/invoice?credit_time=30\\">Terms & Conditions</a>","idealRecurringAgreement":"By clicking the box, you authorize Digital River to collect your first payment via iDEAL and use your IBAN to collect the subsequent subscription payments by SEPA direct debit. You can review your SEPA Direct Debit information after order submission. <br/><br/>As part of your rights, you are entitled to a refund from your bank under the terms and conditions of your agreement with your bank. A refund must be claimed within 8 weeks starting from the date on which your account was debited. ","invoiceAgreement":"I agree to allow Digital River Taiwan to handle the e-invoice related matters on my behalf to accelerate the return/refund process.","warrantyInformation":"Warranty Information","japaneseCommerceLaw":"Commercial Transaction Law"},"en_GB":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> is the authorised retailer and merchant providing e-commerce services for this shop.","termsOfSale":"Terms of Sale","confirmDisclosure":"By submitting my order, I agree to the <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and the <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> of {businessEntityName}.","consentsEula":" and the <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">End User License Agreement</a>","consentsTermsOfUse":" and the <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Terms of Use</a>","consentsCompanyName":" of {companyName}","californiaPrivacyRights":"Your California Privacy Rights","autoRenewPlanTermsBegin":"By completing your purchase, you authorize Digital River to automatically renew your purchased license or subscription for successive renewal terms as described in the product details. At the end of the selected period, we will automatically charge your stored payment information at the then current price in effect (plus tax) for each additional renewal period until you cancel. We will send you an e-mail reminder at least once prior to each renewal to remind you of your upcoming renewal and may change the renewal price for any upcoming renewal term by providing you with prior notice of the change by e-mail. The Digital River <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a>","autoRenewPlanTermsEnd":"  will apply to each renewal transaction. You may cancel your auto-renewal plan at any time by following the instructions provided in your order confirmation email.<br/><br/>I agree that Digital River may store my payment information for future purchases including the processing of any subsequent subscription renewals which may occur following the date of this order.","klarnaCreditActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. By continuing, I accept the terms of the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_gb/user\\">Klarna Shopping Service</a> and confirm that I have read the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_gb/privacy\\">Privacy Notice</a> and the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_gb/cookie_purchase\\">Cookie Notice</a>.","klarnaCreditRecurringActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. By continuing, I accept the terms of the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_gb/user\\">Klarna Shopping Service</a> and confirm that I have read the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_gb/privacy\\">Privacy Notice</a> and the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_gb/cookie_purchase\\">Cookie Notice</a>.","agreeToTerms":"I have read and agree to the terms and charges above.","idealRecurringAgreement":"By clicking the box, you authorize Digital River to collect your first payment via iDEAL and use your IBAN to collect the subsequent subscription payments by SEPA direct debit. You can review your SEPA Direct Debit information after order submission. <br/><br/>As part of your rights, you are entitled to a refund from your bank under the terms and conditions of your agreement with your bank. A refund must be claimed within 8 weeks starting from the date on which your account was debited. ","mstsActiveAcceptance":"Select {payNow} to login to TreviPay, complete Two-factor authentication and confirm purchase.<span class=\\"{createAccountButtonTextClass}\\"><br /><br />Select Enroll Now to create TreviPay Account.</span><br /><br />DISCLAIMER<br /><br />* All the purchase program accounts and credit lines under the Payment Terms program are issued by Multi Service Technology Solutions, Inc., a Florida USA incorporated company (“MSTS”).<br /><br />* {businessEntityName} is not a party to the Purchase Program Accountholder Agreement. {businessEntityName} is neither a lender nor a broker for the credit lines issued under the Payment Terms program<br /><br />All the applications and your qualifications will be reviewed and decided by TreviPay. <a href=\\"https://www.trevipay.com/privacy-center/\\" target=\\"_blank\\">TreviPay’s Privacy Center.</a>","invoiceAgreement":"I agree to allow Digital River Taiwan to handle the e-invoice related matters on my behalf to accelerate the return/refund process.","warrantyInformation":"Warranty Information","japaneseCommerceLaw":"Commercial Transaction Law"},"en_IE":{"californiaPrivacyRights":"Your California Privacy Rights","cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> is the authorised retailer and merchant providing e-commerce services for this shop.","termsOfSale":"Terms of Sale","confirmDisclosure":"By submitting my order, I agree to the <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and the <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> of {businessEntityName}.","consentsEula":" and the <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">End User License Agreement</a>","consentsTermsOfUse":" and the <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Terms of Use</a>","consentsCompanyName":" of {companyName}","autoRenewPlanTermsBegin":"By completing your purchase, you authorize Digital River to automatically renew your purchased license or subscription for successive renewal terms as described in the product details. At the end of the selected period, we will automatically charge your stored payment information at the then current price in effect (plus tax) for each additional renewal period until you cancel. We will send you an e-mail reminder at least once prior to each renewal to remind you of your upcoming renewal and may change the renewal price for any upcoming renewal term by providing you with prior notice of the change by e-mail. The Digital River <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a>","autoRenewPlanTermsEnd":"  will apply to each renewal transaction. You may cancel your auto-renewal plan at any time by following the instructions provided in your order confirmation email.<br/><br/>I agree that Digital River may store my payment information for future purchases including the processing of any subsequent subscription renewals which may occur following the date of this order.","klarnaCreditActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. By continuing I accept the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_ie/user\\">Klarna Shopping Service Terms</a>, and confirm that I have read the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_ie/cookie_purchase\\">Klarna Cookie Notice</a> and the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_ie/privacy\\">Klarna Privacy Notice</a>.","klarnaCreditRecurringActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. By continuing I accept the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_ie/user\\">Klarna Shopping Service Terms</a>, and confirm that I have read the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_ie/cookie_purchase\\">Klarna Cookie Notice</a> and the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_ie/privacy\\">Klarna Privacy Notice</a>.","agreeToTerms":"I have read and agree to the terms and charges above.","idealRecurringAgreement":"By clicking the box, you authorize Digital River to collect your first payment via iDEAL and use your IBAN to collect the subsequent subscription payments by SEPA direct debit. You can review your SEPA Direct Debit information after order submission. <br/><br/>As part of your rights, you are entitled to a refund from your bank under the terms and conditions of your agreement with your bank. A refund must be claimed within 8 weeks starting from the date on which your account was debited. ","mstsActiveAcceptance":"Select {payNow} to login to TreviPay, complete Two-factor authentication and confirm purchase.<span class=\\"{createAccountButtonTextClass}\\"><br /><br />Select Enroll Now to create TreviPay Account.</span><br /><br />DISCLAIMER<br /><br />* All the purchase program accounts and credit lines under the Payment Terms program are issued by Multi Service Technology Solutions, Inc., a Florida USA incorporated company (“MSTS”).<br /><br />* {businessEntityName} is not a party to the Purchase Program Accountholder Agreement. {businessEntityName} is neither a lender nor a broker for the credit lines issued under the Payment Terms program<br /><br />All the applications and your qualifications will be reviewed and decided by TreviPay. <a href=\\"https://www.trevipay.com/privacy-center/\\" target=\\"_blank\\">TreviPay’s Privacy Center.</a>","invoiceAgreement":"I agree to allow Digital River Taiwan to handle the e-invoice related matters on my behalf to accelerate the return/refund process.","warrantyInformation":"Warranty Information","japaneseCommerceLaw":"Commercial Transaction Law"},"en_IN":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> is the authorised retailer and merchant providing e-commerce services for this shop.","termsOfSale":"Terms of Sale","confirmDisclosure":"By submitting my order, I agree to the <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and the <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> of {businessEntityName}.","consentsEula":" and the <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">End User License Agreement</a>","consentsTermsOfUse":" and the <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Terms of Use</a>","consentsCompanyName":" of {companyName}","californiaPrivacyRights":"Your California Privacy Rights","autoRenewPlanTermsBegin":"By completing your purchase, you authorize Digital River to automatically renew your purchased license or subscription for successive renewal terms as described in the product details. At the end of the selected period, we will automatically charge your stored payment information at the then current price in effect (plus tax) for each additional renewal period until you cancel. We will send you an e-mail reminder at least once prior to each renewal to remind you of your upcoming renewal and may change the renewal price for any upcoming renewal term by providing you with prior notice of the change by e-mail. The Digital River <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a>","autoRenewPlanTermsEnd":"  will apply to each renewal transaction. You may cancel your auto-renewal plan at any time by following the instructions provided in your order confirmation email.<br/><br/>I agree that Digital River may store my payment information for future purchases including the processing of any subsequent subscription renewals which may occur following the date of this order.","klarnaCreditActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. By continuing I accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_in/user\\">Klarna\'s Services Terms</a> and confirm that I have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_in/privacy\\">Klarna\'s Privacy Policy</a>.","klarnaCreditRecurringActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. By continuing I accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_in/user\\">Klarna\'s Services Terms</a> and confirm that I have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_in/privacy\\">Klarna\'s Privacy Policy</a>.","agreeToTerms":"I have read and agree to the terms and charges above.","idealRecurringAgreement":"By clicking the box, you authorize Digital River to collect your first payment via iDEAL and use your IBAN to collect the subsequent subscription payments by SEPA direct debit. You can review your SEPA Direct Debit information after order submission. <br/><br/>As part of your rights, you are entitled to a refund from your bank under the terms and conditions of your agreement with your bank. A refund must be claimed within 8 weeks starting from the date on which your account was debited. ","invoiceAgreement":"I agree to allow Digital River Taiwan to handle the e-invoice related matters on my behalf to accelerate the return/refund process.","warrantyInformation":"Warranty Information","japaneseCommerceLaw":"Commercial Transaction Law"},"en_MY":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","termsOfSale":"Terms of Sale","confirmDisclosure":"By submitting my order, I agree to the <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and the <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> of {businessEntityName}.","consentsEula":" and the <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">End User License Agreement</a>","consentsTermsOfUse":" and the <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Terms of Use</a>","consentsCompanyName":" of {companyName}","californiaPrivacyRights":"Your California Privacy Rights","autoRenewPlanTermsBegin":"By completing your purchase, you authorize Digital River to automatically renew your purchased license or subscription for successive renewal terms as described in the product details. At the end of the selected period, we will automatically charge your stored payment information at the then current price in effect (plus tax) for each additional renewal period until you cancel. We will send you an e-mail reminder at least once prior to each renewal to remind you of your upcoming renewal and may change the renewal price for any upcoming renewal term by providing you with prior notice of the change by e-mail. The Digital River <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a>","autoRenewPlanTermsEnd":"  will apply to each renewal transaction. You may cancel your auto-renewal plan at any time by following the instructions provided in your order confirmation email.<br/><br/>I agree that Digital River may store my payment information for future purchases including the processing of any subsequent subscription renewals which may occur following the date of this order.","klarnaCreditActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. By continuing I accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_my/user\\">Klarna\'s Services Terms</a> and confirm that I have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_my/privacy\\">Klarna\'s Privacy Policy</a>.","klarnaCreditRecurringActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. By continuing I accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_my/user\\">Klarna\'s Services Terms</a> and confirm that I have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_my/privacy\\">Klarna\'s Privacy Policy</a>.","idealRecurringAgreement":"By clicking the box, you authorize Digital River to collect your first payment via iDEAL and use your IBAN to collect the subsequent subscription payments by SEPA direct debit. You can review your SEPA Direct Debit information after order submission. <br/><br/>As part of your rights, you are entitled to a refund from your bank under the terms and conditions of your agreement with your bank. A refund must be claimed within 8 weeks starting from the date on which your account was debited. ","invoiceAgreement":"I agree to allow Digital River Taiwan to handle the e-invoice related matters on my behalf to accelerate the return/refund process.","warrantyInformation":"Warranty Information","japaneseCommerceLaw":"Commercial Transaction Law"},"en_NL":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> is the authorised retailer and merchant providing e-commerce services for this shop.","termsOfSale":"Terms of Sale","confirmDisclosure":"By submitting my order, I agree to the <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and the <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> of {businessEntityName}.","consentsEula":" and the <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">End User License Agreement</a>","consentsTermsOfUse":" and the <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Terms of Use</a>","consentsCompanyName":" of {companyName}","californiaPrivacyRights":"Your California Privacy Rights","autoRenewPlanTermsBegin":"By completing your purchase, you authorize Digital River to automatically renew your purchased license or subscription for successive renewal terms as described in the product details. At the end of the selected period, we will automatically charge your stored payment information at the then current price in effect (plus tax) for each additional renewal period until you cancel. We will send you an e-mail reminder at least once prior to each renewal to remind you of your upcoming renewal and may change the renewal price for any upcoming renewal term by providing you with prior notice of the change by e-mail. The Digital River <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a>","autoRenewPlanTermsEnd":"  will apply to each renewal transaction. You may cancel your auto-renewal plan at any time by following the instructions provided in your order confirmation email.<br/><br/>I agree that Digital River may store my payment information for future purchases including the processing of any subsequent subscription renewals which may occur following the date of this order.","klarnaCreditActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. By continuing I accept the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_nl/user\\">terms for the Klarna Shopping Service</a>, and confirm that I have read the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_nl/privacy\\">Privacy Notice</a> and the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_nl/cookie_purchase\\">Cookie Notice</a>. <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_nl/invoice?credit_time=30\\">Terms & Conditions</a>","klarnaCreditRecurringActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. By continuing I accept the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_nl/user\\">terms for the Klarna Shopping Service</a>, and confirm that I have read the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_nl/privacy\\">Privacy Notice</a> and the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_nl/cookie_purchase\\">Cookie Notice</a>. <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_nl/invoice?credit_time=30\\">Terms & Conditions</a>","agreeToTerms":"I have read and agree to the terms and charges above.","idealRecurringAgreement":"By clicking the box, you authorize Digital River to collect your first payment via iDEAL and use your IBAN to collect the subsequent subscription payments by SEPA direct debit. You can review your SEPA Direct Debit information after order submission. <br/><br/>As part of your rights, you are entitled to a refund from your bank under the terms and conditions of your agreement with your bank. A refund must be claimed within 8 weeks starting from the date on which your account was debited. ","invoiceAgreement":"I agree to allow Digital River Taiwan to handle the e-invoice related matters on my behalf to accelerate the return/refund process.","warrantyInformation":"Warranty Information","japaneseCommerceLaw":"Commercial Transaction Law"},"en_NO":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> is the authorised retailer and merchant providing e-commerce services for this shop.","termsOfSale":"Terms of Sale","confirmDisclosure":"By submitting my order, I agree to the <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and the <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> of {businessEntityName}.","consentsEula":" and the <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">End User License Agreement</a>","consentsTermsOfUse":" and the <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Terms of Use</a>","consentsCompanyName":" of {companyName}","californiaPrivacyRights":"Your California Privacy Rights","autoRenewPlanTermsBegin":"By completing your purchase, you authorize Digital River to automatically renew your purchased license or subscription for successive renewal terms as described in the product details. At the end of the selected period, we will automatically charge your stored payment information at the then current price in effect (plus tax) for each additional renewal period until you cancel. We will send you an e-mail reminder at least once prior to each renewal to remind you of your upcoming renewal and may change the renewal price for any upcoming renewal term by providing you with prior notice of the change by e-mail. The Digital River <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a>","autoRenewPlanTermsEnd":"  will apply to each renewal transaction. You may cancel your auto-renewal plan at any time by following the instructions provided in your order confirmation email.<br/><br/>I agree that Digital River may store my payment information for future purchases including the processing of any subsequent subscription renewals which may occur following the date of this order.","klarnaCreditActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. By continuing I accept the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_no/user\\">terms for the Klarna Shopping Service</a>, and confirm that I have read the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_no/privacy\\">Privacy Notice</a> and the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_no/cookie_purchase\\">Cookie Notice</a>. <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_no/invoice?credit_time=30\\">Terms & Conditions</a>","klarnaCreditRecurringActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. By continuing I accept the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_no/user\\">terms for the Klarna Shopping Service</a>, and confirm that I have read the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_no/privacy\\">Privacy Notice</a> and the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_no/cookie_purchase\\">Cookie Notice</a>. <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_no/invoice?credit_time=30\\">Terms & Conditions</a>","idealRecurringAgreement":"By clicking the box, you authorize Digital River to collect your first payment via iDEAL and use your IBAN to collect the subsequent subscription payments by SEPA direct debit. You can review your SEPA Direct Debit information after order submission. <br/><br/>As part of your rights, you are entitled to a refund from your bank under the terms and conditions of your agreement with your bank. A refund must be claimed within 8 weeks starting from the date on which your account was debited. ","invoiceAgreement":"I agree to allow Digital River Taiwan to handle the e-invoice related matters on my behalf to accelerate the return/refund process.","warrantyInformation":"Warranty Information","japaneseCommerceLaw":"Commercial Transaction Law"},"en_NZ":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> is the authorised retailer and merchant providing e-commerce services for this shop.","termsOfSale":"Terms of Sale","confirmDisclosure":"By submitting my order, I agree to the <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and the <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> of {businessEntityName}.","consentsEula":" and the <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">End User License Agreement</a>","consentsTermsOfUse":" and the <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Terms of Use</a>","consentsCompanyName":" of {companyName}","californiaPrivacyRights":"Your California Privacy Rights","autoRenewPlanTermsBegin":"By completing your purchase, you authorize Digital River to automatically renew your purchased license or subscription for successive renewal terms as described in the product details. At the end of the selected period, we will automatically charge your stored payment information at the then current price in effect (plus tax) for each additional renewal period until you cancel. We will send you an e-mail reminder at least once prior to each renewal to remind you of your upcoming renewal and may change the renewal price for any upcoming renewal term by providing you with prior notice of the change by e-mail. The Digital River <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a>","autoRenewPlanTermsEnd":"  will apply to each renewal transaction. You may cancel your auto-renewal plan at any time by following the instructions provided in your order confirmation email.<br/><br/>I agree that Digital River may store my payment information for future purchases including the processing of any subsequent subscription renewals which may occur following the date of this order.","klarnaCreditActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. By continuing, I accept the terms of the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_nz/user\\">Klarna Shopping Service</a> and confirm that I have read the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_nz/privacy\\">Privacy Notice</a>.","klarnaCreditRecurringActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. By continuing, I accept the terms of the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_nz/user\\">Klarna Shopping Service</a> and confirm that I have read the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_nz/privacy\\">Privacy Notice</a>.","agreeToTerms":"I have read and agree to the terms and charges above.","idealRecurringAgreement":"By clicking the box, you authorize Digital River to collect your first payment via iDEAL and use your IBAN to collect the subsequent subscription payments by SEPA direct debit. You can review your SEPA Direct Debit information after order submission. <br/><br/>As part of your rights, you are entitled to a refund from your bank under the terms and conditions of your agreement with your bank. A refund must be claimed within 8 weeks starting from the date on which your account was debited. ","mstsActiveAcceptance":"By selecting {payNow} you will be redirected to login to your TreviPay account, complete two-factor authentication to authorize your purchase.<span class=\\"{createAccountButtonTextClass}\\"><br /><br />Select Enroll NOW to create TreviPay Account.</span><br /><br />DISCLAIMER<br /><br />* All the purchase program accounts and credit lines under the Payment Terms program are issued by Multi Service Technology Solutions, Inc., a Florida USA incorporated company (“MSTS”).<br /><br />* {businessEntityName} is not a party to the Purchase Program Accountholder Agreement. {businessEntityName} is neither a lender nor a broker for the credit lines issued under the Payment Terms program.<br /><br />All the applications and your qualifications will be reviewed and decided by TreviPay. HERE is a link to <a href=\\"https://www.trevipay.com/privacy-center/\\" target=\\"_blank\\">TreviPay’s Privacy Center</a>.","invoiceAgreement":"I agree to allow Digital River Taiwan to handle the e-invoice related matters on my behalf to accelerate the return/refund process.","warrantyInformation":"Warranty Information","japaneseCommerceLaw":"Commercial Transaction Law"},"en_PR":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> is the authorised retailer and merchant providing e-commerce services for this shop.","termsOfSale":"Terms of Sale","confirmDisclosure":"By submitting my order, I agree to the <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and the <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> of {businessEntityName}.","consentsEula":" and the <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">End User License Agreement</a>","consentsTermsOfUse":" and the <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Terms of Use</a>","consentsCompanyName":" of {companyName}","californiaPrivacyRights":"Your California Privacy Rights","autoRenewPlanTermsBegin":"By completing your purchase, you authorize Digital River to automatically renew your purchased license or subscription for successive renewal terms as described in the product details. At the end of the selected period, we will automatically charge your stored payment information at the then current price in effect (plus tax) for each additional renewal period until you cancel. We will send you an e-mail reminder at least once prior to each renewal to remind you of your upcoming renewal and may change the renewal price for any upcoming renewal term by providing you with prior notice of the change by e-mail. The Digital River <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a>","autoRenewPlanTermsEnd":"  will apply to each renewal transaction. You may cancel your auto-renewal plan at any time by following the instructions provided in your order confirmation email.<br/><br/>I agree that Digital River may store my payment information for future purchases including the processing of any subsequent subscription renewals which may occur following the date of this order.","klarnaCreditActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. By continuing I accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_pr/user\\">Klarna\'s Services Terms</a> and confirm that I have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_pr/privacy\\">Klarna\'s Privacy Policy</a>.","klarnaCreditRecurringActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. By continuing I accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_pr/user\\">Klarna\'s Services Terms</a> and confirm that I have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_pr/privacy\\">Klarna\'s Privacy Policy</a>.","agreeToTerms":"I have read and agree to the terms and charges above.","idealRecurringAgreement":"By clicking the box, you authorize Digital River to collect your first payment via iDEAL and use your IBAN to collect the subsequent subscription payments by SEPA direct debit. You can review your SEPA Direct Debit information after order submission. <br/><br/>As part of your rights, you are entitled to a refund from your bank under the terms and conditions of your agreement with your bank. A refund must be claimed within 8 weeks starting from the date on which your account was debited. ","invoiceAgreement":"I agree to allow Digital River Taiwan to handle the e-invoice related matters on my behalf to accelerate the return/refund process.","warrantyInformation":"Warranty Information","japaneseCommerceLaw":"Commercial Transaction Law"},"en_SE":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> is the authorised retailer and merchant providing e-commerce services for this shop.","termsOfSale":"Terms of Sale","confirmDisclosure":"By submitting my order, I agree to the <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and the <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> of {businessEntityName}.","consentsEula":" and the <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">End User License Agreement</a>","consentsTermsOfUse":" and the <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Terms of Use</a>","consentsCompanyName":" of {companyName}","californiaPrivacyRights":"Your California Privacy Rights","autoRenewPlanTermsBegin":"By completing your purchase, you authorize Digital River to automatically renew your purchased license or subscription for successive renewal terms as described in the product details. At the end of the selected period, we will automatically charge your stored payment information at the then current price in effect (plus tax) for each additional renewal period until you cancel. We will send you an e-mail reminder at least once prior to each renewal to remind you of your upcoming renewal and may change the renewal price for any upcoming renewal term by providing you with prior notice of the change by e-mail. The Digital River <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a>","autoRenewPlanTermsEnd":"  will apply to each renewal transaction. You may cancel your auto-renewal plan at any time by following the instructions provided in your order confirmation email.<br/><br/>I agree that Digital River may store my payment information for future purchases including the processing of any subsequent subscription renewals which may occur following the date of this order.","klarnaCreditActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. By continuing I accept the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_se/user\\">terms for the Klarna Shopping Service</a>, and confirm that I have read the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_se/privacy\\">Privacy Notice</a> and the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_se/cookie_purchase\\">Cookie Notice</a>. <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_se/invoice?credit_time=30\\">Terms & Conditions</a>","klarnaCreditRecurringActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. By continuing I accept the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_se/user\\">terms for the Klarna Shopping Service</a>, and confirm that I have read the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_se/privacy\\">Privacy Notice</a> and the <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_se/cookie_purchase\\">Cookie Notice</a>. <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_se/invoice?credit_time=30\\">Terms & Conditions</a>","idealRecurringAgreement":"By clicking the box, you authorize Digital River to collect your first payment via iDEAL and use your IBAN to collect the subsequent subscription payments by SEPA direct debit. You can review your SEPA Direct Debit information after order submission. <br/><br/>As part of your rights, you are entitled to a refund from your bank under the terms and conditions of your agreement with your bank. A refund must be claimed within 8 weeks starting from the date on which your account was debited. ","invoiceAgreement":"I agree to allow Digital River Taiwan to handle the e-invoice related matters on my behalf to accelerate the return/refund process.","warrantyInformation":"Warranty Information","japaneseCommerceLaw":"Commercial Transaction Law"},"en_SG":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> is the authorised retailer and merchant providing e-commerce services for this shop.","termsOfSale":"Terms of Sale","confirmDisclosure":"By submitting my order, I agree to the <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and the <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> of {businessEntityName}.","consentsEula":" and the <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">End User License Agreement</a>","consentsTermsOfUse":" and the <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Terms of Use</a>","consentsCompanyName":" of {companyName}","californiaPrivacyRights":"Your California Privacy Rights","autoRenewPlanTermsBegin":"By completing your purchase, you authorize Digital River to automatically renew your purchased license or subscription for successive renewal terms as described in the product details. At the end of the selected period, we will automatically charge your stored payment information at the then current price in effect (plus tax) for each additional renewal period until you cancel. We will send you an e-mail reminder at least once prior to each renewal to remind you of your upcoming renewal and may change the renewal price for any upcoming renewal term by providing you with prior notice of the change by e-mail. The Digital River <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a>","autoRenewPlanTermsEnd":"  will apply to each renewal transaction. You may cancel your auto-renewal plan at any time by following the instructions provided in your order confirmation email.<br/><br/>I agree that Digital River may store my payment information for future purchases including the processing of any subsequent subscription renewals which may occur following the date of this order.","klarnaCreditActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. By continuing I accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_sg/user\\">Klarna\'s Services Terms</a> and confirm that I have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_sg/privacy\\">Klarna\'s Privacy Policy</a>.","klarnaCreditRecurringActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. By continuing I accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_sg/user\\">Klarna\'s Services Terms</a> and confirm that I have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_sg/privacy\\">Klarna\'s Privacy Policy</a>.","agreeToTerms":"I have read and agree to the terms and charges above.","idealRecurringAgreement":"By clicking the box, you authorize Digital River to collect your first payment via iDEAL and use your IBAN to collect the subsequent subscription payments by SEPA direct debit. You can review your SEPA Direct Debit information after order submission. <br/><br/>As part of your rights, you are entitled to a refund from your bank under the terms and conditions of your agreement with your bank. A refund must be claimed within 8 weeks starting from the date on which your account was debited. ","invoiceAgreement":"I agree to allow Digital River Taiwan to handle the e-invoice related matters on my behalf to accelerate the return/refund process.","warrantyInformation":"Warranty Information","japaneseCommerceLaw":"Commercial Transaction Law"},"en_US":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> is the authorized reseller and merchant providing e-commerce services for this shop.","termsOfSale":"Terms of Sale","confirmDisclosure":"By submitting my order, I agree to the <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and the <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> of {businessEntityName}.","consentsEula":" and the <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">End User License Agreement</a>","consentsTermsOfUse":" and the <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Terms of Use</a>","consentsCompanyName":" of {companyName}","californiaPrivacyRights":"Your California Privacy Rights","autoRenewPlanTermsBegin":"By completing your purchase, you authorize Digital River to automatically renew your purchased license or subscription for successive renewal terms as described in the product details. At the end of the selected period, we will automatically charge your stored payment information at the then current price in effect (plus tax) for each additional renewal period until you cancel. We will send you an e-mail reminder at least once prior to each renewal to remind you of your upcoming renewal and may change the renewal price for any upcoming renewal term by providing you with prior notice of the change by e-mail. The Digital River <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a>","autoRenewPlanTermsEnd":"  will apply to each renewal transaction. You may cancel your auto-renewal plan at any time by following the instructions provided in your order confirmation email.<br/><br/>I agree that Digital River may store my payment information for future purchases including the processing of any subsequent subscription renewals which may occur following the date of this order.","klarnaCreditActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. By continuing I accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_us/user\\">Klarna\'s Services Terms</a> and confirm that I have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_us/privacy\\">Klarna\'s Privacy Policy</a>.","klarnaCreditRecurringActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. By continuing I accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_us/user\\">Klarna\'s Services Terms</a> and confirm that I have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_us/privacy\\">Klarna\'s Privacy Policy</a>.","agreeToTerms":"I have read and agree to the terms and charges above.","idealRecurringAgreement":"By clicking the box, you authorize Digital River to collect your first payment via iDEAL and use your IBAN to collect the subsequent subscription payments by SEPA direct debit. You can review your SEPA Direct Debit information after order submission. <br/><br/>As part of your rights, you are entitled to a refund from your bank under the terms and conditions of your agreement with your bank. A refund must be claimed within 8 weeks starting from the date on which your account was debited. ","mstsActiveAcceptance":"Select {payNow} to login to TreviPay, complete Two-factor authentication and confirm purchase.<span class=\\"{createAccountButtonTextClass}\\"><br /><br />Select Enroll Now to create TreviPay Account.</span><br /><br />DISCLAIMER<br /><br />* All the purchase program accounts and credit lines under the Payment Terms program are issued by Multi Service Technology Solutions, Inc., a Florida USA incorporated company (“MSTS”).<br /><br />* {businessEntityName} is not a party to the Purchase Program Accountholder Agreement. {businessEntityName} is neither a lender nor a broker for the credit lines issued under the Payment Terms program<br /><br />All the applications and your qualifications will be reviewed and decided by TreviPay. <a href=\\"https://www.trevipay.com/privacy-center/\\" target=\\"_blank\\">TreviPay’s Privacy Center.</a>","invoiceAgreement":"I agree to allow Digital River Taiwan to handle the e-invoice related matters on my behalf to accelerate the return/refund process.","warrantyInformation":"Warranty Information","japaneseCommerceLaw":"Commercial Transaction Law"},"en_ZA":{"cancellationRights":"Cancellation Right","cookiePolicy":"Cookies","legalNotice":"Legal Notice","privacyPolicy":"Privacy Policy","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> is the authorised retailer and merchant providing e-commerce services for this shop.","termsOfSale":"Terms of Sale","confirmDisclosure":"By submitting my order, I agree to the <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and the <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a> of {businessEntityName}.","consentsEula":" and the <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">End User License Agreement</a>","consentsTermsOfUse":" and the <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Terms of Use</a>","consentsCompanyName":" of {companyName}","californiaPrivacyRights":"Your California Privacy Rights","autoRenewPlanTermsBegin":"By completing your purchase, you authorize Digital River to automatically renew your purchased license or subscription for successive renewal terms as described in the product details. At the end of the selected period, we will automatically charge your stored payment information at the then current price in effect (plus tax) for each additional renewal period until you cancel. We will send you an e-mail reminder at least once prior to each renewal to remind you of your upcoming renewal and may change the renewal price for any upcoming renewal term by providing you with prior notice of the change by e-mail. The Digital River <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Terms of Sale</a> and <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacy Policy</a>","autoRenewPlanTermsEnd":"  will apply to each renewal transaction. You may cancel your auto-renewal plan at any time by following the instructions provided in your order confirmation email.<br/><br/>I agree that Digital River may store my payment information for future purchases including the processing of any subsequent subscription renewals which may occur following the date of this order.","klarnaCreditActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. By continuing I accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_za/user\\">Klarna\'s Services Terms</a> and confirm that I have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_za/privacy\\">Klarna\'s Privacy Policy</a>.","klarnaCreditRecurringActiveAcceptance":"By proceeding, you will be presented with payment options provided by Klarna. By continuing I accept <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_za/user\\">Klarna\'s Services Terms</a> and confirm that I have read <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_za/privacy\\">Klarna\'s Privacy Policy</a>.","agreeToTerms":"I have read and agree to the terms and charges above.","idealRecurringAgreement":"By clicking the box, you authorize Digital River to collect your first payment via iDEAL and use your IBAN to collect the subsequent subscription payments by SEPA direct debit. You can review your SEPA Direct Debit information after order submission. <br/><br/>As part of your rights, you are entitled to a refund from your bank under the terms and conditions of your agreement with your bank. A refund must be claimed within 8 weeks starting from the date on which your account was debited. ","invoiceAgreement":"I agree to allow Digital River Taiwan to handle the e-invoice related matters on my behalf to accelerate the return/refund process.","warrantyInformation":"Warranty Information","japaneseCommerceLaw":"Commercial Transaction Law"},"es_AR":{"cancellationRights":"Derechos de cancelación","cookiePolicy":"Cookies","legalNotice":"Aviso legal","privacyPolicy":"Política de privacidad","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> es el revendedor y comercializador autorizado de los productos ofrecidos en esta tienda.","termsOfSale":"Términos de la venta","confirmDisclosure":"Al enviar mi pedido, acepto los <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Términos de ventas</a> y la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Política de privacidad</a> de {businessEntityName}.","consentsEula":" y el <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Acuerdo de licencia del usuario final</a>","consentsTermsOfUse":" y los <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Condiciones de uso</a>","consentsCompanyName":" de {companyName}","californiaPrivacyRights":"Tus derechos de privacidad en California","autoRenewPlanTermsBegin":"Al completar su compra, autoriza a Digital River a renovar automáticamente su suscripción o licencia adquirida en plazos de renovación sucesivos, tal y como se describe en los detalles del producto. Al final del período seleccionado, se cargará automáticamente su información de pago almacenada, según el precio vigente en ese momento (más impuestos), para cada período de renovación adicional hasta su cancelación. Antes de cada renovación, le enviaremos al menos un recordatorio por correo electrónico para informarle de su próxima renovación. El precio de los sucesivos períodos de renovación puede cambiar, en cuyo caso se le notificará por correo electrónico con antelación. Los <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Términos de venta</a> y la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Política de confidencialidad</a> de Digital River","autoRenewPlanTermsEnd":" se aplicarán en todas las transacciones de renovación.Puede cancelar su plan de renovación automática en cualquier momento. Para ello, siga las instrucciones que encontrará en el correo de confirmación de su pedido.<br><br>Autorizo a Digital River a almacenar mi información de pago para futuras compras, incluido el procesamiento de cualquier renovación de suscripción que se produzca después de la fecha de este pedido.","agreeToTerms":"He leído y acepto los términos y cargos arriba detallados.","idealRecurringAgreement":"Al hacer clic en la casilla, autoriza a Digital River a cobrar su primer pago a través de iDEAL y a utilizar su IBAN para cobrar los siguientes pagos de la suscripción mediante domiciliación bancaria SEPA. Puede revisar la información de su adeudo directo SEPA después de enviar el pedido. <br/><br/>Tiene derecho a recibir un reembolso de su banco según los términos y condiciones de su acuerdo con su banco. Cualquier reembolso deberá solicitarse en un plazo máximo de 8 semanas desde la fecha en la que se realice el adeudo. ","invoiceAgreement":"Acepto permitir que Digital River Taiwan maneje los asuntos relacionados con la factura electrónica en mi nombre para acelerar el proceso de devolución/reembolso","warrantyInformation":"Información de garantía","japaneseCommerceLaw":"Ley de Transacciones Comerciales"},"es_CL":{"cancellationRights":"Derechos de cancelación","cookiePolicy":"Cookies","legalNotice":"Aviso legal","privacyPolicy":"Política de privacidad","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> es el revendedor y comercializador autorizado de los productos ofrecidos en esta tienda.","termsOfSale":"Términos de la venta","confirmDisclosure":"Al enviar mi pedido, acepto los <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Términos de ventas</a> y la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Política de privacidad</a> de {businessEntityName}.","consentsEula":" y el <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Acuerdo de licencia del usuario final</a>","consentsTermsOfUse":" y los <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Condiciones de uso</a>","consentsCompanyName":" de {companyName}","californiaPrivacyRights":"Tus derechos de privacidad en California","autoRenewPlanTermsBegin":"Al completar su compra, autoriza a Digital River a renovar automáticamente su suscripción o licencia adquirida en plazos de renovación sucesivos, tal y como se describe en los detalles del producto. Al final del período seleccionado, se cargará automáticamente su información de pago almacenada, según el precio vigente en ese momento (más impuestos), para cada período de renovación adicional hasta su cancelación. Antes de cada renovación, le enviaremos al menos un recordatorio por correo electrónico para informarle de su próxima renovación. El precio de los sucesivos períodos de renovación puede cambiar, en cuyo caso se le notificará por correo electrónico con antelación. Los <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Términos de venta</a> y la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Política de confidencialidad</a> de Digital River","autoRenewPlanTermsEnd":" se aplicarán en todas las transacciones de renovación.Puede cancelar su plan de renovación automática en cualquier momento. Para ello, siga las instrucciones que encontrará en el correo de confirmación de su pedido.<br><br>Autorizo a Digital River a almacenar mi información de pago para futuras compras, incluido el procesamiento de cualquier renovación de suscripción que se produzca después de la fecha de este pedido.","agreeToTerms":"He leído y acepto los términos y cargos arriba detallados.","idealRecurringAgreement":"Al hacer clic en la casilla, autoriza a Digital River a cobrar su primer pago a través de iDEAL y a utilizar su IBAN para cobrar los siguientes pagos de la suscripción mediante domiciliación bancaria SEPA. Puede revisar la información de su adeudo directo SEPA después de enviar el pedido. <br/><br/>Tiene derecho a recibir un reembolso de su banco según los términos y condiciones de su acuerdo con su banco. Cualquier reembolso deberá solicitarse en un plazo máximo de 8 semanas desde la fecha en la que se realice el adeudo. ","invoiceAgreement":"Acepto permitir que Digital River Taiwan maneje los asuntos relacionados con la factura electrónica en mi nombre para acelerar el proceso de devolución/reembolso","warrantyInformation":"Información de garantía","japaneseCommerceLaw":"Ley de Transacciones Comerciales"},"es_CO":{"cancellationRights":"Derechos de cancelación","cookiePolicy":"Cookies","legalNotice":"Aviso legal","privacyPolicy":"Política de privacidad","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> es el revendedor y comercializador autorizado de los productos ofrecidos en esta tienda.","termsOfSale":"Términos de la venta","confirmDisclosure":"Al enviar mi pedido, acepto los <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Términos de ventas</a> y la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Política de privacidad</a> de {businessEntityName}.","consentsEula":" y el <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Acuerdo de licencia del usuario final</a>","consentsTermsOfUse":" y los <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Condiciones de uso</a>","consentsCompanyName":" de {companyName}","californiaPrivacyRights":"Tus derechos de privacidad en California","autoRenewPlanTermsBegin":"Al completar su compra, autoriza a Digital River a renovar automáticamente su suscripción o licencia adquirida en plazos de renovación sucesivos, tal y como se describe en los detalles del producto. Al final del período seleccionado, se cargará automáticamente su información de pago almacenada, según el precio vigente en ese momento (más impuestos), para cada período de renovación adicional hasta su cancelación. Antes de cada renovación, le enviaremos al menos un recordatorio por correo electrónico para informarle de su próxima renovación. El precio de los sucesivos períodos de renovación puede cambiar, en cuyo caso se le notificará por correo electrónico con antelación. Los <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Términos de venta</a> y la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Política de confidencialidad</a> de Digital River","autoRenewPlanTermsEnd":" se aplicarán en todas las transacciones de renovación.Puede cancelar su plan de renovación automática en cualquier momento. Para ello, siga las instrucciones que encontrará en el correo de confirmación de su pedido.<br><br>Autorizo a Digital River a almacenar mi información de pago para futuras compras, incluido el procesamiento de cualquier renovación de suscripción que se produzca después de la fecha de este pedido.","agreeToTerms":"He leído y acepto los términos y cargos arriba detallados.","idealRecurringAgreement":"Al hacer clic en la casilla, autoriza a Digital River a cobrar su primer pago a través de iDEAL y a utilizar su IBAN para cobrar los siguientes pagos de la suscripción mediante domiciliación bancaria SEPA. Puede revisar la información de su adeudo directo SEPA después de enviar el pedido. <br/><br/>Tiene derecho a recibir un reembolso de su banco según los términos y condiciones de su acuerdo con su banco. Cualquier reembolso deberá solicitarse en un plazo máximo de 8 semanas desde la fecha en la que se realice el adeudo. ","invoiceAgreement":"Acepto permitir que Digital River Taiwan maneje los asuntos relacionados con la factura electrónica en mi nombre para acelerar el proceso de devolución/reembolso","warrantyInformation":"Información de garantía","japaneseCommerceLaw":"Ley de Transacciones Comerciales"},"es_EC":{"cancellationRights":"Derechos de cancelación","cookiePolicy":"Cookies","legalNotice":"Aviso legal","privacyPolicy":"Política de privacidad","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> es el revendedor y comercializador autorizado de los productos ofrecidos en esta tienda.","termsOfSale":"Términos de la venta","confirmDisclosure":"Al enviar mi pedido, acepto los <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Términos de ventas</a> y la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Política de privacidad</a> de {businessEntityName}.","consentsEula":" y el <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Acuerdo de licencia del usuario final</a>","consentsTermsOfUse":" y los <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Condiciones de uso</a>","consentsCompanyName":" de {companyName}","californiaPrivacyRights":"Tus derechos de privacidad en California","autoRenewPlanTermsBegin":"Al completar su compra, autoriza a Digital River a renovar automáticamente su suscripción o licencia adquirida en plazos de renovación sucesivos, tal y como se describe en los detalles del producto. Al final del período seleccionado, se cargará automáticamente su información de pago almacenada, según el precio vigente en ese momento (más impuestos), para cada período de renovación adicional hasta su cancelación. Antes de cada renovación, le enviaremos al menos un recordatorio por correo electrónico para informarle de su próxima renovación. El precio de los sucesivos períodos de renovación puede cambiar, en cuyo caso se le notificará por correo electrónico con antelación. Los <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Términos de venta</a> y la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Política de confidencialidad</a> de Digital River","autoRenewPlanTermsEnd":" se aplicarán en todas las transacciones de renovación.Puede cancelar su plan de renovación automática en cualquier momento. Para ello, siga las instrucciones que encontrará en el correo de confirmación de su pedido.<br><br>Autorizo a Digital River a almacenar mi información de pago para futuras compras, incluido el procesamiento de cualquier renovación de suscripción que se produzca después de la fecha de este pedido.","agreeToTerms":"He leído y acepto los términos y cargos arriba detallados.","idealRecurringAgreement":"Al hacer clic en la casilla, autoriza a Digital River a cobrar su primer pago a través de iDEAL y a utilizar su IBAN para cobrar los siguientes pagos de la suscripción mediante domiciliación bancaria SEPA. Puede revisar la información de su adeudo directo SEPA después de enviar el pedido. <br/><br/>Tiene derecho a recibir un reembolso de su banco según los términos y condiciones de su acuerdo con su banco. Cualquier reembolso deberá solicitarse en un plazo máximo de 8 semanas desde la fecha en la que se realice el adeudo. ","invoiceAgreement":"Acepto permitir que Digital River Taiwan maneje los asuntos relacionados con la factura electrónica en mi nombre para acelerar el proceso de devolución/reembolso","warrantyInformation":"Información de garantía","japaneseCommerceLaw":"Ley de Transacciones Comerciales"},"es_ES":{"cancellationRights":"Derechos de cancelación","cookiePolicy":"Cookies","legalNotice":"Aviso legal","privacyPolicy":"Política de confidencialidad","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> es el distribuidor y el vendedor autorizado de los productos y servicios ofrecidos en esta tienda virtual.","termsOfSale":"Condiciones de venta","confirmDisclosure":"Al enviar mi pedido, acepto los <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Términos de ventas</a> y la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Política de privacidad</a> de {businessEntityName}.","consentsEula":" y el <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Acuerdo de licencia del usuario final</a>","consentsTermsOfUse":" y los <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Condiciones de uso</a>","consentsCompanyName":" de {companyName}","californiaPrivacyRights":"Tus derechos de privacidad en California","autoRenewPlanTermsBegin":"Al completar su compra, autoriza a Digital River a renovar automáticamente su suscripción o licencia adquirida en plazos de renovación sucesivos, tal y como se describe en los detalles del producto. Al final del período seleccionado, se cargará automáticamente su información de pago almacenada, según el precio vigente en ese momento (más impuestos), para cada período de renovación adicional hasta su cancelación. Antes de cada renovación, le enviaremos al menos un recordatorio por correo electrónico para informarle de su próxima renovación. El precio de los sucesivos períodos de renovación puede cambiar, en cuyo caso se le notificará por correo electrónico con antelación. Los <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Términos de venta</a> y la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Política de confidencialidad</a> de Digital River","autoRenewPlanTermsEnd":" se aplicarán en todas las transacciones de renovación.Puede cancelar su plan de renovación automática en cualquier momento. Para ello, siga las instrucciones que encontrará en el correo de confirmación de su pedido.<br><br>Autorizo a Digital River a almacenar mi información de pago para futuras compras, incluido el procesamiento de cualquier renovación de suscripción que se produzca después de la fecha de este pedido.","klarnaCreditActiveAcceptance":"Al continuar, se le presentarán las opciones de pago proporcionadas por Klarna. Al continuar, acepto el <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/es_es/user\\">Servicio de Compras de Klarna</a> y confirmo que he leído el <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/es_es/privacy\\">Aviso de Privacidad</a> y el <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/es_es/cookie_purchase\\">Aviso de Cookies</a>.","klarnaCreditRecurringActiveAcceptance":"Al continuar, se le presentarán las opciones de pago proporcionadas por Klarna. Al continuar, acepto el <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/es_es/user\\">Servicio de Compras de Klarna</a> y confirmo que he leído el <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/es_es/privacy\\">Aviso de Privacidad</a> y el <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/es_es/cookie_purchase\\">Aviso de Cookies</a>.","agreeToTerms":"He leído y acepto las condiciones y los cobros anteriormente indicados.","idealRecurringAgreement":"Al hacer clic en la casilla, autoriza a Digital River a cobrar su primer pago a través de iDEAL y a utilizar su IBAN para cobrar los siguientes pagos de la suscripción mediante domiciliación bancaria SEPA. Puede revisar la información de su adeudo directo SEPA después de enviar el pedido. <br/><br/>Tiene derecho a recibir un reembolso de su banco según los términos y condiciones de su acuerdo con su banco. Cualquier reembolso deberá solicitarse en un plazo máximo de 8 semanas desde la fecha en la que se realice el adeudo. ","invoiceAgreement":"Acepto permitir que Digital River Taiwan maneje los asuntos relacionados con la factura electrónica en mi nombre para acelerar el proceso de devolución/reembolso","mstsActiveAcceptance":"Seleccione {payNow} para iniciar sesión en TreviPay, completar la autenticación de DOS factores y confirmar la compra.<span class=\\"{createAccountButtonTextClass}\\"><br /><br />Seleccione \'Regístrate ahora\' para crear una cuenta TreviPay.</span><br /><br />* Todas las cuentas del programa de compras y las líneas de crédito bajo el programa Condiciones de pago son emitidas por Multi Service Technology Solutions, Inc., una compañía incorporada en Florida USA (\\"MSTS\\")<br /><br />DESCARGO DE RESPONSABILIDAD<br /><br />* {businessEntityName} no es parte del Acuerdo de titulares de cuentas del Programa de compras. {businessEntityName} no es un prestamista ni un corredor de líneas de crédito emitidas bajo el programa Condiciones de pago.<br /><br />Todas las solicitudes y sus calificaciones serán revisadas y decididas por TreviPay. <a href=\\"https://www.trevipay.com/privacy-center/\\" target=\\"_blank\\">Aquí hay un enlace al Centro de privacidad de TreviPay.</a>","warrantyInformation":"Información de garantía","japaneseCommerceLaw":"Ley de Transacciones Comerciales"},"es_MX":{"cancellationRights":"Derechos de cancelación","cookiePolicy":"Cookies","legalNotice":"Aviso legal","privacyPolicy":"Política de privacidad","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> es el revendedor y comercializador autorizado de los productos ofrecidos en esta tienda.","termsOfSale":"Términos de la venta","confirmDisclosure":"Al enviar mi pedido, acepto los <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Términos de ventas</a> y la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Política de privacidad</a> de {businessEntityName}.","consentsEula":" y el <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Acuerdo de licencia del usuario final</a>","consentsTermsOfUse":" y los <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Términos de uso</a>","consentsCompanyName":" de {companyName}","californiaPrivacyRights":"Tus derechos de privacidad en California","autoRenewPlanTermsBegin":"Al completar su compra, autoriza a Digital River a renovar automáticamente su suscripción o licencia adquirida en plazos de renovación sucesivos, tal y como se describe en los detalles del producto. Al final del período seleccionado, se cargará automáticamente su información de pago almacenada, según el precio vigente en ese momento (más impuestos), para cada período de renovación adicional hasta su cancelación. Antes de cada renovación, le enviaremos al menos un recordatorio por correo electrónico para informarle de su próxima renovación. El precio de los sucesivos períodos de renovación puede cambiar, en cuyo caso se le notificará por correo electrónico con antelación. Los <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Términos de venta</a> y la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Política de confidencialidad</a> de Digital River","autoRenewPlanTermsEnd":" se aplicarán en todas las transacciones de renovación.Puede cancelar su plan de renovación automática en cualquier momento. Para ello, siga las instrucciones que encontrará en el correo de confirmación de su pedido.<br><br>Autorizo a Digital River a almacenar mi información de pago para futuras compras, incluido el procesamiento de cualquier renovación de suscripción que se produzca después de la fecha de este pedido.","agreeToTerms":"He leído y acepto los términos y cargos arriba detallados.","idealRecurringAgreement":"Al hacer clic en la casilla, autoriza a Digital River a cobrar su primer pago a través de iDEAL y a utilizar su IBAN para cobrar los siguientes pagos de la suscripción mediante domiciliación bancaria SEPA. Puede revisar la información de su adeudo directo SEPA después de enviar el pedido. <br/><br/>Tiene derecho a recibir un reembolso de su banco según los términos y condiciones de su acuerdo con su banco. Cualquier reembolso deberá solicitarse en un plazo máximo de 8 semanas desde la fecha en la que se realice el adeudo. ","invoiceAgreement":"Acepto permitir que Digital River Taiwan maneje los asuntos relacionados con la factura electrónica en mi nombre para acelerar el proceso de devolución/reembolso","mstsActiveAcceptance":"Seleccione {payNow} para iniciar sesión en TreviPay, completar la autenticación de DOS factores y confirmar la compra.<span class=\\"{createAccountButtonTextClass}\\"><br /><br />Seleccione \'Regístrate ahora\' para crear una cuenta TreviPay.</span><br /><br />* Todas las cuentas del programa de compras y las líneas de crédito bajo el programa Condiciones de pago son emitidas por Multi Service Technology Solutions, Inc., una compañía incorporada en Florida USA (\\"MSTS\\")<br /><br />DESCARGO DE RESPONSABILIDAD<br /><br />* {businessEntityName} no es parte del Acuerdo de titulares de cuentas del Programa de compras. {businessEntityName} no es un prestamista ni un corredor de líneas de crédito emitidas bajo el programa Condiciones de pago.<br /><br />Todas las solicitudes y sus calificaciones serán revisadas y decididas por TreviPay. <a href=\\"https://www.trevipay.com/privacy-center/\\" target=\\"_blank\\">Aquí hay un enlace al Centro de privacidad de TreviPay.</a>","warrantyInformation":"Información de garantía","japaneseCommerceLaw":"Ley de Transacciones Comerciales"},"es_PE":{"cancellationRights":"Derechos de cancelación","cookiePolicy":"Cookies","legalNotice":"Aviso legal","privacyPolicy":"Política de privacidad","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> es el revendedor y comercializador autorizado de los productos ofrecidos en esta tienda.","termsOfSale":"Términos de la venta","confirmDisclosure":"Al enviar mi pedido, acepto los <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Términos de ventas</a> y la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Política de privacidad</a> de {businessEntityName}.","consentsEula":" y el <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Acuerdo de licencia del usuario final</a>","consentsTermsOfUse":" y los <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Condiciones de uso</a>","consentsCompanyName":" de {companyName}","californiaPrivacyRights":"Tus derechos de privacidad en California","autoRenewPlanTermsBegin":"Al completar su compra, autoriza a Digital River a renovar automáticamente su suscripción o licencia adquirida en plazos de renovación sucesivos, tal y como se describe en los detalles del producto. Al final del período seleccionado, se cargará automáticamente su información de pago almacenada, según el precio vigente en ese momento (más impuestos), para cada período de renovación adicional hasta su cancelación. Antes de cada renovación, le enviaremos al menos un recordatorio por correo electrónico para informarle de su próxima renovación. El precio de los sucesivos períodos de renovación puede cambiar, en cuyo caso se le notificará por correo electrónico con antelación. Los <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Términos de venta</a> y la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Política de confidencialidad</a> de Digital River","autoRenewPlanTermsEnd":" se aplicarán en todas las transacciones de renovación.Puede cancelar su plan de renovación automática en cualquier momento. Para ello, siga las instrucciones que encontrará en el correo de confirmación de su pedido.<br><br>Autorizo a Digital River a almacenar mi información de pago para futuras compras, incluido el procesamiento de cualquier renovación de suscripción que se produzca después de la fecha de este pedido.","agreeToTerms":"He leído y acepto los términos y cargos arriba detallados.","idealRecurringAgreement":"Al hacer clic en la casilla, autoriza a Digital River a cobrar su primer pago a través de iDEAL y a utilizar su IBAN para cobrar los siguientes pagos de la suscripción mediante domiciliación bancaria SEPA. Puede revisar la información de su adeudo directo SEPA después de enviar el pedido. <br/><br/>Tiene derecho a recibir un reembolso de su banco según los términos y condiciones de su acuerdo con su banco. Cualquier reembolso deberá solicitarse en un plazo máximo de 8 semanas desde la fecha en la que se realice el adeudo. ","invoiceAgreement":"Acepto permitir que Digital River Taiwan maneje los asuntos relacionados con la factura electrónica en mi nombre para acelerar el proceso de devolución/reembolso","warrantyInformation":"Información de garantía","japaneseCommerceLaw":"Ley de Transacciones Comerciales"},"es_VE":{"cancellationRights":"Derechos de cancelación","cookiePolicy":"Cookies","legalNotice":"Aviso legal","privacyPolicy":"Política de privacidad","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> es el revendedor y comercializador autorizado de los productos ofrecidos en esta tienda.","termsOfSale":"Términos de la venta","confirmDisclosure":"Al enviar mi pedido, acepto los <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Términos de ventas</a> y la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Política de privacidad</a> de {businessEntityName}.","consentsEula":" y el <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Acuerdo de licencia del usuario final</a>","consentsTermsOfUse":" y los <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Condiciones de uso</a>","consentsCompanyName":" de {companyName}","californiaPrivacyRights":"Tus derechos de privacidad en California","autoRenewPlanTermsBegin":"Al completar su compra, autoriza a Digital River a renovar automáticamente su suscripción o licencia adquirida en plazos de renovación sucesivos, tal y como se describe en los detalles del producto. Al final del período seleccionado, se cargará automáticamente su información de pago almacenada, según el precio vigente en ese momento (más impuestos), para cada período de renovación adicional hasta su cancelación. Antes de cada renovación, le enviaremos al menos un recordatorio por correo electrónico para informarle de su próxima renovación. El precio de los sucesivos períodos de renovación puede cambiar, en cuyo caso se le notificará por correo electrónico con antelación. Los <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Términos de venta</a> y la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Política de confidencialidad</a> de Digital River","autoRenewPlanTermsEnd":" se aplicarán en todas las transacciones de renovación.Puede cancelar su plan de renovación automática en cualquier momento. Para ello, siga las instrucciones que encontrará en el correo de confirmación de su pedido.<br><br>Autorizo a Digital River a almacenar mi información de pago para futuras compras, incluido el procesamiento de cualquier renovación de suscripción que se produzca después de la fecha de este pedido.","agreeToTerms":"He leído y acepto los términos y cargos arriba detallados.","idealRecurringAgreement":"Al hacer clic en la casilla, autoriza a Digital River a cobrar su primer pago a través de iDEAL y a utilizar su IBAN para cobrar los siguientes pagos de la suscripción mediante domiciliación bancaria SEPA. Puede revisar la información de su adeudo directo SEPA después de enviar el pedido. <br/><br/>Tiene derecho a recibir un reembolso de su banco según los términos y condiciones de su acuerdo con su banco. Cualquier reembolso deberá solicitarse en un plazo máximo de 8 semanas desde la fecha en la que se realice el adeudo. ","invoiceAgreement":"Acepto permitir que Digital River Taiwan maneje los asuntos relacionados con la factura electrónica en mi nombre para acelerar el proceso de devolución/reembolso","warrantyInformation":"Información de garantía","japaneseCommerceLaw":"Ley de Transacciones Comerciales"},"et_EE":{"privacyPolicy":"Privaatsuspoliitika","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> on sellele kauplusele e-kaubanduse teenuseid osutav volitatud edasimüüja.","termsOfSale":"Tingimused","confirmDisclosure":"","autoRenewPlanTermsBegin":"","autoRenewPlanTermsEnd":"","warrantyInformation":"Garantii teave"},"fi_FI":{"cancellationRights":"Peruutusoikeus","cookiePolicy":"Evästeet","legalNotice":"Lainmukainen tiedotus","privacyPolicy":"Yksityisyyden suoja","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> on valtuutettu jälleenmyyjä, joka myy tässä kaupassa tarjolla olevia tuotteita ja palveluja.","termsOfSale":"Myyntiehdot","confirmDisclosure":"Lähettämällä tilaukseni hyväksyn {businessEntityName} <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Myyntiehdot</a> ja <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Tietosuojamenettelyn</a>.","consentsEula":" ja <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Loppukäyttäjän lisenssisopimus</a>","consentsTermsOfUse":" ja <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Käyttöehdot</a>","consentsCompanyName":" of {companyName}","californiaPrivacyRights":"Kalifornian yksityisyysoikeutesi","autoRenewPlanTermsBegin":"Suorittamalla ostoksesi valtuutat Digital Riverin uusimaan automaattisesti ostamasi lisenssin tai tilauksesi peräkkäisillä uusimisehdoilla tuotetiedoissa kuvatulla tavalla. Valitun jakson lopussa veloitamme automaattisesti tallennetut maksutietosi kulloinkin voimassa olevalla hinnalla (plus alv) jokaiselta uusintajaksolta, kunnes peruutat tilauksen. Lähetämme sinulle sähköpostimuistutuksen vähintään kerran ennen jokaista uusimista tulevasta uusimisesta muistuttamiseksi ja voimme muuttaa minkä tahansa tulevan automaattisen uusinnan hinnan ilmoittamalla sinulle etukäteen tulevasta muutoksesta. Digital Riverin <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">myyntiehdot</a> ja <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">yksityisyydensuojakäytäntö</a>","autoRenewPlanTermsEnd":" koskevat jokaista uusintaa. Voit peruuttaa automaattisen uusintasuunnitelman milloin tahansa tilauksesi mukana toimitetun vahvistussähköpostin ohjeiden mukaan.<br><br>Hyväksyn, että Digital River voi tallentaa maksutietoni tulevia ostoksia sekä tämän tilauksen jälkeen mahdollisesti tehtävien tilausuusintojen käsittelyä varten.","klarnaCreditActiveAcceptance":"Kun painat MAKSA NYT-painiketta, saat näkyviin Klarnan tarjoamat maksutavat. Jatkamalla hyväksyn <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/fi_fi/user\\">Klarnan shoppailupalvelun käyttöehdot</a> ja vahvistan lukeneeni <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/fi_fi/privacy\\">tietosuoja</a>- ja <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/fi_fi/cookie_purchase\\">evästekäytännön</a>. <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/fi_fi/invoice?credit_time=30\\">Ehdot</a>","klarnaCreditRecurringActiveAcceptance":"Kun painat MAKSA NYT-painiketta, saat näkyviin Klarnan tarjoamat maksutavat. Jatkamalla hyväksyn <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/fi_fi/user\\">Klarnan shoppailupalvelun käyttöehdot</a> ja vahvistan lukeneeni <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/fi_fi/privacy\\">tietosuoja</a>- ja <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/fi_fi/cookie_purchase\\">evästekäytännön</a>. <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/fi_fi/invoice?credit_time=30\\">Ehdot</a>","agreeToTerms":"Olen lukenut ja hyväksyn yllä olevat ehdot ja maksut.","invoiceAgreement":"Hyväksyn, että sallin Digital River Taiwanin hoitaa puolestani sähköiseen laskutukseen liittyvät asiat nopeuttaakseen palautus-/hyvitysprosessia.","warrantyInformation":"Takuuta koskevat tiedot","japaneseCommerceLaw":"Kaupallisia liiketoimia koskeva laki"},"fr_BE":{"cancellationRights":"Droits d\'annulation","cookiePolicy":"Témoins de connexion","legalNotice":"Mentions legales","privacyPolicy":"Politique de confidentialité","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> est le revendeur et marchand agréé pour les produits et services proposés au sein de ce magasin.","termsOfSale":"Conditions de vente","confirmDisclosure":"En envoyant ma commande, j’accepte les <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Conditions de vente</a> et la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Politique de confidentialité</a> de {businessEntityName}.","consentsEula":" et le <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Contrat de licence utilisateur final</a>","consentsTermsOfUse":" et les <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Conditions générales d&#39;utilisation</a>","consentsCompanyName":" de {companyName}","californiaPrivacyRights":"Vos droits de confidentialité en Californie","autoRenewPlanTermsBegin":"En effectuant votre achat, vous autorisez Digital River à renouveler automatiquement la licence ou l’abonnement que vous avez acheté pour les périodes de renouvellement successives décrites dans les informations du produit. À la fin de la période sélectionnée, nous facturerons automatiquement vos informations de paiement stockées au prix en vigueur (plus taxes) pour chaque période de renouvellement supplémentaire jusqu’à ce que vous l’annuliez. Au moins une fois avant chaque renouvellement, nous vous enverrons un rappel par courrier électronique pour vous rappeler le renouvellement imminent et nous pourrons modifier le prix de renouvellement pour toute période de renouvellement future en vous envoyant un préavis de modification par courrier électronique. Les <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Conditions de Vente</a> et la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Politique de confidentialité</a> de Digital River","autoRenewPlanTermsEnd":" s\'appliqueront à chaque transaction de renouvellement. Vous pouvez annuler votre plan de renouvellement automatique à tout moment en suivant les instructions fournies dans votre e-mail de confirmation de commande.<br/><br/>J\'accepte que Digital River puisse stocker mes informations de paiement pour des achats ultérieurs, y compris le traitement de tout renouvellement d\'abonnement à venir qui pourrait avoir lieu après la date de cette commande","klarnaCreditActiveAcceptance":"En procédant, les méthodes de paiement fournies par Klarna vous seront présentées. En continuant, j\'accepte les <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/fr_be/user\\">conditions générales d\'utilisation de l\'Expérience Shopping Klarna</a>, et du produit <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/fr_be/invoice?credit_time=30\\">Payer plus tard</a>, et confirme avoir lu l\'Avis de <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/fr_be/privacy\\">confidentialité et la Politique</a> en <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/fr_fr/cookie_purchase\\">matière de cookies</a>.","klarnaCreditRecurringActiveAcceptance":"En procédant, les méthodes de paiement fournies par Klarna vous seront présentées. En continuant, j\'accepte les <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/fr_be/user\\">conditions générales d\'utilisation de l\'Expérience Shopping Klarna</a>, et du produit <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/fr_be/invoice?credit_time=30\\">Payer plus tard</a>, et confirme avoir lu l\'Avis de <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/fr_be/privacy\\">confidentialité et la Politique</a> en <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/fr_fr/cookie_purchase\\">matière de cookies</a>.","agreeToTerms":"J\'ai lu et j\'accepte les Conditions générales de vente et les frais ci-dessus.","idealRecurringAgreement":"En cliquant sur la case, vous autorisez Digital River à percevoir votre premier paiement par iDEAL et à utiliser votre IBAN pour percevoir les paiements d\'abonnement suivants par prélèvement SEPA. Vous pouvez consulter les informations relatives à votre prélèvement SEPA après la soumission de votre commande. <br/><br/>Vous bénéficiez du droit d\'être remboursé par votre banque suivant les conditions décrites dans la convention que vous avez passée avec elle. Une demande de remboursement doit être présentée dans les 8 semaines suivant la date de débit de votre compte pour un prélèvement autorisé. ","invoiceAgreement":"J\'accepte de permettre à Digital River Taiwan de gérer les questions liées aux factures électroniques en mon nom afin d\'accélérer le processus de retour/remboursement.","warrantyInformation":"Informations sur la garantie","japaneseCommerceLaw":"Loi sur les transactions commerciales"},"fr_CA":{"cancellationRights":"Droits d\'annulation","cookiePolicy":"Témoins","legalNotice":"Mentions legales","privacyPolicy":"Politique sur la confidentialité","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> est le revendeur et commerçant autorisé fournissant les services de commerce électronique pour ce magasin.","termsOfSale":"Conditions de vente","confirmDisclosure":"En soumettant ma commande, j\'accepte les <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Conditions de vente</a> et la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Politique de confidentialité</a> de {businessEntityName}.","consentsEula":" et le <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Contrat de licence de l&#39;utilisateur final</a>","consentsTermsOfUse":" et les <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Conditions d&#39;utilisation</a>","consentsCompanyName":" de {companyName}","californiaPrivacyRights":"Vos droits à la vie privée en Californie","autoRenewPlanTermsBegin":"En effectuant votre achat, vous autorisez Digital River à renouveler automatiquement la licence ou l’abonnement que vous avez acheté pour les périodes de renouvellement successives décrites dans les informations du produit. À la fin de la période sélectionnée, nous facturerons automatiquement vos informations de paiement stockées au prix en vigueur (plus taxes) pour chaque période de renouvellement supplémentaire jusqu’à ce que vous l’annuliez. Au moins une fois avant chaque renouvellement, nous vous enverrons un rappel par courrier électronique pour vous rappeler le renouvellement imminent et nous pourrons modifier le prix de renouvellement pour toute période de renouvellement future en vous envoyant un préavis de modification par courrier électronique. Les <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Conditions de Vente</a> et la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Politique de confidentialité</a> de Digital River","autoRenewPlanTermsEnd":" s\'appliqueront à chaque transaction de renouvellement. Vous pouvez annuler votre plan de renouvellement automatique à tout moment en suivant les instructions fournies dans votre e-mail de confirmation de commande.<br/><br/>J\'accepte que Digital River puisse stocker mes informations de paiement pour des achats ultérieurs, y compris le traitement de tout renouvellement d\'abonnement à venir qui pourrait avoir lieu après la date de cette commande","klarnaCreditActiveAcceptance":"En continuant, vous serez présenté avec les options de paiement fournies par Klarna. Pour accéder aux conditions d\'utilisations de données et les conditions du service de magasinage Klarna, cliquer <a target=\\"_blank\\" href=\\"https://www.klarna.com/fr-ca/mentions-legales/\\">ici</a>.","klarnaCreditRecurringActiveAcceptance":"En continuant, vous serez présenté avec les options de paiement fournies par Klarna. Pour accéder aux conditions d\'utilisations de données et les conditions du service de magasinage Klarna, cliquer <a target=\\"_blank\\" href=\\"https://www.klarna.com/fr-ca/mentions-legales/\\">ici</a>.","agreeToTerms":"J’ai lu et j’accepte les conditions générales et les modalités tarifaires ci-dessus.","idealRecurringAgreement":"En cliquant sur la case, vous autorisez Digital River à percevoir votre premier paiement par iDEAL et à utiliser votre IBAN pour percevoir les paiements d\'abonnement suivants par prélèvement SEPA. Vous pouvez consulter les informations relatives à votre prélèvement SEPA après la soumission de votre commande. <br/><br/>Vous bénéficiez du droit d\'être remboursé par votre banque suivant les conditions décrites dans la convention que vous avez passée avec elle. Une demande de remboursement doit être présentée dans les 8 semaines suivant la date de débit de votre compte pour un prélèvement autorisé. ","mstsActiveAcceptance":"Sélectionnez {payNow} pour vous connecter à TreviPay, effectuer l\'identification à deux facteurs et confirmer l\'achat.<span class=\\"{createAccountButtonTextClass}\\"><br /><br />Sélectionnez \'Inscrivez-vous maintenant\' pour créer un compte TreviPay.</span><br /><br />AVERTISSEMENT<br /><br />* Tous les comptes du programme d’achat et les lignes de crédit dans le carde du programme de Modalités de Paiement sont émis par Multi Service Technology Solutions, Inc., une société constituée en Floride aux États-Unis (« MSTS »).<br /><br />* {businessEntityName} n’est pas partie à l\'Accord relatif aux Titulaires de compte du Programme d’achat. {businessEntityName} n’est ni un prêteur ni un courtier pour les lignes de crédit émises dans le cadre du programme des Modalités de Paiement<br /><br />Toutes les demandes et vos qualifications seront examinées et décidées par TreviPay. <a href=\\"https://www.trevipay.com/privacy-center/\\" target=\\"_blank\\">Voici un lien vers le Centre de confidentialité de TreviPay.</a>","invoiceAgreement":"J\'accepte de permettre à Digital River Taiwan de traiter les questions liées aux factures électroniques en mon nom afin d\'accélérer le processus de retour/remboursement.","warrantyInformation":"Informations de garantie","japaneseCommerceLaw":"Loi sur les transactions commerciales"},"fr_CH":{"cancellationRights":"Droits d\'annulation","cookiePolicy":"Témoins de connexion","legalNotice":"Mentions legales","privacyPolicy":"Politique de confidentialité","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> est le revendeur et marchand agréé pour les produits et services proposés au sein de ce magasin.","termsOfSale":"Conditions de vente","confirmDisclosure":"En envoyant ma commande, j\'accepte les <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Conditions de vente</a> et la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Politique de confidentialité</a> de {businessEntityName}.","consentsEula":" et le <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Contrat de licence utilisateur final</a>","consentsTermsOfUse":" et les <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Conditions générales d&#39;utilisation</a>","consentsCompanyName":" de {companyName}","californiaPrivacyRights":"Vos droits de confidentialité en Californie","autoRenewPlanTermsBegin":"En effectuant votre achat, vous autorisez Digital River à renouveler automatiquement la licence ou l’abonnement que vous avez acheté pour les périodes de renouvellement successives décrites dans les informations du produit. À la fin de la période sélectionnée, nous facturerons automatiquement vos informations de paiement stockées au prix en vigueur (plus taxes) pour chaque période de renouvellement supplémentaire jusqu’à ce que vous l’annuliez. Au moins une fois avant chaque renouvellement, nous vous enverrons un rappel par courrier électronique pour vous rappeler le renouvellement imminent et nous pourrons modifier le prix de renouvellement pour toute période de renouvellement future en vous envoyant un préavis de modification par courrier électronique. Les <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Conditions de Vente</a> et la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Politique de confidentialité</a> de Digital River","autoRenewPlanTermsEnd":" s\'appliqueront à chaque transaction de renouvellement. Vous pouvez annuler votre plan de renouvellement automatique à tout moment en suivant les instructions fournies dans votre e-mail de confirmation de commande.<br/><br/>J\'accepte que Digital River puisse stocker mes informations de paiement pour des achats ultérieurs, y compris le traitement de tout renouvellement d\'abonnement à venir qui pourrait avoir lieu après la date de cette commande","klarnaCreditActiveAcceptance":"En procédant, les méthodes de paiement fournies par Klarna vous seront présentées. En continuant, j\'accepte les <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/fr_ch/user\\">conditions générales d\'utilisation de l\'Expérience Shopping Klarna</a>, et confirme avoir lu l\'Avis de <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/fr_ch/privacy_bp\\">confidentialité et la Politique</a> en <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/fr_fr/cookie_purchase\\">matière de cookies</a>. <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/fr_ch/invoice?credit_time=30\\">Conditions</a>","klarnaCreditRecurringActiveAcceptance":"En procédant, les méthodes de paiement fournies par Klarna vous seront présentées. En continuant, j\'accepte les <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/fr_ch/user\\">conditions générales d\'utilisation de l\'Expérience Shopping Klarna</a>, et confirme avoir lu l\'Avis de <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/fr_ch/privacy_bp\\">confidentialité et la Politique</a> en <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/fr_fr/cookie_purchase\\">matière de cookies</a>. <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/fr_ch/invoice?credit_time=30\\">Conditions</a>","agreeToTerms":"J\'ai lu et j\'accepte les Conditions générales de vente et les frais ci-dessus.","idealRecurringAgreement":"En cliquant sur la case, vous autorisez Digital River à percevoir votre premier paiement par iDEAL et à utiliser votre IBAN pour percevoir les paiements d\'abonnement suivants par prélèvement SEPA. Vous pouvez consulter les informations relatives à votre prélèvement SEPA après la soumission de votre commande. <br/><br/>Vous bénéficiez du droit d\'être remboursé par votre banque suivant les conditions décrites dans la convention que vous avez passée avec elle. Une demande de remboursement doit être présentée dans les 8 semaines suivant la date de débit de votre compte pour un prélèvement autorisé. ","invoiceAgreement":"J\'accepte de permettre à Digital River Taiwan de traiter les questions relatives aux factures électroniques en mon nom afin d\'accélérer le processus de retour/remboursement.","warrantyInformation":"Informations sur la garantie","japaneseCommerceLaw":"Loi sur les transactions commerciales"},"fr_FR":{"cancellationRights":"Droits d\'annulation","cookiePolicy":"Témoins de connexion","legalNotice":"Mentions legales","privacyPolicy":"Politique de confidentialité","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> est le revendeur et marchand agréé pour les produits et services proposés au sein de ce magasin.","termsOfSale":"Conditions de vente","confirmDisclosure":"En envoyant ma commande, j\'accepte les <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Conditions de vente</a> et la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Politique de confidentialité</a> de {businessEntityName}.","consentsEula":" et le <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Contrat de licence utilisateur final</a>","consentsTermsOfUse":" et les <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Conditions générales d&#39;utilisation</a>","consentsCompanyName":" de {companyName}","californiaPrivacyRights":"Vos droits de confidentialité en Californie","autoRenewPlanTermsBegin":"En effectuant votre achat, vous autorisez Digital River à renouveler automatiquement la licence ou l’abonnement que vous avez acheté pour les périodes de renouvellement successives décrites dans les informations du produit. À la fin de la période sélectionnée, nous facturerons automatiquement vos informations de paiement stockées au prix en vigueur (plus taxes) pour chaque période de renouvellement supplémentaire jusqu’à ce que vous l’annuliez. Au moins une fois avant chaque renouvellement, nous vous enverrons un rappel par courrier électronique pour vous rappeler le renouvellement imminent et nous pourrons modifier le prix de renouvellement pour toute période de renouvellement future en vous envoyant un préavis de modification par courrier électronique. Les <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Conditions de Vente</a> et la <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Politique de confidentialité</a> de Digital River","autoRenewPlanTermsEnd":" s\'appliqueront à chaque transaction de renouvellement. Vous pouvez annuler votre plan de renouvellement automatique à tout moment en suivant les instructions fournies dans votre e-mail de confirmation de commande.<br/><br/>J\'accepte que Digital River puisse stocker mes informations de paiement pour des achats ultérieurs, y compris le traitement de tout renouvellement d\'abonnement à venir qui pourrait avoir lieu après la date de cette commande","agreeToTerms":"J\'ai lu et j\'accepte les Conditions générales de vente et les frais ci-dessus.","idealRecurringAgreement":"En cliquant sur la case, vous autorisez Digital River à percevoir votre premier paiement par iDEAL et à utiliser votre IBAN pour percevoir les paiements d\'abonnement suivants par prélèvement SEPA. Vous pouvez consulter les informations relatives à votre prélèvement SEPA après la soumission de votre commande. <br/><br/>Vous bénéficiez du droit d\'être remboursé par votre banque suivant les conditions décrites dans la convention que vous avez passée avec elle. Une demande de remboursement doit être présentée dans les 8 semaines suivant la date de débit de votre compte pour un prélèvement autorisé. ","mstsActiveAcceptance":"Sélectionnez {payNow} pour vous connecter à TreviPay, effectuer l\'identification à deux facteurs et confirmer l\'achat.<span class=\\"{createAccountButtonTextClass}\\"><br /><br />Sélectionnez \'Inscrivez-vous maintenant\' pour créer un compte TreviPay.</span><br /><br />AVERTISSEMENT<br /><br />* Tous les comptes du programme d’achat et les lignes de crédit dans le carde du programme de Modalités de Paiement sont émis par Multi Service Technology Solutions, Inc., une société constituée en Floride aux États-Unis (« MSTS »).<br /><br />* {businessEntityName} n’est pas partie à l\'Accord relatif aux Titulaires de compte du Programme d’achat. {businessEntityName} n’est ni un prêteur ni un courtier pour les lignes de crédit émises dans le cadre du programme des Modalités de Paiement<br /><br />Toutes les demandes et vos qualifications seront examinées et décidées par TreviPay. <a href=\\"https://www.trevipay.com/privacy-center/\\" target=\\"_blank\\">Voici un lien vers le Centre de confidentialité de TreviPay.</a>","klarnaCreditActiveAcceptance":"En océdant, les méthodes de paiement fournies par Klarna vous seront présentées. En continuant, j’accepte <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/fr_fr/privacy\\">l’Avis de confidentialité de Klarna</a>, la <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/fr_fr/cookie_purchase\\">Politique d\'utilisation de cookies</a> et les <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/fr_fr/user\\">conditions générales d\'utilisation de l\'Expérience Shopping Klarna</a>.","klarnaCreditRecurringActiveAcceptance":"En océdant, les méthodes de paiement fournies par Klarna vous seront présentées. En continuant, j’accepte <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/fr_fr/privacy\\">l’Avis de confidentialité de Klarna</a>, la <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/fr_fr/cookie_purchase\\">Politique d\'utilisation de cookies</a> et les <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/fr_fr/user\\">conditions générales d\'utilisation de l\'Expérience Shopping Klarna</a>.","invoiceAgreement":"J\'accepte de permettre à Digital River Taiwan de gérer les questions liées aux factures électroniques en mon nom afin d\'accélérer le processus de retour/remboursement.","warrantyInformation":"Informations sur la garantie","japaneseCommerceLaw":"Loi sur les transactions commerciales"},"hu_HU":{"cancellationRights":"Rendelés törlésének lehetõsége","cookiePolicy":"Cookie-k","legalNotice":"Jogi nyilatkozat","privacyPolicy":"Adatvédelmi politika","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> az áruházban megvásárolható termékek és szolgáltatások hivatalos értékesítő partnere és forgalmazója.","termsOfSale":"Értékesítési feltételek","confirmDisclosure":"A rendelés elküldésével elfogadom a(z) {businessEntityName} <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Értékesítési feltételeit</a> és <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Adatvédelmi nyilatkozatát</a>.","consentsEula":" és <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Végfelhasználói licencszerződés</a>","consentsTermsOfUse":" és <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Felhasználási feltételek</a>","consentsCompanyName":" {companyName}","californiaPrivacyRights":"Kaliforniai adatvédelmi jogaid","autoRenewPlanTermsBegin":"A vásárlás befejezésével Ön engedélyezi a Digital River számára a megvásárolt licenc vagy előfizetés automatikus megújítását a termék részleteiben leírt egymást követő megújítási időszakokra. A kiválasztott időszak végén automatikusan megterheljük a tárolt fizetési eszközét az akkor érvényes árral (plusz adó) minden további megújítási időszakra, amíg lemondás nem történik. Minden megújítás előtt legalább egy emlékeztető e-mailt küldünk Önnek az esedékes meghosszabbításról. Az esedékes megújítási időszakra módosíthatjuk az előfizetési díjat, ez esetben a változásról előzetesen e-mailben értesítjük Önt. A Digital River <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Értékesítési feltételei</a> és <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Adatvédelmi irányelvei</a>","autoRenewPlanTermsEnd":" minden megújítás esetén érvényesek. Az automatikus megújítási csomagot bármikor lemondhatja, ehhez kövesse a megrendelést visszaigazoló e-mailben található utasításokat.<br/><br/>Hozzájárulok ahhoz, hogy a Digital River tárolja fizetési adataimat a jövőbeni vásárlásokhoz, beleértve az előfizetések esetleges megújítását, melyre e megrendelés dátumát.","agreeToTerms":"Elolvastam és elfogadom a fenti feltételeket és díjakat.","idealRecurringAgreement":"A négyzetre kattintva Ön felhatalmazza a Digital River-t, hogy az első fizetést iDEAL-on keresztül szedje be, és az IBAN-számlaszámát használja a további előfizetési díjak SEPA-alapú beszedésére. A SEPA beszedési információkat a megrendelés elküldése után tekintheti meg. <br/><br/>Ön a banktól a közte és Ön között fennálló megállapodás feltételeinek megfelelő visszatérítésre jogosult. A visszatérítési igényt a számla megterhelését követő 8 héten belül kell benyújtani. ","invoiceAgreement":"Egyetértek azzal, hogy a Digital River Taiwan kezelje az e-számlával kapcsolatos ügyeket helyettem, hogy gyorsítsa a visszatérítés/visszafizetés folyamatát.","warrantyInformation":"Jótállási információk","japaneseCommerceLaw":"Kereskedelmi törvény"},"it_CH":{"cancellationRights":"Diritto di recesso","cookiePolicy":"Cookie","legalNotice":"Avviso legale","privacyPolicy":"Tutela della privacy","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> è il rivenditore autorizzato e fornitore dei prodotti e dei servizi offerti all\'interno di questo negozio.","termsOfSale":"Condizioni di vendita","confirmDisclosure":"Inviando il mio ordine accetto le <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Condizioni di vendita</a> e l’<a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Informativa sulla privacy</a> di {businessEntityName}.","consentsEula":" e <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Contratto di licenza con l\'utente finale</a>","consentsTermsOfUse":" e <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Termini e condizioni di utilizzo</a>","consentsCompanyName":" di {companyName}","californiaPrivacyRights":"I tuoi diritti sulla privacy in California","autoRenewPlanTermsBegin":"Completando l\'acquisto, autorizzate Digital River a rinnovare automaticamente la licenza o l\'abbonamento acquistato per i termini di rinnovo successivi, come descritto nei dati del prodotto. Al termine del periodo selezionato, le informazioni di pagamento memorizzate verranno automaticamente addebitate al prezzo in vigore in quel momento (più le tasse) per ogni ulteriore periodo di rinnovo fino alla cancellazione. Riceverai almeno una e-mail di promemoria prima di ogni rinnovo per ricordarti la scadenza imminente e il prezzo, il quale potrebbe cambiare in base a eventuali nuovi termini di rinnovo ma sempre fornendoti preavviso della modifica via e-mail. Le <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Condizioni di vendita</a> e l\'<a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Informativa sulla privacy</a> di Digital River","autoRenewPlanTermsEnd":" sono valide per tutte le transazioni di rinnovo. È possibile annullare il rinnovo automatico in qualsiasi momento, seguendo le istruzioni fornite nell\'e-mail di conferma dell\'ordine.<br/><br/>Confermo che Digital River può conservare le mie informazioni di pagamento per effettuare acquisti futuri, compresa l\'elaborazione di rinnovi successivi dell\'abbonamento che possono verificarsi in seguito alla data del presente ordine.","agreeToTerms":"Il sottoscritto dichiara di aver letto e di accettare le condizioni e i costi indicati sopra.","idealRecurringAgreement":"Cliccando la casella, autorizzate Digital River a raccogliere il vostro primo pagamento tramite iDEAL e ad utilizzare il vostro IBAN per raccogliere i successivi pagamenti dell\'abbonamento tramite addebito diretto SEPA. Puoi rivedere le tue informazioni sull\'addebito diretto SEPA dopo l\'invio dell\'ordine. <br/><br/>Rientra tra i vostri diritti richiedere alla banca l\'eventuale rimborso, nei termini e nelle condizioni previsti dal vostro contratto con la banca. Un eventuale rimborso deve essere richiesto entro 8 settimane dalla data di addebito in conto. ","klarnaCreditActiveAcceptance":"Proseguendo, ti verranno presentate le opzioni di pagamento fornite da Klarna. Continuando accetto i <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/it_ch/user\\">termini del Klarna Shopping Service</a> e confermo di aver letto <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/it_ch/privacy_bp\\">l\'Informativa sulla privacy</a> e <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/it_it/cookie_purchase\\">l\'Informativa sui cookie</a>. <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/it_ch/invoice?credit_time=30\\">Termini</a>","klarnaCreditRecurringActiveAcceptance":"Proseguendo, ti verranno presentate le opzioni di pagamento fornite da Klarna. Continuando accetto i <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/it_ch/user\\">termini del Klarna Shopping Service</a> e confermo di aver letto <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/it_ch/privacy_bp\\">l\'Informativa sulla privacy</a> e <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/it_it/cookie_purchase\\">l\'Informativa sui cookie</a>. <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/it_ch/invoice?credit_time=30\\">Termini</a>","mstsActiveAcceptance":"Selezionare {payNow} per accedere a TreviPay, effettuare l\'autenticazione a due fattori e confermare l\'ordine.<span class=\\"{createAccountButtonTextClass}\\"><br /><br />Selezionare Iscriviti ora per creare un conto TreviPay.</span><br /><br />DISCLAIMER<br /><br />* Tutte le linee di credito e tutti gli account del programma di acquisto relativi al programma Termini di pagamento sono emessi da Multi Service Technology Solutions, Inc. (\\"MSTS\\"), una personalità giuridica con sede in Florida, USA.<br /><br />* {{businessEntityName} non è parte dell&#39;accordo dei titolari di account del Programma di acquisto. {businessEntityName} non costituisce né un prestatore né un mediatore delle linee di credito emesse dal programma Termini di pagamento.<br /><br />Tutte le domande e le qualifiche verranno esaminate e giudicate da TreviPay. <a href=\\"https://www.trevipay.com/privacy-center/\\" target=\\"_blank\\">Centro Privacy di TreviPay.</a>","invoiceAgreement":"Legge sul commercio","warrantyInformation":"Informazioni sulla Garanzia","japaneseCommerceLaw":""},"it_IT":{"cancellationRights":"Diritto di recesso","cookiePolicy":"Cookie","legalNotice":"Avviso legale","privacyPolicy":"Tutela della privacy","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> è il rivenditore autorizzato dei prodotti di venduti in questo negozio online.","termsOfSale":"Condizioni di vendita","confirmDisclosure":"Inviando il mio ordine accetto le <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Condizioni di vendita</a> e l’<a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Informativa sulla privacy</a> di {businessEntityName}.","consentsEula":" e <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Contratto di licenza con l\'utente finale</a>","consentsTermsOfUse":" e <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Termini e condizioni di utilizzo</a>","consentsCompanyName":" di {companyName}","californiaPrivacyRights":"I tuoi diritti sulla privacy in California","autoRenewPlanTermsBegin":"Completando l\'acquisto, autorizzate Digital River a rinnovare automaticamente la licenza o l\'abbonamento acquistato per i termini di rinnovo successivi, come descritto nei dati del prodotto. Al termine del periodo selezionato, le informazioni di pagamento memorizzate verranno automaticamente addebitate al prezzo in vigore in quel momento (più le tasse) per ogni ulteriore periodo di rinnovo fino alla cancellazione. Riceverai almeno una e-mail di promemoria prima di ogni rinnovo per ricordarti la scadenza imminente e il prezzo, il quale potrebbe cambiare in base a eventuali nuovi termini di rinnovo ma sempre fornendoti preavviso della modifica via e-mail. Le <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Condizioni di vendita</a> e l\'<a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Informativa sulla privacy</a> di Digital River","autoRenewPlanTermsEnd":" sono valide per tutte le transazioni di rinnovo. È possibile annullare il rinnovo automatico in qualsiasi momento, seguendo le istruzioni fornite nell\'e-mail di conferma dell\'ordine.<br/><br/>Confermo che Digital River può conservare le mie informazioni di pagamento per effettuare acquisti futuri, compresa l\'elaborazione di rinnovi successivi dell\'abbonamento che possono verificarsi in seguito alla data del presente ordine.","klarnaCreditActiveAcceptance":"Proseguendo, ti verranno presentate le opzioni di pagamento fornite da Klarna. Continuando, accetto i <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/it_it/user\\">Termini del Klarna Shopping Service</a> e l\'<a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/it_it/cookie_purchase\\">Informativa Cookie di Klarna</a>, e confermo di aver letto l\'<a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/it_it/privacy\\">Informativa Privacy di Klarna</a>.","klarnaCreditRecurringActiveAcceptance":"Proseguendo, ti verranno presentate le opzioni di pagamento fornite da Klarna. Continuando, accetto i <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/it_it/user\\">Termini del Klarna Shopping Service</a> e l\'<a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/it_it/cookie_purchase\\">Informativa Cookie di Klarna</a>, e confermo di aver letto l\'<a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/it_it/privacy\\">Informativa Privacy di Klarna</a>.","agreeToTerms":"Il sottoscritto dichiara di aver letto e di accettare le condizioni e i costi indicati sopra.","idealRecurringAgreement":"Cliccando la casella, autorizzate Digital River a raccogliere il vostro primo pagamento tramite iDEAL e ad utilizzare il vostro IBAN per raccogliere i successivi pagamenti dell\'abbonamento tramite addebito diretto SEPA. Puoi rivedere le tue informazioni sull\'addebito diretto SEPA dopo l\'invio dell\'ordine. <br/><br/>Rientra tra i vostri diritti richiedere alla banca l\'eventuale rimborso, nei termini e nelle condizioni previsti dal vostro contratto con la banca. Un eventuale rimborso deve essere richiesto entro 8 settimane dalla data di addebito in conto. ","mstsActiveAcceptance":"Selezionare {payNow} per accedere a TreviPay, effettuare l\'autenticazione a due fattori e confermare l\'ordine.<span class=\\"{createAccountButtonTextClass}\\"><br /><br />Selezionare Iscriviti ora per creare un conto TreviPay.</span><br /><br />DISCLAIMER<br /><br />* Tutte le linee di credito e tutti gli account del programma di acquisto relativi al programma Termini di pagamento sono emessi da Multi Service Technology Solutions, Inc. (\\"MSTS\\"), una personalità giuridica con sede in Florida, USA.<br /><br />* {{businessEntityName} non è parte dell&#39;accordo dei titolari di account del Programma di acquisto. {businessEntityName} non costituisce né un prestatore né un mediatore delle linee di credito emesse dal programma Termini di pagamento.<br /><br />Tutte le domande e le qualifiche verranno esaminate e giudicate da TreviPay. <a href=\\"https://www.trevipay.com/privacy-center/\\" target=\\"_blank\\">Centro Privacy di TreviPay.</a>","invoiceAgreement":"Accetto di consentire a Digital River Taiwan di gestire le questioni relative alla fatturazione elettronica per conto mio al fine di accelerare il processo di reso/rimborso.","warrantyInformation":"Informazioni sulla Garanzia","japaneseCommerceLaw":"Legge sulle transazioni commerciali"},"iw_IL":{"cancellationRights":"זכות ביטול הזמנה","cookiePolicy":"קובצי cookie","legalNotice":"הודעה משפטית","privacyPolicy":"מדיניות שמירה על פרטיות","resellerDisclosure":" <a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a>  הוא המפיץ והסוחר המורשה עבור חנוות מקוונת זו.","termsOfSale":"תנאי מכירה","confirmDisclosure":"ביצוע ההזמנה מהווה עדות לכך שאני מסכים <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">לתנאי המכירה</a> וכן <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">למדיניות הפרטיות</a> של {businessEntityName}.","autoRenewPlanTermsBegin":"בהשלמת הרכישה, הנך מאשר ל-Digital River חידוש אוטומטי של הרישיון או המנוי שרכשת עבור תנאי חידוש עוקבים כמתואר בפרטי המוצר. בתום התקופה שנבחרה, נחייב אוטומטית את פרטי התשלום המאוחסנים שלך במחיר הנוכחי בתוקף (בתוספת מס) עבור כל תקופת חידוש נוספת עד שתבטל. אנו נשלח לך תזכורת בדוא\\"ל לפחות פעם אחת לפני כל חידוש כדי להזכיר לך את החידוש המתקרב, ואנו עשויים לשנות את מחיר החידוש עבור כל מועד חידוש עתידי, וזאת לאחר מתן הודעה על השינוי באמצעות הדוא\\"ל.  <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">תנאי המכירה</a> ו-<a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">מדיניות ההגנה על הפרטיות</a> של Digital River ","autoRenewPlanTermsEnd":"יחולו על כל עסקת . באפשרותך לבטל את תוכנית החידוש האוטומטי בכל עת. לשם כך פעל על פי ההוראות הכלולות בהודעת הדוא\\"ל לאישור ההזמנה.<br /><br />אני מסכים לכך ש-Digital River רשאית לשמור את פרטי התשלום שלי לשימוש ברכישות עתידיות, ובכלל זה טיפול בחידושי מינוי נוספים שעשויים להתבצע לאחר תאריך ההזמנה הנוכחית.","agreeToTerms":"קראתי ואני מסכים לכל התנאים ולחיובים המפורטים לעיל.","idealRecurringAgreement":"על ידי לחיצה על התיבה, אתה מאשר לנהר הדיגיטלי לאסוף את התשלום הראשון שלך באמצעות iDEAL ולהשתמש IBAN שלך כדי לאסוף את תשלומי המנוי הבאים על ידי חיוב ישיר SEPA. באפשרותך לסקור את פרטי החיוב הישיר של SEPA לאחר שליחת ההזמנה. <br/><br/>כחלק מהזכויות שלך, אתה זכאי לקבל החזר מהבנק שלך בכפוף לתנאים ולהתניות הכלולים בהסכם שלך עם הבנק. יש להגיש דרישה לקבלת החזר בתוך 8 שבועות ממועד חיוב החשבון שלך. ","invoiceAgreement":"","warrantyInformation":"מידע על אחריות","japaneseCommerceLaw":""},"ja_JP":{"cancellationRights":"キャンセル権","cookiePolicy":"クッキー","legalNotice":"本サイトのご利用について","privacyPolicy":"プライバシーポリシー","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> は、このストアで提供される製品とサービスの認定再販業者および代理店です。","termsOfSale":"販売条件","confirmDisclosure":"注文の送信により、{businessEntityName}の<a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">売買条件</a>および<a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">プライバシーポリシー</a>に同意します。","consentsEula":" および <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">エンド ユーザー向け使用許諾契約書</a>","consentsTermsOfUse":" および <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">使用条件</a>","consentsCompanyName":" の {companyName}","californiaPrivacyRights":"カリフォルニアにおける個人情報保護権","autoRenewPlanTermsBegin":"購入を完了すると、製品に記載された詳細の通り、お客様が購入したライセンスまたはサブスクリプションをDigital Riverが継続的な更新条件で自動的に更新することを承認したとみなされます。選択した期間の終了後、キャンセルが行われるまで、追加の更新期間ごとに、その時点で有効な最新の価格（税抜）で、保存された支払い情報に対し自動的に請求が行われます。当社は、更新ごとに少なくとも1回、事前のリマインダーとして電子メールによるお知らせをお客様に送付いたします。また、当社は電子メールによる事前のお知らせをお客様に送付することにより、今後のいかなる更新期間についても更新価格を変更する場合がございます。 Digital Riverの<a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">「売買条件」</a>および<a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">「プライバシーポリシー」</a>","autoRenewPlanTermsEnd":"は、 更新取引ごとに適用されます。お客様は、ご注文確認のメールにて提供された手続きを通じて、お客様の自動更新プランをいつでもキャンセルすることができます。<br/><br/>私は、本注文日のあとに発生し得る今後のあらゆるサブスクリプション更新の処理を含む、将来的な製品購入のために、Digital Riverにより個人的な支払い情報が保管されることに同意します。","agreeToTerms":"私は上記の契約条件および料金を読んだ上で、これに同意します。","idealRecurringAgreement":"ボックスをクリックすることで、Digital Riverが初回の支払いをiDEALで回収し、IBANを使用して以降の購読料をSEPAダイレクトデビットで回収することを承認します。SEPA Direct Debitの情報は、注文送信後に確認することができます。<br/><br/>お客様の権利として、銀行との契約条件の下で、銀行からの払い戻しを受ける権利があります。払い戻しは、口座から引き落とされた日から8週間以内に請求する必要があります。","japaneseCommerceLaw":"特定商取引法に基づく表示","warrantyInformation":"保証情報","invoiceAgreement":"返品/返金のプロセスを加速させるために、デジタルリバー台湾に私の代わりにe請求関連の事項を処理させることに同意します。"},"ko_KR":{"cancellationRights":"취소 권한","cookiePolicy":"쿠키","legalNotice":"법적 고지","privacyPolicy":"개인정보 보호 정책","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> 은(는) 이 스토어에서 제품과 서비스를 제공하도록 인가된 리셀러 및 판매자입니다.","termsOfSale":"판매 조건","confirmDisclosure":"주문을 제출하면 {businessEntityName}의 <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">이용약관</a>과 <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">개인정보보호정책</a>에 동의한 것으로 간주됩니다.","consentsEula":" 그리고 <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">최종 사용자 라이센스 계약</a>","consentsTermsOfUse":" 그리고 <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">사용 약관</a>","consentsCompanyName":" 의 {companyName}","californiaPrivacyRights":"칼리포니아 개인정보 보호 권리","autoRenewPlanTermsBegin":"구매를 완료하면 Digital River가 제품 정보에 설명된 대로 갱신 기간 동안 구매한 라이선스나 구독을 자동으로 갱신하는 것을 승인하게 됩니다. 선택한 기간이 끝나면 귀하가 취소할 때까지 각 추가 갱신 기간에 유효한 당시 가격(세금 포함)으로 저장된 결제 정보에 자동으로 청구됩니다. Digital River는 다가오는 갱신을 알리기 위해 매 갱신 전에 최소한 한 번 이메일 알림을 보내고 이메일로 사전에 변경 통보를 해 향후 갱신 기간의 갱신 가격을 변경할 수 있습니다. 각 갱신에는 Digital River <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">이용약관</a>과 <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">개인정보취급방침</a>","autoRenewPlanTermsEnd":"이 적용됩니다. 주문 확인 이메일에 제공된 안내에 따라 언제든지 자동 갱신 계획을 취소할 수 있습니다.<br><br>Digital River가 이 주문 날짜 이후에 발생할 수 있는 모든 후속 구독 갱신의 처리를 포함한 미래의 구매를 위해 내 결제 정보를 보관하는 것에 동의합니다.","agreeToTerms":"상기 이용약관과 요금을 읽었고 이에 동의합니다.","idealRecurringAgreement":"상자를 클릭하면 디지털 리버가 iDEAL를 통해 첫 번째 결제를 수집하고 IBAN을 사용하여 SEPA 자동 이체로 후속 구독 료를 수령할 수 있는 권한을 부여합니다. 주문 제출 후 SEPA 자동 이불 정보를 검토할 수 있습니다. <br/><br/>사용자 권리의 일부로서 사용자는 은행과의 이용약관에 따라 은행으로부터 환불받을 수 있습니다. 환불은 계정에서 출금된 날짜로부터 8주 안에 요청되어야 합니다. ","invoiceAgreement":"환불/반품 과정을 가속화하기 위해, 디지털 리버 대만에게 전자 송장 관련 사항을 대신 처리할 수 있도록 허용하는 것에 동의합니다.","warrantyInformation":"보증 정보","japaneseCommerceLaw":"상업거래법"},"lt_LT":{"privacyPolicy":"Privatumo strategija","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> įgaliotasis mažmenininkas ir šios parduotuvės el. prekybos paslaugų didmenininkas.","termsOfSale":"Nuostatos ir sąlygos","confirmDisclosure":"","autoRenewPlanTermsBegin":"","autoRenewPlanTermsEnd":"","invoiceAgreement":"","warrantyInformation":"Informacija apie garantiją","japaneseCommerceLaw":"Komercinio sandorių teisė"},"lv_LV":{"privacyPolicy":"Konfidencialitātes politika","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> ir pilnvarots tālākpārdevējs un tirgotājs, kas šim veikalam nodrošina e-komecijas pakalpojumus.","termsOfSale":"Noteikumi un nosacījumi","confirmDisclosure":"","autoRenewPlanTermsBegin":"","autoRenewPlanTermsEnd":"","invoiceAgreement":"","warrantyInformation":"Informācija par garantiju"},"nl_BE":{"cancellationRights":"Recht op annulering","cookiePolicy":"Cookies","legalNotice":"Juridische kennisgeving","privacyPolicy":"Privacybeleid","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> is de erkende reseller die de producten en services voor deze store levert.","termsOfSale":"Algemene verkoopvoorwaarden","confirmDisclosure":"Door mijn bestelling in te dienen, ga ik akkoord met de <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Verkoopvoorwaarden</a> en het <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacybeleid</a> van {businessEntityName}.","consentsEula":" en het <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Eindgebruikerslicentieovereenkomst</a>","consentsTermsOfUse":" en het <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Gebruiksvoorwaarden</a>","consentsCompanyName":" van {companyName}","californiaPrivacyRights":"Uw privacyrechten in Californië","autoRenewPlanTermsBegin":"Door het voltooien van uw bestelling geeft u Digital River ook toestemming om uw gekochte licentie of abonnement automatisch te verlengen voor opeenvolgende verlengingsperioden zoals beschreven in de productgegevens. Aan het einde van de geselecteerde periode brengen we uw opgeslagen betalingsgegevens automatisch in rekening tegen de dan geldende prijs (plus btw) voor elke extra verlengingsperiode totdat u annuleert. Wij sturen u minstens één herinnerings-e-mail voorafgaand aan elke verlenging om u te attenderen op uw aanstaande verlenging en kunnen de prijs voor elke toekomstige verlengstermijn veranderen met voorafgaande kennisgeving van de verandering in een e-mail aan u. De <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Algemene verkoopvoorwaarden</a> en het <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacybeleid</a> van Digital River","autoRenewPlanTermsEnd":" zijn op elke verlenging van toepassing. U kunt uw automatische verlengingservice te allen tijde annuleren door de instructies op te volgen uit de bevestigings-e-mail van uw bestelling.<br><br>Ik ga ermee akkoord dat Digital River mijn betalingsgegevens bewaart voor latere aankopen, met inbegrip van de verwerking van alle eventuele abonnementsverlengingen die kunnen optreden na de datum van deze bestelling.","klarnaCreditActiveAcceptance":"Als je klikt op NU KOPEN, krijg je de door Klarna aangeboden betaalmethoden te zien. Door verder te gaan, accepteer ik de <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/nl_be/invoice?credit_time=30\\">voorwaarden voor Betaal later</a> en de <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/nl_be/user\\">algemene voorwaarden van Klarna\'s Shopping Service</a> en bevestig ik dat ik <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/nl_be/privacy\\">Klarna\'s Privacyverklaring</a> en <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/nl_nl/cookie_purchase\\">Cookieverklaring</a> heb gelezen.","klarnaCreditRecurringActiveAcceptance":"Als je klikt op NU KOPEN, krijg je de door Klarna aangeboden betaalmethoden te zien. Door verder te gaan, accepteer ik de <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/nl_be/invoice?credit_time=30\\">voorwaarden voor Betaal later</a> en de <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/nl_be/user\\">algemene voorwaarden van Klarna\'s Shopping Service</a> en bevestig ik dat ik <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/nl_be/privacy\\">Klarna\'s Privacyverklaring</a> en <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/nl_nl/cookie_purchase\\">Cookieverklaring</a> heb gelezen.","agreeToTerms":"Ik heb de voorwaarden en prijzen gelezen en ga ermee akkoord.","idealRecurringAgreement":"Door het vakje aan te klikken, machtigt u Digital River om uw eerste betaling via iDEAL te innen en uw IBAN te gebruiken om de volgende abonnementsbetalingen via SEPA-incasso te innen. U kunt uw SEPA-incasso-gegevens bekijken nadat u uw bestelling hebt ingediend. <br/><br/>U kunt een Europese incasso laten terugbetalen in overeenstemming met de algemene voorwaarden van uw overeenkomst met uw bank. Een terugbetaling moet worden aangevraagd binnen 8 weken na de datum waarop uw rekening werd gedebiteerd. ","invoiceAgreement":"Ik ga ermee akkoord om Digital River Taiwan toe te staan de e-factuurgerelateerde zaken namens mij af te handelen om het proces van retournering/terugbetaling te versnellen.","warrantyInformation":"garantie informatie","japaneseCommerceLaw":"Handelsrecht"},"nl_NL":{"cancellationRights":"Recht op annulering","cookiePolicy":"Cookies","legalNotice":"Juridische kennisgeving","privacyPolicy":"Privacybeleid","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> is de erkende reseller die de producten en services voor deze store levert.","termsOfSale":"Algemene verkoopvoorwaarden","confirmDisclosure":"Door mijn bestelling in te dienen, ga ik akkoord met de <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Verkoopvoorwaarden</a> en het <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacybeleid</a> van {businessEntityName}.","consentsEula":" en het <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Eindgebruikerslicentieovereenkomst</a>","consentsTermsOfUse":" en het <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Gebruiksvoorwaarden</a>","consentsCompanyName":" van {companyName}","californiaPrivacyRights":"Uw privacyrechten in Californië","autoRenewPlanTermsBegin":"Door het voltooien van uw bestelling geeft u Digital River ook toestemming om uw gekochte licentie of abonnement automatisch te verlengen voor opeenvolgende verlengingsperioden zoals beschreven in de productgegevens. Aan het einde van de geselecteerde periode brengen we uw opgeslagen betalingsgegevens automatisch in rekening tegen de dan geldende prijs (plus btw) voor elke extra verlengingsperiode totdat u annuleert. Wij sturen u minstens één herinnerings-e-mail voorafgaand aan elke verlenging om u te attenderen op uw aanstaande verlenging en kunnen de prijs voor elke toekomstige verlengstermijn veranderen met voorafgaande kennisgeving van de verandering in een e-mail aan u. De <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Algemene verkoopvoorwaarden</a> en het <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Privacybeleid</a> van Digital River","autoRenewPlanTermsEnd":" zijn op elke verlenging van toepassing. U kunt uw automatische verlengingservice te allen tijde annuleren door de instructies op te volgen uit de bevestigings-e-mail van uw bestelling.<br><br>Ik ga ermee akkoord dat Digital River mijn betalingsgegevens bewaart voor latere aankopen, met inbegrip van de verwerking van alle eventuele abonnementsverlengingen die kunnen optreden na de datum van deze bestelling.","klarnaCreditActiveAcceptance":"Als je klikt op NU BETALEN, krijg je de door Klarna aangeboden betaalmethoden te zien. Door verder te gaan, accepteer ik de <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/nl_nl/user\\">algemene voorwaarden van Klarna\'s Shopping Service</a> en bevestig ik dat ik <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/nl_nl/privacy\\">Klarna\'s Privacyverklaring</a> en <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/nl_nl/cookie_purchase\\">Cookieverklaring</a> heb gelezen. <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/nl_nl/invoice?credit_time=30\\">Algemene voorwaarden</a>","klarnaCreditRecurringActiveAcceptance":"Als je klikt op NU BETALEN, krijg je de door Klarna aangeboden betaalmethoden te zien. Door verder te gaan, accepteer ik de <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/nl_nl/user\\">algemene voorwaarden van Klarna\'s Shopping Service</a> en bevestig ik dat ik <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/nl_nl/privacy\\">Klarna\'s Privacyverklaring</a> en <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/nl_nl/cookie_purchase\\">Cookieverklaring</a> heb gelezen. <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/nl_nl/invoice?credit_time=30\\">Algemene voorwaarden</a>","agreeToTerms":"Ik heb de voorwaarden en prijzen gelezen en ga ermee akkoord.","idealRecurringAgreement":"Door het vakje aan te klikken, machtigt u Digital River om uw eerste betaling via iDEAL te innen en uw IBAN te gebruiken om de volgende abonnementsbetalingen via SEPA-incasso te innen. U kunt uw SEPA-incasso-gegevens bekijken nadat u uw bestelling hebt ingediend. <br/><br/>U kunt een Europese incasso laten terugbetalen in overeenstemming met de algemene voorwaarden van uw overeenkomst met uw bank. Een terugbetaling moet worden aangevraagd binnen 8 weken na de datum waarop uw rekening werd gedebiteerd. ","mstsActiveAcceptance":"Selecteer {payNow} om in te loggen bij TreviPay, de Twee-factor-authenticatie te voltooien en je aankoop te bevestigen.<span class=\\"{createAccountButtonTextClass}\\"><br /><br />Selecteer \'Meld je NU aan\' om een TreviPay account aan te maken.</span><br /><br />DISCLAIMER<br /><br />* Alle aankoopprogramma accounts en kredietlijnen onder het betalingsvoorwaarden programma zijn uitgegeven door Multi Service Technology Solutions, Inc., een in Florida USA gevestigde onderneming (\\"MSTS\\").<br /><br />* {businessEntityName} is geen partij bij de Purchase Program Accountholder Agreement. {businessEntityName} is noch een kredietverstrekker, noch een makelaar voor de kredietlijnen die zijn uitgegeven onder het betalingsvoorwaardenprogramma<br /><br />Alle aanmeldingen en uw kwalificaties worden beoordeeld en beslist door TreviPay. <a href=\\"https://www.trevipay.com/privacy-center/\\" target=\\"_blank\\">TreviPay Privacy Center.</a>","invoiceAgreement":"Ik ga akkoord om Digital River Taiwan toe te staan de e-factuur gerelateerde zaken namens mij af te handelen om het retour-/terugbetalingsproces te versnellen.","warrantyInformation":"garantie informatie","japaneseCommerceLaw":"Handelsrecht"},"no_NO":{"cancellationRights":"Rett til avbestilling","cookiePolicy":"Informasjonskapsler","legalNotice":"Juridiske bestemmelser","privacyPolicy":"Personvern","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> er den autoriserte selgeren og forhandleren av varene og tjenestene som tilbys i denne butikken.","termsOfSale":"Salgsbetingelser","confirmDisclosure":"Ved å sende inn min bestilling, samtykker jeg i <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Salgsbetingelsene</a> og <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Personvernpolitikken</a> for {businessEntityName}.","consentsEula":" og <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Sluttbrukerlisensavtale</a>","consentsTermsOfUse":" og <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Vilkår for bruk</a>","consentsCompanyName":" av {companyName}","californiaPrivacyRights":"Dine personvernrettigheter i California","autoRenewPlanTermsBegin":"Ved å fullføre kjøpet gir du din tillatelse til at Digital River automatisk fornyer lisenskjøpet eller abonnementet ditt for en påfølgende fornyet periode som beskrevet i produktinformasjonen. Når den valgte perioden er slutt, belaster vi betalingsalternativet du har lagret, automatisk med den gjeldende prisen (pluss avgift) for hver ny periode helt til du sier opp. Vi sender deg en e-postpåminnelse minst én gang før hver fornyelse for å minne deg om den kommende fornyelsen og kan endre fornyelsesprisen for hver fornyelsesdato dersom vi gir deg forvarsel om endringen i en e-post. Digital Rivers <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">salgsbetingelser</a> og <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">personvernbestemmelser</a>","autoRenewPlanTermsEnd":" vil gjelde for hver fornyelse. Du kan si opp den automatiske fornyelsen når som helst ved å følge anvisningene i din bekreftelses-e-post for bestillingen.<br/><br/>Jeg samtykker i at Digital River kan lagre min betalingsinformasjon for fremtidige kjøp inkludert behandling av eventuelle påfølgende abonnementsfornyelser som kan forekomme etter datoen for denne bestillingen.","klarnaCreditActiveAcceptance":"Ved å klikke på BETAL NÅ vil du bli presentert med ulike betalingsmetoder som Klarna tilbyr. Ved å fortsette aksepterer jeg <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/nb_no/user\\">vilkårene for Klarnas Shoppingtjeneste</a>, og bekrefter at jeg har lest <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/nb_no/privacy\\">retningslinjene for personvern</a> og <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/nb_no/cookie_purchase\\">informasjonskapsler</a>. <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/nb_no/invoice?credit_time=30\\">Vilkår</a>","klarnaCreditRecurringActiveAcceptance":"Ved å klikke på BETAL NÅ vil du bli presentert med ulike betalingsmetoder som Klarna tilbyr. Ved å fortsette aksepterer jeg <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/nb_no/user\\">vilkårene for Klarnas Shoppingtjeneste</a>, og bekrefter at jeg har lest <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/nb_no/privacy\\">retningslinjene for personvern</a> og <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/nb_no/cookie_purchase\\">informasjonskapsler</a>. <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/nb_no/invoice?credit_time=30\\">Vilkår</a>","agreeToTerms":"Jeg har lest og godtar betingelsene og kostnadene ovenfor.","invoiceAgreement":"Jeg samtykker i å tillate Digital River Taiwan å håndtere e-fakturarelaterte saker på mine vegne for å fremskynde retur-/refusjonsprosessen.","warrantyInformation":"Garantiinformasjon","japaneseCommerceLaw":"Lov om næringsdrift"},"pl_PL":{"cancellationRights":"Prawo do anulowania zamówienia","cookiePolicy":"Pliki cookie","legalNotice":"Nota prawna","privacyPolicy":"Polityka ochrony danych","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> to autoryzowany dystrybutor oraz sprzedawca produktów i usług dostępnych w naszym sklepie.","termsOfSale":"Warunki sprzedaży","confirmDisclosure":"Składając zamówienie, akceptuję <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Warunki sprzedaży</a> oraz <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Politykę prywatności</a> {businessEntityName}.","consentsEula":" i <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Umowa licencyjna dla klienta końcowego</a>","consentsTermsOfUse":" i <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Warunki korzystania z produktów</a>","consentsCompanyName":" z {companyName}","californiaPrivacyRights":"Twoje prawa do prywatności w Kalifornii","autoRenewPlanTermsBegin":"Dokonanie zakupu jest jednoznaczne z wyrażeniem zgody na automatyczne odnawianie przez firmę Digital River zakupionej licencji lub subskrypcji na kolejne okresy odnowienia opisane w szczegółach produktu. Na koniec wybranego okresu automatycznie pobierzemy Twoje zapisane płatności według obowiązującej w danym momencie ceny (plus podatek) za każdy kolejny okres odnowienia do momentu anulowania. Przed każdym odnowieniem wyślemy Ci co najmniej jedną przypominającą wiadomość e-mail, przy czym opłata za odnowienie licencji lub subskrypcji może ulec zmianie w kolejnym terminie odnowienia, jednak pod warunkiem, że powiadomimy Cię o zmianie za pośrednictwem poczty e-mail. Każda transakcja odnowienia licencji/subskrypcji podlega przepisom <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Regulaminu sprzedaży</a> oraz <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Polityki prywatności</a> firmy Digital River","autoRenewPlanTermsEnd":". W dowolnym momencie możesz anulować plan automatycznego odnawiania, postępując zgodnie z instrukcjami podanymi w wiadomości e-mail z potwierdzeniem zamówienia.<br/><br/>Wyrażam zgodę, aby Digital River przechowywała moje dane dotyczące płatności dla przyszłych zakupów, w tym przetwarzania przyszłych odnowień subskrypcji, jakie mogą pojawić się po dacie tego zamówienia.","agreeToTerms":"Znam i akceptuję powyższe warunki oraz opłaty.","idealRecurringAgreement":"Klikając to pole, upoważniasz Digital River do pobrania pierwszej płatności za pośrednictwem iDEAL i wykorzystania Twojego numeru IBAN do pobrania kolejnych płatności za subskrypcję w formie polecenia zapłaty SEPA. Po złożeniu zamówienia możesz sprawdzić informacje dotyczące Polecenia Zapłaty SEPA. <br/><br/>Zgodnie z przysługującymi uprawnieniami użytkownik jest upoważniony do uzyskania zwrotu od banku zgodnie z regulaminem oraz umową z bankiem. Żądanie zwrotu musi zostać zgłoszone w okresie 8 tygodni od daty obciążenia rachunku. ","mstsActiveAcceptance":"Wybierz opcję {payNow}, aby zalogować się do TreviPay, przeprowadzić dwustopniowe uwierzytelnienie i potwierdzić zakup.<span class=\\"{createAccountButtonTextClass}\\"><br /><br />Wybierz opcję Zarejestruj się TERAZ, aby utworzyć konto TreviPay.</span><br /><br />Wybierając opcję Zarejestruj się terazutworzysz swoje konto TreviPay<br /><br /><br /><br />ZRZECZENIE SIĘ<br /><br />* Wszystkie konta programu zakupów oraz linie kredytowe w ramach warunków płatności są wydawane przez Multi Service Technology Solutions, Inc., spółkę zarejestrowaną na Florydzie w USA („MSTS”).<br /><br />* {businessEntityName} nie jest stroną Umowy z właścicielem konta w ramach programu zakupów. {businessEntityName} nie jest pożyczkodawcą ani brokerem w zakresie linii kredytowych wydanych w ramach programu warunków i płatności.<br /><br />Wszystkie aplikacje i twoje kwalifikacje zostaną sprawdzone i rozstrzygnięte przez TreviPay. <a href=\\"https://www.trevipay.com/privacy-center/\\" target=\\"_blank\\">TUTAJ jest link do Centrum ochrony prywatności TreviPay.</a>","klarnaCreditActiveAcceptance":"Kontynuując, zostaną wyświetlone opcje płatności udostępnione przez Klarny. Kontynuując, potwierdzam zapoznanie się z <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/pl_pl/privacy\\">Polityką prywatności Klarny</a> i <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/pl_pl/cookie_purchase\\">polityką plików cookie Klarny</a> i akceptuję <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/pl_pl/user\\">Warunki zakupów Klarny</a>.","klarnaCreditRecurringActiveAcceptance":"Kontynuując, zostaną wyświetlone opcje płatności udostępnione przez Klarny. Kontynuując, potwierdzam zapoznanie się z <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/pl_pl/privacy\\">Polityką prywatności Klarny</a> i <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/pl_pl/cookie_purchase\\">polityką plików cookie Klarny</a> i akceptuję <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/pl_pl/user\\">Warunki zakupów Klarny</a>.","invoiceAgreement":"Zgadzam się, aby Digital River Taiwan zajmował się sprawami związanymi z e-fakturami w moim imieniu w celu przyspieszenia procesu zwrotu/zwrotu środków.","warrantyInformation":"Informacje o gwarancji","japaneseCommerceLaw":"Prawo handlowe"},"pt_BR":{"cancellationRights":"Regras de cancelamento","cookiePolicy":"Cookies","legalNotice":"Aviso legal","privacyPolicy":"Política de privacidade","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> é o revendedor e o distribuidor autorizado dos produtos e serviços oferecidos nesta loja.","termsOfSale":"Termos de vendas","confirmDisclosure":"Ao enviar meu pedido, eu concordo com os <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Termos de vendas</a> e com a <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Política de privacidade</a> de {businessEntityName}.","consentsEula":" e a <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Acordo de licença do usuário final</a>","consentsTermsOfUse":" e a <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Termos de uso</a>","consentsCompanyName":" de {companyName}","californiaPrivacyRights":"Seus direitos de privacidade na Califórni","autoRenewPlanTermsBegin":"Ao concluir sua compra, você autoriza a Digital River a renovar automaticamente sua licença ou assinatura comprada para períodos sucessivos de renovação, conforme descrito nos detalhes do produto. No final do período selecionado, cobraremos automaticamente suas informações de pagamento armazenadas pelo preço atual em vigor (mais impostos) para cada período de renovação adicional até que você realize o cancelamento. Enviaremos pelo menos um e-mail antes para lembrá-lo da renovação e comunicar sobre alterações no valor da renovação para o próximo período. Os <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Termos de venda</a> e a <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Política de privacidade</a> da Digital River","autoRenewPlanTermsEnd":" prevalecerão a cada operação de renovação.. Você pode cancelar seu plano de renovação automática a qualquer momento seguindo as instruções fornecidas em seu e-mail de confirmação de pedido.<br/><br/>Concordo que a Digital River armazene meus dados de pagamento para compras futuras incluindo o processamento de qualquer renovação de assinatura posterior que possa ocorrer após a data desse pedido.","agreeToTerms":"Li e concordo com os termos e cobranças acima.","idealRecurringAgreement":"Ao clicar na caixa, autoriza a Digital River a cobrar o seu primeiro pagamento através do iDEAL e a utilizar o seu IBAN para cobrar os pagamentos de subscrição subsequente por débito directo SEPA. Pode rever a sua informação sobre Débitos Directos SEPA após o envio da encomenda. <br/><br/>Como parte dos seus direitos, tem o direito a um reembolso por parte do seu banco, segundo os termos e condições do seu acordo com o este. Um reembolso deve ser solicitado no espaço de 8 semanas, a contar a partir da data em que a sua conta foi debitada. ","invoiceAgreement":"Eu concordo em permitir que a Digital River Taiwan lide com os assuntos relacionados à fatura eletrônica em meu nome para acelerar o processo de devolução/reembolso.","warrantyInformation":"Informações de garantia","japaneseCommerceLaw":"Lei de Transações Comerciais"},"pt_PT":{"cancellationRights":"Direito de Cancelamento","cookiePolicy":"Cookies","legalNotice":"Aviso Legal","privacyPolicy":"Política de privacidade","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> é o revendedor autorizado e o comerciante dos produtos e serviços disponibilizados nesta loja.","termsOfSale":"Termos de Venda","confirmDisclosure":"Ao submeter a minha encomenda, concordo com os <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Termos de Venda</a> e a <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\"  class=\\"dr_privacyPolicy\\">Política de Privacidade</a> de {businessEntityName}.","consentsEula":" e a <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Acordo de Licença de Utilizador Final</a>","consentsTermsOfUse":" e a <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Termos de Utilização</a>","consentsCompanyName":" de {companyName}","californiaPrivacyRights":"Seus direitos de privacidade na Califórnia","autoRenewPlanTermsBegin":"Ao finalizar a sua compra, autoriza a Digital River a renovar automaticamente a licença ou subscrição adquirida por períodos de renovação sucessivos conforme descrito nos detalhes do produto. No final do período selecionado, cobraremos automaticamente o preço em vigor à data (acrescido de impostos), utilizando as informações de pagamento armazenadas, por cada período de renovação adicional até que cancele. Enviar-lhe-emos, no mínimo, uma vez antes de cada renovação um lembrete por e-mail para o lembrar da sua próxima renovação e poderemos alterar o preço de renovação para qualquer período de renovação que se aproxime, fornecendo-lhe por e-mail um aviso prévio da alteração. \\"autoRenewPlanTermsEnd\\": \\" As <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Condições de Venda</a> e <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Política de Privacidade</a> da Digital River","autoRenewPlanTermsEnd":"  aplicam-se a cada transação de renovação. Poderá cancelar o seu plano de renovação automática em qualquer altura, seguindo as instruções fornecidas no e-mail de confirmação da sua encomenda.<br/><br/>Aceito que a Digital River poderá guardar a minha informação de pagamento para compras futuras, incluindo o processamento de quaisquer renovações subsequentes da subscrição que poderão ocorrer a seguir à data desta encomenda.","agreeToTerms":"Li e concordo com os termos e encargos acima mencionados.","idealRecurringAgreement":"Ao clicar na caixa, autoriza a Digital River a cobrar o seu primeiro pagamento através do iDEAL e a utilizar o seu IBAN para cobrar os pagamentos de subscrição subsequente por débito directo SEPA. Pode rever a sua informação sobre Débitos Directos SEPA após o envio da encomenda. <br/><br/>Como parte dos seus direitos, tem o direito a um reembolso por parte do seu banco, segundo os termos e condições do seu acordo com o este. Um reembolso deve ser solicitado no espaço de 8 semanas, a contar a partir da data em que a sua conta foi debitada. ","invoiceAgreement":"Eu concordo em permitir que a Digital River Taiwan lide com os assuntos relacionados à fatura eletrônica em meu nome para acelerar o processo de devolução/reembolso.","klarnaCreditActiveAcceptance":"Ao prosseguir, você verá as opções de pagamento fornecidas pela Klarna. Ao continuar, eu aceito a <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/pt_pt/cookie_purchase\\">Política de Cookies Klarna</a> e confirmo que li os <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/pt_pt/privacy\\">Termos de Privacidade</a>.","klarnaCreditRecurringActiveAcceptance":"Ao prosseguir, você verá as opções de pagamento fornecidas pela Klarna. Ao continuar, eu aceito a <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/pt_pt/cookie_purchase\\">Política de Cookies Klarna</a> e confirmo que li os <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/pt_pt/privacy\\">Termos de Privacidade</a>.","warrantyInformation":"Informações sobre a garantia","japaneseCommerceLaw":"Lei de Transações Comerciais"},"ro_RO":{"privacyPolicy":"Politică de confidenţialitate","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> este un vânzător şi comerciant cu amănuntul autorizat ce furnizează servicii de comerţ electronic pentru acest magazin.","termsOfSale":"Termeni şi condiţii","confirmDisclosure":"","autoRenewPlanTermsBegin":"","autoRenewPlanTermsEnd":"","warrantyInformation":"Informații privind garanția"},"ru_RU":{"cancellationRights":"Право отмены","cookiePolicy":"Cookie","legalNotice":"Юридическое уведомление","privacyPolicy":"Политика конфиденциальности","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> является авторизованным реселлером и продавцом продукции и услуг, предлагаемых в настоящем магазине.","termsOfSale":"Условия продажи","confirmDisclosure":"Подтверждая заказ, я соглашаюсь с <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Условиями продажи</a> и <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Политикой конфиденциальности</a> {businessEntityName}.","consentsEula":" и <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Лицензионное соглашение конечного пользователя</a>","consentsTermsOfUse":" и <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Условия использования</a>","consentsCompanyName":" {companyName}","californiaPrivacyRights":"Ваши права на конфиденциальность в Калифорнии","autoRenewPlanTermsBegin":"Выполняя покупку, вы уполномочиваете компанию Digital River автоматически продлевать приобретенную вами лицензию или подписку на следующий срок ее действия в соответствии с описанием продукции. По завершении выбранного периода мы автоматически спишем с указанного вами счета актуальную на тот момент стоимость (плюс налог) каждого дополнительного срока продления, если только вы не откажетесь от автоматического продления. Перед каждым продлением мы будем отправлять вам по электронной почте по меньшей мере одно уведомление с напоминанием о предстоящем продлении. Кроме того, по электронной почте мы также будем предварительно информировать вас о возможном изменении стоимости продления на следующий срок. <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Условия продажи</a> и <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Политика конфиденциальности</a> Digital River","autoRenewPlanTermsEnd":" распространяются на каждую процедуру продления. Вы можете в любое время отказаться от вашей программы автоматического продления, следуя указаниям в электронном письме с подтверждением заказа.<br/><br/>Я согласен (-на) на то, чтобы компания Digital River хранила мою информацию об оплате для совершения покупок в будущем, в том числе для обновления подписок, следующих после даты настоящего заказа.","agreeToTerms":"Я прочитал и согласен с Условиями и стоимостью, указанными выше.","idealRecurringAgreement":"Нажав на галочку, вы разрешаете Digital River собрать ваш первый платеж через iDEAL и использовать ваш IBAN для сбора последующих платежей за подписку путем прямого дебета SEPA. Вы можете просмотреть информацию о своем прямом дебете SEPA после отправки заказа. <br/><br/>Вы также имеете право на возмещение банком Ваших денежных средств согласно условиям и положениям заключенного с банком соглашения. Возмещение должно быть заявлено в течение 8 недель, начиная с даты списания средств с вашего счета. ","invoiceAgreement":"Я соглашаюсь разрешить Digital River Taiwan заниматься вопросами, связанными с электронными счетами, от моего имени, чтобы ускорить процесс возврата/возмещения.","warrantyInformation":"Информация о гарантии","japaneseCommerceLaw":"Закон о коммерческих операциях"},"sk_SK":{"cancellationRights":"Oprávnenie na zrušenie","cookiePolicy":"Cookies","legalNotice":"Právny dokument","privacyPolicy":"Politika ochrany osobných údajov","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> je predajca alebo veľkoobchod s produktmi a službami poskytovanými v tomto obchode.","termsOfSale":"Predajné podmienky","confirmDisclosure":"Odoslaním objednávky vyjadrujem svoj súhlas s <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">predajnými podmienkami</a> a <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">zásadami ochrany osobných údajov</a> spoločnosti {businessEntityName}.","consentsEula":" a <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Licenčná zmluva koncového používateľa</a>","consentsTermsOfUse":" a <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Podmienky používania</a>","consentsCompanyName":" och {companyName}","californiaPrivacyRights":"Vaše práva na ochranu súkromia v Kalifornii","autoRenewPlanTermsBegin":"Dokončením nákupu oprávňujete spoločnosť Digital River, aby automaticky obnovila zakúpenú licenciu alebo predplatné na ďalšie obdobia obnovenia, ako je opísané v podrobnostiach o výrobku. Na konci zvoleného obdobia automaticky zaúčtujeme vaše uložené platobné údaje za aktuálne platnú cenu (plus daň) pre každé ďalšie obdobie obnovenia dovtedy, kým ho nezrušíte. Pred každým obnovením vám minimálne raz zašleme e-mailové pripomenutie ako pripomienku nadchádzajúceho obnovenia a v prípade zmeny ceny obnovenia na nasledujúce obdobie obnovenia vám zašleme e-mailové oznámenie o tejto zmene. Na každú transakciu obnovenia sa uplatňujú <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">predajné podmienky</a> a <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">zásady ochrany osobných údajov</a> spoločnosti Digital River","autoRenewPlanTermsEnd":". Automatické obnovenie plánu môžete kedykoľvek zrušiť podľa pokynov v e-mailovom potvrdení objednávky.<br/><br/>Súhlasím s tým, aby spoločnosť Digital River ukladala moje platobné informácie na budúce nákupy vrátane spracovania všetkých obnovení predplatného, ku ktorým môže dôjsť po uplynutí tohto príkazu.","agreeToTerms":"Prečítal(a) som si uvedené informácie o podmienkach a cenách a súhlasím s nimi.","idealRecurringAgreement":"Kliknutím na toto políčko povoľujete spoločnosti Digital River inkasovať vašu prvú platbu prostredníctvom iDEAL a používať váš IBAN na inkaso ďalších platieb predplatného prostredníctvom SEPA inkasa. Po odoslaní objednávky si môžete skontrolovať svoje informácie o priamom inkase SEPA. <br/><br/>Na základe svojich práv môžete požiadať banku o vrátenie sumy v súlade so zmluvnými podmienkami svojej banky. O vrátenie peňazí je potrebné požiadať do 8 týždňov odo dňa odpísania sumy z vášho účtu. ","invoiceAgreement":"Súhlasím s tým, aby Digital River Taiwan zabezpečoval záležitosti súvisiace s e-faktúrami za mňa, s cieľom urýchliť proces vrátenia/odškodnenia.","warrantyInformation":"Informácie o záruke","japaneseCommerceLaw":"Zákon o obchodných transakciách"},"sl_SI":{"cancellationRights":"Pravica do odstopa","cookiePolicy":"Piškotki","legalNotice":"Pravno obvestilo","privacyPolicy":"Pravilnik o zasebnosti","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> je pooblaščen trgovec na debelo in drobno, ki ponuja storitve spletne prodaje za to trgovino.","termsOfSale":"Pogoji in določila","confirmDisclosure":"Z oddajo svojega naročila se strinjam s <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Pogoji prodaje</a> in <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Politiko zasebnosti</a> podjetja {businessEntityName}.","consentsEula":" in <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Licenčna pogodba za končnega uporabnika</a>","consentsTermsOfUse":" in <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Pogoji Prodaje</a>","consentsCompanyName":" od {companyName}","californiaPrivacyRights":"Vaše pravice do zasebnosti v Kaliforniji","autoRenewPlanTermsBegin":"S potrditvijo nakupa pooblaščate podjetje Digital River, da samodejno podaljšuje vašo kupljeno licenco ali naročnino za zaporedna podaljšanja, kot je opisano v podrobnostih izdelka. Ob koncu izbranega obdobja bomo samodejno zaračunali vaše shranjene plačilne podatke po trenutno veljavni ceni (z davkom) za vsako dodatno obdobje podaljšanja, dokler ne prekličete. Pred vsakim podaljšanjem vam bomo poslali opomnik po elektronski pošti, in lahko spremenimo ceno podaljšanja za prihajajoče obdobje, s predhodnim obvestilom o spremembi po elektronski pošti. Digital River <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Pogoji prodaje</a> in <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Politika zasebnosti</a> ","autoRenewPlanTermsEnd":" velja za vsako obnovitveno transakcijo. Avtomatični načrt podaljšanja lahko kadar koli prekličete tako, da sledite navodilom, navedenim v e-poštnem potrdilu naročila.<br/><br/>Strinjam se, da podjetje Digital River lahko shrani moje podatke o plačilu za prihodnje nakupe, vključno s procesiranjem morebitnih nadaljnjih podaljšanj naročnine, ki se lahko pojavijo po datumu tega naročila.","agreeToTerms":"Prebral(a) sem in se strinjam s pogoji in stroški zgoraj.","invoiceAgreement":"Strinjam se, da dovolim Digital River Taiwanu, da v mojem imenu obravnava zadeve, povezane z e-računi, da bi pospešil postopek vračila/povračila.","warrantyInformation":"Informacije o garanciji","japaneseCommerceLaw":"Zakon o gospodarskih pogodbah"},"sr_YU":{"privacyPolicy":"Pravilnik o poverljivosti","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> je ovlašćen za maloprodaju i trgovinu i pruža usluge e-trgovine za ovu prodavnicu.","termsOfSale":"Uslovi","confirmDisclosure":"","autoRenewPlanTermsBegin":"","autoRenewPlanTermsEnd":"","warrantyInformation":"Informacije o garanciji"},"sv_SE":{"cancellationRights":"Ångerrätt","cookiePolicy":"Cookies","legalNotice":"Juridisk information","privacyPolicy":"Sekretesspolicy","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> är den auktoriserade återförsäljaren av de produkter och tjänster som erbjuds i den här butiken.","termsOfSale":"Försäljningsvillkor","confirmDisclosure":"Genom att skicka ordern godkänner jag <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">köpvillkoren</a> och <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">sekretesspolicyn</a> för {businessEntityName}.","consentsEula":" och <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Licensavtal för användare</a>","consentsTermsOfUse":" och <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Användningsvillkor</a>","consentsCompanyName":" av {companyName}","californiaPrivacyRights":"Dina integritetsrättigheter i Kalifornien","autoRenewPlanTermsBegin":"Genom att slutföra köpet ger du Digital River tillåtelse att automatiskt förlänga den inköpta licensen eller prenumerationen för efterföljande perioder i enlighet med villkoren som beskrivs i produktdetaljerna. Vid slutet av den aktuella perioden dras automatiskt den kostnad (plus moms) som då gäller för nästa förlängningsperiod från ditt konto baserat på din angivna betalningsinformation. Detta sker tills du avbryter den automatiska förlängningen. Vi skickar minst en förlängningspåminnelse via e-post när det är dags att förlänga. Priset för kommande period kan komma att ändras, men vi meddelar dig i så fall via e-post. Digital Rivers <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">försäljningsvillkor</a> och <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">sekretesspolicy</a>","autoRenewPlanTermsEnd":" gäller för varje transaktion i samband med förlängning. Du kan när som helst avbryta den automatiska förlängningen genom att följa anvisningarna i orderbekräftelsemejlet.<br/><br/>Jag godkänner att Digital River sparar min betalningsinformation för framtida inköp, inklusive bearbetning av eventuellt efterföljande prenumerationsförlängningar som kan inträffa efter beställningsdatumet.","klarnaCreditActiveAcceptance":"Genom att klicka BETALA NU kommer du att bli presenterad med olika betalmetod tillhandahållna av Klarna. Genom att fortsätta accepterar jag <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/sv_se/user\\">villkoren för Klarnas Shoppingtjänst</a> samt bekräftar att jag har läst <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/sv_se/privacy\\">Klarnas Dataskyddsinformation</a> samt <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/sv_se/cookie_purchase\\">cookiepolicy</a>. <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/sv_se/invoice?credit_time=30\\">Villkor</a>","klarnaCreditRecurringActiveAcceptance":"Genom att klicka BETALA NU kommer du att bli presenterad med olika betalmetod tillhandahållna av Klarna. Genom att fortsätta accepterar jag <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/sv_se/user\\">villkoren för Klarnas Shoppingtjänst</a> samt bekräftar att jag har läst <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/sv_se/privacy\\">Klarnas Dataskyddsinformation</a> samt <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/sv_se/cookie_purchase\\">cookiepolicy</a>. <a target=\\"_blank\\" href=\\"https://cdn.klarna.com/1.0/shared/content/legal/terms/0/sv_se/invoice?credit_time=30\\">Villkor</a>","agreeToTerms":"Jag har läst och godkänner villkoren och beloppen ovan.","idealRecurringAgreement":"Genom att klicka i rutan godkänner du att Digital River tar emot din första betalning via iDEAL och använder ditt IBAN för att ta emot efterföljande prenumerationsbetalningar via SEPA-autogiro. Du kan granska din information om SEPA-direktdebitering efter att du har skickat din beställning. <br/><br/>Du har bland annat rätt till återbetalning från banken enligt villkoren i ditt avtal med banken. En återbetalning måste begäras inom åtta veckor från det datum då kontot debiterades. ","invoiceAgreement":"Jag samtycker till att Digital River Taiwan får hantera ärenden relaterade till e-fakturor åt mig för att påskynda återbetalningsprocessen.","warrantyInformation":"Garanti-information","japaneseCommerceLaw":"Lag om kommersiella transaktioner"},"th_TH":{"cancellationRights":"สิทธิ์ในการยกเลิก","cookiePolicy":"คุกกี้","legalNotice":"ข้อความสงวนสิทธิ์ทางกฎหมาย","privacyPolicy":"นโยบายการเก็บรักษาข้อมูลส่วนบุคคล","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> เป็นผู้ค้าและผู้จำหน่ายที่ได้รับอนุญาตสำหรับผลิตภัณฑ์และบริการที่นำเสนอภายในร้านค้าแห่งนี้","termsOfSale":"เงื่อนไขการขาย","confirmDisclosure":"ในการส่งคำสั่งซื้อของฉัน ฉันยอมรับ<a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">ข้อกำหนดการจำหน่าย</a>และ<a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">นโยบายความเป็นส่วนตัว</a>ของ {businessEntityName}","consentsEula":" และ <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">ข้อตกลงการใช้งานสำหรับผู้ใช้งานสุดท้าย</a>","consentsTermsOfUse":" และ <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">ข้อกำหนดการใช้งาน</a>","consentsCompanyName":" ของ {companyName}","californiaPrivacyRights":"สิทธิของคุณในความเป็นส่วนตัวในรัฐแคลิฟอร์เนีย","autoRenewPlanTermsBegin":"การดำเนินการสั่งซื้อให้เสร็จสมบูรณ์ถือว่าคุณได้อนุญาตให้ Digital River ดำเนินการต่ออายุสิทธิ์ใช้งานหรือการสมัครใช้บริการที่คุณสั่งซื้อโดยอัตโนมัติภายใต้เงื่อนไขการต่ออายุแบบต่อเนื่องตามที่อธิบายไว้ในรายละเอียดของผลิตภัณฑ์ เมื่อสิ้นสุดระยะเวลาที่เลือกแล้ว เราจะเรียกเก็บเงินโดยอัตโนมัติจากข้อมูลการชำระเงินที่จัดเก็บไว้ตามราคาปัจจุบันที่มีผล (รวมภาษี) สำหรับแต่ละช่วงเวลาการต่ออายุเพิ่มเติมจนกว่าคุณจะดำเนินการยกเลิก เราจะส่งอีเมลแจ้งเตือนล่วงหน้าอย่างน้อยหนึ่งครั้งก่อนการต่ออายุใหม่ทุกครั้งเพื่อแจ้งเตือนให้ดำเนินการต่ออายุที่ใกล้ครบกำหนด และอาจมีการเปลี่ยนแปลงราคาสำหรับการต่ออายุในครั้งต่อไปด้วย ซึ่งจะมีการแจ้งการเปลี่ยนแปลงดังกล่าวให้คุณทราบล่วงหน้าทางอีเมล Digital River\'s <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">ข้อกำหนดในการขาย</a> และ <a href=\\"{privacyPolicyUrl}\\" target= \\"_blank\\" class=\\"dr_privacyPolicy\\">นโยบายความเป็นส่วนตัว</a>","autoRenewPlanTermsEnd":" จะใช้กับการต่ออายุแต่ละครั้ง คุณสามารถยกเลิกแผนการต่ออายุอัตโนมัติได้ทุกเมื่อโดยปฏิบัติตามขั้นตอนที่ระบุไว้ในอีเมลยืนยันคำสั่งซื้อ","agreeToTerms":"ฉันได้อ่านและเห็นชอบในเงื่อนไขและค่าใช้จ่ายข้างต้นแล้ว","idealRecurringAgreement":"เมื่อคลิกที่กล่องคุณอนุญาตให้ Digital River เรียกเก็บเงินครั้งแรกผ่าน iDEAL และใช้ IBAN ของคุณเพื่อรวบรวมการชําระเงินการสมัครสมาชิกที่ตามมาโดยการหักบัญชีเงินฝากอัตโนมัติ SEPA คุณสามารถตรวจสอบข้อมูลการหักบัญชีเงินฝากอัตโนมัติ SEPA ของคุณหลังจากส่งคําสั่งซื้อ <br/><br/>คุณมีสิทธิ์ในการขอคืนเงินจากธนาคารของคุณภายใต้ข้อกำหนดและเงื่อนไขของข้อตกลงระหว่างคุณกับทางธนาคารของคุณ การใช้สิทธิ์ขอคืนเงินจะต้องดำเนินการภายใน 8 สัปดาห์นับจากวันที่ที่บัญชีของคุณถูกหัก ","invoiceAgreement":"ฉันยินยอมให้ Digital River Taiwan ดูแลเรื่องที่เกี่ยวข้องกับใบแจ้งหนี้อิเล็กทรอนิกส์ในนามของฉันเพื่อเร่งกระบวนการคืนเงิน/ส่งคืนสินค้า","warrantyInformation":"ข้อมูลการรับประกัน","japaneseCommerceLaw":"กฎหมายการธุรกิจทางพาณิชย์"},"tr_TR":{"cancellationRights":"İptal Hakkı","cookiePolicy":"Tanımlama Bilgileri","legalNotice":"Yasal Uyarı","privacyPolicy":"Gizlilik Politikası","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> bu mağazada ürünlerin ve servislerin önerilen yetkili satıcısı ve tüccarıdır.","termsOfSale":"Satış Şartları","confirmDisclosure":"Siparişimi göndererek {businessEntityName}’ye ait <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Satış Şartları</a> ve <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Gizlilik Politikası</a>’nı kabul ediyorum.","consentsEula":" ve <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">Son Kullanıcı Lisans Anlaşması</a>","consentsTermsOfUse":" ve <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">Kullanım Koşulları</a>","consentsCompanyName":" , {companyName}","californiaPrivacyRights":"Kaliforniya Gizlilik Haklarınız","autoRenewPlanTermsBegin":"Satın alma işleminizi tamamlayarak, satın aldığınız lisansın veya aboneliğin birbirini izleyen yenileme dönemlerinde Digital River tarafından ürün detaylarında açıklanan şekilde otomatik olarak yenilenmesi için de yetki vermiş olursunuz. Seçilen dönemin sonunda, her ek yenileme dönemi için kayıtlı ödeme bilgileriniz kullanılarak o sırada geçerli olan ücret (artı vergi) otomatik olarak tahsil edilecektir ve yetki siz iptal edene kadar geçerliliğini koruyacaktır. Her yenileme işleminden önce yaklaşmakta olan yenileme için size en az bir hatırlatma e-postası gönderilecektir ve ilerleyen zamanlarda, yenileme koşullarına bağlı olarak değişebilecek yenileme ücreti de tarafınıza önceden e-posta yoluyla bildirilecektir. Her yenileme işlemi için Digital River <a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">Satış Koşulları</a> ve <a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">Gizlilik Politikası</a>","autoRenewPlanTermsEnd":" geçerli olacaktır. Otomatik yenileme planınızı dilediğiniz zaman doğrulama e-postanızda bulunan talimatları izleyerek iptal edebilirsiniz.<br/><br/>Digital River\'ın ödeme bilgilerimi, bu sipariş tarihini takiben gerçekleşebilecek aboneliğin daha sonraki yenilenme işlemleri de dahil olmak üzere gelecekteki alışverişler için saklamasını kabul ediyorum.","agreeToTerms":"Yukarıdaki koşulları ve ücretleri okudum ve kabul ediyorum.","idealRecurringAgreement":"Kutuya tıklayarak Digital River\'a ilk ödemenizi iDEAL üzerinden tahsil etme yetkisi veriyorsunuz ve sonraki abonelik ödemelerini SEPA otomatik ödeme ile toplamak için IBAN\'ınızı kullanıyorsunuz. Sepa Otomatik Ödeme bilgilerinizi sipariş gönderimini inceledikten sonra inceleyebilirsiniz. <br/><br/>Haklarınızın bir parçası olarak, bankanızla olan anlaşmanızın hüküm ve şartlarına uygun biçimde bankanızdan geri ödeme alma hakkınız mevcuttur. Bir geri ödeme, hesabınızdan para çekildikten sonra 8 hafta içerisinde talep edilmelidir. ","invoiceAgreement":"Digital River Taiwan\'a, iade/iade sürecini hızlandırmak için benim adıma e-fatura ile ilgili konuları ele almasına izin veriyorum.","warrantyInformation":"Garanti Bilgileri","japaneseCommerceLaw":"Ticari İşlem Kanunu"},"zh_CN":{"cancellationRights":"取消订单权","cookiePolicy":"Cookie","legalNotice":"法律声明","privacyPolicy":"隐私政策","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> 是本商店提供的产品和服务的授权经销商和商家。","termsOfSale":"销售条款","confirmDisclosure":"通过提交我的订单，我同意{businessEntityName}的<a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">销售条款</a>和<a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">隐私政策</a>。","consentsEula":" 以及 <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">最终用户许可协议</a>","consentsTermsOfUse":" 以及 <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">使用条款</a>","consentsCompanyName":" 的 {companyName}","californiaPrivacyRights":"您在加利福尼亚的隐私权","autoRenewPlanTermsBegin":"您完成购买，即表明您授权Digital River自动续订您购买的许可证或订阅，并按照产品详细信息所述连续续期。在选定的续订期限结束时，我们将以现行有效价格(加税)自动根据您存储的支付信息收取每一次额外续期的费用，直至您取消续订。每一次续订前，我们将向您发送至少一封续订提醒邮件，且可能变更任何未来续订期的续订价格(会通过电子邮件提前告知您变更)。 Digital River<a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">销售条款</a>和<a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">隐私政策</a>","autoRenewPlanTermsEnd":" 适用于每一次续订交易。您可以随时取消自动续订计划，具体操作请参见您的订单确认信息电子邮件中提供的说明。<br/><br/>我同意Digital River保存我的支付信息，方便日后购买商品使用，包括自订单下达之日起，处理随后可能出现的任何续订。","agreeToTerms":"我已阅读并同意以上销售条款和费用。","idealRecurringAgreement":"通过点击方框，您授权Digital River通过iDEAL收取您的第一笔付款，并使用您的IBAN通过SEPA直接借记收取后续的订阅付款。您可以在提交订单后查看您的SEPA直接借记信息。<br/><br/>作为您权利的一部分，您可根据与开户银行所签订协议的各项条款和条件从您的开户银行获取退款。退款必须在你的账户被扣款之日起8周内提出。","invoiceAgreement":"我同意允许Digital River Taiwan代表我处理与电子发票相关的事项，以加速退款/退货过程。","warrantyInformation":"保修信息","japaneseCommerceLaw":"商事法"},"zh_HK":{"asWellAs":"以及","cancellationRights":"取消權利","cookiePolicy":"Cookies","legalNotice":"法律聲明","privacyPolicy":"隱私權政策","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> 是本商店內所提供產品及服務的授權轉售商和販售者。","termsOfSale":"銷售條款","confirmDisclosure":"通過提交我的訂單，我同意{businessEntityName}的<a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">銷售條款</a>和<a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">隱私政策</a>。","consentsEula":" <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">使用者授權合約</a>","consentsTermsOfUse":" <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">使用條款</a>","consentsCompanyName":"、{companyName} 的","californiaPrivacyRights":"你在加利福尼亞的私隱權","autoRenewPlanTermsBegin":"一旦完成購買，即表示您授權Digital River自動續訂您已購買的許可或訂閱，以符合產品詳細資料中所述的連續續訂條款。選定期限結束時，我們將自動按照當時有效的價格（及稅項）為每個額外的續訂期以您儲存的付款資料收取費用，直到您取消為止。每次續訂前，我們最少會發出一次電子郵件提醒您即將續訂。我們亦可能更改下次續訂的價格，並會事前以電子郵件通知。 Digital River<a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">銷售條款</a>與<a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">私隱政策</a>","autoRenewPlanTermsEnd":" 將適用於每次續訂交易。您可以根據訂單確認電郵中提供的指示隨時取消自動續訂計劃。<br/><br/>我同意Digital River儲存此帳戶及付款資訊，以供未來付款及本訂單日期後的任何續訂使用。","agreeToTerms":"我已閱讀並同意上述條款和收費。","invoiceAgreement":"我同意允許Digital River Taiwan代表我處理有關電子發票事宜，以加速退款/退貨過程。","warrantyInformation":"保修資訊","japaneseCommerceLaw":"商業交易法"},"zh_TW":{"asWellAs":"以及","cancellationRights":"取消權利","cookiePolicy":"Cookie","legalNotice":"法律聲明","privacyPolicy":"隱私權政策","resellerDisclosure":"<a href=\\"{resellerDisclosureUrl}\\" target=\\"_blank\\" class=\\"dr_resellerDisclosure\\">{businessEntityName}</a> 是本商店所提供商品及服務的授權經銷商及批發商。","termsOfSale":"銷售條款","confirmDisclosure":"貴方於提交訂單時，即表示同意 {businessEntityName} 的<a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">銷售條款</a>和<a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">隱私權政策</a>。","consentsEula":" <a href=\\"{eulaUrl}\\" target=\\"_blank\\" class=\\"dr_eula\\">終端使用者授權同意書</a>","consentsTermsOfUse":" <a href=\\"{termsOfUseUrl}\\" target=\\"_blank\\" class=\\"dr_termsOfUse\\">使用規定</a>","consentsCompanyName":"、{companyName} 的","californiaPrivacyRights":"你的加州隱私權","autoRenewPlanTermsBegin":"完成購買表示您授權Digital River依據產品詳細資料中所述的連續更新條款自動更新您購買的授權或訂閱。除非您事先取消，否則在所選期間結束時我們將會依照已儲存的付款資訊自動向您收取該次額外續訂期間的費用（含稅）。每次續訂前，我們最少會發出一次電子郵件提醒您即將續訂。我們亦可能更改下次續訂的價格，並會事前以電子郵件通知。 Digital River<a href=\\"{termsOfSaleUrl}\\" target=\\"_blank\\" class=\\"dr_termsAndConditions\\">銷售條款</a>與<a href=\\"{privacyPolicyUrl}\\" target=\\"_blank\\" class=\\"dr_privacyPolicy\\">隱私權政策</a>","autoRenewPlanTermsEnd":" 將適用於每次的更新交易。您可以依據訂單確認信中提供的說明隨時取消自動續訂計畫。<br/><br/>我同意Digital River儲存此付款資訊，以供未來付款及本訂單日期後的任何續訂使用。","agreeToTerms":"我已經閱讀並同意上述條款與付款規定。","invoiceAgreement":"我同意辦理退貨退款時，由美商亞太數位潮流科技有限公司台灣分公司代為處理雲端發票相關事項，以加速退貨退款作業。","warrantyInformation":"保修資訊","japaneseCommerceLaw":"商業交易法"}},"locale":["ar_EG","cs_CZ","da_DK","de_AT","de_CH","de_DE","el_GR","en_AU","en_BE","en_CA","en_CH","en_DK","en_FI","en_GB","en_IE","en_IN","en_MY","en_NL","en_NO","en_NZ","en_PR","en_SE","en_SG","en_US","en_ZA","es_AR","es_CL","es_CO","es_EC","es_ES","es_MX","es_PE","es_VE","et_EE","fi_FI","fr_BE","fr_CA","fr_CH","fr_FR","hu_HU","it_CH","it_IT","iw_IL","ja_JP","ko_KR","lt_LT","lv_LV","nl_BE","nl_NL","no_NO","pl_PL","pt_BR","pt_PT","ro_RO","ru_RU","sk_SK","sl_SI","sr_YU","sv_SE","th_TH","tr_TR","zh_CN","zh_HK","zh_TW"],"entityCode":[{"code":"DRES_INC-ENTITY","name":"DR Education Services"},{"code":"DR_WP-ENTITY","name":"DR World Payments"},{"code":"DR_WPAB-ENTITY","name":"DR World Payments AB"},{"code":"C5_INC-ENTITY","name":"DR globalTech Inc."},{"code":"DR_BRAZIL-ENTITY","name":"Digital River Brazil"},{"code":"DR_CHINA-ENTITY","name":"Digital River China"},{"code":"DR_GMBH-ENTITY","name":"Digital River GmbH"},{"code":"DR_INC-ENTITY","name":"Digital River Inc."},{"code":"DR_INDIA-ENTITY","name":"eClickstore Trading Private Limited"},{"code":"DR_IRELAND-ENTITY","name":"Digital River Ireland Ltd."},{"code":"DR_JAPAN-ENTITY","name":"Digital River Japan"},{"code":"DR_KOREA-ENTITY","name":"Digital River Korea YH"},{"code":"DR_MEXICO-ENTITY","name":"Digital River Mexico"},{"code":"DR_RUSSIA-ENTITY","name":"Digital River Russia"},{"code":"DR_SARL-ENTITY","name":"Digital River, International SARL"},{"code":"DR_TAIWAN-ENTITY","name":"Digital River Taiwan"},{"code":"DR_UK-ENTITY","name":"Digital River UK Ltd."}],"keys":{"AS_WELL_AS":"asWellAs","AUTORENEWAL_PLAN_TERMS":"autoRenewPlanTerms","AUTORENEWAL_PLAN_TERMS_BEGIN":"autoRenewPlanTermsBegin","AUTORENEWAL_PLAN_TERMS_END":"autoRenewPlanTermsEnd","RESELLER_DISCLOSURE":"resellerDisclosure","TERMS_OF_SALE":"termsOfSale","PRIVACY_POLICY":"privacyPolicy","COOKIE_POLICY":"cookiePolicy","CANCELLATION_RIGHTS":"cancellationRights","CONFIRM_DISCLOSURE":"confirmDisclosure","CONSENTS_EULA":"consentsEula","CONSENTS_TERMS_OF_USE":"consentsTermsOfUse","CONSENTS_COMPANY_NAME":"consentsCompanyName","LEGAL_NOTICE":"legalNotice","CALIFORNIA_PRIVACY_RIGHTS":"californiaPrivacyRights","WARRANTY_INFORMATION":"warrantyInformation","AGREE_TO_TERMS":"agreeToTerms","IDEAL_RECURRING_AGREEMENT":"idealRecurringAgreement","INVOICE_AGREEMENT":"invoiceAgreement","JAPANESE_COMMERCE_LAW":"japaneseCommerceLaw"}}');
 
 /***/ }),
 
@@ -45809,10 +45755,13 @@ module.exports = JSON.parse('{"ar_EG":{"mustAcceptTerms":"لا بد من الق�
 /******/ 		var document = __webpack_require__.g.document;
 /******/ 		if (!scriptUrl && document) {
 /******/ 			if (document.currentScript)
-/******/ 				scriptUrl = document.currentScript.src
+/******/ 				scriptUrl = document.currentScript.src;
 /******/ 			if (!scriptUrl) {
 /******/ 				var scripts = document.getElementsByTagName("script");
-/******/ 				if(scripts.length) scriptUrl = scripts[scripts.length - 1].src
+/******/ 				if(scripts.length) {
+/******/ 					var i = scripts.length - 1;
+/******/ 					while (i > -1 && !scriptUrl) scriptUrl = scripts[i--].src;
+/******/ 				}
 /******/ 			}
 /******/ 		}
 /******/ 		// When supporting browsers where an automatic publicPath is not supported you must specify an output.publicPath manually via configuration
@@ -45837,19 +45786,19 @@ var __webpack_exports__ = {};
   \*************************************************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "addInputHtmlToDom": function() { return /* binding */ addInputHtmlToDom; },
-/* harmony export */   "addInstanceOptions": function() { return /* binding */ addInstanceOptions; },
-/* harmony export */   "customizeSelect": function() { return /* binding */ customizeSelect; },
-/* harmony export */   "emitComponentReady": function() { return /* binding */ emitComponentReady; },
-/* harmony export */   "getElement": function() { return /* binding */ getElement; },
-/* harmony export */   "getFocusElement": function() { return /* binding */ getFocusElement; },
-/* harmony export */   "handleAutofill": function() { return /* binding */ handleAutofill; },
-/* harmony export */   "handleBlur": function() { return /* binding */ handleBlur; },
-/* harmony export */   "handleChange": function() { return /* binding */ handleChange; },
-/* harmony export */   "handleFocus": function() { return /* binding */ handleFocus; },
-/* harmony export */   "handleOptions": function() { return /* binding */ handleOptions; },
-/* harmony export */   "inputHtml": function() { return /* binding */ inputHtml; },
-/* harmony export */   "resizeIframe": function() { return /* binding */ resizeIframe; }
+/* harmony export */   addInputHtmlToDom: function() { return /* binding */ addInputHtmlToDom; },
+/* harmony export */   addInstanceOptions: function() { return /* binding */ addInstanceOptions; },
+/* harmony export */   customizeSelect: function() { return /* binding */ customizeSelect; },
+/* harmony export */   emitComponentReady: function() { return /* binding */ emitComponentReady; },
+/* harmony export */   getElement: function() { return /* binding */ getElement; },
+/* harmony export */   getFocusElement: function() { return /* binding */ getFocusElement; },
+/* harmony export */   handleAutofill: function() { return /* binding */ handleAutofill; },
+/* harmony export */   handleBlur: function() { return /* binding */ handleBlur; },
+/* harmony export */   handleChange: function() { return /* binding */ handleChange; },
+/* harmony export */   handleFocus: function() { return /* binding */ handleFocus; },
+/* harmony export */   handleOptions: function() { return /* binding */ handleOptions; },
+/* harmony export */   inputHtml: function() { return /* binding */ inputHtml; },
+/* harmony export */   resizeIframe: function() { return /* binding */ resizeIframe; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/for-each */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/for-each.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_0__);

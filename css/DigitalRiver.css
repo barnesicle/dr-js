@@ -401,7 +401,7 @@ div[id^='dr-accordion-'], .DR-msts-create-account-hidden, .DR-error-message {
     display: grid;
     grid-template-columns: repeat(2, 50%);
 }
-.DR-shipping-choice-error, .DR-tax-identifier-error, .DR-invoice-attribute-error {
+.DR-shipping-choice-error, .DR-tax-identifier-error, .DR-invoice-attribute-error, .DR-wallet-error {
     color: red;
     text-align: center;
     padding: 8px;

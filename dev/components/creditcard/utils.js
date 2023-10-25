@@ -10,11 +10,11 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "creditCardLengthByBrand": function() { return /* binding */ creditCardLengthByBrand; },
-/* harmony export */   "creditCardSpacesByBrand": function() { return /* binding */ creditCardSpacesByBrand; },
-/* harmony export */   "detectType": function() { return /* binding */ detectType; },
-/* harmony export */   "formatLength": function() { return /* binding */ formatLength; },
-/* harmony export */   "validateCreditCardLength": function() { return /* binding */ validateCreditCardLength; }
+/* harmony export */   creditCardLengthByBrand: function() { return /* binding */ creditCardLengthByBrand; },
+/* harmony export */   creditCardSpacesByBrand: function() { return /* binding */ creditCardSpacesByBrand; },
+/* harmony export */   detectType: function() { return /* binding */ detectType; },
+/* harmony export */   formatLength: function() { return /* binding */ formatLength; },
+/* harmony export */   validateCreditCardLength: function() { return /* binding */ validateCreditCardLength; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/for-each */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/for-each.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_0__);
@@ -273,7 +273,7 @@ function getPrefix(value, prefix) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "csvLength": function() { return /* binding */ csvLength; }
+/* harmony export */   csvLength: function() { return /* binding */ csvLength; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_parse_int__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/parse-int */ "./node_modules/@babel/runtime-corejs3/core-js-stable/parse-int.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_parse_int__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_parse_int__WEBPACK_IMPORTED_MODULE_0__);
@@ -3702,8 +3702,8 @@ var __webpack_exports__ = {};
   \************************************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "convertLengthToPlaceholderText": function() { return /* binding */ convertLengthToPlaceholderText; },
-/* harmony export */   "getLengthOfCVV": function() { return /* binding */ getLengthOfCVV; }
+/* harmony export */   convertLengthToPlaceholderText: function() { return /* binding */ convertLengthToPlaceholderText; },
+/* harmony export */   getLengthOfCVV: function() { return /* binding */ getLengthOfCVV; }
 /* harmony export */ });
 /* harmony import */ var _validator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../validator */ "./src/app/components/validator.js");
 

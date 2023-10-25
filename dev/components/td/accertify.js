@@ -10,7 +10,7 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "isTestApiKey": function() { return /* binding */ isTestApiKey; }
+/* harmony export */   isTestApiKey: function() { return /* binding */ isTestApiKey; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_starts_with__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/starts-with */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/starts-with.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_starts_with__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_starts_with__WEBPACK_IMPORTED_MODULE_0__);
@@ -1589,9 +1589,9 @@ var __webpack_exports__ = {};
   \********************************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "addAccertifyScript": function() { return /* binding */ addAccertifyScript; },
-/* harmony export */   "getAccertifyId": function() { return /* binding */ getAccertifyId; },
-/* harmony export */   "isAccertifyLoaded": function() { return /* binding */ isAccertifyLoaded; }
+/* harmony export */   addAccertifyScript: function() { return /* binding */ addAccertifyScript; },
+/* harmony export */   getAccertifyId: function() { return /* binding */ getAccertifyId; },
+/* harmony export */   isAccertifyLoaded: function() { return /* binding */ isAccertifyLoaded; }
 /* harmony export */ });
 /* harmony import */ var _api_key_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../api-key-utils */ "./src/app/components/api-key-utils.js");
 
