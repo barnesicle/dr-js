@@ -5776,6 +5776,8 @@ function DigitalRiver(apiKey, providedInstanceOptions) {
     instanceOptions: instanceOptions
   });
   (0,_createController_js__WEBPACK_IMPORTED_MODULE_19__.registerControllerEvents)(this.key, (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_16__.getComponentWindow)(component.id), _app_components_config__WEBPACK_IMPORTED_MODULE_20__.config.domain);
+
+  // Seeing if there is a timing issue. What if the iframe is not loading....
   _babel_runtime_corejs3_core_js_stable_set_timeout__WEBPACK_IMPORTED_MODULE_5___default()(function () {
     (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_16__.sendApiKey)(component.id, 'sendInitialData', {
       apiKey: apiKey,
@@ -46592,11 +46594,9 @@ console.log('CHECKING CLIENT DOMAIN 1');
 var clientDomain = (0,_utils__WEBPACK_IMPORTED_MODULE_15__.getParentDomain)();
 console.log('CHECKING CLIENT DOMAIN 2', clientDomain, (0,_utils__WEBPACK_IMPORTED_MODULE_15__.getParentDomain)(), window.parent);
 var clientListener = _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_10__["default"].listener({
-  window: window.parent,
   domain: clientDomain
 });
 var clientEmitter = _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_10__["default"].client({
-  window: window.parent,
   domain: clientDomain
 });
 var adyenEmitter = _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_10__["default"].client({

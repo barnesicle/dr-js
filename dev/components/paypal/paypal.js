@@ -4716,6 +4716,8 @@ function DigitalRiver(apiKey, providedInstanceOptions) {
     instanceOptions: instanceOptions
   });
   (0,_createController_js__WEBPACK_IMPORTED_MODULE_19__.registerControllerEvents)(this.key, (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_16__.getComponentWindow)(component.id), _app_components_config__WEBPACK_IMPORTED_MODULE_20__.config.domain);
+
+  // Seeing if there is a timing issue. What if the iframe is not loading....
   _babel_runtime_corejs3_core_js_stable_set_timeout__WEBPACK_IMPORTED_MODULE_5___default()(function () {
     (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_16__.sendApiKey)(component.id, 'sendInitialData', {
       apiKey: apiKey,
