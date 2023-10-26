@@ -46577,9 +46577,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
+console.log('CHECKING CLIENT DOMAIN 1');
 // Create a postRobot listener/emitter tied to the parent window and domain only
 var clientDomain = document.referrer === '' ? 'file://' : (0,_utils__WEBPACK_IMPORTED_MODULE_15__.getParentDomain)();
+console.log('CHECKING CLIENT DOMAIN 2', clientDomain);
 var clientListener = _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_10__["default"].listener({
   window: window.parent,
   domain: clientDomain
@@ -47652,8 +47653,10 @@ function getLocalizationJsonSchema(event) {
     return response.json();
   });
 }
+console.log('Adding storage events...');
 window.addEventListener('storage', (0,_controller_storage_events__WEBPACK_IMPORTED_MODULE_29__.createHandleSourceAuthenticationStorageEvent)(components, clientEmitter, adyenEmitter));
 window.addEventListener('storage', (0,_controller_storage_events__WEBPACK_IMPORTED_MODULE_29__.createHandleSessionAuthenticationStorageEvent)(components, clientEmitter, adyenEmitter));
+console.log('storage events ADDED...');
 }();
 var __webpack_export_target__ = self;
 for(var i in __webpack_exports__) __webpack_export_target__[i] = __webpack_exports__[i];
