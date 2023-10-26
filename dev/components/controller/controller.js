@@ -46589,6 +46589,7 @@ console.log('CHECKING CLIENT DOMAIN 1');
 // TODO Find another way to get the client domain....
 console.log('DOMAIN CHECKS', window.parent.location, (_window = window) === null || _window === void 0 ? void 0 : (_window$location = _window.location) === null || _window$location === void 0 ? void 0 : _window$location.ancestorOrigins[0]);
 var clientDomain = document.referrer === '' ? undefined : (0,_utils__WEBPACK_IMPORTED_MODULE_15__.getParentDomain)();
+console.log('CLIENT DOMAIN', clientDomain);
 var clientListener = _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_10__["default"].listener({
   window: window.parent,
   domain: clientDomain
