@@ -10408,6 +10408,8 @@ function sendApiKey(controllerId, eventName, data) {
   if (!controllerWindow) {
     throw new Error("Unable to locate controller '".concat(controllerId, "'"));
   }
+  console.log('sendApiKey controllerWindow', controllerWindow);
+
   // Send component Id to the controller, we return a promise but you don't really need to wait?
   return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_6__["default"].send(controllerWindow, eventName, data).catch(function (error) {
     console.error('API KEY ERROR', error);
