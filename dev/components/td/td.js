@@ -16135,7 +16135,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 // Create a postRobot listener/emitter tied to the parent window and domain only
-var clientDomain = document.referrer === '' ? 'file://' : (0,_utils__WEBPACK_IMPORTED_MODULE_8__.getParentDomain)();
+var clientDomain = document.referrer === '' ? undefined : (0,_utils__WEBPACK_IMPORTED_MODULE_8__.getParentDomain)();
 
 // The component listener receives initialization events from the domain but any window
 var clientListener = _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_6__["default"].listener({

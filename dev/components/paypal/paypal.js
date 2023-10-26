@@ -4718,6 +4718,7 @@ function DigitalRiver(apiKey, providedInstanceOptions) {
   (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_15__.sendApiKey)(component.id, 'sendInitialData', {
     apiKey: apiKey,
     browserInfo: (0,_beacon_beacon_client_data__WEBPACK_IMPORTED_MODULE_21__.collectClientData)(window),
+    // TODO Make sure this does not cause issues....
     instanceOptions: instanceOptions,
     controllerId: component.id
   });

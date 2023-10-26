@@ -5778,6 +5778,7 @@ function DigitalRiver(apiKey, providedInstanceOptions) {
   (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_15__.sendApiKey)(component.id, 'sendInitialData', {
     apiKey: apiKey,
     browserInfo: (0,_beacon_beacon_client_data__WEBPACK_IMPORTED_MODULE_21__.collectClientData)(window),
+    // TODO Make sure this does not cause issues....
     instanceOptions: instanceOptions,
     controllerId: component.id
   });
@@ -46541,6 +46542,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _controller_giftcard_create_source__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! ./controller-giftcard-create-source */ "./src/app/components/controller/controller-giftcard-create-source.js");
 /* harmony import */ var _controller_amazon_pay__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__(/*! ./controller-amazon-pay */ "./src/app/components/controller/controller-amazon-pay.js");
 
+var _window, _window$location;
 
 
 
@@ -46584,12 +46586,15 @@ __webpack_require__.r(__webpack_exports__);
 console.log('CHECKING CLIENT DOMAIN 1');
 // document.referrer is empty on safari 17 private mode
 // Create a postRobot listener/emitter tied to the parent window and domain only
-var clientDomain = 'https://lbarnes-test-1.s3.us-east-2.amazonaws.com'; // TODO Try nothing...
-console.log('CHECKING CLIENT DOMAIN 2', clientDomain, (0,_utils__WEBPACK_IMPORTED_MODULE_15__.getParentDomain)(), window.parent);
+// TODO Find another way to get the client domain....
+console.log('DOMAIN CHECKS', window.parent.location, (_window = window) === null || _window === void 0 ? void 0 : (_window$location = _window.location) === null || _window$location === void 0 ? void 0 : _window$location.ancestorOrigins[0]);
+var clientDomain = document.referrer === '' ? undefined : (0,_utils__WEBPACK_IMPORTED_MODULE_15__.getParentDomain)();
 var clientListener = _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_10__["default"].listener({
+  window: window.parent,
   domain: clientDomain
 });
 var clientEmitter = _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_10__["default"].client({
+  window: window.parent,
   domain: clientDomain
 });
 var adyenEmitter = _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_10__["default"].client({
