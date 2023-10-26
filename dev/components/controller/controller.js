@@ -46580,7 +46580,7 @@ __webpack_require__.r(__webpack_exports__);
 console.log('CHECKING CLIENT DOMAIN 1');
 // Create a postRobot listener/emitter tied to the parent window and domain only
 var clientDomain = document.referrer === '' ? 'file://' : (0,_utils__WEBPACK_IMPORTED_MODULE_15__.getParentDomain)();
-console.log('CHECKING CLIENT DOMAIN 2', clientDomain);
+console.log('CHECKING CLIENT DOMAIN 2', clientDomain, (0,_utils__WEBPACK_IMPORTED_MODULE_15__.getParentDomain)());
 var clientListener = _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_10__["default"].listener({
   window: window.parent,
   domain: clientDomain
