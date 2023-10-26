@@ -4701,7 +4701,7 @@ function DigitalRiver(apiKey, providedInstanceOptions) {
   var component = (0,_createController_js__WEBPACK_IMPORTED_MODULE_18__.createController)(document.body, 'controller');
 
   // creating beacon component
-  //let beaconComponent = createOrExtractBeaconController();
+  var beaconComponent = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_15__.createOrExtractBeaconController)();
 
   // creating 3dsecure component
   var dr3dsecure = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_15__.createOrExtractAdyenController)();
@@ -4717,18 +4717,16 @@ function DigitalRiver(apiKey, providedInstanceOptions) {
   // Seeing if there is a timing issue. What if the iframe is not loading....
   (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_15__.sendApiKey)(component.id, 'sendInitialData', {
     apiKey: apiKey,
-    browserInfo: {},
+    browserInfo: (0,_beacon_beacon_client_data__WEBPACK_IMPORTED_MODULE_21__.collectClientData)(window),
     instanceOptions: instanceOptions,
     controllerId: component.id
   });
-
-  /*sendApiKey(beaconComponent.id, 'sendBeaconInitialData', {
+  (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_15__.sendApiKey)(beaconComponent.id, 'sendBeaconInitialData', {
     apiKey: apiKey,
     customerID: instanceOptions.customerID
-  }).then(() => {
-    return sendBeaconEventDetails(beaconComponent.id, 'controller_loaded');
-  });*/
-
+  }).then(function () {
+    return (0,_app_components_td_td_utils__WEBPACK_IMPORTED_MODULE_16__.sendBeaconEventDetails)(beaconComponent.id, 'controller_loaded');
+  });
   (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_15__.sendInitalize3dSecure)(dr3dsecure.id, apiKey);
   (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_15__.updateOverlay)('DRPayment3ds', '0px', '');
 }
