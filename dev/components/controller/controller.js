@@ -46588,7 +46588,7 @@ console.log('CHECKING CLIENT DOMAIN 1');
 // Create a postRobot listener/emitter tied to the parent window and domain only
 // TODO Find another way to get the client domain....
 console.log('DOMAIN CHECKS', window.parent.location, (_window = window) === null || _window === void 0 ? void 0 : (_window$location = _window.location) === null || _window$location === void 0 ? void 0 : _window$location.ancestorOrigins[0]);
-var clientDomain = document.referrer === '' ? undefined : (0,_utils__WEBPACK_IMPORTED_MODULE_15__.getParentDomain)();
+var clientDomain = getDomain();
 console.log('CLIENT DOMAIN', clientDomain);
 var clientListener = _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_10__["default"].listener({
   window: window.parent,
@@ -46602,6 +46602,20 @@ var adyenEmitter = _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_10__["default"].
   window: (0,_client_createComponent__WEBPACK_IMPORTED_MODULE_13__.getComponentWindow)('dr3dsecure'),
   domain: _config__WEBPACK_IMPORTED_MODULE_14__.config.domain
 });
+function getDomain() {
+  var _window2, _window2$location;
+  if (document.referrer.length > 0) {
+    console.log('Using Referrer', document.referrer);
+    return (0,_utils__WEBPACK_IMPORTED_MODULE_15__.getParentDomain)();
+  } else if (((_window2 = window) === null || _window2 === void 0 ? void 0 : (_window2$location = _window2.location) === null || _window2$location === void 0 ? void 0 : _window2$location.ancestorOrigins.length) > 0) {
+    var _window3, _window3$location, _window4, _window4$location;
+    console.log('Using window?.location?.ancestorOrigins', (_window3 = window) === null || _window3 === void 0 ? void 0 : (_window3$location = _window3.location) === null || _window3$location === void 0 ? void 0 : _window3$location.ancestorOrigins[0]);
+    return (_window4 = window) === null || _window4 === void 0 ? void 0 : (_window4$location = _window4.location) === null || _window4$location === void 0 ? void 0 : _window4$location.ancestorOrigins[0];
+  } else {
+    console.warn('No client domain. Falling back....');
+    return undefined; // NOTE: This will turn off domain check as a last resort.
+  }
+}
 
 // The component listener receives initialization events from the domain but any window
 var componentListener = _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_10__["default"].listener({
