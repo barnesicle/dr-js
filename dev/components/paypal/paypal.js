@@ -4558,60 +4558,57 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_corejs3_helpers_typeof__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime-corejs3/helpers/typeof */ "./node_modules/@babel/runtime-corejs3/helpers/esm/typeof.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_bind__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/bind */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/bind.js");
 /* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_bind__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_bind__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_set_timeout__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/set-timeout */ "./node_modules/@babel/runtime-corejs3/core-js-stable/set-timeout.js");
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_set_timeout__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_set_timeout__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/includes */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/includes.js");
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/object/assign */ "./node_modules/@babel/runtime-corejs3/core-js-stable/object/assign.js");
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/promise */ "./node_modules/@babel/runtime-corejs3/core-js-stable/promise.js");
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_map__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/map */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/map.js");
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_map__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_map__WEBPACK_IMPORTED_MODULE_9__);
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/filter */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/filter.js");
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_10__);
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/object/keys */ "./node_modules/@babel/runtime-corejs3/core-js-stable/object/keys.js");
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_11__);
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/for-each */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/for-each.js");
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_12__);
-/* harmony import */ var _dataStore_js__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./dataStore.js */ "./src/client/dataStore.js");
-/* harmony import */ var _createSource_js__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./createSource.js */ "./src/client/createSource.js");
-/* harmony import */ var _complianceData__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./complianceData */ "./src/client/complianceData.js");
-/* harmony import */ var _createComponent_js__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./createComponent.js */ "./src/client/createComponent.js");
-/* harmony import */ var _app_components_td_td_utils__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../app/components/td/td-utils */ "./src/app/components/td/td-utils.js");
-/* harmony import */ var _elementsv2_localization_schema_en_json__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./elementsv2/localization/schema/en.json */ "./src/client/elementsv2/localization/schema/en.json");
-/* harmony import */ var _createController_js__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./createController.js */ "./src/client/createController.js");
-/* harmony import */ var _app_components_config__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ../app/components/config */ "./src/app/components/config.js");
-/* harmony import */ var _DigitalRiverPaymentRequest__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./DigitalRiverPaymentRequest */ "./src/client/DigitalRiverPaymentRequest.js");
-/* harmony import */ var _beacon_beacon_client_data__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ../beacon/beacon-client-data */ "./src/beacon/beacon-client-data.js");
-/* harmony import */ var _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ../post-robot-wrapper */ "./src/post-robot-wrapper.js");
-/* harmony import */ var _app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ../app/components/localization/localized-messages */ "./src/app/components/localization/localized-messages.js");
-/* harmony import */ var _create_dropin__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./create-dropin */ "./src/client/create-dropin.js");
-/* harmony import */ var _fetch_payment_methods__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./fetch-payment-methods */ "./src/client/fetch-payment-methods.js");
-/* harmony import */ var _authenticate_source__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./authenticate-source */ "./src/client/authenticate-source.js");
-/* harmony import */ var _korean_card_utils__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./korean-card-utils */ "./src/client/korean-card-utils.js");
-/* harmony import */ var _app_config__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ../app/config */ "./src/app/config.js");
-/* harmony import */ var _send_handle_next_action__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./send-handle-next-action */ "./src/client/send-handle-next-action.js");
-/* harmony import */ var _app_components_controller_controller_window_opener__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ../app/components/controller/controller-window-opener */ "./src/app/components/controller/controller-window-opener.js");
-/* harmony import */ var _elementsv2_checkout_sessions_api__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./elementsv2/checkout-sessions-api */ "./src/client/elementsv2/checkout-sessions-api.js");
-/* harmony import */ var _elementsv2_payment_payment_mount__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./elementsv2/payment/payment-mount */ "./src/client/elementsv2/payment/payment-mount.js");
-/* harmony import */ var _elementsv2_shippingchoice_shipping_choice_mount__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./elementsv2/shippingchoice/shipping-choice-mount */ "./src/client/elementsv2/shippingchoice/shipping-choice-mount.js");
-/* harmony import */ var _elementsv2_address_address_mount__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ./elementsv2/address/address-mount */ "./src/client/elementsv2/address/address-mount.js");
-/* harmony import */ var _elementsv2_address_address_utils__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ./elementsv2/address/address-utils */ "./src/client/elementsv2/address/address-utils.js");
-/* harmony import */ var _elementsv2_storage__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ./elementsv2/storage */ "./src/client/elementsv2/storage.js");
-/* harmony import */ var _elementsv2_payment_error_text_translations__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! ./elementsv2/payment/error-text-translations */ "./src/client/elementsv2/payment/error-text-translations.js");
-/* harmony import */ var _elementsv2_address_address_country_spec__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! ./elementsv2/address/address-country-spec */ "./src/client/elementsv2/address/address-country-spec.js");
-/* harmony import */ var _elementsv2_wallet_wallet_mount__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__(/*! ./elementsv2/wallet/wallet-mount */ "./src/client/elementsv2/wallet/wallet-mount.js");
-/* harmony import */ var _elementsv2_thankyou_thankyou_mount__WEBPACK_IMPORTED_MODULE_41__ = __webpack_require__(/*! ./elementsv2/thankyou/thankyou-mount */ "./src/client/elementsv2/thankyou/thankyou-mount.js");
-/* harmony import */ var _elementsv2_compliance_compliance_mount__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__(/*! ./elementsv2/compliance/compliance-mount */ "./src/client/elementsv2/compliance/compliance-mount.js");
-/* harmony import */ var _elementsv2_tax_identifer_tax_identifier_mount__WEBPACK_IMPORTED_MODULE_43__ = __webpack_require__(/*! ./elementsv2/tax-identifer/tax-identifier-mount */ "./src/client/elementsv2/tax-identifer/tax-identifier-mount.js");
-/* harmony import */ var _elementsv2_invoice_attribute_invoice_attribute_mount__WEBPACK_IMPORTED_MODULE_44__ = __webpack_require__(/*! ./elementsv2/invoice-attribute/invoice-attribute-mount */ "./src/client/elementsv2/invoice-attribute/invoice-attribute-mount.js");
-/* harmony import */ var _elementsv2_taxexemption_taxexemption_mount__WEBPACK_IMPORTED_MODULE_45__ = __webpack_require__(/*! ./elementsv2/taxexemption/taxexemption-mount */ "./src/client/elementsv2/taxexemption/taxexemption-mount.js");
-/* harmony import */ var _elementsv2_order_summary_order_summary_mount__WEBPACK_IMPORTED_MODULE_46__ = __webpack_require__(/*! ./elementsv2/order-summary/order-summary-mount */ "./src/client/elementsv2/order-summary/order-summary-mount.js");
-/* harmony import */ var _elementsv2_localization_languages__WEBPACK_IMPORTED_MODULE_47__ = __webpack_require__(/*! ./elementsv2/localization/languages */ "./src/client/elementsv2/localization/languages.js");
-/* harmony import */ var _elementsv2_cookie__WEBPACK_IMPORTED_MODULE_48__ = __webpack_require__(/*! ./elementsv2/cookie */ "./src/client/elementsv2/cookie.js");
-/* harmony import */ var _elementsv2_api_utils__WEBPACK_IMPORTED_MODULE_49__ = __webpack_require__(/*! ./elementsv2/api-utils */ "./src/client/elementsv2/api-utils.js");
-
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/includes */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/includes.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/object/assign */ "./node_modules/@babel/runtime-corejs3/core-js-stable/object/assign.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/promise */ "./node_modules/@babel/runtime-corejs3/core-js-stable/promise.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_map__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/map */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/map.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_map__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_map__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/filter */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/filter.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/object/keys */ "./node_modules/@babel/runtime-corejs3/core-js-stable/object/keys.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/instance/for-each */ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/for-each.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_11__);
+/* harmony import */ var _dataStore_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./dataStore.js */ "./src/client/dataStore.js");
+/* harmony import */ var _createSource_js__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./createSource.js */ "./src/client/createSource.js");
+/* harmony import */ var _complianceData__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./complianceData */ "./src/client/complianceData.js");
+/* harmony import */ var _createComponent_js__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./createComponent.js */ "./src/client/createComponent.js");
+/* harmony import */ var _app_components_td_td_utils__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../app/components/td/td-utils */ "./src/app/components/td/td-utils.js");
+/* harmony import */ var _elementsv2_localization_schema_en_json__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./elementsv2/localization/schema/en.json */ "./src/client/elementsv2/localization/schema/en.json");
+/* harmony import */ var _createController_js__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./createController.js */ "./src/client/createController.js");
+/* harmony import */ var _app_components_config__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ../app/components/config */ "./src/app/components/config.js");
+/* harmony import */ var _DigitalRiverPaymentRequest__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./DigitalRiverPaymentRequest */ "./src/client/DigitalRiverPaymentRequest.js");
+/* harmony import */ var _beacon_beacon_client_data__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ../beacon/beacon-client-data */ "./src/beacon/beacon-client-data.js");
+/* harmony import */ var _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ../post-robot-wrapper */ "./src/post-robot-wrapper.js");
+/* harmony import */ var _app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ../app/components/localization/localized-messages */ "./src/app/components/localization/localized-messages.js");
+/* harmony import */ var _create_dropin__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./create-dropin */ "./src/client/create-dropin.js");
+/* harmony import */ var _fetch_payment_methods__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./fetch-payment-methods */ "./src/client/fetch-payment-methods.js");
+/* harmony import */ var _authenticate_source__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./authenticate-source */ "./src/client/authenticate-source.js");
+/* harmony import */ var _korean_card_utils__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./korean-card-utils */ "./src/client/korean-card-utils.js");
+/* harmony import */ var _app_config__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ../app/config */ "./src/app/config.js");
+/* harmony import */ var _send_handle_next_action__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./send-handle-next-action */ "./src/client/send-handle-next-action.js");
+/* harmony import */ var _app_components_controller_controller_window_opener__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ../app/components/controller/controller-window-opener */ "./src/app/components/controller/controller-window-opener.js");
+/* harmony import */ var _elementsv2_checkout_sessions_api__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./elementsv2/checkout-sessions-api */ "./src/client/elementsv2/checkout-sessions-api.js");
+/* harmony import */ var _elementsv2_payment_payment_mount__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./elementsv2/payment/payment-mount */ "./src/client/elementsv2/payment/payment-mount.js");
+/* harmony import */ var _elementsv2_shippingchoice_shipping_choice_mount__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./elementsv2/shippingchoice/shipping-choice-mount */ "./src/client/elementsv2/shippingchoice/shipping-choice-mount.js");
+/* harmony import */ var _elementsv2_address_address_mount__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./elementsv2/address/address-mount */ "./src/client/elementsv2/address/address-mount.js");
+/* harmony import */ var _elementsv2_address_address_utils__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ./elementsv2/address/address-utils */ "./src/client/elementsv2/address/address-utils.js");
+/* harmony import */ var _elementsv2_storage__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ./elementsv2/storage */ "./src/client/elementsv2/storage.js");
+/* harmony import */ var _elementsv2_payment_error_text_translations__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ./elementsv2/payment/error-text-translations */ "./src/client/elementsv2/payment/error-text-translations.js");
+/* harmony import */ var _elementsv2_address_address_country_spec__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! ./elementsv2/address/address-country-spec */ "./src/client/elementsv2/address/address-country-spec.js");
+/* harmony import */ var _elementsv2_wallet_wallet_mount__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! ./elementsv2/wallet/wallet-mount */ "./src/client/elementsv2/wallet/wallet-mount.js");
+/* harmony import */ var _elementsv2_thankyou_thankyou_mount__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__(/*! ./elementsv2/thankyou/thankyou-mount */ "./src/client/elementsv2/thankyou/thankyou-mount.js");
+/* harmony import */ var _elementsv2_compliance_compliance_mount__WEBPACK_IMPORTED_MODULE_41__ = __webpack_require__(/*! ./elementsv2/compliance/compliance-mount */ "./src/client/elementsv2/compliance/compliance-mount.js");
+/* harmony import */ var _elementsv2_tax_identifer_tax_identifier_mount__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__(/*! ./elementsv2/tax-identifer/tax-identifier-mount */ "./src/client/elementsv2/tax-identifer/tax-identifier-mount.js");
+/* harmony import */ var _elementsv2_invoice_attribute_invoice_attribute_mount__WEBPACK_IMPORTED_MODULE_43__ = __webpack_require__(/*! ./elementsv2/invoice-attribute/invoice-attribute-mount */ "./src/client/elementsv2/invoice-attribute/invoice-attribute-mount.js");
+/* harmony import */ var _elementsv2_taxexemption_taxexemption_mount__WEBPACK_IMPORTED_MODULE_44__ = __webpack_require__(/*! ./elementsv2/taxexemption/taxexemption-mount */ "./src/client/elementsv2/taxexemption/taxexemption-mount.js");
+/* harmony import */ var _elementsv2_order_summary_order_summary_mount__WEBPACK_IMPORTED_MODULE_45__ = __webpack_require__(/*! ./elementsv2/order-summary/order-summary-mount */ "./src/client/elementsv2/order-summary/order-summary-mount.js");
+/* harmony import */ var _elementsv2_localization_languages__WEBPACK_IMPORTED_MODULE_46__ = __webpack_require__(/*! ./elementsv2/localization/languages */ "./src/client/elementsv2/localization/languages.js");
+/* harmony import */ var _elementsv2_cookie__WEBPACK_IMPORTED_MODULE_47__ = __webpack_require__(/*! ./elementsv2/cookie */ "./src/client/elementsv2/cookie.js");
+/* harmony import */ var _elementsv2_api_utils__WEBPACK_IMPORTED_MODULE_48__ = __webpack_require__(/*! ./elementsv2/api-utils */ "./src/client/elementsv2/api-utils.js");
 
 
 
@@ -4671,13 +4668,13 @@ function updateInstanceOptionsWithDefaults(instanceOptions) {
     instanceOptions = {};
   }
   if (localeNotProvided(instanceOptions)) {
-    instanceOptions.locale = _app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_24__.DEFAULT_LOCALE;
+    instanceOptions.locale = _app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_23__.DEFAULT_LOCALE;
   } else if (instanceOptions.locale.length === 2) {
-    instanceOptions.locale = (0,_app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_24__.getLocaleFromLanguage)(instanceOptions.locale);
-  } else if (!(0,_app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_24__.localeMessagesContainsClientProvidedLocale)((0,_app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_24__.forceCasingOfLocale)(instanceOptions))) {
-    instanceOptions.locale = _app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_24__.DEFAULT_LOCALE;
+    instanceOptions.locale = (0,_app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_23__.getLocaleFromLanguage)(instanceOptions.locale);
+  } else if (!(0,_app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_23__.localeMessagesContainsClientProvidedLocale)((0,_app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_23__.forceCasingOfLocale)(instanceOptions))) {
+    instanceOptions.locale = _app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_23__.DEFAULT_LOCALE;
   } else {
-    instanceOptions.locale = (0,_app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_24__.forceCasingOfLocale)(instanceOptions);
+    instanceOptions.locale = (0,_app_components_localization_localized_messages__WEBPACK_IMPORTED_MODULE_23__.forceCasingOfLocale)(instanceOptions);
   }
   if (typeof instanceOptions.customerID === 'undefined') {
     instanceOptions.customerID = '';
@@ -4701,31 +4698,29 @@ function DigitalRiver(apiKey, providedInstanceOptions) {
   };
 
   // creating controller component
-  var component = (0,_createController_js__WEBPACK_IMPORTED_MODULE_19__.createController)(document.body, 'controller');
+  var component = (0,_createController_js__WEBPACK_IMPORTED_MODULE_18__.createController)(document.body, 'controller');
 
   // creating beacon component
   //let beaconComponent = createOrExtractBeaconController();
 
   // creating 3dsecure component
-  var dr3dsecure = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_16__.createOrExtractAdyenController)();
-  this.key = _dataStore_js__WEBPACK_IMPORTED_MODULE_13__["default"].create({
+  var dr3dsecure = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_15__.createOrExtractAdyenController)();
+  this.key = _dataStore_js__WEBPACK_IMPORTED_MODULE_12__["default"].create({
     apiKey: apiKey,
     controller: component,
     components: {},
     customEvents: [],
     instanceOptions: instanceOptions
   });
-  (0,_createController_js__WEBPACK_IMPORTED_MODULE_19__.registerControllerEvents)(this.key, (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_16__.getComponentWindow)(component.id), _app_components_config__WEBPACK_IMPORTED_MODULE_20__.config.domain);
+  (0,_createController_js__WEBPACK_IMPORTED_MODULE_18__.registerControllerEvents)(this.key, (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_15__.getComponentWindow)(component.id), _app_components_config__WEBPACK_IMPORTED_MODULE_19__.config.domain);
 
   // Seeing if there is a timing issue. What if the iframe is not loading....
-  _babel_runtime_corejs3_core_js_stable_set_timeout__WEBPACK_IMPORTED_MODULE_5___default()(function () {
-    (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_16__.sendApiKey)(component.id, 'sendInitialData', {
-      apiKey: apiKey,
-      browserInfo: {},
-      instanceOptions: instanceOptions,
-      controllerId: component.id
-    });
-  }, 6000);
+  (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_15__.sendApiKey)(component.id, 'sendInitialData', {
+    apiKey: apiKey,
+    browserInfo: {},
+    instanceOptions: instanceOptions,
+    controllerId: component.id
+  });
 
   /*sendApiKey(beaconComponent.id, 'sendBeaconInitialData', {
     apiKey: apiKey,
@@ -4734,8 +4729,8 @@ function DigitalRiver(apiKey, providedInstanceOptions) {
     return sendBeaconEventDetails(beaconComponent.id, 'controller_loaded');
   });*/
 
-  (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_16__.sendInitalize3dSecure)(dr3dsecure.id, apiKey);
-  (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_16__.updateOverlay)('DRPayment3ds', '0px', '');
+  (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_15__.sendInitalize3dSecure)(dr3dsecure.id, apiKey);
+  (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_15__.updateOverlay)('DRPayment3ds', '0px', '');
 }
 function shouldSendCreateSourceBeaconEvent(response) {
   return typeof response !== 'undefined' && response.source !== null && typeof response.source.id !== 'undefined';
@@ -4749,21 +4744,21 @@ function shouldSendCreateSourceBeaconEvent(response) {
  */
 
 function createSourceForAllPaymentMethods(sourceRequest, componentInstanceOrSourceData) {
-  var _dataStore$get = _dataStore_js__WEBPACK_IMPORTED_MODULE_13__["default"].get(this.key),
+  var _dataStore$get = _dataStore_js__WEBPACK_IMPORTED_MODULE_12__["default"].get(this.key),
     controller = _dataStore$get.controller;
   if (!controller) {
     throw new Error('Cannot create source without a controller');
   }
-  var beaconComponent = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_16__.createOrExtractBeaconController)();
+  var beaconComponent = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_15__.createOrExtractBeaconController)();
   if (typeof sourceRequest === 'undefined') {
     // In this case the componentInstance is actually the source data
     if ((0,_babel_runtime_corejs3_helpers_typeof__WEBPACK_IMPORTED_MODULE_3__["default"])(componentInstanceOrSourceData) !== 'object') {
       throw new Error('Please provide Source creation details to the createSource method.');
     }
-    if ((0,_korean_card_utils__WEBPACK_IMPORTED_MODULE_28__.isKoreanCard)(componentInstanceOrSourceData)) {
+    if ((0,_korean_card_utils__WEBPACK_IMPORTED_MODULE_27__.isKoreanCard)(componentInstanceOrSourceData)) {
       var key = this.key;
       var self = this;
-      return (0,_korean_card_utils__WEBPACK_IMPORTED_MODULE_28__.handleKoreanCard)(self, key, componentInstanceOrSourceData, controller, {
+      return (0,_korean_card_utils__WEBPACK_IMPORTED_MODULE_27__.handleKoreanCard)(self, key, componentInstanceOrSourceData, controller, {
         type: ''
       }, beaconComponent, handleCreateSource);
     }
@@ -4775,10 +4770,10 @@ function createSourceForAllPaymentMethods(sourceRequest, componentInstanceOrSour
     if ((0,_babel_runtime_corejs3_helpers_typeof__WEBPACK_IMPORTED_MODULE_3__["default"])(sourceRequest) !== 'object') {
       throw new Error('Please provide Source creation details to the createSource method');
     }
-    if ((0,_korean_card_utils__WEBPACK_IMPORTED_MODULE_28__.isKoreanCard)(sourceRequest)) {
+    if ((0,_korean_card_utils__WEBPACK_IMPORTED_MODULE_27__.isKoreanCard)(sourceRequest)) {
       var _key = this.key;
       var _self = this;
-      return (0,_korean_card_utils__WEBPACK_IMPORTED_MODULE_28__.handleKoreanCard)(_self, _key, sourceRequest, controller, componentInstanceOrSourceData, beaconComponent, handleCreateSource);
+      return (0,_korean_card_utils__WEBPACK_IMPORTED_MODULE_27__.handleKoreanCard)(_self, _key, sourceRequest, controller, componentInstanceOrSourceData, beaconComponent, handleCreateSource);
     }
     return handleCreateSource(controller.id, componentInstanceOrSourceData.type, sourceRequest, beaconComponent);
   }
@@ -4786,34 +4781,34 @@ function createSourceForAllPaymentMethods(sourceRequest, componentInstanceOrSour
 function handleCreateSourceResponse(response, controllerId, beaconComponent) {
   if (typeof response !== 'undefined' && response.source !== null && hasRequiresAction(response.source)) {
     // creating Adyen component
-    var adyenComponent = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_16__.createOrExtractAdyenController)();
+    var adyenComponent = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_15__.createOrExtractAdyenController)();
     var action = response.source.nextAction.action;
     if (action !== 'do_3ds_redirect') {
-      (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_16__.updateOverlay)('DRPayment3ds', '100%', 'rgba(0,0,0,0.3)');
+      (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_15__.updateOverlay)('DRPayment3ds', '100%', 'rgba(0,0,0,0.3)');
     }
     if (is3DSAction(action)) {
       return handle3DSAction(adyenComponent, controllerId, response.source, getRedirectWindowWhenCorrectAction(action)).then(function (responseData) {
         if (shouldSendCreateSourceBeaconEvent(responseData)) {
-          (0,_app_components_td_td_utils__WEBPACK_IMPORTED_MODULE_17__.sendBeaconEventDetails)(beaconComponent.id, 'source', response.source.id);
+          (0,_app_components_td_td_utils__WEBPACK_IMPORTED_MODULE_16__.sendBeaconEventDetails)(beaconComponent.id, 'source', response.source.id);
         }
         return responseData;
       });
     } else {
       // nothing can be done for now
       if (shouldSendCreateSourceBeaconEvent(response)) {
-        (0,_app_components_td_td_utils__WEBPACK_IMPORTED_MODULE_17__.sendBeaconEventDetails)(beaconComponent.id, 'source', response.source.id);
+        (0,_app_components_td_td_utils__WEBPACK_IMPORTED_MODULE_16__.sendBeaconEventDetails)(beaconComponent.id, 'source', response.source.id);
       }
       return response;
     }
   } else {
     if (shouldSendCreateSourceBeaconEvent(response)) {
-      (0,_app_components_td_td_utils__WEBPACK_IMPORTED_MODULE_17__.sendBeaconEventDetails)(beaconComponent.id, 'source', response.source.id);
+      (0,_app_components_td_td_utils__WEBPACK_IMPORTED_MODULE_16__.sendBeaconEventDetails)(beaconComponent.id, 'source', response.source.id);
     }
     return response;
   }
 }
 function handleCreateSource(controllerId, componentType, sourceRequest, beaconComponent) {
-  return (0,_createSource_js__WEBPACK_IMPORTED_MODULE_14__.createSource)(controllerId, componentType, sourceRequest).then(function (response) {
+  return (0,_createSource_js__WEBPACK_IMPORTED_MODULE_13__.createSource)(controllerId, componentType, sourceRequest).then(function (response) {
     return handleCreateSourceResponse(response, controllerId, beaconComponent);
   });
 }
@@ -4828,7 +4823,7 @@ DigitalRiver.prototype.createSource = function (componentInstanceOrSourceData, s
   return createSourceForAllPaymentMethods.call(this, sourceRequest, componentInstanceOrSourceData);
 };
 function getSecretFromSessionClientSecret(sessionClientSecret) {
-  if (_babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_6___default()(sessionClientSecret).call(sessionClientSecret, '_')) {
+  if (_babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_5___default()(sessionClientSecret).call(sessionClientSecret, '_')) {
     return sessionClientSecret.split('_')[0];
   } else {
     return sessionClientSecret;
@@ -4847,7 +4842,7 @@ DigitalRiver.prototype.createCreditCardSource = function (sessionClientSecret, e
   }
 
   // Copy source request so it does not modify the clients request
-  var updatedSourceRequest = _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_7___default()({}, sourceRequest);
+  var updatedSourceRequest = _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_6___default()({}, sourceRequest);
   updatedSourceRequest.sessionId = getSecretFromSessionClientSecret(sessionClientSecret);
   if (typeof updatedSourceRequest.creditCard === 'undefined') {
     updatedSourceRequest.creditCard = {};
@@ -4864,12 +4859,12 @@ DigitalRiver.prototype.retrieveSource = function (sourceId, sourceClientSecret) 
   if (!sourceId) {
     throw new Error('You must provide a sourceId');
   }
-  var _dataStore$get2 = _dataStore_js__WEBPACK_IMPORTED_MODULE_13__["default"].get(this.key),
+  var _dataStore$get2 = _dataStore_js__WEBPACK_IMPORTED_MODULE_12__["default"].get(this.key),
     controller = _dataStore$get2.controller;
   if (!controller) {
     throw new Error('Cannot retrieve source without a controller');
   }
-  var controllerWindow = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_16__.getComponentWindow)(controller.id);
+  var controllerWindow = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_15__.getComponentWindow)(controller.id);
   if (!controllerWindow) {
     throw new Error("Unable to locate controller '".concat(controller.id, "'"));
   }
@@ -4877,7 +4872,7 @@ DigitalRiver.prototype.retrieveSource = function (sourceId, sourceClientSecret) 
     sourceId: sourceId,
     sourceClientSecret: sourceClientSecret.split('_')[1]
   };
-  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_23__["default"].send(controllerWindow, 'retrieveSource', data, {
+  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_22__["default"].send(controllerWindow, 'retrieveSource', data, {
     timeout: 10000
   }).then(function (response) {
     return response.data;
@@ -4890,24 +4885,24 @@ DigitalRiver.prototype.retrieveSource = function (sourceId, sourceClientSecret) 
  * @param sourceData
  */
 DigitalRiver.prototype.updateSource = function (cardExpirationElement, sourceData) {
-  var _dataStore$get3 = _dataStore_js__WEBPACK_IMPORTED_MODULE_13__["default"].get(this.key),
+  var _dataStore$get3 = _dataStore_js__WEBPACK_IMPORTED_MODULE_12__["default"].get(this.key),
     controller = _dataStore$get3.controller,
     instanceOptions = _dataStore$get3.instanceOptions;
   if (!controller) {
     throw new Error('Cannot update source without a controller');
   }
-  var controllerWindow = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_16__.getComponentWindow)(controller.id);
+  var controllerWindow = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_15__.getComponentWindow)(controller.id);
   if (!controllerWindow) {
     throw new Error("Unable to locate controller '".concat(controller.id, "'"));
   }
   if (typeof sourceData === 'undefined') {
     // In this case the firstArg (cardExpirationElement) is actually sourceData
     // because client did not provide optional element
-    sourceData = _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_7___default()({}, cardExpirationElement);
+    sourceData = _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_6___default()({}, cardExpirationElement);
     cardExpirationElement = undefined;
   } else {
     if (cardExpirationElement.type !== 'cardexpiration') {
-      return _babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_8___default().resolve({
+      return _babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_7___default().resolve({
         'error': {
           'type': 'bad_request',
           'errors': [{
@@ -4935,7 +4930,7 @@ DigitalRiver.prototype.updateSource = function (cardExpirationElement, sourceDat
     });
   }
   if (errors.length > 0) {
-    return _babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_8___default().resolve({
+    return _babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_7___default().resolve({
       'error': {
         'type': 'bad_request',
         'errors': errors
@@ -4948,25 +4943,25 @@ DigitalRiver.prototype.updateSource = function (cardExpirationElement, sourceDat
     cardExpirationElement: cardExpirationElement,
     locale: instanceOptions.locale
   };
-  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_23__["default"].send(controllerWindow, 'updateSource', data, {
+  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_22__["default"].send(controllerWindow, 'updateSource', data, {
     timeout: 10000
   }).then(function (response) {
     return response.data;
   });
 };
 DigitalRiver.prototype.retrieveOnlineBankingBanks = function (country, currency) {
-  var _dataStore$get4 = _dataStore_js__WEBPACK_IMPORTED_MODULE_13__["default"].get(this.key),
+  var _dataStore$get4 = _dataStore_js__WEBPACK_IMPORTED_MODULE_12__["default"].get(this.key),
     controller = _dataStore$get4.controller;
   if (!controller) {
     throw new Error('Cannot get banks without a controller');
   }
-  var controllerWindow = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_16__.getComponentWindow)(controller.id);
+  var controllerWindow = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_15__.getComponentWindow)(controller.id);
   if (!controllerWindow) {
     throw new Error("Unable to locate controller '".concat(controller.id, "'"));
   }
 
   // Send message to Controller Frame to get banks
-  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_23__["default"].send(controllerWindow, 'getOnlineBankingBanks', {
+  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_22__["default"].send(controllerWindow, 'getOnlineBankingBanks', {
     country: country,
     currency: currency
   }, {
@@ -4983,7 +4978,7 @@ function onlineBankingDoesNotHaveRequiredFields(options) {
 }
 DigitalRiver.prototype.retrieveAvailablePaymentMethods = function () {
   var paymentMethodOptions = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  var _dataStore$get5 = _dataStore_js__WEBPACK_IMPORTED_MODULE_13__["default"].get(this.key),
+  var _dataStore$get5 = _dataStore_js__WEBPACK_IMPORTED_MODULE_12__["default"].get(this.key),
     controller = _dataStore$get5.controller,
     instanceOptions = _dataStore$get5.instanceOptions;
   var _paymentMethodOptions = paymentMethodOptions.sessionId,
@@ -4998,10 +4993,10 @@ DigitalRiver.prototype.retrieveAvailablePaymentMethods = function () {
     supportsRecurring = _paymentMethodOptions5 === void 0 ? null : _paymentMethodOptions5,
     _paymentMethodOptions6 = paymentMethodOptions.supportsStorage,
     supportsStorage = _paymentMethodOptions6 === void 0 ? null : _paymentMethodOptions6;
-  return (0,_fetch_payment_methods__WEBPACK_IMPORTED_MODULE_26__.getPaymentMethods)(controller.id, sessionId, country, currency, instanceOptions.locale, supportsStorage, null, supportsRecurring, supportsFreeTrial);
+  return (0,_fetch_payment_methods__WEBPACK_IMPORTED_MODULE_25__.getPaymentMethods)(controller.id, sessionId, country, currency, instanceOptions.locale, supportsStorage, null, supportsRecurring, supportsFreeTrial);
 };
 function getRedirectWindowWhenCorrectAction(action) {
-  return action === 'do_3ds_redirect' ? (0,_app_components_controller_controller_window_opener__WEBPACK_IMPORTED_MODULE_31__.openWindow)('') : undefined;
+  return action === 'do_3ds_redirect' ? (0,_app_components_controller_controller_window_opener__WEBPACK_IMPORTED_MODULE_30__.openWindow)('') : undefined;
 }
 
 /**
@@ -5016,19 +5011,19 @@ function getRedirectWindowWhenCorrectAction(action) {
  */
 DigitalRiver.prototype.authenticateSource = function (componentInstanceOrSourceInfo, sourceInfo) {
   var sourceData = typeof sourceInfo === 'undefined' ? componentInstanceOrSourceInfo : sourceInfo;
-  var _dataStore$get6 = _dataStore_js__WEBPACK_IMPORTED_MODULE_13__["default"].get(this.key),
+  var _dataStore$get6 = _dataStore_js__WEBPACK_IMPORTED_MODULE_12__["default"].get(this.key),
     controller = _dataStore$get6.controller;
   var sessionId = sourceData.sessionId,
     sourceId = sourceData.sourceId,
     sourceClientSecret = sourceData.sourceClientSecret;
-  return (0,_authenticate_source__WEBPACK_IMPORTED_MODULE_27__.getAuthenticateSource)(controller.id, sessionId, sourceId, sourceClientSecret, componentInstanceOrSourceInfo).then(function (sourceResponse) {
+  return (0,_authenticate_source__WEBPACK_IMPORTED_MODULE_26__.getAuthenticateSource)(controller.id, sessionId, sourceId, sourceClientSecret, componentInstanceOrSourceInfo).then(function (sourceResponse) {
     sourceResponse.requestType = 'authenticateSource';
     if (hasRequiresAction(sourceResponse)) {
       // creating Adyen component
-      var adyenComponent = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_16__.createOrExtractAdyenController)();
+      var adyenComponent = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_15__.createOrExtractAdyenController)();
       var action = sourceResponse.nextAction.action;
       if (action !== 'do_3ds_redirect') {
-        (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_16__.updateOverlay)('DRPayment3ds', '100%', 'rgba(0,0,0,0.3)');
+        (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_15__.updateOverlay)('DRPayment3ds', '100%', 'rgba(0,0,0,0.3)');
       }
       if (is3DSAction(action)) {
         return handle3DSAction(adyenComponent, controller.id, sourceResponse, getRedirectWindowWhenCorrectAction(action));
@@ -5041,27 +5036,27 @@ DigitalRiver.prototype.authenticateSource = function (componentInstanceOrSourceI
   });
 };
 function handle3DSAction(adyenComponent, controllerId, source, redirectWindow) {
-  return new (_babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_8___default())(function (resolve) {
+  return new (_babel_runtime_corejs3_core_js_stable_promise__WEBPACK_IMPORTED_MODULE_7___default())(function (resolve) {
     if (typeof redirectWindow !== 'undefined') {
       redirectWindow.location.replace(source.nextAction.data.redirectUrl);
     }
-    return (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_16__.sendAdyen3dDetails)(adyenComponent.id, controllerId, source, resolve, redirectWindow);
+    return (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_15__.sendAdyen3dDetails)(adyenComponent.id, controllerId, source, resolve, redirectWindow);
   }).then(function (responseData) {
-    (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_16__.updateOverlay)('DRPayment3ds', '0px', '');
+    (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_15__.updateOverlay)('DRPayment3ds', '0px', '');
     return responseData;
   });
 }
 DigitalRiver.prototype.handleNextAction = function (nextActionData) {
-  var _dataStore$get7 = _dataStore_js__WEBPACK_IMPORTED_MODULE_13__["default"].get(this.key),
+  var _dataStore$get7 = _dataStore_js__WEBPACK_IMPORTED_MODULE_12__["default"].get(this.key),
     controller = _dataStore$get7.controller;
-  return (0,_send_handle_next_action__WEBPACK_IMPORTED_MODULE_30__.sendHandleNextAction)(controller.id, nextActionData).then(function (sourceResponse) {
+  return (0,_send_handle_next_action__WEBPACK_IMPORTED_MODULE_29__.sendHandleNextAction)(controller.id, nextActionData).then(function (sourceResponse) {
     sourceResponse.requestType = 'handleNextAction'; // authenticateSource
     if (hasRequiresAction(sourceResponse)) {
       // creating Adyen component
-      var adyenComponent = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_16__.createOrExtractAdyenController)();
+      var adyenComponent = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_15__.createOrExtractAdyenController)();
       var action = sourceResponse.nextAction.action;
       if (action !== 'do_3ds_redirect') {
-        (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_16__.updateOverlay)('DRPayment3ds', '100%', 'rgba(0,0,0,0.3)');
+        (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_15__.updateOverlay)('DRPayment3ds', '100%', 'rgba(0,0,0,0.3)');
       }
       if (is3DSAction(action)) {
         return handle3DSAction(adyenComponent, controller.id, sourceResponse, getRedirectWindowWhenCorrectAction(action));
@@ -5087,34 +5082,34 @@ function hasRequiresAction(response) {
  */
 DigitalRiver.prototype.createElement = function (type, options) {
   var formattedType = type.toLowerCase();
-  if (!(0,_app_config__WEBPACK_IMPORTED_MODULE_29__.canClientCreateComponent)(formattedType)) {
+  if (!(0,_app_config__WEBPACK_IMPORTED_MODULE_28__.canClientCreateComponent)(formattedType)) {
     throw new Error("Invalid element type '".concat(type, "'"));
   }
-  var _dataStore$get8 = _dataStore_js__WEBPACK_IMPORTED_MODULE_13__["default"].get(this.key),
+  var _dataStore$get8 = _dataStore_js__WEBPACK_IMPORTED_MODULE_12__["default"].get(this.key),
     components = _dataStore$get8.components,
     controller = _dataStore$get8.controller;
-  if (components[formattedType] && !(0,_app_config__WEBPACK_IMPORTED_MODULE_29__.canMountMoreThanOne)(formattedType)) {
+  if (components[formattedType] && !(0,_app_config__WEBPACK_IMPORTED_MODULE_28__.canMountMoreThanOne)(formattedType)) {
     throw new Error("Failed to create element. Only one element of type '".concat(type, "' allowed per instance."));
   }
-  if (type === 'googlepay' && !(options instanceof _DigitalRiverPaymentRequest__WEBPACK_IMPORTED_MODULE_21__["default"])) {
+  if (type === 'googlepay' && !(options instanceof _DigitalRiverPaymentRequest__WEBPACK_IMPORTED_MODULE_20__["default"])) {
     throw new Error('Use paymentRequest() to create options for google.');
   }
   if (type === 'onlinebanking' && onlineBankingDoesNotHaveRequiredFields(options)) {
     throw new Error('Element Creation Error: For onlineBanking, currency and country are required.');
   }
   var component;
-  if (options instanceof _DigitalRiverPaymentRequest__WEBPACK_IMPORTED_MODULE_21__["default"]) {
+  if (options instanceof _DigitalRiverPaymentRequest__WEBPACK_IMPORTED_MODULE_20__["default"]) {
     options = options.getData();
   }
-  if ((0,_app_config__WEBPACK_IMPORTED_MODULE_29__.isClientSideComponent)(formattedType)) {
-    component = (0,_app_config__WEBPACK_IMPORTED_MODULE_29__.getComponentCreate)(formattedType).create(controller.id, this.key, options);
+  if ((0,_app_config__WEBPACK_IMPORTED_MODULE_28__.isClientSideComponent)(formattedType)) {
+    component = (0,_app_config__WEBPACK_IMPORTED_MODULE_28__.getComponentCreate)(formattedType).create(controller.id, this.key, options);
   } else {
-    component = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_16__.createComponent)(formattedType, controller.id, this.key, options);
+    component = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_15__.createComponent)(formattedType, controller.id, this.key, options);
   }
   // Add component/element id to component map
-  var data = _dataStore_js__WEBPACK_IMPORTED_MODULE_13__["default"].get(component.key);
-  data.components = _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_7___default()({}, data.components, (0,_babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_2__["default"])({}, formattedType, component.id));
-  (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_16__.registerComponentWithController)(controller.id, component, options);
+  var data = _dataStore_js__WEBPACK_IMPORTED_MODULE_12__["default"].get(component.key);
+  data.components = _babel_runtime_corejs3_core_js_stable_object_assign__WEBPACK_IMPORTED_MODULE_6___default()({}, data.components, (0,_babel_runtime_corejs3_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_2__["default"])({}, formattedType, component.id));
+  (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_15__.registerComponentWithController)(controller.id, component, options);
   return component;
 };
 
@@ -5123,27 +5118,27 @@ DigitalRiver.prototype.createElement = function (type, options) {
  * @param {object} data of the request
  */
 DigitalRiver.prototype.paymentRequest = function (data) {
-  return new _DigitalRiverPaymentRequest__WEBPACK_IMPORTED_MODULE_21__["default"](data);
+  return new _DigitalRiverPaymentRequest__WEBPACK_IMPORTED_MODULE_20__["default"](data);
 };
 function getDetails(entityValue, userLocale) {
   if (!userLocale) {
     userLocale = this.locale;
   }
-  return (0,_complianceData__WEBPACK_IMPORTED_MODULE_15__.complianceGetDetails)(entityValue, userLocale);
+  return (0,_complianceData__WEBPACK_IMPORTED_MODULE_14__.complianceGetDetails)(entityValue, userLocale);
 }
 DigitalRiver.prototype.retrieveKonbiniStores = function () {
-  var _dataStore$get9 = _dataStore_js__WEBPACK_IMPORTED_MODULE_13__["default"].get(this.key),
+  var _dataStore$get9 = _dataStore_js__WEBPACK_IMPORTED_MODULE_12__["default"].get(this.key),
     controller = _dataStore$get9.controller;
   if (!controller) {
     throw new Error('Cannot get stores without a controller');
   }
-  var controllerWindow = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_16__.getComponentWindow)(controller.id);
+  var controllerWindow = (0,_createComponent_js__WEBPACK_IMPORTED_MODULE_15__.getComponentWindow)(controller.id);
   if (!controllerWindow) {
     throw new Error("Unable to locate controller '".concat(controller.id, "'"));
   }
 
   // Send message to Controller Frame to get banks
-  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_23__["default"].send(controllerWindow, 'getKonbiniStores', {}).then(function (response) {
+  return _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_22__["default"].send(controllerWindow, 'getKonbiniStores', {}).then(function (response) {
     // This is a Post Robot Response object so you have to get the data out
     return response.data;
   }).catch(function () {
@@ -5153,10 +5148,10 @@ DigitalRiver.prototype.retrieveKonbiniStores = function () {
 function removeUnsupportedPaymentMethods(storedPaymentMethods) {
   var _context, _context2, _context3;
   var allowedPaymentMethodsTypes = ['payPal', 'creditCard', 'storeCredit'];
-  var allowedBrands = _babel_runtime_corejs3_core_js_stable_instance_map__WEBPACK_IMPORTED_MODULE_9___default()(_context = (0,_create_dropin__WEBPACK_IMPORTED_MODULE_25__.getLogoDetails)()).call(_context, function (logoDetails) {
+  var allowedBrands = _babel_runtime_corejs3_core_js_stable_instance_map__WEBPACK_IMPORTED_MODULE_8___default()(_context = (0,_create_dropin__WEBPACK_IMPORTED_MODULE_24__.getLogoDetails)()).call(_context, function (logoDetails) {
     return logoDetails.brand.toLowerCase();
   });
-  return _babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_10___default()(_context2 = _babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_10___default()(_context3 = _babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_10___default()(storedPaymentMethods).call(storedPaymentMethods, function (pm) {
+  return _babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_9___default()(_context2 = _babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_9___default()(_context3 = _babel_runtime_corejs3_core_js_stable_instance_filter__WEBPACK_IMPORTED_MODULE_9___default()(storedPaymentMethods).call(storedPaymentMethods, function (pm) {
     if (typeof pm.type === 'undefined' || typeof pm.id === 'undefined') {
       console.warn('Stored payment method is missing required data');
       return false;
@@ -5170,14 +5165,14 @@ function removeUnsupportedPaymentMethods(storedPaymentMethods) {
       return true;
     }
   })).call(_context3, function (pm) {
-    if (_babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_6___default()(allowedPaymentMethodsTypes).call(allowedPaymentMethodsTypes, pm.type)) {
+    if (_babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_5___default()(allowedPaymentMethodsTypes).call(allowedPaymentMethodsTypes, pm.type)) {
       return true;
     } else {
       console.warn('An unsupported stored payment has been provided.', pm.type);
       return false;
     }
   })).call(_context2, function (pm) {
-    if (pm.type === 'creditCard' && !_babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_6___default()(allowedBrands).call(allowedBrands, pm.brand.toLowerCase())) {
+    if (pm.type === 'creditCard' && !_babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_5___default()(allowedBrands).call(allowedBrands, pm.brand.toLowerCase())) {
       console.warn('An unsupported stored credit card brand has been provided', pm.brand);
       return false;
     } else {
@@ -5198,7 +5193,7 @@ function validateBillingAddressFields(billingAddress) {
   if (typeof billingAddress.phoneNumber === 'undefined' || billingAddress.phoneNumber.length === 0) {
     throw Error('Please provide a billingAddress.phoneNumber');
   }
-  if (typeof billingAddress.address === 'undefined' || _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_11___default()(billingAddress.address).length === 0) {
+  if (typeof billingAddress.address === 'undefined' || _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_10___default()(billingAddress.address).length === 0) {
     throw Error('Please provide a billingAddress.address');
   }
   if (typeof billingAddress.address.line1 === 'undefined' || billingAddress.address.line1.length === 0) {
@@ -5230,8 +5225,8 @@ function validatePaymentMethodConfigurationHasDuplicateEntries(options) {
   if (typeof options.paymentMethodConfiguration.enabledPaymentMethods !== 'undefined' && options.paymentMethodConfiguration.enabledPaymentMethods.length > 0 && typeof options.paymentMethodConfiguration.disabledPaymentMethods !== 'undefined' && options.paymentMethodConfiguration.disabledPaymentMethods.length > 0) {
     var _context4;
     var enabledPaymentMethods = (0,_babel_runtime_corejs3_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_1__["default"])(options.paymentMethodConfiguration.enabledPaymentMethods);
-    _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_12___default()(_context4 = options.paymentMethodConfiguration.disabledPaymentMethods).call(_context4, function (dpm) {
-      if (_babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_6___default()(enabledPaymentMethods).call(enabledPaymentMethods, dpm)) {
+    _babel_runtime_corejs3_core_js_stable_instance_for_each__WEBPACK_IMPORTED_MODULE_11___default()(_context4 = options.paymentMethodConfiguration.disabledPaymentMethods).call(_context4, function (dpm) {
+      if (_babel_runtime_corejs3_core_js_stable_instance_includes__WEBPACK_IMPORTED_MODULE_5___default()(enabledPaymentMethods).call(enabledPaymentMethods, dpm)) {
         throw Error("Payment method ".concat(dpm, " cannot be enabled and disabled."));
       }
     });
@@ -5239,10 +5234,10 @@ function validatePaymentMethodConfigurationHasDuplicateEntries(options) {
 }
 DigitalRiver.prototype.createDropin = function (configuration) {
   var _context5, _context6;
-  if (!(0,_create_dropin__WEBPACK_IMPORTED_MODULE_25__.isManagePaymentMethodsMode)(configuration) && (typeof configuration.sessionId === 'undefined' || configuration.sessionId.length === 0)) {
+  if (!(0,_create_dropin__WEBPACK_IMPORTED_MODULE_24__.isManagePaymentMethodsMode)(configuration) && (typeof configuration.sessionId === 'undefined' || configuration.sessionId.length === 0)) {
     throw Error('Please provide a sessionId');
   }
-  if ((typeof configuration.billingAddress === 'undefined' || _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_11___default()(configuration.billingAddress).length === 0) && (0,_create_dropin__WEBPACK_IMPORTED_MODULE_25__.isManagePaymentMethodsMode)(configuration) && (typeof configuration.sessionId === 'undefined' || configuration.sessionId.length === 0)) {
+  if ((typeof configuration.billingAddress === 'undefined' || _babel_runtime_corejs3_core_js_stable_object_keys__WEBPACK_IMPORTED_MODULE_10___default()(configuration.billingAddress).length === 0) && (0,_create_dropin__WEBPACK_IMPORTED_MODULE_24__.isManagePaymentMethodsMode)(configuration) && (typeof configuration.sessionId === 'undefined' || configuration.sessionId.length === 0)) {
     throw Error('Please provide a billingAddress');
   }
   if (typeof configuration.billingAddress !== 'undefined') {
@@ -5255,15 +5250,15 @@ DigitalRiver.prototype.createDropin = function (configuration) {
   var key = this.key;
   var createElement = _babel_runtime_corejs3_core_js_stable_instance_bind__WEBPACK_IMPORTED_MODULE_4___default()(_context5 = this.createElement).call(_context5, this);
   var createSource = _babel_runtime_corejs3_core_js_stable_instance_bind__WEBPACK_IMPORTED_MODULE_4___default()(_context6 = this.createSource).call(_context6, this);
-  var complianceDetails = _complianceData__WEBPACK_IMPORTED_MODULE_15__.complianceGetDetails;
-  var _dataStore$get10 = _dataStore_js__WEBPACK_IMPORTED_MODULE_13__["default"].get(key),
+  var complianceDetails = _complianceData__WEBPACK_IMPORTED_MODULE_14__.complianceGetDetails;
+  var _dataStore$get10 = _dataStore_js__WEBPACK_IMPORTED_MODULE_12__["default"].get(key),
     controller = _dataStore$get10.controller,
     instanceOptions = _dataStore$get10.instanceOptions;
   var paymentMethodsMounted = [];
   var legalFooterComponent = {};
   return {
-    mount: (0,_create_dropin__WEBPACK_IMPORTED_MODULE_25__.mountDropin)(controller, configuration, createSource, createElement, instanceOptions, complianceDetails, paymentMethodsMounted, false, legalFooterComponent),
-    refresh: (0,_create_dropin__WEBPACK_IMPORTED_MODULE_25__.mountDropin)(controller, configuration, createSource, createElement, instanceOptions, complianceDetails, paymentMethodsMounted, true, legalFooterComponent)
+    mount: (0,_create_dropin__WEBPACK_IMPORTED_MODULE_24__.mountDropin)(controller, configuration, createSource, createElement, instanceOptions, complianceDetails, paymentMethodsMounted, false, legalFooterComponent),
+    refresh: (0,_create_dropin__WEBPACK_IMPORTED_MODULE_24__.mountDropin)(controller, configuration, createSource, createElement, instanceOptions, complianceDetails, paymentMethodsMounted, true, legalFooterComponent)
   };
 };
 DigitalRiver.prototype.components = function (configuration) {
@@ -5276,26 +5271,26 @@ DigitalRiver.prototype.components = function (configuration) {
   var createElement = _babel_runtime_corejs3_core_js_stable_instance_bind__WEBPACK_IMPORTED_MODULE_4___default()(_context8 = this.createElement).call(_context8, this);
   var getDetails = _babel_runtime_corejs3_core_js_stable_instance_bind__WEBPACK_IMPORTED_MODULE_4___default()(_context9 = this.Compliance.getDetails).call(_context9, this);
   var handleNextAction = _babel_runtime_corejs3_core_js_stable_instance_bind__WEBPACK_IMPORTED_MODULE_4___default()(_context10 = this.handleNextAction).call(_context10, this);
-  var _dataStore$get11 = _dataStore_js__WEBPACK_IMPORTED_MODULE_13__["default"].get(key),
+  var _dataStore$get11 = _dataStore_js__WEBPACK_IMPORTED_MODULE_12__["default"].get(key),
     apiKey = _dataStore$get11.apiKey,
     controller = _dataStore$get11.controller,
     instanceOptions = _dataStore$get11.instanceOptions;
-  var storage = (0,_elementsv2_storage__WEBPACK_IMPORTED_MODULE_37__.createStorage)(apiKey, controller, instanceOptions, configuration);
-  (0,_elementsv2_payment_error_text_translations__WEBPACK_IMPORTED_MODULE_38__.getLocalizedErrors)(controller.id, (0,_elementsv2_localization_languages__WEBPACK_IMPORTED_MODULE_47__.getLanguageFromLocaleForLanguageFile)(instanceOptions.locale).toLowerCase()).then(function (res) {
+  var storage = (0,_elementsv2_storage__WEBPACK_IMPORTED_MODULE_36__.createStorage)(apiKey, controller, instanceOptions, configuration);
+  (0,_elementsv2_payment_error_text_translations__WEBPACK_IMPORTED_MODULE_37__.getLocalizedErrors)(controller.id, (0,_elementsv2_localization_languages__WEBPACK_IMPORTED_MODULE_46__.getLanguageFromLocaleForLanguageFile)(instanceOptions.locale).toLowerCase()).then(function (res) {
     storage.translations = res;
   });
-  storage.jsonSchematranslations = _elementsv2_localization_schema_en_json__WEBPACK_IMPORTED_MODULE_18__;
-  (0,_elementsv2_address_address_country_spec__WEBPACK_IMPORTED_MODULE_39__.getLocalizedJsonSchema)(controller.id, (0,_elementsv2_address_address_utils__WEBPACK_IMPORTED_MODULE_36__.getLanguageFromLocaleForCountrySpec)(instanceOptions.locale).toLowerCase()).then(function (res) {
+  storage.jsonSchematranslations = _elementsv2_localization_schema_en_json__WEBPACK_IMPORTED_MODULE_17__;
+  (0,_elementsv2_address_address_country_spec__WEBPACK_IMPORTED_MODULE_38__.getLocalizedJsonSchema)(controller.id, (0,_elementsv2_address_address_utils__WEBPACK_IMPORTED_MODULE_35__.getLanguageFromLocaleForCountrySpec)(instanceOptions.locale).toLowerCase()).then(function (res) {
     storage.jsonSchematranslations = res;
   });
-  var fingerPrintFromCookie = (0,_elementsv2_cookie__WEBPACK_IMPORTED_MODULE_48__.getCookieValue)(_elementsv2_cookie__WEBPACK_IMPORTED_MODULE_48__.COOKIE_KEY);
-  (0,_elementsv2_checkout_sessions_api__WEBPACK_IMPORTED_MODULE_32__.getDropinCheckout)(configuration.checkoutSessionId, apiKey, fingerPrintFromCookie).then(_elementsv2_api_utils__WEBPACK_IMPORTED_MODULE_49__.readResponseJSON).then(function (data) {
+  var fingerPrintFromCookie = (0,_elementsv2_cookie__WEBPACK_IMPORTED_MODULE_47__.getCookieValue)(_elementsv2_cookie__WEBPACK_IMPORTED_MODULE_47__.COOKIE_KEY);
+  (0,_elementsv2_checkout_sessions_api__WEBPACK_IMPORTED_MODULE_31__.getDropinCheckout)(configuration.checkoutSessionId, apiKey, fingerPrintFromCookie).then(_elementsv2_api_utils__WEBPACK_IMPORTED_MODULE_48__.readResponseJSON).then(function (data) {
     var fingerprint = data.fingerprint;
     var sessionId = data.payment.session.id;
     storage.fingerprint = fingerprint;
     storage.paymentSessionId = sessionId;
     storage.checkoutData = data;
-    document.cookie = (0,_elementsv2_cookie__WEBPACK_IMPORTED_MODULE_48__.createCookie)(storage);
+    document.cookie = (0,_elementsv2_cookie__WEBPACK_IMPORTED_MODULE_47__.createCookie)(storage);
     if (typeof configuration.onReady !== 'undefined') {
       var _data$optionalTaxIden, _data$requiredTaxIden;
       configuration.onReady((0,_babel_runtime_corejs3_helpers_objectSpread2__WEBPACK_IMPORTED_MODULE_0__["default"])((0,_babel_runtime_corejs3_helpers_objectSpread2__WEBPACK_IMPORTED_MODULE_0__["default"])({}, data), {}, {
@@ -5308,25 +5303,25 @@ DigitalRiver.prototype.components = function (configuration) {
   return {
     createComponent: function createComponent(elementName) {
       if (elementName === 'payment') {
-        return (0,_elementsv2_payment_payment_mount__WEBPACK_IMPORTED_MODULE_33__.payment)(key, configuration, storage, createDropin, handleNextAction, createElement);
+        return (0,_elementsv2_payment_payment_mount__WEBPACK_IMPORTED_MODULE_32__.payment)(key, configuration, storage, createDropin, handleNextAction, createElement);
       } else if (elementName === 'shipping') {
-        return (0,_elementsv2_shippingchoice_shipping_choice_mount__WEBPACK_IMPORTED_MODULE_34__.shippingChoice)(key, configuration, storage);
+        return (0,_elementsv2_shippingchoice_shipping_choice_mount__WEBPACK_IMPORTED_MODULE_33__.shippingChoice)(key, configuration, storage);
       } else if (elementName === 'address') {
-        return (0,_elementsv2_address_address_mount__WEBPACK_IMPORTED_MODULE_35__.address)(key, configuration, storage);
+        return (0,_elementsv2_address_address_mount__WEBPACK_IMPORTED_MODULE_34__.address)(key, configuration, storage);
       } else if (elementName === 'wallet') {
-        return (0,_elementsv2_wallet_wallet_mount__WEBPACK_IMPORTED_MODULE_40__.wallet)(key, configuration, storage, createElement);
+        return (0,_elementsv2_wallet_wallet_mount__WEBPACK_IMPORTED_MODULE_39__.wallet)(key, configuration, storage, createElement);
       } else if (elementName === 'thankyou') {
-        return (0,_elementsv2_thankyou_thankyou_mount__WEBPACK_IMPORTED_MODULE_41__.thankYou)(key, configuration, storage);
+        return (0,_elementsv2_thankyou_thankyou_mount__WEBPACK_IMPORTED_MODULE_40__.thankYou)(key, configuration, storage);
       } else if (elementName === 'compliance') {
-        return (0,_elementsv2_compliance_compliance_mount__WEBPACK_IMPORTED_MODULE_42__.compliance)(key, configuration, storage, getDetails);
+        return (0,_elementsv2_compliance_compliance_mount__WEBPACK_IMPORTED_MODULE_41__.compliance)(key, configuration, storage, getDetails);
       } else if (elementName === 'taxidentifier') {
-        return (0,_elementsv2_tax_identifer_tax_identifier_mount__WEBPACK_IMPORTED_MODULE_43__.taxIdentifier)(key, configuration, storage, createElement);
+        return (0,_elementsv2_tax_identifer_tax_identifier_mount__WEBPACK_IMPORTED_MODULE_42__.taxIdentifier)(key, configuration, storage, createElement);
       } else if (elementName === 'taxexemption') {
-        return (0,_elementsv2_taxexemption_taxexemption_mount__WEBPACK_IMPORTED_MODULE_45__.taxExemption)(key, configuration, storage);
+        return (0,_elementsv2_taxexemption_taxexemption_mount__WEBPACK_IMPORTED_MODULE_44__.taxExemption)(key, configuration, storage);
       } else if (elementName === 'invoiceattribute') {
-        return (0,_elementsv2_invoice_attribute_invoice_attribute_mount__WEBPACK_IMPORTED_MODULE_44__.invoiceAttribute)(key, configuration, storage, createElement);
+        return (0,_elementsv2_invoice_attribute_invoice_attribute_mount__WEBPACK_IMPORTED_MODULE_43__.invoiceAttribute)(key, configuration, storage, createElement);
       } else if (elementName === 'ordersummary') {
-        return (0,_elementsv2_order_summary_order_summary_mount__WEBPACK_IMPORTED_MODULE_46__.orderSummary)(key, configuration, storage);
+        return (0,_elementsv2_order_summary_order_summary_mount__WEBPACK_IMPORTED_MODULE_45__.orderSummary)(key, configuration, storage);
       } else {
         throw Error('Unsupported element ' + elementName);
       }
