@@ -46591,7 +46591,7 @@ __webpack_require__.r(__webpack_exports__);
 console.log('CHECKING CLIENT DOMAIN 1');
 // document.referrer is empty on safari 17 private mode
 // Create a postRobot listener/emitter tied to the parent window and domain only
-var clientDomain = 'https://lbarnes-test-1.s3.us-east-2.amazonaws.com/'; // TODO Try nothing...
+var clientDomain = 'https://lbarnes-test-1.s3.us-east-2.amazonaws.com'; // TODO Try nothing...
 console.log('CHECKING CLIENT DOMAIN 2', clientDomain, (0,_utils__WEBPACK_IMPORTED_MODULE_15__.getParentDomain)(), window.parent);
 var clientListener = _post_robot_wrapper__WEBPACK_IMPORTED_MODULE_10__["default"].listener({
   domain: clientDomain
